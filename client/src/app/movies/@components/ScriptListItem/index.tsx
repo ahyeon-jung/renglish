@@ -2,15 +2,15 @@ import { formatDate, formatTitle } from "@/utils/format";
 
 import { Calendar } from "lucide-react";
 import Link from "next/link";
-import { MovieInfo } from "@/types/script";
+import { Movie } from "@/types/script";
 import { PATHS } from "@/constants/path";
 import ScriptLink from "../ScriptLink";
 import Text from "@/components/Text";
 import clsx from "clsx";
 
-type ScriptListItem = { path: string } & MovieInfo;
+type ScriptListItem = Movie;
 
-export default function ScriptListItem({ title }: ScriptListItem) {
+export default function ScriptListItem({ title, scenes }: ScriptListItem) {
   const today = new Date();
 
   return (
@@ -31,9 +31,9 @@ export default function ScriptListItem({ title }: ScriptListItem) {
         </div>
       </div>
       <div className="flex gap-4 mt-4">
-        <ScriptLink title={title} id={"01"} />
-        <ScriptLink title={title} id={"02"} />
-        <ScriptLink title={title} id={"03"} />
+        {scenes.map((_, index) => (
+          <ScriptLink key={index} title={title} id={index} />
+        ))}
       </div>
     </li>
   );

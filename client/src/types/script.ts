@@ -7,7 +7,6 @@ export type MovieInfo = {
 };
 
 export type MovieScene = {
-  id: number;
   dialogues: MovieSceneDialogue[];
 };
 
