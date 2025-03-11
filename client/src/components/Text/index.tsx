@@ -1,4 +1,5 @@
 import React from "react";
+import clsx from "clsx";
 
 type Typography =
   | "body-lg"
@@ -16,6 +17,7 @@ type Typography =
   | "subHead-sm";
 
 type TextProps = {
+  className?: string;
   typography?: Typography;
   as?: keyof React.JSX.IntrinsicElements;
 } & React.PropsWithChildren;
@@ -38,11 +40,16 @@ const typographyClasses: Record<Typography, string> = {
 
 export default function Text({
   children,
+  className,
   as = "span",
   typography,
   ...props
 }: TextProps) {
   const classes = typography ? typographyClasses[typography] : "";
 
-  return React.createElement(as, { ...props, className: classes }, children);
+  return React.createElement(
+    as,
+    { ...props, className: clsx(classes, className) },
+    children
+  );
 }

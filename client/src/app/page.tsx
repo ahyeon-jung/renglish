@@ -5,15 +5,12 @@ import clsx from "clsx";
 
 export default function Home() {
   return (
-    <main
-      className={clsx(
-        "mt-[var(--header-height)] p-3",
-        "flex flex-col gap-[15px]"
-      )}
-    >
+    <main className={clsx("mt-[var(--header-height)]")}>
       <ScriptSearch />
-      <Categories />
-      <LatestScript />
+      <div className="flex flex-col gap-[15px] p-3">
+        <Categories />
+        <LatestScript />
+      </div>
     </main>
   );
 }
