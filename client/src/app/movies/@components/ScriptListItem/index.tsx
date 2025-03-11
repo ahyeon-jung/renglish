@@ -23,11 +23,13 @@ export default function ScriptListItem({ title, scenes }: ScriptListItem) {
     >
       <div className="flex flex-col mb-4">
         <Link href={PATHS.MOVIE_DETAIL(title)}>
-          <Text>{formatTitle(title)}</Text>
+          <Text typography="display-sm">{formatTitle(title)}</Text>
         </Link>
         <div className="flex items-center gap-2 mt-2 text-sm text-gray-600">
           <Calendar size={16} />
-          <Text typography="subtitle1">{formatDate(today)}</Text>
+          <Text as="div" typography="subHead-sm">
+            {formatDate(today)}
+          </Text>
         </div>
       </div>
       <div className="flex gap-4 mt-4">

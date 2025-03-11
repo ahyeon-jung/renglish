@@ -9,7 +9,11 @@ type Container = {
 export default function Container({ label, className, children }: Container) {
   return (
     <section className={clsx("flex flex-col gap-[15px]", className)}>
-      {label && <Text>{label}</Text>}
+      {label && (
+        <Text as="h3" typography="headline-lg">
+          {label}
+        </Text>
+      )}
       {children}
     </section>
   );

@@ -1,5 +1,6 @@
-import Text from "@/components/Text";
-import { formatTitle } from "@/utils/format";
+import LineItem from "./@components/LineItem";
+import MovieInfo from "./@components/MovieInfo";
+import clsx from "clsx";
 import { getMovieData } from "@/app/@actions/getContent";
 
 export default async function MovieDetail({
@@ -12,8 +13,18 @@ export default async function MovieDetail({
   const movie = await getMovieData(slug.movie);
 
   return (
-    <main className="mt-[var(--header-height)] p-3">
-      <Text>{formatTitle(movie.title)}</Text>
+    <main
+      className={clsx(
+        "mt-[var(--header-height)] p-3",
+        "flex flex-col gap-[30px]"
+      )}
+    >
+      <MovieInfo {...movie} />
+      <div className="flex flex-col gap-[10px]">
+        {movie.scenes.map(({ dialogues }, index) => (
+          <LineItem key={index} text={dialogues[0].text} />
+        ))}
+      </div>
     </main>
   );
 }

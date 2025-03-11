@@ -4,6 +4,7 @@ export type Movie = {
 
 export type MovieInfo = {
   title: string;
+  description: string;
 };
 
 export type MovieScene = {

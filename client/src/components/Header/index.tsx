@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { PATHS } from "@/constants/path";
 import { Squirrel } from "lucide-react";
+import Text from "../Text";
 import clsx from "clsx";
 
 export default function Header() {
@@ -14,7 +15,9 @@ export default function Header() {
     >
       <Link href={PATHS.HOME} className="flex gap-[2px] items-center">
         <Squirrel size={30} className="text-yellow-500" />
-        <h2 className="text-xl font-semibold text-gray-700">Renglish</h2>
+        <Text as="h2" typography="headline-lg">
+          Renglish
+        </Text>
       </Link>
       <div className="flex items-center gap-4"></div>
     </header>
