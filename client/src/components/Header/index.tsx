@@ -1,21 +1,22 @@
+import Image from "next/image";
 import Link from "next/link";
 import Nav from "../Nav";
 import { PATHS } from "@/constants/path";
-import { Squirrel } from "lucide-react";
 import Text from "../Text";
 import clsx from "clsx";
+import logo from "@/assets/logo.png";
 
 export default function Header() {
   return (
     <header
       className={clsx(
         "fixed inset-x-0 top-0 bg-white shadow-lg",
-        "flex justify-between items-center px-2 py-4",
+        "flex justify-between items-center px-4 py-4",
         "h-[var(--header-height)] z-[var(--header-z-index)]"
       )}
     >
-      <Link href={PATHS.HOME} className="flex gap-[2px] items-center">
-        <Squirrel size={30} className="text-yellow-500" />
+      <Link href={PATHS.HOME} className="flex gap-[4px] items-center">
+        <Image src={logo} alt="Renglish logo image" width={30} height={30} />
         <Text as="h2" typography="headline-lg">
           Renglish
         </Text>

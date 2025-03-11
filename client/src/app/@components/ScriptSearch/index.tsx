@@ -2,7 +2,7 @@ import Container from "../Container";
 import Image from "next/image";
 import SearchBar from "@/components/SearchBar";
 import Text from "@/components/Text";
-import backgroundImage from "@/assets/images/background.jpg";
+import backgroundImage from "@/assets/images/background.webp";
 
 export default function ScriptSearch() {
   return (
