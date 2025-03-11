@@ -11,7 +11,7 @@ export default function Dialog({ isOpen, onClose, children }: DialogProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-end bg-black/50"
+      className="fixed inset-0 z-[var(--nav-z-index)] flex items-center justify-end bg-black/50"
       onClick={onClose}
     >
       <div

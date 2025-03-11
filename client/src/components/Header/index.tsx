@@ -11,7 +11,7 @@ export default function Header() {
       className={clsx(
         "fixed inset-x-0 top-0 bg-white shadow-lg",
         "flex justify-between items-center px-2 py-4",
-        "h-[var(--header-height)]"
+        "h-[var(--header-height)] z-[var(--header-z-index)]"
       )}
     >
       <Link href={PATHS.HOME} className="flex gap-[2px] items-center">
