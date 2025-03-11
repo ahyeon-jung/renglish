@@ -2,7 +2,6 @@ import "../styles/globals.css";
 
 import Header from "@/components/Header";
 import type { Metadata } from "next";
-import Nav from "@/components/Nav";
 
 export const metadata: Metadata = {
   title: "REnglish",
@@ -20,7 +19,6 @@ export default function RootLayout({ children }: LayoutProps) {
       <body>
         <Header />
         {children}
-        <Nav />
       </body>
     </html>
   );

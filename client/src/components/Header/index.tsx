@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Nav from "../Nav";
 import { PATHS } from "@/constants/path";
 import { Squirrel } from "lucide-react";
 import Text from "../Text";
@@ -9,7 +10,7 @@ export default function Header() {
     <header
       className={clsx(
         "fixed inset-x-0 top-0 bg-white shadow-lg",
-        "flex justify-between items-center px-6 py-4",
+        "flex justify-between items-center px-2 py-4",
         "h-[var(--header-height)]"
       )}
     >
@@ -19,7 +20,9 @@ export default function Header() {
           Renglish
         </Text>
       </Link>
-      <div className="flex items-center gap-4"></div>
+      <div className="flex">
+        <Nav />
+      </div>
     </header>
   );
 }
