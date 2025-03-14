@@ -8,248 +8,308 @@
       "dialogues": [
         {
           "speaker": "Louisa Clark",
-          "en": "Hi, am I needed?"
+          "en": "Hi, am I needed?",
+          "ko": "안녕하세요, 제가 필요하신가요?"
         },
         {
           "speaker": "Will Traynor",
-          "en": "DVD weather, I think."
+          "en": "DVD weather, I think.",
+          "ko": "DVD 보기 좋은 날씨인 것 같네요."
         },
         {
           "speaker": "Will Traynor",
-          "en": "Des Hommes et des dieux"
+          "en": "Des Hommes et des dieux",
+          "ko": "Des Hommes et des dieux."
         },
         {
           "speaker": "Louisa Clark",
-          "en": "Something about men?"
+          "en": "Something about men?",
+          "ko": "남자들에 대한 영화인가요?"
         },
         {
           "speaker": "Will Traynor",
-          "en": "Yes, it's French gay porn."
+          "en": "Yes, it's French gay porn.",
+          "ko": "네, 프랑스 게이 포르노예요."
         },
         {
           "speaker": "Will Traynor",
-          "en": "You really don't enjoy sarcasm, do you?"
+          "en": "You really don't enjoy sarcasm, do you?",
+          "ko": "당신 정말로 풍자를 즐기지 않는군요, 그렇죠?"
         },
         {
           "speaker": "Louisa Clark",
-          "en": "The sarcasm is fine."
+          "en": "The sarcasm is fine.",
+          "ko": "풍자는 괜찮아요."
         },
         {
           "speaker": "Louisa Clark",
-          "en": "I just don't like superiority."
+          "en": "I just don't like superiority.",
+          "ko": "다만 우월감을 내세우는 게 싫어요."
         },
         {
           "speaker": "Will Traynor",
-          "en": "You must hate me, then."
+          "en": "You must hate me, then.",
+          "ko": "그럼 나를 싫어하겠군요."
         },
         {
           "speaker": "Louisa Clark",
-          "en": "I've never hated anyone."
+          "en": "I've never hated anyone.",
+          "ko": "전 누구도 미워한 적 없어요."
         },
         {
           "speaker": "Louisa Clark",
-          "en": "Let me know if you need anything."
+          "en": "Let me know if you need anything.",
+          "ko": "필요한 게 있으면 말씀하세요."
         },
         {
           "speaker": "Will Traynor",
-          "en": "Have you seen it?"
+          "en": "Have you seen it?",
+          "ko": "이 영화 본 적 있나요?"
         },
         {
           "speaker": "Louisa Clark",
-          "en": "I don't really like those kinds of films."
+          "en": "I don't really like those kinds of films.",
+          "ko": "저는 그런 종류의 영화를 별로 안 좋아해요."
         },
-
         {
           "speaker": "Will Traynor",
-          "en": "Those kinds of films?"
+          "en": "Those kinds of films?",
+          "ko": "그런 종류의 영화라니?"
         },
         {
           "speaker": "Louisa Clark",
-          "en": "Films with subtitles."
+          "en": "Films with subtitles.",
+          "ko": "자막 있는 영화요."
         },
         {
           "speaker": "Will Traynor",
-          "en": "What, did your school not teach you to read?"
+          "en": "What, did your school not teach you to read?",
+          "ko": "뭐야, 학교에서 읽는 법을 안 가르쳤나요?"
         },
         {
           "speaker": "Will Traynor",
-          "en": "Sit down."
+          "en": "Sit down.",
+          "ko": "앉아요."
         },
         {
           "speaker": "Will Traynor",
-          "en": "Watch this with me. that's an order."
+          "en": "Watch this with me. that's an order.",
+          "ko": "이거 나랑 같이 봐요. 이건 명령이에요."
         },
         {
           "speaker": "Will Traynor",
-          "en": "That's an order."
+          "en": "That's an order.",
+          "ko": "이건 명령이에요."
         },
         {
           "speaker": "etc",
-          "en": "You have no choice."
+          "en": "You have no choice.",
+          "ko": "당신에게 선택의 여지가 없어요."
         },
         {
           "speaker": "etc",
-          "en": "Yes."
+          "en": "Yes.",
+          "ko": "네."
         },
         {
           "speaker": "etc",
-          "en": "I do."
+          "en": "I do.",
+          "ko": "있어요."
         },
         {
           "speaker": "Will Traynor",
-          "en": "So?"
+          "en": "So?",
+          "ko": "그래서?"
         },
         {
           "speaker": "Louisa Clark",
-          "en": "Well, they could have left!"
+          "en": "Well, they could have left!",
+          "ko": "글쎄요, 그들은 떠날 수도 있었어요!"
         },
         {
           "speaker": "Will Traynor",
-          "en": "They chose to stay."
+          "en": "They chose to stay.",
+          "ko": "그들은 남기로 선택했어요."
         },
         {
           "speaker": "Louisa Clark",
-          "en": "Yeah, no, I get it, being there, gave their lives more meaning, but that's ...."
+          "en": "Yeah, no, I get it, being there, gave their lives more meaning, but that's ....",
+          "ko": "네, 아니요, 이해해요, 거기에 있음으로써 그들의 삶은 더 의미가 있었겠지만, 그건...."
         },
         {
           "speaker": "Will Traynor",
-          "en": "But you don't agree."
+          "en": "But you don't agree.",
+          "ko": "하지만 당신은 동의하지 않아요."
         },
         {
           "speaker": "Louisa Clark",
-          "en": "Well, to sacrifice themselves like that."
+          "en": "Well, to sacrifice themselves like that.",
+          "ko": "글쎄요, 그렇게 자신을 희생하는 거죠."
         },
         {
           "speaker": "Louisa Clark",
-          "en": "I mean, could you even imagine?"
+          "en": "I mean, could you even imagine?",
+          "ko": "내 말은, 그걸 상상이라도 해보셨어요?"
         },
         {
           "speaker": "Will Traynor",
-          "en": "But you like the film?"
+          "en": "But you like the film?",
+          "ko": "하지만 그 영화 좋아해요?"
         },
         {
           "speaker": "Louisa Clark",
-          "en": "I loved it."
+          "en": "I loved it.",
+          "ko": "저는 그 영화 좋아했어요."
         },
         {
           "speaker": "Louisa Clark",
-          "en": "Oh, if you're laughing at me, I swear to God I'll push you out of that chair."
+          "en": "Oh, if you're laughing at me, I swear to God I'll push you out of that chair.",
+          "ko": "오, 만약 저를 웃고 있다면, 진짜로 그 의자에서 밀어낼 거예요."
         },
         {
           "speaker": "Will Traynor",
-          "en": "I am not laughing at you."
+          "en": "I am not laughing at you.",
+          "ko": "저는 당신을 웃고 있는 게 아니에요."
         },
         {
           "speaker": "Will Traynor",
-          "en": "The sky is clearing. Shall we get some air?"
+          "en": "The sky is clearing. Shall we get some air?",
+          "ko": "하늘이 맑아지고 있어요. 바람 쐬러 나갈까요?"
         },
         {
           "speaker": "Will Traynor",
-          "en": "I am just amazed that you could reach the ripe old age of,, what?"
+          "en": "I am just amazed that you could reach the ripe old age of,, what?",
+          "ko": "그저 당신이 이렇게 나이를 먹을 수 있다는 게 믿기지 않네요, 뭐라고요?"
         },
         {
           "speaker": "Louisa Clark",
-          "en": "26"
+          "en": "26",
+          "ko": "26살이에요."
         },
         {
           "speaker": "Will Traynor",
-          "en": "26, and never have watched a film with subtitles."
+          "en": "26, and never have watched a film with subtitles.",
+          "ko": "26살인데, 자막 있는 영화를 본 적이 없다고요?"
         },
         {
           "speaker": "Louisa Clark",
-          "en": "Oh, Well, I'm just amazed that you've reached the ripe old age of 31, without being locked in a cupboard for being such a snob."
+          "en": "Oh, Well, I'm just amazed that you've reached the ripe old age of 31, without being locked in a cupboard for being such a snob.",
+          "ko": "오, 그래요? 저는 당신이 그렇게 까다로운 사람인데, 31살이 될 때까지 찬장에 갇히지 않고 살아왔다는 게 신기해요."
         },
         {
           "speaker": "Will Traynor",
-          "en": "What?"
+          "en": "What?",
+          "ko": "뭐라고요?"
         },
         {
           "speaker": "Will Traynor",
-          "en": "E.T. is my favorite film."
+          "en": "E.T. is my favorite film.",
+          "ko": "E.T.는 제 좋아하는 영화예요."
         },
         {
           "speaker": "Louisa Clark",
-          "en": "E.T. is everyone's favorite film."
+          "en": "E.T. is everyone's favorite film.",
+          "ko": "E.T.는 모두가 좋아하는 영화죠."
         },
         {
           "speaker": "Will Traynor",
-          "en": "I've seen every Bond."
+          "en": "I've seen every Bond.",
+          "ko": "저는 모든 본드 영화를 봤어요."
         },
         {
           "speaker": "Louisa Clark",
-          "en": "So has the world."
+          "en": "So has the world.",
+          "ko": "세상 모두가 다 봤죠."
         },
         {
           "speaker": "Will Traynor",
-          "en": "I've got a soft spot for 'Armageddon', with Bruce Willis, oil driller, has to save the world from an asteroid. And he does."
+          "en": "I've got a soft spot for 'Armageddon', with Bruce Willis, oil driller, has to save the world from an asteroid. And he does.",
+          "ko": "저는 '아마겟돈'을 좋아해요, 브루스 윌리스가 나오는, 석유 시추공이 소행성에서 세계를 구하는 영화요. 그리고 그는 구하죠."
         },
         {
           "speaker": "Louisa Clark",
-          "en": "That's better."
+          "en": "That's better.",
+          "ko": "그거 괜찮네요."
         },
         {
           "speaker": "Will Traynor",
-          "en": "So, What do you do with yourself when you are not here, Louisa Clark?"
+          "en": "So, What do you do with yourself when you are not here, Louisa Clark?",
+          "ko": "그럼, 여기에 없을 때는 뭐 하면서 지내요, 루이사 클락?"
         },
         {
           "speaker": "Louisa Clark",
-          "en": "I uh, spend time with my family and I um, go to the pub."
+          "en": "I uh, spend time with my family and I um, go to the pub.",
+          "ko": "음, 가족들과 시간을 보내고, 술집에 가요."
         },
         {
           "speaker": "Louisa Clark",
-          "en": "Or I watch TV."
+          "en": "Or I watch TV.",
+          "ko": "아니면 TV를 봐요."
         },
         {
           "speaker": "Louisa Clark",
-          "en": "And I watch Patrick running."
+          "en": "And I watch Patrick running.",
+          "ko": "그리고 패트릭이 달리는 모습을 봐요."
         },
         {
           "speaker": "Will Traynor",
-          "en": "Patrick's your boyfriend?"
+          "en": "Patrick's your boyfriend?",
+          "ko": "패트릭은 당신의 남자친구에요?"
         },
         {
           "speaker": "Louisa Clark",
-          "en": "Yeah."
+          "en": "Yeah.",
+          "ko": "네."
         },
         {
           "speaker": "Will Traynor",
-          "en": "But you don't run with him?"
+          "en": "But you don't run with him?",
+          "ko": "그럼 그와 함께 달리지는 않나요?"
         },
         {
           "speaker": "Louisa Clark",
-          "en": "I am not exactly built for it."
+          "en": "I am not exactly built for it.",
+          "ko": "저는 그렇게 만들지 않았어요."
         },
         {
           "speaker": "Will Traynor",
-          "en": "This is an impressive list of hobbies."
+          "en": "This is an impressive list of hobbies.",
+          "ko": "이건 인상적인 취미 목록이네요."
         },
         {
           "speaker": "Louisa Clark",
-          "en": "Well no, no, ok."
+          "en": "Well no, no, ok.",
+          "ko": "글쎄요, 아니요, 알겠어요."
         },
         {
           "speaker": "Louisa Clark",
-          "en": "I read a bit."
+          "en": "I read a bit.",
+          "ko": "조금 책을 읽어요."
         },
         {
           "speaker": "Louisa Clark",
-          "en": "And I, I like clothes."
+          "en": "And I, I like clothes.",
+          "ko": "그리고 저는 옷을 좋아해요."
         },
         {
           "speaker": "Will Traynor",
-          "en": "You like clothes?"
+          "en": "You like clothes?",
+          "ko": "옷을 좋아해요?"
         },
         {
           "speaker": "Louisa Clark",
-          "en": "I don't do much, okay?"
+          "en": "I don't do much, okay?",
+          "ko": "저는 별로 하는 일이 없어요, 알겠죠?"
         },
         {
           "speaker": "Louisa Clark",
-          "en": "I go to work, and I go home and that's it."
+          "en": "I go to work, and I go home and that's it.",
+          "ko": "일하러 가고, 집에 가고 그게 다에요."
         },
         {
           "speaker": "Will Traynor",
-          "en": "Wow, your life's even duller than mine."
+          "en": "Wow, your life's even duller than mine.",
+          "ko": "와, 당신의 삶은 제 삶보다도 더 지루하네요."
         }
       ]
     }

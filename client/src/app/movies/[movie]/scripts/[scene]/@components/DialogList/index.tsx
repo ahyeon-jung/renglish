@@ -1,9 +1,16 @@
+"use client";
+
 import DialogListItem from "../DialogListItem";
+import { LANGUAGE_MODE } from "@/constants/language";
 import { MovieScene } from "@/types/script";
+import { useSearchParams } from "next/navigation";
 
 type DialogList = MovieScene;
 
 export default function DialogList({ dialogues, speakers }: DialogList) {
+  const searchParams = useSearchParams();
+  const mode = searchParams.get("mode");
+
   return (
     <ul className="flex flex-col gap-[10px]">
       {dialogues.map((dialogue, index) => {
@@ -14,7 +21,7 @@ export default function DialogList({ dialogues, speakers }: DialogList) {
           <DialogListItem
             key={index}
             speaker={dialogue.speaker}
-            text={dialogue.en}
+            text={mode === LANGUAGE_MODE[0].value ? dialogue.en : dialogue.ko}
             isLeft={isDifferentSpeaker}
           />
         );
