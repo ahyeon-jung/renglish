@@ -21,7 +21,7 @@ export default function Header({ title }: Header) {
   };
 
   const changeModeToLanguage = (value: string) => {
-    router.push(`?mode=${value}`);
+    router.replace(`?mode=${value}`);
   };
 
   return (
