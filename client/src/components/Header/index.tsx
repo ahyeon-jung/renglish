@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <header
       className={clsx(
-        "fixed inset-x-0 top-0 bg-white shadow-lg",
+        "fixed inset-x-0 top-0 bg-white shadow-sm",
         "flex justify-between items-center px-4 py-4",
         "h-[var(--header-height)] z-[var(--header-z-index)]"
       )}

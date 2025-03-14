@@ -12,7 +12,7 @@ export default function DialogList({ dialogues, speakers }: DialogList) {
   const mode = searchParams.get("mode");
 
   return (
-    <ul className="flex flex-col gap-[10px]">
+    <ul className="mt-[45px] flex flex-col gap-[10px]">
       {dialogues.map((dialogue, index) => {
         const isDifferentSpeaker = speakers
           .filter((_, index) => index % 2 === 1)

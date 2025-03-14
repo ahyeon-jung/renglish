@@ -6,6 +6,7 @@ import { ChevronLeft } from "lucide-react";
 import Indicator from "@/components/Indicator";
 import { LANGUAGE_MODE } from "@/constants/language";
 import Text from "@/components/Text";
+import clsx from "clsx";
 import { formatTitle } from "@/utils/format";
 
 type Header = { title: string };
@@ -24,7 +25,17 @@ export default function Header({ title }: Header) {
   };
 
   return (
-    <header className="flex items-center justify-between py-[10px]">
+    <header
+      style={{
+        top: "calc(var(--header-height) - 5px)",
+        zIndex: `calc(var(--header-z-index) + 1)`,
+      }}
+      className={clsx(
+        "fixed inset-x-0",
+        "h-[50px] bg-white shadow-sm",
+        "flex items-center justify-between py-[10px]"
+      )}
+    >
       <div className="flex gap-[15px]">
         <ChevronLeft onClick={goToBefore} />
         <Text>{formatTitle(title)}</Text>
