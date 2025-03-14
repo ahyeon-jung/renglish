@@ -6,7 +6,7 @@ import { AppService } from "./app.service";
 import { AuthModule } from "./auth/auth.module";
 import { DatabaseModule } from "./database/database.module";
 import { HttpExceptionFilter } from "./common/filters/http-exception.filter";
-import { LoggerMiddleware } from "./common/middleware/logger.middleware";
+import { LoggerMiddleware } from "./common/middlewares/logger.middleware";
 import { LoggerModule } from "./logger/logger.module";
 import { MovieModule } from "./movies/movie.module";
 
