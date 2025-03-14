@@ -1,4 +1,4 @@
-import DialogList from "../@components/DialogList";
+import DialogList from "./@components/DialogList";
 import Header from "../@components/Header";
 import { getMovieData } from "@/app/@actions/getContent";
 

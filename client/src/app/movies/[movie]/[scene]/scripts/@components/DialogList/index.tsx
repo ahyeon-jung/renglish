@@ -1,6 +1,6 @@
 "use client";
 
-import DialogListItem from "../DialogListItem";
+import DialogListItem from "../../../@components/DialogListItem";
 import { LANGUAGE_MODE } from "@/constants/language";
 import { MovieScene } from "@/types/script";
 import { useSearchParams } from "next/navigation";
@@ -24,6 +24,7 @@ export default function DialogList({ dialogues, speakers }: DialogList) {
             speaker={dialogue.speaker}
             text={mode === LANGUAGE_MODE.KOREAN ? dialogue.ko : dialogue.en}
             isLeft={isDifferentSpeaker}
+            isBackground
           />
         );
       })}

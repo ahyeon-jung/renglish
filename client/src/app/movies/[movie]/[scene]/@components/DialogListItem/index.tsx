@@ -2,15 +2,19 @@ import { CircleUserRound } from "lucide-react";
 import { MovieSceneDialogue } from "@/types/script";
 import clsx from "clsx";
 
-type DialogListItem = { text: string; isLeft?: boolean } & Pick<
-  MovieSceneDialogue,
-  "speaker"
->;
+type DialogListItem = {
+  text: string;
+  isLeft?: boolean;
+  isBackground?: boolean;
+  style?: React.CSSProperties;
+} & Pick<MovieSceneDialogue, "speaker">;
 
 export default function DialogListItem({
   speaker,
   text,
   isLeft = false,
+  isBackground = false,
+  style,
 }: DialogListItem) {
   if (speaker == "etc") {
     return <li className="text-center italic">{text}</li>;
@@ -18,10 +22,11 @@ export default function DialogListItem({
 
   return (
     <li
+      style={style}
       className={clsx(
         "flex items-start gap-4 p-3 rounded-lg",
         isLeft ? " flex-row-reverse" : "",
-        "bg-gray-100 dark:bg-gray-800"
+        isBackground ? "bg-gray-100 dark:bg-gray-800" : ""
       )}
     >
       <div
@@ -35,7 +40,10 @@ export default function DialogListItem({
       </div>
       <div
         className={clsx(
-          "bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100",
+          isBackground
+            ? "bg-white dark:bg-gray-700"
+            : "bg-gray-100 dark:bg-gray-800",
+          "text-gray-900 dark:text-gray-100",
           "p-3 rounded-lg"
         )}
       >
