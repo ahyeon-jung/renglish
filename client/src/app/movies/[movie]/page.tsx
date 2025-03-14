@@ -22,7 +22,7 @@ export default async function MovieDetail({
       <MovieInfo {...movie} />
       <div className="flex flex-col gap-[10px]">
         {movie.scenes.map(({ dialogues }, index) => (
-          <LineItem key={index} text={dialogues[0].text} />
+          <LineItem key={index} text={dialogues[0].en} />
         ))}
       </div>
     </main>

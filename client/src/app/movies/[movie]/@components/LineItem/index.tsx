@@ -1,7 +1,7 @@
-import { MovieSceneDialogue } from "@/types/script";
 import Text from "@/components/Text";
 
-export default function LineItem({ text }: Pick<MovieSceneDialogue, "text">) {
+type LineItem = { text: string };
+export default function LineItem({ text }: LineItem) {
   return (
     <div className="bg-gray-100 p-2 rounded-md">
       <Text as="h2" typography="subHead-xl">
