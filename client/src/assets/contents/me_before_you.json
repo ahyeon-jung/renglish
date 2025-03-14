@@ -1,16 +1,254 @@
 {
   "title": "Me Before You",
-  "description": "hi yyy",
+  "category": "romance",
+  "description": "a heartfelt romantic drama about a young woman who becomes a caregiver for a wealthy, paralyzed man, and their unexpected bond changes both of their lives forever.",
   "scenes": [
     {
       "dialogues": [
         {
-          "speaker": "Cobb",
-          "text": "Dreams feel real while we're in them."
+          "speaker": "Louisa Clark",
+          "en": "Hi, am I needed?"
         },
         {
-          "speaker": "Arthur",
-          "text": "It's only when we wake up that we realize something was actually strange."
+          "speaker": "Will Traynor",
+          "en": "DVD weather, I think."
+        },
+        {
+          "speaker": "Will Traynor",
+          "en": "Des Hommes et des dieux"
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "Something about men?"
+        },
+        {
+          "speaker": "Will Traynor",
+          "en": "Yes, it's French gay porn."
+        },
+        {
+          "speaker": "Will Traynor",
+          "en": "You really don't enjoy sarcasm, do you?"
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "The sarcasm is fine."
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "I just don't like superiority."
+        },
+        {
+          "speaker": "Will Traynor",
+          "en": "You must hate me, then."
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "I've never hated anyone."
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "Let me know if you need anything."
+        },
+        {
+          "speaker": "Will Traynor",
+          "en": "Have you seen it?"
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "I don't really like those kinds of films."
+        },
+
+        {
+          "speaker": "Will Traynor",
+          "en": "Those kinds of films?"
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "Films with subtitles."
+        },
+        {
+          "speaker": "Will Traynor",
+          "en": "What, did your school not teach you to read?"
+        },
+        {
+          "speaker": "Will Traynor",
+          "en": "Sit down."
+        },
+        {
+          "speaker": "Will Traynor",
+          "en": "Watch this with me. that's an order."
+        },
+        {
+          "speaker": "Will Traynor",
+          "en": "That's an order."
+        },
+        {
+          "speaker": "etc",
+          "en": "You have no choice."
+        },
+        {
+          "speaker": "etc",
+          "en": "Yes."
+        },
+        {
+          "speaker": "etc",
+          "en": "I do."
+        },
+        {
+          "speaker": "Will Traynor",
+          "en": "So?"
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "Well, they could have left!"
+        },
+        {
+          "speaker": "Will Traynor",
+          "en": "They chose to stay."
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "Yeah, no, I get it, being there, gave their lives more meaning, but that's ...."
+        },
+        {
+          "speaker": "Will Traynor",
+          "en": "But you don't agree."
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "Well, to sacrifice themselves like that."
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "I mean, could you even imagine?"
+        },
+        {
+          "speaker": "Will Traynor",
+          "en": "But you like the film?"
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "I loved it."
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "Oh, if you're laughing at me, I swear to God I'll push you out of that chair."
+        },
+        {
+          "speaker": "Will Traynor",
+          "en": "I am not laughing at you."
+        },
+        {
+          "speaker": "Will Traynor",
+          "en": "The sky is clearing. Shall we get some air?"
+        },
+        {
+          "speaker": "Will Traynor",
+          "en": "I am just amazed that you could reach the ripe old age of,, what?"
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "26"
+        },
+        {
+          "speaker": "Will Traynor",
+          "en": "26, and never have watched a film with subtitles."
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "Oh, Well, I'm just amazed that you've reached the ripe old age of 31, without being locked in a cupboard for being such a snob."
+        },
+        {
+          "speaker": "Will Traynor",
+          "en": "What?"
+        },
+        {
+          "speaker": "Will Traynor",
+          "en": "E.T. is my favorite film."
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "E.T. is everyone's favorite film."
+        },
+        {
+          "speaker": "Will Traynor",
+          "en": "I've seen every Bond."
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "So has the world."
+        },
+        {
+          "speaker": "Will Traynor",
+          "en": "I've got a soft spot for 'Armageddon', with Bruce Willis, oil driller, has to save the world from an asteroid. And he does."
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "That's better."
+        },
+        {
+          "speaker": "Will Traynor",
+          "en": "So, What do you do with yourself when you are not here, Louisa Clark?"
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "I uh, spend time with my family and I um, go to the pub."
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "Or I watch TV."
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "And I watch Patrick running."
+        },
+        {
+          "speaker": "Will Traynor",
+          "en": "Patrick's your boyfriend?"
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "Yeah."
+        },
+        {
+          "speaker": "Will Traynor",
+          "en": "But you don't run with him?"
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "I am not exactly built for it."
+        },
+        {
+          "speaker": "Will Traynor",
+          "en": "This is an impressive list of hobbies."
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "Well no, no, ok."
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "I read a bit."
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "And I, I like clothes."
+        },
+        {
+          "speaker": "Will Traynor",
+          "en": "You like clothes?"
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "I don't do much, okay?"
+        },
+        {
+          "speaker": "Louisa Clark",
+          "en": "I go to work, and I go home and that's it."
+        },
+        {
+          "speaker": "Will Traynor",
+          "en": "Wow, your life's even duller than mine."
         }
       ]
     }
