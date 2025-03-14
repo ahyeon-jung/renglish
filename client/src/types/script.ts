@@ -9,9 +9,11 @@ export type MovieInfo = {
 
 export type MovieScene = {
   dialogues: MovieSceneDialogue[];
+  speakers: string[];
 };
 
 export type MovieSceneDialogue = {
   speaker: string;
-  text: string;
+  en: string;
+  ko: string;
 };

@@ -15,7 +15,7 @@ export default async function MovieScriptScene({
   return (
     <main className="mt-[var(--header-height)] p-3">
       <Header title={movie.title} />
-      <DialogList dialogues={movie.scenes[sceneId].dialogues} />
+      <DialogList {...movie.scenes[sceneId]} />
     </main>
   );
 }

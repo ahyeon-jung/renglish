@@ -4,6 +4,7 @@
   "description": "a heartfelt romantic drama about a young woman who becomes a caregiver for a wealthy, paralyzed man, and their unexpected bond changes both of their lives forever.",
   "scenes": [
     {
+      "speakers": ["Louisa Clark", "Will Traynor"],
       "dialogues": [
         {
           "speaker": "Louisa Clark",
