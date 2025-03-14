@@ -17,11 +17,12 @@ export default function DialogList({ dialogues, speakers }: DialogList) {
         const isDifferentSpeaker = speakers
           .filter((_, index) => index % 2 === 1)
           .includes(dialogue.speaker);
+
         return (
           <DialogListItem
             key={index}
             speaker={dialogue.speaker}
-            text={mode === LANGUAGE_MODE[0].value ? dialogue.en : dialogue.ko}
+            text={mode === LANGUAGE_MODE.KOREAN ? dialogue.ko : dialogue.en}
             isLeft={isDifferentSpeaker}
           />
         );

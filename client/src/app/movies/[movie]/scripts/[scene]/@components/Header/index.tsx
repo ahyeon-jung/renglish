@@ -1,10 +1,10 @@
 "use client";
 
+import { LANGUAGE_MODE, LANGUAGE_OPTIONS } from "@/constants/language";
 import { restoreScrollPosition, saveScrollPosition } from "@/utils/scroll";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import Indicator from "@/components/Indicator";
-import { LANGUAGE_MODE } from "@/constants/language";
 import SubHeaderContainer from "@/components/SubheaderContainer";
 import { formatTitle } from "@/utils/format";
 import { useEffect } from "react";
@@ -34,11 +34,11 @@ export default function Header({ title }: Header) {
   return (
     <SubHeaderContainer title={formatTitle(title)}>
       <Indicator>
-        {LANGUAGE_MODE.map(({ label, value }) => (
+        {LANGUAGE_OPTIONS.map(({ label, value }) => (
           <Indicator.Item
             key={value}
             label={label}
-            isDefault={!mode && value === LANGUAGE_MODE[0].value}
+            isDefault={!mode && value === LANGUAGE_MODE.ENGLISH}
             isActive={mode === value}
             onClick={() => changeModeToLanguage(value)}
           />
