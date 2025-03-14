@@ -31,7 +31,7 @@ export default function DialogListItem({
         )}
       >
         <CircleUserRound className="w-8 h-8" />
-        <span className="text-sm font-medium">{speaker}</span>
+        <span className="text-sm font-medium">{speaker.split(" ")[0]}</span>
       </div>
       <div
         className={clsx(
