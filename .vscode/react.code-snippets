@@ -1,0 +1,63 @@
+{
+  "React Component (Arrow Function)": {
+    "prefix": "rcc",
+    "body": [
+      "const $1 = () => {",
+      "  return (",
+      "    <div>",
+      "      $2",
+      "    </div>",
+      "  );",
+      "};",
+      "",
+      "export default $1;",
+    ],
+    "description": "Create a React functional component using arrow function",
+  },
+  "React Component (Function Declaration)": {
+    "prefix": "rcf",
+    "body": [
+      "export default function $1 () {",
+      "  return (",
+      "    <div>",
+      "    </div>",
+      "  );",
+      "};",
+    ],
+    "description": "Create a React functional component using function declaration",
+  },
+  "React useState Hook": {
+    "prefix": "usf",
+    "body": ["const [$1, set$2] = useState($3);"],
+    "description": "React useState Hook",
+  },
+  "React useEffect Hook": {
+    "prefix": "uef",
+    "body": ["useEffect(() => {", "  $1", "}, [$2]);"],
+    "description": "React useEffect Hook",
+  },
+  "React useReducer Hook": {
+    "prefix": "urd",
+    "body": [
+      "const [state, dispatch] = useReducer(($1, $2) => {",
+      "  switch ($1) {",
+      "    case '$3':",
+      "      return $4;",
+      "    default:",
+      "      return $1;",
+      "  }",
+      "}, $5);",
+    ],
+    "description": "React useReducer Hook",
+  },
+  "React useMemo Hook": {
+    "prefix": "umm",
+    "body": ["const $1 = useMemo(() => {", "  return $2;", "}, [$3]);"],
+    "description": "React useMemo Hook",
+  },
+  "React useCallback Hook": {
+    "prefix": "ucb",
+    "body": ["const $1 = useCallback(() => {", "  $2", "}, [$3]);"],
+    "description": "React useCallback Hook",
+  },
+}
