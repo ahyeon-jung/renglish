@@ -1,8 +1,15 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { AppModule } from "./app.module";
+import { NestFactory } from "@nestjs/core";
+import { ResponseInterceptor } from "./common/interceptors/response.interceptor";
+import { ValidationPipe } from "@nestjs/common";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
+
+  app.useGlobalInterceptors(new ResponseInterceptor());
+
+  app.useGlobalPipes(new ValidationPipe());
+
+  await app.listen(8080);
 }
 bootstrap();
