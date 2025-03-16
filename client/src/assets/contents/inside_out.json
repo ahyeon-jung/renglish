@@ -1,0 +1,297 @@
+{
+  "title": "Inside out",
+  "category": "animation",
+  "description": "",
+  "scenes": [
+    {
+      "speakers": ["Bing Bong", "Joy", "", "Sadness"],
+      "dialogues": [
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>I will take you, but not you.</p>",
+          "ko": "<p>넌 데려가 줄게. 넌 안돼.</p>"
+        },
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>Oh, Who am I kidding? I can't leave you</p>",
+          "ko": "<p>농담이야. 널 두곤 못 가지</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>Hello!</p>",
+          "ko": "<p>안녕!</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>Wait! Hey! Wait! Wait! Stop!</p>",
+          "ko": "<p>이봐! 잠깐만! 멈춰봐!</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>Excuse me.</p>",
+          "ko": "<p>저기.</p>"
+        },
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>I was looking for... diversion!</p>",
+          "ko": "<p>좀 찾고 있었어, 기분 전환할 걸!</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>What?</p>",
+          "ko": "<p>뭐?</p>"
+        },
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>So long, sucker!</p>",
+          "ko": "<p>잘 있어라, 바보야!</p>"
+        },
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>I hurt all over.</p>",
+          "ko": "<p>아이고, 삭신이야.</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>Wait! I know you.</p>",
+          "ko": "<p>잠깐만, 나 너를 알아.</p>"
+        },
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>No, you don't. I get that a lot.</p>",
+          "ko": "<p>착각이겠지. 그런 소리 많이 들어.</p>"
+        },
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>I look like a lot of people.</p>",
+          "ko": "<p>난 많은 사람들을 닮았거든.</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>No, no, no. I do.</p>",
+          "ko": "<p>아냐, 분명 알아.</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>Bing Bong! Riley's imaginary friend!</p>",
+          "ko": "<p>빙봉! 라일리의 상상 속 친구</p>"
+        },
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>You really do know me?</p>",
+          "ko": "<p>너 정말 나를 알아?</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>Well, of course! </p>",
+          "ko": "<p>그럼, 당연하지!</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>Riley loved playing with you! You two are best friend!</p>",
+          "ko": "<p>라일리는 너랑 노는 걸 좋아했어! 너희는 최고의 친구잖아.</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>You would know. We're trying to get back to headquarters.</p>",
+          "ko": "<p>너는 알겠다. 우리는 본부로 다시 돌아가려고 해.</p>"
+        },
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>Headquarters? You guys are from headquarters?</p>",
+          "ko": "<p>본부? 너희는 본부에서 왔어?</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>Well, yeah. I'm Joy. This is sadness.</p>",
+          "ko": "<p>맞아. 나는 조이야. 얘는 슬픔이야.</p>"
+        },
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>You're Joy? The Joy?</p>",
+          "ko": "<p>네가 조이야? 그 조이?</p>"
+        },
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>What the heck are you doing out here?</p>",
+          "ko": "<p>대체 여긴 웬일이야?</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>That's good question. You want to answer that, sadness?</p>",
+          "ko": "<p>좋은 질뭉이야. 네가 대답해 볼래?</p>"
+        },
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>Without you, Riley won't ever be happy.</p>",
+          "ko": "<p>너 없이는 라일리가 즐거울 수가 없는데,,,</p>"
+        },
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>We can't have that. We got to get you back.</p>",
+          "ko": "<p>그럼 안 되지. 데려다 줄게.</p>"
+        },
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>I'll tell you what. Follow me!</p>",
+          "ko": "<p>내가 말해줄게. 따라와!</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>Thank you!</p>",
+          "ko": "<p>고마워!</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>It is so great to see you again.</p>",
+          "ko": "<p>만나서 정말 반값다.</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>I gotta tell you, I am such a huge fan of your work.</p>",
+          "ko": "<p>난 네 열렬한 팬이야.</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>Do you remember when you and Riley were in a band?</p>",
+          "ko": "<p>라일리랑 밴드했던 거 기억 나?</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>I went to all of your concerts</p>",
+          "ko": "<p>나 네 콘서트 다 갔어.</p>"
+        },
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>Yeah, I blow a mean nose.</p>",
+          "ko": "<p>내 코 연주 죽이지.</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>Watching you play tag was such as treat.</p>",
+          "ko": "<p>술래잡기도 신났지.</p>"
+        },
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>tow-time word champ.</p>",
+          "ko": "<p>세계 우승 2연패!</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>And remember your rocket?</p>",
+          "ko": "<p>로켓도 기억 나?</p>"
+        },
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>Of course! It runs on song power!</p>",
+          "ko": "<p>당연하지! 그 로켓의 연료는 노래지.</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>That's right! Your theme song!</p>",
+          "ko": "<p>맞아. 너의 주제곡이었지.</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>♬Who's your friend who likes to play?♬</p>",
+          "ko": "<p>♬놀기를 좋아하는 너의 친구는 누구?♬</p>"
+        },
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>♬Bing bong, bing bong.♬</p>",
+          "ko": "<p>♬빙봉, 빙봉♬</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>♬His rocket makes you yell 'hooray!'♬</p>",
+          "ko": "<p>♬그의 로켓은 만세를 외치게해♬</p>"
+        },
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>Bing bong, bing bong.</p>",
+          "ko": "<p>♬빙봉, 빙봉♬</p>"
+        },
+        {
+          "speaker": "Sadness",
+          "en": "<p>What exactly are you supposed to be?</p>",
+          "ko": "<p>너는 정체가 뭐야?</p>"
+        },
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>You know, it's unclear. I'm mostly cotton candy.</p>",
+          "ko": "<p>확실친 않아. 거의 솜사탕인데</p>"
+        },
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>But shape-wise I'm part cat, part elephant, part dolphin.</p>",
+          "ko": "<p>형체는 고양이, 코끼리, 돌고래가 섞여 있어.</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>Dolphin?</p>",
+          "ko": "<p>돌고래?</p>"
+        },
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>You got to remember, when Riley was three, animals were all the range.</p>",
+          "ko": "<p>라일리가 3살 무렵엔 동물들이 인기였어.</p>"
+        },
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>The cow goes moo. The horse goes neigh.</p>",
+          "ko": "<p>젖소는 음메, 말은 히이잉.</p>"
+        },
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>That's all people talked about back then.</p>",
+          "ko": "<p>다들 그 얘기만 했지.</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>Yeah, Yeah. I guess that's true</p>",
+          "ko": "<p>맞아 그랬지.</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>What are you doing out here?</p>",
+          "ko": "<p>근데 너 여기서 뭐해?</p>"
+        },
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>Well, there's not much call for imaginary friends lately.</p>",
+          "ko": "<p>뭐, 요즘은 상상 속의 친구를 별로 부르지 않잖아.</p>"
+        },
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>So I, you now...</p>",
+          "ko": "<p>그래서 그냥...</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>Hey, hey. don't be sad. Tell you what.</p>",
+          "ko": "<p>괜찮아. 슬퍼하지마.</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>When I get back up to headquarters, I'll make sure Riley remembers you.</p>",
+          "ko": "<p>본부에 돌아가면, 라일리가 널 기억하게 해줄게.</p>"
+        },
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>You will?</p>",
+          "ko": "<p>진짜?</p>"
+        },
+        {
+          "speaker": "Joy",
+          "en": "<p>Of course! She'd love that.</p>",
+          "ko": "<p>응, 라일리도 좋아할거야.</p>"
+        },
+        {
+          "speaker": "Bing Bong",
+          "en": "<p>This is the greatest day of my life!</p>",
+          "ko": "<p>오늘은 내 최고의 날이야!</p>"
+        }
+      ]
+    }
+  ]
+}
