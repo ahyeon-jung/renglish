@@ -36,3 +36,7 @@ main {
   margin-right: auto;
   margin-left: auto;
 }
+
+.keypoint {
+  color: pink;
+}
