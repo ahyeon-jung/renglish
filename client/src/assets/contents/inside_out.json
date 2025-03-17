@@ -8,12 +8,12 @@
       "dialogues": [
         {
           "speaker": "Bing Bong",
-          "en": "<p>I will take you, but not you.</p>",
+          "en": "<p>I <span class='keypoint'>will take you</span>, but not you.</p>",
           "ko": "<p>넌 데려가 줄게. 넌 안돼.</p>"
         },
         {
           "speaker": "Bing Bong",
-          "en": "<p>Oh, Who am I kidding? I can't leave you</p>",
+          "en": "<p>Oh, <span class='keypoint'>Who am I kidding</span>? I can't leave you</p>",
           "ko": "<p>농담이야. 널 두곤 못 가지</p>"
         },
         {
@@ -28,12 +28,12 @@
         },
         {
           "speaker": "Joy",
-          "en": "<p>Excuse me.</p>",
+          "en": "<p><span class='keypoint'>Excuse me</span>.</p>",
           "ko": "<p>저기.</p>"
         },
         {
           "speaker": "Bing Bong",
-          "en": "<p>I was looking for... diversion!</p>",
+          "en": "<p>I <span class='keypoint'>was looking for</span>... diversion!</p>",
           "ko": "<p>좀 찾고 있었어, 기분 전환할 걸!</p>"
         },
         {
@@ -48,7 +48,7 @@
         },
         {
           "speaker": "Bing Bong",
-          "en": "<p>I hurt all over.</p>",
+          "en": "<p>I <span class='keypoint'>hurt all over</span>.</p>",
           "ko": "<p>아이고, 삭신이야.</p>"
         },
         {
@@ -58,12 +58,12 @@
         },
         {
           "speaker": "Bing Bong",
-          "en": "<p>No, you don't. I get that a lot.</p>",
+          "en": "<p>No, you don't. I <span class='keypoint'>get that a lot</span>.</p>",
           "ko": "<p>착각이겠지. 그런 소리 많이 들어.</p>"
         },
         {
           "speaker": "Bing Bong",
-          "en": "<p>I look like a lot of people.</p>",
+          "en": "<p>I <span class='keypoint'>look like</span> a lot of people.</p>",
           "ko": "<p>난 많은 사람들을 닮았거든.</p>"
         },
         {
@@ -73,7 +73,7 @@
         },
         {
           "speaker": "Joy",
-          "en": "<p>Bing Bong! Riley's imaginary friend!</p>",
+          "en": "<p>Bing Bong! Riley's <span class='keypoint'>imaginary friend</span>!</p>",
           "ko": "<p>빙봉! 라일리의 상상 속 친구</p>"
         },
         {
@@ -88,12 +88,12 @@
         },
         {
           "speaker": "Joy",
-          "en": "<p>Riley loved playing with you! You two are best friend!</p>",
+          "en": "<p>Riley <span class='keypoint'>loved playing with you</span>! You two are best friend!</p>",
           "ko": "<p>라일리는 너랑 노는 걸 좋아했어! 너희는 최고의 친구잖아.</p>"
         },
         {
           "speaker": "Joy",
-          "en": "<p>You would know. We're trying to get back to headquarters.</p>",
+          "en": "<p>You would know. We're <span class='keypoint'>trying to get back to</span> headquarters.</p>",
           "ko": "<p>너는 알겠다. 우리는 본부로 다시 돌아가려고 해.</p>"
         },
         {
@@ -103,7 +103,7 @@
         },
         {
           "speaker": "Joy",
-          "en": "<p>Well, yeah. I'm Joy. This is sadness.</p>",
+          "en": "<p>Well, yeah. I'm Joy. <span class='keypoint'>This is</span> sadness.</p>",
           "ko": "<p>맞아. 나는 조이야. 얘는 슬픔이야.</p>"
         },
         {
@@ -113,22 +113,22 @@
         },
         {
           "speaker": "Bing Bong",
-          "en": "<p>What the heck are you doing out here?</p>",
+          "en": "<p><span class='keypoint'>What</span> the heck <span class='keypoint'>are you doing out here</span>?</p>",
           "ko": "<p>대체 여긴 웬일이야?</p>"
         },
         {
           "speaker": "Joy",
-          "en": "<p>That's good question. You want to answer that, sadness?</p>",
-          "ko": "<p>좋은 질뭉이야. 네가 대답해 볼래?</p>"
+          "en": "<p>That's good question. You <span class='keypoint'>want to answer that</span>, sadness?</p>",
+          "ko": "<p>좋은 질문이야. 네가 대답해 볼래?</p>"
         },
         {
           "speaker": "Bing Bong",
-          "en": "<p>Without you, Riley won't ever be happy.</p>",
+          "en": "<p>Without you, Riley <span class='keypoint'>won't ever be happy</span>.</p>",
           "ko": "<p>너 없이는 라일리가 즐거울 수가 없는데,,,</p>"
         },
         {
           "speaker": "Bing Bong",
-          "en": "<p>We can't have that. We got to get you back.</p>",
+          "en": "<p><span class='keypoint'>We can't have that</span>. <span class='keypoint'>We got to get you back</span>.</p>",
           "ko": "<p>그럼 안 되지. 데려다 줄게.</p>"
         },
         {
@@ -143,22 +143,22 @@
         },
         {
           "speaker": "Joy",
-          "en": "<p>It is so great to see you again.</p>",
+          "en": "<p><span class='keypoint'>It is so great to see you again</span>.</p>",
           "ko": "<p>만나서 정말 반값다.</p>"
         },
         {
           "speaker": "Joy",
-          "en": "<p>I gotta tell you, I am such a huge fan of your work.</p>",
+          "en": "<p>I <span class='keypoint'>gotta tell you</span>, I am <span class='keypoint'>such a huge fan of your work</span>.</p>",
           "ko": "<p>난 네 열렬한 팬이야.</p>"
         },
         {
           "speaker": "Joy",
-          "en": "<p>Do you remember when you and Riley were in a band?</p>",
+          "en": "<p><span class='keypoint'>Do you remember</span> when you and Riley were in a band?</p>",
           "ko": "<p>라일리랑 밴드했던 거 기억 나?</p>"
         },
         {
           "speaker": "Joy",
-          "en": "<p>I went to all of your concerts</p>",
+          "en": "<p>I <span class='keypoint'>went to all of</span> your concerts</p>",
           "ko": "<p>나 네 콘서트 다 갔어.</p>"
         },
         {
@@ -168,7 +168,7 @@
         },
         {
           "speaker": "Joy",
-          "en": "<p>Watching you play tag was such as treat.</p>",
+          "en": "<p>Watching you play tag was <span class='keypoint'>such as treat</span>.</p>",
           "ko": "<p>술래잡기도 신났지.</p>"
         },
         {
@@ -183,17 +183,17 @@
         },
         {
           "speaker": "Bing Bong",
-          "en": "<p>Of course! It runs on song power!</p>",
+          "en": "<p><span class='keypoint'>Of course</span>! It <span class='keypoint'>runs on</span> song power!</p>",
           "ko": "<p>당연하지! 그 로켓의 연료는 노래지.</p>"
         },
         {
           "speaker": "Joy",
-          "en": "<p>That's right! Your theme song!</p>",
+          "en": "<p><span class='keypoint'>That's right</span>! Your theme song!</p>",
           "ko": "<p>맞아. 너의 주제곡이었지.</p>"
         },
         {
           "speaker": "Joy",
-          "en": "<p>♬Who's your friend who likes to play?♬</p>",
+          "en": "<p>♬Who's your friend <span class='keypoint'>who likes to play</span>?♬</p>",
           "ko": "<p>♬놀기를 좋아하는 너의 친구는 누구?♬</p>"
         },
         {
@@ -203,7 +203,7 @@
         },
         {
           "speaker": "Joy",
-          "en": "<p>♬His rocket makes you yell 'hooray!'♬</p>",
+          "en": "<p>♬His rocket <span class='keypoint'>makes you yell</span> 'hooray!'♬</p>",
           "ko": "<p>♬그의 로켓은 만세를 외치게해♬</p>"
         },
         {
@@ -213,12 +213,12 @@
         },
         {
           "speaker": "Sadness",
-          "en": "<p>What exactly are you supposed to be?</p>",
+          "en": "<p><span class='keypoint'>What exactly are you supposed to be</span>?</p>",
           "ko": "<p>너는 정체가 뭐야?</p>"
         },
         {
           "speaker": "Bing Bong",
-          "en": "<p>You know, it's unclear. I'm mostly cotton candy.</p>",
+          "en": "<p>You know, <span class='keypoint'>it's unclear</span>. I'm <span class='keypoint'>mostly</span> cotton candy.</p>",
           "ko": "<p>확실친 않아. 거의 솜사탕인데</p>"
         },
         {
@@ -233,7 +233,7 @@
         },
         {
           "speaker": "Bing Bong",
-          "en": "<p>You got to remember, when Riley was three, animals were all the range.</p>",
+          "en": "<p><span class='keypoint'>You got to remember</span>, when Riley was three, animals <span class='keypoint'>were all the range</span>.</p>",
           "ko": "<p>라일리가 3살 무렵엔 동물들이 인기였어.</p>"
         },
         {
@@ -248,17 +248,17 @@
         },
         {
           "speaker": "Joy",
-          "en": "<p>Yeah, Yeah. I guess that's true</p>",
+          "en": "<p>Yeah, Yeah. <span class='keypoint'>I guess that's true</span></p>",
           "ko": "<p>맞아 그랬지.</p>"
         },
         {
           "speaker": "Joy",
-          "en": "<p>What are you doing out here?</p>",
+          "en": "<p><span class='keypoint'>What are you doing out here</span>?</p>",
           "ko": "<p>근데 너 여기서 뭐해?</p>"
         },
         {
           "speaker": "Bing Bong",
-          "en": "<p>Well, there's not much call for imaginary friends lately.</p>",
+          "en": "<p>Well, <span class='keypoint'>there's not much call</span> for imaginary friends <span class='keypoint'>lately</span>.</p>",
           "ko": "<p>뭐, 요즘은 상상 속의 친구를 별로 부르지 않잖아.</p>"
         },
         {
@@ -268,27 +268,27 @@
         },
         {
           "speaker": "Joy",
-          "en": "<p>Hey, hey. don't be sad. Tell you what.</p>",
+          "en": "<p>Hey, hey. <span class='keypoint'>don't be sad</span>. Tell you what.</p>",
           "ko": "<p>괜찮아. 슬퍼하지마.</p>"
         },
         {
           "speaker": "Joy",
-          "en": "<p>When I get back up to headquarters, I'll make sure Riley remembers you.</p>",
+          "en": "<p><span class='keypoint'>When I get back up to</span> headquarters, <span class='keypoint'>I'll make sure</span> Riley <span class='keypoint'>remembers</span> you.</p>",
           "ko": "<p>본부에 돌아가면, 라일리가 널 기억하게 해줄게.</p>"
         },
         {
           "speaker": "Bing Bong",
-          "en": "<p>You will?</p>",
+          "en": "<p><span class='keypoint'>You will</span>?</p>",
           "ko": "<p>진짜?</p>"
         },
         {
           "speaker": "Joy",
-          "en": "<p>Of course! She'd love that.</p>",
+          "en": "<p>Of course! <span class='keypoint'>She'd love that</span>.</p>",
           "ko": "<p>응, 라일리도 좋아할거야.</p>"
         },
         {
           "speaker": "Bing Bong",
-          "en": "<p>This is the greatest day of my life!</p>",
+          "en": "<p><span class='keypoint'>This is the greatest day of my life</span>!</p>",
           "ko": "<p>오늘은 내 최고의 날이야!</p>"
         }
       ]

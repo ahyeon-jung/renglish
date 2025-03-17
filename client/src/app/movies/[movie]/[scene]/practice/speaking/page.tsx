@@ -1,5 +1,5 @@
 import DialogList from "./@components/DialogList";
-import Header from "../@components/Header";
+import Header from "../../@components/SceneHeader";
 import { getMovieData } from "@/app/@actions/getContent";
 
 export default async function MovieScriptScene({
@@ -14,7 +14,7 @@ export default async function MovieScriptScene({
 
   return (
     <main className="mt-[var(--header-height)] p-3">
-      <Header title={movie.title} />
+      <Header title={movie.title} movieId={slug.movie} sceneId={slug.scene} />
       <DialogList {...movie.scenes[sceneId]} />
     </main>
   );

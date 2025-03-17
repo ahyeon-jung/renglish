@@ -3,8 +3,9 @@
 import { MovieScene, MovieSceneDialogue } from "@/types/script";
 import { useEffect, useState } from "react";
 
-import DialogListItem from "../../../@components/DialogListItem";
+import DialogListItem from "../../../../@components/DialogListItem";
 import { LANGUAGE_MODE } from "@/constants/language";
+import { parseText } from "@/utils/content";
 import { useSearchParams } from "next/navigation";
 
 type DialogList = MovieScene;
@@ -54,9 +55,12 @@ export default function DialogList({ dialogues, speakers }: DialogList) {
           <DialogListItem
             key={index}
             speaker={dialogue.speaker}
-            text={mode === LANGUAGE_MODE.KOREAN ? dialogue.ko : dialogue.en}
             isLeft={isDifferentSpeaker}
-          />
+          >
+            {parseText(
+              mode === LANGUAGE_MODE.KOREAN ? dialogue.ko : dialogue.en
+            )}
+          </DialogListItem>
         );
       })}
     </ul>

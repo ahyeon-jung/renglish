@@ -3,21 +3,22 @@ import { MovieSceneDialogue } from "@/types/script";
 import clsx from "clsx";
 
 type DialogListItem = {
-  text: string;
   isLeft?: boolean;
   isBackground?: boolean;
   style?: React.CSSProperties;
-} & Pick<MovieSceneDialogue, "speaker">;
+} & Pick<MovieSceneDialogue, "speaker"> &
+  React.PropsWithChildren;
 
 export default function DialogListItem({
   speaker,
-  text,
+
   isLeft = false,
   isBackground = false,
   style,
+  children,
 }: DialogListItem) {
   if (speaker == "etc") {
-    return <li className="text-center italic">{text}</li>;
+    return <li className="text-center italic">{children}</li>;
   }
 
   return (
@@ -47,35 +48,8 @@ export default function DialogListItem({
           "p-3 rounded-lg"
         )}
       >
-        {parseText(text, "font-semibold")}
+        {children}
       </div>
     </li>
   );
-}
-
-function parseText(text: string, spanClassName: string) {
-  return text
-    .split(/(<p>.*?<\/p>)/g)
-    .filter(Boolean)
-    .map((paragraph, index) => {
-      if (paragraph.startsWith("<p>")) {
-        const content = paragraph
-          .replace(/^<p>/, "")
-          .replace(/<\/p>$/, "")
-          .split(/(<span class='keypoint'>.*?<\/span>)/g)
-          .map((part, i) => {
-            if (part.startsWith("<span class='keypoint'>")) {
-              return (
-                <span key={i} className={spanClassName}>
-                  {part.replace(/<\/?span.*?>/g, "")}
-                </span>
-              );
-            }
-            return part;
-          });
-
-        return <p key={index}>{content}</p>;
-      }
-      return paragraph;
-    });
 }
