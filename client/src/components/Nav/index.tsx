@@ -11,6 +11,8 @@ import { usePathname } from "next/navigation";
 
 const DEFAULT_NAV_OPTIONS = [
   { label: "home", path: PATHS.HOME },
+  { label: "introduce", path: PATHS.INTRODUCE },
+  { label: "how to install", path: PATHS.NOTICES.INSTALL },
   { label: "movies", path: PATHS.MOVIE.LIST },
 ];
 
