@@ -3,17 +3,18 @@ import { QUESTION_CHAT_URL } from "@/constants/url";
 
 export default function Introduce() {
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6 text-gray-800">
-      <section className="bg-white shadow-lg rounded-2xl p-8 max-w-2xl text-center">
-        <h1 className="text-3xl font-bold text-orange-600 mb-4">
+    <main className="flex flex-col items-center justify-center min-h-screen p-6 text-gray-800">
+      <section className="rounded-2xl p-8 max-w-2xl text-center">
+        <h1 className="text-2xl font-bold text-orange-600 mb-4">
           🎬 Reel + English, Renglish!
         </h1>
         <p className="text-lg leading-relaxed">
-          영화 대본으로 영어 실력을 키우는 <strong>Renglish</strong> 스터디에
-          오신 걸 환영합니다!
+          영화 대본으로 영어 실력을 키우는
+          <br /> <strong>Renglish</strong> 스터디에 오신 걸 환영합니다!
           <br />
-          함께 영화 속 명장면을 읽고 연기하며, 자연스러운 영어 표현을
-          익혀보세요.
+          함께 영화 속 명장면을 읽고 연기하며,
+          <br />
+          자연스러운 영어 표현을 익혀보세요.
         </p>
 
         <div className="mt-6">
@@ -21,11 +22,10 @@ export default function Introduce() {
             🎥 스터디 진행 방식
           </h2>
           <ul className="text-gray-600 mt-2 text-left list-disc list-inside">
-            <li>매주 한 편의 영화를 선정하여 감상</li>
+            <li>매주 한 편의 영화를 선정</li>
             <li>주요 장면의 대본을 함께 읽으며 표현 익히기</li>
-            <li>
-              빈칸 연습, 한글 대본 참고 가능 (실력에 따라 보고 읽어도 좋아요!)
-            </li>
+            <li>빈칸 연습, 한글 대본 참고 가능</li>
+            <li>실력에 따라 보고 읽어도 좋아요!</li>
           </ul>
         </div>
         <div className="mt-6">
@@ -37,7 +37,11 @@ export default function Introduce() {
           </p>
           <p className="text-gray-600">2025년 3월 시작, 점점 확장 중! 🚀</p>
           <br />
-          <p>매주 목요일 저녁 8시</p>
+          <p>
+            매주 목요일 저녁 8시
+            <br />
+            장소 대여비: 5000원
+          </p>
         </div>
         <div className="mt-6">
           <h2 className="text-xl font-semibold text-gray-700">📢 참여 방법</h2>
