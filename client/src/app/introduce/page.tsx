@@ -43,7 +43,7 @@ export default function Introduce() {
           <p>
             매주 목요일 저녁 8시
             <br />
-            장소 대여비: 5000원
+            참가비: 5000원
           </p>
         </div>
         <div className="mt-6">
