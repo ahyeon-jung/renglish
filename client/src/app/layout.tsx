@@ -31,6 +31,11 @@ type LayoutProps = {
 export default function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
+      <link
+        rel="manifest"
+        href="/manifest.json"
+        crossOrigin="use-credentials"
+      ></link>
       <body>
         <Header />
         {children}
