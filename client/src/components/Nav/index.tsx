@@ -9,6 +9,16 @@ import { PATHS } from "@/constants/path";
 import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
 
+const DEFAULT_NAV_OPTIONS = [
+  { label: "home", path: PATHS.HOME },
+  { label: "movies", path: PATHS.MOVIE.LIST },
+];
+
+const UNPROTECTED_NAV_OPTIONS = [
+  { label: "login", path: PATHS.AUTH.LOGIN },
+  { label: "register", path: PATHS.AUTH.REGISTER },
+];
+
 export default function Nav() {
   const pathname = usePathname();
   const [isOpenNav, setIsOpenNav] = useState(false);
@@ -27,8 +37,12 @@ export default function Nav() {
         createPortal(
           <Dialog isOpen={isOpenNav} onClose={closeNav}>
             <nav className="flex flex-col gap-2">
-              <NavItem path={PATHS.HOME} label="home" />
-              <NavItem path={PATHS.MOVIE_LIST} label="movies" />
+              {DEFAULT_NAV_OPTIONS.map(({ label, path }) => (
+                <NavItem key={path} path={path} label={label} />
+              ))}
+              {UNPROTECTED_NAV_OPTIONS.map(({ label, path }) => (
+                <NavItem key={path} path={path} label={label} />
+              ))}
             </nav>
           </Dialog>,
           document.body

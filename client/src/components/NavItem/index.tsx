@@ -13,7 +13,7 @@ export default function NavItem({ path, label }: NavItemType) {
         "transition-all duration-300 ease-in-out"
       )}
     >
-      <Text as="label" typography="subHead-lg">
+      <Text className="cursor-pointer" as="label" typography="subHead-lg">
         {label}
       </Text>
     </Link>

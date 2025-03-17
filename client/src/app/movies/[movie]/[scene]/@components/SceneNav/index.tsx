@@ -52,6 +52,7 @@ export default function SceneNav({ movieId, sceneId }: SceneNav) {
                 <Link
                   key={path(movieId, sceneId)}
                   href={path(movieId, sceneId)}
+                  replace
                   className={clsx(
                     "w-[300px] text-center py-1",
                     "border-b border-b-white hover:border-b-black",

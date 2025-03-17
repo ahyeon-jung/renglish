@@ -2,6 +2,10 @@ export const PATHS = {
   HOME: "/",
   MOVIE_LIST: "/movies",
   MOVIE_DETAIL: (movie: string) => `/movies/${movie}`,
+  AUTH: {
+    LOGIN: "/auth/login",
+    REGISTER: "/auth/register",
+  },
   MOVIE: {
     LIST: "/movies",
     DETAIL: (movie: string) => `/movies/${movie}`,
