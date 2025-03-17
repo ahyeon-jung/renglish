@@ -2,6 +2,7 @@ export const PATHS = {
   HOME: "/",
   MOVIE_LIST: "/movies",
   MOVIE_DETAIL: (movie: string) => `/movies/${movie}`,
+  INTRODUCE: "/introduce",
   AUTH: {
     LOGIN: "/auth/login",
     REGISTER: "/auth/register",
@@ -28,6 +29,7 @@ export const PATHS = {
       },
     },
   },
+  NOTICES: { INSTALL: "/notices/install" },
   MOVIE_SPEAKING: (movie: string, script: string) =>
     `/movies/${movie}/${script}/speaking`,
 };
