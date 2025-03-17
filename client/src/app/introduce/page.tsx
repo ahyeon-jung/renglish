@@ -1,5 +1,5 @@
+import { DAANGN_GROUP_URL } from "@/constants/url";
 import Link from "next/link";
-import { QUESTION_CHAT_URL } from "@/constants/url";
 import clsx from "clsx";
 
 export default function Introduce() {
@@ -49,15 +49,15 @@ export default function Introduce() {
         <div className="mt-6">
           <h2 className="text-lg font-semibold text-gray-700">📢 참여 방법</h2>
           <p className="text-gray-600 mt-2">
-            관심 있는 분들은 아래 오픈채팅방을 통해 문의해주세요!
+            관심 있는 분들은 아래 Renglish 당근 모임 채널에 가입해주세요!
           </p>
           <Link
             target="_blank"
             rel="noopener noreferrer"
-            href={QUESTION_CHAT_URL}
+            href={DAANGN_GROUP_URL}
             className="mt-3 inline-block bg-orange-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-orange-600 transition"
           >
-            오픈채팅방 입장하기
+            모임 입장하기
           </Link>
         </div>
         <div className="mt-6 text-lg font-semibold text-orange-600">

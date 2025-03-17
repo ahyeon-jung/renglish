@@ -1,1 +1,2 @@
-export const QUESTION_CHAT_URL = "https://open.kakao.com/o/s7PJKcmh";
+export const DAANGN_GROUP_URL =
+  "https://www.daangn.com/kr/groups/ndZ6y0Nd?utm_medium=copy_link";
