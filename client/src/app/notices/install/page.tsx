@@ -26,7 +26,7 @@ const INSTALL_GUIDE = [
 export default function InstallNotice() {
   return (
     <main
-      className={clsx("mt-[var(--header-height)] py-3", "flex flex-col gap-8")}
+      className={clsx("mt-[var(--header-height)] p-4", "flex flex-col gap-8")}
     >
       <Text typography="display-lg">How to Install(IOS ver)?</Text>
       {INSTALL_GUIDE.map(({ describe, image }, index) => (
