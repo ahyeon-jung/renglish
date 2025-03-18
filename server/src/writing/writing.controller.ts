@@ -1,8 +1,17 @@
-import { Controller, Post, Body, Get, Param } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Param,
+  UseGuards,
+  Request as Req,
+} from '@nestjs/common';
 import { WritingService } from './writing.service';
 import { CreateWritingDto } from './dto/create-writing.dto';
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 import { Writing } from './entities/writing.entity';
+import { JwtAuthGuard } from 'src/auth/jwt-auth/jwt-auth.guard';
 
 @ApiTags('Writings')
 @Controller('writings')
@@ -10,8 +19,9 @@ export class WritingController {
   constructor(private readonly writingService: WritingService) {}
 
   @Post(':dialogueId')
+  @UseGuards(JwtAuthGuard)
   @ApiOperation({
-    summary: '사용자가 작성한 대사의 대본 저장하기',
+    summary: '사용자가 작성한 대사의 대본 저장하기(JWT 인증 필요)',
     description: '사용자가 작성한 대사의 대본을 저장합니다.',
   })
   @ApiParam({
@@ -21,15 +31,17 @@ export class WritingController {
     type: String,
   })
   create(
+    @Req() req,
     @Param('dialogueId') dialogueId: string,
     @Body() createWritingDto: CreateWritingDto
   ) {
-    return this.writingService.create(dialogueId, createWritingDto);
+    return this.writingService.create(dialogueId, createWritingDto, req);
   }
 
   @Get(':movieId')
+  @UseGuards(JwtAuthGuard)
   @ApiOperation({
-    summary: '사용자가 작성한 작문 정보 가져오기',
+    summary: '사용자가 작성한 작문 정보 가져오기(JWT 인증 필요)',
     description: '사용자가 작성한 작문 정보를 가져옵니다.',
   })
   @ApiParam({

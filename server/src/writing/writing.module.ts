@@ -1,3 +1,4 @@
+import { AuthModule } from 'src/auth/auth.module';
 import { Dialogue } from 'src/dialogue/entities/dialogue.entity';
 import { DialogueModule } from 'src/dialogue/dialogue.module';
 import { Module } from '@nestjs/common';
@@ -11,6 +12,7 @@ import { WritingService } from './writing.service';
   imports: [
     TypeOrmModule.forFeature([User, Dialogue, Writing]),
     DialogueModule,
+    AuthModule,
   ],
   controllers: [WritingController],
   providers: [WritingService],
