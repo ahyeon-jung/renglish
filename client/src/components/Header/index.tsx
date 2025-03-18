@@ -22,7 +22,7 @@ export default async function Header() {
       <Link href={PATHS.HOME} className="flex gap-[4px] items-center">
         <Image src={logo} alt="Renglish logo image" width={30} height={30} />
         <Text as="h2" typography="headline-lg">
-          Renglish
+          english
         </Text>
       </Link>
       <div className="flex">

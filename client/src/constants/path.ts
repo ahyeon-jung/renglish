@@ -4,6 +4,12 @@ export const PATHS = {
   MOVIE_DETAIL: (movie: string) => `/movies/${movie}`,
   INTRODUCE: "/introduce",
   PROFILE: "/profile",
+  ADMIN: {
+    USERS: { LIST: "/admin/users" },
+    INQUIRIES: { LIST: "/admin/inquiries" },
+    SCRIPTS: { ADD: "/admin/scripts/add" },
+    NOTICES: { ADD: "/admin/notices/add" },
+  },
   AUTH: {
     LOGIN: "/auth/login",
     REGISTER: "/auth/register",
