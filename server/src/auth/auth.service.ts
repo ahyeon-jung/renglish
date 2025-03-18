@@ -83,6 +83,7 @@ export class AuthService {
     const userId = decoded.sub;
 
     const user = await this.userService.findUserById(userId);
+    console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
     return !!user;
   }
 

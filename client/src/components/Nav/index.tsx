@@ -9,6 +9,8 @@ import { PATHS } from "@/constants/path";
 import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
 
+type Nav = { withAuth: boolean };
+
 const DEFAULT_NAV_OPTIONS = [
   { label: "home", path: PATHS.HOME },
   { label: "introduce", path: PATHS.INTRODUCE },
@@ -16,12 +18,17 @@ const DEFAULT_NAV_OPTIONS = [
   { label: "movies", path: PATHS.MOVIE.LIST },
 ];
 
-const UNPROTECTED_NAV_OPTIONS = [
+const WITHOUT_AUTH_NAV_OPTIONS = [
   { label: "login", path: PATHS.AUTH.LOGIN },
   { label: "register", path: PATHS.AUTH.REGISTER },
 ];
 
-export default function Nav() {
+const WITH_AUTH_NAV_OPTIONS = [
+  { label: "profile", path: PATHS.PROFILE },
+  { label: "logout", path: PATHS.AUTH.LOGOUT },
+];
+
+export default function Nav({ withAuth }: Nav) {
   const pathname = usePathname();
   const [isOpenNav, setIsOpenNav] = useState(false);
 
@@ -30,7 +37,7 @@ export default function Nav() {
 
   useEffect(() => {
     closeNav();
-  }, [pathname]);
+  }, [pathname, withAuth]);
 
   return (
     <>
@@ -42,7 +49,10 @@ export default function Nav() {
               {DEFAULT_NAV_OPTIONS.map(({ label, path }) => (
                 <NavItem key={path} path={path} label={label} />
               ))}
-              {UNPROTECTED_NAV_OPTIONS.map(({ label, path }) => (
+              {(withAuth
+                ? WITH_AUTH_NAV_OPTIONS
+                : WITHOUT_AUTH_NAV_OPTIONS
+              ).map(({ label, path }) => (
                 <NavItem key={path} path={path} label={label} />
               ))}
             </nav>

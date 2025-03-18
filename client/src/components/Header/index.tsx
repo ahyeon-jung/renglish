@@ -4,9 +4,13 @@ import Nav from "../Nav";
 import { PATHS } from "@/constants/path";
 import Text from "../Text";
 import clsx from "clsx";
+import { cookies } from "next/headers";
 import logo from "@/assets/logo.png";
 
-export default function Header() {
+export default async function Header() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token")?.value;
+
   return (
     <header
       className={clsx(
@@ -22,7 +26,7 @@ export default function Header() {
         </Text>
       </Link>
       <div className="flex">
-        <Nav />
+        <Nav withAuth={!!token} />
       </div>
     </header>
   );
