@@ -2,7 +2,7 @@ import { IsNotEmpty, IsString } from "class-validator";
 
 import { ApiProperty } from "@nestjs/swagger";
 
-export class CreateUserDto {
+export class ChangePasswordDto {
   @ApiProperty({
     example: "user@example.com",
     description: "사용자의 이메일 주소",
@@ -14,10 +14,10 @@ export class CreateUserDto {
 
   @ApiProperty({
     example: "securePassword123",
-    description: "사용자의 비밀번호",
+    description: "사용자의 새로운 비밀번호",
     required: true,
   })
-  @IsNotEmpty({ message: "Password is required" })
-  @IsString({ message: "Password must be a string" })
-  password: string;
+  @IsNotEmpty({ message: "NewPassword is required" })
+  @IsString({ message: "NewPassword must be a string" })
+  newPassword: string;
 }

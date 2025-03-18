@@ -13,18 +13,14 @@ export class MovieService {
   ) {}
 
   async create(createMovieDto: CreateMovieDto): Promise<Movie> {
-    const movie = new Movie();
-    movie.title = createMovieDto.title;
-    movie.description = createMovieDto.description;
-
-    return this.movieRepository.save(movie);
+    return this.movieRepository.save(createMovieDto);
   }
 
   findAll(): Promise<Movie[]> {
     return this.movieRepository.find({ relations: ["scenes"] });
   }
 
-  async findOne(id: number): Promise<Movie> {
+  async findOneById(id: string): Promise<Movie> {
     const movie = await this.movieRepository.findOne({
       where: { id },
       relations: ["scenes"],
@@ -35,7 +31,7 @@ export class MovieService {
     return movie;
   }
 
-  async update(id: number, updateMovieDto: UpdateMovieDto): Promise<Movie> {
+  async update(id: string, updateMovieDto: UpdateMovieDto): Promise<Movie> {
     const movie = await this.movieRepository.findOne({
       where: { id },
       relations: ["scenes"],
@@ -50,7 +46,7 @@ export class MovieService {
     return this.movieRepository.save(movie);
   }
 
-  async remove(id: number): Promise<void> {
+  async remove(id: string): Promise<void> {
     const movie = await this.movieRepository.findOne({
       where: { id },
       relations: ["scenes"],

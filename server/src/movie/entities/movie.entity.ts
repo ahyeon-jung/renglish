@@ -13,6 +13,12 @@ export class Movie extends BaseEntity {
   @Column()
   title: string;
 
+  @Column()
+  imageUrl: string;
+
+  @Column()
+  studiedAt: Date;
+
   @ApiProperty({
     type: String,
     example:

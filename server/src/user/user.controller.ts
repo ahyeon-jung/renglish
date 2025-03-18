@@ -1,34 +1,56 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { Controller, Get, Param } from "@nestjs/common";
+import { UserService } from "./user.service";
+import { User } from "./entities/user.entity";
+import { ApiOperation, ApiParam, ApiResponse, ApiTags } from "@nestjs/swagger";
 
-@Controller('user')
+@ApiTags("Users")
+@Controller("users")
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
-  }
-
   @Get()
-  findAll() {
+  @ApiOperation({
+    summary: "모든 사용자 정보 가져오기",
+    description: "모든 사용자 정보를 가져옵니다.",
+  })
+  @ApiResponse({ status: 200, description: "모든 사용자 정보 가져오기 성공" })
+  async findAll(): Promise<User[]> {
     return this.userService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.userService.findOne(+id);
+  @Get(":userId")
+  @ApiOperation({
+    summary: "아이디로 사용자 찾기",
+    description: "아이디로 사용자 정보를 가져옵니다.",
+  })
+  @ApiParam({
+    name: "userId",
+    description: "사용자의 ID",
+    example: "e5e798e1-9241-4b95-8e2c-0b630bbd033f",
+    type: String,
+  })
+  @ApiResponse({ status: 200, description: "사용자 정보 찾기 성공" })
+  @ApiResponse({ status: 404, description: "사용자 정보 찾기 실패" })
+  async findUserById(@Param("userId") userId: string): Promise<User> {
+    const user = await this.userService.findUserById(userId);
+    return user;
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(+id, updateUserDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.userService.remove(+id);
+  @Get("email/:email")
+  @ApiOperation({
+    summary: "이메일로 사용자 찾기",
+    description: "이메일로 사용자 정보를 가져옵니다.",
+  })
+  @ApiParam({
+    name: "email",
+    description: "사용자의 이메일",
+    example: "jah512@naver.com",
+    type: String,
+  })
+  @ApiResponse({ status: 200, description: "사용자 정보 찾기 성공" })
+  @ApiResponse({ status: 404, description: "사용자 정보 찾기 실패" })
+  async checkExistByEmail(@Param("email") email: string): Promise<User> {
+    const user = await this.userService.findUserByEmail(email);
+    return user;
   }
 }

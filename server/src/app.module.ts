@@ -21,11 +21,11 @@ import { WritingModule } from "./writing/writing.module";
     DatabaseModule,
     AuthModule,
     MovieModule,
-    UserModule,
     SceneModule,
     SpeakerModule,
     DialogueModule,
     WritingModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [

@@ -10,7 +10,11 @@ async function bootstrap() {
 
   app.setGlobalPrefix("api");
 
-  app.enableCors({ origin: ["localhost"], credentials: false });
+  app.enableCors({
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: "Content-Type, Accept",
+  });
 
   const config = new DocumentBuilder()
     .setTitle("Renglish example")

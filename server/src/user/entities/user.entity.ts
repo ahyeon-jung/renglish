@@ -1,6 +1,7 @@
-import { Column, Entity } from "typeorm";
+import { Column, Entity, OneToMany } from 'typeorm';
 
-import { BaseEntity } from "src/common/entities/base.entity";
+import { BaseEntity } from 'src/common/entities/base.entity';
+import { Writing } from 'src/writing/entities/writing.entity';
 
 @Entity()
 export class User extends BaseEntity {
@@ -9,4 +10,7 @@ export class User extends BaseEntity {
 
   @Column()
   password: string;
+
+  @OneToMany(() => Writing, (writing) => writing.dialogue)
+  writings: Writing;
 }
