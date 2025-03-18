@@ -1,8 +1,10 @@
 "use client";
 
+import { useRef, useState } from "react";
+
 import Button from "@/components/Button";
+import { Speaker } from "../Speakers";
 import Text from "@/components/Text";
-import { useState } from "react";
 
 export type Dialogue = {
   speaker: string;
@@ -12,15 +14,57 @@ export type Dialogue = {
 };
 
 type Dialogues = {
+  speakers: Speaker[];
   dialogues: Dialogue[];
   setDialogues: (dialogues: Dialogue[]) => void;
 };
 
-export default function Dialogues({ setDialogues }: Dialogues) {
+export default function Dialogues({ speakers, setDialogues }: Dialogues) {
   const [dialoguesBody, setDialoguesBody] = useState("");
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [cursorPosition, setCursorPosition] = useState<{
+    top: number;
+    left: number;
+  }>({ top: 0, left: 0 });
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const handleDialoguesChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setDialoguesBody(e.target.value);
+    const input = e.target.value;
+    setDialoguesBody(input);
+
+    const words = input.split("\n");
+    const lastWord = input.split("\n")[words.length - 1];
+
+    if (lastWord) {
+      const filteredSuggestions = speakers
+        .map((speaker) => speaker.speaker_name)
+        .filter((name) => name.toLowerCase().includes(lastWord.toLowerCase()));
+
+      setSuggestions(filteredSuggestions);
+      if (textareaRef.current) {
+        const rect = textareaRef.current.getBoundingClientRect();
+
+        const lineHeight = 24;
+        const cursorTop = rect.top + lineHeight * words.length + 8;
+        const cursorLeft = rect.left;
+
+        setCursorPosition({ top: cursorTop, left: cursorLeft });
+      }
+    } else {
+      setSuggestions([]);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Tab" && suggestions.length > 0) {
+      e.preventDefault();
+      setDialoguesBody((prev) => {
+        const words = prev.split("\n").slice(0, -1);
+
+        return words.join("\n") + suggestions[0];
+      });
+      setSuggestions([]);
+    }
   };
 
   const handleTransformDialoguesClick = () => {
@@ -59,11 +103,39 @@ export default function Dialogues({ setDialogues }: Dialogues) {
         </Button>
       </div>
       <textarea
+        ref={textareaRef}
         className="border w-full p-2 rounded-lg"
         rows={10}
         value={dialoguesBody}
         onChange={handleDialoguesChange}
+        onKeyDown={handleKeyDown}
+        placeholder="Type speaker's name"
       />
+      {suggestions.length > 0 && (
+        <ul
+          className="bg-gray-300 rounded-lg"
+          style={{
+            position: "absolute",
+            top: `${cursorPosition.top}px`,
+            left: `${cursorPosition.left}px`,
+            width: `${textareaRef.current?.offsetWidth}px`,
+            zIndex: 10,
+          }}
+        >
+          {suggestions.map((suggestion, index) => (
+            <li
+              key={index}
+              className="cursor-pointer py-1 px-2 hover:bg-gray-200"
+              onClick={() => {
+                setDialoguesBody(suggestion);
+                setSuggestions([]);
+              }}
+            >
+              {suggestion}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

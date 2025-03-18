@@ -10,7 +10,7 @@ import { useState } from "react";
 type ScriptAddBody = {
   movie: MovieType;
   dialogues: Dialogue[];
-  speaker: Speaker[];
+  speakers: Speaker[];
 };
 
 const INITIAL_SCRIPT_ADD_BODY = {
@@ -20,7 +20,7 @@ const INITIAL_SCRIPT_ADD_BODY = {
     studiedAt: "",
     description: "",
   },
-  speaker: [],
+  speakers: [],
   dialogues: [],
 };
 
@@ -44,9 +44,10 @@ export default function ScriptForm() {
   };
 
   const addSpeaker = (speaker: Speaker) => {
+    console.log(scriptAddBody.speakers, speaker);
     setScriptAddBody((prev) => ({
       ...prev,
-      speaker: [...prev.speaker, speaker],
+      speakers: [...prev.speakers, speaker],
     }));
   };
 
@@ -61,8 +62,9 @@ export default function ScriptForm() {
   return (
     <form onSubmit={handleScriptAddSubmit} className="flex flex-col gap-3">
       <Movie movie={scriptAddBody.movie} setMovie={updateMovie} />
-      <Speakers speakers={scriptAddBody.speaker} addSpeaker={addSpeaker} />
+      <Speakers speakers={scriptAddBody.speakers} addSpeaker={addSpeaker} />
       <Dialogues
+        speakers={scriptAddBody.speakers}
         dialogues={scriptAddBody.dialogues}
         setDialogues={updateDialogues}
       />

@@ -9,7 +9,7 @@ export type MovieType = {
 };
 type Scene = {
   movie: MovieType;
-  setMovie: (movie: MovieType) => void;
+  setMovie: (movie: Partial<MovieType>) => void;
 };
 
 export default function Scene({ movie, setMovie }: Scene) {

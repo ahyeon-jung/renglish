@@ -25,6 +25,8 @@ export default function Speakers({ speakers, addSpeaker }: Speakers) {
     setSpeaker("");
   };
 
+  console.log(speakers);
+
   return (
     <div>
       <Text as="h3" typography="display-md">
