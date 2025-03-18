@@ -31,6 +31,15 @@ export class MovieController {
     return this.movieService.create(createMovieDto);
   }
 
+  @Get('latest')
+  @ApiOperation({
+    summary: '가장 최신 영화 가져오기',
+    description: '가장 최신 업로드된 장면의 영화 정보를 가져옵니다.',
+  })
+  findLatestScene(): Promise<Movie> {
+    return this.movieService.findMovieWithLatestScene();
+  }
+
   @Get()
   @ApiOperation({
     summary: '모든 영화 정보 가져오기',
@@ -76,7 +85,7 @@ export class MovieController {
 
   @Post(':movieId/scene')
   @ApiOperation({
-    summary: '영화에 장면 추가하기',
+    summary: '영화에 장면 한꺼번에 추가하기',
     description: '해당 영화에 장면 및 대본을 추가합니다.',
   })
   @ApiParam({
