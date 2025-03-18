@@ -3,8 +3,8 @@ import clsx from "clsx";
 
 type DialogProps = {
   isSub?: boolean;
-  isOpen: boolean;
-  onClose: () => void;
+  isOpen?: boolean;
+  onClose?: () => void;
 } & React.PropsWithChildren;
 
 export default function Dialog({
