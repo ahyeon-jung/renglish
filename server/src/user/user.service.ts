@@ -1,8 +1,8 @@
-import { CreateUserDto } from "./dto/create-user.dto";
-import { Injectable, NotFoundException } from "@nestjs/common";
-import { Repository } from "typeorm";
-import { User } from "./entities/user.entity";
-import { InjectRepository } from "@nestjs/typeorm";
+import { CreateUserDto } from './dto/create-user.dto';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { Repository } from 'typeorm';
+import { User } from './entities/user.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class UserService {
@@ -24,7 +24,7 @@ export class UserService {
     });
 
     if (result.affected === 0) {
-      throw new NotFoundException("User not found or password update failed");
+      throw new NotFoundException('User not found or password update failed');
     }
   }
 

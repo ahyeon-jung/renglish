@@ -14,6 +14,8 @@ import { SceneModule } from "./scene/scene.module";
 import { SpeakerModule } from "./speaker/speaker.module";
 import { UserModule } from "./user/user.module";
 import { WritingModule } from "./writing/writing.module";
+import { InquiryModule } from './inquiry/inquiry.module';
+import { NoticeModule } from './notice/notice.module';
 
 @Module({
   imports: [
@@ -26,6 +28,8 @@ import { WritingModule } from "./writing/writing.module";
     DialogueModule,
     WritingModule,
     UserModule,
+    InquiryModule,
+    NoticeModule,
   ],
   controllers: [AppController],
   providers: [

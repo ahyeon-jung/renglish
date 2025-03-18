@@ -1,3 +1,4 @@
+import { Inquiry } from 'src/inquiry/entities/inquiry.entity';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
@@ -6,7 +7,7 @@ import { UserService } from './user.service';
 import { Writing } from 'src/writing/entities/writing.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User, Writing])],
+  imports: [TypeOrmModule.forFeature([User, Writing, Inquiry])],
   controllers: [UserController],
   providers: [UserService],
   exports: [UserService],
