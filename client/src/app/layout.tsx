@@ -39,6 +39,7 @@ export default function RootLayout({ children }: LayoutProps) {
           href="/manifest.json"
           crossOrigin="use-credentials"
         ></link>
+        <meta name="google-site-verification" content="pFpTrXSZHU7yKHL1Trxs7puDf7bcYYP7GR8NdaMf8oM" />
       </Head>
       <body>
         <Header />
