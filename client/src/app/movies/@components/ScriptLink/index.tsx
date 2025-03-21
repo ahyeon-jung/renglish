@@ -16,8 +16,11 @@ export default function ScriptLink({ title, id }: ScriptLink) {
       href={PATHS.MOVIE.SCENE.SCRIPT.DUAL(title, id.toString())}
       className={clsx('text-orange-600 hover:text-orange-800 transition-colors')}
     >
-      <Text as="span" typography="subHead-xl">
-        {sceneId}
+      <Text as="div" typography="subHead-md">
+        Scene{' '}
+        <Text as="span" typography="subHead-xl">
+          {sceneId}
+        </Text>
       </Text>
     </Link>
   );
