@@ -1,5 +1,6 @@
 export type Dialogue = {
   speaker: string;
-  en: string;
-  ko: string;
+  order: number;
+  korean_script: string;
+  english_script: string;
 };

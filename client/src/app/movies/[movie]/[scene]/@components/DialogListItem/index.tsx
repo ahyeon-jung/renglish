@@ -32,7 +32,7 @@ export default function DialogListItem({
     >
       <div className={clsx('flex flex-col items-center', 'text-gray-600 dark:text-gray-300')}>
         <CircleUserRound className="w-8 h-8" />
-        <span className="text-sm font-medium">{speaker.split(' ')[0]}</span>
+        <span className="text-sm font-medium">{speaker}</span>
       </div>
       <div
         className={clsx(

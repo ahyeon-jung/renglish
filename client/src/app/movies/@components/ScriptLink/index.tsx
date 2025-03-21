@@ -1,16 +1,15 @@
 'use client';
 
 import Link from 'next/link';
-import { Movie } from '@/types/script';
 import { PATHS } from '@/constants/path';
+import { Scene } from '@/types/scene';
 import Text from '@/components/Text';
 import clsx from 'clsx';
 
-type ScriptLink = { id: number } & Pick<Movie, 'title'>;
+type ScriptLink = { index: number } & Pick<Scene, 'id' | 'title'>;
 
-export default function ScriptLink({ title, id }: ScriptLink) {
-  const sceneId = id > 9 ? id + 1 : '0' + (id + 1);
-
+export default function ScriptLink({ index, title, id }: ScriptLink) {
+  const sceneId = index > 9 ? index + 1 : '0' + (index + 1);
   return (
     <Link
       href={PATHS.MOVIE.SCENE.SCRIPT.DUAL(title, id.toString())}

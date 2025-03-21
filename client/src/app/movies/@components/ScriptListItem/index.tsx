@@ -2,7 +2,7 @@ import { formatDate, formatTitle } from '@/utils/format';
 
 import { Calendar } from 'lucide-react';
 import Link from 'next/link';
-import { Movie } from '@/types/script';
+import { Movie } from '@/types/movie';
 import { PATHS } from '@/constants/path';
 import ScriptLink from '../ScriptLink';
 import Text from '@/components/Text';
@@ -31,8 +31,8 @@ export default function ScriptListItem({ id, title, studiedAt, scenes }: ScriptL
         </div>
       </div>
       <div className="flex gap-4">
-        {scenes.map((_, index) => (
-          <ScriptLink key={index} title={title} id={index} />
+        {scenes.map((scene, index) => (
+          <ScriptLink key={index} index={index} title={title} id={scene.id} />
         ))}
       </div>
     </li>

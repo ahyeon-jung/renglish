@@ -1,7 +1,7 @@
 import DialogListContainer from '../../@components/DialogListContainer';
 import DialogListItem from '../../@components/DialogListItem';
 import SceneHeader from '../../@components/SceneHeader';
-import { getMovieData } from '@/app/@actions/getContent';
+import getScene from '@/app/@actions/scenes/getScene';
 import { parseText } from '@/utils/content';
 
 export default async function MovieSceneKoreanScript({
@@ -11,26 +11,16 @@ export default async function MovieSceneKoreanScript({
 }) {
   const slug = await params;
 
-  const movie = await getMovieData(slug.movie);
-  const sceneId = Number(slug.scene);
+  const { data: scene } = await getScene(slug.scene);
 
   return (
     <main className="mt-[var(--header-height)] p-3">
-      <SceneHeader title={movie.title} movieId={slug.movie} sceneId={slug.scene} />
+      <SceneHeader title={slug.movie} movieId={slug.movie} sceneId={slug.scene} />
       <DialogListContainer>
-        {movie.scenes[sceneId].dialogues.map((dialogue, index) => {
-          const isDifferentSpeaker = movie.scenes[sceneId].speakers
-            .filter((_, index) => index % 2 === 1)
-            .includes(dialogue.speaker);
-
+        {scene.dialogues.map((dialogue, index) => {
           return (
-            <DialogListItem
-              key={index}
-              speaker={dialogue.speaker}
-              isLeft={isDifferentSpeaker}
-              isBackground
-            >
-              {parseText(dialogue.ko)}
+            <DialogListItem key={index} speaker={dialogue.speaker} isLeft={true} isBackground>
+              {parseText(dialogue.korean_script)}
             </DialogListItem>
           );
         })}

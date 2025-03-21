@@ -1,11 +1,11 @@
 'use server';
 
 import { ActionResponse } from '@/types/action';
-import { MovieScene } from '@/types/script';
+import { Scene } from '@/types/scene';
 import { fetchAPI } from '@/libs/api';
 
-export default async function getScene(sceneId: string): Promise<ActionResponse<MovieScene>> {
-  const response = await fetchAPI<MovieScene>(`/scenes/${sceneId}`, {
+export default async function getScene(sceneId: string): Promise<ActionResponse<Scene>> {
+  const response = await fetchAPI<Scene>(`/scenes/${sceneId}`, {
     method: 'GET',
   });
 
