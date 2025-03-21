@@ -1,4 +1,7 @@
-const CLIENT_ENV = {};
+const CLIENT_ENV = {
+  GA_ID: process.env.NEXT_PUBLIC_GA_ID ?? "",
+  GC_ID: process.env.NEXT_PUBLIC_GC_ID ?? "",
+};
 
 export const ENV = {
   ...CLIENT_ENV,
