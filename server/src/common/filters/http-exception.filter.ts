@@ -1,11 +1,5 @@
-import {
-  ArgumentsHost,
-  Catch,
-  ExceptionFilter,
-  HttpException,
-  Logger,
-} from "@nestjs/common";
-import { Request, Response } from "express";
+import { ArgumentsHost, Catch, ExceptionFilter, HttpException, Logger } from '@nestjs/common';
+import { Request, Response } from 'express';
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -16,8 +10,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
 
-    const status =
-      exception instanceof HttpException ? exception.getStatus() : 500;
+    const status = exception instanceof HttpException ? exception.getStatus() : 500;
     const errorResponse = exception.getResponse();
 
     const errorLog = {
@@ -25,16 +18,13 @@ export class HttpExceptionFilter implements ExceptionFilter {
       timestamp: new Date().toISOString(),
       path: request.url,
       method: request.method,
-      errorMessage:
-        errorResponse["message"] ||
-        exception.message ||
-        "Internal Server Error",
+      errorMessage: errorResponse['message'] || exception.message || 'Internal Server Error',
       stack: exception.stack,
     };
 
     this.logger.error(
       `❌ [${errorLog.method}] ${errorLog.path} 에러 발생!`,
-      JSON.stringify(errorLog, null, 2)
+      JSON.stringify(errorLog, null, 2),
     );
 
     response.status(status).json({

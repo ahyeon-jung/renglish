@@ -11,7 +11,7 @@ export class InquiryService {
   constructor(
     @InjectRepository(Inquiry)
     private readonly inquiryRepository: Repository<Inquiry>,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
   ) {}
 
   async create(createInquiryDto: CreateInquiryDto, req: any) {

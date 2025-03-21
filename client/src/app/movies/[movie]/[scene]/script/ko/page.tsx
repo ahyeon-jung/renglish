@@ -1,8 +1,8 @@
-import DialogListContainer from "../../@components/DialogListContainer";
-import DialogListItem from "../../@components/DialogListItem";
-import SceneHeader from "../../@components/SceneHeader";
-import { getMovieData } from "@/app/@actions/getContent";
-import { parseText } from "@/utils/content";
+import DialogListContainer from '../../@components/DialogListContainer';
+import DialogListItem from '../../@components/DialogListItem';
+import SceneHeader from '../../@components/SceneHeader';
+import { getMovieData } from '@/app/@actions/getContent';
+import { parseText } from '@/utils/content';
 
 export default async function MovieSceneKoreanScript({
   params,
@@ -16,11 +16,7 @@ export default async function MovieSceneKoreanScript({
 
   return (
     <main className="mt-[var(--header-height)] p-3">
-      <SceneHeader
-        title={movie.title}
-        movieId={slug.movie}
-        sceneId={slug.scene}
-      />
+      <SceneHeader title={movie.title} movieId={slug.movie} sceneId={slug.scene} />
       <DialogListContainer>
         {movie.scenes[sceneId].dialogues.map((dialogue, index) => {
           const isDifferentSpeaker = movie.scenes[sceneId].speakers

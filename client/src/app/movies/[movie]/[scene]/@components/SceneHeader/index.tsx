@@ -1,7 +1,7 @@
-import SceneNav, { SceneNav as SceneNavType } from "../SceneNav";
+import SceneNav, { SceneNav as SceneNavType } from '../SceneNav';
 
-import SubHeaderContainer from "@/components/SubheaderContainer";
-import { formatTitle } from "@/utils/format";
+import SubHeaderContainer from '@/components/SubheaderContainer';
+import { formatTitle } from '@/utils/format';
 
 type Header = { title: string } & SceneNavType;
 

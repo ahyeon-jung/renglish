@@ -1,28 +1,19 @@
-import {
-  Film,
-  Flame,
-  Grid,
-  Heart,
-  Shield,
-  Smile,
-  Theater,
-  Users,
-} from "lucide-react";
+import { Film, Flame, Grid, Heart, Shield, Smile, Theater, Users } from 'lucide-react';
 
-import Container from "../Container";
-import Icon from "@/components/Icon";
-import Link from "next/link";
-import { PATHS } from "@/constants/path";
+import Container from '../Container';
+import Icon from '@/components/Icon';
+import Link from 'next/link';
+import { PATHS } from '@/constants/path';
 
 const SCRIPT_CATEGORIES = [
-  { label: "전체보기", icon: Grid },
-  { label: "romance", icon: Heart },
-  { label: "drama", icon: Theater },
-  { label: "action", icon: Flame },
-  { label: "comedy", icon: Smile },
-  { label: "adventure", icon: Users },
-  { label: "thriller", icon: Shield },
-  { label: "sci-fi", icon: Film },
+  { label: '전체보기', icon: Grid },
+  { label: 'romance', icon: Heart },
+  { label: 'drama', icon: Theater },
+  { label: 'action', icon: Flame },
+  { label: 'comedy', icon: Smile },
+  { label: 'adventure', icon: Users },
+  { label: 'thriller', icon: Shield },
+  { label: 'sci-fi', icon: Film },
 ];
 
 export default function Categories() {

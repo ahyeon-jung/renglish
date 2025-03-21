@@ -1,10 +1,10 @@
 const CLIENT_ENV = {
-  GA_ID: process.env.NEXT_PUBLIC_GA_ID ?? "",
-  GC_ID: process.env.NEXT_PUBLIC_GC_ID ?? "",
+  GA_ID: process.env.NEXT_PUBLIC_GA_ID ?? '',
+  GC_ID: process.env.NEXT_PUBLIC_GC_ID ?? '',
 };
 
 export const ENV = {
   ...CLIENT_ENV,
-  API_BASE_URL: process.env.API_BASE_URL ?? "",
-  IS_PRODUCTION: process.env.NODE_ENV === "production",
+  API_BASE_URL: process.env.API_BASE_URL ?? '',
+  IS_PRODUCTION: process.env.NODE_ENV === 'production',
 } as const;

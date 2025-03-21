@@ -1,4 +1,4 @@
-import Text from "../Text";
+import Text from '../Text';
 
 export default function FieldLabel({ children }: React.PropsWithChildren) {
   return (

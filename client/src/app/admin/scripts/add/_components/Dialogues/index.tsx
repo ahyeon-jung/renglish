@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useRef, useState } from "react";
+import { useRef, useState } from 'react';
 
-import Button from "@/components/Button";
-import { Speaker } from "../Speakers";
-import Text from "@/components/Text";
+import Button from '@/components/Button';
+import { Speaker } from '../Speakers';
+import Text from '@/components/Text';
 
 export type Dialogue = {
   speaker: string;
@@ -20,7 +20,7 @@ type Dialogues = {
 };
 
 export default function Dialogues({ speakers, setDialogues }: Dialogues) {
-  const [dialoguesBody, setDialoguesBody] = useState("");
+  const [dialoguesBody, setDialoguesBody] = useState('');
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [cursorPosition, setCursorPosition] = useState<{
     top: number;
@@ -32,8 +32,8 @@ export default function Dialogues({ speakers, setDialogues }: Dialogues) {
     const input = e.target.value;
     setDialoguesBody(input);
 
-    const words = input.split("\n");
-    const lastWord = input.split("\n")[words.length - 1];
+    const words = input.split('\n');
+    const lastWord = input.split('\n')[words.length - 1];
 
     if (lastWord) {
       const filteredSuggestions = speakers
@@ -56,31 +56,29 @@ export default function Dialogues({ speakers, setDialogues }: Dialogues) {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === "Tab" && suggestions.length > 0) {
+    if (e.key === 'Tab' && suggestions.length > 0) {
       e.preventDefault();
       setDialoguesBody((prev) => {
-        const words = prev.split("\n").slice(0, -1);
+        const words = prev.split('\n').slice(0, -1);
 
-        return words.join("\n") + suggestions[0];
+        return words.join('\n') + suggestions[0];
       });
       setSuggestions([]);
     }
   };
 
   const handleTransformDialoguesClick = () => {
-    const formattedDialogues = dialoguesBody
-      .split("\n\n")
-      .map((dialogue, index): Dialogue => {
-        const [speaker, english, korean] = dialogue.split("\n");
-        const formattedEnglish = `<p>${english.replace(/\*\*(.*?)\*\*/g, "<span class='keypoint'>$1</span>")}</p>`;
-        const formattedKorean = `<p>${korean}</p>`;
-        return {
-          speaker,
-          english_script: formattedEnglish,
-          korean_script: formattedKorean,
-          order: index,
-        };
-      });
+    const formattedDialogues = dialoguesBody.split('\n\n').map((dialogue, index): Dialogue => {
+      const [speaker, english, korean] = dialogue.split('\n');
+      const formattedEnglish = `<p>${english.replace(/\*\*(.*?)\*\*/g, "<span class='keypoint'>$1</span>")}</p>`;
+      const formattedKorean = `<p>${korean}</p>`;
+      return {
+        speaker,
+        english_script: formattedEnglish,
+        korean_script: formattedKorean,
+        order: index,
+      };
+    });
     setDialogues(formattedDialogues);
   };
 
@@ -115,7 +113,7 @@ export default function Dialogues({ speakers, setDialogues }: Dialogues) {
         <ul
           className="bg-gray-300 rounded-lg"
           style={{
-            position: "absolute",
+            position: 'absolute',
             top: `${cursorPosition.top}px`,
             left: `${cursorPosition.left}px`,
             width: `${textareaRef.current?.offsetWidth}px`,

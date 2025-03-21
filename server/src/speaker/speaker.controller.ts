@@ -34,10 +34,7 @@ export class SpeakerController {
     example: 'e5e798e1-9241-4b95-8e2c-0b630bbd033f',
     type: String,
   })
-  update(
-    @Param('speakerId') speakerId: string,
-    @Body() updateSpeakerDto: UpdateSpeakerDto
-  ) {
+  update(@Param('speakerId') speakerId: string, @Body() updateSpeakerDto: UpdateSpeakerDto) {
     return this.speakerService.update(speakerId, updateSpeakerDto);
   }
 }

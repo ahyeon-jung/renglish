@@ -11,8 +11,7 @@ export class Dialogue extends BaseEntity {
   @Column()
   @ApiProperty({
     type: String,
-    example:
-      "Oh, if you're laughing at me, I swear to God I'll push you out of that chair.",
+    example: "Oh, if you're laughing at me, I swear to God I'll push you out of that chair.",
   })
   english_script: string;
 

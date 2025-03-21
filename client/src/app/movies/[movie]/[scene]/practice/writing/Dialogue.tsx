@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import DialogListItem from "../../@components/DialogListItem";
-import { MovieSceneDialogue } from "@/types/script";
-import { WandSparkles } from "lucide-react";
-import { parseText } from "@/utils/content";
-import { useState } from "react";
+import DialogListItem from '../../@components/DialogListItem';
+import { MovieSceneDialogue } from '@/types/script';
+import { WandSparkles } from 'lucide-react';
+import { parseText } from '@/utils/content';
+import { useState } from 'react';
 
 type Dialogue = { isLeft?: boolean } & MovieSceneDialogue;
 

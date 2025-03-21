@@ -5,8 +5,7 @@ import { ApiProperty } from '@nestjs/swagger';
 export class CreateDialogueDto {
   @ApiProperty({
     type: String,
-    example:
-      "Oh, if you're laughing at me, I swear to God I'll push you out of that chair.",
+    example: "Oh, if you're laughing at me, I swear to God I'll push you out of that chair.",
     description: '영어 대사',
   })
   @IsString()

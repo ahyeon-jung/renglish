@@ -1,9 +1,9 @@
-import ScriptForm from "./_components/ScriptForm";
-import clsx from "clsx";
+import ScriptForm from './_components/ScriptForm';
+import clsx from 'clsx';
 
 export default function ScriptAdd() {
   return (
-    <main className={clsx("mt-[var(--header-height)]")}>
+    <main className={clsx('mt-[var(--header-height)]')}>
       <ScriptForm />
     </main>
   );

@@ -6,7 +6,7 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./nginx/templates:/etc/nginx/templates
     ports:
-      - "80:80"
+      - '80:80'
     depends_on:
       - renglish_backend
     networks:
@@ -22,7 +22,7 @@ services:
       - .env
     command: npm run start:dev
     ports:
-      - "7070:7070"
+      - '7070:7070'
     depends_on:
       - renglish_db
     networks:
@@ -35,7 +35,7 @@ services:
       - .env
     restart: always
     ports:
-      - "5432:5432"
+      - '5432:5432'
     networks:
       - renglish-network
 

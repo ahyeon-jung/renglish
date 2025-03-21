@@ -20,13 +20,10 @@ export class SceneService {
     @InjectRepository(Speaker)
     private readonly speakerService: SpeakerService,
     @InjectRepository(Dialogue)
-    private readonly dialogueRepository: Repository<Dialogue>
+    private readonly dialogueRepository: Repository<Dialogue>,
   ) {}
 
-  async create(
-    movieId: string,
-    createSceneDto: CreateSceneDto
-  ): Promise<Scene> {
+  async create(movieId: string, createSceneDto: CreateSceneDto): Promise<Scene> {
     const movie = await this.movieService.findOneById(movieId);
     if (!movie) {
       throw new NotFoundException('Movie not found');
@@ -59,10 +56,7 @@ export class SceneService {
     return scene;
   }
 
-  async createSpeakers(
-    sceneId: string,
-    createSpeakerDto: CreateSpeakerDto
-  ): Promise<Speaker> {
+  async createSpeakers(sceneId: string, createSpeakerDto: CreateSpeakerDto): Promise<Speaker> {
     const scene = this.findSceneById(sceneId);
     if (!scene) {
       throw new NotFoundException('Scene not found');

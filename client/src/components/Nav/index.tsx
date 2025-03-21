@@ -1,31 +1,31 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import Dialog from "../Dialog";
-import { LayoutGrid } from "lucide-react";
-import NavItem from "../NavItem";
-import { PATHS } from "@/constants/path";
-import { createPortal } from "react-dom";
-import { usePathname } from "next/navigation";
+import Dialog from '../Dialog';
+import { LayoutGrid } from 'lucide-react';
+import NavItem from '../NavItem';
+import { PATHS } from '@/constants/path';
+import { createPortal } from 'react-dom';
+import { usePathname } from 'next/navigation';
 
 type Nav = { withAuth: boolean };
 
 const DEFAULT_NAV_OPTIONS = [
-  { label: "home", path: PATHS.HOME },
-  { label: "introduce", path: PATHS.INTRODUCE },
-  { label: "how to install", path: PATHS.NOTICES.INSTALL },
-  { label: "movies", path: PATHS.MOVIE.LIST },
+  { label: 'home', path: PATHS.HOME },
+  { label: 'introduce', path: PATHS.INTRODUCE },
+  { label: 'how to install', path: PATHS.NOTICES.INSTALL },
+  { label: 'movies', path: PATHS.MOVIE.LIST },
 ];
 
 const WITHOUT_AUTH_NAV_OPTIONS = [
-  { label: "login", path: PATHS.AUTH.LOGIN },
-  { label: "register", path: PATHS.AUTH.REGISTER },
+  { label: 'login', path: PATHS.AUTH.LOGIN },
+  { label: 'register', path: PATHS.AUTH.REGISTER },
 ];
 
 const WITH_AUTH_NAV_OPTIONS = [
-  { label: "profile", path: PATHS.PROFILE },
-  { label: "logout", path: PATHS.AUTH.LOGOUT },
+  { label: 'profile', path: PATHS.PROFILE },
+  { label: 'logout', path: PATHS.AUTH.LOGOUT },
 ];
 
 export default function Nav({ withAuth }: Nav) {
@@ -49,15 +49,14 @@ export default function Nav({ withAuth }: Nav) {
               {DEFAULT_NAV_OPTIONS.map(({ label, path }) => (
                 <NavItem key={path} path={path} label={label} />
               ))}
-              {(withAuth
-                ? WITH_AUTH_NAV_OPTIONS
-                : WITHOUT_AUTH_NAV_OPTIONS
-              ).map(({ label, path }) => (
-                <NavItem key={path} path={path} label={label} />
-              ))}
+              {(withAuth ? WITH_AUTH_NAV_OPTIONS : WITHOUT_AUTH_NAV_OPTIONS).map(
+                ({ label, path }) => (
+                  <NavItem key={path} path={path} label={label} />
+                ),
+              )}
             </nav>
           </Dialog>,
-          document.body
+          document.body,
         )}
     </>
   );

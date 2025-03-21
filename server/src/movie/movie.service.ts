@@ -9,7 +9,7 @@ import { Repository } from 'typeorm';
 export class MovieService {
   constructor(
     @InjectRepository(Movie)
-    private readonly movieRepository: Repository<Movie>
+    private readonly movieRepository: Repository<Movie>,
   ) {}
 
   async create(createMovieDto: CreateMovieDto): Promise<Movie> {

@@ -29,7 +29,7 @@ async function bootstrap() {
         bearerFormat: 'JWT',
         description: 'Enter your JWT token',
       },
-      'token'
+      'token',
     )
     .addSecurityRequirements('token')
     .build();

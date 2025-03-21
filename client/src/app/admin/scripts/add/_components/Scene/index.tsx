@@ -1,5 +1,5 @@
-import Field from "@/components/Field";
-import Text from "@/components/Text";
+import Field from '@/components/Field';
+import Text from '@/components/Text';
 
 export type MovieType = {
   title: string;
@@ -32,19 +32,11 @@ export default function Scene({ movie, setMovie }: Scene) {
       </Field>
       <Field>
         <Field.Label>Image Address</Field.Label>
-        <Field.Input
-          value={movie.imageUrl}
-          name="imageUrl"
-          onChange={handleChange}
-        />
+        <Field.Input value={movie.imageUrl} name="imageUrl" onChange={handleChange} />
       </Field>
       <Field>
         <Field.Label>Description</Field.Label>
-        <Field.Input
-          value={movie.description}
-          name="description"
-          onChange={handleChange}
-        />
+        <Field.Input value={movie.description} name="description" onChange={handleChange} />
       </Field>
     </div>
   );

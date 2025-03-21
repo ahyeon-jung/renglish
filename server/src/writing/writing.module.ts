@@ -9,11 +9,7 @@ import { WritingController } from './writing.controller';
 import { WritingService } from './writing.service';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([User, Dialogue, Writing]),
-    DialogueModule,
-    AuthModule,
-  ],
+  imports: [TypeOrmModule.forFeature([User, Dialogue, Writing]), DialogueModule, AuthModule],
   controllers: [WritingController],
   providers: [WritingService],
 })
