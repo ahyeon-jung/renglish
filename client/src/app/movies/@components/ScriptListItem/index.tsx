@@ -2,7 +2,7 @@ import { formatDate, formatTitle } from '@/utils/format';
 
 import { Calendar } from 'lucide-react';
 import Link from 'next/link';
-import { Movie } from '@/types/script';
+import { Movie } from '@/types/movie';
 import { PATHS } from '@/constants/path';
 import ScriptLink from '../ScriptLink';
 import Text from '@/components/Text';
@@ -10,31 +10,29 @@ import clsx from 'clsx';
 
 type ScriptListItem = Movie;
 
-export default function ScriptListItem({ title, scenes }: ScriptListItem) {
-  const today = new Date();
-
+export default function ScriptListItem({ id, title, studiedAt, scenes }: ScriptListItem) {
   return (
     <li
       className={clsx(
-        'flex justify-between',
+        'flex justify-between items-center',
         'border border-gray-300 p-6 rounded-lg shadow-lg hover:shadow-xl',
         'transition-shadow duration-300',
       )}
     >
-      <div className="flex flex-col mb-4">
-        <Link href={PATHS.MOVIE_DETAIL(title)}>
+      <div className="flex flex-col">
+        <Link href={PATHS.MOVIE_DETAIL(id)}>
           <Text typography="display-sm">{formatTitle(title)}</Text>
         </Link>
         <div className="flex items-center gap-2 mt-2 text-sm text-gray-600">
           <Calendar size={16} />
           <Text as="div" typography="subHead-sm">
-            {formatDate(today)}
+            {formatDate(studiedAt)}
           </Text>
         </div>
       </div>
-      <div className="flex gap-4 mt-4">
-        {scenes.map((_, index) => (
-          <ScriptLink key={index} title={title} id={index} />
+      <div className="flex gap-4">
+        {scenes.map((scene, index) => (
+          <ScriptLink key={index} index={index} title={title} id={scene.id} />
         ))}
       </div>
     </li>

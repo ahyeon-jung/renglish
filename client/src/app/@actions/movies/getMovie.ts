@@ -4,8 +4,8 @@ import { ActionResponse } from '@/types/action';
 import { Movie } from '@/types/movie';
 import { fetchAPI } from '@/libs/api';
 
-export default async function getMovies(): Promise<ActionResponse<Movie[]>> {
-  const response = await fetchAPI<Movie[]>(`/movies`, {
+export default async function getMovie(movieId: string): Promise<ActionResponse<Movie>> {
+  const response = await fetchAPI<Movie>(`/movies/${movieId}`, {
     method: 'GET',
   });
 

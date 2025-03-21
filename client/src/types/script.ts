@@ -3,8 +3,12 @@ export type Movie = {
 } & MovieInfo;
 
 export type MovieInfo = {
+  id: string;
   title: string;
+  createdAt: Date;
+  studiedAt: Date;
   description: string;
+  imageUrl: string;
 };
 
 export type MovieScene = {
