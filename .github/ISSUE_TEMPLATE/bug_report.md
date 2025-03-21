@@ -8,11 +8,11 @@ assignees: "a-honey"
 
 # Bug Report
 
-## 📝 Bug Description
+## Bug Description
 
 <!-- Describe the bug in detail. Include any error messages or unexpected behavior observed. -->
 
-## 🔄 Steps to Reproduce
+## Steps to Reproduce
 
 <!-- List the steps to reproduce the bug. For example:
 1. Go to '...'
@@ -21,24 +21,24 @@ assignees: "a-honey"
 4. See error
 -->
 
-## 🎯 Expected Behavior
+## Expected Behavior
 
 <!-- Describe what you expected to happen. -->
 
-## ⚠️ Actual Behavior
+## Actual Behavior
 
 <!-- Describe what actually happened. -->
 
-## 📸 Screenshots
+## Screenshots
 
 <!-- If applicable, add screenshots to help explain the bug. -->
 
-## 🖥 Environment
+## Environment
 
-- 🌐 **Browser**: <!-- e.g., Chrome, Firefox, etc. -->
-- 💻 **OS**: <!-- e.g., Windows 10, macOS 11 -->
-- 🔢 **Version**: <!-- App version or commit SHA where the bug was found -->
+- **Browser**: <!-- e.g., Chrome, Firefox, etc. -->
+- **OS**: <!-- e.g., Windows 10, macOS 11 -->
+- **Version**: <!-- App version or commit SHA where the bug was found -->
 
-## 💡 Additional Context
+## Additional Context
 
 <!-- Add any other context about the problem here, such as possible causes or ideas for a fix. -->
