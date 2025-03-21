@@ -1,6 +1,6 @@
-export type ActionResponse<T = void> = {
+export type ActionResponse<T> = {
   status: number;
   success: boolean;
   message: string;
-  data?: T;
+  data: T;
 };
