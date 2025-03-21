@@ -1,12 +1,12 @@
 // eslint-disable-next-line @typescript-eslint/no-require-imports
-const withPWA = require("next-pwa")({
-  dest: "public",
-  disable: process.env.NODE_ENV === "development",
+const withPWA = require('next-pwa')({
+  dest: 'public',
+  disable: process.env.NODE_ENV === 'development',
 });
 
 module.exports = withPWA({
   // next.js config
   images: {
-    domains: ["search.pstatic.net"],
+    domains: ['search.pstatic.net'],
   },
 });

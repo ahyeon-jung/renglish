@@ -56,10 +56,7 @@ export class InquiryController {
     summary: '해당 ID 문의사항 업데이트(JWT 인증 필요)',
     description: '해당 ID의 문의사항을 업데이트합니다.',
   })
-  update(
-    @Param('inquiryId') inquiryId: string,
-    @Body() updateInquiryDto: UpdateInquiryDto
-  ) {
+  update(@Param('inquiryId') inquiryId: string, @Body() updateInquiryDto: UpdateInquiryDto) {
     return this.inquiryService.update(inquiryId, updateInquiryDto);
   }
 

@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { ChevronLeft } from "lucide-react";
-import Text from "../Text";
-import { useRouter } from "next/navigation";
+import { ChevronLeft } from 'lucide-react';
+import Text from '../Text';
+import { useRouter } from 'next/navigation';
 
 export type BackButton = { title?: string };
 

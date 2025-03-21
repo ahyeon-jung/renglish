@@ -1,6 +1,6 @@
-import DialogList from "./@components/DialogList";
-import Header from "../../@components/SceneHeader";
-import { getMovieData } from "@/app/@actions/getContent";
+import DialogList from './@components/DialogList';
+import Header from '../../@components/SceneHeader';
+import { getMovieData } from '@/app/@actions/getContent';
 
 export default async function MovieScriptScene({
   params,

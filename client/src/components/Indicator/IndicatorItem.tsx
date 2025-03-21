@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import clsx from 'clsx';
 
 type IndicatorItem = {
   label: string;
@@ -18,9 +18,9 @@ export default function IndicatorItem({
   return (
     <button
       className={clsx(
-        "p-1 px-3 rounded-sm cursor-pointer",
+        'p-1 px-3 rounded-sm cursor-pointer',
         className,
-        isDefault || isActive ? "bg-yellow-200" : "bg-gray-100"
+        isDefault || isActive ? 'bg-yellow-200' : 'bg-gray-100',
       )}
       onClick={onClick}
     >

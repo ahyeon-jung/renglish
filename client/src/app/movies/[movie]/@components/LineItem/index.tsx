@@ -1,4 +1,4 @@
-import Text from "@/components/Text";
+import Text from '@/components/Text';
 
 type LineItem = { text: string };
 export default function LineItem({ text }: LineItem) {

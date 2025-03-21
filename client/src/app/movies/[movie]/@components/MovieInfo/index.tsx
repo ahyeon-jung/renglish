@@ -1,6 +1,6 @@
-import { MovieInfo as MovieInfoType } from "@/types/script";
-import Text from "@/components/Text";
-import { formatTitle } from "@/utils/format";
+import { MovieInfo as MovieInfoType } from '@/types/script';
+import Text from '@/components/Text';
+import { formatTitle } from '@/utils/format';
 
 export default function MovieInfo({ title, description }: MovieInfoType) {
   return (

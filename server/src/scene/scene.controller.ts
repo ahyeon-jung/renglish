@@ -22,7 +22,7 @@ export class SceneController {
   })
   async createSpeakers(
     @Param('sceneId') sceneId: string,
-    @Body() createSpeakerDto: CreateSpeakerDto
+    @Body() createSpeakerDto: CreateSpeakerDto,
   ): Promise<Speaker> {
     return this.sceneService.createSpeakers(sceneId, createSpeakerDto);
   }

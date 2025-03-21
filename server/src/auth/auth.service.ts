@@ -16,7 +16,7 @@ import { UserService } from 'src/user/user.service';
 export class AuthService {
   constructor(
     private readonly jwtService: JwtService,
-    private readonly userService: UserService
+    private readonly userService: UserService,
   ) {}
 
   async signup(createUserDto: CreateUserDto): Promise<User> {
@@ -34,9 +34,7 @@ export class AuthService {
     return this.userService.create(user);
   }
 
-  async login(
-    loginAuthDto: LoginDto
-  ): Promise<{ token: string; email: string }> {
+  async login(loginAuthDto: LoginDto): Promise<{ token: string; email: string }> {
     const { email, password } = loginAuthDto;
     const user = await this.userService.findUserByEmail(email);
     if (!user) {
@@ -67,13 +65,7 @@ export class AuthService {
     return 'change password success';
   }
 
-  async verifyPassword({
-    email,
-    password,
-  }: {
-    email: string;
-    password: string;
-  }): Promise<boolean> {
+  async verifyPassword({ email, password }: { email: string; password: string }): Promise<boolean> {
     console.log(email, password);
     return true;
   }

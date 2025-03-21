@@ -12,7 +12,7 @@ export class SpeakerService {
     @InjectRepository(Speaker)
     private readonly speakerRepository: Repository<Speaker>,
     @InjectRepository(Scene)
-    private readonly sceneRepository: Repository<Scene>
+    private readonly sceneRepository: Repository<Scene>,
   ) {}
 
   async create(createSpeakerDto: CreateSpeakerDto): Promise<Speaker> {

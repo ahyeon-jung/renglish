@@ -1,17 +1,12 @@
-import Button from "@/components/Button";
-import Link from "next/link";
-import { PATHS } from "@/constants/path";
-import React from "react";
-import clsx from "clsx";
+import Button from '@/components/Button';
+import Link from 'next/link';
+import { PATHS } from '@/constants/path';
+import React from 'react';
+import clsx from 'clsx';
 
 export default function Admin() {
   return (
-    <main
-      className={clsx(
-        "mt-[var(--header-height)]",
-        "flex flex-col gap-4 py-4 px-2"
-      )}
-    >
+    <main className={clsx('mt-[var(--header-height)]', 'flex flex-col gap-4 py-4 px-2')}>
       <Link href={PATHS.ADMIN.SCRIPTS.ADD}>
         <Button>대본 추가하기</Button>
       </Link>

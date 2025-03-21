@@ -9,10 +9,7 @@ import { SceneModule } from 'src/scene/scene.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([Movie, Scene, Dialogue]),
-    forwardRef(() => SceneModule),
-  ],
+  imports: [TypeOrmModule.forFeature([Movie, Scene, Dialogue]), forwardRef(() => SceneModule)],
   controllers: [MovieController],
   providers: [MovieService],
 })

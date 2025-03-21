@@ -1,25 +1,26 @@
-"use server";
+'use server';
 
-import { ENV } from "@/constants/env";
-import { cookies } from "next/headers";
-import { fetchAPI } from "@/libs/api";
+import { ENV } from '@/constants/env';
+import { cookies } from 'next/headers';
+import { fetchAPI } from '@/libs/api';
 
 type LoginAction = { email: string; password: string };
 
 export default async function loginAction({ email, password }: LoginAction) {
   const response = await fetchAPI<{ token: string }>(`/auth/login`, {
-    method: "POST",
+    method: 'POST',
     body: JSON.stringify({ email, password }),
   });
 
-
-  const { data: { token }} =  response;
+  const {
+    data: { token },
+  } = response;
 
   const cookieStore = await cookies();
-  cookieStore.set("token", token, {
+  cookieStore.set('token', token, {
     httpOnly: true,
     secure: ENV.IS_PRODUCTION,
-    path: "/",
+    path: '/',
   });
 
   return true;

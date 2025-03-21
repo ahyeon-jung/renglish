@@ -17,7 +17,7 @@ export class DialogueService {
     private readonly sceneRepository: Repository<Scene>,
 
     @InjectRepository(Speaker)
-    private readonly speakerRepository: Repository<Speaker>
+    private readonly speakerRepository: Repository<Speaker>,
   ) {}
 
   async create(createDialogueDto: CreateDialogueDto): Promise<Dialogue> {

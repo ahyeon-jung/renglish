@@ -9,7 +9,7 @@ import { Repository } from 'typeorm';
 export class NoticeService {
   constructor(
     @InjectRepository(Notice)
-    private readonly noticeRepository: Repository<Notice>
+    private readonly noticeRepository: Repository<Notice>,
   ) {}
 
   create(createNoticeDto: CreateNoticeDto) {

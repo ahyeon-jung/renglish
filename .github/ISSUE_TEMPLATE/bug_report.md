@@ -1,9 +1,9 @@
 ---
 name: Bug Report
 about: Template for reporting a bug. Describe the issue you've encountered to help with resolution.
-title: "bug: [Bug Summary]"
-labels: "bug"
-assignees: "a-honey"
+title: 'bug: [Bug Summary]'
+labels: 'bug'
+assignees: 'a-honey'
 ---
 
 # Bug Report

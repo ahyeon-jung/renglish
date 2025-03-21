@@ -1,7 +1,7 @@
-import Container from "../Container";
-import Image from "next/image";
-import Overlay from "@/components/Overlay";
-import Text from "@/components/Text";
+import Container from '../Container';
+import Image from 'next/image';
+import Overlay from '@/components/Overlay';
+import Text from '@/components/Text';
 
 export default function LatestScript() {
   return (

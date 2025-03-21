@@ -12,14 +12,10 @@ export class WritingService {
     @InjectRepository(Writing)
     private readonly writingRepository: Repository<Writing>,
     private readonly dialogueService: DialogueService,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
   ) {}
 
-  async create(
-    dialogueId: string,
-    createWritingDto: CreateWritingDto,
-    req: any
-  ) {
+  async create(dialogueId: string, createWritingDto: CreateWritingDto, req: any) {
     const token = req.headers.authorization.split(' ')[1];
     const user = await this.authService.getUserFromToken(token);
 

@@ -1,7 +1,7 @@
-import Field from "@/components/Field";
-import { PlusCircle } from "lucide-react";
-import Text from "@/components/Text";
-import { useState } from "react";
+import Field from '@/components/Field';
+import { PlusCircle } from 'lucide-react';
+import Text from '@/components/Text';
+import { useState } from 'react';
 
 export type Speaker = {
   speaker_name: string;
@@ -14,15 +14,15 @@ type Speakers = {
 };
 
 export default function Speakers({ speakers, addSpeaker }: Speakers) {
-  const [speaker, setSpeaker] = useState("");
+  const [speaker, setSpeaker] = useState('');
 
   const handleSpeakerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSpeaker(e.target.value);
   };
 
   const handleAddClick = () => {
-    addSpeaker({ speaker_name: speaker, speaker_type: "A" });
-    setSpeaker("");
+    addSpeaker({ speaker_name: speaker, speaker_type: 'A' });
+    setSpeaker('');
   };
 
   console.log(speakers);

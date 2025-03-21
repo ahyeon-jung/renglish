@@ -1,12 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { NoticeService } from './notice.service';
 import { CreateNoticeDto } from './dto/create-notice.dto';
 import { UpdateNoticeDto } from './dto/update-notice.dto';
@@ -51,10 +43,7 @@ export class NoticeController {
     summary: '해당 ID 공지사항 업데이트',
     description: '해당 ID의 공지사항을 업데이트합니다.',
   })
-  update(
-    @Param('noticeId') noticeId: string,
-    @Body() updateNoticeDto: UpdateNoticeDto
-  ) {
+  update(@Param('noticeId') noticeId: string, @Body() updateNoticeDto: UpdateNoticeDto) {
     return this.noticeService.update(noticeId, updateNoticeDto);
   }
 

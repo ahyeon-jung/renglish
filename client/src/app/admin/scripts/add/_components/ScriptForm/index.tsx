@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import Dialogues, { Dialogue } from "../Dialogues";
-import Movie, { MovieType } from "../Scene";
-import Speakers, { Speaker } from "../Speakers";
+import Dialogues, { Dialogue } from '../Dialogues';
+import Movie, { MovieType } from '../Scene';
+import Speakers, { Speaker } from '../Speakers';
 
-import Button from "@/components/Button";
-import { useState } from "react";
+import Button from '@/components/Button';
+import { useState } from 'react';
 
 type ScriptAddBody = {
   movie: MovieType;
@@ -15,19 +15,17 @@ type ScriptAddBody = {
 
 const INITIAL_SCRIPT_ADD_BODY = {
   movie: {
-    title: "",
-    imageUrl: "",
-    studiedAt: "",
-    description: "",
+    title: '',
+    imageUrl: '',
+    studiedAt: '',
+    description: '',
   },
   speakers: [],
   dialogues: [],
 };
 
 export default function ScriptForm() {
-  const [scriptAddBody, setScriptAddBody] = useState<ScriptAddBody>(
-    INITIAL_SCRIPT_ADD_BODY
-  );
+  const [scriptAddBody, setScriptAddBody] = useState<ScriptAddBody>(INITIAL_SCRIPT_ADD_BODY);
 
   const updateMovie = (newMovie: Partial<MovieType>) => {
     setScriptAddBody((prev) => ({

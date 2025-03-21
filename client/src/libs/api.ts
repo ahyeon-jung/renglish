@@ -1,7 +1,7 @@
-"use server";
+'use server';
 
-import { APIResponse } from "@/types/api";
-import { ENV } from "@/constants/env";
+import { APIResponse } from '@/types/api';
+import { ENV } from '@/constants/env';
 
 export async function fetchAPI<T = void>(endpoint: string, options?: RequestInit) {
   const baseURL = ENV.API_BASE_URL;
@@ -9,7 +9,7 @@ export async function fetchAPI<T = void>(endpoint: string, options?: RequestInit
   const res = await fetch(`${baseURL}${endpoint}`, {
     ...options,
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       ...options?.headers,
     },
   });
@@ -17,6 +17,6 @@ export async function fetchAPI<T = void>(endpoint: string, options?: RequestInit
   if (!res.ok) {
     throw new Error(`API Error: ${res.status}`);
   }
-  
+
   return res.json() as Promise<APIResponse<T>>;
 }

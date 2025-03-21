@@ -1,13 +1,7 @@
 import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { MovieService } from './movie.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
-import {
-  ApiTags,
-  ApiOperation,
-  ApiResponse,
-  ApiParam,
-  ApiBody,
-} from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody } from '@nestjs/swagger';
 import { Movie } from './entities/movie.entity';
 import { CreateSceneDto } from 'src/scene/dto/create-scene.dto';
 import { SceneService } from 'src/scene/scene.service';
@@ -17,7 +11,7 @@ import { SceneService } from 'src/scene/scene.service';
 export class MovieController {
   constructor(
     private readonly movieService: MovieService,
-    private readonly sceneService: SceneService
+    private readonly sceneService: SceneService,
   ) {}
 
   @Post()
@@ -96,10 +90,7 @@ export class MovieController {
   })
   @ApiResponse({ status: 201, description: '장면 추가 성공' })
   @ApiBody({ type: CreateSceneDto })
-  addScene(
-    @Param('movieId') movieId: string,
-    @Body() createSceneDto: CreateSceneDto
-  ) {
+  addScene(@Param('movieId') movieId: string, @Body() createSceneDto: CreateSceneDto) {
     return this.sceneService.create(movieId, createSceneDto);
   }
 }

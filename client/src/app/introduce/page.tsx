@@ -1,19 +1,14 @@
-import { DAANGN_GROUP_URL } from "@/constants/url";
-import Link from "next/link";
-import clsx from "clsx";
+import { DAANGN_GROUP_URL } from '@/constants/url';
+import Link from 'next/link';
+import clsx from 'clsx';
 
 export default function Introduce() {
   return (
     <main
-      className={clsx(
-        "mt-[var(--header-height)] py-4",
-        "flex flex-col items-center text-gray-800"
-      )}
+      className={clsx('mt-[var(--header-height)] py-4', 'flex flex-col items-center text-gray-800')}
     >
       <section className="text-center">
-        <h1 className="text-2xl font-bold text-orange-600 mb-2">
-          🎬 Reel + English, Renglish!
-        </h1>
+        <h1 className="text-2xl font-bold text-orange-600 mb-2">🎬 Reel + English, Renglish!</h1>
         <p className="text-md leading-relaxed">
           함께 영화 속 명장면을 읽고 연기하며,
           <br />
@@ -21,9 +16,7 @@ export default function Introduce() {
         </p>
 
         <div className="mt-6">
-          <h2 className="text-lg font-semibold text-gray-700">
-            🎥 스터디 진행 방식
-          </h2>
+          <h2 className="text-lg font-semibold text-gray-700">🎥 스터디 진행 방식</h2>
           <ul className="text-gray-600 mt-2 text-left list-disc list-inside">
             <li>매주 한 편의 영화를 선정</li>
             <li>주요 장면의 대본을 함께 읽으며 표현 익히기</li>
@@ -32,9 +25,7 @@ export default function Introduce() {
           </ul>
         </div>
         <div className="mt-6">
-          <h2 className="text-lg font-semibold text-gray-700">
-            📍 스터디 장소 & 일정
-          </h2>
+          <h2 className="text-lg font-semibold text-gray-700">📍 스터디 장소 & 일정</h2>
           <p className="text-gray-600 mt-2">
             대면 스터디는 <strong>경기도 구리시 수택동</strong>에서 진행됩니다.
           </p>
