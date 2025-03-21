@@ -72,7 +72,7 @@ export class SceneService {
   async findSceneById(sceneId: string): Promise<Scene> {
     const scene = await this.sceneRepository.findOne({
       where: { id: sceneId },
-      relations: ['speakers', 'dialogues'],
+      relations: ['speakers', 'dialogues', 'dialogues.speaker'],
     });
     if (!scene) {
       throw new NotFoundException('Scene not found');
