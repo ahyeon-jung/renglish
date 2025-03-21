@@ -1,16 +1,19 @@
 "use server";
 
-import { ENV } from "@/constants/env";
+import { ActionResponse } from "@/types/action";
 import { cookies } from "next/headers";
+import { fetchAPI } from "@/libs/api";
 
-export default async function getAuthDataAction(): Promise<{
+type AuthUserData = {
   id: string;
   email: string;
-}> {
+};
+
+export default async function getAuthDataAction(): Promise<ActionResponse<AuthUserData>> {
   const cookieStore = await cookies();
   const token = cookieStore.get("token")?.value;
 
-  const response = await fetch(`${ENV.SERVER_HOST}/auth/user`, {
+  const response = await fetchAPI<AuthUserData>(`/auth/user`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -18,11 +21,6 @@ export default async function getAuthDataAction(): Promise<{
     },
   });
 
-  if (!response.ok) {
-    throw new Error("Fetch data failed");
-  }
 
-  const { data } = await response.json();
-
-  return data;
+  return {status: 200, success: true, message: "Fetch auth user data successfully", data: response.data};
 }

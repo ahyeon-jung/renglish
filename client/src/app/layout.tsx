@@ -1,5 +1,7 @@
 import "../styles/globals.css";
 
+import { ENV } from "@/constants/env";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import Header from "@/components/Header";
 import type { Metadata } from "next";
 
@@ -20,6 +22,9 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://renglish.vercel.app/",
   },
+  verification: {
+    google: ENV.GC_ID, 
+  },
 };
 
 type LayoutProps = {
@@ -39,6 +44,7 @@ export default function RootLayout({ children }: LayoutProps) {
       <body>
         <Header />
         {children}
+        <GoogleAnalytics gaId={ENV.GA_ID} />
       </body>
     </html>
   );
