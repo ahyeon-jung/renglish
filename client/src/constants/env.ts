@@ -2,6 +2,6 @@ const CLIENT_ENV = {};
 
 export const ENV = {
   ...CLIENT_ENV,
-  SERVER_HOST: process.env.SERVER_HOST ?? "",
-  CLIENT_HOST: process.env.CLIENT_HOST ?? "",
+  API_BASE_URL: process.env.API_BASE_URL ?? "",
+  IS_PRODUCTION: process.env.NODE_ENV === "production",
 } as const;
