@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Request,
+  UseGuards,
+} from '@nestjs/common';
 import {
   ApiTags,
   ApiOperation,
@@ -11,6 +19,7 @@ import { AuthService } from './auth.service';
 import { CreateUserDto } from '../user/dto/create-user.dto';
 import { LoginDto } from './dto/login.dto';
 import { ChangePasswordDto } from './dto/update-auth.dto';
+import { JwtAuthGuard } from './jwt-auth/jwt-auth.guard';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -41,7 +50,7 @@ export class AuthController {
     return this.authService.login(loginAuthDto);
   }
 
-  @Get(':token')
+  @Get('token/:token')
   @ApiOperation({
     summary: '토큰 유효성 검사',
     description: '토큰이 유효한지 확인합니다.',
@@ -59,17 +68,13 @@ export class AuthController {
   }
 
   @Get('user')
+  @UseGuards(JwtAuthGuard)
   @ApiOperation({
     summary: '현재 사용자 정보 가져오기',
     description: '현재 사용자 정보를 가져옵니다.',
   })
-  @ApiParam({
-    name: 'token',
-    description: '토큰',
-    example: 'e5e798e1-9241-4b95-8e2c-0b630bbd033f',
-    type: String,
-  })
-  findUserByToken(@Param('token') token: string) {
+  findUserByToken(@Request() req) {
+    const token = req.headers.authorization.split(' ')[1];
     return this.authService.getUserFromToken(token);
   }
 

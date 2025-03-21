@@ -21,7 +21,6 @@ export class WritingService {
     req: any
   ) {
     const token = req.headers.authorization.split(' ')[1];
-    console.log('##########', token);
     const user = await this.authService.getUserFromToken(token);
 
     const dialogue = await this.dialogueService.findDialogueById(dialogueId);

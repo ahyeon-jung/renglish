@@ -1,8 +1,10 @@
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 import { Dialogue } from 'src/dialogue/entities/dialogue.entity';
+import { Inquiry } from 'src/inquiry/entities/inquiry.entity';
 import { Module } from '@nestjs/common';
 import { Movie } from 'src/movie/entities/movie.entity';
+import { Notice } from 'src/notice/entities/notice.entity';
 import { Scene } from 'src/scene/entities/scene.entity';
 import { Speaker } from 'src/speaker/entities/speaker.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -22,7 +24,16 @@ import { Writing } from 'src/writing/entities/writing.entity';
         username: configService.get<string>('DB_USERNAME'),
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_NAME'),
-        entities: [Movie, Scene, User, Writing, Speaker, Dialogue],
+        entities: [
+          Movie,
+          Scene,
+          User,
+          Writing,
+          Speaker,
+          Dialogue,
+          Notice,
+          Inquiry,
+        ],
         synchronize: true,
       }),
     }),

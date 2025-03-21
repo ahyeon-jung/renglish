@@ -1,14 +1,21 @@
+import { Module, forwardRef } from '@nestjs/common';
+
 import { Dialogue } from 'src/dialogue/entities/dialogue.entity';
-import { Module } from '@nestjs/common';
 import { Movie } from 'src/movie/entities/movie.entity';
+import { MovieModule } from 'src/movie/movie.module';
 import { Scene } from './entities/scene.entity';
 import { SceneController } from './scene.controller';
 import { SceneService } from './scene.service';
 import { Speaker } from 'src/speaker/entities/speaker.entity';
+import { SpeakerModule } from 'src/speaker/speaker.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Movie, Scene, Dialogue, Speaker])],
+  imports: [
+    TypeOrmModule.forFeature([Movie, Scene, Dialogue, Speaker]),
+    SpeakerModule,
+    forwardRef(() => MovieModule),
+  ],
   controllers: [SceneController],
   providers: [SceneService],
   exports: [SceneService],

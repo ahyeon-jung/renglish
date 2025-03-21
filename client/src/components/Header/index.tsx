@@ -4,9 +4,13 @@ import Nav from "../Nav";
 import { PATHS } from "@/constants/path";
 import Text from "../Text";
 import clsx from "clsx";
+import { cookies } from "next/headers";
 import logo from "@/assets/logo.png";
 
-export default function Header() {
+export default async function Header() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token")?.value;
+
   return (
     <header
       className={clsx(
@@ -18,11 +22,11 @@ export default function Header() {
       <Link href={PATHS.HOME} className="flex gap-[4px] items-center">
         <Image src={logo} alt="Renglish logo image" width={30} height={30} />
         <Text as="h2" typography="headline-lg">
-          Renglish
+          english
         </Text>
       </Link>
       <div className="flex">
-        <Nav />
+        <Nav withAuth={!!token} />
       </div>
     </header>
   );

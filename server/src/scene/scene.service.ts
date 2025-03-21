@@ -6,16 +6,19 @@ import { Scene } from './entities/scene.entity';
 import { Repository } from 'typeorm';
 import { Dialogue } from 'src/dialogue/entities/dialogue.entity';
 import { Movie } from 'src/movie/entities/movie.entity';
+import { MovieService } from 'src/movie/movie.service';
+import { SpeakerService } from 'src/speaker/speaker.service';
+import { CreateSpeakerDto } from 'src/speaker/dto/create-speaker.dto';
 
 @Injectable()
 export class SceneService {
   constructor(
-    @InjectRepository(Movie)
-    private readonly movieRepository: Repository<Movie>,
     @InjectRepository(Scene)
     private readonly sceneRepository: Repository<Scene>,
+    @InjectRepository(Movie)
+    private readonly movieService: MovieService,
     @InjectRepository(Speaker)
-    private readonly speakerRepository: Repository<Speaker>,
+    private readonly speakerService: SpeakerService,
     @InjectRepository(Dialogue)
     private readonly dialogueRepository: Repository<Dialogue>
   ) {}
@@ -24,9 +27,7 @@ export class SceneService {
     movieId: string,
     createSceneDto: CreateSceneDto
   ): Promise<Scene> {
-    const movie = await this.movieRepository.findOne({
-      where: { id: movieId },
-    });
+    const movie = await this.movieService.findOneById(movieId);
     if (!movie) {
       throw new NotFoundException('Movie not found');
     }
@@ -39,12 +40,11 @@ export class SceneService {
     await this.sceneRepository.save(scene);
 
     for (const speakerDto of createSceneDto.speakers) {
-      const speaker = this.speakerRepository.create({
+      await this.speakerService.create({
         speaker_name: speakerDto.speaker_name,
         speaker_type: speakerDto.speaker_type,
-        scene,
+        sceneId: scene.id,
       });
-      await this.speakerRepository.save(speaker);
     }
 
     for (const dialogueDto of createSceneDto.dialogues) {
@@ -57,6 +57,22 @@ export class SceneService {
     }
 
     return scene;
+  }
+
+  async createSpeakers(
+    sceneId: string,
+    createSpeakerDto: CreateSpeakerDto
+  ): Promise<Speaker> {
+    const scene = this.findSceneById(sceneId);
+    if (!scene) {
+      throw new NotFoundException('Scene not found');
+    }
+
+    return this.speakerService.create({
+      speaker_name: createSpeakerDto.speaker_name,
+      speaker_type: createSpeakerDto.speaker_type,
+      sceneId,
+    });
   }
 
   async findSceneById(sceneId: string): Promise<Scene> {
