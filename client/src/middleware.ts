@@ -1,11 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { logoutRouteMiddleware, withoutAuthRouteMiddleware } from './middlewares/auth';
+import {
+  logoutRouteMiddleware,
+  withAdminRouteMiddleware,
+  withoutAuthRouteMiddleware,
+} from './middlewares/auth';
 
 type MiddlewareFunction = (request: NextRequest) => Promise<Response> | Response;
 
 const pageRoutesMap: Record<string, MiddlewareFunction> = {
   '/auth/login': withoutAuthRouteMiddleware,
   '/auth/logout': logoutRouteMiddleware,
+  '/admin/users': withAdminRouteMiddleware,
 };
 
 export default async function middleware(request: NextRequest) {

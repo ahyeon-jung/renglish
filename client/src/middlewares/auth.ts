@@ -1,10 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import { PATHS } from '@/constants/path';
+import adminAction from '@/app/@actions/auth/admin';
 
 export async function withAuthRouteMiddleware(request: NextRequest) {
   const token = request.cookies.get('token')?.value;
   if (!token) {
+    return NextResponse.redirect(new URL(PATHS.HOME, request.url));
+  }
+
+  return NextResponse.next();
+}
+
+export async function withAdminRouteMiddleware(request: NextRequest) {
+  const isAdmin = await adminAction();
+
+  if (!isAdmin) {
     return NextResponse.redirect(new URL(PATHS.HOME, request.url));
   }
 
