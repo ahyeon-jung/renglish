@@ -17,7 +17,7 @@ export default async function loginAction({ email, password }: LoginAction) {
   } = response;
 
   const cookieStore = await cookies();
-  cookieStore.set('token', token, {
+  cookieStore.set(ENV.COOKIE_ACCESS_TOKEN_KEY, token, {
     httpOnly: true,
     secure: ENV.IS_PRODUCTION,
     path: '/',

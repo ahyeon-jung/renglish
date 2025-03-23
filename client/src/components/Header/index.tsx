@@ -1,3 +1,4 @@
+import { ENV } from '@/constants/env';
 import Image from 'next/image';
 import Link from 'next/link';
 import Nav from '../Nav';
@@ -9,7 +10,7 @@ import logo from '@/assets/logo.png';
 
 export default async function Header() {
   const cookieStore = await cookies();
-  const token = cookieStore.get('token')?.value;
+  const token = cookieStore.get(ENV.COOKIE_ACCESS_TOKEN_KEY)?.value;
 
   return (
     <header
