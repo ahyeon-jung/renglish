@@ -13,13 +13,16 @@ export async function withAuthRouteMiddleware(request: NextRequest) {
 }
 
 export async function withAdminRouteMiddleware(request: NextRequest) {
-  const isAdmin = await adminAction();
+  try {
+    const isAdmin = await adminAction();
 
-  if (!isAdmin) {
+    if (!isAdmin) {
+      return NextResponse.redirect(new URL(PATHS.HOME, request.url));
+    }
+    return NextResponse.next();
+  } catch {
     return NextResponse.redirect(new URL(PATHS.HOME, request.url));
   }
-
-  return NextResponse.next();
 }
 
 export async function withoutAuthRouteMiddleware(request: NextRequest) {
