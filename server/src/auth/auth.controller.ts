@@ -53,6 +53,19 @@ export class AuthController {
     return this.authService.validateToken(token);
   }
 
+  @Get('check/admin')
+  @UseGuards(JwtAuthGuard)
+  @ApiOperation({
+    summary: '관리자 확인',
+    description: '현재 사용자가 관리자인지 확인합니다.',
+  })
+  async checkAdminByToken(@Request() req) {
+    const token = req.headers.authorization.split(' ')[1];
+    const user = await this.authService.getUserFromToken(token);
+
+    return { isAdmin: user.id === '0' };
+  }
+
   @Get('user')
   @UseGuards(JwtAuthGuard)
   @ApiOperation({
