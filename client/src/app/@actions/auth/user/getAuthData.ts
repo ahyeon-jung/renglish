@@ -12,7 +12,7 @@ type AuthUserData = {
 
 export default async function getAuthDataAction(): Promise<ActionResponse<AuthUserData>> {
   const cookieStore = await cookies();
-  const token = cookieStore.get(ENV.ACCESS_TOKEN_KEY)?.value;
+  const token = cookieStore.get(ENV.COOKIE_ACCESS_TOKEN_KEY)?.value;
 
   const response = await fetchAPI<AuthUserData>(`/auth/user`, {
     method: 'GET',

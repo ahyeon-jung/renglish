@@ -10,7 +10,7 @@ import logo from '@/assets/logo.png';
 
 export default async function Header() {
   const cookieStore = await cookies();
-  const token = cookieStore.get(ENV.ACCESS_TOKEN_KEY)?.value;
+  const token = cookieStore.get(ENV.COOKIE_ACCESS_TOKEN_KEY)?.value;
 
   return (
     <header

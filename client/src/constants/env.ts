@@ -7,5 +7,5 @@ export const ENV = {
   ...CLIENT_ENV,
   API_BASE_URL: process.env.API_BASE_URL ?? '',
   IS_PRODUCTION: process.env.NODE_ENV === 'production',
-  ACCESS_TOKEN_KEY: process.env.ACCESS_TOKEN_KEY ?? '',
+  COOKIE_ACCESS_TOKEN_KEY: process.env.COOKIE_ACCESS_TOKEN_KEY ?? '',
 } as const;
