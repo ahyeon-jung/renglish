@@ -42,7 +42,7 @@ export default function Nav({ withAuth }: NavProps) {
   const closeNav = () => setIsOpenNav(false);
 
   useEffect(() => {
-    //closeNav();
+    closeNav();
   }, [pathname, withAuth]);
 
   return (

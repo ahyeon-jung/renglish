@@ -1,12 +1,12 @@
 'use client';
 
 import { ChevronDown, ChevronRight } from 'lucide-react';
-import { useEffect, useState } from 'react';
 
 import NavItem from '../NavItem';
 import { PATHS } from '@/constants/path';
 import Text from '../Text';
-import adminAction from '@/app/@actions/auth/admin';
+import useAdminStatus from '@/hooks/useAdminStatus';
+import { useState } from 'react';
 
 const ADMIN_NAV_OPTIONS = [
   { label: 'users', path: PATHS.ADMIN.USERS.LIST },
@@ -16,18 +16,10 @@ const ADMIN_NAV_OPTIONS = [
 ];
 
 export default function NavAdmin() {
-  const [isAdmin, setIsAdmin] = useState(false);
+  const { isAdmin } = useAdminStatus();
   const [isNavAdminOpen, setIsNavAdminOpen] = useState(false);
 
   const toggleNavAdmin = () => setIsNavAdminOpen((prev) => !prev);
-
-  useEffect(() => {
-    const fetchAdmin = async () => {
-      const isAdmin = await adminAction();
-      setIsAdmin(isAdmin);
-    };
-    fetchAdmin();
-  }, []);
 
   if (!isAdmin) return null;
 
