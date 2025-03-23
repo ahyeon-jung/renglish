@@ -1,0 +1,277 @@
+{
+  "title": "I feel pretty",
+  "category": "comedy",
+  "description": "A romantic comedy about Renee, an insecure woman who struggles with body image. After a fall, she wakes up believing she is the most beautiful woman in the world, which leads her to newfound confidence and a series of unexpected events that change her life. The film explores themes of self-love, perception, and the impact of confidence on personal and romantic relationships.",
+  "scenes": [
+    {
+      "speakers": ["guy", "Romeo", "Renee"],
+      "dialogues": [
+        {
+          "speaker": "guy",
+          "en": "<p><span class='keypoint'>Don't worry</span>, Romeo, she'll <span class='keypoint'>be right out</span>.</p>",
+          "ko": "<p>걱정하지 마, 로미오, 곧 나올 거야.</p>"
+        },
+        {
+          "speaker": "Romeo",
+          "en": "<p>Yeah, I didn't know <span class='keypoint'>if they go backstage</span>.</p>",
+          "ko": "<p>응, 그들이 백스테이지로 가는지 몰랐어.</p>"
+        },
+        {
+          "speaker": "Romeo",
+          "en": "<p><span class='keypoint'>Is there</span> a backstage <span class='keypoint'>here</span>?</p>",
+          "ko": "<p>여기 백스테이지가 있어?</p>"
+        },
+        {
+          "speaker": "guy",
+          "en": "<p>Yeah, it <span class='keypoint'>usually leads to</span> a rehab.</p>",
+          "ko": "<p>응, 보통 재활로 이어지지.</p>"
+        },
+        {
+          "speaker": "guy",
+          "en": "<p>But that Renee? <span class='keypoint'>That's your girl</span>, right?</p>",
+          "ko": "<p>근데 그 레니? 그게 네 여자친구야, 맞지?</p>"
+        },
+        {
+          "speaker": "Romeo",
+          "en": "<p>Uh... <span class='keypoint'>Friend for now</span>.</p>",
+          "ko": "<p>음... 지금은 친구.</p>"
+        },
+        {
+          "speaker": "guy",
+          "en": "<p>Friend?</p>",
+          "ko": "<p>친구?</p>"
+        },
+        {
+          "speaker": "Romeo",
+          "en": "<p>Just friend, this is <span class='keypoint'>our first kind of night out</span>.</p>",
+          "ko": "<p>그냥 친구야, 이번이 우리 첫 외출이야.</p>"
+        },
+        {
+          "speaker": "guy",
+          "en": "<p>All right, I didn't <span class='keypoint'>ask for a podcast</span>.</p>",
+          "ko": "<p>알았어, 난 팟캐스트를 원한 게 아니야.</p>"
+        },
+        {
+          "speaker": "guy",
+          "en": "<p><span class='keypoint'>Either way</span>, your lady <span class='keypoint'>killed it tonight</span>.</p>",
+          "ko": "<p>어쨌든, 네 여자친구 오늘 밤 대박쳤어.</p>"
+        },
+        {
+          "speaker": "guy",
+          "en": "<p>She is <span class='keypoint'>awesome</span>. She is the <span class='keypoint'>complete package</span>.</p>",
+          "ko": "<p>그녀는 대단해. 완벽한 여자야.</p>"
+        },
+        {
+          "speaker": "Romeo",
+          "en": "<p>Yeah, <span class='keypoint'>I'm getting to know that</span>.</p>",
+          "ko": "<p>응, 그걸 알아가고 있어.</p>"
+        },
+        {
+          "speaker": "Romeo",
+          "en": "<p>Um, <span class='keypoint'>I've never seen anything like that</span>.</p>",
+          "ko": "<p>음, 그런 걸 본 적이 없어.</p>"
+        },
+        {
+          "speaker": "guy",
+          "en": "<p>Now the girl who <span class='keypoint'>won</span>, who <span class='keypoint'>happens to be</span> my god-niece, of course, she was <span class='keypoint'>hotter</span>.</p>",
+          "ko": "<p>이제 이긴 여자, 내 대부모녀인데, 물론 그녀가 더 섹시했어.</p>"
+        },
+        {
+          "speaker": "guy",
+          "en": "<p><span class='keypoint'>But let's say this</span>, it's a lonely dark night, you got a <span class='keypoint'>flat</span>. <span class='keypoint'>Who do you want next to you</span>?</p>",
+          "ko": "<p>하지만 이렇게 말해보자, 외롭고 어두운 밤, 타이어가 펑크 났어. 누가 네 옆에 있어줬으면 좋겠어?</p>"
+        },
+        {
+          "speaker": "guy",
+          "en": "<p>Your girl. Yeah.</p>",
+          "ko": "<p>네 여자친구. 응.</p>"
+        },
+        {
+          "speaker": "guy",
+          "en": "<p>Your girl can <span class='keypoint'>handle herself in a knife fight</span>, and I like that.</p>",
+          "ko": "<p>네 여자친구는 칼싸움도 할 수 있어, 그게 좋아.</p>"
+        },
+        {
+          "speaker": "guy",
+          "en": "<p>Dude, up here.</p>",
+          "ko": "<p>형, 여기 위로.</p>"
+        },
+        {
+          "speaker": "Romeo",
+          "en": "<p>Uh, thank you.</p>",
+          "ko": "<p>어, 고마워.</p>"
+        },
+        {
+          "speaker": "Romeo",
+          "en": "<p>Hey, <span class='keypoint'>that was so great</span>.</p>",
+          "ko": "<p>야, 그거 정말 좋았어.</p>"
+        },
+        {
+          "speaker": "Renee",
+          "en": "<p>Hi.</p>",
+          "ko": "<p>안녕.</p>"
+        },
+        {
+          "speaker": "Renee",
+          "en": "<p>Sorry, I got you all wet.</p>",
+          "ko": "<p>미안, 너 다 젖었어.</p>"
+        },
+        {
+          "speaker": "Romeo",
+          "en": "<p>Oh, yeah, that's water, <span class='keypoint'>right</span>?</p>",
+          "ko": "<p>어, 응, 그거 물이야, 맞지?</p>"
+        },
+        {
+          "speaker": "Renee",
+          "en": "<p>Yeah, I think it's water.</p>",
+          "ko": "<p>응, 그게 물인 것 같아.</p>"
+        },
+        {
+          "speaker": "Romeo",
+          "en": "<p><span class='keypoint'>I'm sorry it didn't go the way you wanted it to</span>.</p>",
+          "ko": "<p>네가 원하는 대로 안 돼서 미안해.</p>"
+        },
+        {
+          "speaker": "Romeo",
+          "en": "<p>I mean, it was <span class='keypoint'>awesome</span>.</p>",
+          "ko": "<p>말하자면, 정말 멋졌어.</p>"
+        },
+        {
+          "speaker": "Renee",
+          "en": "<p>Yeah. No, it didn't. <span class='keypoint'>It went way better</span>.</p>",
+          "ko": "<p>응. 아니, 그렇게 안 됐어. 훨씬 더 잘됐어.</p>"
+        },
+        {
+          "speaker": "Romeo",
+          "en": "<p><span class='keypoint'>What</span>?</p>",
+          "ko": "<p>뭐?</p>"
+        },
+        {
+          "speaker": "Renee",
+          "en": "<p>We <span class='keypoint'>each get</span> two free drinks and an appetizer!</p>",
+          "ko": "<p>우리 각각 무료 음료 2잔과 애피타이저 하나씩 받았어!</p>"
+        },
+        {
+          "speaker": "Romeo",
+          "en": "<p><span class='keypoint'>That's what I was hoping</span>.</p>",
+          "ko": "<p>그게 내가 바랐던 거야.</p>"
+        },
+        {
+          "speaker": "Renee",
+          "en": "<p>On the house.</p>",
+          "ko": "<p>무료로.</p>"
+        },
+        {
+          "speaker": "Romeo",
+          "en": "<p><span class='keypoint'>What are the parting gifts</span>?</p>",
+          "ko": "<p>작별 선물은 뭐야?</p>"
+        },
+        {
+          "speaker": "Romeo",
+          "en": "<p>I <span class='keypoint'>was looking at</span> the coconut shrimp <span class='keypoint'>'cause I didn't get any</span> hot dog.</p>",
+          "ko": "<p>나는 코코넛 새우를 보고 있었어, 핫도그를 못 먹어서.</p>"
+        },
+        {
+          "speaker": "Renee",
+          "en": "<p>You <span class='keypoint'>snooze</span>, you <span class='keypoint'>lose</span> your hot dog.</p>",
+          "ko": "<p>너가 졸면 핫도그는 놓쳐.</p>"
+        },
+        {
+          "speaker": "Romeo",
+          "en": "<p><span class='keypoint'>You're really not upset</span>?</p>",
+          "ko": "<p>정말 안 속상해?</p>"
+        },
+        {
+          "speaker": "Renee",
+          "en": "<p><span class='keypoint'>No, not really</span>.</p>",
+          "ko": "<p>아니, 별로.</p>"
+        },
+        {
+          "speaker": "Renee",
+          "en": "<p><span class='keypoint'>I mean</span>, these things are so, like, political.</p>",
+          "ko": "<p>음, 이런 것들은 다 정치적이잖아.</p>"
+        },
+        {
+          "speaker": "Romeo",
+          "en": "<p>Yeah.</p>",
+          "ko": "<p>응.</p>"
+        },
+        {
+          "speaker": "Renee",
+          "en": "<p>I won't <span class='keypoint'>get into all of it</span>.</p>",
+          "ko": "<p>그 모든 걸 얘기하진 않을 거야.</p>"
+        },
+        {
+          "speaker": "Renee",
+          "en": "<p>Mostly because <span class='keypoint'>I have no information</span>...</p>",
+          "ko": "<p>확증이 있는 건 아니니까</p>"
+        },
+        {
+          "speaker": "Romeo",
+          "en": "<p>No, I can <span class='keypoint'>see a place like this</span> running <span class='keypoint'>kind of a shady</span>...</p>",
+          "ko": "<p>아니, 나는 이런 곳이 좀 의심스럽게 운영되는 걸 볼 수 있어.</p>"
+        },
+        {
+          "speaker": "Renee",
+          "en": "<p>Yeah. I <span class='keypoint'>feel like</span> I did win.</p>",
+          "ko": "<p>응. 나는 내가 이긴 것 같아.</p>"
+        },
+        {
+          "speaker": "Renee",
+          "en": "<p><span class='keypoint'>The crowd was going crazy</span>.</p>",
+          "ko": "<p>관중들이 미쳐갔었어.</p>"
+        },
+        {
+          "speaker": "Renee",
+          "en": "<p>And <span class='keypoint'>you know what</span>, I <span class='keypoint'>know</span> I look good.</p>",
+          "ko": "<p>그리고 알아, 내가 잘 생겼다는 걸.</p>"
+        },
+        {
+          "speaker": "Renee",
+          "en": "<p>I <span class='keypoint'>don't need some</span>, like, room of drunk guys <span class='keypoint'>to confirm that</span>.</p>",
+          "ko": "<p>나는 술 취한 남자들 방에서 그걸 확인할 필요 없어.</p>"
+        },
+        {
+          "speaker": "Romeo",
+          "en": "<p><span class='keypoint'>Can I be you when I grow up</span>?</p>",
+          "ko": "<p>나도 자라서 너처럼 될 수 있을까?</p>"
+        },
+        {
+          "speaker": "Romeo",
+          "en": "<p>You <span class='keypoint'>should've won</span>, you <span class='keypoint'>were ripped off</span>.</p>",
+          "ko": "<p>너가 이겼어야 했어, 너는 속았어.</p>"
+        },
+        {
+          "speaker": "Renee",
+          "en": "<p>Thanks.</p>",
+          "ko": "<p>고마워.</p>"
+        },
+        {
+          "speaker": "Renee",
+          "en": "<p>I think <span class='keypoint'>I've earned this</span>, right?</p>",
+          "ko": "<p>이걸 받을 자격이 있다고 생각해, 맞지?</p>"
+        },
+        {
+          "speaker": "Romeo",
+          "en": "<p><span class='keypoint'>That was just sitting there</span>.</p>",
+          "ko": "<p>그건 그냥 거기 있었어.</p>"
+        },
+        {
+          "speaker": "Romeo",
+          "en": "<p><span class='keypoint'>That's not even mine</span>.</p>",
+          "ko": "<p>그건 내 것도 아니야.</p>"
+        },
+        {
+          "speaker": "Renee",
+          "en": "<p>Mmm. (SPITS)</p>",
+          "ko": "<p>음. (침 뱉음)</p>"
+        },
+        {
+          "speaker": "Romeo",
+          "en": "<p>(SIGHS)</p>",
+          "ko": "<p>(한숨)</p>"
+        }
+      ]
+    }
+  ]
+}
