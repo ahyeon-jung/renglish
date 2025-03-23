@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+import { ENV } from '@/constants/env';
 import { PATHS } from '@/constants/path';
 import adminAction from '@/app/@actions/auth/admin';
 
 export async function withAuthRouteMiddleware(request: NextRequest) {
-  const token = request.cookies.get('token')?.value;
+  const token = request.cookies.get(ENV.ACCESS_TOKEN_KEY)?.value;
   if (!token) {
     return NextResponse.redirect(new URL(PATHS.HOME, request.url));
   }
@@ -26,7 +27,7 @@ export async function withAdminRouteMiddleware(request: NextRequest) {
 }
 
 export async function withoutAuthRouteMiddleware(request: NextRequest) {
-  const token = request.cookies.get('token')?.value;
+  const token = request.cookies.get(ENV.ACCESS_TOKEN_KEY)?.value;
   if (token) {
     return NextResponse.redirect(new URL(PATHS.HOME, request.url));
   }
@@ -36,7 +37,7 @@ export async function withoutAuthRouteMiddleware(request: NextRequest) {
 
 export async function logoutRouteMiddleware() {
   const response = NextResponse.next();
-  response.cookies.delete('token');
+  response.cookies.delete(ENV.ACCESS_TOKEN_KEY);
 
   return response;
 }
