@@ -3,35 +3,31 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Dialogue } from './entities/dialogue.entity';
 import { Repository } from 'typeorm';
-import { Scene } from 'src/scene/entities/scene.entity';
-import { Speaker } from 'src/speaker/entities/speaker.entity';
 import { NotFoundException } from '@nestjs/common';
+import { SceneService } from 'src/scene/scene.service';
+import { SpeakerService } from 'src/speaker/speaker.service';
+import { UpdateDialogueDto } from './dto/update-dialogue.dto';
 
 @Injectable()
 export class DialogueService {
   constructor(
     @InjectRepository(Dialogue)
     private readonly dialogueRepository: Repository<Dialogue>,
-
-    @InjectRepository(Scene)
-    private readonly sceneRepository: Repository<Scene>,
-
-    @InjectRepository(Speaker)
-    private readonly speakerRepository: Repository<Speaker>,
+    private readonly sceneService: SceneService,
+    private readonly speakerService: SpeakerService,
   ) {}
 
-  async create(createDialogueDto: CreateDialogueDto): Promise<Dialogue> {
-    const { sceneId, speakerId } = createDialogueDto;
-    const scene = await this.sceneRepository.findOne({
-      where: { id: sceneId },
-    });
-    const speaker = await this.speakerRepository.findOne({
-      where: { id: speakerId },
-    });
-
+  async create(
+    sceneId: string,
+    speakerId: string,
+    createDialogueDto: CreateDialogueDto,
+  ): Promise<Dialogue> {
+    const scene = await this.sceneService.findSceneById(sceneId);
     if (!scene) {
       throw new NotFoundException('Scene not found');
     }
+
+    const speaker = await this.speakerService.findSpeakerById(speakerId);
     if (!speaker) {
       throw new NotFoundException('Speaker not found');
     }
@@ -39,7 +35,6 @@ export class DialogueService {
     const dialogue = this.dialogueRepository.create({
       english_script: createDialogueDto.english_script,
       korean_script: createDialogueDto.korean_script,
-      scene,
       speaker,
     });
 
@@ -48,5 +43,15 @@ export class DialogueService {
 
   async findDialogueById(dialogueId: string) {
     return this.dialogueRepository.findOne({ where: { id: dialogueId } });
+  }
+
+  async update(id: string, updateDialogueDto: UpdateDialogueDto) {
+    const dialogue = await this.findDialogueById(id);
+    if (!dialogue) {
+      throw new NotFoundException(`Dialogue with ID ${id} not found`);
+    }
+
+    await this.dialogueRepository.update(id, updateDialogueDto);
+    return this.findDialogueById(id);
   }
 }

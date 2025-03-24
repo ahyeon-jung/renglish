@@ -22,18 +22,4 @@ export class CreateSceneDto {
   @IsNotEmpty()
   @IsString()
   description: string;
-
-  @ApiProperty({
-    type: [CreateSpeakerDto],
-    description: '장면에 포함될 Speaker들',
-  })
-  @IsArray()
-  speakers: CreateSpeakerDto[];
-
-  @ApiProperty({
-    type: [CreateDialogueDto],
-    description: '장면에 포함될 Dialogue들',
-  })
-  @IsArray()
-  dialogues: CreateDialogueDto[];
 }

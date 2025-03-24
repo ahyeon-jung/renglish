@@ -28,20 +28,4 @@ export class CreateDialogueDto {
   @IsNumber()
   @IsNotEmpty()
   order: number;
-
-  @ApiProperty({
-    type: String,
-    example: '1',
-    description: '이 대사가 속한 Scene ID',
-  })
-  @IsNotEmpty()
-  sceneId: string;
-
-  @ApiProperty({
-    type: String,
-    example: '1',
-    description: '이 대사를 말하는 Speaker ID',
-  })
-  @IsNotEmpty()
-  speakerId: string;
 }

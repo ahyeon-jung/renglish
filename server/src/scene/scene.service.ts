@@ -34,39 +34,8 @@ export class SceneService {
       description: createSceneDto.description,
       movie,
     });
-    await this.sceneRepository.save(scene);
 
-    for (const speakerDto of createSceneDto.speakers) {
-      await this.speakerService.create({
-        speaker_name: speakerDto.speaker_name,
-        speaker_type: speakerDto.speaker_type,
-        sceneId: scene.id,
-      });
-    }
-
-    for (const dialogueDto of createSceneDto.dialogues) {
-      const dialogue = this.dialogueRepository.create({
-        english_script: dialogueDto.english_script,
-        korean_script: dialogueDto.korean_script,
-        scene,
-      });
-      await this.dialogueRepository.save(dialogue);
-    }
-
-    return scene;
-  }
-
-  async createSpeakers(sceneId: string, createSpeakerDto: CreateSpeakerDto): Promise<Speaker> {
-    const scene = this.findSceneById(sceneId);
-    if (!scene) {
-      throw new NotFoundException('Scene not found');
-    }
-
-    return this.speakerService.create({
-      speaker_name: createSpeakerDto.speaker_name,
-      speaker_type: createSpeakerDto.speaker_type,
-      sceneId,
-    });
+    return await this.sceneRepository.save(scene);
   }
 
   async findSceneById(sceneId: string): Promise<Scene> {

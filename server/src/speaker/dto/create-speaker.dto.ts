@@ -20,13 +20,4 @@ export class CreateSpeakerDto {
   @IsNotEmpty()
   @IsString()
   speaker_type: string;
-
-  @ApiProperty({
-    type: String,
-    example: '1',
-    description: 'The ID of the scene this speaker belongs to',
-  })
-  @IsNotEmpty()
-  @IsString()
-  sceneId: string;
 }

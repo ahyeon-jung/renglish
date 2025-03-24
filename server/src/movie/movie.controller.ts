@@ -76,21 +76,4 @@ export class MovieController {
   remove(@Param('movieId') movieId: string) {
     return this.movieService.remove(movieId);
   }
-
-  @Post(':movieId/scene')
-  @ApiOperation({
-    summary: '영화에 장면 한꺼번에 추가하기',
-    description: '해당 영화에 장면 및 대본을 추가합니다.',
-  })
-  @ApiParam({
-    name: 'movieId',
-    description: '영화의 ID',
-    example: 'e5e798e1-9241-4b95-8e2c-0b630bbd033f',
-    type: String,
-  })
-  @ApiResponse({ status: 201, description: '장면 추가 성공' })
-  @ApiBody({ type: CreateSceneDto })
-  addScene(@Param('movieId') movieId: string, @Body() createSceneDto: CreateSceneDto) {
-    return this.sceneService.create(movieId, createSceneDto);
-  }
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Request, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiBody, ApiParam } from '@nestjs/swagger';
 
 import { AuthService } from './auth.service';
@@ -77,7 +77,7 @@ export class AuthController {
     return this.authService.getUserFromToken(token);
   }
 
-  @Post('password/change')
+  @Put('password/change')
   @ApiOperation({
     summary: '비밀번호 변경',
     description: '사용자가 비밀번호 변경을 시도합니다.',
