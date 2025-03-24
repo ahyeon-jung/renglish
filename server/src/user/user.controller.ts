@@ -14,7 +14,7 @@ export class UserController {
     description: '모든 사용자 정보를 가져옵니다.',
   })
   @ApiResponse({ status: 200, description: '모든 사용자 정보 가져오기 성공' })
-  async findAll(): Promise<User[]> {
+  async findAll(): Promise<Omit<User, 'password'>[]> {
     return this.userService.findAll();
   }
 
@@ -31,7 +31,7 @@ export class UserController {
   })
   @ApiResponse({ status: 200, description: '사용자 정보 찾기 성공' })
   @ApiResponse({ status: 404, description: '사용자 정보 찾기 실패' })
-  async findUserById(@Param('userId') userId: string): Promise<User> {
+  async findUserById(@Param('userId') userId: string): Promise<Omit<User, 'password'>> {
     const user = await this.userService.findUserById(userId);
     return user;
   }
@@ -49,7 +49,7 @@ export class UserController {
   })
   @ApiResponse({ status: 200, description: '사용자 정보 찾기 성공' })
   @ApiResponse({ status: 404, description: '사용자 정보 찾기 실패' })
-  async checkExistByEmail(@Param('email') email: string): Promise<User> {
+  async checkExistByEmail(@Param('email') email: string): Promise<Omit<User, 'password'>> {
     const user = await this.userService.findUserByEmail(email);
     return user;
   }

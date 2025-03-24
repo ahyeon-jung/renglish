@@ -11,7 +11,7 @@ export class LocalAuthStrategy extends PassportStrategy(Strategy) {
       usernameField: 'email',
     });
   }
-  async validate(email: string, password: string): Promise<User> {
+  async validate(email: string, password: string): Promise<Omit<User, 'password'>> {
     return await this.authService.getAuthenticatedUser({ email, password });
   }
 }

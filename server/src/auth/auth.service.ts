@@ -26,7 +26,7 @@ export class AuthService {
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
   ) {}
 
-  async signup(createUserDto: CreateUserDto): Promise<User> {
+  async signup(createUserDto: CreateUserDto): Promise<Omit<User, 'password'>> {
     const { email, password } = createUserDto;
 
     const isExistAccount = await this.userService.checkEmailExist(email);
@@ -88,7 +88,7 @@ export class AuthService {
   }: {
     email: string;
     password: string;
-  }): Promise<User> {
+  }): Promise<Omit<User, 'password'>> {
     const user = await this.userService.findUserByEmail(email);
     if (!user) {
       throw new NotFoundException('User not found');
@@ -110,7 +110,7 @@ export class AuthService {
     return !!user;
   }
 
-  async getUserFromToken(token: string): Promise<User> {
+  async getUserFromToken(token: string): Promise<Omit<User, 'password'>> {
     try {
       const decoded = this.jwtService.verify(token);
       const userId = decoded.sub;
