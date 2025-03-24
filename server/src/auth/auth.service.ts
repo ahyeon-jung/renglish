@@ -1,30 +1,42 @@
 import {
   BadRequestException,
+  HttpException,
+  HttpStatus,
+  Inject,
   Injectable,
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
-
+import { CACHE_MANAGER } from '@nestjs/common/cache';
+import { Cache } from 'cache-manager';
 import { ChangePasswordDto } from './dto/update-auth.dto';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
 import { JwtService } from '@nestjs/jwt';
 import { LoginDto } from './dto/login.dto';
 import { User } from 'src/user/entities/user.entity';
 import { UserService } from 'src/user/user.service';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
   constructor(
+    private readonly configService: ConfigService,
     private readonly jwtService: JwtService,
     private readonly userService: UserService,
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
   ) {}
 
-  async signup(createUserDto: CreateUserDto): Promise<User> {
+  async signup(createUserDto: CreateUserDto): Promise<Omit<User, 'password'>> {
     const { email, password } = createUserDto;
 
     const isExistAccount = await this.userService.checkEmailExist(email);
     if (isExistAccount) {
       throw new BadRequestException('already account');
+    }
+
+    const redisStatus = await this.cacheManager.get(email);
+    if (redisStatus !== this.configService.get('EMAIL_VERIFICATION_PASS')) {
+      throw new NotFoundException('not found verification email');
     }
 
     const user = new User();
@@ -70,16 +82,35 @@ export class AuthService {
     return true;
   }
 
+  public async getAuthenticatedUser({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }): Promise<Omit<User, 'password'>> {
+    const user = await this.userService.findUserByEmail(email);
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    const isPasswordMatched = await this.verifyPassword({ email, password });
+    if (!isPasswordMatched) {
+      throw new HttpException('Wrong credentials provided', HttpStatus.BAD_REQUEST);
+    }
+
+    return user;
+  }
+
   async validateToken(token: string): Promise<boolean> {
     const decoded = this.jwtService.verify(token);
     const userId = decoded.sub;
 
     const user = await this.userService.findUserById(userId);
-    console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
     return !!user;
   }
 
-  async getUserFromToken(token: string): Promise<User> {
+  async getUserFromToken(token: string): Promise<Omit<User, 'password'>> {
     try {
       const decoded = this.jwtService.verify(token);
       const userId = decoded.sub;

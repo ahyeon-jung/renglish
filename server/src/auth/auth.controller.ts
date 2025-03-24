@@ -5,7 +5,7 @@ import { AuthService } from './auth.service';
 import { CreateUserDto } from '../user/dto/create-user.dto';
 import { LoginDto } from './dto/login.dto';
 import { ChangePasswordDto } from './dto/update-auth.dto';
-import { JwtAuthGuard } from './jwt-auth/jwt-auth.guard';
+import { AccessTokenGuard } from './guards/access-token.guard';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -14,7 +14,7 @@ export class AuthController {
 
   @Post('signup')
   @ApiOperation({
-    summary: '회원가입',
+    summary: '회원가입(Email Verification 필요)',
     description: '새로운 사용자를 생성합니다.',
   })
   @ApiResponse({ status: 201, description: '회원가입 성공' })
@@ -54,7 +54,7 @@ export class AuthController {
   }
 
   @Get('check/admin')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(AccessTokenGuard)
   @ApiOperation({
     summary: '관리자 확인',
     description: '현재 사용자가 관리자인지 확인합니다.',
@@ -67,7 +67,7 @@ export class AuthController {
   }
 
   @Get('user')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(AccessTokenGuard)
   @ApiOperation({
     summary: '현재 사용자 정보 가져오기',
     description: '현재 사용자 정보를 가져옵니다.',
