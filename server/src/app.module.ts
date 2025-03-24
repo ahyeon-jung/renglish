@@ -7,15 +7,16 @@ import { AuthModule } from './auth/auth.module';
 import { DatabaseModule } from './database/database.module';
 import { DialogueModule } from './dialogue/dialogue.module';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
+import { InquiryModule } from './inquiry/inquiry.module';
 import { LoggerMiddleware } from './common/middlewares/logger.middleware';
 import { LoggerModule } from './logger/logger.module';
 import { MovieModule } from './movie/movie.module';
+import { NoticeModule } from './notice/notice.module';
+import { RedisModule } from './redis/redis.module';
 import { SceneModule } from './scene/scene.module';
 import { SpeakerModule } from './speaker/speaker.module';
 import { UserModule } from './user/user.module';
 import { WritingModule } from './writing/writing.module';
-import { InquiryModule } from './inquiry/inquiry.module';
-import { NoticeModule } from './notice/notice.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { NoticeModule } from './notice/notice.module';
     UserModule,
     InquiryModule,
     NoticeModule,
+    RedisModule,
   ],
   controllers: [AppController],
   providers: [

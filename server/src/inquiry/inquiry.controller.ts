@@ -14,7 +14,7 @@ import { CreateInquiryDto } from './dto/create-inquiry.dto';
 import { UpdateInquiryDto } from './dto/update-inquiry.dto';
 import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Inquiry } from './entities/inquiry.entity';
-import { JwtAuthGuard } from 'src/auth/jwt-auth/jwt-auth.guard';
+import { AccessTokenGuard } from 'src/auth/guards/access-token.guard';
 
 @ApiTags('Inquiries')
 @Controller('inquiries')
@@ -22,7 +22,7 @@ export class InquiryController {
   constructor(private readonly inquiryService: InquiryService) {}
 
   @Post()
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(AccessTokenGuard)
   @ApiOperation({
     summary: '문의사항 작성(JWT 인증 필요)',
     description: '문의사항을 작성합니다.',
@@ -51,7 +51,7 @@ export class InquiryController {
   }
 
   @Patch(':inquiryId')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(AccessTokenGuard)
   @ApiOperation({
     summary: '해당 ID 문의사항 업데이트(JWT 인증 필요)',
     description: '해당 ID의 문의사항을 업데이트합니다.',
@@ -61,7 +61,7 @@ export class InquiryController {
   }
 
   @Delete(':inquiryId')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(AccessTokenGuard)
   @ApiOperation({
     summary: '해당 ID 문의사항 삭제(JWT 인증 필요)',
     description: '해당 ID의 문의사항을 삭제합니다.',

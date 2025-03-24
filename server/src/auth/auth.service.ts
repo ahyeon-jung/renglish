@@ -1,5 +1,7 @@
 import {
   BadRequestException,
+  HttpException,
+  HttpStatus,
   Injectable,
   NotFoundException,
   UnauthorizedException,
@@ -70,12 +72,31 @@ export class AuthService {
     return true;
   }
 
+  public async getAuthenticatedUser({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }): Promise<User> {
+    const user = await this.userService.findUserByEmail(email);
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    const isPasswordMatched = await this.verifyPassword({ email, password });
+    if (!isPasswordMatched) {
+      throw new HttpException('Wrong credentials provided', HttpStatus.BAD_REQUEST);
+    }
+
+    return user;
+  }
+
   async validateToken(token: string): Promise<boolean> {
     const decoded = this.jwtService.verify(token);
     const userId = decoded.sub;
 
     const user = await this.userService.findUserById(userId);
-    console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
     return !!user;
   }
 
