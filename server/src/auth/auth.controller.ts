@@ -14,7 +14,7 @@ export class AuthController {
 
   @Post('signup')
   @ApiOperation({
-    summary: '회원가입',
+    summary: '회원가입(Email Verification 필요)',
     description: '새로운 사용자를 생성합니다.',
   })
   @ApiResponse({ status: 201, description: '회원가입 성공' })

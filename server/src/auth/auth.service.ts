@@ -2,23 +2,28 @@ import {
   BadRequestException,
   HttpException,
   HttpStatus,
+  Inject,
   Injectable,
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
-
+import { CACHE_MANAGER } from '@nestjs/common/cache';
+import { Cache } from 'cache-manager';
 import { ChangePasswordDto } from './dto/update-auth.dto';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
 import { JwtService } from '@nestjs/jwt';
 import { LoginDto } from './dto/login.dto';
 import { User } from 'src/user/entities/user.entity';
 import { UserService } from 'src/user/user.service';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
   constructor(
+    private readonly configService: ConfigService,
     private readonly jwtService: JwtService,
     private readonly userService: UserService,
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
   ) {}
 
   async signup(createUserDto: CreateUserDto): Promise<User> {
@@ -27,6 +32,11 @@ export class AuthService {
     const isExistAccount = await this.userService.checkEmailExist(email);
     if (isExistAccount) {
       throw new BadRequestException('already account');
+    }
+
+    const redisStatus = await this.cacheManager.get(email);
+    if (redisStatus !== this.configService.get('EMAIL_VERIFICATION_PASS')) {
+      throw new NotFoundException('not found verification email');
     }
 
     const user = new User();

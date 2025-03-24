@@ -17,6 +17,7 @@ import { SceneModule } from './scene/scene.module';
 import { SpeakerModule } from './speaker/speaker.module';
 import { UserModule } from './user/user.module';
 import { WritingModule } from './writing/writing.module';
+import { EmailVerificationModule } from './email-verification/email-verification.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { WritingModule } from './writing/writing.module';
     InquiryModule,
     NoticeModule,
     RedisModule,
+    EmailVerificationModule,
   ],
   controllers: [AppController],
   providers: [
