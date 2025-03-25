@@ -16,6 +16,7 @@ import { LoginDto } from './dto/login.dto';
 import { User } from 'src/user/entities/user.entity';
 import { UserService } from 'src/user/user.service';
 import { ConfigService } from '@nestjs/config';
+import { EncryptionService } from './encryption.service';
 
 @Injectable()
 export class AuthService {
@@ -23,6 +24,7 @@ export class AuthService {
     private readonly configService: ConfigService,
     private readonly jwtService: JwtService,
     private readonly userService: UserService,
+    private readonly encryptionService: EncryptionService,
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
   ) {}
 
@@ -39,21 +41,23 @@ export class AuthService {
       throw new NotFoundException('not found verification email');
     }
 
+    const hashedPassword = await this.encryptionService.hashPassword(password);
+
     const user = new User();
     user.email = email;
-    user.password = password;
+    user.password = hashedPassword;
 
     return this.userService.create(user);
   }
 
   async login(loginAuthDto: LoginDto): Promise<{ token: string; email: string }> {
     const { email, password } = loginAuthDto;
-    const user = await this.userService.findUserByEmail(email);
+    const user = await this.userService.findUserByEmailWithPassword(email);
     if (!user) {
       throw new NotFoundException('no account');
     }
 
-    const isVerifyAccount = this.verifyPassword({ email, password });
+    const isVerifyAccount = await this.encryptionService.comparePassword(password, user.password);
     if (!isVerifyAccount) {
       throw new UnauthorizedException('wrong password');
     }
@@ -72,14 +76,11 @@ export class AuthService {
       throw new NotFoundException('no account');
     }
 
-    await this.userService.updatePassword(user.id, newPassword);
+    const hashedNewPassword = await this.encryptionService.hashPassword(newPassword);
+
+    await this.userService.updatePassword(user.id, hashedNewPassword);
 
     return 'change password success';
-  }
-
-  async verifyPassword({ email, password }: { email: string; password: string }): Promise<boolean> {
-    console.log(email, password);
-    return true;
   }
 
   public async getAuthenticatedUser({
@@ -89,12 +90,12 @@ export class AuthService {
     email: string;
     password: string;
   }): Promise<Omit<User, 'password'>> {
-    const user = await this.userService.findUserByEmail(email);
+    const user = await this.userService.findUserByEmailWithPassword(email);
     if (!user) {
       throw new NotFoundException('User not found');
     }
 
-    const isPasswordMatched = await this.verifyPassword({ email, password });
+    const isPasswordMatched = await this.encryptionService.comparePassword(password, user.password);
     if (!isPasswordMatched) {
       throw new HttpException('Wrong credentials provided', HttpStatus.BAD_REQUEST);
     }
