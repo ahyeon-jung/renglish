@@ -1,10 +1,11 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { FunnelContext, FunnelContextType } from '@/hooks/useFunnel';
+import { SCRIPT_ADD_STEP, ScriptAddStepType } from '../../_constants/step';
+import { useContext, useRef, useState } from 'react';
 
-import Button from '@/components/Button';
-import { Speaker } from '../Speakers';
-import Text from '@/components/Text';
+import { ScriptAddBodyType } from '../../page';
+import StepFormContainer from '../StepFormContainer';
 
 export type Dialogue = {
   speaker: string;
@@ -13,13 +14,13 @@ export type Dialogue = {
   order: number;
 };
 
-type Dialogues = {
-  speakers: Speaker[];
-  dialogues: Dialogue[];
-  setDialogues: (dialogues: Dialogue[]) => void;
-};
+export default function Dialogues() {
+  const {
+    data: { speakers },
+    setStep,
+    setData,
+  } = useContext(FunnelContext) as FunnelContextType<ScriptAddStepType, ScriptAddBodyType>;
 
-export default function Dialogues({ speakers, setDialogues }: Dialogues) {
   const [dialoguesBody, setDialoguesBody] = useState('');
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [cursorPosition, setCursorPosition] = useState<{
@@ -67,47 +68,62 @@ export default function Dialogues({ speakers, setDialogues }: Dialogues) {
     }
   };
 
-  const handleTransformDialoguesClick = () => {
-    const formattedDialogues = dialoguesBody.split('\n\n').map((dialogue, index): Dialogue => {
-      const [speaker, english, korean] = dialogue.split('\n');
-      const formattedEnglish = `<p>${english.replace(/\*\*(.*?)\*\*/g, "<span class='keypoint'>$1</span>")}</p>`;
-      const formattedKorean = `<p>${korean}</p>`;
-      return {
-        speaker,
-        english_script: formattedEnglish,
-        korean_script: formattedKorean,
-        order: index,
-      };
-    });
-    setDialogues(formattedDialogues);
+  const handleNextClick = () => {
+    if (!dialoguesBody) {
+      alert('값을 입력해주세요.');
+      return;
+    }
+    const formattedDialogues = dialoguesBody
+      .split('\n\n')
+      .map((dialogue, index): Dialogue | undefined => {
+        const [speaker, english, korean] = dialogue.split('\n');
+
+        if (!speaker || !english || !korean) {
+          return;
+        }
+
+        const formattedEnglish = `<p>${english.replace(/\*\*(.*?)\*\*/g, "<span class='keypoint'>$1</span>")}</p>`;
+        const formattedKorean = `<p>${korean}</p>`;
+        return {
+          speaker,
+          english_script: formattedEnglish,
+          korean_script: formattedKorean,
+          order: index,
+        };
+      });
+
+    if (formattedDialogues.some((dialogue) => dialogue === undefined)) {
+      alert('올바른 형식으로 입력해주세요');
+      return;
+    }
+
+    setData((prev) => ({ ...prev, dialogues: formattedDialogues }));
+    setStep(SCRIPT_ADD_STEP.SUBMIT_CONFIRM);
   };
 
-  const isAvailableTransformButton = dialoguesBody;
-
   return (
-    <div className="flex flex-col gap-2">
-      <div className="flex justify-between">
-        <Text as="h3" typography="display-md">
-          Conversation
-        </Text>
-        <Button
-          type="button"
-          size="sm"
-          fit
-          disabled={!isAvailableTransformButton}
-          onClick={handleTransformDialoguesClick}
-        >
-          transform
-        </Button>
-      </div>
+    <StepFormContainer header="Conversation" onNext={handleNextClick}>
       <textarea
         ref={textareaRef}
         className="border w-full p-2 rounded-lg"
-        rows={10}
+        rows={25}
         value={dialoguesBody}
         onChange={handleDialoguesChange}
         onKeyDown={handleKeyDown}
-        placeholder="Type speaker's name"
+        placeholder={`
+          Enter conversation in the following format:
+
+          {Speaker Name}
+          {English dialogue}
+          {Korean dialogue}
+          
+          (Separate each dialogue set with a blank line.)
+          
+          Formatting tips:
+          - Wrap a word with **{word}** to make it a keypoint.
+          - It will be blank in blank mode.
+          - Start typing a speaker's name to see suggestions for full names.
+          `}
       />
       {suggestions.length > 0 && (
         <ul
@@ -134,6 +150,6 @@ export default function Dialogues({ speakers, setDialogues }: Dialogues) {
           ))}
         </ul>
       )}
-    </div>
+    </StepFormContainer>
   );
 }

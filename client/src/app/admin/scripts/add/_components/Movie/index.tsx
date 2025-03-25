@@ -6,22 +6,22 @@ import Field from '@/components/Field';
 import { ScriptAddBodyType } from '../../page';
 import StepFormContainer from '../StepFormContainer';
 
-export type ScriptAddSceneBodyType = {
+export type ScriptAddMovieBodyType = {
   title: string;
   imageUrl: string;
   studiedAt: string;
   description: string;
 };
 
-export const INITIAL_SCRIPT_ADD_SCENE_BODY: ScriptAddSceneBodyType = {
+export const INITIAL_SCRIPT_ADD_MOVIE_BODY: ScriptAddMovieBodyType = {
   title: '',
   imageUrl: '',
   studiedAt: '',
   description: '',
 };
 
-export default function Scene() {
-  const [sceneInfoBody, setSceneInfoBody] = useState(INITIAL_SCRIPT_ADD_SCENE_BODY);
+export default function Movie() {
+  const [movieInfoBody, setMovieInfoBody] = useState(INITIAL_SCRIPT_ADD_MOVIE_BODY);
   const { setStep, setData } = useContext(FunnelContext) as FunnelContextType<
     ScriptAddStepType,
     ScriptAddBodyType
@@ -29,27 +29,27 @@ export default function Scene() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setSceneInfoBody((prev) => ({ ...prev, [name]: value }));
+    setMovieInfoBody((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleNextClick = () => {
-    setData((prev) => ({ ...prev, scene: sceneInfoBody }));
-    setStep(SCRIPT_ADD_STEP.SPEAKERS);
+    setData((prev) => ({ ...prev, movie: movieInfoBody }));
+    setStep(SCRIPT_ADD_STEP.SCENE);
   };
 
   return (
-    <StepFormContainer header="Scene Information" onNext={handleNextClick}>
+    <StepFormContainer header="Movie Information" onNext={handleNextClick}>
       <Field>
         <Field.Label>Title</Field.Label>
-        <Field.Input value={sceneInfoBody.title} name="title" onChange={handleChange} />
+        <Field.Input value={movieInfoBody.title} name="title" onChange={handleChange} />
       </Field>
       <Field>
         <Field.Label>Image Address</Field.Label>
-        <Field.Input value={sceneInfoBody.imageUrl} name="imageUrl" onChange={handleChange} />
+        <Field.Input value={movieInfoBody.imageUrl} name="imageUrl" onChange={handleChange} />
       </Field>
       <Field>
         <Field.Label>Description</Field.Label>
-        <Field.Input value={sceneInfoBody.description} name="description" onChange={handleChange} />
+        <Field.Input value={movieInfoBody.description} name="description" onChange={handleChange} />
       </Field>
     </StepFormContainer>
   );
