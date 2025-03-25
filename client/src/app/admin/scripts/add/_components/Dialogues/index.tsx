@@ -105,6 +105,12 @@ export default function Dialogues() {
 
   return (
     <StepFormContainer header="Conversation" onNext={handleNextClick}>
+      <div className="flex gap-3">
+        <div>*Speakers: </div>
+        {speakers.map((speaker, index) => (
+          <div key={index}>{speaker.speaker_name}</div>
+        ))}
+      </div>
       <textarea
         ref={textareaRef}
         className="border w-full p-2 rounded-lg"

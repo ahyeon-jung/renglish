@@ -19,11 +19,11 @@ export const INITIAL_SCRIPT_ADD_MOVIE_BODY: ScriptAddMovieBodyType = {
 };
 
 export default function Movie() {
-  const [movieInfoBody, setMovieInfoBody] = useState(INITIAL_SCRIPT_ADD_MOVIE_BODY);
-  const { setStep, setData } = useContext(FunnelContext) as FunnelContextType<
+  const { data, setStep, setData } = useContext(FunnelContext) as FunnelContextType<
     ScriptAddStepType,
     ScriptAddBodyType
   >;
+  const [movieInfoBody, setMovieInfoBody] = useState(data.movie);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

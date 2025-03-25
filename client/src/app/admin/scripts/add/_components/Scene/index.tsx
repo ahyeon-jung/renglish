@@ -19,11 +19,11 @@ export const INITIAL_SCRIPT_ADD_SCENE_BODY: ScriptAddSceneBodyType = {
 };
 
 export default function Scene() {
-  const [sceneInfoBody, setSceneInfoBody] = useState(INITIAL_SCRIPT_ADD_SCENE_BODY);
-  const { setStep, setData } = useContext(FunnelContext) as FunnelContextType<
+  const { data, setStep, setData } = useContext(FunnelContext) as FunnelContextType<
     ScriptAddStepType,
     ScriptAddBodyType
   >;
+  const [sceneInfoBody, setSceneInfoBody] = useState(data.scene);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

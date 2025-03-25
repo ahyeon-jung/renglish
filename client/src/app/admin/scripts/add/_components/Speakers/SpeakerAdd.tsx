@@ -37,8 +37,7 @@ export default function SpeakerAdd({ addSpeaker }: SpeakerAddProps) {
   };
 
   return (
-    <div className="flex gap-3">
-      <PlusCircle onClick={handleAddClick} className="cursor-pointer" />
+    <div className="flex items-center gap-3">
       <Field.Input
         name="speaker_name"
         value={speaker.speaker_name}
@@ -51,6 +50,7 @@ export default function SpeakerAdd({ addSpeaker }: SpeakerAddProps) {
         value={speaker.speaker_type}
         onChange={handleSpeakerChange}
       />
+      <PlusCircle onClick={handleAddClick} className="cursor-pointer" />
     </div>
   );
 }

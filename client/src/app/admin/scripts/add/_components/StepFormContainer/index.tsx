@@ -1,5 +1,6 @@
 import Button from '@/components/Button';
 import StepHeader from '../StepHeader';
+import StepIndicator from '../StepIndicator';
 
 type StepFormContainer = {
   header: string;
@@ -22,6 +23,7 @@ export default function StepFormContainer({
 
   return (
     <div className="flex flex-col gap-4">
+      <StepIndicator />
       <StepHeader>{header}</StepHeader>
       <form className="flex flex-col gap-4" onSubmit={handleClickSubmit} {...props}>
         <div className="flex flex-col gap-3">{children}</div>
