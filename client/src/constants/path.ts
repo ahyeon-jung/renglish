@@ -8,7 +8,7 @@ export const PATHS = {
     HOME: '/admin',
     USERS: { LIST: '/admin/users' },
     INQUIRIES: { LIST: '/admin/inquiries' },
-    SCRIPTS: { ADD: '/admin/scripts/add' },
+    SCRIPTS: { ADD: '/admin/scripts/add', LIST: '/admin/scripts' },
     NOTICES: { ADD: '/admin/notices/add' },
   },
   AUTH: {

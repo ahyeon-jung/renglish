@@ -1,11 +1,15 @@
 import React from 'react';
 import clsx from 'clsx';
 
-export default function Overlay() {
+type OverlayProps = { onClick?: () => void };
+
+export default function Overlay({ onClick }: OverlayProps) {
   return (
     <div
+      onClick={onClick}
       className={clsx(
-        'absolute inset-0 z-[var(--overlay-z-index)]',
+        onClick ? 'fixed' : 'absolute',
+        'inset-0 z-[var(--overlay-z-index)]',
         'flex items-center justify-end bg-black/50',
       )}
     ></div>

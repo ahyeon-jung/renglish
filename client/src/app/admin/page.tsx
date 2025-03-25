@@ -10,6 +10,9 @@ export default function Admin() {
       <Link href={PATHS.ADMIN.SCRIPTS.ADD}>
         <Button>대본 추가하기</Button>
       </Link>
+      <Link href={PATHS.ADMIN.SCRIPTS.LIST}>
+        <Button>대본 목록보기</Button>
+      </Link>
       <Link href={PATHS.ADMIN.USERS.LIST}>
         <Button>사용자 관리하기</Button>
       </Link>
