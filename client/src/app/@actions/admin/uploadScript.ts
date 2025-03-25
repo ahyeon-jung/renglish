@@ -22,23 +22,24 @@ export default async function uploadScriptAction({
     data: { id: sceneId },
   } = await addSceneAction(movieId, scene);
 
-  const dbSpeakers = [];
-
-  for (const speaker of speakers) {
+  const speakerPromises = speakers.map(async (speaker) => {
     const {
       data: { id: speakerId },
     } = await addSpeakerAction(sceneId, speaker);
+    return { speakerId, speakerName: speaker.speaker_name };
+  });
 
-    dbSpeakers.push({ speakerId, speakerName: speaker.speaker_name });
-  }
+  const dbSpeakers = await Promise.all(speakerPromises);
 
-  for (const dialogue of dialogues) {
+  const dialoguePromises = dialogues.map(async (dialogue) => {
     const speaker = dbSpeakers.find((dbSpeaker) => dbSpeaker.speakerName === dialogue.speaker);
     if (!speaker) {
-      throw new Error('no speaker');
+      throw new Error('No speaker found for dialogue');
     }
-    await addDialogueAction(sceneId, speaker.speakerId, dialogue);
-  }
+    return addDialogueAction(sceneId, speaker.speakerId, dialogue);
+  });
+
+  await Promise.all(dialoguePromises);
 
   return true;
 }
