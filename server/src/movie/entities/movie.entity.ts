@@ -16,9 +16,6 @@ export class Movie extends BaseEntity {
   @Column()
   imageUrl: string;
 
-  @Column()
-  studiedAt: Date;
-
   @ApiProperty({
     type: String,
     example:

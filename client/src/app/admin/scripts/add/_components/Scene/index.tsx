@@ -1,43 +1,69 @@
-import Field from '@/components/Field';
-import Text from '@/components/Text';
+import { FunnelContext, FunnelContextType } from '@/hooks/useFunnel';
+import { SCRIPT_ADD_STEP, ScriptAddStepType } from '../../_constants/step';
+import { useContext, useState } from 'react';
 
-export type MovieType = {
+import Field from '@/components/Field';
+import { ScriptAddBodyType } from '../../page';
+import StepFormContainer from '../StepFormContainer';
+
+export type ScriptAddSceneBodyType = {
   title: string;
-  imageUrl: string;
-  studiedAt: string;
+  studiedAt: Date;
   description: string;
 };
-type Scene = {
-  movie: MovieType;
-  setMovie: (movie: Partial<MovieType>) => void;
+
+export const INITIAL_SCRIPT_ADD_SCENE_BODY: ScriptAddSceneBodyType = {
+  title: '',
+  studiedAt: new Date(),
+  description: '',
 };
 
-export default function Scene({ movie, setMovie }: Scene) {
+export default function Scene() {
+  const { data, setStep, setData } = useContext(FunnelContext) as FunnelContextType<
+    ScriptAddStepType,
+    ScriptAddBodyType
+  >;
+  const [sceneInfoBody, setSceneInfoBody] = useState(data.scene);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setMovie({
-      ...movie,
-      [name]: value,
-    });
+    setSceneInfoBody((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const date = new Date(e.target.value);
+    setSceneInfoBody((prev) => ({ ...prev, studiedAt: date }));
+  };
+
+  const handleNextClick = () => {
+    setData((prev) => ({ ...prev, scene: sceneInfoBody }));
+    setStep(SCRIPT_ADD_STEP.SPEAKERS);
+  };
+
+  const isAvailableNextButton =
+    sceneInfoBody.title && sceneInfoBody.studiedAt && sceneInfoBody.description;
+
   return (
-    <div>
-      <Text as="h3" typography="display-md">
-        Scene Information
-      </Text>
+    <StepFormContainer
+      header="Scene Information"
+      onNext={handleNextClick}
+      disabled={!isAvailableNextButton}
+    >
       <Field>
         <Field.Label>Title</Field.Label>
-        <Field.Input value={movie.title} name="title" onChange={handleChange} />
+        <Field.Input value={sceneInfoBody.title} name="title" onChange={handleChange} />
       </Field>
       <Field>
-        <Field.Label>Image Address</Field.Label>
-        <Field.Input value={movie.imageUrl} name="imageUrl" onChange={handleChange} />
+        <Field.Label>Study date</Field.Label>
+        <Field.Date
+          value={sceneInfoBody.studiedAt ? sceneInfoBody.studiedAt.toISOString().split('T')[0] : ''}
+          onChange={handleDateChange}
+        />
       </Field>
       <Field>
         <Field.Label>Description</Field.Label>
-        <Field.Input value={movie.description} name="description" onChange={handleChange} />
+        <Field.Input value={sceneInfoBody.description} name="description" onChange={handleChange} />
       </Field>
-    </div>
+    </StepFormContainer>
   );
 }

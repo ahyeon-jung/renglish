@@ -15,6 +15,12 @@ export class Scene extends BaseEntity {
   })
   title: string;
 
+  @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
+  @ApiProperty({
+    type: Date,
+    example: '2025-03-16 10:00:00',
+  })
+  studiedAt: Date;
   @Column()
   @ApiProperty({
     type: String,

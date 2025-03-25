@@ -1,14 +1,14 @@
 'use client';
 
 import DialogListItem from '../../@components/DialogListItem';
-import { MovieSceneDialogue } from '@/types/script';
+import { Dialogue as DialogueType } from '@/types/dialogue';
 import { WandSparkles } from 'lucide-react';
 import { parseText } from '@/utils/content';
 import { useState } from 'react';
 
-type Dialogue = { isLeft?: boolean } & MovieSceneDialogue;
+type DialogueProps = DialogueType;
 
-export default function Dialogue({ isLeft, speaker, ko, en }: Dialogue) {
+export default function Dialogue({ speaker, korean_script, english_script }: DialogueProps) {
   const [isShowAnswerDialogue, setIsShowAnswerDialogue] = useState(false);
 
   const toggleIsShowAnswerDialogue = () => {
@@ -16,15 +16,15 @@ export default function Dialogue({ isLeft, speaker, ko, en }: Dialogue) {
   };
 
   return (
-    <DialogListItem speaker={speaker} isLeft={isLeft} isBackground>
+    <DialogListItem speaker={speaker} isBackground>
       <div className="flex gap-[5px]">
         <div>
-          {isShowAnswerDialogue && parseText(en)}
+          {isShowAnswerDialogue && parseText(english_script)}
           <input
             className="border rounded-sm"
-            style={{ width: `${Math.min(en.length * 4, 350)}px` }}
+            style={{ width: `${Math.min(english_script.length * 4, 350)}px` }}
           />
-          {parseText(ko)}
+          {parseText(korean_script)}
         </div>
         <WandSparkles size={20} onClick={toggleIsShowAnswerDialogue} />
       </div>

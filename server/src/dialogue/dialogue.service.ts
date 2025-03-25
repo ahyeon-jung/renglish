@@ -35,6 +35,7 @@ export class DialogueService {
     const dialogue = this.dialogueRepository.create({
       english_script: createDialogueDto.english_script,
       korean_script: createDialogueDto.korean_script,
+      scene,
       speaker,
     });
 

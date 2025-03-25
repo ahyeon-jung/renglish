@@ -1,48 +1,57 @@
-import Field from '@/components/Field';
-import { PlusCircle } from 'lucide-react';
-import Text from '@/components/Text';
-import { useState } from 'react';
+import { FunnelContext, FunnelContextType } from '@/hooks/useFunnel';
+import { SCRIPT_ADD_STEP, ScriptAddStepType } from '../../_constants/step';
+import SpeakerAdd, { ScriptAddSpeakerType } from './SpeakerAdd';
+import { useContext, useState } from 'react';
 
-export type Speaker = {
-  speaker_name: string;
-  speaker_type: string;
-};
+import { DeleteIcon } from 'lucide-react';
+import { ScriptAddBodyType } from '../../page';
+import StepFormContainer from '../StepFormContainer';
 
-type Speakers = {
-  speakers: Speaker[];
-  addSpeaker: (speakers: Speaker) => void;
-};
+export type ScriptAddSpeakersBodyType = ScriptAddSpeakerType[];
 
-export default function Speakers({ speakers, addSpeaker }: Speakers) {
-  const [speaker, setSpeaker] = useState('');
+export const INITIAL_SCRIPT_ADD_SPEAKER_BODY: ScriptAddSpeakersBodyType = [];
 
-  const handleSpeakerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSpeaker(e.target.value);
+export default function Speakers() {
+  const { data, setStep, setData } = useContext(FunnelContext) as FunnelContextType<
+    ScriptAddStepType,
+    ScriptAddBodyType
+  >;
+  const [speakers, setSpeakers] = useState(data.speakers);
+
+  const addSpeaker = (speaker: ScriptAddSpeakerType) => {
+    setSpeakers((prev) => [...prev, speaker]);
   };
 
-  const handleAddClick = () => {
-    addSpeaker({ speaker_name: speaker, speaker_type: 'A' });
-    setSpeaker('');
+  const removeSpeaker = (speakerName: string) => {
+    setSpeakers((prev) => prev.filter((speaker) => speaker.speaker_name !== speakerName));
   };
 
-  console.log(speakers);
+  const handleNextClick = () => {
+    setData((prev) => ({ ...prev, speakers }));
+    setStep(SCRIPT_ADD_STEP.DIALOGUES);
+  };
+
+  const isAvailableNextButton = speakers.length !== 0;
 
   return (
-    <div>
-      <Text as="h3" typography="display-md">
-        Speakers
-      </Text>
-      <div className="flex gap-4">
-        <div className="flex gap-2">
+    <StepFormContainer header="Speakers" onNext={handleNextClick} disabled={!isAvailableNextButton}>
+      <div className="flex flex-col gap-4">
+        <div className="flex w-[400px] flex-col gap-2">
+          <div className="flex justify-between">
+            <div>NAME</div>
+            <div>TYPE</div>
+            <div>ETC</div>
+          </div>
           {speakers.map((speaker, index) => (
-            <div key={index}>{speaker.speaker_name}</div>
+            <div className="flex justify-between" key={index}>
+              <div>{speaker.speaker_name}</div>
+              <div>{speaker.speaker_type}</div>
+              <DeleteIcon onClick={() => removeSpeaker(speaker.speaker_name)} />
+            </div>
           ))}
         </div>
-        <div className="flex gap-3">
-          <PlusCircle onClick={handleAddClick} />
-          <Field.Input value={speaker} onChange={handleSpeakerChange} />
-        </div>
+        <SpeakerAdd addSpeaker={addSpeaker} />
       </div>
-    </div>
+    </StepFormContainer>
   );
 }

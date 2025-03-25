@@ -19,7 +19,7 @@ export default async function MovieSceneEnglishScript({
       <DialogListContainer>
         {scene.dialogues.map((dialogue, index) => {
           return (
-            <DialogListItem key={index} speaker={dialogue.speaker} isLeft={true} isBackground>
+            <DialogListItem key={index} speaker={dialogue.speaker} isBackground>
               {parseText(dialogue.english_script)}
             </DialogListItem>
           );

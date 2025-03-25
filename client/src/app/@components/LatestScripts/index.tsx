@@ -2,8 +2,10 @@ import Container from '../Container';
 import Image from 'next/image';
 import Overlay from '@/components/Overlay';
 import Text from '@/components/Text';
+import getLatestMovieAction from '@/app/@actions/movies/getLatestMovie';
 
-export default function LatestScript() {
+export default async function LatestScript() {
+  const { data } = await getLatestMovieAction();
   return (
     <Container label="Latest Script">
       <div className="relative h-[100px] overflow-hidden rounded-xl">
@@ -11,7 +13,7 @@ export default function LatestScript() {
           className="absolute right-4 bottom-0 text-white z-[var(--overlay-text-z-index)]"
           typography="display-xl"
         >
-          Inside Out
+          {data.title}
         </Text>
         <Overlay />
         <Image
