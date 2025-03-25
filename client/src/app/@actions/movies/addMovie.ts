@@ -8,7 +8,6 @@ import { fetchAPI } from '@/libs/api';
 type AddMovieActionBody = {
   title: string;
   imageUrl: string;
-  studiedAt: string;
   description: string;
 };
 

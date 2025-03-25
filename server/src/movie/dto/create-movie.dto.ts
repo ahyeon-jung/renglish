@@ -23,15 +23,6 @@ export class CreateMovieDto {
   imageUrl: string;
 
   @ApiProperty({
-    example: '2025-03-16 10:00:00',
-    description: '스터디 진행 날짜',
-    required: true,
-  })
-  @IsNotEmpty({ message: 'StudiedAt is required' })
-  @IsString({ message: 'StudiedAt must be a Date' })
-  studiedAt: Date;
-
-  @ApiProperty({
     example: 'A romantic drama about a young woman who becomes a caregiver for a paralyzed man',
     description: '영화 설명',
     required: true,

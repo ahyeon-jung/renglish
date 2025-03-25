@@ -15,6 +15,15 @@ export class CreateSceneDto {
   title: string;
 
   @ApiProperty({
+    example: '2025-03-16 10:00:00',
+    description: '스터디 진행 날짜',
+    required: true,
+  })
+  @IsNotEmpty({ message: 'StudiedAt is required' })
+  @IsString({ message: 'StudiedAt must be a Date' })
+  studiedAt: Date;
+
+  @ApiProperty({
     type: String,
     example: '장면에 대한 설명',
     description: 'Scene의 설명',

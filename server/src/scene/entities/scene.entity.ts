@@ -17,6 +17,13 @@ export class Scene extends BaseEntity {
 
   @Column()
   @ApiProperty({
+    type: Date,
+    example: '2025-03-16 10:00:00',
+  })
+  studiedAt: Date;
+
+  @Column()
+  @ApiProperty({
     type: String,
     example: 'They have a romantic conversation',
   })

@@ -9,14 +9,12 @@ import StepFormContainer from '../StepFormContainer';
 export type ScriptAddMovieBodyType = {
   title: string;
   imageUrl: string;
-  studiedAt: string;
   description: string;
 };
 
 export const INITIAL_SCRIPT_ADD_MOVIE_BODY: ScriptAddMovieBodyType = {
   title: '',
   imageUrl: '',
-  studiedAt: '',
   description: '',
 };
 

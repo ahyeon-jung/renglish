@@ -8,6 +8,7 @@ import { fetchAPI } from '@/libs/api';
 type AddSceneActionBody = {
   title: string;
   description: string;
+  studiedAt: Date;
 };
 
 export default async function addSceneAction(

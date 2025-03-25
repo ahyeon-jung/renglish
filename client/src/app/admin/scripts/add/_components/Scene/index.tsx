@@ -8,15 +8,13 @@ import StepFormContainer from '../StepFormContainer';
 
 export type ScriptAddSceneBodyType = {
   title: string;
-  imageUrl: string;
-  studiedAt: string;
+  studiedAt: Date;
   description: string;
 };
 
 export const INITIAL_SCRIPT_ADD_SCENE_BODY: ScriptAddSceneBodyType = {
   title: '',
-  imageUrl: '',
-  studiedAt: '',
+  studiedAt: new Date(),
   description: '',
 };
 
@@ -32,6 +30,11 @@ export default function Scene() {
     setSceneInfoBody((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const date = new Date(e.target.value);
+    setSceneInfoBody((prev) => ({ ...prev, studiedAt: date }));
+  };
+
   const handleNextClick = () => {
     setData((prev) => ({ ...prev, scene: sceneInfoBody }));
     setStep(SCRIPT_ADD_STEP.SPEAKERS);
@@ -44,8 +47,11 @@ export default function Scene() {
         <Field.Input value={sceneInfoBody.title} name="title" onChange={handleChange} />
       </Field>
       <Field>
-        <Field.Label>Image Address</Field.Label>
-        <Field.Input value={sceneInfoBody.imageUrl} name="imageUrl" onChange={handleChange} />
+        <Field.Label>Study date</Field.Label>
+        <Field.Date
+          value={sceneInfoBody.studiedAt ? sceneInfoBody.studiedAt.toISOString().split('T')[0] : ''}
+          onChange={handleDateChange}
+        />
       </Field>
       <Field>
         <Field.Label>Description</Field.Label>
