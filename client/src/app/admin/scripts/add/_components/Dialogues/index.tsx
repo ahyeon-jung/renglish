@@ -7,12 +7,14 @@ import { useContext, useRef, useState } from 'react';
 import { ScriptAddBodyType } from '../../page';
 import StepFormContainer from '../StepFormContainer';
 
-export type Dialogue = {
+type ScriptAddDialogueBodyType = {
   speaker: string;
   english_script: string;
   korean_script: string;
   order: number;
 };
+
+export type ScriptAddDialoguesBodyType = ScriptAddDialogueBodyType[];
 
 export default function Dialogues() {
   const {
@@ -75,7 +77,7 @@ export default function Dialogues() {
     }
     const formattedDialogues = dialoguesBody
       .split('\n\n')
-      .map((dialogue, index): Dialogue | undefined => {
+      .map((dialogue, index): ScriptAddDialogueBodyType | undefined => {
         const [speaker, english, korean] = dialogue.split('\n');
 
         if (!speaker || !english || !korean) {
@@ -97,7 +99,7 @@ export default function Dialogues() {
       return;
     }
 
-    setData((prev) => ({ ...prev, dialogues: formattedDialogues }));
+    setData((prev) => ({ ...prev, dialogues: formattedDialogues as ScriptAddDialoguesBodyType }));
     setStep(SCRIPT_ADD_STEP.SUBMIT_CONFIRM);
   };
 
