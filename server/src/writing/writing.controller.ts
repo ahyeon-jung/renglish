@@ -27,7 +27,7 @@ export class WritingController {
     @Param('dialogueId') dialogueId: string,
     @Body() createWritingDto: CreateWritingDto,
   ) {
-    return this.writingService.create(dialogueId, createWritingDto, req);
+    return this.writingService.create(req.user.id, dialogueId, createWritingDto);
   }
 
   @Get(':movieId')

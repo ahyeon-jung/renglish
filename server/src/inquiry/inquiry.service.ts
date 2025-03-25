@@ -4,23 +4,18 @@ import { UpdateInquiryDto } from './dto/update-inquiry.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Inquiry } from './entities/inquiry.entity';
 import { Repository } from 'typeorm';
-import { AuthService } from 'src/auth/auth.service';
 
 @Injectable()
 export class InquiryService {
   constructor(
     @InjectRepository(Inquiry)
     private readonly inquiryRepository: Repository<Inquiry>,
-    private readonly authService: AuthService,
   ) {}
 
-  async create(createInquiryDto: CreateInquiryDto, req: any) {
-    const token = req.headers.authorization.split(' ')[1];
-    const user = await this.authService.getUserFromToken(token);
-
+  async create(userId: string, createInquiryDto: CreateInquiryDto) {
     const inquiry = this.inquiryRepository.create({
       ...createInquiryDto,
-      user,
+      user: { id: userId },
     });
 
     return this.inquiryRepository.save(inquiry);
