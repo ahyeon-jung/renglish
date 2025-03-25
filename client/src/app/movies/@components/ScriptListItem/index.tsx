@@ -1,5 +1,3 @@
-import { formatDate, formatTitle } from '@/utils/format';
-
 import { Calendar } from 'lucide-react';
 import Link from 'next/link';
 import { Movie } from '@/types/movie';
@@ -7,10 +5,11 @@ import { PATHS } from '@/constants/path';
 import ScriptLink from '../ScriptLink';
 import Text from '@/components/Text';
 import clsx from 'clsx';
+import { formatTitle } from '@/utils/format';
 
 type ScriptListItem = Movie;
 
-export default function ScriptListItem({ id, title, studiedAt, scenes }: ScriptListItem) {
+export default function ScriptListItem({ id, title, scenes }: ScriptListItem) {
   return (
     <li
       className={clsx(
@@ -25,9 +24,6 @@ export default function ScriptListItem({ id, title, studiedAt, scenes }: ScriptL
         </Link>
         <div className="flex items-center gap-2 mt-2 text-sm text-gray-600">
           <Calendar size={16} />
-          <Text as="div" typography="subHead-sm">
-            {formatDate(studiedAt)}
-          </Text>
         </div>
       </div>
       <div className="flex gap-4">

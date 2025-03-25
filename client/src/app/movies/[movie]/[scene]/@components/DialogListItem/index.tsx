@@ -1,13 +1,14 @@
 import { CircleUserRound } from 'lucide-react';
-import { MovieSceneDialogue } from '@/types/script';
+import { Speaker } from '@/types/speaker';
 import clsx from 'clsx';
 
 type DialogListItem = {
   isLeft?: boolean;
   isBackground?: boolean;
   style?: React.CSSProperties;
-} & Pick<MovieSceneDialogue, 'speaker'> &
-  React.PropsWithChildren;
+
+  speaker: Speaker;
+} & React.PropsWithChildren;
 
 export default function DialogListItem({
   speaker,
@@ -17,7 +18,7 @@ export default function DialogListItem({
   style,
   children,
 }: DialogListItem) {
-  if (speaker == 'etc') {
+  if (speaker.speaker_type == 'etc') {
     return <li className="text-center italic">{children}</li>;
   }
 
@@ -32,7 +33,7 @@ export default function DialogListItem({
     >
       <div className={clsx('flex flex-col items-center', 'text-gray-600 dark:text-gray-300')}>
         <CircleUserRound className="w-8 h-8" />
-        <span className="text-sm font-medium">{speaker}</span>
+        <span className="text-sm font-medium">{speaker.speaker_name}</span>
       </div>
       <div
         className={clsx(

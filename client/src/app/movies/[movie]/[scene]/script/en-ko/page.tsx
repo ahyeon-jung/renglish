@@ -14,6 +14,7 @@ export default async function MovieSceneEnglishKoreanScript({
 
   const { data: scene } = await getScene(slug.scene);
 
+  console.log(scene);
   return (
     <main className="mt-[var(--header-height)] p-3">
       <SceneHeader title={slug.movie} movieId={slug.movie} sceneId={slug.scene} />
