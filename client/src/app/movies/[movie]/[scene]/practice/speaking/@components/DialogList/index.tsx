@@ -1,20 +1,20 @@
 'use client';
 
-import { MovieScene, MovieSceneDialogue } from '@/types/script';
 import { useEffect, useState } from 'react';
 
 import DialogListItem from '../../../../@components/DialogListItem';
 import { LANGUAGE_MODE } from '@/constants/language';
+import { Scene } from '@/types/scene';
 import { parseText } from '@/utils/content';
 import { useSearchParams } from 'next/navigation';
 
-type DialogList = MovieScene;
+type DialogList = Scene;
 
-export default function DialogList({ dialogues, speakers }: DialogList) {
+export default function DialogList({ dialogues }: DialogList) {
   const searchParams = useSearchParams();
   const mode = searchParams.get('mode');
 
-  const [visibleDialogues, setVisibleDialogues] = useState<MovieSceneDialogue[]>([dialogues[0]]);
+  const [visibleDialogues, setVisibleDialogues] = useState([dialogues[0]]);
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
@@ -45,13 +45,11 @@ export default function DialogList({ dialogues, speakers }: DialogList) {
   return (
     <ul className="mt-[45px] flex flex-col gap-[10px]">
       {visibleDialogues.map((dialogue, index) => {
-        const isDifferentSpeaker = speakers
-          .filter((_, idx) => idx % 2 === 1)
-          .includes(dialogue.speaker);
-
         return (
-          <DialogListItem key={index} speaker={dialogue.speaker} isLeft={isDifferentSpeaker}>
-            {parseText(mode === LANGUAGE_MODE.KOREAN ? dialogue.ko : dialogue.en)}
+          <DialogListItem key={index} speaker={dialogue.speaker}>
+            {parseText(
+              mode === LANGUAGE_MODE.KOREAN ? dialogue.korean_script : dialogue.english_script,
+            )}
           </DialogListItem>
         );
       })}

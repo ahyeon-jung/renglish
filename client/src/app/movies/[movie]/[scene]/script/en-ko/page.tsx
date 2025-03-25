@@ -14,17 +14,16 @@ export default async function MovieSceneEnglishKoreanScript({
 
   const { data: scene } = await getScene(slug.scene);
 
-  console.log(scene);
   return (
     <main className="mt-[var(--header-height)] p-3">
       <SceneHeader title={slug.movie} movieId={slug.movie} sceneId={slug.scene} />
       <DialogListContainer>
         {scene.dialogues.map((dialogue, index) => {
           return (
-            <DialogListItem key={index} speaker={dialogue.speaker} isLeft={true} isBackground>
+            <DialogListItem key={index} speaker={dialogue.speaker} isBackground>
               <div>
-                <Text as="p">{parseText(dialogue.english_script)}</Text>
-                <Text as="p">{parseText(dialogue.korean_script)}</Text>
+                <Text>{parseText(dialogue.english_script)}</Text>
+                <Text>{parseText(dialogue.korean_script)}</Text>
               </div>
             </DialogListItem>
           );

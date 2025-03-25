@@ -3,7 +3,6 @@ import { Speaker } from '@/types/speaker';
 import clsx from 'clsx';
 
 type DialogListItem = {
-  isLeft?: boolean;
   isBackground?: boolean;
   style?: React.CSSProperties;
 
@@ -12,8 +11,6 @@ type DialogListItem = {
 
 export default function DialogListItem({
   speaker,
-
-  isLeft = false,
   isBackground = false,
   style,
   children,
@@ -27,7 +24,7 @@ export default function DialogListItem({
       style={style}
       className={clsx(
         'flex items-start gap-4 p-3 rounded-lg',
-        isLeft ? ' flex-row-reverse' : '',
+        speaker.speaker_type === 'a' ? ' flex-row-reverse' : '',
         isBackground ? 'bg-gray-100 dark:bg-gray-800' : '',
       )}
     >
