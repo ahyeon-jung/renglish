@@ -5,6 +5,7 @@ export const PATHS = {
   INTRODUCE: '/introduce',
   PROFILE: '/profile',
   ADMIN: {
+    HOME: '/admin',
     USERS: { LIST: '/admin/users' },
     INQUIRIES: { LIST: '/admin/inquiries' },
     SCRIPTS: { ADD: '/admin/scripts/add' },

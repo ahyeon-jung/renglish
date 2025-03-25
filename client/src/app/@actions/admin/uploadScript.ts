@@ -41,5 +41,9 @@ export default async function uploadScriptAction({
 
   await Promise.all(dialoguePromises);
 
-  return true;
+  return {
+    status: 200,
+    success: true,
+    message: 'Upload script successfully',
+  };
 }

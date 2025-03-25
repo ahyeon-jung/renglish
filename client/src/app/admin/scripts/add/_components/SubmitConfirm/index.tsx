@@ -1,12 +1,15 @@
 import { FunnelContext, FunnelContextType } from '@/hooks/useFunnel';
 
 import Button from '@/components/Button';
+import { PATHS } from '@/constants/path';
 import { ScriptAddBodyType } from '../../page';
 import { ScriptAddStepType } from '../../_constants/step';
 import uploadScriptAction from '@/app/@actions/admin/uploadScript';
 import { useContext } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function SubmitConfirm() {
+  const router = useRouter();
   const { data } = useContext(FunnelContext) as FunnelContextType<
     ScriptAddStepType,
     ScriptAddBodyType
@@ -18,8 +21,8 @@ export default function SubmitConfirm() {
     try {
       const response = await uploadScriptAction(data);
 
-      if (response) {
-        console.log('WoW');
+      if (response.success) {
+        router.push(PATHS.ADMIN.HOME);
       }
     } catch (err) {
       console.log(err);
