@@ -5,7 +5,7 @@ import { CreateDialogueDto } from './dto/create-dialogue.dto';
 import { UpdateDialogueDto } from './dto/update-dialogue.dto';
 
 @ApiTags('Dialogues')
-@Controller('dialogue')
+@Controller('dialogues')
 export class DialogueController {
   constructor(private readonly dialogueService: DialogueService) {}
 
@@ -32,7 +32,7 @@ export class DialogueController {
     @Param('sceneId') sceneId: string,
     @Body() createDialogueDto: CreateDialogueDto,
   ) {
-    return this.dialogueService.create(speakerId, sceneId, createDialogueDto);
+    return this.dialogueService.create(sceneId, speakerId, createDialogueDto);
   }
 
   @Put('/:dialogueId')

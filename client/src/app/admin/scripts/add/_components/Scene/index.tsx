@@ -40,8 +40,15 @@ export default function Scene() {
     setStep(SCRIPT_ADD_STEP.SPEAKERS);
   };
 
+  const isAvailableNextButton =
+    sceneInfoBody.title && sceneInfoBody.studiedAt && sceneInfoBody.description;
+
   return (
-    <StepFormContainer header="Scene Information" onNext={handleNextClick}>
+    <StepFormContainer
+      header="Scene Information"
+      onNext={handleNextClick}
+      disabled={!isAvailableNextButton}
+    >
       <Field>
         <Field.Label>Title</Field.Label>
         <Field.Input value={sceneInfoBody.title} name="title" onChange={handleChange} />

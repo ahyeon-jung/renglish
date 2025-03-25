@@ -31,7 +31,10 @@ export default function Speakers() {
       <div className="flex gap-4">
         <div className="flex gap-2">
           {speakers.map((speaker, index) => (
-            <div key={index}>{speaker.speaker_name}</div>
+            <div key={index}>
+              <div>{speaker.speaker_name}</div>
+              <div>{speaker.speaker_type}</div>
+            </div>
           ))}
         </div>
         <SpeakerAdd addSpeaker={addSpeaker} />

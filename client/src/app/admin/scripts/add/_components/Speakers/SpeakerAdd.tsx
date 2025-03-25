@@ -10,7 +10,7 @@ export type ScriptAddSpeakerType = {
 
 const INITIAL_SCRIPT_ADD_SCENE_BODY: ScriptAddSpeakerType = {
   speaker_name: '',
-  speaker_type: '',
+  speaker_type: 'a',
 };
 
 const SPEAKER_TYPE_OPTIONS = [

@@ -35,8 +35,15 @@ export default function Movie() {
     setStep(SCRIPT_ADD_STEP.SCENE);
   };
 
+  const isAvailableNextButton =
+    movieInfoBody.title && movieInfoBody.imageUrl && movieInfoBody.description;
+
   return (
-    <StepFormContainer header="Movie Information" onNext={handleNextClick}>
+    <StepFormContainer
+      header="Movie Information"
+      onNext={handleNextClick}
+      disabled={!isAvailableNextButton}
+    >
       <Field>
         <Field.Label>Title</Field.Label>
         <Field.Input value={movieInfoBody.title} name="title" onChange={handleChange} />
