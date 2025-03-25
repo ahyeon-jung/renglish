@@ -21,7 +21,7 @@ export class Speaker extends BaseEntity {
   })
   speaker_type: string;
 
-  @ManyToOne(() => Scene, (scene) => scene.speakers)
+  @ManyToOne(() => Scene, (scene) => scene.speakers, { onDelete: 'CASCADE' })
   scene: Scene;
 
   @OneToMany(() => Dialogue, (dialogue) => dialogue.scene)

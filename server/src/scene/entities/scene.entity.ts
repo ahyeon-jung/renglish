@@ -31,9 +31,9 @@ export class Scene extends BaseEntity {
   @ManyToOne(() => Movie, (movie) => movie.scenes)
   movie: Movie;
 
-  @OneToMany(() => Speaker, (speaker) => speaker.scene)
+  @OneToMany(() => Speaker, (speaker) => speaker.scene, { onDelete: 'CASCADE' })
   speakers: Speaker[];
 
-  @OneToMany(() => Dialogue, (dialogue) => dialogue.scene)
+  @OneToMany(() => Dialogue, (dialogue) => dialogue.scene, { onDelete: 'CASCADE' })
   dialogues: Dialogue[];
 }

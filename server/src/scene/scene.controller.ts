@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { SceneService } from './scene.service';
 import { ApiBody, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 import { Speaker } from 'src/speaker/entities/speaker.entity';
@@ -24,6 +24,15 @@ export class SceneController {
   @ApiBody({ type: CreateSceneDto })
   createScene(@Param('movieId') movieId: string, @Body() createSpeakerDto: CreateSceneDto) {
     return this.sceneService.create(movieId, createSpeakerDto);
+  }
+
+  @Get('')
+  @ApiOperation({
+    summary: '모든 장면 가져오기',
+    description: '모든 장면면을 가져옵니다.',
+  })
+  async findAllScene(): Promise<Scene[]> {
+    return this.sceneService.findAllScene();
   }
 
   @Get(':sceneId')
@@ -54,5 +63,20 @@ export class SceneController {
   })
   findAll(@Param('sceneId') sceneId: string): Promise<Speaker[]> {
     return this.sceneService.findSpeakersBySceneId(sceneId);
+  }
+
+  @Delete(':sceneId')
+  @ApiOperation({
+    summary: '장면 삭제하기',
+    description: '장면 정보 및 연결된 발화자, 대사를 삭제합니다.',
+  })
+  @ApiParam({
+    name: 'sceneId',
+    description: '장면의 ID',
+    example: 'e5e798e1-9241-4b95-8e2c-0b630bbd033f',
+    type: String,
+  })
+  async deleteScene(@Param('sceneId') sceneId: string) {
+    return await this.sceneService.delete(sceneId);
   }
 }

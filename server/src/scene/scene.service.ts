@@ -4,11 +4,8 @@ import { Speaker } from 'src/speaker/entities/speaker.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Scene } from './entities/scene.entity';
 import { Repository } from 'typeorm';
-import { Dialogue } from 'src/dialogue/entities/dialogue.entity';
 import { Movie } from 'src/movie/entities/movie.entity';
 import { MovieService } from 'src/movie/movie.service';
-import { SpeakerService } from 'src/speaker/speaker.service';
-import { CreateSpeakerDto } from 'src/speaker/dto/create-speaker.dto';
 
 @Injectable()
 export class SceneService {
@@ -17,10 +14,6 @@ export class SceneService {
     private readonly sceneRepository: Repository<Scene>,
     @InjectRepository(Movie)
     private readonly movieService: MovieService,
-    @InjectRepository(Speaker)
-    private readonly speakerService: SpeakerService,
-    @InjectRepository(Dialogue)
-    private readonly dialogueRepository: Repository<Dialogue>,
   ) {}
 
   async create(movieId: string, createSceneDto: CreateSceneDto): Promise<Scene> {
@@ -36,6 +29,19 @@ export class SceneService {
     });
 
     return await this.sceneRepository.save(scene);
+  }
+
+  async delete(sceneId: string): Promise<void> {
+    const scene = await this.findSceneById(sceneId);
+    if (!scene) {
+      throw new NotFoundException('Scene not found');
+    }
+
+    await this.sceneRepository.remove(scene);
+  }
+
+  async findAllScene(): Promise<Scene[]> {
+    return this.sceneRepository.find();
   }
 
   async findSceneById(sceneId: string): Promise<Scene> {

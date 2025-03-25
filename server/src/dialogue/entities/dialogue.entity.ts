@@ -29,10 +29,10 @@ export class Dialogue extends BaseEntity {
   })
   order: number;
 
-  @ManyToOne(() => Scene, (scene) => scene.dialogues)
+  @ManyToOne(() => Scene, (scene) => scene.dialogues, { onDelete: 'CASCADE' })
   scene: Scene;
 
-  @ManyToOne(() => Speaker, (speaker) => speaker.dialogues)
+  @ManyToOne(() => Speaker, (speaker) => speaker.dialogues, { onDelete: 'CASCADE' })
   speaker: Speaker;
 
   @OneToMany(() => Writing, (writing) => writing.dialogue)
