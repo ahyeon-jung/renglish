@@ -1,13 +1,21 @@
+import SceneSearch from './_components/SceneSearch';
 import ScriptListItem from './_components/ScriptListItem';
 import clsx from 'clsx';
 import getScenes from '@/app/@actions/scenes/getScenes';
 
-export default async function Scripts() {
-  const { data: scenes } = await getScenes();
+export default async function Scripts({
+  searchParams,
+}: {
+  searchParams: Promise<{ keyword?: string }>;
+}) {
+  const search = await searchParams;
+  const { data: scenes } = await getScenes(search.keyword);
 
   return (
-    <main className={clsx('mt-[var(--header-height)] p-3')}>
+    <main className={clsx('mt-[var(--header-height)] p-3', 'flex flex-col gap-4')}>
+      <SceneSearch currentKeyword={search.keyword} />
       <ul className="flex flex-col gap-[15px]">
+        {scenes.length === 0 && <div>No Data</div>}
         {scenes.map((scene, index) => (
           <ScriptListItem key={index} {...scene} />
         ))}

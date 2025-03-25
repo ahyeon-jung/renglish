@@ -3,7 +3,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Speaker } from 'src/speaker/entities/speaker.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Scene } from './entities/scene.entity';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { Movie } from 'src/movie/entities/movie.entity';
 import { MovieService } from 'src/movie/movie.service';
 
@@ -40,8 +40,14 @@ export class SceneService {
     await this.sceneRepository.remove(scene);
   }
 
-  async findAllScene(): Promise<Scene[]> {
-    return this.sceneRepository.find();
+  async findAllScene(keyword?: string): Promise<Scene[]> {
+    if (keyword) {
+      return this.sceneRepository.find({
+        where: [{ title: Like(`%${keyword}%`) }, { description: Like(`%${keyword}%`) }],
+      });
+    } else {
+      return this.sceneRepository.find();
+    }
   }
 
   async findSceneById(sceneId: string): Promise<Scene> {

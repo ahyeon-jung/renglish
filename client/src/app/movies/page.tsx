@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import getMovies from '../@actions/movies/getMovies';
 
 export default async function Scripts() {
-  const { data: movies } = await getMovies();
+  const { data: movies } = await getMovies({});
 
   return (
     <main className={clsx('mt-[var(--header-height)] p-3')}>

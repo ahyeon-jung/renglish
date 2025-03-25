@@ -1,6 +1,6 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Query } from '@nestjs/common';
 import { SceneService } from './scene.service';
-import { ApiBody, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { Speaker } from 'src/speaker/entities/speaker.entity';
 import { Scene } from './entities/scene.entity';
 import { CreateSpeakerDto } from 'src/speaker/dto/create-speaker.dto';
@@ -31,8 +31,15 @@ export class SceneController {
     summary: '모든 장면 가져오기',
     description: '모든 장면면을 가져옵니다.',
   })
-  async findAllScene(): Promise<Scene[]> {
-    return this.sceneService.findAllScene();
+  @ApiQuery({
+    name: 'keyword',
+    description: '제목과 설명에서 검색할 키워드를 입력하세요.',
+    example: 'you',
+    type: String,
+    required: false,
+  })
+  async findAllScene(@Query('keyword') keyword?: string): Promise<Scene[]> {
+    return this.sceneService.findAllScene(keyword);
   }
 
   @Get(':sceneId')

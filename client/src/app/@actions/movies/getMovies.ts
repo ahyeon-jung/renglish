@@ -4,8 +4,20 @@ import { ActionResponse } from '@/types/action';
 import { Movie } from '@/types/movie';
 import { fetchAPI } from '@/libs/api';
 
-export default async function getMovies(): Promise<ActionResponse<Movie[]>> {
-  const response = await fetchAPI<Movie[]>(`/movies`, {
+type GetMoviesProps = {
+  keyword?: string;
+};
+
+export default async function getMovies({
+  keyword,
+}: GetMoviesProps): Promise<ActionResponse<Movie[]>> {
+  const params = new URLSearchParams();
+  if (keyword) {
+    params.append('keyword', keyword);
+  }
+
+  const url = `/movies?${params.toString()}`;
+  const response = await fetchAPI<Movie[]>(url, {
     method: 'GET',
   });
 

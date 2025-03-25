@@ -3,7 +3,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Movie } from './entities/movie.entity';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 
 @Injectable()
 export class MovieService {
@@ -16,8 +16,15 @@ export class MovieService {
     return this.movieRepository.save(createMovieDto);
   }
 
-  findAll(): Promise<Movie[]> {
-    return this.movieRepository.find({ relations: ['scenes'] });
+  findAll(keyword?: string): Promise<Movie[]> {
+    if (keyword) {
+      return this.movieRepository.find({
+        where: [{ title: Like(`%${keyword}%`) }, { description: Like(`%${keyword}%`) }],
+        relations: ['scenes'],
+      });
+    } else {
+      return this.movieRepository.find({ relations: ['scenes'] });
+    }
   }
 
   async findMovieWithLatestScene(): Promise<Movie> {

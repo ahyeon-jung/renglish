@@ -1,7 +1,7 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Query } from '@nestjs/common';
 import { MovieService } from './movie.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
-import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody, ApiQuery } from '@nestjs/swagger';
 import { Movie } from './entities/movie.entity';
 import { CreateSceneDto } from 'src/scene/dto/create-scene.dto';
 import { SceneService } from 'src/scene/scene.service';
@@ -39,9 +39,16 @@ export class MovieController {
     summary: '모든 영화 정보 가져오기',
     description: '모든 영화 정보를 가져옵니다.',
   })
+  @ApiQuery({
+    name: 'keyword',
+    description: '제목과 설명에서 검색할 키워드를 입력하세요.',
+    example: 'before',
+    type: String,
+    required: false,
+  })
   @ApiResponse({ status: 200, description: '모든 영화 정보 가져오기 성공' })
-  async findAll(): Promise<Movie[]> {
-    return this.movieService.findAll();
+  async findAll(@Query('keyword') keyword?: string): Promise<Movie[]> {
+    return this.movieService.findAll(keyword);
   }
 
   @Get(':movieId')
