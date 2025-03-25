@@ -60,10 +60,7 @@ export class AuthController {
     description: '현재 사용자가 관리자인지 확인합니다.',
   })
   async checkAdminByToken(@Request() req) {
-    const token = req.headers.authorization.split(' ')[1];
-    const user = await this.authService.getUserFromToken(token);
-
-    return { isAdmin: user.id === '0' };
+    return { isAdmin: req.user.isAdmin };
   }
 
   @Get('user')
@@ -73,8 +70,7 @@ export class AuthController {
     description: '현재 사용자 정보를 가져옵니다.',
   })
   findUserByToken(@Request() req) {
-    const token = req.headers.authorization.split(' ')[1];
-    return this.authService.getUserFromToken(token);
+    return req.user;
   }
 
   @Put('password/change')

@@ -2,7 +2,6 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 
 import { ConfigService } from '@nestjs/config';
 import { Injectable } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { UnauthorizedException } from '@nestjs/common';
 import { UserService } from 'src/user/user.service';
@@ -24,6 +23,9 @@ export class AccessTokenStrategy extends PassportStrategy(Strategy) {
     if (!user) {
       throw new UnauthorizedException('User not found');
     }
-    return user;
+
+    const isAdmin = payload.sub === this.configService.get<string>('ADMIN_ID');
+
+    return { ...user, isAdmin };
   }
 }
