@@ -1,16 +1,27 @@
 'use server';
 
+import { PaginationParams, PaginationResponse, SearchParams } from '@/types/api';
+
 import { ActionResponse } from '@/types/action';
-import { PaginationResponse } from '@/types/api';
 import { Scene } from '@/types/scene';
 import { fetchAPI } from '@/libs/api';
 
-export default async function getScenes(
-  keyword?: string,
-): Promise<ActionResponse<PaginationResponse<Scene>>> {
+type GetScenesParams = SearchParams & PaginationParams;
+
+export default async function getScenes({
+  keyword,
+  offset = 1,
+  limit = 10,
+}: GetScenesParams): Promise<ActionResponse<PaginationResponse<Scene>>> {
   const params = new URLSearchParams();
   if (keyword) {
     params.append('keyword', keyword);
+  }
+  if (offset) {
+    params.append('offset', offset.toString());
+  }
+  if (limit) {
+    params.append('limit', limit.toString());
   }
 
   const url = `/scenes?${params.toString()}`;

@@ -4,9 +4,11 @@ export type APIResponse<T> = {
   data: T;
 };
 
+export type SearchParams = { keyword?: string };
+
 export type PaginationParams = {
-  offset: number;
-  limit: number;
+  offset?: number;
+  limit?: number;
 };
 
 export type PaginationResponse<T> = {
