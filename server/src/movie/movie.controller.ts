@@ -58,14 +58,12 @@ export class MovieController {
     description: '가져올 페이지 번호 (기본값: 1)',
     example: 1,
     type: Number,
-    required: false,
   })
   @ApiQuery({
     name: 'limit',
     description: '한 페이지에 가져올 데이터 개수 (기본값: 10)',
     example: 10,
     type: Number,
-    required: false,
   })
   @ApiResponse({
     status: 200,
