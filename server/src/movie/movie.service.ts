@@ -17,14 +17,29 @@ export class MovieService {
     return this.movieRepository.save(createMovieDto);
   }
 
-  async findAll(
-    keyword?: string,
-    offset: number = 1,
-    limit: number = 10,
-  ): Promise<PaginationResponse<Movie>> {
-    const whereCondition = keyword
-      ? [{ title: Like(`%${keyword}%`) }, { description: Like(`%${keyword}%`) }]
-      : {};
+  async findAll({
+    category,
+    keyword,
+    offset = 1,
+    limit = 10,
+  }: {
+    category?: string;
+    keyword?: string;
+    offset: number;
+    limit: number;
+  }): Promise<PaginationResponse<Movie>> {
+    let whereCondition: any = {};
+
+    if (category && keyword) {
+      whereCondition = [
+        { category: category, title: Like(`%${keyword}%`) },
+        { category: category, description: Like(`%${keyword}%`) },
+      ];
+    } else if (category) {
+      whereCondition = { category: category };
+    } else if (keyword) {
+      whereCondition = [{ title: Like(`%${keyword}%`) }, { description: Like(`%${keyword}%`) }];
+    }
 
     return await findAllWithPagination(this.movieRepository, whereCondition, ['scenes'], {
       offset,
