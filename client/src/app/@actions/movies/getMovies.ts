@@ -2,6 +2,7 @@
 
 import { ActionResponse } from '@/types/action';
 import { Movie } from '@/types/movie';
+import { PaginationResponse } from '@/types/api';
 import { fetchAPI } from '@/libs/api';
 
 type GetMoviesProps = {
@@ -10,14 +11,14 @@ type GetMoviesProps = {
 
 export default async function getMovies({
   keyword,
-}: GetMoviesProps): Promise<ActionResponse<Movie[]>> {
+}: GetMoviesProps): Promise<ActionResponse<PaginationResponse<Movie>>> {
   const params = new URLSearchParams();
   if (keyword) {
     params.append('keyword', keyword);
   }
 
   const url = `/movies?${params.toString()}`;
-  const response = await fetchAPI<Movie[]>(url, {
+  const response = await fetchAPI<PaginationResponse<Movie>>(url, {
     method: 'GET',
   });
 

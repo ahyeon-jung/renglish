@@ -3,6 +3,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { findAllWithPagination, PaginationResponse } from 'src/common/utils/pagination.util';
 
 @Injectable()
 export class UserService {
@@ -22,9 +23,17 @@ export class UserService {
     }
   }
 
-  async findAll(): Promise<Omit<User, 'password'>[]> {
-    const users = await this.userRepository.find();
-    return users.map(({ password, ...userWithoutPassword }) => userWithoutPassword);
+  async findAll(
+    offset: number = 1,
+    limit: number = 10,
+  ): Promise<PaginationResponse<Omit<User, 'password'>>> {
+    const response = await findAllWithPagination(this.userRepository, {}, [], { offset, limit });
+
+    return {
+      ...response,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      data: response.data.map(({ password, ...rest }) => rest),
+    };
   }
 
   async findUserById(id: string): Promise<Omit<User, 'password'>> {
@@ -36,6 +45,7 @@ export class UserService {
       throw new NotFoundException(`User with id ${id} not found`);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password, ...userWithoutPassword } = user;
     return userWithoutPassword;
   }
@@ -56,6 +66,7 @@ export class UserService {
       throw new NotFoundException(`User with email ${email} not found`);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password, ...userWithoutPassword } = user;
     return userWithoutPassword;
   }

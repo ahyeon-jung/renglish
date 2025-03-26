@@ -3,8 +3,8 @@ import { SceneService } from './scene.service';
 import { ApiBody, ApiOperation, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { Speaker } from 'src/speaker/entities/speaker.entity';
 import { Scene } from './entities/scene.entity';
-import { CreateSpeakerDto } from 'src/speaker/dto/create-speaker.dto';
 import { CreateSceneDto } from './dto/create-scene.dto';
+import { PaginationResponse } from 'src/common/utils/pagination.util';
 @ApiTags('Scenes')
 @Controller('scenes')
 export class SceneController {
@@ -38,8 +38,26 @@ export class SceneController {
     type: String,
     required: false,
   })
-  async findAllScene(@Query('keyword') keyword?: string): Promise<Scene[]> {
-    return this.sceneService.findAllScene(keyword);
+  @ApiQuery({
+    name: 'offset',
+    description: '가져올 페이지 번호 (기본값: 1)',
+    example: 1,
+    type: Number,
+    required: false,
+  })
+  @ApiQuery({
+    name: 'limit',
+    description: '한 페이지에 가져올 데이터 개수 (기본값: 10)',
+    example: 10,
+    type: Number,
+    required: false,
+  })
+  async findAllScene(
+    @Query('keyword') keyword?: string,
+    @Query('offset') offset: number = 1,
+    @Query('limit') limit: number = 10,
+  ): Promise<PaginationResponse<Scene>> {
+    return this.sceneService.findAllScene(keyword, offset, limit);
   }
 
   @Get(':sceneId')

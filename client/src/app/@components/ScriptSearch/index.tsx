@@ -25,7 +25,9 @@ export default function ScriptSearch() {
       return;
     }
 
-    const { data: movies } = await getMovies({ keyword: value });
+    const {
+      data: { data: movies },
+    } = await getMovies({ keyword: value });
 
     setKeywordOptions(movies.map((movie) => ({ label: movie.title, value: movie.id })));
   };
