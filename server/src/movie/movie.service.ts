@@ -5,6 +5,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Movie } from './entities/movie.entity';
 import { Like, Repository } from 'typeorm';
 import { findAllWithPagination, PaginationResponse } from 'src/common/utils/pagination.util';
+import { SearchParams } from 'src/common/dto/search-params.dto';
+import { SearchMovieParams } from './dto/search-movie.dto';
 
 @Injectable()
 export class MovieService {
@@ -17,17 +19,9 @@ export class MovieService {
     return this.movieRepository.save(createMovieDto);
   }
 
-  async findAll({
-    category,
-    keyword,
-    offset = 1,
-    limit = 10,
-  }: {
-    category?: string;
-    keyword?: string;
-    offset: number;
-    limit: number;
-  }): Promise<PaginationResponse<Movie>> {
+  async findAll(params: SearchMovieParams): Promise<PaginationResponse<Movie>> {
+    const { category, keyword, offset, limit } = params;
+
     let whereCondition: any = {};
 
     if (category && keyword) {
