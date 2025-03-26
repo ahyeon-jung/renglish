@@ -1,10 +1,13 @@
 'use server';
 
 import { ActionResponse } from '@/types/action';
+import { PaginationResponse } from '@/types/api';
 import { Scene } from '@/types/scene';
 import { fetchAPI } from '@/libs/api';
 
-export default async function getScenes(keyword?: string): Promise<ActionResponse<Scene[]>> {
+export default async function getScenes(
+  keyword?: string,
+): Promise<ActionResponse<PaginationResponse<Scene>>> {
   const params = new URLSearchParams();
   if (keyword) {
     params.append('keyword', keyword);
@@ -12,7 +15,7 @@ export default async function getScenes(keyword?: string): Promise<ActionRespons
 
   const url = `/scenes?${params.toString()}`;
 
-  const response = await fetchAPI<Scene[]>(url, {
+  const response = await fetchAPI<PaginationResponse<Scene>>(url, {
     method: 'GET',
   });
 
