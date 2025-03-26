@@ -60,7 +60,63 @@ export class MovieController {
     type: Number,
     required: false,
   })
-  @ApiResponse({ status: 200, description: '모든 영화 정보 가져오기 성공' })
+  @ApiResponse({
+    status: 200,
+    description: '모든 영화 정보 가져오기 성공',
+    schema: {
+      example: {
+        statusCode: 200,
+        message: 'Request successful',
+        data: {
+          data: [
+            {
+              id: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890',
+              createdAt: '2025-03-26T10:15:30.123Z',
+              updatedAt: '2025-03-26T10:15:30.123Z',
+              deletedAt: null,
+              title: 'La La Land',
+              imageUrl: 'https://example.com/image1.jpg',
+              description: 'A beautiful musical romance film',
+              scenes: [
+                {
+                  id: '111aaa22-bb33-cc44-dd55-eeeeffff0000',
+                  createdAt: '2025-03-26T10:20:45.456Z',
+                  updatedAt: '2025-03-26T10:20:45.456Z',
+                  deletedAt: null,
+                  title: 'Opening Dance Sequence',
+                  studiedAt: '2025-03-26T18:00:00.000Z',
+                  description: 'A vibrant opening number on a freeway',
+                },
+              ],
+            },
+            {
+              id: '1234abcd-5678-ef90-ghij-klmnopqrstuv',
+              createdAt: '2025-03-26T11:05:40.789Z',
+              updatedAt: '2025-03-26T11:05:40.789Z',
+              deletedAt: null,
+              title: 'Inception',
+              imageUrl: 'https://example.com/image2.jpg',
+              description: 'A mind-bending thriller by Christopher Nolan',
+              scenes: [
+                {
+                  id: 'aa11bb22-cc33-dd44-ee55-ff66gg77hh88',
+                  createdAt: '2025-03-26T11:10:50.987Z',
+                  updatedAt: '2025-03-26T11:10:50.987Z',
+                  deletedAt: null,
+                  title: 'The Spinning Top',
+                  studiedAt: '2025-03-26T19:30:00.000Z',
+                  description: 'The final scene with the spinning top',
+                },
+              ],
+            },
+          ],
+          totalCount: 11,
+          currentPage: 1,
+          totalPages: 6,
+        },
+      },
+    },
+  })
   async findAll(
     @Query('keyword') keyword?: string,
     @Query('offset') offset: number = 1,
