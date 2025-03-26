@@ -3,8 +3,8 @@ import { MovieService } from './movie.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody, ApiQuery } from '@nestjs/swagger';
 import { Movie } from './entities/movie.entity';
-import { CreateSceneDto } from 'src/scene/dto/create-scene.dto';
 import { SceneService } from 'src/scene/scene.service';
+import { PaginationResponse } from 'src/common/utils/pagination.util';
 
 @ApiTags('Movies')
 @Controller('movies')
@@ -46,9 +46,27 @@ export class MovieController {
     type: String,
     required: false,
   })
+  @ApiQuery({
+    name: 'offset',
+    description: '가져올 페이지 번호 (기본값: 1)',
+    example: 1,
+    type: Number,
+    required: false,
+  })
+  @ApiQuery({
+    name: 'limit',
+    description: '한 페이지에 가져올 데이터 개수 (기본값: 10)',
+    example: 10,
+    type: Number,
+    required: false,
+  })
   @ApiResponse({ status: 200, description: '모든 영화 정보 가져오기 성공' })
-  async findAll(@Query('keyword') keyword?: string): Promise<Movie[]> {
-    return this.movieService.findAll(keyword);
+  async findAll(
+    @Query('keyword') keyword?: string,
+    @Query('offset') offset: number = 1,
+    @Query('limit') limit: number = 10,
+  ): Promise<PaginationResponse<Movie>> {
+    return this.movieService.findAll(keyword, offset, limit);
   }
 
   @Get(':movieId')
