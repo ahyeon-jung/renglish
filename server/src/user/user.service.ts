@@ -27,10 +27,13 @@ export class UserService {
     offset: number = 1,
     limit: number = 10,
   ): Promise<PaginationResponse<Omit<User, 'password'>>> {
-    return await findAllWithPagination(this.userRepository, {}, [], {
-      offset,
-      limit,
-    });
+    const response = await findAllWithPagination(this.userRepository, {}, [], { offset, limit });
+
+    return {
+      ...response,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      data: response.data.map(({ password, ...rest }) => rest),
+    };
   }
 
   async findUserById(id: string): Promise<Omit<User, 'password'>> {
@@ -42,7 +45,9 @@ export class UserService {
       throw new NotFoundException(`User with id ${id} not found`);
     }
 
-    return user;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...userWithoutPassword } = user;
+    return userWithoutPassword;
   }
 
   async checkEmailExist(email: string): Promise<boolean> {
@@ -61,7 +66,9 @@ export class UserService {
       throw new NotFoundException(`User with email ${email} not found`);
     }
 
-    return user;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...userWithoutPassword } = user;
+    return userWithoutPassword;
   }
 
   async findUserByEmailWithPassword(email: string): Promise<User | null> {

@@ -14,7 +14,30 @@ export class UserController {
     summary: '모든 사용자 정보 가져오기',
     description: '모든 사용자 정보를 가져옵니다.',
   })
-  @ApiResponse({ status: 200, description: '모든 사용자 정보 가져오기 성공' })
+  @ApiResponse({
+    status: 200,
+    description: '모든 사용자 정보 가져오기 성공',
+    schema: {
+      example: {
+        statusCode: 200,
+        message: 'Request successful',
+        data: {
+          data: [
+            {
+              id: '0',
+              createdAt: '2025-03-23T10:17:38.718Z',
+              updatedAt: '2025-03-23T10:19:00.754Z',
+              deletedAt: null,
+              email: 'jah512@naver.com',
+            },
+          ],
+          totalCount: 1,
+          currentPage: 1,
+          totalPages: 1,
+        },
+      },
+    },
+  })
   @ApiQuery({
     name: 'offset',
     description: '가져올 페이지 번호 (기본값: 1)',
