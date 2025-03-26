@@ -56,7 +56,7 @@ export class UserController {
     @Query('offset') offset: number = 1,
     @Query('limit') limit: number = 10,
   ): Promise<PaginationResponse<Omit<User, 'password'>>> {
-    return this.userService.findAll(offset, limit);
+    return this.userService.findAll({ offset, limit });
   }
 
   @Get(':userId')

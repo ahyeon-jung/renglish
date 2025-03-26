@@ -5,7 +5,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Movie } from './entities/movie.entity';
 import { Like, Repository } from 'typeorm';
 import { findAllWithPagination, PaginationResponse } from 'src/common/utils/pagination.util';
-import { SearchParams } from 'src/common/dto/search-params.dto';
 import { SearchMovieParams } from './dto/search-movie.dto';
 
 @Injectable()

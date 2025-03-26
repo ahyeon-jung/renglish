@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { findAllWithPagination, PaginationResponse } from 'src/common/utils/pagination.util';
+import { PaginationParams } from 'src/common/dto/pagination-params.dto';
 
 @Injectable()
 export class UserService {
@@ -23,10 +24,9 @@ export class UserService {
     }
   }
 
-  async findAll(
-    offset: number = 1,
-    limit: number = 10,
-  ): Promise<PaginationResponse<Omit<User, 'password'>>> {
+  async findAll(params: PaginationParams): Promise<PaginationResponse<Omit<User, 'password'>>> {
+    const { offset, limit } = params;
+
     const response = await findAllWithPagination(this.userRepository, {}, [], { offset, limit });
 
     return {

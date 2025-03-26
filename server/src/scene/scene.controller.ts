@@ -57,7 +57,7 @@ export class SceneController {
     @Query('offset') offset: number = 1,
     @Query('limit') limit: number = 10,
   ): Promise<PaginationResponse<Scene>> {
-    return this.sceneService.findAllScene(keyword, offset, limit);
+    return this.sceneService.findAllScene({ keyword, offset, limit });
   }
 
   @Get(':sceneId')
