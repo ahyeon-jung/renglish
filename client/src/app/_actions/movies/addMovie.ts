@@ -2,11 +2,13 @@
 
 import { ENV } from '@/constants/env';
 import { Movie } from '@/types/script';
+import { MovieCategoryType } from '@/constants/movie-category';
 import { cookies } from 'next/headers';
 import { fetchAPI } from '@/libs/api';
 
 type AddMovieActionBody = {
   title: string;
+  category: MovieCategoryType;
   imageUrl: string;
   description: string;
 };
