@@ -1,5 +1,7 @@
 'use client';
 
+import { RefObject, useEffect, useRef, useState } from 'react';
+
 import Container from '../Container';
 import Image from 'next/image';
 import { OptionType } from '@/components/SearchBar/List';
@@ -9,12 +11,13 @@ import Text from '@/components/Text';
 import backgroundImage from '@/assets/images/background.webp';
 import getMovies from '@/app/_actions/movies/getMovies';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 
 export default function ScriptSearch() {
   const router = useRouter();
   const [keyword, setKeyword] = useState('');
   const [keywordOptions, setKeywordOptions] = useState<OptionType[]>([]);
+
+  const searchBarRef = useRef<HTMLDivElement>(undefined);
 
   const handleKeywordChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -36,6 +39,24 @@ export default function ScriptSearch() {
     router.push(`${PATHS.MOVIE.DETAIL(value)}`);
   };
 
+  const resetKeywordOptions = () => {
+    setKeywordOptions([]);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchBarRef.current && !searchBarRef.current.contains(event.target as Node)) {
+        resetKeywordOptions();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className="relative w-full pt-[80px] pb-[120px]">
       <Image
@@ -49,7 +70,14 @@ export default function ScriptSearch() {
         <Text as="h3" typography="display-md" className="text-white">
           Learn English with Movies
         </Text>
-        <SearchBar value={keyword} onChange={handleKeywordChange}>
+        <SearchBar>
+          <SearchBar.InputWithSearch
+            ref={searchBarRef as RefObject<HTMLInputElement>}
+            value={keyword}
+            onChange={handleKeywordChange}
+            onFocus={resetKeywordOptions}
+            onBlur={resetKeywordOptions}
+          />
           <SearchBar.List options={keywordOptions} onItemClick={handleKeywordClick} />
         </SearchBar>
       </Container>

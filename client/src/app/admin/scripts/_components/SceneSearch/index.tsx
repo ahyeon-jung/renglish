@@ -18,5 +18,13 @@ export default function SceneSearch({ currentKeyword }: SceneSearchProps) {
     router.push(`?keyword=${keyword}`);
   };
 
-  return <SearchBar value={keyword} onChange={handleKeywordChange} onClick={handleSearchClick} />;
+  return (
+    <SearchBar>
+      <SearchBar.InputWithSearch
+        value={keyword}
+        onChange={handleKeywordChange}
+        onClick={handleSearchClick}
+      />
+    </SearchBar>
+  );
 }
