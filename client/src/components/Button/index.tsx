@@ -24,9 +24,9 @@ export default function Button({
         variants === 'danger'
           ? 'bg-red-600 text-white'
           : disabled
-            ? 'bg-gray-200'
-            : 'bg-yellow-200',
-        'px-2 rounded-xl cursor-pointer',
+            ? 'bg-gray-200 cursor-not-allowed'
+            : 'bg-yellow-200 cursor-pointer',
+        'px-2 rounded-xl',
         className,
       )}
       disabled={disabled}
