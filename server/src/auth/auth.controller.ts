@@ -12,7 +12,7 @@ import { AccessTokenGuard } from './guards/access-token.guard';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post('signup')
+  @Post('register')
   @ApiOperation({
     summary: '회원가입(Email Verification 필요)',
     description: '새로운 사용자를 생성합니다.',
