@@ -27,9 +27,10 @@ export default function ScriptListItem({ id, title, scenes }: ScriptListItem) {
         </div>
       </div>
       <div className="flex gap-4">
-        {scenes.map((scene, index) => (
-          <ScriptLink key={index} index={index} title={title} id={scene.id} />
-        ))}
+        {scenes &&
+          scenes.map((scene, index) => (
+            <ScriptLink key={index} index={index} title={title} id={scene.id} />
+          ))}
       </div>
     </li>
   );
