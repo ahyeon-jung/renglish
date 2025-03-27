@@ -34,9 +34,7 @@ export default async function loginAction({
   } catch (e) {
     if (e instanceof FetchError) {
       const error = await handleFetchError(e);
-      if (error.statusCode === 401) {
-        return { status: error.statusCode, success: false, message: error.message, data: null };
-      }
+      return { status: error.statusCode, success: false, message: error.message, data: null };
     }
     throw new Error();
   }
