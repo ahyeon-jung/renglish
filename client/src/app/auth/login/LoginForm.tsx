@@ -19,8 +19,8 @@ export default function LoginForm() {
     e.preventDefault();
 
     try {
-      const { status, success } = await loginAction(loginBody);
-      if (!success && status === 401) {
+      const { success } = await loginAction(loginBody);
+      if (!success) {
         toast.error(MESSAGE.AUTH.ERROR.UNMATCHED);
         return;
       }
@@ -39,6 +39,8 @@ export default function LoginForm() {
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoginBody((prev) => ({ ...prev, password: e.target.value }));
   };
+
+  const isAvailableLoginButton = loginBody.email && loginBody.password;
 
   return (
     <form onSubmit={handleLoginSubmit}>
@@ -62,7 +64,9 @@ export default function LoginForm() {
           />
         </Field>
       </div>
-      <Button type="submit">Login</Button>
+      <Button type="submit" disabled={!isAvailableLoginButton}>
+        Login
+      </Button>
     </form>
   );
 }

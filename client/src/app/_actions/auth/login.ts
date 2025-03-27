@@ -13,6 +13,10 @@ export default async function loginAction({
   email,
   password,
 }: LoginAction): Promise<ActionResponse<null>> {
+  if (!email || !password) {
+    return { status: 200, success: false, message: 'no required data', data: null };
+  }
+
   try {
     const response = await fetchAPI<{ token: string }>(`/auth/login`, {
       method: 'POST',
