@@ -4,6 +4,7 @@ import { ENV } from '@/constants/env';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import Header from '@/components/Header';
 import type { Metadata } from 'next';
+import Toast from '@/components/Toast';
 
 export const metadata: Metadata = {
   title: 'REnglish',
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: LayoutProps) {
     <html lang="en">
       <link rel="manifest" href="/manifest.json" crossOrigin="use-credentials"></link>
       <body>
+        <Toast />
         <Header />
         {children}
         <GoogleAnalytics gaId={ENV.GA_ID} />

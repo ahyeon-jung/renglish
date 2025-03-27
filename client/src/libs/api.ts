@@ -2,8 +2,7 @@
 
 import { APIResponse } from '@/types/api';
 import { ENV } from '@/constants/env';
-import { PATHS } from '@/constants/path';
-import { redirect } from 'next/navigation';
+import { FetchError } from '@/utils/error';
 
 export async function fetchAPI<T = void>(endpoint: string, options?: RequestInit) {
   const baseURL = ENV.API_BASE_URL;
@@ -17,10 +16,8 @@ export async function fetchAPI<T = void>(endpoint: string, options?: RequestInit
   });
 
   if (!res.ok) {
-    if (res.status === 401) {
-      redirect(PATHS.AUTH.LOGOUT);
-    }
-    throw new Error(`API Error: ${res.status}`);
+    const errorMessage = `Request failed with status ${res.status}: ${res.statusText}`;
+    throw new FetchError(errorMessage, res);
   }
 
   return res.json() as Promise<APIResponse<T>>;
