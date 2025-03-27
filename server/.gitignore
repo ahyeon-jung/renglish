@@ -1,9 +1,5 @@
 .env
 
-# pwa
-public/sw.js
-public/workbox-*.js
-
 # compiled output
 /dist
 /node_modules
