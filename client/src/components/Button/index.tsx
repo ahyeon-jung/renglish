@@ -1,7 +1,7 @@
 import Text from '../Text';
 import clsx from 'clsx';
 
-type Button = {
+export type ButtonProps = {
   fit?: boolean;
   size?: 'sm' | 'md' | 'default';
   variants?: 'danger' | 'default';
@@ -15,7 +15,7 @@ export default function Button({
   children,
   variants,
   ...props
-}: Button) {
+}: ButtonProps) {
   return (
     <button
       className={clsx(
