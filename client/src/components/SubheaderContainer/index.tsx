@@ -12,7 +12,7 @@ export default function SubHeaderContainer({ title, children }: SubHeaderContain
         zIndex: `calc(var(--header-z-index) + 1)`,
       }}
       className={clsx(
-        'fixed inset-x-0',
+        'fixed inset-x-0 p-4',
         'h-[50px] bg-white shadow-sm',
         'flex items-center justify-between py-[10px]',
       )}

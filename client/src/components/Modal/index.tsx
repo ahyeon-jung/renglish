@@ -8,7 +8,7 @@ type ModalProps = { onClose: () => void } & React.PropsWithChildren;
 export default function Modal({ onClose, children }: ModalProps) {
   return (
     <>
-      <Overlay onClick={onClose}></Overlay>
+      <Overlay isModal onClick={onClose}></Overlay>
       <div
         className={clsx(
           'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',

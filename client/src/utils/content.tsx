@@ -24,3 +24,10 @@ export function parseText(text: string, spanClassName?: string) {
       return paragraph;
     });
 }
+
+export function stripHtmlTags(text: string): string {
+  return text
+    .replace(/<\/?p>/g, '')
+    .replace(/<\/?span.*?>/g, '')
+    .trim();
+}

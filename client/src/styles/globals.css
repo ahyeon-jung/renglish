@@ -15,7 +15,8 @@
   --header-z-index: 1000;
   --nav-z-index: 9999;
   --overlay-z-index: 999;
-  --overlay-text-z-index: 1000;
+  --overlay-modal-index: 1020;
+  --overlay-text-z-index: 1025;
   --background: #ffffff;
   --foreground: #171717;
 }
