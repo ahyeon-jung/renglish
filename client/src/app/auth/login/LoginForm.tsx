@@ -2,8 +2,10 @@
 
 import Button from '@/components/Button';
 import Field from '@/components/Field';
+import { MESSAGE } from '@/constants/toast';
 import { PATHS } from '@/constants/path';
 import loginAction from '@/app/_actions/auth/login';
+import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -17,12 +19,19 @@ export default function LoginForm() {
     e.preventDefault();
 
     try {
-      await loginAction(loginBody);
+      const { status, success } = await loginAction(loginBody);
+      if (!success && status === 401) {
+        toast.error(MESSAGE.AUTH.ERROR.UNMATCHED);
+        return;
+      }
       router.push(PATHS.HOME);
-    } catch (e) {
-      console.log('로그인 실패', e);
+    } catch {
+      toast.error(MESSAGE.COMMON.ERROR.SERVER);
+    } finally {
+      setLoginBody((prev) => ({ ...prev, password: '' }));
     }
   };
+
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoginBody((prev) => ({ ...prev, email: e.target.value }));
   };
@@ -39,12 +48,18 @@ export default function LoginForm() {
           <Field.Input
             type="email"
             placeholder="ex. renglish@gmail.com"
+            value={loginBody.email}
             onChange={handleEmailChange}
           />
         </Field>
         <Field>
           <Field.Label>Password</Field.Label>
-          <Field.Input type="password" placeholder="ex. 123456" onChange={handlePasswordChange} />
+          <Field.Input
+            type="password"
+            placeholder="ex. 123456"
+            value={loginBody.password}
+            onChange={handlePasswordChange}
+          />
         </Field>
       </div>
       <Button type="submit">Login</Button>
