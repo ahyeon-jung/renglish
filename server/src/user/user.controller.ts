@@ -43,20 +43,18 @@ export class UserController {
     description: '가져올 페이지 번호 (기본값: 1)',
     example: 1,
     type: Number,
-    required: false,
   })
   @ApiQuery({
     name: 'limit',
     description: '한 페이지에 가져올 데이터 개수 (기본값: 10)',
     example: 10,
     type: Number,
-    required: false,
   })
   async findAll(
     @Query('offset') offset: number = 1,
     @Query('limit') limit: number = 10,
   ): Promise<PaginationResponse<Omit<User, 'password'>>> {
-    return this.userService.findAll(offset, limit);
+    return this.userService.findAll({ offset, limit });
   }
 
   @Get(':userId')

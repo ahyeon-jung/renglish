@@ -13,6 +13,15 @@ export class CreateMovieDto {
   title: string;
 
   @ApiProperty({
+    example: 'romance',
+    description: '카테고리',
+    required: true,
+  })
+  @IsNotEmpty({ message: 'Category is required' })
+  @IsString({ message: 'Category must be a string' })
+  category: string;
+
+  @ApiProperty({
     example:
       'https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fmovie-phinf.pstatic.net%2F20160520_45%2F14637112153058xJx0_JPEG%2Fmovie_image.jpg',
     description: '영화 이미지 주소',

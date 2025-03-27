@@ -7,6 +7,7 @@ import { Like, Repository } from 'typeorm';
 import { Movie } from 'src/movie/entities/movie.entity';
 import { MovieService } from 'src/movie/movie.service';
 import { findAllWithPagination, PaginationResponse } from 'src/common/utils/pagination.util';
+import { SearchParams } from 'src/common/dto/search-params.dto';
 
 @Injectable()
 export class SceneService {
@@ -41,11 +42,9 @@ export class SceneService {
     await this.sceneRepository.remove(scene);
   }
 
-  async findAllScene(
-    keyword?: string,
-    offset: number = 1,
-    limit: number = 10,
-  ): Promise<PaginationResponse<Scene>> {
+  async findAllScene(params: SearchParams): Promise<PaginationResponse<Scene>> {
+    const { keyword, offset, limit } = params;
+
     const whereCondition = keyword
       ? [{ title: Like(`%${keyword}%`) }, { description: Like(`%${keyword}%`) }]
       : {};

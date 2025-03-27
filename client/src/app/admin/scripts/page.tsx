@@ -11,7 +11,7 @@ export default async function Scripts({
   const search = await searchParams;
   const {
     data: { data: scenes },
-  } = await getScenes(search.keyword);
+  } = await getScenes({ keyword: search.keyword });
 
   return (
     <main className={clsx('mt-[var(--header-height)] p-3', 'flex flex-col gap-4')}>

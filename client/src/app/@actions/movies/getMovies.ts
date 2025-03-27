@@ -1,20 +1,31 @@
 'use server';
 
+import { PaginationParams, PaginationResponse, SearchParams } from '@/types/api';
+
 import { ActionResponse } from '@/types/action';
 import { Movie } from '@/types/movie';
-import { PaginationResponse } from '@/types/api';
 import { fetchAPI } from '@/libs/api';
 
-type GetMoviesProps = {
-  keyword?: string;
-};
+type GetMoviesParams = { category?: string } & SearchParams & PaginationParams;
 
 export default async function getMovies({
   keyword,
-}: GetMoviesProps): Promise<ActionResponse<PaginationResponse<Movie>>> {
+  category,
+  offset = 1,
+  limit = 10,
+}: GetMoviesParams): Promise<ActionResponse<PaginationResponse<Movie>>> {
   const params = new URLSearchParams();
   if (keyword) {
     params.append('keyword', keyword);
+  }
+  if (category) {
+    params.append('category', category);
+  }
+  if (offset) {
+    params.append('offset', offset.toString());
+  }
+  if (limit) {
+    params.append('limit', limit.toString());
   }
 
   const url = `/movies?${params.toString()}`;

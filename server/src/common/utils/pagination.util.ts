@@ -1,9 +1,5 @@
+import { PaginationParams } from '../dto/pagination-params.dto';
 import { Repository } from 'typeorm';
-
-export interface PaginationParams {
-  offset: number;
-  limit: number;
-}
 
 export interface PaginationResponse<T> {
   data: T[];

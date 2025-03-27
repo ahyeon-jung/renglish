@@ -47,18 +47,23 @@ export class MovieController {
     required: false,
   })
   @ApiQuery({
+    name: 'category',
+    description: '영화의 카테고리를 입력하세요.',
+    example: 'romance',
+    type: String,
+    required: false,
+  })
+  @ApiQuery({
     name: 'offset',
     description: '가져올 페이지 번호 (기본값: 1)',
     example: 1,
     type: Number,
-    required: false,
   })
   @ApiQuery({
     name: 'limit',
     description: '한 페이지에 가져올 데이터 개수 (기본값: 10)',
     example: 10,
     type: Number,
-    required: false,
   })
   @ApiResponse({
     status: 200,
@@ -118,11 +123,12 @@ export class MovieController {
     },
   })
   async findAll(
+    @Query('category') category?: string,
     @Query('keyword') keyword?: string,
     @Query('offset') offset: number = 1,
     @Query('limit') limit: number = 10,
   ): Promise<PaginationResponse<Movie>> {
-    return this.movieService.findAll(keyword, offset, limit);
+    return this.movieService.findAll({ category, keyword, offset, limit });
   }
 
   @Get(':movieId')
