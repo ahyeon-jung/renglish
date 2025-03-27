@@ -25,7 +25,7 @@ export default function Categories() {
             key={index}
             className="flex justify-center items-center rounded-xl bg-gray-100 py-[20px]"
           >
-            <Link href={PATHS.MOVIE_LIST}>
+            <Link href={PATHS.MOVIE.LIST}>
               <Icon label={category.label} icon={category.icon} />
             </Link>
           </li>

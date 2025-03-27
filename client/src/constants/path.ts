@@ -1,9 +1,5 @@
 export const PATHS = {
   HOME: '/',
-  MOVIE_LIST: '/movies',
-  MOVIE_DETAIL: (movie: string) => `/movies/${movie}`,
-  INTRODUCE: '/introduce',
-  PROFILE: '/profile',
   ADMIN: {
     HOME: '/admin',
     USERS: { LIST: '/admin/users' },
@@ -15,6 +11,7 @@ export const PATHS = {
     LOGIN: '/auth/login',
     REGISTER: '/auth/register',
     LOGOUT: '/auth/logout',
+    PROFILE: '/profile',
   },
   MOVIE: {
     LIST: '/movies',
@@ -32,6 +29,9 @@ export const PATHS = {
       },
     },
   },
-  NOTICES: { INSTALL: '/notices/install', ASSIGNMENT: '/notices/assignment' },
-  MOVIE_SPEAKING: (movie: string, script: string) => `/movies/${movie}/${script}/speaking`,
+  NOTICES: {
+    INSTALL: '/notices/install',
+    ASSIGNMENT: '/notices/assignment',
+    INTRODUCE: '/introduce',
+  },
 };

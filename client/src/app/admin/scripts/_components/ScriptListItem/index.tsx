@@ -18,7 +18,7 @@ export default function ScriptListItem({ id, title, description }: ScriptListIte
       )}
     >
       <div className="flex flex-col">
-        <Link href={PATHS.MOVIE_DETAIL(id)}>
+        <Link href={PATHS.MOVIE.DETAIL(id)}>
           <Text typography="display-sm">{formatTitle(title)}</Text>
         </Link>
         <div className="flex items-center gap-2 mt-2 text-sm text-gray-600">{description}</div>
