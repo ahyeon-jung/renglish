@@ -15,6 +15,7 @@ type NavProps = { withAuth: boolean };
 const DEFAULT_NAV_OPTIONS = [
   { label: 'home', path: PATHS.HOME },
   { label: 'introduce', path: PATHS.INTRODUCE },
+  { label: 'assignment guide', path: PATHS.NOTICES.ASSIGNMENT },
   { label: 'how to install', path: PATHS.NOTICES.INSTALL },
   { label: 'movies', path: PATHS.MOVIE.LIST },
 ];

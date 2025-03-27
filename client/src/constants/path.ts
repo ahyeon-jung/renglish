@@ -32,6 +32,6 @@ export const PATHS = {
       },
     },
   },
-  NOTICES: { INSTALL: '/notices/install' },
+  NOTICES: { INSTALL: '/notices/install', ASSIGNMENT: '/notices/assignment' },
   MOVIE_SPEAKING: (movie: string, script: string) => `/movies/${movie}/${script}/speaking`,
 };
