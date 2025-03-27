@@ -24,7 +24,7 @@ export default function Dialog({ isSub, isOpen, onClose, children }: DialogProps
       ) : (
         <div
           className={clsx(
-            'h-full w-[200px] bg-white p-8',
+            'h-full w-[250px] bg-white p-8',
             'shadow-lg transform transition-transform duration-300',
             isOpen ? 'translate-x-0' : 'translate-x-full',
           )}

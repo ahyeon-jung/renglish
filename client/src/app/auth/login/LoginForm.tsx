@@ -36,11 +36,15 @@ export default function LoginForm() {
       <div className="flex flex-col gap-2">
         <Field>
           <Field.Label>Email</Field.Label>
-          <Field.Input placeholder="ex. renglish@gmail.com" onChange={handleEmailChange} />
+          <Field.Input
+            type="email"
+            placeholder="ex. renglish@gmail.com"
+            onChange={handleEmailChange}
+          />
         </Field>
         <Field>
           <Field.Label>Password</Field.Label>
-          <Field.Input placeholder="ex. 123456" onChange={handlePasswordChange} />
+          <Field.Input type="password" placeholder="ex. 123456" onChange={handlePasswordChange} />
         </Field>
       </div>
       <Button type="submit">Login</Button>
