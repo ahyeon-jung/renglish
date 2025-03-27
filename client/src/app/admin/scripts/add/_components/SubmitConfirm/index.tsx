@@ -28,6 +28,22 @@ export default function SubmitConfirm() {
       console.log(err);
     }
   };
+
+  const handleDownloadScriptClick = () => {
+    const jsonData = JSON.stringify(data, null, 2);
+    const blob = new Blob([jsonData], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${data.movie.title.replace(/ /g, '_').toLowerCase()}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <form onSubmit={handleAddScriptSubmit}>
       Almost Done!
@@ -35,6 +51,9 @@ export default function SubmitConfirm() {
         <pre>{JSON.stringify(data, null, 2)}</pre>
       </div>
       <Button>Add Script</Button>
+      <Button type="button" variants="success" onClick={handleDownloadScriptClick}>
+        Download Script
+      </Button>
     </form>
   );
 }

@@ -59,6 +59,11 @@ export class SceneService {
     const scene = await this.sceneRepository.findOne({
       where: { id: sceneId },
       relations: ['speakers', 'dialogues', 'dialogues.speaker'],
+      order: {
+        dialogues: {
+          order: 'ASC',
+        },
+      },
     });
     if (!scene) {
       throw new NotFoundException('Scene not found');

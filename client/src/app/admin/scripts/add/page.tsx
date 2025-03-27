@@ -10,6 +10,7 @@ import Speakers, {
 } from './_components/Speakers';
 import { Step, useFunnel } from '@/hooks/useFunnel';
 
+import FileUpload from './_components/FileUpload';
 import SubmitConfirm from './_components/SubmitConfirm';
 import clsx from 'clsx';
 import { useState } from 'react';
@@ -40,6 +41,7 @@ export default function ScriptAdd() {
     <main className={clsx('mt-[var(--header-height)]')}>
       <Funnel>
         <Step currentStep={SCRIPT_ADD_STEP.MOVIE}>
+          <FileUpload />
           <Movie />
         </Step>
         <Step currentStep={SCRIPT_ADD_STEP.SCENE}>

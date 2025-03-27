@@ -37,6 +37,7 @@ export class DialogueService {
       korean_script: createDialogueDto.korean_script,
       scene,
       speaker,
+      order: createDialogueDto.order,
     });
 
     return this.dialogueRepository.save(dialogue);
