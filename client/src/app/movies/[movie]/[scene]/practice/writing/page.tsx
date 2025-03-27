@@ -1,7 +1,7 @@
-import DialogListContainer from '../../@components/DialogListContainer';
+import DialogListContainer from '../../_components/DialogListContainer';
 import Dialogue from './Dialogue';
-import SceneHeader from '../../@components/SceneHeader';
-import getScene from '@/app/@actions/scenes/getScene';
+import SceneHeader from '../../_components/SceneHeader';
+import getScene from '@/app/_actions/scenes/getScene';
 
 export default async function MovieScenePracticeWriting({
   params,

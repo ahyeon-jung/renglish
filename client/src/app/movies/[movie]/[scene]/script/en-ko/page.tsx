@@ -1,8 +1,8 @@
-import DialogListContainer from '../../@components/DialogListContainer';
-import DialogListItem from '../../@components/DialogListItem';
-import SceneHeader from '../../@components/SceneHeader';
+import DialogListContainer from '../../_components/DialogListContainer';
+import DialogListItem from '../../_components/DialogListItem';
+import SceneHeader from '../../_components/SceneHeader';
 import Text from '@/components/Text';
-import getScene from '@/app/@actions/scenes/getScene';
+import getScene from '@/app/_actions/scenes/getScene';
 import { parseText } from '@/utils/content';
 
 export default async function MovieSceneEnglishKoreanScript({

@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import getAuthDataAction from '../@actions/auth/user/getAuthData';
+import getAuthDataAction from '../_actions/auth/user/getAuthData';
 
 export default async function Profile() {
   const response = await getAuthDataAction();

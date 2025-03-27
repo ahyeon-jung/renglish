@@ -3,7 +3,7 @@
 import Button from '@/components/Button';
 import Field from '@/components/Field';
 import { PATHS } from '@/constants/path';
-import loginAction from '@/app/@actions/auth/login';
+import loginAction from '@/app/_actions/auth/login';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 

@@ -4,7 +4,7 @@ import Button from '@/components/Button';
 import { PATHS } from '@/constants/path';
 import { ScriptAddBodyType } from '../../page';
 import { ScriptAddStepType } from '../../_constants/step';
-import uploadScriptAction from '@/app/@actions/admin/uploadScript';
+import uploadScriptAction from '@/app/_actions/admin/uploadScript';
 import { useContext } from 'react';
 import { useRouter } from 'next/navigation';
 

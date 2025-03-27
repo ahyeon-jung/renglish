@@ -7,7 +7,7 @@ import { PATHS } from '@/constants/path';
 import SearchBar from '@/components/SearchBar';
 import Text from '@/components/Text';
 import backgroundImage from '@/assets/images/background.webp';
-import getMovies from '@/app/@actions/movies/getMovies';
+import getMovies from '@/app/_actions/movies/getMovies';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 

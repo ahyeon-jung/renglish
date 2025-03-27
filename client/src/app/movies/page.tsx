@@ -1,6 +1,6 @@
-import ScriptListItem from './@components/ScriptListItem';
+import ScriptListItem from './_components/ScriptListItem';
 import clsx from 'clsx';
-import getMovies from '../@actions/movies/getMovies';
+import getMovies from '../_actions/movies/getMovies';
 
 export default async function Scripts() {
   const {

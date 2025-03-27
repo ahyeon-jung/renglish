@@ -1,7 +1,7 @@
 import SceneSearch from './_components/SceneSearch';
 import ScriptListItem from './_components/ScriptListItem';
 import clsx from 'clsx';
-import getScenes from '@/app/@actions/scenes/getScenes';
+import getScenes from '@/app/_actions/scenes/getScenes';
 
 export default async function Scripts({
   searchParams,

@@ -1,6 +1,6 @@
 'use client';
 
-import DialogListItem from '../../@components/DialogListItem';
+import DialogListItem from '../../_components/DialogListItem';
 import { Dialogue as DialogueType } from '@/types/dialogue';
 import { WandSparkles } from 'lucide-react';
 import { parseText } from '@/utils/content';

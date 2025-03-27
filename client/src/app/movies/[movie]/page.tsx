@@ -1,6 +1,6 @@
-import MovieInfo from './@components/MovieInfo';
+import MovieInfo from './_components/MovieInfo';
 import clsx from 'clsx';
-import getMovie from '@/app/@actions/movies/getMovie';
+import getMovie from '@/app/_actions/movies/getMovie';
 
 export default async function MovieDetail({ params }: { params: Promise<{ movie: string }> }) {
   const slug = await params;

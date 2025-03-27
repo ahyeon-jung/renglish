@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-import DialogListItem from '../../../../@components/DialogListItem';
+import DialogListItem from '../../../../_components/DialogListItem';
 import { LANGUAGE_MODE } from '@/constants/language';
 import { Scene } from '@/types/scene';
 import { parseText } from '@/utils/content';

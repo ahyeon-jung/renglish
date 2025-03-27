@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import { ENV } from '@/constants/env';
 import { PATHS } from '@/constants/path';
-import adminAction from '@/app/@actions/auth/admin';
+import adminAction from '@/app/_actions/auth/admin';
 
 export async function withAuthRouteMiddleware(request: NextRequest) {
   const token = request.cookies.get(ENV.COOKIE_ACCESS_TOKEN_KEY)?.value;

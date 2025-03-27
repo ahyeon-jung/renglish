@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import adminAction from '@/app/@actions/auth/admin';
+import adminAction from '@/app/_actions/auth/admin';
 import { getTokenInClient } from '@/utils/cookie';
 import useSWR from 'swr';
 

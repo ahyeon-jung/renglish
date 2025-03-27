@@ -2,7 +2,7 @@ import Container from '../Container';
 import Image from 'next/image';
 import Overlay from '@/components/Overlay';
 import Text from '@/components/Text';
-import getLatestMovieAction from '@/app/@actions/movies/getLatestMovie';
+import getLatestMovieAction from '@/app/_actions/movies/getLatestMovie';
 
 export default async function LatestScript() {
   const { data } = await getLatestMovieAction();
