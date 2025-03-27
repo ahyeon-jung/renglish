@@ -4,7 +4,7 @@ import clsx from 'clsx';
 type Button = {
   fit?: boolean;
   size?: 'sm' | 'md' | 'default';
-  variants?: 'danger' | 'default';
+  variants?: 'danger' | 'default' | 'primary' | 'secondary' | 'success';
 } & React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
 
 export default function Button({
@@ -13,20 +13,23 @@ export default function Button({
   className,
   disabled,
   children,
-  variants,
+  variants = 'default',
   ...props
 }: Button) {
   return (
     <button
       className={clsx(
         fit ? '' : 'w-full',
-        size === 'sm' ? '35' : size === 'md' ? 'h-[40]' : 'h-[50px]',
-        variants === 'danger'
-          ? 'bg-red-600 text-white'
-          : disabled
-            ? 'bg-gray-200 cursor-not-allowed'
-            : 'bg-yellow-200 cursor-pointer',
         'px-2 rounded-xl',
+        size === 'sm' ? '35' : size === 'md' ? 'h-[40]' : 'h-[50px]',
+        {
+          'bg-yellow-200 text-black cursor-pointer': variants === 'default',
+          'bg-red-600 text-white': variants === 'danger',
+          'bg-blue-400 text-white': variants === 'primary',
+          'bg-gray-400 text-white': variants === 'secondary',
+          'bg-green-600 text-white': variants === 'success',
+          'bg-gray-200 cursor-not-allowed': disabled,
+        },
         className,
       )}
       disabled={disabled}

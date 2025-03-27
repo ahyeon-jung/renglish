@@ -1,6 +1,5 @@
-import DialogListContainer from '../../_components/DialogListContainer';
-import Dialogue from './Dialogue';
 import SceneHeader from '../../_components/SceneHeader';
+import WritingDialogues from './_components/WritingDialogues';
 import getScene from '@/app/_actions/scenes/getScene';
 
 export default async function MovieScenePracticeWriting({
@@ -15,11 +14,7 @@ export default async function MovieScenePracticeWriting({
   return (
     <main className="mt-[var(--header-height)] p-3">
       <SceneHeader title={slug.movie} movieId={slug.movie} sceneId={slug.scene} />
-      <DialogListContainer>
-        {scene.dialogues.map((dialogue, index) => {
-          return <Dialogue key={index} {...dialogue} />;
-        })}
-      </DialogListContainer>
+      <WritingDialogues dialogues={scene.dialogues} />
     </main>
   );
 }
