@@ -7,6 +7,7 @@ import { Movie } from 'src/movie/entities/movie.entity';
 import { Notice } from 'src/notice/entities/notice.entity';
 import { Scene } from 'src/scene/entities/scene.entity';
 import { Speaker } from 'src/speaker/entities/speaker.entity';
+import { Statistic } from 'src/statistic/entities/statistic.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from 'src/user/entities/user.entity';
 import { Writing } from 'src/writing/entities/writing.entity';
@@ -24,7 +25,7 @@ import { Writing } from 'src/writing/entities/writing.entity';
         username: configService.get<string>('DB_USERNAME'),
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_NAME'),
-        entities: [Movie, Scene, User, Writing, Speaker, Dialogue, Notice, Inquiry],
+        entities: [Movie, Scene, User, Writing, Speaker, Dialogue, Notice, Statistic, Inquiry],
         synchronize: true,
       }),
     }),
