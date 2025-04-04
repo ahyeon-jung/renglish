@@ -4,7 +4,11 @@ export const PATHS = {
     HOME: '/admin',
     USERS: { LIST: '/admin/users' },
     INQUIRIES: { LIST: '/admin/inquiries' },
-    SCRIPTS: { ADD: '/admin/scripts/add', LIST: '/admin/scripts' },
+    SCRIPTS: {
+      ADD: '/admin/scripts/add',
+      LIST: '/admin/scripts',
+      DETAIL: (scriptId: string) => `/admin/scripts/${scriptId}`,
+    },
     NOTICES: { ADD: '/admin/notices/add' },
   },
   AUTH: {
