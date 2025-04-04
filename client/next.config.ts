@@ -10,9 +10,9 @@ module.exports = withPWA({
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'search.pstatic.net',
+        hostname: 'lh3.googleusercontent.com',
         port: '',
-        pathname: '/common/**',
+        pathname: '/d/**',
       },
     ],
   },

@@ -34,10 +34,16 @@ export class MovieService {
       whereCondition = [{ title: Like(`%${keyword}%`) }, { description: Like(`%${keyword}%`) }];
     }
 
-    return await findAllWithPagination(this.movieRepository, whereCondition, ['scenes'], {
-      offset,
-      limit,
-    });
+    return await findAllWithPagination(
+      this.movieRepository,
+      whereCondition,
+      ['scenes'],
+      {
+        offset,
+        limit,
+      },
+      { scenes: { studiedAt: 'DESC' } },
+    );
   }
 
   async findMovieWithLatestScene(): Promise<Movie> {
@@ -55,6 +61,7 @@ export class MovieService {
 
     return movie;
   }
+
   async findOneById(id: string): Promise<Movie> {
     const movie = await this.movieRepository.findOne({
       where: { id },
@@ -79,6 +86,16 @@ export class MovieService {
     movie.description = updateMovieDto.description ?? movie.description;
 
     return this.movieRepository.save(movie);
+  }
+
+  async updateImage(id: string, imageUrl: string) {
+    const movie = await this.findOneById(id);
+    if (!movie) {
+      throw new NotFoundException(`Movie with ID ${id} not found`);
+    }
+
+    await this.movieRepository.update(id, { imageUrl });
+    return this.findOneById(id);
   }
 
   async remove(id: string): Promise<void> {

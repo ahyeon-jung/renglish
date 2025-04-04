@@ -1,5 +1,6 @@
+import { FindManyOptions, Repository } from 'typeorm';
+
 import { PaginationParams } from '../dto/pagination-params.dto';
-import { Repository } from 'typeorm';
 
 export interface PaginationResponse<T> {
   data: T[];
@@ -13,6 +14,7 @@ export async function findAllWithPagination<T>(
   where: object = {},
   relations: string[] = [],
   { offset, limit }: PaginationParams,
+  order: FindManyOptions<T>['order'] = {},
 ): Promise<PaginationResponse<T>> {
   const skip = (offset - 1) * limit;
   const take = limit;
@@ -22,6 +24,7 @@ export async function findAllWithPagination<T>(
     relations,
     skip,
     take,
+    order,
   });
 
   const totalPages = Math.ceil(totalCount / limit);

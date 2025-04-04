@@ -9,7 +9,7 @@ import ScriptListItem from './_components/ScriptListItem';
 import clsx from 'clsx';
 import useSWRInfinite from 'swr/infinite';
 
-const PAGE_SIZE = 6;
+const PAGE_SIZE = 8;
 
 const getKey = (pageIndex: number, previousPageData: Movie[]) => {
   if (previousPageData && !previousPageData.length) return null;
@@ -23,14 +23,16 @@ const fetcher = async (url: string) => {
 };
 
 export default function Scripts() {
-  const [movies, setMovies] = useState<Movie[]>([]);
-  const { data, size, setSize, isLoading } = useSWRInfinite<Movie>(getKey, fetcher);
+  const [movies, setMovies] = useState<Movie[][]>([]);
+  const { data, size, setSize, isLoading } = useSWRInfinite<Movie[]>(getKey, fetcher);
 
   useEffect(() => {
     if (!data) return;
 
     setMovies(data);
   }, [isLoading, data, size]);
+
+  const isLast = movies && movies.length !== 0 && movies[movies.length - 1].length < PAGE_SIZE;
 
   return (
     <main className={clsx('mt-[var(--header-height)] p-3')}>
@@ -39,7 +41,7 @@ export default function Scripts() {
         {movies.length > 0
           ? data?.flat().map((movie, index) => <ScriptListItem key={index} {...movie} />)
           : !isLoading && <div>No movies found</div>}
-        <Button onClick={() => setSize(size + 1)}>Load More</Button>
+        {!isLast && <Button onClick={() => setSize(size + 1)}>Load More</Button>}
       </ul>
     </main>
   );

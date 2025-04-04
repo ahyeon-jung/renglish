@@ -1,10 +1,11 @@
-import { Body, Controller, Delete, Get, Param, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { SceneService } from './scene.service';
 import { ApiBody, ApiOperation, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { Speaker } from 'src/speaker/entities/speaker.entity';
 import { Scene } from './entities/scene.entity';
 import { CreateSceneDto } from './dto/create-scene.dto';
 import { PaginationResponse } from 'src/common/utils/pagination.util';
+import { UpdateSceneDto } from './dto/update-scene.dto';
 @ApiTags('Scenes')
 @Controller('scenes')
 export class SceneController {
@@ -24,6 +25,22 @@ export class SceneController {
   @ApiBody({ type: CreateSceneDto })
   createScene(@Param('movieId') movieId: string, @Body() createSpeakerDto: CreateSceneDto) {
     return this.sceneService.create(movieId, createSpeakerDto);
+  }
+
+  @Put('/:sceneId')
+  @ApiParam({
+    name: 'sceneId',
+    description: '장면의 ID',
+    example: 'e5e798e1-9241-4b95-8e2c-0b630bbd033f',
+    type: String,
+  })
+  @ApiOperation({
+    summary: '장면 정보 변경하기',
+    description: '장면 정보를 변경합니다.',
+  })
+  @ApiBody({ type: UpdateSceneDto })
+  updateDialogue(@Param('sceneId') sceneId: string, @Body() updateSceneDto: UpdateSceneDto) {
+    return this.sceneService.update(sceneId, updateSceneDto);
   }
 
   @Get('')
