@@ -1,10 +1,11 @@
-import { Controller, Get, Post, Body, Param, Delete, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Query, Put } from '@nestjs/common';
 import { MovieService } from './movie.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody, ApiQuery } from '@nestjs/swagger';
 import { Movie } from './entities/movie.entity';
 import { SceneService } from 'src/scene/scene.service';
 import { PaginationResponse } from 'src/common/utils/pagination.util';
+import { UpdateMovieImageDto } from './dto/update-movie.dto';
 
 @ApiTags('Movies')
 @Controller('movies')
@@ -23,6 +24,22 @@ export class MovieController {
   @ApiBody({ type: CreateMovieDto })
   create(@Body() createMovieDto: CreateMovieDto) {
     return this.movieService.create(createMovieDto);
+  }
+
+  @Put(':movieId')
+  @ApiOperation({
+    summary: '영화 이미지 추가',
+    description: '영화 이미지를 추가합니다.',
+  })
+  @ApiParam({
+    name: 'movieId',
+    description: '영화의 ID',
+    example: '6ef26cb3-746c-4df1-90e0-66805f3f8320',
+    type: String,
+  })
+  @ApiBody({ type: UpdateMovieImageDto })
+  updateImageUrl(@Param('movieId') movieId: string, @Body() createMovieDto: UpdateMovieImageDto) {
+    return this.movieService.updateImage(movieId, createMovieDto.imageUrl);
   }
 
   @Get('latest')

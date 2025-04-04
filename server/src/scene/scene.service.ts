@@ -8,6 +8,7 @@ import { Movie } from 'src/movie/entities/movie.entity';
 import { MovieService } from 'src/movie/movie.service';
 import { findAllWithPagination, PaginationResponse } from 'src/common/utils/pagination.util';
 import { SearchParams } from 'src/common/dto/search-params.dto';
+import { UpdateSceneDto } from './dto/update-scene.dto';
 
 @Injectable()
 export class SceneService {
@@ -82,5 +83,15 @@ export class SceneService {
     }
 
     return scene.speakers || [];
+  }
+
+  async update(id: string, updateSceneDto: UpdateSceneDto) {
+    const scene = await this.findSceneById(id);
+    if (!scene) {
+      throw new NotFoundException(`Scene with ID ${id} not found`);
+    }
+
+    await this.sceneRepository.update(id, updateSceneDto);
+    return this.findSceneById(id);
   }
 }
