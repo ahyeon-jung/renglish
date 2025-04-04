@@ -30,6 +30,8 @@ export const PATHS = {
         FILL: (movie: string, script: string) => `/movies/${movie}/${script}/practice/fill`,
         SPEAKING: (movie: string, script: string) => `/movies/${movie}/${script}/practice/speaking`,
         WRITING: (movie: string, script: string) => `/movies/${movie}/${script}/practice/writing`,
+        EXPRESSION: (movie: string, script: string) =>
+          `/movies/${movie}/${script}/practice/expression`,
       },
     },
   },
