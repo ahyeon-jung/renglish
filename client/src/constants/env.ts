@@ -5,6 +5,7 @@ const CLIENT_ENV = {
 
 export const ENV = {
   ...CLIENT_ENV,
+  WEBHOOK_URL: process.env.WEBHOOK_URL ?? '',
   API_BASE_URL: process.env.API_BASE_URL ?? '',
   IS_PRODUCTION: process.env.NODE_ENV === 'production',
   COOKIE_ACCESS_TOKEN_KEY: process.env.COOKIE_ACCESS_TOKEN_KEY ?? '',
