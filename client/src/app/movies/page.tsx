@@ -31,6 +31,7 @@ export default function Scripts() {
 
     setMovies(data);
   }, [isLoading, data, size]);
+
   return (
     <main className={clsx('mt-[var(--header-height)] p-3')}>
       {isLoading && <div>Loading...</div>}

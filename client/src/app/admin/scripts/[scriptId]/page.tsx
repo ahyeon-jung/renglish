@@ -1,5 +1,6 @@
 import Text from '@/components/Text';
 import UpdateDialogueModal from './UpdateDialogueModal';
+import UpdateSceneModal from './UpdateSceneModal';
 import getScene from '@/app/_actions/scenes/getScene';
 import { parseText } from '@/utils/content';
 
@@ -14,6 +15,7 @@ export default async function AdminMovieSceneEnglishKoreanScript({
 
   return (
     <main className="mt-[var(--header-height)] p-3">
+      <UpdateSceneModal {...scene} />
       <div className="flex flex-col gap-3">
         {scene.dialogues.map((dialogue, index) => {
           return (
