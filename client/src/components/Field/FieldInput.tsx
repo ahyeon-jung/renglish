@@ -1,8 +1,10 @@
-type FieldInput = React.DetailedHTMLProps<
+import clsx from 'clsx';
+
+export type FieldInputProps = React.DetailedHTMLProps<
   React.InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
 >;
 
-export default function FieldInput({ ...props }: FieldInput) {
-  return <input className="border p-2 rounded-lg" {...props} />;
+export default function FieldInput({ className, ...props }: FieldInputProps) {
+  return <input className={clsx('border p-2 rounded-lg', className)} {...props} />;
 }

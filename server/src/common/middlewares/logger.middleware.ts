@@ -1,7 +1,7 @@
-import { Injectable, NestMiddleware } from "@nestjs/common";
-import { NextFunction, Request, Response } from "express";
+import { Injectable, NestMiddleware } from '@nestjs/common';
+import { NextFunction, Request, Response } from 'express';
 
-import { LoggerService } from "src/logger/logger.service";
+import { LoggerService } from 'src/logger/logger.service';
 
 @Injectable()
 export class LoggerMiddleware implements NestMiddleware {
@@ -17,9 +17,9 @@ export class LoggerMiddleware implements NestMiddleware {
       return originalSend.call(this, data);
     };
 
-    res.on("finish", () => {
+    res.on('finish', () => {
       this.logger.log(
-        `✅ ${method} ${url} 응답 완료 | Status: ${res.statusCode} | Response: ${(res as any).__responseBody}`
+        `✅ ${method} ${url} 응답 완료 | Status: ${res.statusCode} | Response: ${(res as any).__responseBody}`,
       );
     });
 

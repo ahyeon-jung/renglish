@@ -1,34 +1,20 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Param,
-  Post,
-  Request,
-  UseGuards,
-} from '@nestjs/common';
-import {
-  ApiTags,
-  ApiOperation,
-  ApiResponse,
-  ApiBody,
-  ApiParam,
-} from '@nestjs/swagger';
+import { Body, Controller, Get, Param, Post, Put, Request, UseGuards } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiResponse, ApiBody, ApiParam } from '@nestjs/swagger';
 
 import { AuthService } from './auth.service';
 import { CreateUserDto } from '../user/dto/create-user.dto';
 import { LoginDto } from './dto/login.dto';
 import { ChangePasswordDto } from './dto/update-auth.dto';
-import { JwtAuthGuard } from './jwt-auth/jwt-auth.guard';
+import { AccessTokenGuard } from './guards/access-token.guard';
 
 @ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post('signup')
+  @Post('register')
   @ApiOperation({
-    summary: '회원가입',
+    summary: '회원가입(Email Verification 필요)',
     description: '새로운 사용자를 생성합니다.',
   })
   @ApiResponse({ status: 201, description: '회원가입 성공' })
@@ -67,18 +53,27 @@ export class AuthController {
     return this.authService.validateToken(token);
   }
 
+  @Get('check/admin')
+  @UseGuards(AccessTokenGuard)
+  @ApiOperation({
+    summary: '관리자 확인',
+    description: '현재 사용자가 관리자인지 확인합니다.',
+  })
+  async checkAdminByToken(@Request() req) {
+    return { isAdmin: req.user.isAdmin };
+  }
+
   @Get('user')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(AccessTokenGuard)
   @ApiOperation({
     summary: '현재 사용자 정보 가져오기',
     description: '현재 사용자 정보를 가져옵니다.',
   })
   findUserByToken(@Request() req) {
-    const token = req.headers.authorization.split(' ')[1];
-    return this.authService.getUserFromToken(token);
+    return req.user;
   }
 
-  @Post('password/change')
+  @Put('password/change')
   @ApiOperation({
     summary: '비밀번호 변경',
     description: '사용자가 비밀번호 변경을 시도합니다.',

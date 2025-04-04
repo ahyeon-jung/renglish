@@ -11,8 +11,7 @@ export class Dialogue extends BaseEntity {
   @Column()
   @ApiProperty({
     type: String,
-    example:
-      "Oh, if you're laughing at me, I swear to God I'll push you out of that chair.",
+    example: "Oh, if you're laughing at me, I swear to God I'll push you out of that chair.",
   })
   english_script: string;
 
@@ -30,10 +29,10 @@ export class Dialogue extends BaseEntity {
   })
   order: number;
 
-  @ManyToOne(() => Scene, (scene) => scene.dialogues)
+  @ManyToOne(() => Scene, (scene) => scene.dialogues, { onDelete: 'CASCADE' })
   scene: Scene;
 
-  @ManyToOne(() => Speaker, (speaker) => speaker.dialogues)
+  @ManyToOne(() => Speaker, (speaker) => speaker.dialogues, { onDelete: 'CASCADE' })
   speaker: Speaker;
 
   @OneToMany(() => Writing, (writing) => writing.dialogue)

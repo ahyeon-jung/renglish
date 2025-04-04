@@ -1,28 +1,32 @@
-import { Column, Entity, OneToMany } from "typeorm";
+import { Column, Entity, OneToMany } from 'typeorm';
 
-import { ApiProperty } from "@nestjs/swagger";
-import { BaseEntity } from "src/common/entities/base.entity";
-import { Scene } from "src/scene/entities/scene.entity";
+import { ApiProperty } from '@nestjs/swagger';
+import { BaseEntity } from 'src/common/entities/base.entity';
+import { Scene } from 'src/scene/entities/scene.entity';
 
 @Entity()
 export class Movie extends BaseEntity {
   @ApiProperty({
     type: String,
-    example: "Me Before You",
+    example: 'Me Before You',
   })
   @Column()
   title: string;
 
+  @ApiProperty({
+    type: String,
+    example: 'romance',
+  })
   @Column()
-  imageUrl: string;
+  category: string;
 
   @Column()
-  studiedAt: Date;
+  imageUrl: string;
 
   @ApiProperty({
     type: String,
     example:
-      "A romantic drama about a young woman who becomes a caregiver for a paralyzed man, and their unexpected love story.",
+      'A romantic drama about a young woman who becomes a caregiver for a paralyzed man, and their unexpected love story.',
   })
   @Column()
   description: string;

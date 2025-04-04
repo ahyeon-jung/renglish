@@ -3,19 +3,15 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { findAllWithPagination, PaginationResponse } from 'src/common/utils/pagination.util';
+import { PaginationParams } from 'src/common/dto/pagination-params.dto';
 
 @Injectable()
 export class UserService {
-  constructor(
-    @InjectRepository(User) private readonly userRepository: Repository<User>
-  ) {}
+  constructor(@InjectRepository(User) private readonly userRepository: Repository<User>) {}
 
-  async create(createUserDto: CreateUserDto): Promise<User> {
-    const user = new User();
-    user.email = createUserDto.email;
-    user.password = createUserDto.password;
-
-    return this.userRepository.save(user);
+  async create(createUserDto: CreateUserDto): Promise<Omit<User, 'password'>> {
+    return this.userRepository.save(createUserDto);
   }
 
   async updatePassword(userId: string, newPassword: string): Promise<void> {
@@ -28,11 +24,19 @@ export class UserService {
     }
   }
 
-  async findAll(): Promise<User[]> {
-    return this.userRepository.find();
+  async findAll(params: PaginationParams): Promise<PaginationResponse<Omit<User, 'password'>>> {
+    const { offset, limit } = params;
+
+    const response = await findAllWithPagination(this.userRepository, {}, [], { offset, limit });
+
+    return {
+      ...response,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      data: response.data.map(({ password, ...rest }) => rest),
+    };
   }
 
-  async findUserById(id: string): Promise<User> {
+  async findUserById(id: string): Promise<Omit<User, 'password'>> {
     const user = await this.userRepository.findOne({
       where: { id },
     });
@@ -40,7 +44,10 @@ export class UserService {
     if (!user) {
       throw new NotFoundException(`User with id ${id} not found`);
     }
-    return user;
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...userWithoutPassword } = user;
+    return userWithoutPassword;
   }
 
   async checkEmailExist(email: string): Promise<boolean> {
@@ -50,7 +57,7 @@ export class UserService {
     return !!user;
   }
 
-  async findUserByEmail(email: string): Promise<User> {
+  async findUserByEmail(email: string): Promise<Omit<User, 'password'>> {
     const user = await this.userRepository.findOne({
       where: { email },
     });
@@ -58,6 +65,16 @@ export class UserService {
     if (!user) {
       throw new NotFoundException(`User with email ${email} not found`);
     }
-    return user;
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...userWithoutPassword } = user;
+    return userWithoutPassword;
+  }
+
+  async findUserByEmailWithPassword(email: string): Promise<User | null> {
+    return this.userRepository.findOne({
+      where: { email },
+      select: ['id', 'email', 'password'],
+    });
   }
 }

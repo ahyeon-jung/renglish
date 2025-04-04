@@ -1,5 +1,5 @@
-import { X } from "lucide-react";
-import clsx from "clsx";
+import { X } from 'lucide-react';
+import clsx from 'clsx';
 
 type DialogProps = {
   isSub?: boolean;
@@ -7,20 +7,15 @@ type DialogProps = {
   onClose?: () => void;
 } & React.PropsWithChildren;
 
-export default function Dialog({
-  isSub,
-  isOpen,
-  onClose,
-  children,
-}: DialogProps) {
+export default function Dialog({ isSub, isOpen, onClose, children }: DialogProps) {
   if (!isOpen) return null;
 
   return (
     <div
       className={clsx(
-        "fixed inset-0 z-[var(--nav-z-index)]",
-        isSub ? "top-[100px]" : "",
-        "flex items-center justify-end bg-black/50"
+        'fixed inset-0 z-[var(--nav-z-index)]',
+        isSub ? 'top-[100px]' : '',
+        'flex items-center justify-end bg-black/50',
       )}
       onClick={onClose}
     >
@@ -29,9 +24,9 @@ export default function Dialog({
       ) : (
         <div
           className={clsx(
-            "h-full w-[200px] bg-white p-8",
-            "shadow-lg transform transition-transform duration-300",
-            isOpen ? "translate-x-0" : "translate-x-full"
+            'h-full w-[250px] bg-white p-8',
+            'shadow-lg transform transition-transform duration-300',
+            isOpen ? 'translate-x-0' : 'translate-x-full',
           )}
           onClick={(e) => e.stopPropagation()}
         >

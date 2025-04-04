@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { PATHS } from "@/constants/path";
-import { useEffect } from "react";
+import { PATHS } from '@/constants/path';
+import { useEffect } from 'react';
 
 export default function Logout() {
   useEffect(() => {

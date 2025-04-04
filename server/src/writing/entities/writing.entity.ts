@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 
 import { ApiProperty } from '@nestjs/swagger';
 import { BaseEntity } from 'src/common/entities/base.entity';
@@ -10,14 +10,21 @@ export class Writing extends BaseEntity {
   @Column()
   @ApiProperty({
     type: String,
-    example:
-      "Oh, if you're laughing at me, I swear to God I'll push you out of that chair.",
+    example: "Oh, if you're laughing at me, I swear to God I'll push you out of that chair.",
   })
   writing: string;
 
-  @ManyToOne(() => User, (user) => user.writings)
-  user: User;
+  @Column()
+  userId: string;
 
-  @ManyToOne(() => Dialogue, (dialogue) => dialogue.writings)
-  dialogue: Dialogue;
+  @Column()
+  dialogueId: string;
+
+  @ManyToOne(() => User, (user) => user.writings, { eager: false })
+  @JoinColumn({ name: 'userId' })
+  user?: User;
+
+  @ManyToOne(() => Dialogue, (dialogue) => dialogue.writings, { eager: false })
+  @JoinColumn({ name: 'dialogueId' })
+  dialogue?: Dialogue;
 }

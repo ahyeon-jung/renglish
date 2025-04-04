@@ -12,11 +12,11 @@ export class SpeakerService {
     @InjectRepository(Speaker)
     private readonly speakerRepository: Repository<Speaker>,
     @InjectRepository(Scene)
-    private readonly sceneRepository: Repository<Scene>
+    private readonly sceneRepository: Repository<Scene>,
   ) {}
 
-  async create(createSpeakerDto: CreateSpeakerDto): Promise<Speaker> {
-    const { speaker_name, speaker_type, sceneId } = createSpeakerDto;
+  async create(sceneId: string, createSpeakerDto: CreateSpeakerDto): Promise<Speaker> {
+    const { speaker_name, speaker_type } = createSpeakerDto;
 
     const scene = await this.sceneRepository.findOne({
       where: { id: sceneId },
@@ -33,8 +33,16 @@ export class SpeakerService {
     return this.speakerRepository.save(speaker);
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} speaker`;
+  async findSpeakerById(id: string) {
+    const speaker = await this.speakerRepository.findOne({
+      where: { id },
+    });
+
+    if (!speaker) {
+      throw new NotFoundException(`Speaker with id ${id} not found`);
+    }
+
+    return speaker;
   }
 
   update(id: string, updateSpeakerDto: UpdateSpeakerDto) {

@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 
 import { ApiProperty } from '@nestjs/swagger';
 import { BaseEntity } from 'src/common/entities/base.entity';
@@ -20,6 +20,10 @@ export class Inquiry extends BaseEntity {
   @Column()
   content: string;
 
-  @ManyToOne(() => User, (user) => user.inquiries)
-  user: User;
+  @Column()
+  userId: string;
+
+  @ManyToOne(() => User, (user) => user.inquiries, { eager: false })
+  @JoinColumn({ name: 'userId' })
+  user?: User;
 }

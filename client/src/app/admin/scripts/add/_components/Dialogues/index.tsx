@@ -1,26 +1,29 @@
-"use client";
+'use client';
 
-import { useRef, useState } from "react";
+import { FunnelContext, FunnelContextType } from '@/hooks/useFunnel';
+import { SCRIPT_ADD_STEP, ScriptAddStepType } from '../../_constants/step';
+import { useContext, useRef, useState } from 'react';
 
-import Button from "@/components/Button";
-import { Speaker } from "../Speakers";
-import Text from "@/components/Text";
+import { ScriptAddBodyType } from '../../page';
+import StepFormContainer from '../StepFormContainer';
 
-export type Dialogue = {
+type ScriptAddDialogueBodyType = {
   speaker: string;
   english_script: string;
   korean_script: string;
   order: number;
 };
 
-type Dialogues = {
-  speakers: Speaker[];
-  dialogues: Dialogue[];
-  setDialogues: (dialogues: Dialogue[]) => void;
-};
+export type ScriptAddDialoguesBodyType = ScriptAddDialogueBodyType[];
 
-export default function Dialogues({ speakers, setDialogues }: Dialogues) {
-  const [dialoguesBody, setDialoguesBody] = useState("");
+export default function Dialogues() {
+  const {
+    data: { speakers },
+    setStep,
+    setData,
+  } = useContext(FunnelContext) as FunnelContextType<ScriptAddStepType, ScriptAddBodyType>;
+
+  const [dialoguesBody, setDialoguesBody] = useState('');
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [cursorPosition, setCursorPosition] = useState<{
     top: number;
@@ -32,8 +35,8 @@ export default function Dialogues({ speakers, setDialogues }: Dialogues) {
     const input = e.target.value;
     setDialoguesBody(input);
 
-    const words = input.split("\n");
-    const lastWord = input.split("\n")[words.length - 1];
+    const words = input.split('\n');
+    const lastWord = input.split('\n')[words.length - 1];
 
     if (lastWord) {
       const filteredSuggestions = speakers
@@ -56,22 +59,31 @@ export default function Dialogues({ speakers, setDialogues }: Dialogues) {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === "Tab" && suggestions.length > 0) {
+    if (e.key === 'Tab' && suggestions.length > 0) {
       e.preventDefault();
       setDialoguesBody((prev) => {
-        const words = prev.split("\n").slice(0, -1);
+        const words = prev.split('\n').slice(0, -1);
 
-        return words.join("\n") + suggestions[0];
+        return words.join('\n') + suggestions[0];
       });
       setSuggestions([]);
     }
   };
 
-  const handleTransformDialoguesClick = () => {
+  const handleNextClick = () => {
+    if (!dialoguesBody) {
+      alert('값을 입력해주세요.');
+      return;
+    }
     const formattedDialogues = dialoguesBody
-      .split("\n\n")
-      .map((dialogue, index): Dialogue => {
-        const [speaker, english, korean] = dialogue.split("\n");
+      .split('\n\n')
+      .map((dialogue, index): ScriptAddDialogueBodyType | undefined => {
+        const [speaker, english, korean] = dialogue.split('\n');
+
+        if (!speaker || !english || !korean) {
+          return;
+        }
+
         const formattedEnglish = `<p>${english.replace(/\*\*(.*?)\*\*/g, "<span class='keypoint'>$1</span>")}</p>`;
         const formattedKorean = `<p>${korean}</p>`;
         return {
@@ -81,41 +93,51 @@ export default function Dialogues({ speakers, setDialogues }: Dialogues) {
           order: index,
         };
       });
-    setDialogues(formattedDialogues);
+
+    if (formattedDialogues.some((dialogue) => dialogue === undefined)) {
+      alert('올바른 형식으로 입력해주세요');
+      return;
+    }
+
+    setData((prev) => ({ ...prev, dialogues: formattedDialogues as ScriptAddDialoguesBodyType }));
+    setStep(SCRIPT_ADD_STEP.SUBMIT_CONFIRM);
   };
 
-  const isAvailableTransformButton = dialoguesBody;
-
   return (
-    <div className="flex flex-col gap-2">
-      <div className="flex justify-between">
-        <Text as="h3" typography="display-md">
-          Conversation
-        </Text>
-        <Button
-          type="button"
-          size="sm"
-          fit
-          disabled={!isAvailableTransformButton}
-          onClick={handleTransformDialoguesClick}
-        >
-          transform
-        </Button>
+    <StepFormContainer header="Conversation" onNext={handleNextClick}>
+      <div className="flex gap-3">
+        <div>*Speakers: </div>
+        {speakers.map((speaker, index) => (
+          <div key={index}>{speaker.speaker_name}</div>
+        ))}
       </div>
       <textarea
         ref={textareaRef}
         className="border w-full p-2 rounded-lg"
-        rows={10}
+        rows={25}
         value={dialoguesBody}
         onChange={handleDialoguesChange}
         onKeyDown={handleKeyDown}
-        placeholder="Type speaker's name"
+        placeholder={`
+          Enter conversation in the following format:
+
+          {Speaker Name}
+          {English dialogue}
+          {Korean dialogue}
+          
+          (Separate each dialogue set with a blank line.)
+          
+          Formatting tips:
+          - Wrap a word with **{word}** to make it a keypoint.
+          - It will be blank in blank mode.
+          - Start typing a speaker's name to see suggestions for full names.
+          `}
       />
       {suggestions.length > 0 && (
         <ul
           className="bg-gray-300 rounded-lg"
           style={{
-            position: "absolute",
+            position: 'absolute',
             top: `${cursorPosition.top}px`,
             left: `${cursorPosition.left}px`,
             width: `${textareaRef.current?.offsetWidth}px`,
@@ -136,6 +158,6 @@ export default function Dialogues({ speakers, setDialogues }: Dialogues) {
           ))}
         </ul>
       )}
-    </div>
+    </StepFormContainer>
   );
 }

@@ -1,9 +1,9 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @font-face {
-  font-family: "Pretendard-Regular";
-  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
-    format("woff");
+  font-family: 'Pretendard-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+    format('woff');
 }
 
 * {
@@ -15,7 +15,8 @@
   --header-z-index: 1000;
   --nav-z-index: 9999;
   --overlay-z-index: 999;
-  --overlay-text-z-index: 1000;
+  --overlay-modal-index: 1020;
+  --overlay-text-z-index: 1025;
   --background: #ffffff;
   --foreground: #171717;
 }

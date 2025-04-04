@@ -3,7 +3,7 @@ name: Auto Assign Assignee and Admin Label
 on:
   pull_request:
     branches:
-      - "main"
+      - 'main'
 
 jobs:
   assign-reviewers-and-labels:

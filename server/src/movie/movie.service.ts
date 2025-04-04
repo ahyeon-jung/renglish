@@ -3,21 +3,41 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Movie } from './entities/movie.entity';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
+import { findAllWithPagination, PaginationResponse } from 'src/common/utils/pagination.util';
+import { SearchMovieParams } from './dto/search-movie.dto';
 
 @Injectable()
 export class MovieService {
   constructor(
     @InjectRepository(Movie)
-    private readonly movieRepository: Repository<Movie>
+    private readonly movieRepository: Repository<Movie>,
   ) {}
 
   async create(createMovieDto: CreateMovieDto): Promise<Movie> {
     return this.movieRepository.save(createMovieDto);
   }
 
-  findAll(): Promise<Movie[]> {
-    return this.movieRepository.find({ relations: ['scenes'] });
+  async findAll(params: SearchMovieParams): Promise<PaginationResponse<Movie>> {
+    const { category, keyword, offset, limit } = params;
+
+    let whereCondition: any = {};
+
+    if (category && keyword) {
+      whereCondition = [
+        { category: category, title: Like(`%${keyword}%`) },
+        { category: category, description: Like(`%${keyword}%`) },
+      ];
+    } else if (category) {
+      whereCondition = { category: category };
+    } else if (keyword) {
+      whereCondition = [{ title: Like(`%${keyword}%`) }, { description: Like(`%${keyword}%`) }];
+    }
+
+    return await findAllWithPagination(this.movieRepository, whereCondition, ['scenes'], {
+      offset,
+      limit,
+    });
   }
 
   async findMovieWithLatestScene(): Promise<Movie> {

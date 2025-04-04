@@ -1,12 +1,30 @@
-import { Controller, Get, Body, Param, Put } from '@nestjs/common';
+import { Controller, Get, Body, Param, Put, Post } from '@nestjs/common';
 import { SpeakerService } from './speaker.service';
 import { UpdateSpeakerDto } from './dto/update-speaker.dto';
-import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { CreateSpeakerDto } from './dto/create-speaker.dto';
 
 @ApiTags('Speakers')
 @Controller('speakers')
 export class SpeakerController {
   constructor(private readonly speakerService: SpeakerService) {}
+
+  @Post(':sceneId')
+  @ApiParam({
+    name: 'sceneId',
+    description: '장면의 ID',
+    example: 'e5e798e1-9241-4b95-8e2c-0b630bbd033f',
+    type: String,
+  })
+  @ApiOperation({
+    summary: '발화자 정보 생성하기',
+    description: '새로운 발화자 정보를 생성합니다.',
+  })
+  @ApiResponse({ status: 201, description: '발화자 정보 생성 성공' })
+  @ApiBody({ type: CreateSpeakerDto })
+  createSpeaker(@Param('sceneId') sceneId: string, @Body() createSpeakerDto: CreateSpeakerDto) {
+    return this.speakerService.create(sceneId, createSpeakerDto);
+  }
 
   @Get(':speakerId')
   @ApiOperation({
@@ -20,7 +38,7 @@ export class SpeakerController {
     type: String,
   })
   findOne(@Param('speakerId') speakerId: string) {
-    return this.speakerService.findOne(speakerId);
+    return this.speakerService.findSpeakerById(speakerId);
   }
 
   @Put(':speakerId')
@@ -34,10 +52,7 @@ export class SpeakerController {
     example: 'e5e798e1-9241-4b95-8e2c-0b630bbd033f',
     type: String,
   })
-  update(
-    @Param('speakerId') speakerId: string,
-    @Body() updateSpeakerDto: UpdateSpeakerDto
-  ) {
+  update(@Param('speakerId') speakerId: string, @Body() updateSpeakerDto: UpdateSpeakerDto) {
     return this.speakerService.update(speakerId, updateSpeakerDto);
   }
 }

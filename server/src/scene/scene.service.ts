@@ -3,12 +3,11 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Speaker } from 'src/speaker/entities/speaker.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Scene } from './entities/scene.entity';
-import { Repository } from 'typeorm';
-import { Dialogue } from 'src/dialogue/entities/dialogue.entity';
+import { Like, Repository } from 'typeorm';
 import { Movie } from 'src/movie/entities/movie.entity';
 import { MovieService } from 'src/movie/movie.service';
-import { SpeakerService } from 'src/speaker/speaker.service';
-import { CreateSpeakerDto } from 'src/speaker/dto/create-speaker.dto';
+import { findAllWithPagination, PaginationResponse } from 'src/common/utils/pagination.util';
+import { SearchParams } from 'src/common/dto/search-params.dto';
 
 @Injectable()
 export class SceneService {
@@ -17,16 +16,9 @@ export class SceneService {
     private readonly sceneRepository: Repository<Scene>,
     @InjectRepository(Movie)
     private readonly movieService: MovieService,
-    @InjectRepository(Speaker)
-    private readonly speakerService: SpeakerService,
-    @InjectRepository(Dialogue)
-    private readonly dialogueRepository: Repository<Dialogue>
   ) {}
 
-  async create(
-    movieId: string,
-    createSceneDto: CreateSceneDto
-  ): Promise<Scene> {
+  async create(movieId: string, createSceneDto: CreateSceneDto): Promise<Scene> {
     const movie = await this.movieService.findOneById(movieId);
     if (!movie) {
       throw new NotFoundException('Movie not found');
@@ -37,48 +29,41 @@ export class SceneService {
       description: createSceneDto.description,
       movie,
     });
-    await this.sceneRepository.save(scene);
 
-    for (const speakerDto of createSceneDto.speakers) {
-      await this.speakerService.create({
-        speaker_name: speakerDto.speaker_name,
-        speaker_type: speakerDto.speaker_type,
-        sceneId: scene.id,
-      });
-    }
-
-    for (const dialogueDto of createSceneDto.dialogues) {
-      const dialogue = this.dialogueRepository.create({
-        english_script: dialogueDto.english_script,
-        korean_script: dialogueDto.korean_script,
-        scene,
-      });
-      await this.dialogueRepository.save(dialogue);
-    }
-
-    return scene;
+    return await this.sceneRepository.save(scene);
   }
 
-  async createSpeakers(
-    sceneId: string,
-    createSpeakerDto: CreateSpeakerDto
-  ): Promise<Speaker> {
-    const scene = this.findSceneById(sceneId);
+  async delete(sceneId: string): Promise<void> {
+    const scene = await this.findSceneById(sceneId);
     if (!scene) {
       throw new NotFoundException('Scene not found');
     }
 
-    return this.speakerService.create({
-      speaker_name: createSpeakerDto.speaker_name,
-      speaker_type: createSpeakerDto.speaker_type,
-      sceneId,
+    await this.sceneRepository.remove(scene);
+  }
+
+  async findAllScene(params: SearchParams): Promise<PaginationResponse<Scene>> {
+    const { keyword, offset, limit } = params;
+
+    const whereCondition = keyword
+      ? [{ title: Like(`%${keyword}%`) }, { description: Like(`%${keyword}%`) }]
+      : {};
+
+    return await findAllWithPagination(this.sceneRepository, whereCondition, [], {
+      offset,
+      limit,
     });
   }
 
   async findSceneById(sceneId: string): Promise<Scene> {
     const scene = await this.sceneRepository.findOne({
       where: { id: sceneId },
-      relations: ['speakers', 'dialogues'],
+      relations: ['speakers', 'dialogues', 'dialogues.speaker'],
+      order: {
+        dialogues: {
+          order: 'ASC',
+        },
+      },
     });
     if (!scene) {
       throw new NotFoundException('Scene not found');

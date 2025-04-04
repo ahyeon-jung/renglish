@@ -1,4 +1,4 @@
-const SCROLL_POSITION_KEY = "scrollPosition";
+const SCROLL_POSITION_KEY = 'scrollPosition';
 
 export function saveScrollPosition() {
   sessionStorage.setItem(SCROLL_POSITION_KEY, window.scrollY.toString());

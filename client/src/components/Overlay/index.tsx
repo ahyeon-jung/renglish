@@ -1,12 +1,17 @@
-import React from "react";
-import clsx from "clsx";
+import React from 'react';
+import clsx from 'clsx';
 
-export default function Overlay() {
+type OverlayProps = { isModal?: boolean; onClick?: () => void };
+
+export default function Overlay({ isModal = false, onClick }: OverlayProps) {
   return (
     <div
+      onClick={onClick}
       className={clsx(
-        "absolute inset-0 z-[var(--overlay-z-index)]",
-        "flex items-center justify-end bg-black/50"
+        isModal ? 'z-[var(--overlay-modal-index)]' : 'z-[var(--overlay-z-index)]',
+        onClick ? 'fixed' : 'absolute',
+        'inset-0',
+        'flex items-center justify-end bg-black/50',
       )}
     ></div>
   );

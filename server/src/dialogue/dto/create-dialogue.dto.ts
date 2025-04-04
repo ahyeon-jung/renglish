@@ -5,8 +5,7 @@ import { ApiProperty } from '@nestjs/swagger';
 export class CreateDialogueDto {
   @ApiProperty({
     type: String,
-    example:
-      "Oh, if you're laughing at me, I swear to God I'll push you out of that chair.",
+    example: "Oh, if you're laughing at me, I swear to God I'll push you out of that chair.",
     description: '영어 대사',
   })
   @IsString()
@@ -29,20 +28,4 @@ export class CreateDialogueDto {
   @IsNumber()
   @IsNotEmpty()
   order: number;
-
-  @ApiProperty({
-    type: String,
-    example: '1',
-    description: '이 대사가 속한 Scene ID',
-  })
-  @IsNotEmpty()
-  sceneId: string;
-
-  @ApiProperty({
-    type: String,
-    example: '1',
-    description: '이 대사를 말하는 Speaker ID',
-  })
-  @IsNotEmpty()
-  speakerId: string;
 }

@@ -1,11 +1,11 @@
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import * as expressBasicAuth from 'express-basic-auth';
 
 import { AppModule } from './app.module';
 import { NestFactory } from '@nestjs/core';
 import { ResponseInterceptor } from './common/interceptors/response.interceptor';
+import { SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
-
-// import { writeFileSync } from 'fs';
+import swaggerConfig from './configs/swagger.config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -18,32 +18,34 @@ async function bootstrap() {
     allowedHeaders: 'Content-Type, Accept',
   });
 
-  const config = new DocumentBuilder()
-    .setTitle('Renglish API Swagger')
-    .setDescription('The renglish application API description')
-    .setVersion('1.0')
-    .addBearerAuth(
-      {
-        type: 'http',
-        scheme: 'bearer',
-        bearerFormat: 'JWT',
-        description: 'Enter your JWT token',
-      },
-      'token'
-    )
-    .addSecurityRequirements('token')
-    .build();
-
-  const document = SwaggerModule.createDocument(app, config);
-
-  SwaggerModule.setup('api', app, document);
-
-  // writeFileSync('./swagger.json', JSON.stringify(document, null, 2));
-
   app.useGlobalInterceptors(new ResponseInterceptor());
 
   app.useGlobalPipes(new ValidationPipe());
 
-  await app.listen(8080);
+  app.use(
+    [process.env.SWAGGER_UI_PATH, process.env.SWAGGER_JSON_PATH],
+    expressBasicAuth({
+      challenge: true,
+      users: {
+        [process.env.SWAGGER_USERNAME]: process.env.SWAGGER_PASSWORD,
+      },
+    }),
+  );
+  const document = SwaggerModule.createDocument(app, swaggerConfig);
+
+  app.use(process.env.SWAGGER_JSON_PATH, (_, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Content-Disposition', 'attachment; filename=swagger.json');
+
+    res.send(JSON.stringify(document, null, 2));
+  });
+
+  SwaggerModule.setup(process.env.SWAGGER_UI_PATH, app, document, {
+    swaggerOptions: {
+      persistAuthorization: true,
+    },
+  });
+
+  await app.listen(process.env.SERVER_PORT);
 }
 bootstrap();
