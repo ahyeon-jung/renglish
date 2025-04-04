@@ -1,21 +1,30 @@
-import DialogListContainer from '../../_components/DialogListContainer';
+'use client';
+
+import Button from '@/components/Button';
 import ExpressionItem from './_components/ExpressionItem';
 import Title from './_components/Title';
+import clsx from 'clsx';
+import { useReactToPrint } from 'react-to-print';
+import { useRef } from 'react';
 
-export default async function MovieScenePracticeFill({
+export default function MovieScenePracticeFill({
   params,
 }: {
   params: Promise<{ movie: string; scene: string }>;
 }) {
   console.log(params);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const reactToPrintFn = useReactToPrint({ contentRef });
+
   return (
     <main className="mt-[var(--header-height)] p-3">
-      <DialogListContainer>
+      <div ref={contentRef} className={clsx('print-container', 'p-4 flex flex-col gap-[10px]')}>
         <Title title="I feel pretty" studiedAt={new Date('2025-04-04T15:31:41.000Z')} />
         {expressions.map((expression, index) => (
           <ExpressionItem key={index} order={index + 1} {...expression} />
         ))}
-      </DialogListContainer>
+      </div>
+      <Button onClick={() => reactToPrintFn()}>Print</Button>
     </main>
   );
 }

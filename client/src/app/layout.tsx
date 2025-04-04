@@ -1,4 +1,5 @@
 import '../styles/globals.css';
+import '../styles/print.css';
 
 import { ENV } from '@/constants/env';
 import { GoogleAnalytics } from '@next/third-parties/google';

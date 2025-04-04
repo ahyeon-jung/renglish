@@ -1,0 +1,28 @@
+@media print {
+  body {
+    zoom: 0.8;
+  }
+
+  .print-container {
+    page-break-inside: avoid;
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .print-page-break {
+    page-break-after: always;
+  }
+
+  header,
+  footer,
+  nav,
+  button {
+    display: none !important;
+  }
+
+  @page {
+    margin: 0mm;
+    padding: 10mm;
+  }
+}
