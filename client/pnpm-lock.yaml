@@ -29,6 +29,9 @@ dependencies:
   react-dom:
     specifier: ^19.0.0
     version: 19.0.0(react@19.0.0)
+  react-to-print:
+    specifier: ^3.0.5
+    version: 3.0.5(react@19.0.0)
   react-toastify:
     specifier: ^11.0.5
     version: 11.0.5(react-dom@19.0.0)(react@19.0.0)
@@ -4424,6 +4427,14 @@ packages:
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: true
+
+  /react-to-print@3.0.5(react@19.0.0):
+    resolution: {integrity: sha512-Z15MwMOzYCHWi26CZeFNwflAg7Nr8uWD6FTj+EkfIOjYyjr0MXGbI0c7rF4Fgrbj3XG9hFndb1ourxpPz2RAiA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ~19
+    dependencies:
+      react: 19.0.0
+    dev: false
 
   /react-toastify@11.0.5(react-dom@19.0.0)(react@19.0.0):
     resolution: {integrity: sha512-EpqHBGvnSTtHYhCPLxML05NLY2ZX0JURbAdNYa6BUkk+amz4wbKBQvoKQAB0ardvSarUBuY4Q4s1sluAzZwkmA==}
