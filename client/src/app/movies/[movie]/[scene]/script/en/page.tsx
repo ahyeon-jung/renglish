@@ -1,8 +1,10 @@
+import { parseText, stripHtmlTags } from '@/utils/content';
+
 import DialogListContainer from '../../_components/DialogListContainer';
 import DialogListItem from '../../_components/DialogListItem';
 import SceneHeader from '../../_components/SceneHeader';
+import Text from '@/components/Text';
 import getScene from '@/app/_actions/scenes/getScene';
-import { parseText } from '@/utils/content';
 
 export default async function MovieSceneEnglishScript({
   params,
@@ -19,8 +21,13 @@ export default async function MovieSceneEnglishScript({
       <DialogListContainer>
         {scene.dialogues.map((dialogue, index) => {
           return (
-            <DialogListItem key={index} speaker={dialogue.speaker} isBackground>
-              {parseText(dialogue.english_script)}
+            <DialogListItem
+              key={index}
+              speaker={dialogue.speaker}
+              clickedText={stripHtmlTags(dialogue.korean_script)}
+              isBackground
+            >
+              <Text>{parseText(dialogue.english_script)}</Text>
             </DialogListItem>
           );
         })}

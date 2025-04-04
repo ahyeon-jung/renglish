@@ -1,8 +1,9 @@
+import { parseText, stripHtmlTags } from '@/utils/content';
+
 import DialogListContainer from '../../_components/DialogListContainer';
 import DialogListItem from '../../_components/DialogListItem';
 import SceneHeader from '../../_components/SceneHeader';
 import getScene from '@/app/_actions/scenes/getScene';
-import { parseText } from '@/utils/content';
 
 export default async function MovieSceneKoreanScript({
   params,
@@ -19,7 +20,12 @@ export default async function MovieSceneKoreanScript({
       <DialogListContainer>
         {scene.dialogues.map((dialogue, index) => {
           return (
-            <DialogListItem key={index} speaker={dialogue.speaker} isBackground>
+            <DialogListItem
+              key={index}
+              speaker={dialogue.speaker}
+              clickedText={stripHtmlTags(dialogue.english_script)}
+              isBackground
+            >
               {parseText(dialogue.korean_script)}
             </DialogListItem>
           );

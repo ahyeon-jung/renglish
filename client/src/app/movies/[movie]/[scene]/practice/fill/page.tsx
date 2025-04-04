@@ -20,7 +20,10 @@ export default async function MovieScenePracticeFill({
         {scene.dialogues.map((dialogue, index) => {
           return (
             <DialogListItem key={index} speaker={dialogue.speaker} isBackground>
-              {parseText(dialogue.english_script, 'text-white border-black border-b')}
+              {parseText(
+                dialogue.english_script,
+                'text-white hover:text-black border-black border-b',
+              )}
               {parseText(dialogue.korean_script)}
             </DialogListItem>
           );

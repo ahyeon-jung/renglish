@@ -1,11 +1,15 @@
+'use client';
+
 import { CircleUserRound } from 'lucide-react';
 import { Speaker } from '@/types/speaker';
+import Text from '@/components/Text';
 import clsx from 'clsx';
+import { useState } from 'react';
 
 type DialogListItem = {
   isBackground?: boolean;
   style?: React.CSSProperties;
-
+  clickedText?: string;
   speaker: Speaker;
 } & React.PropsWithChildren;
 
@@ -13,14 +17,22 @@ export default function DialogListItem({
   speaker,
   isBackground = false,
   style,
+  clickedText,
   children,
 }: DialogListItem) {
+  const [isClicked, setIsClickeded] = useState(false);
+
+  const toggleIsClickeded = () => {
+    setIsClickeded((prev) => !prev);
+  };
+
   if (speaker.speaker_type == 'etc') {
     return <li className="text-center italic">{children}</li>;
   }
 
   return (
     <li
+      onClick={toggleIsClickeded}
       style={style}
       className={clsx(
         'flex items-start gap-4 p-3 rounded-lg',
@@ -40,6 +52,7 @@ export default function DialogListItem({
         )}
       >
         {children}
+        {clickedText && isClicked && <Text>{clickedText}</Text>}
       </div>
     </li>
   );

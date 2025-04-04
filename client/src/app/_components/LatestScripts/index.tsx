@@ -11,7 +11,7 @@ export default async function LatestScript() {
   return (
     <Container label="Latest Script">
       <Link
-        href={`/movies/${data.title}/${data.scenes[0].id}/script/en-ko`}
+        href={`/movies/${data.title}/${data.scenes[0].id}/script/en`}
         className="relative h-[100px] overflow-hidden rounded-xl"
       >
         <Text
