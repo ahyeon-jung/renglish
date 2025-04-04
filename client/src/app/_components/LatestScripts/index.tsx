@@ -1,14 +1,19 @@
 import Container from '../Container';
 import Image from 'next/image';
+import Link from 'next/link';
 import Overlay from '@/components/Overlay';
 import Text from '@/components/Text';
 import getLatestMovieAction from '@/app/_actions/movies/getLatestMovie';
 
 export default async function LatestScript() {
   const { data } = await getLatestMovieAction();
+
   return (
     <Container label="Latest Script">
-      <div className="relative h-[100px] overflow-hidden rounded-xl">
+      <Link
+        href={`/movies/${data.title}/${data.scenes[0].id}/script/en-ko`}
+        className="relative h-[100px] overflow-hidden rounded-xl"
+      >
         <Text
           className="absolute right-4 bottom-0 text-white z-[var(--overlay-text-z-index)]"
           typography="display-xl"
@@ -23,7 +28,7 @@ export default async function LatestScript() {
           height={100}
           className="absolute bottom-[-200px] object-cover object-bottom"
         />
-      </div>
+      </Link>
     </Container>
   );
 }

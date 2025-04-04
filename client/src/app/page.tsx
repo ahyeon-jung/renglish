@@ -10,8 +10,8 @@ export default function Home() {
       <main className={clsx('mt-[var(--header-height)]')}>
         <ScriptSearch />
         <div className="flex flex-col gap-[15px] p-3">
-          <Categories />
           <LatestScript />
+          <Categories />
         </div>
       </main>
       <Footer />
