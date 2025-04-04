@@ -54,7 +54,6 @@ export default class EmailVerificationService {
     }
 
     if (redisCode !== code) {
-      console.log(redisCode, code);
       throw new HttpException('wrong code', HttpStatus.BAD_REQUEST);
     }
 
