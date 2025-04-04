@@ -28,7 +28,8 @@ export default function MovieScenePracticeFill({
     </main>
   );
 }
-export const expressions = [
+
+const expressions = [
   {
     id: 1,
     expression: 'She killed it (tonight).',
