@@ -26,7 +26,7 @@ export default async function LatestScript() {
           src={data.imageUrl}
           width={500}
           height={100}
-          className="absolute bottom-[-200px] object-cover object-bottom"
+          className="w-full h-full object-cover"
         />
       </Link>
     </Container>
