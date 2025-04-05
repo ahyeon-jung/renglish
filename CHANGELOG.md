@@ -2,6 +2,12 @@
 
 All important changes are managed in this document.
 
+## 2.0.1 - 04/05/2025 - 04/05/2025
+
+### Added
+
+- Added AudioUrl in Scene entity
+
 ## 2.0.0 - 03/22/2025 - 04/05/2025
 
 ### Added
