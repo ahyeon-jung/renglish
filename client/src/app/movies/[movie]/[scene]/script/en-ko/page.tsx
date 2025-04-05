@@ -18,7 +18,6 @@ export default async function MovieSceneEnglishKoreanScript({
   return (
     <main className="mt-[var(--header-height)] p-3">
       <SceneHeader title={slug.movie} movieId={slug.movie} sceneId={slug.scene} />
-
       <DialogListContainer>
         {scene.audioUrl && <AudioBox audioUrl={scene.audioUrl} />}
         {scene.dialogues.map((dialogue, index) => {

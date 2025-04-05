@@ -1,5 +1,6 @@
 import { parseText, stripHtmlTags } from '@/utils/content';
 
+import AudioBox from '../../_components/AudioBox';
 import DialogListContainer from '../../_components/DialogListContainer';
 import DialogListItem from '../../_components/DialogListItem';
 import SceneHeader from '../../_components/SceneHeader';
@@ -19,6 +20,7 @@ export default async function MovieSceneEnglishScript({
     <main className="mt-[var(--header-height)] p-3">
       <SceneHeader title={slug.movie} movieId={slug.movie} sceneId={slug.scene} />
       <DialogListContainer>
+        {scene.audioUrl && <AudioBox audioUrl={scene.audioUrl} />}
         {scene.dialogues.map((dialogue, index) => {
           return (
             <DialogListItem
