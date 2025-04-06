@@ -2,6 +2,12 @@
 
 All important changes are managed in this document.
 
+## 2.0.2 - 04/06/2025 - 04/06/2025
+
+### Added
+
+- Added member guide page
+
 ## 2.0.1 - 04/05/2025 - 04/05/2025
 
 ### Added

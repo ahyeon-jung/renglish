@@ -39,5 +39,6 @@ export const PATHS = {
     INSTALL: '/notices/install',
     ASSIGNMENT: '/notices/assignment',
     INTRODUCE: '/introduce',
+    MEMBER: '/notices/member',
   },
 };
