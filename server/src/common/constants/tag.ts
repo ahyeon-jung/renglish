@@ -1,0 +1,5 @@
+export const TAG = {
+  TOKEN_REQUIRED: '[USER]',
+  ADMIN_REQUIRED: '[ADMIN]',
+  STUDY_MEMBER_REQUIRED: '[STUDY_MEMBER]',
+};
