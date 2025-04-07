@@ -1,17 +1,16 @@
-type ExpressionItemProps = {
+import { ExpressionType } from '@/types/expression';
+
+type ExpressionProps = {
   order: number;
-  expression: string;
-  meaning: string;
-  explanation: string;
-  examples: { en: string; ko: string }[];
-};
-export default function ExpressionItem({
+} & ExpressionType;
+
+export default function Expression({
   order,
   expression,
   meaning,
-  explanation,
+  usage,
   examples,
-}: ExpressionItemProps) {
+}: ExpressionProps) {
   return (
     <div className="border-t pt-4">
       <div className="text-base font-medium text-orange-700">
@@ -22,7 +21,7 @@ export default function ExpressionItem({
           <span className="font-semibold">뜻:</span> {meaning}
         </li>
         <li>
-          <span className="font-semibold">의미:</span> {explanation}
+          <span className="font-semibold">의미:</span> {usage}
         </li>
         <li>
           <span className="font-semibold">예문:</span>
@@ -32,7 +31,7 @@ export default function ExpressionItem({
                 <div>
                   <span className="font-medium text-gray-900">{example.en}</span>
                 </div>
-                <div className="text-sm text-gray-600">{example.ko}</div>
+                <div className="text-md text-gray-600">{example.ko}</div>
               </div>
             ))}
           </div>

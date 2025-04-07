@@ -14,6 +14,7 @@ const SCENE_OPTIONS = [
   { label: '스피킹 연습하기', path: PATHS.MOVIE.SCENE.PRACTICE.SPEAKING },
   { label: '빈칸 연습하기', path: PATHS.MOVIE.SCENE.PRACTICE.FILL },
   { label: '작문 연습하기', path: PATHS.MOVIE.SCENE.PRACTICE.WRITING },
+  { label: '영어 표현학습하기(회원전용)', path: PATHS.MOVIE.SCENE.PRACTICE.EXPRESSION },
 ];
 
 export type SceneNav = {
