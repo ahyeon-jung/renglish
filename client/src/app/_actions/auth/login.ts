@@ -7,11 +7,12 @@ import { ENV } from '@/constants/env';
 import { cookies } from 'next/headers';
 import { fetchAPI } from '@/libs/api';
 
-type LoginAction = { email: string; password: string };
+type LoginAction = { email: string; password: string; rememberMe: boolean };
 
 export default async function loginAction({
   email,
   password,
+  rememberMe,
 }: LoginAction): Promise<ActionResponse<null>> {
   if (!email || !password) {
     return { status: 200, success: false, message: 'no required data', data: null };
@@ -32,6 +33,7 @@ export default async function loginAction({
       httpOnly: true,
       secure: ENV.IS_PRODUCTION,
       path: '/',
+      ...(rememberMe && { maxAge: 60 * 60 * 24 * 7 }),
     });
 
     return { status: 200, success: true, message: 'Login successfully', data: null };

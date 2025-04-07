@@ -1,6 +1,7 @@
 'use client';
 
 import Button from '@/components/Button';
+import Checkbox from '@/components/CheckBox';
 import Field from '@/components/Field';
 import { MESSAGE } from '@/constants/toast';
 import { PATHS } from '@/constants/path';
@@ -9,7 +10,7 @@ import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-const INITIAL_LOGIN_BODY = { email: '', password: '' };
+const INITIAL_LOGIN_BODY = { email: '', password: '', rememberMe: false };
 
 export default function LoginForm() {
   const router = useRouter();
@@ -40,10 +41,14 @@ export default function LoginForm() {
     setLoginBody((prev) => ({ ...prev, password: e.target.value }));
   };
 
+  const handleRememberMeClick = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLoginBody((prev) => ({ ...prev, rememberMe: e.target.checked }));
+  };
+
   const isAvailableLoginButton = loginBody.email && loginBody.password;
 
   return (
-    <form onSubmit={handleLoginSubmit}>
+    <form className="flex flex-col gap-4" onSubmit={handleLoginSubmit}>
       <div className="flex flex-col gap-2">
         <Field>
           <Field.Label>Email</Field.Label>
@@ -59,6 +64,12 @@ export default function LoginForm() {
           <Field.Input placeholder="ex. 123456" onChange={handlePasswordChange} />
         </Field>
       </div>
+      <Checkbox
+        id="terms"
+        label="Keep me logged in"
+        checked={loginBody.rememberMe}
+        onChange={handleRememberMeClick}
+      />
       <Button type="submit" disabled={!isAvailableLoginButton}>
         Login
       </Button>
