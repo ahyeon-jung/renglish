@@ -10,7 +10,7 @@ GITHUB_ID = os.getenv("AUTO_DEPLOY_GITHUB_ID")
 GITHUB_PW = os.getenv("AUTO_DEPLOY_GITHUB_PW")
 
 with sync_playwright() as p:
-    browser = p.chromium.launch(headless=False)
+    browser = p.chromium.launch(headless=True)
     
     # 1. cloudType 우회 설정
     context = browser.new_context(
