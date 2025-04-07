@@ -4,6 +4,7 @@ import { UpdateExpressionDto } from './dto/update-expression.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Expression } from './entities/expression.entity';
 import { Repository } from 'typeorm';
+import { getWeekNumber, seededShuffle } from 'src/common/utils/random.util';
 
 @Injectable()
 export class ExpressionService {
@@ -16,8 +17,16 @@ export class ExpressionService {
     return this.expressionRepository.save(createExpressionDto);
   }
 
-  findAll() {
-    return `This action returns all expression`;
+  async findWeeklyExpressions() {
+    const now = new Date();
+    const week = getWeekNumber(now);
+    const year = now.getFullYear();
+    const seed = parseInt(`${year}${week}`);
+
+    const all = await this.expressionRepository.find();
+    const shuffled = seededShuffle(all, seed);
+
+    return shuffled.slice(0, 10);
   }
 
   async findOne(id: string) {

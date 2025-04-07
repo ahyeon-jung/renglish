@@ -5,17 +5,17 @@ import { UpdateExpressionDto } from './dto/update-expression.dto';
 import { ApiOperation, ApiParam } from '@nestjs/swagger';
 import { TAG } from 'src/common/constants/tag';
 
-@Controller('expression')
+@Controller('expressions')
 export class ExpressionController {
   constructor(private readonly expressionService: ExpressionService) {}
 
-  @Get()
+  @Get('weekly')
   @ApiOperation({
     summary: '이번주 영어 표현 가져오기',
     description: '이번주 영어 표현을 10개 가져옵니다.',
   })
   findAll() {
-    return this.expressionService.findAll();
+    return this.expressionService.findWeeklyExpressions();
   }
 
   @Get(':sceneId')
@@ -29,8 +29,8 @@ export class ExpressionController {
     example: '6ef26cb3-746c-4df1-90e0-66805f3f8320',
     type: String,
   })
-  findExpressionBySceneIdy() {
-    return this.expressionService.findAll();
+  findExpressionBySceneIdy(@Param('expressionId') expressionId: string) {
+    return this.expressionService.findOne(expressionId);
   }
 
   @Post(':sceneId')
