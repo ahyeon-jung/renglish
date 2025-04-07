@@ -1,6 +1,8 @@
 import { Module, forwardRef } from '@nestjs/common';
 
 import { Dialogue } from 'src/dialogue/entities/dialogue.entity';
+import { Expression } from 'src/expression/entities/expression.entity';
+import { ExpressionModule } from 'src/expression/expression.module';
 import { Movie } from 'src/movie/entities/movie.entity';
 import { MovieModule } from 'src/movie/movie.module';
 import { Scene } from './entities/scene.entity';
@@ -12,7 +14,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Movie, Scene, Dialogue, Speaker]),
+    TypeOrmModule.forFeature([Movie, Scene, Dialogue, Speaker, Expression]),
     SpeakerModule,
     forwardRef(() => MovieModule),
   ],

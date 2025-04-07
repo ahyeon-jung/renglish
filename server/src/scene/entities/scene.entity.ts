@@ -3,6 +3,7 @@ import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { BaseEntity } from 'src/common/entities/base.entity';
 import { Dialogue } from 'src/dialogue/entities/dialogue.entity';
+import { Expression } from 'src/expression/entities/expression.entity';
 import { Movie } from 'src/movie/entities/movie.entity';
 import { Speaker } from 'src/speaker/entities/speaker.entity';
 
@@ -40,4 +41,7 @@ export class Scene extends BaseEntity {
 
   @OneToMany(() => Dialogue, (dialogue) => dialogue.scene, { onDelete: 'CASCADE' })
   dialogues: Dialogue[];
+
+  @OneToMany(() => Expression, (expression) => expression.scene)
+  expressions: Expression[];
 }

@@ -1,6 +1,8 @@
 import { Dialogue } from './entities/dialogue.entity';
 import { DialogueController } from './dialogue.controller';
 import { DialogueService } from './dialogue.service';
+import { Expression } from 'src/expression/entities/expression.entity';
+import { ExpressionModule } from 'src/expression/expression.module';
 import { Module } from '@nestjs/common';
 import { Scene } from 'src/scene/entities/scene.entity';
 import { SceneModule } from 'src/scene/scene.module';
@@ -10,7 +12,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Writing } from 'src/writing/entities/writing.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Dialogue, Writing]), SpeakerModule, SceneModule],
+  imports: [TypeOrmModule.forFeature([Dialogue, Writing, Expression]), SpeakerModule, SceneModule],
   controllers: [DialogueController],
   providers: [DialogueService],
   exports: [DialogueService],

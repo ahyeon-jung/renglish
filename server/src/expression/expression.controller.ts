@@ -1,0 +1,79 @@
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/common';
+import { ExpressionService } from './expression.service';
+import { CreateExpressionDto } from './dto/create-expression.dto';
+import { UpdateExpressionDto } from './dto/update-expression.dto';
+import { ApiOperation, ApiParam } from '@nestjs/swagger';
+
+@Controller('expression')
+export class ExpressionController {
+  constructor(private readonly expressionService: ExpressionService) {}
+
+  @Post(':sceneId')
+  @ApiOperation({
+    summary: '영어 표현 추가하기(ADMIN 필요)',
+    description: '해당 장면의 영어 표현 추가하기',
+  })
+  @ApiParam({
+    name: 'sceneId',
+    description: '장면의 ID',
+    example: '6ef26cb3-746c-4df1-90e0-66805f3f8320',
+    type: String,
+  })
+  create(@Body() createExpressionDto: CreateExpressionDto) {
+    return this.expressionService.create(createExpressionDto);
+  }
+
+  @Get()
+  @ApiOperation({
+    summary: '이번주 영어 표현 가져오기',
+    description: '이번주 영어 표현을 10개 가져옵니다.',
+  })
+  findAll() {
+    return this.expressionService.findAll();
+  }
+
+  @Get(':sceneId')
+  @ApiOperation({
+    summary: '해당 장면의 영어 표현 가져오기(JWT 필요)',
+    description: '해당 장면의 영어 표현 가져오기',
+  })
+  @ApiParam({
+    name: 'sceneId',
+    description: '장면의 ID',
+    example: '6ef26cb3-746c-4df1-90e0-66805f3f8320',
+    type: String,
+  })
+  findExpressionBySceneIdy() {
+    return this.expressionService.findAll();
+  }
+
+  @Put(':expressionId')
+  @ApiOperation({
+    summary: '영어 표현 수정하기(JWT 필요)',
+    description: '영어 표현 수정하기',
+  })
+  @ApiParam({
+    name: 'expressionId',
+    description: '영어 표현의 ID',
+    example: '6ef26cb3-746c-4df1-90e0-66805f3f8320',
+    type: String,
+  })
+  update(@Param('expressionId') id: string, @Body() updateExpressionDto: UpdateExpressionDto) {
+    return this.expressionService.update(id, updateExpressionDto);
+  }
+
+  @Delete(':expressionId')
+  @ApiOperation({
+    summary: '영어 표현 삭제하기(JWT 필요)',
+    description: '영어 표현 수정하기',
+  })
+  @ApiParam({
+    name: 'expressionId',
+    description: '영어 표현의 ID',
+    example: '6ef26cb3-746c-4df1-90e0-66805f3f8320',
+    type: String,
+  })
+  remove(@Param('expressionId') id: string) {
+    return this.expressionService.remove(id);
+  }
+}

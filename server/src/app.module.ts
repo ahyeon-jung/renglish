@@ -21,6 +21,7 @@ import { SpeakerModule } from './speaker/speaker.module';
 import { StatisticModule } from './statistic/statistic.module';
 import { UserModule } from './user/user.module';
 import { WritingModule } from './writing/writing.module';
+import { ExpressionModule } from './expression/expression.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { WritingModule } from './writing/writing.module';
     RedisModule,
     EmailVerificationModule,
     StatisticModule,
+    ExpressionModule,
   ],
   controllers: [AppController],
   providers: [
