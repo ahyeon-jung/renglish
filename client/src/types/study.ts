@@ -13,3 +13,10 @@ export type StudyType = {
   participantCount: number;
   applicantCount: number;
 };
+
+export type StudyUserType = { id: string; email: string };
+
+export type AdminStudyType = {
+  applicants: StudyUserType[];
+  participants: StudyUserType[];
+} & StudyType;

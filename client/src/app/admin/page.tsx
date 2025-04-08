@@ -13,6 +13,12 @@ export default function Admin() {
       <Link href={PATHS.ADMIN.SCRIPTS.LIST}>
         <Button>대본 목록보기</Button>
       </Link>
+      <Link href={PATHS.ADMIN.SCRIPTS.LIST}>
+        <Button>스터디 추가하기</Button>
+      </Link>
+      <Link href={PATHS.ADMIN.STUDIES.LIST}>
+        <Button>스터디 목록보기</Button>
+      </Link>
       <Link href={PATHS.ADMIN.USERS.LIST}>
         <Button>사용자 관리하기</Button>
       </Link>

@@ -9,6 +9,11 @@ export const PATHS = {
       LIST: '/admin/scripts',
       DETAIL: (scriptId: string) => `/admin/scripts/${scriptId}`,
     },
+    STUDIES: {
+      ADD: '/admin/studies/add',
+      LIST: '/admin/studies',
+      DETAIL: (study: string) => `/admin/studies/${study}`,
+    },
     NOTICES: { ADD: '/admin/notices/add' },
   },
   AUTH: {
@@ -35,7 +40,7 @@ export const PATHS = {
       },
     },
   },
-  STUDIES: {LIST: '/studies'},
+  STUDIES: { LIST: '/studies' },
   NOTICES: {
     INSTALL: '/notices/install',
     ASSIGNMENT: '/notices/assignment',

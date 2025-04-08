@@ -10,6 +10,7 @@ import { STUDY_STATUS } from './enums/study-status.enum';
 import { plainToInstance } from 'class-transformer';
 import { GetStudyParams } from './dto/get-study.dto';
 import { PaginationParams } from 'src/common/dto/pagination-params.dto';
+import { appendFile } from 'fs';
 
 @Injectable()
 export class StudyService {
@@ -127,10 +128,11 @@ export class StudyService {
   async findOne(id: string) {
     const study = await this.studyRepository.findOne({
       where: { id },
-      relations: ['scene', 'participants'],
+      relations: ['scene', 'participants', 'applicants'],
     });
     if (!study) throw new NotFoundException('Study not found');
-    return study;
+
+    return { ...study, isCompleted: study.studiedAt.getTime() > new Date().getTime() };
   }
 
   async update(id: string, updateStudyDto: UpdateStudyDto) {
@@ -202,18 +204,35 @@ export class StudyService {
       return { message: 'User already joined' };
     }
 
+    study.applicants = study.applicants.filter((u) => u.id !== userId);
     study.participants.push(user);
+
     return this.studyRepository.save(study);
   }
 
-  async removeMember(studyId: string, userId: string) {
+  async removeApplicant(studyId: string, userId: string) {
     const study = await this.studyRepository.findOne({
       where: { id: studyId },
-      relations: ['participants'],
+      relations: ['applicants'],
     });
     if (!study) throw new NotFoundException('Study not found');
 
+    study.applicants = study.applicants.filter((user) => user.id !== userId);
+    return this.studyRepository.save(study);
+  }
+
+  async removeParticipant(studyId: string, userId: string) {
+    const study = await this.studyRepository.findOne({
+      where: { id: studyId },
+      relations: ['participants', 'applicants'],
+    });
+    if (!study) throw new NotFoundException('Study not found');
+
+    const user = await this.userRepository.findOneBy({ id: userId });
+    if (!user) throw new NotFoundException('User not found');
+
     study.participants = study.participants.filter((user) => user.id !== userId);
+    study.applicants.push(user);
     return this.studyRepository.save(study);
   }
 

@@ -133,14 +133,25 @@ export class StudyController {
     return this.studyService.addApplicants(studyId, userId);
   }
 
-  @Delete(':id/remove-member')
+  @Delete(':studyId/remove-applicant')
   @UseGuards(AccessTokenGuard)
   @ApiOperation({
     summary: `스터디 지원 취소하기  ${TAG.TOKEN_REQUIRED}`,
-    description: '스터디에 참여중인지 조회합니다(applicant).',
+    description: '토큰 유저가 스터디 지원을 취소합니다(applicant).',
   })
-  removeApplicant(@Param('id') studyId: string, @Param('userId') userId: string) {
-    return this.studyService.removeMember(studyId, userId);
+  removeApplicant(@Param('studyId') studyId: string, @Request() req) {
+    const userId = req.user['id'];
+    return this.studyService.removeApplicant(studyId, userId);
+  }
+
+  @Delete(':studyId/remove-applicant/:userId')
+  @UseGuards(AccessTokenGuard)
+  @ApiOperation({
+    summary: `스터디 지원자 취소하기  ${TAG.ADMIN_REQUIRED}`,
+    description: '관리자가 스터디 지원자를 제거합니다(applicant).',
+  })
+  removeApplicantByAdmin(@Param('studyId') studyId: string, @Param('userId') userId: string) {
+    return this.studyService.removeApplicant(studyId, userId);
   }
 
   @Post(':studyId/add-participant/:userId')
@@ -164,13 +175,13 @@ export class StudyController {
     return this.studyService.addParticipants(studyId, userId);
   }
 
-  @Delete(':studyId/remove-member')
+  @Delete(':studyId/remove-participant/:userId')
   @UseGuards(AccessTokenGuard)
   @ApiOperation({
-    summary: `스터디 참여 취소하기  ${TAG.ADMIN_REQUIRED}`,
-    description: '스터디 참여 취소하기(participant).',
+    summary: `스터디 참여자 취소하기  ${TAG.ADMIN_REQUIRED}`,
+    description: '관리자가 스터디 참여자를 지원자로 변경합니다(applicant).',
   })
-  removeMember(@Param('studyId') studyId: string, @Param('userId') userId: string) {
-    return this.studyService.removeMember(studyId, userId);
+  removeParticipants(@Param('studyId') studyId: string, @Param('userId') userId: string) {
+    return this.studyService.removeParticipant(studyId, userId);
   }
 }
