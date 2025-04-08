@@ -9,6 +9,7 @@ import { Notice } from 'src/notice/entities/notice.entity';
 import { Scene } from 'src/scene/entities/scene.entity';
 import { Speaker } from 'src/speaker/entities/speaker.entity';
 import { Statistic } from 'src/statistic/entities/statistic.entity';
+import { Study } from 'src/study/entities/study.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from 'src/user/entities/user.entity';
 import { Writing } from 'src/writing/entities/writing.entity';
@@ -37,6 +38,7 @@ import { Writing } from 'src/writing/entities/writing.entity';
           Notice,
           Statistic,
           Inquiry,
+          Study,
         ],
         synchronize: true,
       }),

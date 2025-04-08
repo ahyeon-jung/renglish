@@ -20,6 +20,7 @@ export class AccessTokenStrategy extends PassportStrategy(Strategy) {
 
   async validate(payload: any) {
     const user = await this.userService.findUserById(payload.sub);
+    console.log(user);
     if (!user) {
       throw new UnauthorizedException('User not found');
     }
