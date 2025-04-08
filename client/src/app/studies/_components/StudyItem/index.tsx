@@ -35,7 +35,7 @@ export default function StudyItem({ ...study }: StudyItemProps) {
           />
         </div>
       </div>
-      <Button>참여하기</Button>
+      {study.isCompleted && <Button>참여하기</Button>}
     </div>
   );
 }

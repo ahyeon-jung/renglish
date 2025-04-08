@@ -1,6 +1,9 @@
-import React from 'react';
+'use client';
+
+import Link from 'next/link';
 import { STUDY_STATUS_TAG } from '@/constants/tag';
 import Tag from '@/components/Tag';
+import { useSearchParams } from 'next/navigation';
 
 const STUDY_TAGS = [
   { label: '전체', value: 'all' },
@@ -9,10 +12,19 @@ const STUDY_TAGS = [
 ];
 
 export default function StatusQueryTags() {
+  const searchParams = useSearchParams();
+  const status = searchParams.get('status');
+
   return (
     <div className="flex gap-6">
       {STUDY_TAGS.map(({ label, value }) => (
-        <Tag key={value} label={label} value={value} />
+        <Link key={value} href={`?status=${value}`}>
+          <Tag
+            label={label}
+            value={value}
+            isActive={value !== 'all' ? status === value : status === value || !status}
+          />
+        </Link>
       ))}
     </div>
   );

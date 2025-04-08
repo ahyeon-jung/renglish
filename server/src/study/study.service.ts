@@ -94,23 +94,28 @@ export class StudyService {
       .limit(take)
       .getRawMany();
 
-    const data = results.map((row) => ({
-      id: row.study_id,
-      title: row.study_title,
-      description: row.study_description,
-      studiedAt: row.study_studiedAt,
-      participantCount: Number(row.participantCount),
-      applicantCount: Number(row.applicantCount),
-      scene: {
-        id: row.scene_id,
-        title: row.scene_title,
-        movie: {
-          title: row.movie_title,
-          imageUrl: row.movie_imageUrl,
-        },
-      },
-    }));
+    const data = results.map((row) => {
+      const studiedAt = new Date(row.study_studiedAt);
+      const isCompleted = studiedAt.getTime() > new Date().getTime();
 
+      return {
+        id: row.study_id,
+        title: row.study_title,
+        description: row.study_description,
+        studiedAt: row.study_studiedAt,
+        participantCount: Number(row.participantCount),
+        applicantCount: Number(row.applicantCount),
+        isCompleted,
+        scene: {
+          id: row.scene_id,
+          title: row.scene_title,
+          movie: {
+            title: row.movie_title,
+            imageUrl: row.movie_imageUrl,
+          },
+        },
+      };
+    });
     return {
       data,
       totalCount,

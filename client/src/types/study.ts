@@ -8,6 +8,7 @@ export type StudyType = {
   studiedAt: Date;
   title: string;
   description: string;
+  isCompleted: boolean;
   scene: StudySceneType;
   participantCount: number;
   applicantCount: number;

@@ -8,12 +8,19 @@ import StudyItem from './_components/StudyItem';
 import { StudyType } from '@/types/study';
 import clsx from 'clsx';
 import useSWRInfinite from 'swr/infinite';
+import { useSearchParams } from 'next/navigation';
 
 const PAGE_SIZE = 4;
 
-const getKey = (pageIndex: number, previousPageData: StudyType[]) => {
+const getKey = (status: string | null) => (pageIndex: number, previousPageData: StudyType[]) => {
   if (previousPageData && !previousPageData.length) return null;
-  return `/api/studies?limit=${PAGE_SIZE}&offset=${pageIndex + 1}`;
+
+  let url = `/api/studies?limit=${PAGE_SIZE}&offset=${pageIndex + 1}`;
+  if (status) {
+    url += `&status=${status}`;
+  }
+
+  return url;
 };
 
 const fetcher = async (url: string) => {
@@ -22,10 +29,12 @@ const fetcher = async (url: string) => {
   return data;
 };
 
-export default function Studies() {
-  const [studies, setStudies] = useState<StudyType[][]>([]);
-  const { data, size, setSize, isLoading } = useSWRInfinite<StudyType[]>(getKey, fetcher);
+export default function Studies({}) {
+  const searchParams = useSearchParams();
+  const status = searchParams.get('status');
 
+  const [studies, setStudies] = useState<StudyType[][]>([]);
+  const { data, size, setSize, isLoading } = useSWRInfinite<StudyType[]>(getKey(status), fetcher);
   useEffect(() => {
     if (!data) return;
 
