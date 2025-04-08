@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 
 import Button from '@/components/Button';
 import StatusQueryTags from './_components/StatusQueryTags';
@@ -29,7 +29,15 @@ const fetcher = async (url: string) => {
   return data;
 };
 
-export default function Studies({}) {
+export default function Studies() {
+  return (
+    <Suspense>
+      <StudiesContent />
+    </Suspense>
+  );
+}
+
+function StudiesContent({}) {
   const searchParams = useSearchParams();
   const status = searchParams.get('status');
 
