@@ -19,6 +19,8 @@ const DEFAULT_NAV_OPTIONS = [
   { label: 'assignment guide', path: PATHS.NOTICES.ASSIGNMENT },
   { label: 'how to install', path: PATHS.NOTICES.INSTALL },
   { label: 'movies', path: PATHS.MOVIE.LIST },
+  { label: 'studies', path: PATHS.STUDIES.LIST },
+  
 ];
 
 const WITHOUT_AUTH_NAV_OPTIONS = [

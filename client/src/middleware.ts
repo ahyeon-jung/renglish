@@ -5,6 +5,7 @@ import {
   withoutAuthRouteMiddleware,
 } from './middlewares/auth';
 
+import { ENV } from './constants/env';
 import { PATHS } from './constants/path';
 import updateVisitorCount from './app/_actions/statics/updateVisitorCount';
 
@@ -28,16 +29,18 @@ export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const response = NextResponse.next();
 
-  let visitorId = request.cookies.get('visitorId')?.value;
+  if (ENV.IS_PRODUCTION) {
+    let visitorId = request.cookies.get('visitorId')?.value;
 
-  if (!visitorId) {
-    visitorId = crypto.randomUUID();
-    response.cookies.set('visitorId', visitorId, {
-      httpOnly: true,
-      maxAge: 60 * 30,
-    });
+    if (!visitorId) {
+      visitorId = crypto.randomUUID();
+      response.cookies.set('visitorId', visitorId, {
+        httpOnly: true,
+        maxAge: 60 * 30,
+      });
 
-    await updateVisitorCount();
+      await updateVisitorCount();
+    }
   }
 
   if (pathname.startsWith(PATHS.ADMIN.HOME)) {

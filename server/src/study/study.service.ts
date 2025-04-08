@@ -54,9 +54,25 @@ export class StudyService {
   async findAll(status?: string) {
     const query = this.studyRepository
       .createQueryBuilder('study')
-      .leftJoinAndSelect('study.scene', 'scene')
-      .leftJoinAndSelect('study.participants', 'participants')
-      .leftJoinAndSelect('study.applicants', 'applicants');
+      .leftJoin('study.scene', 'scene')
+      .leftJoin('scene.movie', 'movie')
+      .leftJoin('study.participants', 'participants')
+      .leftJoin('study.applicants', 'applicants')
+      .select([
+        'study.id',
+        'study.title',
+        'study.description',
+        'study.studiedAt',
+        'scene.id',
+        'scene.title',
+        'movie.imageUrl',
+        'COUNT(DISTINCT participants.id) AS participantCount',
+        'COUNT(DISTINCT applicants.id) AS applicantCount',
+      ])
+      .groupBy('study.id')
+      .addGroupBy('scene.id')
+      .addGroupBy('movie.id')
+      .orderBy('study.studiedAt', 'DESC');
 
     if (status === STUDY_STATUS.RECRUITING) {
       query.where('study.studiedAt > NOW()');
@@ -64,10 +80,23 @@ export class StudyService {
       query.where('study.studiedAt <= NOW()');
     }
 
-    query.orderBy('study.studiedAt', 'DESC');
+    const studies = await query.getRawMany();
 
-    const studies = await query.getMany();
-    return plainToInstance(Study, studies);
+    return studies.map((row) => ({
+      id: row.study_id,
+      title: row.study_title,
+      description: row.study_description,
+      studiedAt: row.study_studiedAt,
+      participantCount: Number(row.participantCount),
+      applicantCount: Number(row.applicantCount),
+      scene: {
+        id: row.scene_id,
+        title: row.scene_title,
+        movie: {
+          imageUrl: row.movie_imageUrl,
+        },
+      },
+    }));
   }
 
   async findOne(id: string) {

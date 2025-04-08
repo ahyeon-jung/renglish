@@ -35,6 +35,7 @@ export const PATHS = {
       },
     },
   },
+  STUDIES: {LIST: '/studies'},
   NOTICES: {
     INSTALL: '/notices/install',
     ASSIGNMENT: '/notices/assignment',
