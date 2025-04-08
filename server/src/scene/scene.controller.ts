@@ -6,10 +6,16 @@ import { Scene } from './entities/scene.entity';
 import { CreateSceneDto } from './dto/create-scene.dto';
 import { PaginationResponse } from 'src/common/utils/pagination.util';
 import { UpdateSceneDto } from './dto/update-scene.dto';
+import { TAG } from 'src/common/constants/tag';
+import { CreateStudyDto } from 'src/study/dto/create-study.dto';
+import { StudyService } from 'src/study/study.service';
 @ApiTags('Scenes')
 @Controller('scenes')
 export class SceneController {
-  constructor(private readonly sceneService: SceneService) {}
+  constructor(
+    private readonly sceneService: SceneService,
+    private readonly studyService: StudyService,
+  ) {}
 
   @Post(':movieId')
   @ApiParam({
@@ -25,6 +31,23 @@ export class SceneController {
   @ApiBody({ type: CreateSceneDto })
   createScene(@Param('movieId') movieId: string, @Body() createSpeakerDto: CreateSceneDto) {
     return this.sceneService.create(movieId, createSpeakerDto);
+  }
+
+  @Post('/:sceneId/study')
+  @ApiParam({
+    name: 'sceneId',
+    description: '장면의 ID',
+    example: 'e5e798e1-9241-4b95-8e2c-0b630bbd033f',
+    type: String,
+  })
+  @ApiOperation({
+    summary: `스터디 생성하기  ${TAG.ADMIN_REQUIRED}`,
+    description: '새로운 스터디를 생성합니다.',
+  })
+  @ApiBody({ type: CreateStudyDto })
+  create(@Param('sceneId') sceneId: string, @Body() createStudyDto: CreateStudyDto) {
+    console.log('ddddddddddddddd', createStudyDto);
+    return this.studyService.create(sceneId, createStudyDto);
   }
 
   @Put('/:sceneId')

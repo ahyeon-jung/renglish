@@ -22,6 +22,7 @@ import { StatisticModule } from './statistic/statistic.module';
 import { UserModule } from './user/user.module';
 import { WritingModule } from './writing/writing.module';
 import { ExpressionModule } from './expression/expression.module';
+import { StudyModule } from './study/study.module';
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { ExpressionModule } from './expression/expression.module';
     EmailVerificationModule,
     StatisticModule,
     ExpressionModule,
+    StudyModule,
   ],
   controllers: [AppController],
   providers: [

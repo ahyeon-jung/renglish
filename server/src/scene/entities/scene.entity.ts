@@ -3,9 +3,11 @@ import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { BaseEntity } from 'src/common/entities/base.entity';
 import { Dialogue } from 'src/dialogue/entities/dialogue.entity';
+import { Exclude } from 'class-transformer';
 import { Expression } from 'src/expression/entities/expression.entity';
 import { Movie } from 'src/movie/entities/movie.entity';
 import { Speaker } from 'src/speaker/entities/speaker.entity';
+import { Study } from 'src/study/entities/study.entity';
 
 @Entity()
 export class Scene extends BaseEntity {
@@ -30,11 +32,15 @@ export class Scene extends BaseEntity {
   })
   description: string;
 
+  @Exclude()
   @Column()
   audioUrl: string;
 
   @ManyToOne(() => Movie, (movie) => movie.scenes)
   movie: Movie;
+
+  @ManyToOne(() => Study, (study) => study.scene)
+  study: Study;
 
   @OneToMany(() => Speaker, (speaker) => speaker.scene, { onDelete: 'CASCADE' })
   speakers: Speaker[];
