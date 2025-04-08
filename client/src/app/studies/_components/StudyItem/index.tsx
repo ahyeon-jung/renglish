@@ -1,4 +1,4 @@
-import Button from '@/components/Button';
+import ApplyToStudyModal from '../ApplyToStudyModal';
 import Image from 'next/image';
 import { StudyType } from '@/types/study';
 import clsx from 'clsx';
@@ -35,7 +35,7 @@ export default function StudyItem({ ...study }: StudyItemProps) {
           />
         </div>
       </div>
-      {study.isCompleted && <Button>참여하기</Button>}
+      {study.isCompleted && <ApplyToStudyModal studyId={study.id} />}
     </div>
   );
 }

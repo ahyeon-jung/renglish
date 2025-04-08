@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Study } from './entities/study.entity';
@@ -177,7 +177,7 @@ export class StudyService {
     if (!user) throw new NotFoundException('User not found');
 
     if (study.applicants.some((u) => u.id === userId)) {
-      return { message: 'User already joined' };
+      throw new ConflictException('User already joined');
     }
 
     study.applicants.push(user);
