@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from 'react';
 
 import Button from '@/components/Button';
-import StatusQueryTags from './_compoents/StatusQueryTags';
-import StudyItem from './_compoents/StudyItem';
+import StatusQueryTags from './_components/StatusQueryTags';
+import StudyItem from './_components/StudyItem';
 import { StudyType } from '@/types/study';
 import clsx from 'clsx';
 import useSWRInfinite from 'swr/infinite';
