@@ -22,8 +22,8 @@ export default function StudyItem({ ...study }: StudyItemProps) {
           <p className="text-gray-600 text-sm mb-2">{study.description}</p>
           <p className="text-sm text-gray-500">{formatDate(study.studiedAt, 'long')}</p>
           <div className="mt-2 text-sm font-medium text-gray-700">
-            참여자: {study.isCompleted ? study.applicantCount : study.participantCount} /{' '}
-            {APPLICANT_LIMIT}
+            {study.isCompleted ? '예정 인원' : '참여자'}:{' '}
+            {study.isCompleted ? study.applicantCount : study.participantCount} / {APPLICANT_LIMIT}
           </div>
         </div>
         <div className="flex-shrink-0">
