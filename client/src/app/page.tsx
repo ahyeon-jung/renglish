@@ -1,6 +1,6 @@
-import Categories from './_components/Categories';
 import Footer from '@/components/Footer';
 import LatestScript from './_components/LatestScripts';
+import RecruitingStudies from './_components/RecruitingStudies';
 import ScriptSearch from './_components/ScriptSearch';
 import clsx from 'clsx';
 
@@ -11,7 +11,7 @@ export default function Home() {
         <ScriptSearch />
         <div className="flex flex-col gap-[15px] p-3">
           <LatestScript />
-          <Categories />
+          <RecruitingStudies />
         </div>
       </main>
       <Footer />

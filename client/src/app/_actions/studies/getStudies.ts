@@ -1,14 +1,15 @@
 'use server';
 
-import { PaginationParams, PaginationResponse, SearchParams } from '@/types/api';
+import { PaginationParams, PaginationResponse } from '@/types/api';
 
 import { ActionResponse } from '@/types/action';
 import { StudyType } from '@/types/study';
 import { fetchAPI } from '@/libs/api';
 
-type GetStudiesParams = SearchParams & PaginationParams;
+type GetStudiesParams = { status: string } & PaginationParams;
 
 export default async function getStudiesAction({
+  status,
   offset = 1,
   limit = 10,
 }: GetStudiesParams): Promise<ActionResponse<PaginationResponse<StudyType>>> {
@@ -19,6 +20,9 @@ export default async function getStudiesAction({
   }
   if (limit) {
     params.append('limit', limit.toString());
+  }
+  if (status) {
+    params.append('status', status.toString());
   }
 
   const url = `/studies?${params.toString()}`;
