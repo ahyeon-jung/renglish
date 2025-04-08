@@ -31,12 +31,28 @@ export class StudyController {
     type: String,
     required: false,
   })
+  @ApiQuery({
+    name: 'offset',
+    description: '가져올 페이지 번호 (기본값: 1)',
+    example: 1,
+    type: Number,
+  })
+  @ApiQuery({
+    name: 'limit',
+    description: '한 페이지에 가져올 데이터 개수 (기본값: 10)',
+    example: 10,
+    type: Number,
+  })
   @ApiOperation({
     summary: '스터디 목록 조회하기',
     description: '스터디 목록을 조회합니다.',
   })
-  findAll(@Query('status') status?: string) {
-    return this.studyService.findAll(status);
+  findAll(
+    @Query('status') status?: string,
+    @Query('offset') offset: number = 1,
+    @Query('limit') limit: number = 10,
+  ) {
+    return this.studyService.findAll({ status, offset, limit });
   }
 
   @Get(':studyId')

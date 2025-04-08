@@ -1,6 +1,6 @@
 'use server';
 
-import { PaginationParams, SearchParams } from '@/types/api';
+import { PaginationParams, PaginationResponse, SearchParams } from '@/types/api';
 
 import { ActionResponse } from '@/types/action';
 import { StudyType } from '@/types/study';
@@ -11,9 +11,9 @@ type GetStudiesParams = SearchParams & PaginationParams;
 export default async function getStudiesAction({
   offset = 1,
   limit = 10,
-}: GetStudiesParams): Promise<ActionResponse<StudyType[]>> {
+}: GetStudiesParams): Promise<ActionResponse<PaginationResponse<StudyType>>> {
   const params = new URLSearchParams();
-  
+
   if (offset) {
     params.append('offset', offset.toString());
   }
@@ -22,7 +22,7 @@ export default async function getStudiesAction({
   }
 
   const url = `/studies?${params.toString()}`;
-  const response = await fetchAPI<StudyType[]>(url, {
+  const response = await fetchAPI<PaginationResponse<StudyType>>(url, {
     method: 'GET',
   });
 

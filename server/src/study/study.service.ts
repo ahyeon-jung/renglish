@@ -8,6 +8,8 @@ import { User } from 'src/user/entities/user.entity';
 import { Scene } from 'src/scene/entities/scene.entity';
 import { STUDY_STATUS } from './enums/study-status.enum';
 import { plainToInstance } from 'class-transformer';
+import { GetStudyParams } from './dto/get-study.dto';
+import { PaginationParams } from 'src/common/dto/pagination-params.dto';
 
 @Injectable()
 export class StudyService {
@@ -51,8 +53,12 @@ export class StudyService {
     };
   }
 
-  async findAll(status?: string) {
-    const query = this.studyRepository
+  async findAll(params: GetStudyParams & PaginationParams) {
+    const { status, offset = 1, limit = 10 } = params;
+    const skip = (offset - 1) * limit;
+    const take = limit;
+
+    const baseQuery = this.studyRepository
       .createQueryBuilder('study')
       .leftJoin('study.scene', 'scene')
       .leftJoin('scene.movie', 'movie')
@@ -65,24 +71,30 @@ export class StudyService {
         'study.studiedAt',
         'scene.id',
         'scene.title',
+        'movie.title',
         'movie.imageUrl',
         'COUNT(DISTINCT participants.id) AS participantCount',
         'COUNT(DISTINCT applicants.id) AS applicantCount',
       ])
       .groupBy('study.id')
       .addGroupBy('scene.id')
-      .addGroupBy('movie.id')
-      .orderBy('study.studiedAt', 'DESC');
+      .addGroupBy('movie.id');
 
     if (status === STUDY_STATUS.RECRUITING) {
-      query.where('study.studiedAt > NOW()');
+      baseQuery.where('study.studiedAt > NOW()');
     } else if (status === STUDY_STATUS.COMPLETED) {
-      query.where('study.studiedAt <= NOW()');
+      baseQuery.where('study.studiedAt <= NOW()');
     }
 
-    const studies = await query.getRawMany();
+    const totalCount = await baseQuery.getCount();
 
-    return studies.map((row) => ({
+    const results = await baseQuery
+      .orderBy('study.studiedAt', 'DESC')
+      .offset(skip)
+      .limit(take)
+      .getRawMany();
+
+    const data = results.map((row) => ({
       id: row.study_id,
       title: row.study_title,
       description: row.study_description,
@@ -93,10 +105,18 @@ export class StudyService {
         id: row.scene_id,
         title: row.scene_title,
         movie: {
+          title: row.movie_title,
           imageUrl: row.movie_imageUrl,
         },
       },
     }));
+
+    return {
+      data,
+      totalCount,
+      currentPage: offset,
+      totalPages: Math.ceil(totalCount / limit),
+    };
   }
 
   async findOne(id: string) {
