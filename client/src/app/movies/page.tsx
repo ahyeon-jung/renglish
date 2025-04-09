@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 
 import Button from '@/components/Button';
 import Categories from './_components/Categories';
@@ -31,6 +31,14 @@ const fetcher = async (url: string) => {
 };
 
 export default function Scripts() {
+  return (
+    <Suspense>
+      <ScriptsContent />
+    </Suspense>
+  );
+}
+
+function ScriptsContent() {
   const searchParams = useSearchParams();
   const category = searchParams.get('category');
 
