@@ -17,6 +17,7 @@ import { User } from 'src/user/entities/user.entity';
 import { UserService } from 'src/user/user.service';
 import { ConfigService } from '@nestjs/config';
 import { EncryptionService } from './encryption.service';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -50,7 +51,7 @@ export class AuthService {
     return this.userService.create(user);
   }
 
-  async login(loginAuthDto: LoginDto): Promise<{ token: string; email: string }> {
+  async login(loginAuthDto: LoginDto) {
     const { email, password } = loginAuthDto;
     const user = await this.userService.findUserByEmailWithPassword(email);
     if (!user) {
@@ -62,10 +63,29 @@ export class AuthService {
       throw new UnauthorizedException('wrong password');
     }
 
-    const payload = { sub: user.id };
+    const { accessToken, refreshToken } = await this.generateTokens(user);
 
-    const token = this.jwtService.sign(payload);
-    return { token, email };
+    return { accessToken, refreshToken, email };
+  }
+
+  async generateTokens(user: User) {
+    const payload = { sub: user.id, email: user.email };
+
+    const [accessToken, refreshToken] = await Promise.all([
+      this.jwtService.signAsync(payload, {
+        secret: this.configService.get<string>('ACCESS_TOKEN_SECRET'),
+        expiresIn: '30s',
+      }),
+      this.jwtService.signAsync(payload, {
+        secret: this.configService.get<string>('REFRESH_TOKEN_SECRET'),
+        expiresIn: '7d',
+      }),
+    ]);
+
+    const hashedRefreshToken = await bcrypt.hash(refreshToken, 10);
+    await this.userService.updateRefreshToken(user.id, hashedRefreshToken);
+
+    return { accessToken, refreshToken };
   }
 
   async changePassword(changePasswordDto: ChangePasswordDto): Promise<string> {
@@ -104,11 +124,15 @@ export class AuthService {
   }
 
   async validateToken(token: string): Promise<boolean> {
-    const decoded = this.jwtService.verify(token);
-    const userId = decoded.sub;
+    try {
+      const decoded = this.jwtService.verify(token);
+      const userId = decoded.sub;
 
-    const user = await this.userService.findUserById(userId);
-    return !!user;
+      const user = await this.userService.findUserById(userId);
+      return !!user;
+    } catch (error) {
+      throw new UnauthorizedException('Invalid or expired token');
+    }
   }
 
   async getUserFromToken(token: string): Promise<Omit<User, 'password'>> {

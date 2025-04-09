@@ -7,6 +7,7 @@ import { EncryptionService } from './encryption.service';
 import { JwtModule } from '@nestjs/jwt';
 import { LocalAuthStrategy } from './strategies/local-auth-strategy';
 import { Module } from '@nestjs/common';
+import { RefreshTokenStrategy } from './strategies/refresh-token.strategy';
 import { UserModule } from 'src/user/user.module';
 
 @Module({
@@ -23,7 +24,13 @@ import { UserModule } from 'src/user/user.module';
     UserModule,
   ],
   controllers: [AuthController],
-  providers: [AuthService, EncryptionService, AccessTokenStrategy, LocalAuthStrategy],
+  providers: [
+    AuthService,
+    EncryptionService,
+    AccessTokenStrategy,
+    LocalAuthStrategy,
+    RefreshTokenStrategy,
+  ],
   exports: [AuthService],
 })
 export class AuthModule {}

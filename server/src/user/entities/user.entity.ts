@@ -13,6 +13,9 @@ export class User extends BaseEntity {
   @Column()
   password: string;
 
+  @Column({ nullable: true })
+  hashedRefreshToken?: string;
+
   @OneToMany(() => Writing, (writing) => writing.dialogue)
   writings: Writing;
 

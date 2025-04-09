@@ -61,7 +61,7 @@ export default function LoginForm() {
         </Field>
         <Field>
           <Field.Label>Password</Field.Label>
-          <Field.Input placeholder="ex. 123456" onChange={handlePasswordChange} />
+          <Field.Input type="password" placeholder="ex. 123456" onChange={handlePasswordChange} />
         </Field>
       </div>
       <Checkbox

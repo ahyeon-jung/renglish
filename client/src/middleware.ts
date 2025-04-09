@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import {
   logoutRouteMiddleware,
   withAdminRouteMiddleware,
+  withAuthRouteMiddleware,
   withoutAuthRouteMiddleware,
 } from './middlewares/auth';
 
@@ -18,7 +19,7 @@ const pageRoutesMap: Record<string, MiddlewareFunction> = {
   [PATHS.AUTH.REGISTER]: withoutAuthRouteMiddleware,
 
   // Routes that require a token (authenticated user)
-  [PATHS.AUTH.PROFILE]: withAdminRouteMiddleware,
+  [PATHS.AUTH.PROFILE]: withAuthRouteMiddleware,
   [PATHS.AUTH.LOGOUT]: logoutRouteMiddleware,
 
   // Admin routes that require admin token
@@ -28,6 +29,10 @@ const pageRoutesMap: Record<string, MiddlewareFunction> = {
 export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const response = NextResponse.next();
+
+  if (request.nextUrl.pathname.startsWith('/api/cookies/refresh')) {
+    return NextResponse.next();
+  }
 
   if (ENV.IS_PRODUCTION) {
     let visitorId = request.cookies.get('visitorId')?.value;
