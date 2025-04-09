@@ -6,6 +6,7 @@ import { CreateUserDto } from '../user/dto/create-user.dto';
 import { LoginDto } from './dto/login.dto';
 import { ChangePasswordDto } from './dto/update-auth.dto';
 import { AccessTokenGuard } from './guards/access-token.guard';
+import { AuthGuard } from '@nestjs/passport';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -51,6 +52,19 @@ export class AuthController {
   })
   validateToken(@Param('token') token: string) {
     return this.authService.validateToken(token);
+  }
+
+  @UseGuards(AuthGuard('jwt-refresh'))
+  @Post('refresh')
+  @ApiOperation({
+    summary: 'Access Token 재발급',
+    description:
+      '유효한 Refresh Token을 이용해 새로운 Access Token과 Refresh Token을 발급받습니다.',
+  })
+  async refresh(@Request() req) {
+    const user = req.user;
+    const tokens = await this.authService.generateTokens(user);
+    return tokens;
   }
 
   @Get('check/admin')

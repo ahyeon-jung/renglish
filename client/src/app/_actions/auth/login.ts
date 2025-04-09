@@ -19,21 +19,27 @@ export default async function loginAction({
   }
 
   try {
-    const response = await fetchAPI<{ token: string }>(`/auth/login`, {
+    const response = await fetchAPI<{ accessToken: string; refreshToken: string }>(`/auth/login`, {
       method: 'POST',
       body: JSON.stringify({ email, password }),
     });
 
     const {
-      data: { token },
+      data: { accessToken, refreshToken },
     } = response;
 
     const cookieStore = await cookies();
-    cookieStore.set(ENV.COOKIE_ACCESS_TOKEN_KEY, token, {
+    cookieStore.set(ENV.COOKIE_ACCESS_TOKEN_KEY, accessToken, {
       httpOnly: true,
       secure: ENV.IS_PRODUCTION,
       path: '/',
-      ...(rememberMe && { maxAge: 60 * 60 * 24 * 7 }),
+    });
+
+    cookieStore.set(ENV.COOKIE_REFRESH_TOKEN_KEY, refreshToken, {
+      httpOnly: true,
+      secure: ENV.IS_PRODUCTION,
+      path: '/',
+      ...(rememberMe && { maxAge: 1000 * 60 * 60 * 24 * 7 }),
     });
 
     return { status: 200, success: true, message: 'Login successfully', data: null };

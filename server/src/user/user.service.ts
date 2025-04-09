@@ -24,6 +24,16 @@ export class UserService {
     }
   }
 
+  async updateRefreshToken(userId: string, refreshToken: string): Promise<void> {
+    const result = await this.userRepository.update(userId, {
+      hashedRefreshToken: refreshToken,
+    });
+
+    if (result.affected === 0) {
+      throw new NotFoundException('User not found or password update failed');
+    }
+  }
+
   async findAll(params: PaginationParams): Promise<PaginationResponse<Omit<User, 'password'>>> {
     const { offset, limit } = params;
 
