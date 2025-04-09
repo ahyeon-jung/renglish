@@ -9,6 +9,7 @@ import { MovieService } from 'src/movie/movie.service';
 import { findAllWithPagination, PaginationResponse } from 'src/common/utils/pagination.util';
 import { SearchParams } from 'src/common/dto/search-params.dto';
 import { UpdateSceneDto } from './dto/update-scene.dto';
+import { StudyService } from 'src/study/study.service';
 
 @Injectable()
 export class SceneService {
@@ -17,6 +18,7 @@ export class SceneService {
     private readonly sceneRepository: Repository<Scene>,
     @InjectRepository(Movie)
     private readonly movieService: MovieService,
+    private readonly studyService: StudyService,
   ) {}
 
   async create(movieId: string, createSceneDto: CreateSceneDto): Promise<Scene> {
@@ -35,7 +37,7 @@ export class SceneService {
   }
 
   async delete(sceneId: string): Promise<void> {
-    const scene = await this.findSceneById(sceneId);
+    const scene = await this.findOneEntity(sceneId);
     if (!scene) {
       throw new NotFoundException('Scene not found');
     }
@@ -50,16 +52,27 @@ export class SceneService {
       ? [{ title: Like(`%${keyword}%`) }, { description: Like(`%${keyword}%`) }]
       : {};
 
-    return await findAllWithPagination(this.sceneRepository, whereCondition, [], {
+    const data = await findAllWithPagination(this.sceneRepository, whereCondition, [], {
       offset,
       limit,
     });
+
+    return { ...data, data: data.data.map((scene) => ({ ...scene, audioUrl: null })) };
   }
 
-  async findSceneById(sceneId: string): Promise<Scene> {
+  async findOneEntity(id: string): Promise<Scene> {
+    const scene = await this.sceneRepository.findOne({
+      where: { id },
+      relations: ['speakers', 'dialogues', 'dialogues.speaker'],
+    });
+    if (!scene) throw new NotFoundException('Scene not found');
+    return scene;
+  }
+
+  async findSceneById(sceneId: string, userId?: string) {
     const scene = await this.sceneRepository.findOne({
       where: { id: sceneId },
-      relations: ['speakers', 'dialogues', 'dialogues.speaker'],
+      relations: ['speakers', 'dialogues', 'dialogues.speaker', 'study', 'study.participants'],
       order: {
         dialogues: {
           order: 'ASC',
@@ -69,6 +82,34 @@ export class SceneService {
     if (!scene) {
       throw new NotFoundException('Scene not found');
     }
+
+    const isParticipant = userId
+      ? scene.study?.participants?.some((user) => user.id === userId)
+      : false;
+
+    return {
+      id: scene.id,
+      title: scene.title,
+      audioUrl: isParticipant ? scene.audioUrl : null,
+      speakers: scene.speakers,
+      dialogues: scene.dialogues,
+    };
+  }
+
+  async addStudy({ sceneId, studyId }: { sceneId: string; studyId: string }): Promise<Scene> {
+    const scene = await this.findOneEntity(sceneId);
+
+    console.log(scene);
+    const s = await this.studyService.getMemberCount(studyId);
+    console.log(s);
+    const study = await this.studyService.findOneEntity(studyId);
+    if (!study) {
+      throw new NotFoundException('Study not found');
+    }
+
+    scene.study = study;
+
+    await this.sceneRepository.save(scene);
 
     return scene;
   }

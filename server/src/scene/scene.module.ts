@@ -16,8 +16,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
   imports: [
     TypeOrmModule.forFeature([Movie, Scene, Dialogue, Speaker, Expression, Study]),
-    SpeakerModule,
     StudyModule,
+    SpeakerModule,
     forwardRef(() => MovieModule),
   ],
   controllers: [SceneController],

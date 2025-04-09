@@ -7,10 +7,9 @@ import { UpdateStudyDto } from './dto/update-study.dto';
 import { User } from 'src/user/entities/user.entity';
 import { Scene } from 'src/scene/entities/scene.entity';
 import { STUDY_STATUS } from './enums/study-status.enum';
-import { plainToInstance } from 'class-transformer';
+
 import { GetStudyParams } from './dto/get-study.dto';
 import { PaginationParams } from 'src/common/dto/pagination-params.dto';
-import { appendFile } from 'fs';
 
 @Injectable()
 export class StudyService {
@@ -123,6 +122,16 @@ export class StudyService {
       currentPage: offset,
       totalPages: Math.ceil(totalCount / limit),
     };
+  }
+
+  async findOneEntity(id: string): Promise<Study> {
+    const study = await this.studyRepository.findOne({
+      where: { id },
+      relations: ['scene', 'participants', 'applicants'],
+    });
+    if (!study) throw new NotFoundException('Study not found');
+
+    return study;
   }
 
   async findOne(id: string) {

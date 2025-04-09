@@ -1,4 +1,15 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
+  Request,
+  UseGuards,
+} from '@nestjs/common';
 import { SceneService } from './scene.service';
 import { ApiBody, ApiOperation, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { Speaker } from 'src/speaker/entities/speaker.entity';
@@ -9,6 +20,7 @@ import { UpdateSceneDto } from './dto/update-scene.dto';
 import { TAG } from 'src/common/constants/tag';
 import { CreateStudyDto } from 'src/study/dto/create-study.dto';
 import { StudyService } from 'src/study/study.service';
+import { OptionalTokenGuard } from 'src/auth/guards/optional-token.guard';
 @ApiTags('Scenes')
 @Controller('scenes')
 export class SceneController {
@@ -46,8 +58,28 @@ export class SceneController {
   })
   @ApiBody({ type: CreateStudyDto })
   create(@Param('sceneId') sceneId: string, @Body() createStudyDto: CreateStudyDto) {
-    console.log('ddddddddddddddd', createStudyDto);
     return this.studyService.create(sceneId, createStudyDto);
+  }
+
+  @Post('/:sceneId/study/:studyId')
+  @ApiParam({
+    name: 'sceneId',
+    description: '장면의 ID',
+    example: 'e5e798e1-9241-4b95-8e2c-0b630bbd033f',
+    type: String,
+  })
+  @ApiParam({
+    name: 'studyId',
+    description: '스터디의 ID',
+    example: 'e5e798e1-9241-4b95-8e2c-0b630bbd033f',
+    type: String,
+  })
+  @ApiOperation({
+    summary: `장면에 스터디 추가하기  ${TAG.ADMIN_REQUIRED}`,
+    description: '장면에 스터디 추가하기',
+  })
+  addStudy(@Param('sceneId') sceneId: string, @Param('studyId') studyId: string) {
+    return this.sceneService.addStudy({ sceneId, studyId });
   }
 
   @Put('/:sceneId')
@@ -69,7 +101,7 @@ export class SceneController {
   @Get('')
   @ApiOperation({
     summary: '모든 장면 가져오기',
-    description: '모든 장면면을 가져옵니다.',
+    description: '모든 장면면을 가져옵니다(audioUrl 제외).',
   })
   @ApiQuery({
     name: 'keyword',
@@ -99,9 +131,11 @@ export class SceneController {
   }
 
   @Get(':sceneId')
+  @UseGuards(OptionalTokenGuard)
   @ApiOperation({
     summary: '장면 및 대본 가져오기',
-    description: '장면 정보와 해당 장면의 대본을 가져옵니다.',
+    description: `장면 정보와 해당 장면의 대본을 가져옵니다.
+    <br/>로그인 유저가 참여자인 경우 audioUrl을 반환합니다.`,
   })
   @ApiParam({
     name: 'sceneId',
@@ -109,8 +143,9 @@ export class SceneController {
     example: 'e5e798e1-9241-4b95-8e2c-0b630bbd033f',
     type: String,
   })
-  findSceneById(@Param('sceneId') sceneId: string): Promise<Scene> {
-    return this.sceneService.findSceneById(sceneId);
+  findSceneById(@Param('sceneId') sceneId: string, @Request() req) {
+    const userId = (req.user as any)?.id ?? null;
+    return this.sceneService.findSceneById(sceneId, userId);
   }
 
   @Get(':sceneId/speakers')
