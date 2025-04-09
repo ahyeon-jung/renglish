@@ -11,7 +11,7 @@ type Container = {
 
 export default function Container({ label, goTo, className, children }: Container) {
   return (
-    <section className={clsx('flex flex-col gap-[15px]', className)}>
+    <section className={clsx('flex flex-col gap-[10px]', className)}>
       <div className="flex justify-between items-center">
         {label && (
           <Text as="h3" typography="headline-lg">

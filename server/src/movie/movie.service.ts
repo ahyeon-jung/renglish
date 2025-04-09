@@ -18,7 +18,7 @@ export class MovieService {
     return this.movieRepository.save(createMovieDto);
   }
 
-  async findAll(params: SearchMovieParams): Promise<PaginationResponse<Movie>> {
+  async findAll(params: SearchMovieParams) {
     const { category, keyword, offset, limit } = params;
 
     let whereCondition: any = {};
@@ -34,7 +34,7 @@ export class MovieService {
       whereCondition = [{ title: Like(`%${keyword}%`) }, { description: Like(`%${keyword}%`) }];
     }
 
-    return await findAllWithPagination(
+    const data = await findAllWithPagination(
       this.movieRepository,
       whereCondition,
       ['scenes'],
@@ -44,6 +44,14 @@ export class MovieService {
       },
       { scenes: { studiedAt: 'DESC' } },
     );
+
+    return {
+      ...data,
+      data: data.data.map((movie) => ({
+        ...movie,
+        scenes: movie.scenes.map((scene) => ({ id: scene.id, title: scene.title })),
+      })),
+    };
   }
 
   async findMovieWithLatestScene(): Promise<Movie> {

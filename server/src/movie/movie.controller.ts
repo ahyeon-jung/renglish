@@ -144,7 +144,7 @@ export class MovieController {
     @Query('keyword') keyword?: string,
     @Query('offset') offset: number = 1,
     @Query('limit') limit: number = 10,
-  ): Promise<PaginationResponse<Movie>> {
+  ) {
     return this.movieService.findAll({ category, keyword, offset, limit });
   }
 
