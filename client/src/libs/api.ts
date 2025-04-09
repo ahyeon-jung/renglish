@@ -29,6 +29,10 @@ export async function fetchAPI<T = void>(endpoint: string, options?: RequestInit
       },
     });
 
+    if (refreshRes.status === 401) {
+      redirect(`/api/auth/logout`);
+    }
+
     if (!refreshRes.ok) {
       throw new Error('Refresh token expired or invalid');
     }
