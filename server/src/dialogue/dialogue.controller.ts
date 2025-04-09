@@ -1,8 +1,10 @@
 import { ApiBody, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
-import { Body, Controller, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { DialogueService } from './dialogue.service';
 import { CreateDialogueDto } from './dto/create-dialogue.dto';
 import { UpdateDialogueDto } from './dto/update-dialogue.dto';
+import { TAG } from 'src/common/constants/tag';
+import { AdminTokenGuard } from 'src/auth/guards/admin-token.guard';
 
 @ApiTags('Dialogues')
 @Controller('dialogues')
@@ -10,6 +12,7 @@ export class DialogueController {
   constructor(private readonly dialogueService: DialogueService) {}
 
   @Post('/:sceneId/:speakerId')
+  @UseGuards(AdminTokenGuard)
   @ApiParam({
     name: 'speakerId',
     description: '발화자의 ID',
@@ -23,7 +26,7 @@ export class DialogueController {
     type: String,
   })
   @ApiOperation({
-    summary: '대사 정보 생성하기',
+    summary: `대사 정보 생성 ${TAG.ADMIN_REQUIRED}`,
     description: '새로운 대사 정보를 생성합니다.',
   })
   @ApiBody({ type: CreateDialogueDto })
@@ -36,6 +39,7 @@ export class DialogueController {
   }
 
   @Put('/:dialogueId')
+  @UseGuards(AdminTokenGuard)
   @ApiParam({
     name: 'dialogueId',
     description: '대사의 ID',
@@ -43,7 +47,7 @@ export class DialogueController {
     type: String,
   })
   @ApiOperation({
-    summary: '대사 정보 변경하기',
+    summary: `대사 정보 변경 ${TAG.ADMIN_REQUIRED}`,
     description: '대사 정보를 변경합니다.',
   })
   @ApiBody({ type: UpdateDialogueDto })

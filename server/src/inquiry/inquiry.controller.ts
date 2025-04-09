@@ -16,16 +16,17 @@ import { UpdateInquiryDto } from './dto/update-inquiry.dto';
 import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Inquiry } from './entities/inquiry.entity';
 import { AccessTokenGuard } from 'src/auth/guards/access-token.guard';
+import { TAG } from 'src/common/constants/tag';
 
 @ApiTags('Inquiries')
 @Controller('inquiries')
 export class InquiryController {
   constructor(private readonly inquiryService: InquiryService) {}
 
-  @Post()
+  @Post('/')
   @UseGuards(AccessTokenGuard)
   @ApiOperation({
-    summary: '문의사항 작성(Admin JWT 인증 필요)',
+    summary: `문의사항 작성 ${TAG.TOKEN_REQUIRED}`,
     description: '문의사항을 작성합니다.',
   })
   @ApiBody({ type: CreateInquiryDto })
@@ -46,7 +47,7 @@ export class InquiryController {
     return this.inquiryService.findAll();
   }
 
-  @Get(':inquiryId')
+  @Get('/:inquiryId')
   @ApiOperation({
     summary: '해당 ID 문의사항 가져오기',
     description: '해당 ID의 문의사항을 가져옵니다.',
@@ -55,10 +56,10 @@ export class InquiryController {
     return this.inquiryService.findOne(inquiryId);
   }
 
-  @Patch(':inquiryId')
+  @Patch('/:inquiryId')
   @UseGuards(AccessTokenGuard)
   @ApiOperation({
-    summary: '해당 ID 문의사항 업데이트(Admin JWT 인증 필요)',
+    summary: `문의사항 수정 ${TAG.TOKEN_REQUIRED}`,
     description: '해당 ID의 문의사항을 업데이트합니다.',
   })
   update(
@@ -72,10 +73,10 @@ export class InquiryController {
     return this.inquiryService.update(inquiryId, updateInquiryDto);
   }
 
-  @Delete(':inquiryId')
+  @Delete('/:inquiryId')
   @UseGuards(AccessTokenGuard)
   @ApiOperation({
-    summary: '해당 ID 문의사항 삭제(Admin JWT 인증 필요)',
+    summary: `해당 ID 문의사항 삭제 ${TAG.TOKEN_REQUIRED}`,
     description: '해당 ID의 문의사항을 삭제합니다.',
   })
   remove(@Request() req, @Param('inquiryId') inquiryId: string) {

@@ -1,9 +1,11 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { NoticeService } from './notice.service';
 import { CreateNoticeDto } from './dto/create-notice.dto';
 import { UpdateNoticeDto } from './dto/update-notice.dto';
 import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Notice } from './entities/notice.entity';
+import { AdminTokenGuard } from 'src/auth/guards/admin-token.guard';
+import { TAG } from 'src/common/constants/tag';
 
 @ApiTags('Notices')
 @Controller('notices')
@@ -11,8 +13,9 @@ export class NoticeController {
   constructor(private readonly noticeService: NoticeService) {}
 
   @Post()
+  @UseGuards(AdminTokenGuard)
   @ApiOperation({
-    summary: '공지사항 작성',
+    summary: `공지사항 작성 ${TAG.ADMIN_REQUIRED}`,
     description: '공지사항을 추가합니다.',
   })
   @ApiBody({ type: CreateNoticeDto })
@@ -39,8 +42,9 @@ export class NoticeController {
   }
 
   @Patch(':noticeId')
+  @UseGuards(AdminTokenGuard)
   @ApiOperation({
-    summary: '해당 ID 공지사항 업데이트',
+    summary: `공지사항 수정 ${TAG.ADMIN_REQUIRED}`,
     description: '해당 ID의 공지사항을 업데이트합니다.',
   })
   update(@Param('noticeId') noticeId: string, @Body() updateNoticeDto: UpdateNoticeDto) {
@@ -48,8 +52,9 @@ export class NoticeController {
   }
 
   @Delete(':noticeId')
+  @UseGuards(AdminTokenGuard)
   @ApiOperation({
-    summary: '해당 ID 공지사항 삭제',
+    summary: `해당 ID 공지사항 삭제 ${TAG.ADMIN_REQUIRED}`,
     description: '해당 ID의 공지사항을 삭제합니다.',
   })
   remove(@Param('noticeId') noticeId: string) {

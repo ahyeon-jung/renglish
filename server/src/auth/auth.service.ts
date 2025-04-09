@@ -53,6 +53,7 @@ export class AuthService {
 
   async login(loginAuthDto: LoginDto) {
     const { email, password } = loginAuthDto;
+
     const user = await this.userService.findUserByEmailWithPassword(email);
     if (!user) {
       throw new NotFoundException('no account');
@@ -121,33 +122,5 @@ export class AuthService {
     }
 
     return user;
-  }
-
-  async validateToken(token: string): Promise<boolean> {
-    try {
-      const decoded = this.jwtService.verify(token);
-      const userId = decoded.sub;
-
-      const user = await this.userService.findUserById(userId);
-      return !!user;
-    } catch (error) {
-      throw new UnauthorizedException('Invalid or expired token');
-    }
-  }
-
-  async getUserFromToken(token: string): Promise<Omit<User, 'password'>> {
-    try {
-      const decoded = this.jwtService.verify(token);
-      const userId = decoded.sub;
-
-      const user = await this.userService.findUserById(userId);
-      if (!user) {
-        throw new NotFoundException('User not found');
-      }
-
-      return user;
-    } catch (error) {
-      throw new UnauthorizedException('Invalid or expired token');
-    }
   }
 }

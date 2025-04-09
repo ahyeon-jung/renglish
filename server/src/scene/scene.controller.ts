@@ -21,6 +21,7 @@ import { TAG } from 'src/common/constants/tag';
 import { CreateStudyDto } from 'src/study/dto/create-study.dto';
 import { StudyService } from 'src/study/study.service';
 import { OptionalTokenGuard } from 'src/auth/guards/optional-token.guard';
+import { AdminTokenGuard } from 'src/auth/guards/admin-token.guard';
 @ApiTags('Scenes')
 @Controller('scenes')
 export class SceneController {
@@ -30,15 +31,16 @@ export class SceneController {
   ) {}
 
   @Post(':movieId')
+  @UseGuards(AdminTokenGuard)
+  @ApiOperation({
+    summary: `장면 정보 생성하기 ${TAG.ADMIN_REQUIRED}`,
+    description: '새로운 장면 정보를 생성합니다.',
+  })
   @ApiParam({
     name: 'movieId',
     description: '영화의 ID',
     example: 'e5e798e1-9241-4b95-8e2c-0b630bbd033f',
     type: String,
-  })
-  @ApiOperation({
-    summary: '장면 정보 생성하기',
-    description: '새로운 장면 정보를 생성합니다.',
   })
   @ApiBody({ type: CreateSceneDto })
   createScene(@Param('movieId') movieId: string, @Body() createSpeakerDto: CreateSceneDto) {
@@ -46,15 +48,16 @@ export class SceneController {
   }
 
   @Post('/:sceneId/study')
+  @UseGuards(AdminTokenGuard)
+  @ApiOperation({
+    summary: `스터디 생성하기  ${TAG.ADMIN_REQUIRED}`,
+    description: '새로운 스터디를 생성합니다.',
+  })
   @ApiParam({
     name: 'sceneId',
     description: '장면의 ID',
     example: 'e5e798e1-9241-4b95-8e2c-0b630bbd033f',
     type: String,
-  })
-  @ApiOperation({
-    summary: `스터디 생성하기  ${TAG.ADMIN_REQUIRED}`,
-    description: '새로운 스터디를 생성합니다.',
   })
   @ApiBody({ type: CreateStudyDto })
   create(@Param('sceneId') sceneId: string, @Body() createStudyDto: CreateStudyDto) {
@@ -62,6 +65,11 @@ export class SceneController {
   }
 
   @Post('/:sceneId/study/:studyId')
+  @UseGuards(AdminTokenGuard)
+  @ApiOperation({
+    summary: `장면에 스터디 추가하기  ${TAG.ADMIN_REQUIRED}`,
+    description: '장면에 스터디 추가하기',
+  })
   @ApiParam({
     name: 'sceneId',
     description: '장면의 ID',
@@ -74,15 +82,12 @@ export class SceneController {
     example: 'e5e798e1-9241-4b95-8e2c-0b630bbd033f',
     type: String,
   })
-  @ApiOperation({
-    summary: `장면에 스터디 추가하기  ${TAG.ADMIN_REQUIRED}`,
-    description: '장면에 스터디 추가하기',
-  })
   addStudy(@Param('sceneId') sceneId: string, @Param('studyId') studyId: string) {
     return this.sceneService.addStudy({ sceneId, studyId });
   }
 
   @Put('/:sceneId')
+  @UseGuards(AdminTokenGuard)
   @ApiParam({
     name: 'sceneId',
     description: '장면의 ID',
@@ -164,8 +169,9 @@ export class SceneController {
   }
 
   @Delete(':sceneId')
+  @UseGuards(AdminTokenGuard)
   @ApiOperation({
-    summary: '장면 삭제하기',
+    summary: `장면 삭제하기 ${TAG.ADMIN_REQUIRED}`,
     description: '장면 정보 및 연결된 발화자, 대사를 삭제합니다.',
   })
   @ApiParam({

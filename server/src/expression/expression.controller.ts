@@ -1,15 +1,17 @@
-import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put, UseGuards } from '@nestjs/common';
 import { ExpressionService } from './expression.service';
 import { CreateExpressionDto } from './dto/create-expression.dto';
 import { UpdateExpressionDto } from './dto/update-expression.dto';
 import { ApiOperation, ApiParam } from '@nestjs/swagger';
 import { TAG } from 'src/common/constants/tag';
+import { AccessTokenGuard } from 'src/auth/guards/access-token.guard';
+import { AdminTokenGuard } from 'src/auth/guards/admin-token.guard';
 
 @Controller('expressions')
 export class ExpressionController {
   constructor(private readonly expressionService: ExpressionService) {}
 
-  @Get('weekly')
+  @Get('/weekly')
   @ApiOperation({
     summary: '이번주 영어 표현 가져오기',
     description: '이번주 영어 표현을 10개 가져옵니다.',
@@ -18,7 +20,8 @@ export class ExpressionController {
     return this.expressionService.findWeeklyExpressions();
   }
 
-  @Get(':sceneId')
+  @Get('/:sceneId')
+  @UseGuards(AccessTokenGuard)
   @ApiOperation({
     summary: `해당 장면의 영어 표현 가져오기 ${TAG.TOKEN_REQUIRED}`,
     description: '해당 장면의 영어 표현 가져오기',
@@ -33,7 +36,8 @@ export class ExpressionController {
     return this.expressionService.findOne(expressionId);
   }
 
-  @Post(':sceneId')
+  @Post('/:sceneId')
+  @UseGuards(AdminTokenGuard)
   @ApiOperation({
     summary: `영어 표현 추가하기 ${TAG.ADMIN_REQUIRED}`,
     description: '해당 장면의 영어 표현 추가하기',
@@ -48,7 +52,8 @@ export class ExpressionController {
     return this.expressionService.create(createExpressionDto);
   }
 
-  @Put(':expressionId')
+  @Put('/:expressionId')
+  @UseGuards(AdminTokenGuard)
   @ApiOperation({
     summary: `영어 표현 수정하기 ${TAG.ADMIN_REQUIRED}`,
     description: '영어 표현 수정하기',
@@ -63,7 +68,8 @@ export class ExpressionController {
     return this.expressionService.update(id, updateExpressionDto);
   }
 
-  @Delete(':expressionId')
+  @Delete('/:expressionId')
+  @UseGuards(AdminTokenGuard)
   @ApiOperation({
     summary: `영어 표현 삭제하기 ${TAG.ADMIN_REQUIRED}`,
     description: '영어 표현 수정하기',

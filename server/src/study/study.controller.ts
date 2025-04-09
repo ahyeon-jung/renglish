@@ -17,6 +17,7 @@ import { AccessTokenGuard } from 'src/auth/guards/access-token.guard';
 import { ApiOperation, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { TAG } from 'src/common/constants/tag';
 import { STUDY_STATUS } from './enums/study-status.enum';
+import { AdminTokenGuard } from 'src/auth/guards/admin-token.guard';
 
 @ApiTags('Study')
 @Controller('studies')
@@ -71,30 +72,32 @@ export class StudyController {
   }
 
   @Put(':studyId')
+  @UseGuards(AdminTokenGuard)
+  @ApiOperation({
+    summary: `스터디 수정하기 ${TAG.ADMIN_REQUIRED}`,
+    description: '스터디를 수정합니다.',
+  })
   @ApiParam({
     name: 'studyId',
     description: '스터디의 ID',
     example: 'e5e798e1-9241-4b95-8e2c-0b630bbd033f',
     type: String,
-  })
-  @ApiOperation({
-    summary: `스터디 수정하기 ${TAG.ADMIN_REQUIRED}`,
-    description: '스터디를 수정합니다.',
   })
   update(@Param('studyId') id: string, @Body() updateStudyDto: UpdateStudyDto) {
     return this.studyService.update(id, updateStudyDto);
   }
 
   @Delete(':studyId')
+  @UseGuards(AdminTokenGuard)
+  @ApiOperation({
+    summary: `스터디 삭제하기 ${TAG.ADMIN_REQUIRED}`,
+    description: '스터디를 삭제합니다.',
+  })
   @ApiParam({
     name: 'studyId',
     description: '스터디의 ID',
     example: 'e5e798e1-9241-4b95-8e2c-0b630bbd033f',
     type: String,
-  })
-  @ApiOperation({
-    summary: `스터디 삭제하기 ${TAG.ADMIN_REQUIRED}`,
-    description: '스터디를 삭제합니다.',
   })
   remove(@Param('studyId') id: string) {
     return this.studyService.remove(id);
@@ -145,7 +148,7 @@ export class StudyController {
   }
 
   @Delete(':studyId/remove-applicant/:userId')
-  @UseGuards(AccessTokenGuard)
+  @UseGuards(AdminTokenGuard)
   @ApiOperation({
     summary: `스터디 지원자 취소하기  ${TAG.ADMIN_REQUIRED}`,
     description: '관리자가 스터디 지원자를 제거합니다(applicant).',
@@ -155,6 +158,11 @@ export class StudyController {
   }
 
   @Post(':studyId/add-participant/:userId')
+  @UseGuards(AdminTokenGuard)
+  @ApiOperation({
+    summary: `스터디 참여 수락하기  ${TAG.ADMIN_REQUIRED}`,
+    description: '스터디 참여자를 수락합니다(participant).',
+  })
   @ApiParam({
     name: 'studyId',
     description: '스터디의 ID',
@@ -167,16 +175,12 @@ export class StudyController {
     example: 'e5e798e1-9241-4b95-8e2c-0b630bbd033f',
     type: String,
   })
-  @ApiOperation({
-    summary: `스터디 참여 수락하기  ${TAG.ADMIN_REQUIRED}`,
-    description: '스터디 참여자를 수락합니다(participant).',
-  })
   addParticipant(@Param('studyId') studyId: string, @Param('userId') userId: string) {
     return this.studyService.addParticipants(studyId, userId);
   }
 
   @Delete(':studyId/remove-participant/:userId')
-  @UseGuards(AccessTokenGuard)
+  @UseGuards(AdminTokenGuard)
   @ApiOperation({
     summary: `스터디 참여자 취소하기  ${TAG.ADMIN_REQUIRED}`,
     description: '관리자가 스터디 참여자를 지원자로 변경합니다(applicant).',
