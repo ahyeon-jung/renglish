@@ -1,6 +1,6 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Brackets, Repository } from 'typeorm';
+import { Brackets, DeleteResult, Repository } from 'typeorm';
 import { Study } from './entities/study.entity';
 import { CreateStudyDto } from './dto/create-study.dto';
 import { UpdateStudyDto } from './dto/update-study.dto';
@@ -10,6 +10,8 @@ import { STUDY_STATUS } from './enums/study-status.enum';
 
 import { GetStudyParams } from './dto/get-study.dto';
 import { PaginationParams } from 'src/common/dto/pagination-params.dto';
+import { ExtendedFilteredStudy, FilteredStudy } from './types/filtered-study';
+import { PaginationResponse } from 'src/common/utils/pagination.util';
 
 @Injectable()
 export class StudyService {
@@ -23,7 +25,7 @@ export class StudyService {
     private userRepository: Repository<User>,
   ) {}
 
-  async create(sceneId: string, createStudyDto: CreateStudyDto) {
+  async create(sceneId: string, createStudyDto: CreateStudyDto): Promise<FilteredStudy> {
     const scene = await this.sceneRepository.findOne({
       where: { id: sceneId },
       relations: ['movie'],
@@ -53,7 +55,9 @@ export class StudyService {
     };
   }
 
-  async findAll(params: GetStudyParams & PaginationParams) {
+  async findAll(
+    params: GetStudyParams & PaginationParams,
+  ): Promise<PaginationResponse<ExtendedFilteredStudy>> {
     const { status, offset = 1, limit = 10 } = params;
     const skip = (offset - 1) * limit;
     const take = limit;
@@ -134,17 +138,22 @@ export class StudyService {
     return study;
   }
 
-  async findOne(id: string) {
+  async findOne(id: string): Promise<ExtendedFilteredStudy> {
     const study = await this.studyRepository.findOne({
       where: { id },
       relations: ['scene', 'participants', 'applicants'],
     });
     if (!study) throw new NotFoundException('Study not found');
 
-    return { ...study, isCompleted: study.studiedAt.getTime() > new Date().getTime() };
+    return {
+      ...study,
+      isCompleted: study.studiedAt.getTime() > new Date().getTime(),
+      participantCount: study.participants.length,
+      applicantCount: study.applicants.length,
+    };
   }
 
-  async update(id: string, updateStudyDto: UpdateStudyDto) {
+  async update(id: string, updateStudyDto: UpdateStudyDto): Promise<Study> {
     const study = await this.studyRepository.preload({
       id,
       ...updateStudyDto,
@@ -153,11 +162,12 @@ export class StudyService {
     return this.studyRepository.save(study);
   }
 
-  async remove(id: string) {
+  async remove(id: string): Promise<DeleteResult> {
     const study = await this.findOne(id);
-    return this.studyRepository.remove(study);
+    return this.studyRepository.delete(study);
   }
-  async findByUser(userId: string, type?: string) {
+
+  async findByUser(userId: string, type?: string): Promise<Study[]> {
     const query = this.studyRepository
       .createQueryBuilder('study')
       .leftJoinAndSelect('study.scene', 'scene')
@@ -192,7 +202,7 @@ export class StudyService {
     return data;
   }
 
-  async isMember(studyId: string, userId: string) {
+  async isMember(studyId: string, userId: string): Promise<{ isMember: boolean }> {
     const count = await this.studyRepository
       .createQueryBuilder('study')
       .leftJoin('study.participants', 'user')
@@ -203,7 +213,7 @@ export class StudyService {
     return { isMember: count > 0 };
   }
 
-  async addApplicants(studyId: string, userId: string) {
+  async addApplicants(studyId: string, userId: string): Promise<Study> {
     const study = await this.studyRepository.findOne({
       where: { id: studyId },
       relations: ['participants', 'applicants'],
@@ -221,7 +231,7 @@ export class StudyService {
     return this.studyRepository.save(study);
   }
 
-  async addParticipants(studyId: string, userId: string) {
+  async addParticipants(studyId: string, userId: string): Promise<Study | { message: string }> {
     const study = await this.studyRepository.findOne({
       where: { id: studyId },
       relations: ['participants', 'applicants'],
@@ -245,7 +255,7 @@ export class StudyService {
     return this.studyRepository.save(study);
   }
 
-  async removeApplicant(studyId: string, userId: string) {
+  async removeApplicant(studyId: string, userId: string): Promise<Study> {
     const study = await this.studyRepository.findOne({
       where: { id: studyId },
       relations: ['applicants'],
@@ -256,7 +266,7 @@ export class StudyService {
     return this.studyRepository.save(study);
   }
 
-  async removeParticipant(studyId: string, userId: string) {
+  async removeParticipant(studyId: string, userId: string): Promise<Study> {
     const study = await this.studyRepository.findOne({
       where: { id: studyId },
       relations: ['participants', 'applicants'],
@@ -271,7 +281,7 @@ export class StudyService {
     return this.studyRepository.save(study);
   }
 
-  async getMemberCount(studyId: string) {
+  async getMemberCount(studyId: string): Promise<{ count: number }> {
     const study = await this.studyRepository.findOne({
       where: { id: studyId },
       relations: ['participants'],

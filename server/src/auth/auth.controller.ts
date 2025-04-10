@@ -9,6 +9,7 @@ import { AccessTokenGuard } from './guards/access-token.guard';
 import { AuthGuard } from '@nestjs/passport';
 import { TAG } from 'src/common/constants/tag';
 import { UpdateUserDto } from 'src/user/dto/update-user.dto';
+import { User } from 'src/user/entities/user.entity';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -21,7 +22,7 @@ export class AuthController {
     description: '새로운 사용자를 생성합니다.',
   })
   @ApiBody({ type: CreateUserDto })
-  signup(@Body() createUserDto: CreateUserDto) {
+  signup(@Body() createUserDto: CreateUserDto): Promise<Omit<User, 'password'>> {
     return this.authService.signup(createUserDto);
   }
 
@@ -31,7 +32,9 @@ export class AuthController {
     description: '사용자가 로그인을 시도합니다.',
   })
   @ApiBody({ type: LoginDto })
-  login(@Body() loginAuthDto: LoginDto) {
+  login(
+    @Body() loginAuthDto: LoginDto,
+  ): Promise<{ accessToken: string; refreshToken: string; email: string }> {
     return this.authService.login(loginAuthDto);
   }
 
@@ -42,7 +45,7 @@ export class AuthController {
     description:
       '유효한 Refresh Token을 이용해 새로운 Access Token과 Refresh Token을 발급받습니다.',
   })
-  async refresh(@Request() req) {
+  async refresh(@Request() req): Promise<{ accessToken: string; refreshToken: string }> {
     const user = req.user;
     const tokens = await this.authService.generateTokens(user);
     return tokens;
@@ -60,7 +63,7 @@ export class AuthController {
     example: 'e5e798e1-9241-4b95-8e2c-0b630bbd033f',
     type: String,
   })
-  validateToken(@Param('token') token: string) {
+  validateToken(@Param('token') token: string): { token: string } {
     return { token };
   }
 
@@ -70,7 +73,7 @@ export class AuthController {
     summary: `관리자 확인 ${TAG.TOKEN_REQUIRED}`,
     description: '현재 사용자가 관리자인지 확인합니다.',
   })
-  async checkAdminByToken(@Request() req) {
+  async checkAdminByToken(@Request() req): Promise<{ isAdmin: boolean }> {
     return { isAdmin: req.user.isAdmin };
   }
 
@@ -81,7 +84,7 @@ export class AuthController {
   })
   @ApiResponse({ status: 200, description: '비밀번호 변경 성공' })
   @ApiBody({ type: ChangePasswordDto })
-  changePassword(@Body() changePasswordDto: ChangePasswordDto) {
+  changePassword(@Body() changePasswordDto: ChangePasswordDto): Promise<string> {
     return this.authService.changePassword(changePasswordDto);
   }
 }

@@ -18,6 +18,10 @@ import { ApiOperation, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { TAG } from 'src/common/constants/tag';
 import { STUDY_STATUS } from './enums/study-status.enum';
 import { AdminTokenGuard } from 'src/auth/guards/admin-token.guard';
+import { PaginationResponse } from 'src/common/utils/pagination.util';
+import { ExtendedFilteredStudy } from './types/filtered-study';
+import { Study } from './entities/study.entity';
+import { DeleteResult } from 'typeorm';
 
 @ApiTags('Study')
 @Controller('studies')
@@ -52,7 +56,7 @@ export class StudyController {
     @Query('status') status?: string,
     @Query('offset') offset: number = 1,
     @Query('limit') limit: number = 10,
-  ) {
+  ): Promise<PaginationResponse<ExtendedFilteredStudy>> {
     return this.studyService.findAll({ status, offset, limit });
   }
 
@@ -67,7 +71,7 @@ export class StudyController {
     summary: '스터디 조회하기',
     description: '스터디를 조회합니다.',
   })
-  findOne(@Param('studyId') id: string) {
+  findOne(@Param('studyId') id: string): Promise<ExtendedFilteredStudy> {
     return this.studyService.findOne(id);
   }
 
@@ -83,7 +87,7 @@ export class StudyController {
     example: 'e5e798e1-9241-4b95-8e2c-0b630bbd033f',
     type: String,
   })
-  update(@Param('studyId') id: string, @Body() updateStudyDto: UpdateStudyDto) {
+  update(@Param('studyId') id: string, @Body() updateStudyDto: UpdateStudyDto): Promise<Study> {
     return this.studyService.update(id, updateStudyDto);
   }
 
@@ -99,7 +103,7 @@ export class StudyController {
     example: 'e5e798e1-9241-4b95-8e2c-0b630bbd033f',
     type: String,
   })
-  remove(@Param('studyId') id: string) {
+  remove(@Param('studyId') id: string): Promise<DeleteResult> {
     return this.studyService.remove(id);
   }
 
@@ -109,7 +113,7 @@ export class StudyController {
     summary: '스터디 참여자 여부 조회하기',
     description: '스터디에 참여중인지 조회합니다.',
   })
-  isMember(@Param('studyId') studyId: string, @Request() req) {
+  isMember(@Param('studyId') studyId: string, @Request() req): Promise<{ isMember: boolean }> {
     const userId = req.user['id'];
     return this.studyService.isMember(studyId, userId);
   }
@@ -120,7 +124,7 @@ export class StudyController {
     summary: `스터디 지원하기  ${TAG.TOKEN_REQUIRED}`,
     description: '스터디에 참여중인지 조회합니다(applicant).',
   })
-  addApplicant(@Param('studyId') studyId: string, @Request() req) {
+  addApplicant(@Param('studyId') studyId: string, @Request() req): Promise<Study> {
     const userId = req.user['id'];
     return this.studyService.addApplicants(studyId, userId);
   }
@@ -131,7 +135,7 @@ export class StudyController {
     summary: `스터디 지원 취소하기  ${TAG.TOKEN_REQUIRED}`,
     description: '토큰 유저가 스터디 지원을 취소합니다(applicant).',
   })
-  removeApplicant(@Param('studyId') studyId: string, @Request() req) {
+  removeApplicant(@Param('studyId') studyId: string, @Request() req): Promise<Study> {
     const userId = req.user['id'];
     return this.studyService.removeApplicant(studyId, userId);
   }
@@ -142,7 +146,10 @@ export class StudyController {
     summary: `스터디 지원자 취소하기  ${TAG.ADMIN_REQUIRED}`,
     description: '관리자가 스터디 지원자를 제거합니다(applicant).',
   })
-  removeApplicantByAdmin(@Param('studyId') studyId: string, @Param('userId') userId: string) {
+  removeApplicantByAdmin(
+    @Param('studyId') studyId: string,
+    @Param('userId') userId: string,
+  ): Promise<Study> {
     return this.studyService.removeApplicant(studyId, userId);
   }
 
@@ -164,7 +171,10 @@ export class StudyController {
     example: 'e5e798e1-9241-4b95-8e2c-0b630bbd033f',
     type: String,
   })
-  addParticipant(@Param('studyId') studyId: string, @Param('userId') userId: string) {
+  addParticipant(
+    @Param('studyId') studyId: string,
+    @Param('userId') userId: string,
+  ): Promise<Study | { message: string }> {
     return this.studyService.addParticipants(studyId, userId);
   }
 
@@ -174,7 +184,10 @@ export class StudyController {
     summary: `스터디 참여자 취소하기  ${TAG.ADMIN_REQUIRED}`,
     description: '관리자가 스터디 참여자를 지원자로 변경합니다(applicant).',
   })
-  removeParticipants(@Param('studyId') studyId: string, @Param('userId') userId: string) {
+  removeParticipants(
+    @Param('studyId') studyId: string,
+    @Param('userId') userId: string,
+  ): Promise<Study> {
     return this.studyService.removeParticipant(studyId, userId);
   }
 }

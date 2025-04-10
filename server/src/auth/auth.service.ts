@@ -54,7 +54,9 @@ export class AuthService {
     return this.userService.create(user);
   }
 
-  async login(loginAuthDto: LoginDto) {
+  async login(
+    loginAuthDto: LoginDto,
+  ): Promise<{ accessToken: string; refreshToken: string; email: string }> {
     const { email, password } = loginAuthDto;
 
     const user = await this.userService.findUserByEmailWithPassword(email);
@@ -72,7 +74,7 @@ export class AuthService {
     return { accessToken, refreshToken, email };
   }
 
-  async generateTokens(user: User) {
+  async generateTokens(user: User): Promise<{ accessToken: string; refreshToken: string }> {
     const payload = { sub: user.id, email: user.email };
 
     const [accessToken, refreshToken] = await Promise.all([

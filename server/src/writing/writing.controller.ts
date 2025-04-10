@@ -27,7 +27,7 @@ export class WritingController {
     @Req() req,
     @Param('dialogueId') dialogueId: string,
     @Body() createWritingDto: CreateWritingDto,
-  ) {
+  ): Promise<Writing> {
     return this.writingService.create(req.user.id, dialogueId, createWritingDto);
   }
 

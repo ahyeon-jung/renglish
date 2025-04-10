@@ -6,6 +6,8 @@ import { ApiOperation, ApiParam } from '@nestjs/swagger';
 import { TAG } from 'src/common/constants/tag';
 import { AccessTokenGuard } from 'src/auth/guards/access-token.guard';
 import { AdminTokenGuard } from 'src/auth/guards/admin-token.guard';
+import { Expression } from './entities/expression.entity';
+import { DeleteResult } from 'typeorm';
 
 @Controller('expressions')
 export class ExpressionController {
@@ -16,7 +18,7 @@ export class ExpressionController {
     summary: '이번주 영어 표현 가져오기',
     description: '이번주 영어 표현을 10개 가져옵니다.',
   })
-  findAll() {
+  findAll(): Promise<Expression[]> {
     return this.expressionService.findWeeklyExpressions();
   }
 
@@ -32,7 +34,7 @@ export class ExpressionController {
     example: '6ef26cb3-746c-4df1-90e0-66805f3f8320',
     type: String,
   })
-  findExpressionBySceneIdy(@Param('expressionId') expressionId: string) {
+  findExpressionBySceneId(@Param('expressionId') expressionId: string): Promise<Expression> {
     return this.expressionService.findOne(expressionId);
   }
 
@@ -48,7 +50,7 @@ export class ExpressionController {
     example: '6ef26cb3-746c-4df1-90e0-66805f3f8320',
     type: String,
   })
-  create(@Body() createExpressionDto: CreateExpressionDto) {
+  create(@Body() createExpressionDto: CreateExpressionDto): Promise<Expression> {
     return this.expressionService.create(createExpressionDto);
   }
 
@@ -64,7 +66,10 @@ export class ExpressionController {
     example: '6ef26cb3-746c-4df1-90e0-66805f3f8320',
     type: String,
   })
-  update(@Param('expressionId') id: string, @Body() updateExpressionDto: UpdateExpressionDto) {
+  update(
+    @Param('expressionId') id: string,
+    @Body() updateExpressionDto: UpdateExpressionDto,
+  ): Promise<Expression> {
     return this.expressionService.update(id, updateExpressionDto);
   }
 
@@ -80,7 +85,7 @@ export class ExpressionController {
     example: '6ef26cb3-746c-4df1-90e0-66805f3f8320',
     type: String,
   })
-  remove(@Param('expressionId') id: string) {
+  remove(@Param('expressionId') id: string): Promise<DeleteResult> {
     return this.expressionService.remove(id);
   }
 }

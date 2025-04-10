@@ -3,13 +3,14 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Speaker } from 'src/speaker/entities/speaker.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Scene } from './entities/scene.entity';
-import { Like, Repository } from 'typeorm';
+import { DeleteResult, Like, Repository } from 'typeorm';
 import { Movie } from 'src/movie/entities/movie.entity';
 import { MovieService } from 'src/movie/movie.service';
 import { findAllWithPagination, PaginationResponse } from 'src/common/utils/pagination.util';
 import { SearchParams } from 'src/common/dto/search-params.dto';
 import { UpdateSceneDto } from './dto/update-scene.dto';
 import { StudyService } from 'src/study/study.service';
+import { FilteredScene } from './types/filtered-scene';
 
 @Injectable()
 export class SceneService {
@@ -36,13 +37,13 @@ export class SceneService {
     return await this.sceneRepository.save(scene);
   }
 
-  async delete(sceneId: string): Promise<void> {
+  async delete(sceneId: string): Promise<DeleteResult> {
     const scene = await this.findOneEntity(sceneId);
     if (!scene) {
       throw new NotFoundException('Scene not found');
     }
 
-    await this.sceneRepository.remove(scene);
+    return this.sceneRepository.delete(scene);
   }
 
   async findAllScene(params: SearchParams): Promise<PaginationResponse<Scene>> {
@@ -69,7 +70,7 @@ export class SceneService {
     return scene;
   }
 
-  async findSceneById(sceneId: string, userId?: string) {
+  async findSceneById(sceneId: string, userId?: string): Promise<FilteredScene> {
     const scene = await this.sceneRepository.findOne({
       where: { id: sceneId },
       relations: ['speakers', 'dialogues', 'dialogues.speaker', 'study', 'study.participants'],
@@ -126,7 +127,7 @@ export class SceneService {
     return scene.speakers || [];
   }
 
-  async update(id: string, updateSceneDto: UpdateSceneDto) {
+  async update(id: string, updateSceneDto: UpdateSceneDto): Promise<FilteredScene> {
     const scene = await this.findSceneById(id);
     if (!scene) {
       throw new NotFoundException(`Scene with ID ${id} not found`);

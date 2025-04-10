@@ -2,6 +2,7 @@ import { Controller, Get, Post, Req, Res } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { StatisticService } from './statistic.service';
+import { Statistic } from './entities/statistic.entity';
 import { randomUUID } from 'crypto';
 
 @ApiTags('Statistics')
@@ -13,7 +14,7 @@ export class StatisticController {
   @ApiOperation({
     summary: '방문자 row 추가(관리자 전용)',
   })
-  async createStaticsRow() {
+  async createStaticsRow(): Promise<Statistic> {
     return this.statisticService.create();
   }
 
@@ -43,7 +44,7 @@ export class StatisticController {
     summary: '방문자 수 조회하기',
     description: '현재 몇명이 방문했는지 조회합니다',
   })
-  async getVisitorCount() {
+  async getVisitorCount(): Promise<number> {
     return this.statisticService.getVisitorCount();
   }
 }

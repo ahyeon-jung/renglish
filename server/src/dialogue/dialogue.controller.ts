@@ -5,6 +5,7 @@ import { CreateDialogueDto } from './dto/create-dialogue.dto';
 import { UpdateDialogueDto } from './dto/update-dialogue.dto';
 import { TAG } from 'src/common/constants/tag';
 import { AdminTokenGuard } from 'src/auth/guards/admin-token.guard';
+import { Dialogue } from './entities/dialogue.entity';
 
 @ApiTags('Dialogues')
 @Controller('dialogues')
@@ -34,7 +35,7 @@ export class DialogueController {
     @Param('speakerId') speakerId: string,
     @Param('sceneId') sceneId: string,
     @Body() createDialogueDto: CreateDialogueDto,
-  ) {
+  ): Promise<Dialogue> {
     return this.dialogueService.create(sceneId, speakerId, createDialogueDto);
   }
 
@@ -54,7 +55,7 @@ export class DialogueController {
   updateDialogue(
     @Param('dialogueId') dialogueId: string,
     @Body() updateDialogueDto: UpdateDialogueDto,
-  ) {
+  ): Promise<Dialogue> {
     return this.dialogueService.update(dialogueId, updateDialogueDto);
   }
 }

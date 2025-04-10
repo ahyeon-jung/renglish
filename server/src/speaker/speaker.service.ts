@@ -33,7 +33,7 @@ export class SpeakerService {
     return this.speakerRepository.save(speaker);
   }
 
-  async findSpeakerById(id: string) {
+  async findSpeakerById(id: string): Promise<Speaker> {
     const speaker = await this.speakerRepository.findOne({
       where: { id },
     });
@@ -45,7 +45,8 @@ export class SpeakerService {
     return speaker;
   }
 
-  update(id: string, updateSpeakerDto: UpdateSpeakerDto) {
-    return `This action updates a #${id} speaker`;
+  async update(id: string, updateSpeakerDto: UpdateSpeakerDto): Promise<Speaker> {
+    await this.speakerRepository.update(id, updateSpeakerDto);
+    return this.findSpeakerById(id);
   }
 }

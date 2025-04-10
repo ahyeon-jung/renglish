@@ -11,7 +11,11 @@ export class WritingService {
     private readonly writingRepository: Repository<Writing>,
   ) {}
 
-  async create(userId: string, dialogueId: string, createWritingDto: CreateWritingDto) {
+  async create(
+    userId: string,
+    dialogueId: string,
+    createWritingDto: CreateWritingDto,
+  ): Promise<Writing> {
     const writing = this.writingRepository.create({
       writing: createWritingDto.writing,
       userId,
@@ -20,7 +24,8 @@ export class WritingService {
 
     return this.writingRepository.save(writing);
   }
-  async findAllByMovieId(movieId: string) {
+
+  async findAllByMovieId(movieId: string): Promise<Writing[]> {
     const user = { id: 'me' };
     return this.writingRepository.find({
       where: {

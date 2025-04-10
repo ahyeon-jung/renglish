@@ -6,6 +6,7 @@ import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Notice } from './entities/notice.entity';
 import { AdminTokenGuard } from 'src/auth/guards/admin-token.guard';
 import { TAG } from 'src/common/constants/tag';
+import { DeleteResult } from 'typeorm';
 
 @ApiTags('Notices')
 @Controller('notices')
@@ -19,7 +20,7 @@ export class NoticeController {
     description: '공지사항을 추가합니다.',
   })
   @ApiBody({ type: CreateNoticeDto })
-  create(@Body() createNoticeDto: CreateNoticeDto) {
+  create(@Body() createNoticeDto: CreateNoticeDto): Promise<Notice> {
     return this.noticeService.create(createNoticeDto);
   }
 
@@ -37,7 +38,7 @@ export class NoticeController {
     summary: '해당 ID 공지사항 가져오기',
     description: '해당 ID의 공지사항을 가져옵니다.',
   })
-  findOne(@Param('noticeId') noticeId: string) {
+  findOne(@Param('noticeId') noticeId: string): Promise<Notice> {
     return this.noticeService.findOne(noticeId);
   }
 
@@ -47,7 +48,10 @@ export class NoticeController {
     summary: `공지사항 수정 ${TAG.ADMIN_REQUIRED}`,
     description: '해당 ID의 공지사항을 업데이트합니다.',
   })
-  update(@Param('noticeId') noticeId: string, @Body() updateNoticeDto: UpdateNoticeDto) {
+  update(
+    @Param('noticeId') noticeId: string,
+    @Body() updateNoticeDto: UpdateNoticeDto,
+  ): Promise<Notice> {
     return this.noticeService.update(noticeId, updateNoticeDto);
   }
 
@@ -57,7 +61,7 @@ export class NoticeController {
     summary: `해당 ID 공지사항 삭제 ${TAG.ADMIN_REQUIRED}`,
     description: '해당 ID의 공지사항을 삭제합니다.',
   })
-  remove(@Param('noticeId') noticeId: string) {
+  remove(@Param('noticeId') noticeId: string): Promise<DeleteResult> {
     return this.noticeService.remove(noticeId);
   }
 }

@@ -33,7 +33,7 @@ export default class EmailVerificationService {
     return OTP;
   }
 
-  async sendMail(sendEmailDto: SendEmailDto) {
+  async sendMail(sendEmailDto: SendEmailDto): Promise<Mail.Options> {
     const { email } = sendEmailDto;
     const generateNumber = this._generateOTP();
     await this.cacheManager.set(email, generateNumber);
@@ -45,7 +45,7 @@ export default class EmailVerificationService {
     });
   }
 
-  async verifyCode(verifyCodeDto: VerifyCodeDto) {
+  async verifyCode(verifyCodeDto: VerifyCodeDto): Promise<void> {
     const { email, code } = verifyCodeDto;
     const redisCode = await this.cacheManager.get(email);
 

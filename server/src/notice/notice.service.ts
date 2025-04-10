@@ -3,7 +3,7 @@ import { CreateNoticeDto } from './dto/create-notice.dto';
 import { UpdateNoticeDto } from './dto/update-notice.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Notice } from './entities/notice.entity';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 
 @Injectable()
 export class NoticeService {
@@ -12,19 +12,19 @@ export class NoticeService {
     private readonly noticeRepository: Repository<Notice>,
   ) {}
 
-  create(createNoticeDto: CreateNoticeDto) {
+  create(createNoticeDto: CreateNoticeDto): Promise<Notice> {
     return this.noticeRepository.save(createNoticeDto);
   }
 
-  findAll() {
+  findAll(): Promise<Notice[]> {
     return this.noticeRepository.find();
   }
 
-  findOne(id: string) {
+  findOne(id: string): Promise<Notice> {
     return this.noticeRepository.findOne({ where: { id } });
   }
 
-  async update(id: string, updateNoticeDto: UpdateNoticeDto) {
+  async update(id: string, updateNoticeDto: UpdateNoticeDto): Promise<Notice> {
     const notice = await this.findOne(id);
     if (!notice) {
       throw new NotFoundException(`Notice with ID ${id} not found`);
@@ -34,13 +34,12 @@ export class NoticeService {
     return this.findOne(id);
   }
 
-  async remove(id: string) {
+  async remove(id: string): Promise<DeleteResult> {
     const notice = await this.findOne(id);
     if (!notice) {
       throw new NotFoundException(`Notice with ID ${id} not found`);
     }
 
-    await this.noticeRepository.delete(id);
-    return `Notice with ID ${id} has been removed`;
+    return this.noticeRepository.delete(id);
   }
 }

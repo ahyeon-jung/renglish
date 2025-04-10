@@ -22,6 +22,10 @@ import { CreateStudyDto } from 'src/study/dto/create-study.dto';
 import { StudyService } from 'src/study/study.service';
 import { OptionalTokenGuard } from 'src/auth/guards/optional-token.guard';
 import { AdminTokenGuard } from 'src/auth/guards/admin-token.guard';
+import { Study } from 'src/study/entities/study.entity';
+import { FilteredStudy } from 'src/study/types/filtered-study';
+import { FilteredScene } from './types/filtered-scene';
+import { DeleteResult } from 'typeorm';
 @ApiTags('Scenes')
 @Controller('scenes')
 export class SceneController {
@@ -43,7 +47,10 @@ export class SceneController {
     type: String,
   })
   @ApiBody({ type: CreateSceneDto })
-  createScene(@Param('movieId') movieId: string, @Body() createSpeakerDto: CreateSceneDto) {
+  createScene(
+    @Param('movieId') movieId: string,
+    @Body() createSpeakerDto: CreateSceneDto,
+  ): Promise<Scene> {
     return this.sceneService.create(movieId, createSpeakerDto);
   }
 
@@ -60,7 +67,10 @@ export class SceneController {
     type: String,
   })
   @ApiBody({ type: CreateStudyDto })
-  create(@Param('sceneId') sceneId: string, @Body() createStudyDto: CreateStudyDto) {
+  create(
+    @Param('sceneId') sceneId: string,
+    @Body() createStudyDto: CreateStudyDto,
+  ): Promise<FilteredStudy> {
     return this.studyService.create(sceneId, createStudyDto);
   }
 
@@ -82,7 +92,7 @@ export class SceneController {
     example: 'e5e798e1-9241-4b95-8e2c-0b630bbd033f',
     type: String,
   })
-  addStudy(@Param('sceneId') sceneId: string, @Param('studyId') studyId: string) {
+  addStudy(@Param('sceneId') sceneId: string, @Param('studyId') studyId: string): Promise<Scene> {
     return this.sceneService.addStudy({ sceneId, studyId });
   }
 
@@ -99,7 +109,10 @@ export class SceneController {
     description: '장면 정보를 변경합니다.',
   })
   @ApiBody({ type: UpdateSceneDto })
-  updateDialogue(@Param('sceneId') sceneId: string, @Body() updateSceneDto: UpdateSceneDto) {
+  updateDialogue(
+    @Param('sceneId') sceneId: string,
+    @Body() updateSceneDto: UpdateSceneDto,
+  ): Promise<FilteredScene> {
     return this.sceneService.update(sceneId, updateSceneDto);
   }
 
@@ -148,7 +161,7 @@ export class SceneController {
     example: 'e5e798e1-9241-4b95-8e2c-0b630bbd033f',
     type: String,
   })
-  findSceneById(@Param('sceneId') sceneId: string, @Request() req) {
+  findSceneById(@Param('sceneId') sceneId: string, @Request() req): Promise<FilteredScene> {
     const userId = (req.user as any)?.id ?? null;
     return this.sceneService.findSceneById(sceneId, userId);
   }
@@ -180,7 +193,7 @@ export class SceneController {
     example: 'e5e798e1-9241-4b95-8e2c-0b630bbd033f',
     type: String,
   })
-  async deleteScene(@Param('sceneId') sceneId: string) {
+  async deleteScene(@Param('sceneId') sceneId: string): Promise<DeleteResult> {
     return await this.sceneService.delete(sceneId);
   }
 }
