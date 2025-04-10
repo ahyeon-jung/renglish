@@ -6,13 +6,20 @@ import { ActionResponse } from '@/types/action';
 import { fetchAPI } from '@/libs/api';
 import { getUserByEmailAction } from '../users/getUser';
 
-type RegisterAction = { email: string; password: string };
+export type RegisterActionProps = {
+  email: string;
+  password: string;
+  nickname: string;
+  how?: string;
+};
 
 export default async function registerAction({
   email,
   password,
-}: RegisterAction): Promise<ActionResponse<null>> {
-  if (!email || !password) {
+  how,
+  nickname,
+}: RegisterActionProps): Promise<ActionResponse<null>> {
+  if (!email || !password || !nickname) {
     return { status: 200, success: false, message: 'no required data', data: null };
   }
 
@@ -24,7 +31,7 @@ export default async function registerAction({
 
     await fetchAPI(`/auth/register`, {
       method: 'POST',
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ email, password, nickname, how }),
     });
 
     return { status: 200, success: true, message: 'Register successfully', data: null };

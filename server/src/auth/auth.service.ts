@@ -30,7 +30,7 @@ export class AuthService {
   ) {}
 
   async signup(createUserDto: CreateUserDto): Promise<Omit<User, 'password'>> {
-    const { email, password } = createUserDto;
+    const { email, password, nickname, how } = createUserDto;
 
     const isExistAccount = await this.userService.checkEmailExist(email);
     if (isExistAccount) {
@@ -47,6 +47,8 @@ export class AuthService {
     const user = new User();
     user.email = email;
     user.password = hashedPassword;
+    user.nickname = nickname;
+    user.how = how;
 
     return this.userService.create(user);
   }

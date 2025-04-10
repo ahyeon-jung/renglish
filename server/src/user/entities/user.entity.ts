@@ -13,6 +13,12 @@ export class User extends BaseEntity {
   @Column()
   password: string;
 
+  @Column()
+  nickname: string;
+
+  @Column({ nullable: true })
+  how?: string;
+
   @Column({ nullable: true })
   hashedRefreshToken?: string;
 

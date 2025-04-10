@@ -1,24 +1,25 @@
 'use client';
 
+import registerAction, { RegisterActionProps } from '@/app/_actions/auth/register';
+
 import Button from '@/components/Button';
 import Field from '@/components/Field';
 import { MESSAGE } from '@/constants/toast';
 import { PATHS } from '@/constants/path';
 import Text from '@/components/Text';
 import clsx from 'clsx';
-import registerAction from '@/app/_actions/auth/register';
 import sendEmail from '@/app/_actions/email-verification/sendEmail';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import verifyCode from '@/app/_actions/email-verification/verifyCode';
 
-const INITIAL_REGISTER_BODY = { email: '', password: '' };
+const INITIAL_REGISTER_BODY = { email: '', password: '', nickname: '', how: '' };
 
 export default function Register() {
   const router = useRouter();
 
-  const [registerBody, setRegisterBody] = useState(INITIAL_REGISTER_BODY);
+  const [registerBody, setRegisterBody] = useState<RegisterActionProps>(INITIAL_REGISTER_BODY);
   const [verificationCode, setVerifyCationCode] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [isClickedSendEmailVerifyClicked, setIsClickedSendEmailVerifyClicked] = useState(false);
@@ -91,7 +92,8 @@ export default function Register() {
     }
   };
 
-  const isAllRequiredRegisterDataExists = registerBody.email && registerBody.password;
+  const isAllRequiredRegisterDataExists =
+    registerBody.email && registerBody.password && registerBody.nickname;
   const isVerifyEmail = isCodeVerified && isClickedSendEmailVerifyClicked;
   const isMatchedPasswordConfirm = registerBody.password === passwordConfirm;
   const isAvailableRegisterButton =
@@ -141,6 +143,15 @@ export default function Register() {
             </Field>
           )}
           <Field>
+            <Field.Label>Nickname</Field.Label>
+            <Field.Input
+              name="nickname"
+              placeholder="ex. 123456"
+              value={registerBody.nickname}
+              onChange={handleRegisterBodyChange}
+            />
+          </Field>
+          <Field>
             <Field.Label>Password</Field.Label>
             <Field.Input
               name="password"
@@ -159,7 +170,12 @@ export default function Register() {
           </Field>
           <Field>
             <Field.Label>How did you find out about this page? (optional)</Field.Label>
-            <Field.Input placeholder="e.g. reglish study, search engine, social media" />
+            <Field.Input
+              name="how"
+              placeholder="e.g. reglish study, search engine, social media"
+              value={registerBody.how}
+              onChange={handleRegisterBodyChange}
+            />
           </Field>
         </div>
         <Button disabled={!isAvailableRegisterButton}>Register</Button>
