@@ -19,7 +19,7 @@ export default function Button({
   const variantClasses = disabled
     ? 'bg-gray-200 cursor-not-allowed'
     : variants === 'default'
-      ? 'bg-yellow-200 text-black cursor-pointer'
+      ? 'bg-yellow-200 hover:bg-yellow-300 text-black cursor-pointer'
       : variants === 'danger'
         ? 'bg-red-600 text-white'
         : variants === 'primary'

@@ -12,7 +12,7 @@ export default function StudyItem({ ...study }: StudyItemProps) {
   return (
     <div
       className={clsx(
-        'rounded-2xl shadow-md p-4 bg-white hover:shadow-lg transition-shadow',
+        'rounded-2xl shadow-md p-3 bg-white hover:shadow-lg transition-shadow',
         'flex flex-col gap-3',
       )}
     >
