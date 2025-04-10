@@ -8,6 +8,7 @@ import { ChangePasswordDto } from './dto/update-auth.dto';
 import { AccessTokenGuard } from './guards/access-token.guard';
 import { AuthGuard } from '@nestjs/passport';
 import { TAG } from 'src/common/constants/tag';
+import { UpdateUserDto } from 'src/user/dto/update-user.dto';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -81,6 +82,18 @@ export class AuthController {
   })
   findUserByToken(@Request() req) {
     return req.user;
+  }
+
+  @Put('/user')
+  @UseGuards(AccessTokenGuard)
+  @ApiOperation({
+    summary: `사용자 정보 변경 ${TAG.TOKEN_REQUIRED}`,
+    description: '사용자가 비밀번호 변경을 시도합니다.',
+  })
+  @ApiResponse({ status: 200, description: '비밀번호 변경 성공' })
+  @ApiBody({ type: UpdateUserDto })
+  changeUser(@Body() updateUserDto: UpdateUserDto, @Request() req) {
+    return this.authService.updateUser(req.user.id, updateUserDto);
   }
 
   @Put('/password/change')

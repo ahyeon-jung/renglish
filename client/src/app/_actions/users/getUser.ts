@@ -3,7 +3,7 @@
 import { FetchError, handleFetchError } from '@/utils/error';
 
 import { ActionResponse } from '@/types/action';
-import { User } from '@/types/user';
+import { UserType } from '@/types/user';
 import { fetchAPI } from '@/libs/api';
 
 type GetUserByIdParams = { userId: string };
@@ -11,8 +11,8 @@ type GetUserByEmailParams = { email: string };
 
 export async function getUserByIdAction({
   userId,
-}: GetUserByIdParams): Promise<ActionResponse<User>> {
-  const response = await fetchAPI<User>(`/users/${userId}`, {
+}: GetUserByIdParams): Promise<ActionResponse<UserType>> {
+  const response = await fetchAPI<UserType>(`/users/${userId}`, {
     method: 'GET',
   });
 
@@ -26,9 +26,9 @@ export async function getUserByIdAction({
 
 export async function getUserByEmailAction({
   email,
-}: GetUserByEmailParams): Promise<ActionResponse<User | null>> {
+}: GetUserByEmailParams): Promise<ActionResponse<UserType | null>> {
   try {
-    const response = await fetchAPI<User>(`/users/email/${email}`, {
+    const response = await fetchAPI<UserType>(`/users/email/${email}`, {
       method: 'GET',
     });
 

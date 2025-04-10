@@ -5,6 +5,7 @@ import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { findAllWithPagination, PaginationResponse } from 'src/common/utils/pagination.util';
 import { PaginationParams } from 'src/common/dto/pagination-params.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
@@ -22,6 +23,16 @@ export class UserService {
     if (result.affected === 0) {
       throw new NotFoundException('User not found or password update failed');
     }
+  }
+
+  async update(id: string, updateUserDto: UpdateUserDto) {
+    const user = await this.findUserById(id);
+    if (!user) {
+      throw new NotFoundException(`User with ID ${id} not found`);
+    }
+
+    await this.userRepository.update(id, updateUserDto);
+    return this.findUserById(id);
   }
 
   async updateRefreshToken(userId: string, refreshToken: string): Promise<void> {

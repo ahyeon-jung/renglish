@@ -18,6 +18,7 @@ import { UserService } from 'src/user/user.service';
 import { ConfigService } from '@nestjs/config';
 import { EncryptionService } from './encryption.service';
 import * as bcrypt from 'bcrypt';
+import { UpdateUserDto } from 'src/user/dto/update-user.dto';
 
 @Injectable()
 export class AuthService {
@@ -89,6 +90,10 @@ export class AuthService {
     await this.userService.updateRefreshToken(user.id, hashedRefreshToken);
 
     return { accessToken, refreshToken };
+  }
+
+  async updateUser(id: string, updateUserDto: UpdateUserDto) {
+    return this.userService.update(id, updateUserDto);
   }
 
   async changePassword(changePasswordDto: ChangePasswordDto): Promise<string> {

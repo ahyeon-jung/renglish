@@ -20,7 +20,6 @@ export const PATHS = {
     LOGIN: '/auth/login',
     REGISTER: '/auth/register',
     LOGOUT: '/auth/logout',
-    PROFILE: '/profile',
   },
   MOVIE: {
     LIST: '/movies',
@@ -46,5 +45,11 @@ export const PATHS = {
     ASSIGNMENT: '/notices/assignment',
     INTRODUCE: '/introduce',
     MEMBER: '/notices/member',
+  },
+  MY: {
+    PROFILE: '/my/profile',
+    STUDIES: '/my/studies',
+    WRITINGS: '/my/writings',
+    INQUIRIES: '/my/inquiries',
   },
 };
