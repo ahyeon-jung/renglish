@@ -92,10 +92,6 @@ export class AuthService {
     return { accessToken, refreshToken };
   }
 
-  async updateUser(id: string, updateUserDto: UpdateUserDto) {
-    return this.userService.update(id, updateUserDto);
-  }
-
   async changePassword(changePasswordDto: ChangePasswordDto): Promise<string> {
     const { email, newPassword } = changePasswordDto;
 

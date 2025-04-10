@@ -114,17 +114,6 @@ export class StudyController {
     return this.studyService.isMember(studyId, userId);
   }
 
-  @Get('my')
-  @UseGuards(AccessTokenGuard)
-  @ApiOperation({
-    summary: `내 스터디 모두 조회하기 ${TAG.TOKEN_REQUIRED}`,
-    description: '참여중인 스터디를를 조회합니다.',
-  })
-  findMyStudies(@Request() req) {
-    const userId = req.user['id'];
-    return this.studyService.findByUser(userId);
-  }
-
   @Post(':studyId/add-applicant')
   @UseGuards(AccessTokenGuard)
   @ApiOperation({

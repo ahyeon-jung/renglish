@@ -74,28 +74,6 @@ export class AuthController {
     return { isAdmin: req.user.isAdmin };
   }
 
-  @Get('/user')
-  @UseGuards(AccessTokenGuard)
-  @ApiOperation({
-    summary: `현재 사용자 정보 가져오기 ${TAG.TOKEN_REQUIRED}`,
-    description: '현재 사용자 정보를 가져옵니다.',
-  })
-  findUserByToken(@Request() req) {
-    return req.user;
-  }
-
-  @Put('/user')
-  @UseGuards(AccessTokenGuard)
-  @ApiOperation({
-    summary: `사용자 정보 변경 ${TAG.TOKEN_REQUIRED}`,
-    description: '사용자가 비밀번호 변경을 시도합니다.',
-  })
-  @ApiResponse({ status: 200, description: '비밀번호 변경 성공' })
-  @ApiBody({ type: UpdateUserDto })
-  changeUser(@Body() updateUserDto: UpdateUserDto, @Request() req) {
-    return this.authService.updateUser(req.user.id, updateUserDto);
-  }
-
   @Put('/password/change')
   @ApiOperation({
     summary: '비밀번호 변경',

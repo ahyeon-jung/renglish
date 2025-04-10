@@ -158,12 +158,25 @@ export class StudyService {
     return this.studyRepository.remove(study);
   }
 
-  async findByUser(userId: string) {
-    return this.studyRepository
-      .createQueryBuilder('study')
-      .leftJoin('study.participants', 'user')
-      .where('user.id = :userId', { userId })
-      .getMany();
+  async findByUser(userId: string, type?: string) {
+    const query = this.studyRepository.createQueryBuilder('study');
+
+    if (type === 'participant') {
+      query
+        .leftJoin('study.participants', 'participant')
+        .where('participant.id = :userId', { userId });
+    } else if (type === 'applicant') {
+      query.leftJoin('study.applicants', 'applicant').where('applicant.id = :userId', { userId });
+    } else {
+      query
+        .leftJoin('study.participants', 'participant')
+        .leftJoin('study.applicants', 'applicant')
+        .where('participant.id = :userId')
+        .orWhere('applicant.id = :userId')
+        .setParameter('userId', userId);
+    }
+
+    return query.getMany();
   }
 
   async isMember(studyId: string, userId: string) {
