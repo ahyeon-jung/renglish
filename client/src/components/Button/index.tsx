@@ -16,20 +16,27 @@ export default function Button({
   variants = 'default',
   ...props
 }: ButtonProps) {
+  const variantClasses = disabled
+    ? 'bg-gray-200 cursor-not-allowed'
+    : variants === 'default'
+      ? 'bg-yellow-200 hover:bg-yellow-300 text-black cursor-pointer'
+      : variants === 'danger'
+        ? 'bg-red-600 text-white'
+        : variants === 'primary'
+          ? 'bg-blue-400 text-white'
+          : variants === 'secondary'
+            ? 'bg-gray-400 text-white'
+            : variants === 'success'
+              ? 'bg-green-600 text-white'
+              : '';
+
   return (
     <button
       className={clsx(
         fit ? '' : 'w-full',
         'px-2 rounded-xl',
         size === 'sm' ? '35' : size === 'md' ? 'h-[40]' : 'h-[50px]',
-        {
-          'bg-yellow-200 text-black cursor-pointer': variants === 'default',
-          'bg-red-600 text-white': variants === 'danger',
-          'bg-blue-400 text-white': variants === 'primary',
-          'bg-gray-400 text-white': variants === 'secondary',
-          'bg-green-600 text-white': variants === 'success',
-          'bg-gray-200 cursor-not-allowed': disabled,
-        },
+        variantClasses,
         className,
       )}
       disabled={disabled}

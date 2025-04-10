@@ -5,14 +5,16 @@ import { formatTitle } from '@/utils/format';
 
 export default function MovieInfo({ title, imageUrl, description }: Movie) {
   return (
-    <div>
-      <Text as="h2" typography="display-md">
-        {formatTitle(title)}
-      </Text>
-      <Image src={imageUrl} alt={`poster of ${title}`} width={400} height={400} />
-      <Text as="p" typography="body-xl">
-        {description}
-      </Text>
-    </div>
+    <section className="flex justify-between">
+      <div className="p-4">
+        <Text as="h2" typography="display-md">
+          {formatTitle(title)}
+        </Text>
+        <Text as="p" typography="body-xl">
+          {description}
+        </Text>
+      </div>
+      <Image src={imageUrl} alt={`poster of ${title}`} width={200} height={400} />
+    </section>
   );
 }
