@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "dev": "concurrently -k -n client,server -c blue,green \"pnpm --filter ./client dev\" \"pnpm --filter ./server start:dev\""
+    "dev": "concurrently -k -n client,server -c blue,green \"pnpm --filter ./client dev\" \"pnpm --filter ./server start:dev\"",
+    "generate:api": "openapi-generator-cli generate -i ./swagger.json -g typescript-fetch -o ./client/src/services"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
