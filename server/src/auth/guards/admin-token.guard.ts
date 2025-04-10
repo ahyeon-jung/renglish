@@ -17,7 +17,7 @@ export class AdminTokenGuard extends AuthGuard('jwt') {
       throw err || new UnauthorizedException('No token or invalid user');
     }
 
-    const adminId = this.configService.get<string>('ACCESS_TOKEN_SECRET');
+    const adminId = this.configService.get<string>('ADMIN_ID');
 
     if (user.id !== adminId) {
       throw new UnauthorizedException('Only admin can access this resource');
