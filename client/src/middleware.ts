@@ -19,7 +19,7 @@ const pageRoutesMap: Record<string, MiddlewareFunction> = {
   [PATHS.AUTH.REGISTER]: withoutAuthRouteMiddleware,
 
   // Routes that require a token (authenticated user)
-  [PATHS.AUTH.PROFILE]: withAuthRouteMiddleware,
+  [PATHS.MY.PROFILE]: withAuthRouteMiddleware,
   [PATHS.AUTH.LOGOUT]: logoutRouteMiddleware,
 
   // Admin routes that require admin token

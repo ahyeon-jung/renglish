@@ -20,7 +20,6 @@ const DEFAULT_NAV_OPTIONS = [
   { label: 'how to install', path: PATHS.NOTICES.INSTALL },
   { label: 'movies', path: PATHS.MOVIE.LIST },
   { label: 'studies', path: PATHS.STUDIES.LIST },
-  
 ];
 
 const WITHOUT_AUTH_NAV_OPTIONS = [
@@ -29,7 +28,7 @@ const WITHOUT_AUTH_NAV_OPTIONS = [
 ];
 
 const WITH_AUTH_NAV_OPTIONS = [
-  { label: 'profile', path: PATHS.AUTH.PROFILE },
+  { label: 'profile', path: PATHS.MY.PROFILE },
   { label: 'logout', path: PATHS.AUTH.LOGOUT },
 ];
 
