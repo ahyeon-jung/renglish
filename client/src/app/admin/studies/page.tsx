@@ -29,7 +29,7 @@ const fetcher = async (url: string) => {
   return data;
 };
 
-export default function Studies() {
+export default function StudiesPage() {
   return (
     <Suspense fallback={<div>로딩중</div>}>
       <StudiesContent />

@@ -2,7 +2,7 @@ import LoginForm from './LoginForm';
 import Text from '@/components/Text';
 import clsx from 'clsx';
 
-export default function Login() {
+export default function LoginPage() {
   return (
     <main
       className={clsx(

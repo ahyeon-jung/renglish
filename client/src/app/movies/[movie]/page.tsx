@@ -3,7 +3,7 @@ import ScriptLink from '../_components/ScriptLink';
 import clsx from 'clsx';
 import getMovie from '@/app/_actions/movies/getMovie';
 
-export default async function MovieDetail({ params }: { params: Promise<{ movie: string }> }) {
+export default async function MovieDetailPage({ params }: { params: Promise<{ movie: string }> }) {
   const slug = await params;
 
   const { data: movie } = await getMovie(slug.movie);

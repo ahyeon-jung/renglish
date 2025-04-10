@@ -30,15 +30,15 @@ const fetcher = async (url: string) => {
   return data;
 };
 
-export default function Scripts() {
+export default function MoviesPage() {
   return (
     <Suspense>
-      <ScriptsContent />
+      <MoviesPageContent />
     </Suspense>
   );
 }
 
-function ScriptsContent() {
+function MoviesPageContent() {
   const searchParams = useSearchParams();
   const category = searchParams.get('category');
 

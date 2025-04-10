@@ -2,7 +2,7 @@ import ExpressionList from './_components/ExpressionList';
 import NonAccess from './_components/NonAccess';
 import getExpressionsByScene from '@/app/_actions/expressions/getExpressionsByScene';
 
-export default async function MovieScenePracticeFill({
+export default async function MovieScenePracticeExpressionPage({
   params,
 }: {
   params: Promise<{ movie: string; scene: string }>;

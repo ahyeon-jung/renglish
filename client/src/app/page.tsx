@@ -3,7 +3,7 @@ import RecruitingStudies from './_components/RecruitingStudies';
 import ScriptSearch from './_components/ScriptSearch';
 import clsx from 'clsx';
 
-export default function Home() {
+export default function HomePage() {
   return (
     <>
       <main className={clsx('mt-[var(--header-height)]')}>
