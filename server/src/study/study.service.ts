@@ -1,6 +1,6 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Brackets, Repository } from 'typeorm';
 import { Study } from './entities/study.entity';
 import { CreateStudyDto } from './dto/create-study.dto';
 import { UpdateStudyDto } from './dto/update-study.dto';
@@ -157,9 +157,11 @@ export class StudyService {
     const study = await this.findOne(id);
     return this.studyRepository.remove(study);
   }
-
   async findByUser(userId: string, type?: string) {
-    const query = this.studyRepository.createQueryBuilder('study');
+    const query = this.studyRepository
+      .createQueryBuilder('study')
+      .leftJoinAndSelect('study.scene', 'scene')
+      .leftJoinAndSelect('scene.movie', 'movie');
 
     if (type === 'participant') {
       query
@@ -171,12 +173,23 @@ export class StudyService {
       query
         .leftJoin('study.participants', 'participant')
         .leftJoin('study.applicants', 'applicant')
-        .where('participant.id = :userId')
-        .orWhere('applicant.id = :userId')
+        .where(
+          new Brackets((qb) => {
+            qb.where('participant.id = :userId').orWhere('applicant.id = :userId');
+          }),
+        )
         .setParameter('userId', userId);
     }
 
-    return query.getMany();
+    const results = await query.getMany();
+
+    const data = results.map((row) => {
+      const studiedAt = new Date(row.studiedAt);
+      const isCompleted = studiedAt.getTime() > new Date().getTime();
+      return { ...row, isCompleted };
+    });
+
+    return data;
   }
 
   async isMember(studyId: string, userId: string) {
