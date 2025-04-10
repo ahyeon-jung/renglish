@@ -1,11 +1,14 @@
 import { Controller, Get, Post, Body, Param, Delete, Query, Put, UseGuards } from '@nestjs/common';
 import { MovieService } from './movie.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
-import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody, ApiQuery } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody, ApiQuery, ApiOkResponse, getSchemaPath } from '@nestjs/swagger';
 import { Movie } from './entities/movie.entity';
 import { UpdateMovieImageDto } from './dto/update-movie.dto';
 import { TAG } from 'src/common/constants/tag';
 import { AdminTokenGuard } from 'src/auth/guards/admin-token.guard';
+import { PaginationResponse } from 'src/common/utils/pagination.util';
+import { MovieWithSimplifiedScenes } from './types/filtered-scene';
+import { PaginationMovieResponseDto } from './dto/pagination-movie.dto';
 
 @ApiTags('Movies')
 @Controller('movies')
@@ -18,6 +21,7 @@ export class MovieController {
     summary: `영화 정보 생성 ${TAG.TOKEN_REQUIRED}`,
     description: '새로운 영화 정보를 생성합니다.',
   })
+  @ApiOkResponse({ type: Movie })
   @ApiResponse({ status: 201, description: '영화 정보 생성 성공' })
   @ApiBody({ type: CreateMovieDto })
   create(@Body() createMovieDto: CreateMovieDto) {
@@ -30,6 +34,7 @@ export class MovieController {
     summary: `영화 이미지 추가 ${TAG.TOKEN_REQUIRED}`,
     description: '영화 이미지를 추가합니다.',
   })
+  @ApiOkResponse({ type: Movie })
   @ApiParam({
     name: 'movieId',
     description: '영화의 ID',
@@ -46,6 +51,7 @@ export class MovieController {
     summary: '가장 최신 영화 가져오기',
     description: '가장 최신 업로드된 장면의 영화 정보를 가져옵니다.',
   })
+  @ApiOkResponse({ type: Movie })
   findLatestScene(): Promise<Movie> {
     return this.movieService.findMovieWithLatestScene();
   }
@@ -81,12 +87,13 @@ export class MovieController {
     example: 10,
     type: Number,
   })
+  @ApiOkResponse({ type: () => PaginationMovieResponseDto })
   async findAll(
     @Query('category') category?: string,
     @Query('keyword') keyword?: string,
     @Query('offset') offset: number = 1,
     @Query('limit') limit: number = 10,
-  ) {
+  ): Promise<PaginationResponse<MovieWithSimplifiedScenes>> {
     return this.movieService.findAll({ category, keyword, offset, limit });
   }
 
@@ -95,6 +102,7 @@ export class MovieController {
     summary: '영화 아이디로 영화 정보 찾기',
     description: '영화 아이디로 영화화 정보를 가져옵니다.',
   })
+  @ApiOkResponse({ type: Movie })
   @ApiParam({
     name: 'movieId',
     description: '영화의 ID',
@@ -113,6 +121,7 @@ export class MovieController {
     summary: `영화 정보 삭제 ${TAG.TOKEN_REQUIRED}`,
     description: '영화 아이디로 영화화 정보를 삭제합니다.',
   })
+  @ApiOkResponse({ type: Movie })
   @ApiParam({
     name: 'movieId',
     description: '영화의 ID',

@@ -32,7 +32,7 @@ export class Scene extends BaseEntity {
   })
   description: string;
 
-  @Exclude()
+  @ApiProperty()
   @Column()
   audioUrl: string;
 

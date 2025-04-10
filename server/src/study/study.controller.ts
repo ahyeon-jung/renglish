@@ -14,13 +14,13 @@ import { StudyService } from './study.service';
 import { UpdateStudyDto } from './dto/update-study.dto';
 
 import { AccessTokenGuard } from 'src/auth/guards/access-token.guard';
-import { ApiOperation, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { ApiOkResponse, ApiOperation, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { TAG } from 'src/common/constants/tag';
 import { STUDY_STATUS } from './enums/study-status.enum';
 import { AdminTokenGuard } from 'src/auth/guards/admin-token.guard';
+import { Study } from './entities/study.entity';
 import { PaginationResponse } from 'src/common/utils/pagination.util';
 import { ExtendedFilteredStudy } from './types/filtered-study';
-import { Study } from './entities/study.entity';
 import { DeleteResult } from 'typeorm';
 
 @ApiTags('Study')
@@ -107,23 +107,13 @@ export class StudyController {
     return this.studyService.remove(id);
   }
 
-  @UseGuards(AccessTokenGuard)
-  @Get(':studyId/is-member')
-  @ApiOperation({
-    summary: '스터디 참여자 여부 조회하기',
-    description: '스터디에 참여중인지 조회합니다.',
-  })
-  isMember(@Param('studyId') studyId: string, @Request() req): Promise<{ isMember: boolean }> {
-    const userId = req.user['id'];
-    return this.studyService.isMember(studyId, userId);
-  }
-
   @Post(':studyId/add-applicant')
   @UseGuards(AccessTokenGuard)
   @ApiOperation({
     summary: `스터디 지원하기  ${TAG.TOKEN_REQUIRED}`,
     description: '스터디에 참여중인지 조회합니다(applicant).',
   })
+  @ApiOkResponse({ type: Study })
   addApplicant(@Param('studyId') studyId: string, @Request() req): Promise<Study> {
     const userId = req.user['id'];
     return this.studyService.addApplicants(studyId, userId);
@@ -135,6 +125,7 @@ export class StudyController {
     summary: `스터디 지원 취소하기  ${TAG.TOKEN_REQUIRED}`,
     description: '토큰 유저가 스터디 지원을 취소합니다(applicant).',
   })
+  @ApiOkResponse({ type: Study })
   removeApplicant(@Param('studyId') studyId: string, @Request() req): Promise<Study> {
     const userId = req.user['id'];
     return this.studyService.removeApplicant(studyId, userId);
@@ -146,6 +137,7 @@ export class StudyController {
     summary: `스터디 지원자 취소하기  ${TAG.ADMIN_REQUIRED}`,
     description: '관리자가 스터디 지원자를 제거합니다(applicant).',
   })
+  @ApiOkResponse({ type: Study })
   removeApplicantByAdmin(
     @Param('studyId') studyId: string,
     @Param('userId') userId: string,
@@ -159,6 +151,7 @@ export class StudyController {
     summary: `스터디 참여 수락하기  ${TAG.ADMIN_REQUIRED}`,
     description: '스터디 참여자를 수락합니다(participant).',
   })
+  @ApiOkResponse({ type: Study })
   @ApiParam({
     name: 'studyId',
     description: '스터디의 ID',
@@ -184,6 +177,7 @@ export class StudyController {
     summary: `스터디 참여자 취소하기  ${TAG.ADMIN_REQUIRED}`,
     description: '관리자가 스터디 참여자를 지원자로 변경합니다(applicant).',
   })
+  @ApiOkResponse({ type: Study })
   removeParticipants(
     @Param('studyId') studyId: string,
     @Param('userId') userId: string,

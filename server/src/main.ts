@@ -18,8 +18,6 @@ async function bootstrap() {
     allowedHeaders: 'Content-Type, Accept',
   });
 
-  app.useGlobalInterceptors(new ResponseInterceptor());
-
   app.useGlobalPipes(new ValidationPipe());
 
   app.use(
@@ -33,7 +31,7 @@ async function bootstrap() {
   );
   const document = SwaggerModule.createDocument(app, swaggerConfig);
 
-  fs.writeFileSync('../client/swagger.json', JSON.stringify(document, null, 2));
+  fs.writeFileSync('../swagger.json', JSON.stringify(document, null, 2));
 
   app.use(process.env.SWAGGER_JSON_PATH, (_, res) => {
     res.setHeader('Content-Type', 'application/json');
