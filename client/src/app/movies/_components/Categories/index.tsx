@@ -21,7 +21,7 @@ export default function Categories() {
   const searchParams = useSearchParams();
   const category = searchParams.get('category');
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(!!category);
 
   const toggleCategories = () => {
     setIsOpen((prev) => !prev);
