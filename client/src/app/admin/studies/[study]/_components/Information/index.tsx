@@ -8,6 +8,7 @@ import { formatDate } from '@/utils/format';
 import updateStudyAction from '@/app/_actions/admin/studies/updateStudy';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 type InformationProps = StudyType;
 
@@ -48,8 +49,8 @@ export default function Information({ id, title, description, studiedAt }: Infor
       await updateStudyAction(id, updateStudy);
       router.refresh();
       closeInformationModal();
-    } catch (err) {
-      console.log(err);
+    } catch {
+      toast.error('Failed to update study');
     }
   };
 

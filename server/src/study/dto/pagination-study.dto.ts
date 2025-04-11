@@ -11,6 +11,6 @@ export class PaginationStudyResponseDto {
   @ApiProperty({ description: '페이지당 항목 수' })
   limit: number;
 
-  @ApiProperty({ type: [ExtendedFilteredStudyDto], description: '응답 데이터 배열' })
+  @ApiProperty({ type: () => [ExtendedFilteredStudyDto], description: '응답 데이터 배열' })
   data: ExtendedFilteredStudyDto[];
 }

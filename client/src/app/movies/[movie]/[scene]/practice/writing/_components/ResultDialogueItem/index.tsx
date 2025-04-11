@@ -24,11 +24,11 @@ function getHighlightedDifference(correct: string, userInput: string) {
 }
 
 export default function ResultDialogueItem({
-  english_script,
-  writing_script,
+  englishScript,
+  writingScript,
 }: ResultDialogueItemProps) {
-  const correctText = stripHtmlTags(english_script);
-  const userText = stripHtmlTags(writing_script || '');
+  const correctText = stripHtmlTags(englishScript);
+  const userText = stripHtmlTags(writingScript || '');
 
   const isCorrect = correctText === userText;
 
@@ -37,7 +37,7 @@ export default function ResultDialogueItem({
       <div className="text-gray-700">
         <strong>Expected:</strong> {correctText}
       </div>
-      {writing_script && (
+      {writingScript && (
         <div className="mt-2">
           <strong>Your Answer:</strong> {getHighlightedDifference(correctText, userText)}
         </div>

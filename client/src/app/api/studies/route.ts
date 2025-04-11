@@ -1,13 +1,26 @@
-import { PaginationResponse } from '@/types/api';
-import { StudyType } from '@/types/study';
-import { fetchAPI } from '@/libs/api';
+import { Configuration, StudyApi } from '@/services';
+import { ENV } from '@/constants/env';
 
 export async function GET(request: Request) {
   const incomingUrl = new URL(request.url);
+  const params = incomingUrl.searchParams;
 
-  const apiUrl = `/${incomingUrl.pathname.split('/')[2]}${incomingUrl.search}`;
+  const offset = Number(params.get('offset') ?? 1);
+  const limit = Number(params.get('limit') ?? 10);
+  const status = params.get('status') ?? undefined;
 
-  const studiesData = await fetchAPI<PaginationResponse<StudyType[]>>(apiUrl);
+  const api = new StudyApi(
+    new Configuration({
+      basePath: ENV.API_BASE_URL,
+      accessToken: '',
+    }),
+  );
 
-  return Response.json(studiesData.data.data);
+  const response = await api.studyControllerFindAll({
+    offset,
+    limit,
+    status
+  });
+
+  return Response.json(response.data);
 }

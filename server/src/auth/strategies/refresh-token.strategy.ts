@@ -28,7 +28,6 @@ export class RefreshTokenStrategy extends PassportStrategy(Strategy, 'jwt-refres
     }
 
     const user = await this.userService.findUserById(payload.sub);
-    console.log(user);
     if (!user || !user.hashedRefreshToken) {
       throw new UnauthorizedException('User not found or token not set');
     }

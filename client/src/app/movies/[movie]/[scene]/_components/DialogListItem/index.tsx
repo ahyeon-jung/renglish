@@ -26,7 +26,7 @@ export default function DialogListItem({
     setIsClickeded((prev) => !prev);
   };
 
-  if (speaker.speaker_type == 'etc') {
+  if (speaker.speakerType == 'etc') {
     return <li className="text-center italic">{children}</li>;
   }
 
@@ -36,13 +36,13 @@ export default function DialogListItem({
       style={style}
       className={clsx(
         'flex items-start gap-4 p-3 rounded-lg',
-        speaker.speaker_type === 'a' ? ' flex-row-reverse' : '',
+        speaker.speakerType === 'a' ? ' flex-row-reverse' : '',
         isBackground ? 'bg-gray-100 dark:bg-gray-800' : '',
       )}
     >
       <div className={clsx('flex flex-col items-center', 'text-gray-600 dark:text-gray-300')}>
         <CircleUserRound className="w-8 h-8" />
-        <span className="text-sm font-medium">{speaker.speaker_name}</span>
+        <span className="text-sm font-medium">{speaker.speakerName}</span>
       </div>
       <div
         className={clsx(

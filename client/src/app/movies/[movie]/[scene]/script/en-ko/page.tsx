@@ -24,8 +24,8 @@ export default async function MovieSceneEnglishKoreanScript({
           return (
             <DialogListItem key={index} speaker={dialogue.speaker} isBackground>
               <div>
-                <Text>{parseText(dialogue.english_script)}</Text>
-                <Text>{parseText(dialogue.korean_script)}</Text>
+                <Text>{parseText(dialogue.englishScript)}</Text>
+                <Text>{parseText(dialogue.koreanScript)}</Text>
               </div>
             </DialogListItem>
           );

@@ -1,13 +1,29 @@
-import { Movie } from '@/types/movie';
-import { PaginationResponse } from '@/types/api';
-import { fetchAPI } from '@/libs/api';
+import { Configuration, MoviesApi } from '@/services';
+import { ENV } from '@/constants/env';
 
 export async function GET(request: Request) {
   const incomingUrl = new URL(request.url);
+  const params = incomingUrl.searchParams;
 
-  const apiUrl = `/${incomingUrl.pathname.split('/')[2]}${incomingUrl.search}`;
+  const offset = Number(params.get('offset') ?? 1);
+  const limit = Number(params.get('limit') ?? 10);
+  const keyword = params.get('keyword') ?? undefined;
+  const category = params.get('category') ?? undefined;
 
-  const moviesData = await fetchAPI<PaginationResponse<Movie[]>>(apiUrl);
+  const api = new MoviesApi(
+    new Configuration({
+      basePath: ENV.API_BASE_URL,
+      accessToken: '',
+    }),
+  );
 
-  return Response.json(moviesData.data.data);
+  const response = await api.movieControllerFindAll({
+    offset,
+    limit,
+    keyword,
+    category,
+  });
+
+
+  return Response.json(response.data);
 }

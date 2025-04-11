@@ -13,97 +13,90 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Scene } from './Scene';
+import type { ExampleDto } from './ExampleDto';
 import {
-    SceneFromJSON,
-    SceneFromJSONTyped,
-    SceneToJSON,
-    SceneToJSONTyped,
-} from './Scene';
+    ExampleDtoFromJSON,
+    ExampleDtoFromJSONTyped,
+    ExampleDtoToJSON,
+    ExampleDtoToJSONTyped,
+} from './ExampleDto';
 
 /**
  * 
  * @export
- * @interface Movie
+ * @interface Expression
  */
-export interface Movie {
+export interface Expression {
     /**
      * 아이디
      * @type {string}
-     * @memberof Movie
+     * @memberof Expression
      */
     id: string;
     /**
      * 생성일
      * @type {Date}
-     * @memberof Movie
+     * @memberof Expression
      */
     createdAt: Date;
     /**
      * 수정일
      * @type {Date}
-     * @memberof Movie
+     * @memberof Expression
      */
     updatedAt: Date;
     /**
      * 삭제일
      * @type {Date}
-     * @memberof Movie
+     * @memberof Expression
      */
     deletedAt: Date;
     /**
      * 
      * @type {string}
-     * @memberof Movie
+     * @memberof Expression
      */
-    title: string;
+    expression: string;
     /**
      * 
      * @type {string}
-     * @memberof Movie
+     * @memberof Expression
      */
-    category: string;
+    meaning: string;
     /**
      * 
      * @type {string}
-     * @memberof Movie
+     * @memberof Expression
      */
-    imageUrl: string;
+    usage: string;
     /**
-     * 
-     * @type {string}
-     * @memberof Movie
+     * 영어 예문과 한글 번역 배열 (최대 2개)
+     * @type {Array<ExampleDto>}
+     * @memberof Expression
      */
-    description: string;
-    /**
-     * 
-     * @type {Array<Array<Scene>>}
-     * @memberof Movie
-     */
-    scenes: Array<Array<Scene>>;
+    examples: Array<ExampleDto>;
 }
 
 /**
- * Check if a given object implements the Movie interface.
+ * Check if a given object implements the Expression interface.
  */
-export function instanceOfMovie(value: object): value is Movie {
+export function instanceOfExpression(value: object): value is Expression {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     if (!('deletedAt' in value) || value['deletedAt'] === undefined) return false;
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('category' in value) || value['category'] === undefined) return false;
-    if (!('imageUrl' in value) || value['imageUrl'] === undefined) return false;
-    if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('scenes' in value) || value['scenes'] === undefined) return false;
+    if (!('expression' in value) || value['expression'] === undefined) return false;
+    if (!('meaning' in value) || value['meaning'] === undefined) return false;
+    if (!('usage' in value) || value['usage'] === undefined) return false;
+    if (!('examples' in value) || value['examples'] === undefined) return false;
     return true;
 }
 
-export function MovieFromJSON(json: any): Movie {
-    return MovieFromJSONTyped(json, false);
+export function ExpressionFromJSON(json: any): Expression {
+    return ExpressionFromJSONTyped(json, false);
 }
 
-export function MovieFromJSONTyped(json: any, ignoreDiscriminator: boolean): Movie {
+export function ExpressionFromJSONTyped(json: any, ignoreDiscriminator: boolean): Expression {
     if (json == null) {
         return json;
     }
@@ -113,19 +106,18 @@ export function MovieFromJSONTyped(json: any, ignoreDiscriminator: boolean): Mov
         'createdAt': (new Date(json['createdAt'])),
         'updatedAt': (new Date(json['updatedAt'])),
         'deletedAt': (new Date(json['deletedAt'])),
-        'title': json['title'],
-        'category': json['category'],
-        'imageUrl': json['imageUrl'],
-        'description': json['description'],
-        'scenes': json['scenes'],
+        'expression': json['expression'],
+        'meaning': json['meaning'],
+        'usage': json['usage'],
+        'examples': ((json['examples'] as Array<any>).map(ExampleDtoFromJSON)),
     };
 }
 
-export function MovieToJSON(json: any): Movie {
-    return MovieToJSONTyped(json, false);
+export function ExpressionToJSON(json: any): Expression {
+    return ExpressionToJSONTyped(json, false);
 }
 
-export function MovieToJSONTyped(value?: Movie | null, ignoreDiscriminator: boolean = false): any {
+export function ExpressionToJSONTyped(value?: Expression | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -136,11 +128,10 @@ export function MovieToJSONTyped(value?: Movie | null, ignoreDiscriminator: bool
         'createdAt': ((value['createdAt']).toISOString()),
         'updatedAt': ((value['updatedAt']).toISOString()),
         'deletedAt': ((value['deletedAt']).toISOString()),
-        'title': value['title'],
-        'category': value['category'],
-        'imageUrl': value['imageUrl'],
-        'description': value['description'],
-        'scenes': value['scenes'],
+        'expression': value['expression'],
+        'meaning': value['meaning'],
+        'usage': value['usage'],
+        'examples': ((value['examples'] as Array<any>).map(ExampleDtoToJSON)),
     };
 }
 

@@ -13,50 +13,50 @@
  */
 
 import { mapValues } from '../runtime';
-import type { PublicUserDto } from './PublicUserDto';
+import type { ExtendedFilteredStudyDto } from './ExtendedFilteredStudyDto';
 import {
-    PublicUserDtoFromJSON,
-    PublicUserDtoFromJSONTyped,
-    PublicUserDtoToJSON,
-    PublicUserDtoToJSONTyped,
-} from './PublicUserDto';
+    ExtendedFilteredStudyDtoFromJSON,
+    ExtendedFilteredStudyDtoFromJSONTyped,
+    ExtendedFilteredStudyDtoToJSON,
+    ExtendedFilteredStudyDtoToJSONTyped,
+} from './ExtendedFilteredStudyDto';
 
 /**
  * 
  * @export
- * @interface PaginationUserResponseDto
+ * @interface PaginationStudyResponseDto
  */
-export interface PaginationUserResponseDto {
+export interface PaginationStudyResponseDto {
     /**
      * 전체 항목 수
      * @type {number}
-     * @memberof PaginationUserResponseDto
+     * @memberof PaginationStudyResponseDto
      */
     totalCount: number;
     /**
      * 현재 페이지 번호
      * @type {number}
-     * @memberof PaginationUserResponseDto
+     * @memberof PaginationStudyResponseDto
      */
     currentPage: number;
     /**
      * 페이지당 항목 수
      * @type {number}
-     * @memberof PaginationUserResponseDto
+     * @memberof PaginationStudyResponseDto
      */
     limit: number;
     /**
      * 응답 데이터 배열
-     * @type {Array<PublicUserDto>}
-     * @memberof PaginationUserResponseDto
+     * @type {Array<ExtendedFilteredStudyDto>}
+     * @memberof PaginationStudyResponseDto
      */
-    data: Array<PublicUserDto>;
+    data: Array<ExtendedFilteredStudyDto>;
 }
 
 /**
- * Check if a given object implements the PaginationUserResponseDto interface.
+ * Check if a given object implements the PaginationStudyResponseDto interface.
  */
-export function instanceOfPaginationUserResponseDto(value: object): value is PaginationUserResponseDto {
+export function instanceOfPaginationStudyResponseDto(value: object): value is PaginationStudyResponseDto {
     if (!('totalCount' in value) || value['totalCount'] === undefined) return false;
     if (!('currentPage' in value) || value['currentPage'] === undefined) return false;
     if (!('limit' in value) || value['limit'] === undefined) return false;
@@ -64,11 +64,11 @@ export function instanceOfPaginationUserResponseDto(value: object): value is Pag
     return true;
 }
 
-export function PaginationUserResponseDtoFromJSON(json: any): PaginationUserResponseDto {
-    return PaginationUserResponseDtoFromJSONTyped(json, false);
+export function PaginationStudyResponseDtoFromJSON(json: any): PaginationStudyResponseDto {
+    return PaginationStudyResponseDtoFromJSONTyped(json, false);
 }
 
-export function PaginationUserResponseDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): PaginationUserResponseDto {
+export function PaginationStudyResponseDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): PaginationStudyResponseDto {
     if (json == null) {
         return json;
     }
@@ -77,15 +77,15 @@ export function PaginationUserResponseDtoFromJSONTyped(json: any, ignoreDiscrimi
         'totalCount': json['totalCount'],
         'currentPage': json['currentPage'],
         'limit': json['limit'],
-        'data': ((json['data'] as Array<any>).map(PublicUserDtoFromJSON)),
+        'data': ((json['data'] as Array<any>).map(ExtendedFilteredStudyDtoFromJSON)),
     };
 }
 
-export function PaginationUserResponseDtoToJSON(json: any): PaginationUserResponseDto {
-    return PaginationUserResponseDtoToJSONTyped(json, false);
+export function PaginationStudyResponseDtoToJSON(json: any): PaginationStudyResponseDto {
+    return PaginationStudyResponseDtoToJSONTyped(json, false);
 }
 
-export function PaginationUserResponseDtoToJSONTyped(value?: PaginationUserResponseDto | null, ignoreDiscriminator: boolean = false): any {
+export function PaginationStudyResponseDtoToJSONTyped(value?: PaginationStudyResponseDto | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -95,7 +95,7 @@ export function PaginationUserResponseDtoToJSONTyped(value?: PaginationUserRespo
         'totalCount': value['totalCount'],
         'currentPage': value['currentPage'],
         'limit': value['limit'],
-        'data': ((value['data'] as Array<any>).map(PublicUserDtoToJSON)),
+        'data': ((value['data'] as Array<any>).map(ExtendedFilteredStudyDtoToJSON)),
     };
 }
 

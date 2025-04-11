@@ -73,7 +73,7 @@ export class SceneService {
   async findSceneById(sceneId: string, userId?: string): Promise<FilteredScene> {
     const scene = await this.sceneRepository.findOne({
       where: { id: sceneId },
-      relations: ['speakers', 'dialogues', 'dialogues.speaker', 'study', 'study.participants'],
+      relations: ['speakers', 'dialogues', 'dialogues.speaker', 'study', 'study.participants', 'expressions'],
       order: {
         dialogues: {
           order: 'ASC',
@@ -94,15 +94,13 @@ export class SceneService {
       audioUrl: isParticipant ? scene.audioUrl : null,
       speakers: scene.speakers,
       dialogues: scene.dialogues,
+      expressions: scene.expressions,
     };
   }
 
   async addStudy({ sceneId, studyId }: { sceneId: string; studyId: string }): Promise<Scene> {
     const scene = await this.findOneEntity(sceneId);
 
-    console.log(scene);
-    const s = await this.studyService.getMemberCount(studyId);
-    console.log(s);
     const study = await this.studyService.findOneEntity(studyId);
     if (!study) {
       throw new NotFoundException('Study not found');

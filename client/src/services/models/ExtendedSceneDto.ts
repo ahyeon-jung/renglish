@@ -52,93 +52,93 @@ import {
 /**
  * 
  * @export
- * @interface Scene
+ * @interface ExtendedSceneDto
  */
-export interface Scene {
+export interface ExtendedSceneDto {
     /**
      * 아이디
      * @type {string}
-     * @memberof Scene
+     * @memberof ExtendedSceneDto
      */
     id: string;
     /**
      * 생성일
      * @type {Date}
-     * @memberof Scene
+     * @memberof ExtendedSceneDto
      */
     createdAt: Date;
     /**
      * 수정일
      * @type {Date}
-     * @memberof Scene
+     * @memberof ExtendedSceneDto
      */
     updatedAt: Date;
     /**
      * 삭제일
      * @type {Date}
-     * @memberof Scene
+     * @memberof ExtendedSceneDto
      */
     deletedAt: Date;
     /**
      * 
      * @type {string}
-     * @memberof Scene
+     * @memberof ExtendedSceneDto
      */
     title: string;
     /**
      * 
      * @type {Date}
-     * @memberof Scene
+     * @memberof ExtendedSceneDto
      */
     studiedAt: Date;
     /**
      * 
      * @type {string}
-     * @memberof Scene
+     * @memberof ExtendedSceneDto
      */
     description: string;
     /**
      * 
      * @type {string}
-     * @memberof Scene
+     * @memberof ExtendedSceneDto
      */
     audioUrl: string;
     /**
      * 
      * @type {Movie}
-     * @memberof Scene
+     * @memberof ExtendedSceneDto
      */
     movie: Movie;
     /**
      * 
      * @type {Study}
-     * @memberof Scene
+     * @memberof ExtendedSceneDto
      */
     study: Study;
     /**
      * 
      * @type {Array<Speaker>}
-     * @memberof Scene
+     * @memberof ExtendedSceneDto
      */
     speakers: Array<Speaker>;
     /**
      * 
      * @type {Array<Dialogue>}
-     * @memberof Scene
+     * @memberof ExtendedSceneDto
      */
     dialogues: Array<Dialogue>;
     /**
      * 
      * @type {Array<Expression>}
-     * @memberof Scene
+     * @memberof ExtendedSceneDto
      */
     expressions: Array<Expression>;
 }
 
 /**
- * Check if a given object implements the Scene interface.
+ * Check if a given object implements the ExtendedSceneDto interface.
  */
-export function instanceOfScene(value: object): value is Scene {
+export function instanceOfExtendedSceneDto(value: object): value is ExtendedSceneDto {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
@@ -155,11 +155,11 @@ export function instanceOfScene(value: object): value is Scene {
     return true;
 }
 
-export function SceneFromJSON(json: any): Scene {
-    return SceneFromJSONTyped(json, false);
+export function ExtendedSceneDtoFromJSON(json: any): ExtendedSceneDto {
+    return ExtendedSceneDtoFromJSONTyped(json, false);
 }
 
-export function SceneFromJSONTyped(json: any, ignoreDiscriminator: boolean): Scene {
+export function ExtendedSceneDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): ExtendedSceneDto {
     if (json == null) {
         return json;
     }
@@ -181,11 +181,11 @@ export function SceneFromJSONTyped(json: any, ignoreDiscriminator: boolean): Sce
     };
 }
 
-export function SceneToJSON(json: any): Scene {
-    return SceneToJSONTyped(json, false);
+export function ExtendedSceneDtoToJSON(json: any): ExtendedSceneDto {
+    return ExtendedSceneDtoToJSONTyped(json, false);
 }
 
-export function SceneToJSONTyped(value?: Scene | null, ignoreDiscriminator: boolean = false): any {
+export function ExtendedSceneDtoToJSONTyped(value?: ExtendedSceneDto | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

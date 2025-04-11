@@ -23,10 +23,10 @@ export default function ResultModal({ dialogues }: ResultModalProps) {
 
   const handleSaveClick = async () => {
     const writingsPromises = dialogues.map(async (dialogue) => {
-      if (dialogue.writing_script !== undefined) {
+      if (dialogue.writingScript !== undefined) {
         return addWritingAction({
           dialogueId: dialogue.id,
-          writing: dialogue.writing_script,
+          writing: dialogue.writingScript,
         });
       }
     });

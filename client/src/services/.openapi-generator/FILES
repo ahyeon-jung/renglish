@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 apis/AuthApi.ts
 apis/DialoguesApi.ts
 apis/EmailVerificationApi.ts
@@ -24,13 +23,20 @@ models/CreateSpeakerDto.ts
 models/CreateStudyDto.ts
 models/CreateUserDto.ts
 models/CreateWritingDto.ts
+models/Dialogue.ts
 models/ExampleDto.ts
+models/Expression.ts
+models/ExtendedFilteredStudyDto.ts
+models/ExtendedSceneDto.ts
 models/LoginDto.ts
 models/Movie.ts
 models/PaginationMovieResponseDto.ts
+models/PaginationStudyResponseDto.ts
 models/PaginationUserResponseDto.ts
+models/PublicUserDto.ts
 models/Scene.ts
 models/SendEmailDto.ts
+models/Speaker.ts
 models/Study.ts
 models/UpdateDialogueDto.ts
 models/UpdateExpressionDto.ts
@@ -39,6 +45,7 @@ models/UpdateSceneDto.ts
 models/UpdateSpeakerDto.ts
 models/UpdateStudyDto.ts
 models/UpdateUserDto.ts
+models/User.ts
 models/VerifyCodeDto.ts
 models/index.ts
 runtime.ts

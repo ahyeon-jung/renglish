@@ -7,7 +7,7 @@ export async function GET(req: Request, { params }: { params: Promise<{ token: s
 
   const cookieStore = await cookies();
 
-  console.log('새로운 토큰을 발급하였습니다.');
+  console.log('Generate new token');
   cookieStore.set(ENV.COOKIE_ACCESS_TOKEN_KEY, token, {
     httpOnly: true,
     secure: true,

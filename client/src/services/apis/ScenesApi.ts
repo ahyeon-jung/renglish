@@ -17,6 +17,7 @@ import * as runtime from '../runtime';
 import type {
   CreateSceneDto,
   CreateStudyDto,
+  ExtendedSceneDto,
   UpdateSceneDto,
 } from '../models/index';
 import {
@@ -24,6 +25,8 @@ import {
     CreateSceneDtoToJSON,
     CreateStudyDtoFromJSON,
     CreateStudyDtoToJSON,
+    ExtendedSceneDtoFromJSON,
+    ExtendedSceneDtoToJSON,
     UpdateSceneDtoFromJSON,
     UpdateSceneDtoToJSON,
 } from '../models/index';
@@ -373,7 +376,7 @@ export class ScenesApi extends runtime.BaseAPI {
      * 장면 정보와 해당 장면의 대본을 가져옵니다.     <br/>로그인 유저가 참여자인 경우 audioUrl을 반환합니다.
      * 장면 및 대본 가져오기
      */
-    async sceneControllerFindSceneByIdRaw(requestParameters: SceneControllerFindSceneByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async sceneControllerFindSceneByIdRaw(requestParameters: SceneControllerFindSceneByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtendedSceneDto>> {
         if (requestParameters['sceneId'] == null) {
             throw new runtime.RequiredError(
                 'sceneId',
@@ -400,15 +403,16 @@ export class ScenesApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => ExtendedSceneDtoFromJSON(jsonValue));
     }
 
     /**
      * 장면 정보와 해당 장면의 대본을 가져옵니다.     <br/>로그인 유저가 참여자인 경우 audioUrl을 반환합니다.
      * 장면 및 대본 가져오기
      */
-    async sceneControllerFindSceneById(requestParameters: SceneControllerFindSceneByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.sceneControllerFindSceneByIdRaw(requestParameters, initOverrides);
+    async sceneControllerFindSceneById(requestParameters: SceneControllerFindSceneByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtendedSceneDto> {
+        const response = await this.sceneControllerFindSceneByIdRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**

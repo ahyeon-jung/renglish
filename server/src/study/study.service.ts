@@ -109,10 +109,13 @@ export class StudyService {
         studiedAt: row.study_studiedAt,
         participantCount: Number(row.participantCount),
         applicantCount: Number(row.applicantCount),
+        applicants: row.applicants ?? [],
+        participants: row.participants ?? [],
         isCompleted,
         scene: {
           id: row.scene_id,
           title: row.scene_title,
+          speakers: [],
           movie: {
             title: row.movie_title,
             imageUrl: row.movie_imageUrl,

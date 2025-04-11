@@ -22,6 +22,7 @@ import { Study } from './entities/study.entity';
 import { PaginationResponse } from 'src/common/utils/pagination.util';
 import { ExtendedFilteredStudy } from './types/filtered-study';
 import { DeleteResult } from 'typeorm';
+import { PaginationStudyResponseDto } from './dto/pagination-study.dto';
 
 @ApiTags('Study')
 @Controller('studies')
@@ -52,6 +53,7 @@ export class StudyController {
     summary: '스터디 목록 조회하기',
     description: '스터디 목록을 조회합니다.',
   })
+  @ApiOkResponse({ type: () => PaginationStudyResponseDto })
   findAll(
     @Query('status') status?: string,
     @Query('offset') offset: number = 1,
@@ -71,6 +73,7 @@ export class StudyController {
     summary: '스터디 조회하기',
     description: '스터디를 조회합니다.',
   })
+  @ApiOkResponse({ type: () => Study })
   findOne(@Param('studyId') id: string): Promise<ExtendedFilteredStudy> {
     return this.studyService.findOne(id);
   }

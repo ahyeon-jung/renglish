@@ -31,75 +31,93 @@ import {
 /**
  * 
  * @export
- * @interface Study
+ * @interface ExtendedFilteredStudyDto
  */
-export interface Study {
+export interface ExtendedFilteredStudyDto {
     /**
      * 아이디
      * @type {string}
-     * @memberof Study
+     * @memberof ExtendedFilteredStudyDto
      */
     id: string;
     /**
      * 생성일
      * @type {Date}
-     * @memberof Study
+     * @memberof ExtendedFilteredStudyDto
      */
     createdAt: Date;
     /**
      * 수정일
      * @type {Date}
-     * @memberof Study
+     * @memberof ExtendedFilteredStudyDto
      */
     updatedAt: Date;
     /**
      * 삭제일
      * @type {Date}
-     * @memberof Study
+     * @memberof ExtendedFilteredStudyDto
      */
     deletedAt: Date;
     /**
      * 스터디 진행 일자
      * @type {Date}
-     * @memberof Study
+     * @memberof ExtendedFilteredStudyDto
      */
     studiedAt: Date;
     /**
      * 스터디 제목
      * @type {string}
-     * @memberof Study
+     * @memberof ExtendedFilteredStudyDto
      */
     title: string;
     /**
      * 스터디 설명
      * @type {string}
-     * @memberof Study
+     * @memberof ExtendedFilteredStudyDto
      */
     description: string;
     /**
      * 
      * @type {Scene}
-     * @memberof Study
+     * @memberof ExtendedFilteredStudyDto
      */
     scene: Scene;
     /**
      * 스터디 신청자
      * @type {Array<User>}
-     * @memberof Study
+     * @memberof ExtendedFilteredStudyDto
      */
     applicants?: Array<User>;
     /**
      * 스터디 참여자
      * @type {Array<User>}
-     * @memberof Study
+     * @memberof ExtendedFilteredStudyDto
      */
     participants?: Array<User>;
+    /**
+     * 스터디 참여자 수
+     * @type {number}
+     * @memberof ExtendedFilteredStudyDto
+     */
+    participantCount: number;
+    /**
+     * 스터디 신청자 수
+     * @type {number}
+     * @memberof ExtendedFilteredStudyDto
+     */
+    applicantCount: number;
+    /**
+     * 스터디 진행 상황
+     * @type {boolean}
+     * @memberof ExtendedFilteredStudyDto
+     */
+    isCompleted: boolean;
 }
 
 /**
- * Check if a given object implements the Study interface.
+ * Check if a given object implements the ExtendedFilteredStudyDto interface.
  */
-export function instanceOfStudy(value: object): value is Study {
+export function instanceOfExtendedFilteredStudyDto(value: object): value is ExtendedFilteredStudyDto {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
@@ -108,14 +126,17 @@ export function instanceOfStudy(value: object): value is Study {
     if (!('title' in value) || value['title'] === undefined) return false;
     if (!('description' in value) || value['description'] === undefined) return false;
     if (!('scene' in value) || value['scene'] === undefined) return false;
+    if (!('participantCount' in value) || value['participantCount'] === undefined) return false;
+    if (!('applicantCount' in value) || value['applicantCount'] === undefined) return false;
+    if (!('isCompleted' in value) || value['isCompleted'] === undefined) return false;
     return true;
 }
 
-export function StudyFromJSON(json: any): Study {
-    return StudyFromJSONTyped(json, false);
+export function ExtendedFilteredStudyDtoFromJSON(json: any): ExtendedFilteredStudyDto {
+    return ExtendedFilteredStudyDtoFromJSONTyped(json, false);
 }
 
-export function StudyFromJSONTyped(json: any, ignoreDiscriminator: boolean): Study {
+export function ExtendedFilteredStudyDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): ExtendedFilteredStudyDto {
     if (json == null) {
         return json;
     }
@@ -131,14 +152,17 @@ export function StudyFromJSONTyped(json: any, ignoreDiscriminator: boolean): Stu
         'scene': SceneFromJSON(json['scene']),
         'applicants': json['applicants'] == null ? undefined : ((json['applicants'] as Array<any>).map(UserFromJSON)),
         'participants': json['participants'] == null ? undefined : ((json['participants'] as Array<any>).map(UserFromJSON)),
+        'participantCount': json['participantCount'],
+        'applicantCount': json['applicantCount'],
+        'isCompleted': json['isCompleted'],
     };
 }
 
-export function StudyToJSON(json: any): Study {
-    return StudyToJSONTyped(json, false);
+export function ExtendedFilteredStudyDtoToJSON(json: any): ExtendedFilteredStudyDto {
+    return ExtendedFilteredStudyDtoToJSONTyped(json, false);
 }
 
-export function StudyToJSONTyped(value?: Study | null, ignoreDiscriminator: boolean = false): any {
+export function ExtendedFilteredStudyDtoToJSONTyped(value?: ExtendedFilteredStudyDto | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -155,6 +179,9 @@ export function StudyToJSONTyped(value?: Study | null, ignoreDiscriminator: bool
         'scene': SceneToJSON(value['scene']),
         'applicants': value['applicants'] == null ? undefined : ((value['applicants'] as Array<any>).map(UserToJSON)),
         'participants': value['participants'] == null ? undefined : ((value['participants'] as Array<any>).map(UserToJSON)),
+        'participantCount': value['participantCount'],
+        'applicantCount': value['applicantCount'],
+        'isCompleted': value['isCompleted'],
     };
 }
 

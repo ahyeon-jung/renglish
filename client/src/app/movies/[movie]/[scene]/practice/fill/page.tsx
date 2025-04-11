@@ -21,10 +21,10 @@ export default async function MovieScenePracticeFill({
           return (
             <DialogListItem key={index} speaker={dialogue.speaker} isBackground>
               {parseText(
-                dialogue.english_script,
+                dialogue.englishScript,
                 'text-white hover:text-black border-black border-b',
               )}
-              {parseText(dialogue.korean_script)}
+              {parseText(dialogue.koreanScript)}
             </DialogListItem>
           );
         })}

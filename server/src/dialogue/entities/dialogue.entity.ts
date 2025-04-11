@@ -31,9 +31,11 @@ export class Dialogue extends BaseEntity {
   order: number;
 
   @ManyToOne(() => Scene, (scene) => scene.dialogues, { onDelete: 'CASCADE' })
+  @ApiProperty({ type: () => Scene })
   scene: Scene;
 
   @ManyToOne(() => Speaker, (speaker) => speaker.dialogues, { onDelete: 'CASCADE' })
+  @ApiProperty({ type: () => Speaker })
   speaker: Speaker;
 
   @OneToMany(() => Writing, (writing) => writing.dialogue)

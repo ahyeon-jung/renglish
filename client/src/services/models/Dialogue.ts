@@ -20,90 +20,97 @@ import {
     SceneToJSON,
     SceneToJSONTyped,
 } from './Scene';
+import type { Speaker } from './Speaker';
+import {
+    SpeakerFromJSON,
+    SpeakerFromJSONTyped,
+    SpeakerToJSON,
+    SpeakerToJSONTyped,
+} from './Speaker';
 
 /**
  * 
  * @export
- * @interface Movie
+ * @interface Dialogue
  */
-export interface Movie {
+export interface Dialogue {
     /**
      * 아이디
      * @type {string}
-     * @memberof Movie
+     * @memberof Dialogue
      */
     id: string;
     /**
      * 생성일
      * @type {Date}
-     * @memberof Movie
+     * @memberof Dialogue
      */
     createdAt: Date;
     /**
      * 수정일
      * @type {Date}
-     * @memberof Movie
+     * @memberof Dialogue
      */
     updatedAt: Date;
     /**
      * 삭제일
      * @type {Date}
-     * @memberof Movie
+     * @memberof Dialogue
      */
     deletedAt: Date;
     /**
      * 
      * @type {string}
-     * @memberof Movie
+     * @memberof Dialogue
      */
-    title: string;
+    englishScript: string;
     /**
      * 
      * @type {string}
-     * @memberof Movie
+     * @memberof Dialogue
      */
-    category: string;
+    koreanScript: string;
     /**
      * 
-     * @type {string}
-     * @memberof Movie
+     * @type {number}
+     * @memberof Dialogue
      */
-    imageUrl: string;
+    order: number;
     /**
      * 
-     * @type {string}
-     * @memberof Movie
+     * @type {Scene}
+     * @memberof Dialogue
      */
-    description: string;
+    scene: Scene;
     /**
      * 
-     * @type {Array<Array<Scene>>}
-     * @memberof Movie
+     * @type {Speaker}
+     * @memberof Dialogue
      */
-    scenes: Array<Array<Scene>>;
+    speaker: Speaker;
 }
 
 /**
- * Check if a given object implements the Movie interface.
+ * Check if a given object implements the Dialogue interface.
  */
-export function instanceOfMovie(value: object): value is Movie {
+export function instanceOfDialogue(value: object): value is Dialogue {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     if (!('deletedAt' in value) || value['deletedAt'] === undefined) return false;
-    if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('category' in value) || value['category'] === undefined) return false;
-    if (!('imageUrl' in value) || value['imageUrl'] === undefined) return false;
-    if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('scenes' in value) || value['scenes'] === undefined) return false;
+    if (!('englishScript' in value) || value['englishScript'] === undefined) return false;
+    if (!('koreanScript' in value) || value['koreanScript'] === undefined) return false;
+    if (!('order' in value) || value['order'] === undefined) return false;
+    if (!('scene' in value) || value['scene'] === undefined) return false;
+    if (!('speaker' in value) || value['speaker'] === undefined) return false;
     return true;
 }
 
-export function MovieFromJSON(json: any): Movie {
-    return MovieFromJSONTyped(json, false);
+export function DialogueFromJSON(json: any): Dialogue {
+    return DialogueFromJSONTyped(json, false);
 }
 
-export function MovieFromJSONTyped(json: any, ignoreDiscriminator: boolean): Movie {
+export function DialogueFromJSONTyped(json: any, ignoreDiscriminator: boolean): Dialogue {
     if (json == null) {
         return json;
     }
@@ -113,19 +120,19 @@ export function MovieFromJSONTyped(json: any, ignoreDiscriminator: boolean): Mov
         'createdAt': (new Date(json['createdAt'])),
         'updatedAt': (new Date(json['updatedAt'])),
         'deletedAt': (new Date(json['deletedAt'])),
-        'title': json['title'],
-        'category': json['category'],
-        'imageUrl': json['imageUrl'],
-        'description': json['description'],
-        'scenes': json['scenes'],
+        'englishScript': json['english_script'],
+        'koreanScript': json['korean_script'],
+        'order': json['order'],
+        'scene': SceneFromJSON(json['scene']),
+        'speaker': SpeakerFromJSON(json['speaker']),
     };
 }
 
-export function MovieToJSON(json: any): Movie {
-    return MovieToJSONTyped(json, false);
+export function DialogueToJSON(json: any): Dialogue {
+    return DialogueToJSONTyped(json, false);
 }
 
-export function MovieToJSONTyped(value?: Movie | null, ignoreDiscriminator: boolean = false): any {
+export function DialogueToJSONTyped(value?: Dialogue | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -136,11 +143,11 @@ export function MovieToJSONTyped(value?: Movie | null, ignoreDiscriminator: bool
         'createdAt': ((value['createdAt']).toISOString()),
         'updatedAt': ((value['updatedAt']).toISOString()),
         'deletedAt': ((value['deletedAt']).toISOString()),
-        'title': value['title'],
-        'category': value['category'],
-        'imageUrl': value['imageUrl'],
-        'description': value['description'],
-        'scenes': value['scenes'],
+        'english_script': value['englishScript'],
+        'korean_script': value['koreanScript'],
+        'order': value['order'],
+        'scene': SceneToJSON(value['scene']),
+        'speaker': SpeakerToJSON(value['speaker']),
     };
 }
 

@@ -25,10 +25,10 @@ export default async function MovieSceneKoreanScript({
             <DialogListItem
               key={index}
               speaker={dialogue.speaker}
-              clickedText={stripHtmlTags(dialogue.english_script)}
+              clickedText={stripHtmlTags(dialogue.englishScript)}
               isBackground
             >
-              {parseText(dialogue.korean_script)}
+              {parseText(dialogue.koreanScript)}
             </DialogListItem>
           );
         })}

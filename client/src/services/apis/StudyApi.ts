@@ -15,10 +15,13 @@
 
 import * as runtime from '../runtime';
 import type {
+  PaginationStudyResponseDto,
   Study,
   UpdateStudyDto,
 } from '../models/index';
 import {
+    PaginationStudyResponseDtoFromJSON,
+    PaginationStudyResponseDtoToJSON,
     StudyFromJSON,
     StudyToJSON,
     UpdateStudyDtoFromJSON,
@@ -169,7 +172,7 @@ export class StudyApi extends runtime.BaseAPI {
      * 스터디 목록을 조회합니다.
      * 스터디 목록 조회하기
      */
-    async studyControllerFindAllRaw(requestParameters: StudyControllerFindAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async studyControllerFindAllRaw(requestParameters: StudyControllerFindAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginationStudyResponseDto>> {
         if (requestParameters['offset'] == null) {
             throw new runtime.RequiredError(
                 'offset',
@@ -215,22 +218,23 @@ export class StudyApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginationStudyResponseDtoFromJSON(jsonValue));
     }
 
     /**
      * 스터디 목록을 조회합니다.
      * 스터디 목록 조회하기
      */
-    async studyControllerFindAll(requestParameters: StudyControllerFindAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.studyControllerFindAllRaw(requestParameters, initOverrides);
+    async studyControllerFindAll(requestParameters: StudyControllerFindAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginationStudyResponseDto> {
+        const response = await this.studyControllerFindAllRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
      * 스터디를 조회합니다.
      * 스터디 조회하기
      */
-    async studyControllerFindOneRaw(requestParameters: StudyControllerFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async studyControllerFindOneRaw(requestParameters: StudyControllerFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Study>> {
         if (requestParameters['studyId'] == null) {
             throw new runtime.RequiredError(
                 'studyId',
@@ -257,15 +261,16 @@ export class StudyApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => StudyFromJSON(jsonValue));
     }
 
     /**
      * 스터디를 조회합니다.
      * 스터디 조회하기
      */
-    async studyControllerFindOne(requestParameters: StudyControllerFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.studyControllerFindOneRaw(requestParameters, initOverrides);
+    async studyControllerFindOne(requestParameters: StudyControllerFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Study> {
+        const response = await this.studyControllerFindOneRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**

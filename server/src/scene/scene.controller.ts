@@ -11,7 +11,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { SceneService } from './scene.service';
-import { ApiBody, ApiOperation, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiOkResponse, ApiOperation, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { Speaker } from 'src/speaker/entities/speaker.entity';
 import { Scene } from './entities/scene.entity';
 import { CreateSceneDto } from './dto/create-scene.dto';
@@ -26,6 +26,7 @@ import { Study } from 'src/study/entities/study.entity';
 import { FilteredStudy } from 'src/study/types/filtered-study';
 import { FilteredScene } from './types/filtered-scene';
 import { DeleteResult } from 'typeorm';
+import { ExtendedSceneDto } from './dto/extend-scene.dto';
 @ApiTags('Scenes')
 @Controller('scenes')
 export class SceneController {
@@ -161,6 +162,7 @@ export class SceneController {
     example: 'e5e798e1-9241-4b95-8e2c-0b630bbd033f',
     type: String,
   })
+  @ApiOkResponse({ type: () => ExtendedSceneDto })
   findSceneById(@Param('sceneId') sceneId: string, @Request() req): Promise<FilteredScene> {
     const userId = (req.user as any)?.id ?? null;
     return this.sceneService.findSceneById(sceneId, userId);
