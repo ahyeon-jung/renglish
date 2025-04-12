@@ -1,12 +1,8 @@
 'use server';
 
-import { ActionResponse } from '@/types/action';
 import { ENV } from '@/constants/env';
-import { UserType } from '@/types/user';
 import { cookies } from 'next/headers';
-import { fetchAPI } from '@/libs/api';
-import { Configuration } from '@/services';
-import { MyApi } from '@/services';
+import { Configuration, MyApi } from '@/services';
 
 export default async function getAuthDataAction() {
   const cookieStore = await cookies();

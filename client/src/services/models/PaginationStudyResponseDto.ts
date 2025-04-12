@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ExtendedFilteredStudyDto } from './ExtendedFilteredStudyDto';
+import type { ListStudyDto } from './ListStudyDto';
 import {
-    ExtendedFilteredStudyDtoFromJSON,
-    ExtendedFilteredStudyDtoFromJSONTyped,
-    ExtendedFilteredStudyDtoToJSON,
-    ExtendedFilteredStudyDtoToJSONTyped,
-} from './ExtendedFilteredStudyDto';
+    ListStudyDtoFromJSON,
+    ListStudyDtoFromJSONTyped,
+    ListStudyDtoToJSON,
+    ListStudyDtoToJSONTyped,
+} from './ListStudyDto';
 
 /**
  * 
@@ -47,10 +47,10 @@ export interface PaginationStudyResponseDto {
     limit: number;
     /**
      * 응답 데이터 배열
-     * @type {Array<ExtendedFilteredStudyDto>}
+     * @type {Array<ListStudyDto>}
      * @memberof PaginationStudyResponseDto
      */
-    data: Array<ExtendedFilteredStudyDto>;
+    data: Array<ListStudyDto>;
 }
 
 /**
@@ -77,7 +77,7 @@ export function PaginationStudyResponseDtoFromJSONTyped(json: any, ignoreDiscrim
         'totalCount': json['totalCount'],
         'currentPage': json['currentPage'],
         'limit': json['limit'],
-        'data': ((json['data'] as Array<any>).map(ExtendedFilteredStudyDtoFromJSON)),
+        'data': ((json['data'] as Array<any>).map(ListStudyDtoFromJSON)),
     };
 }
 
@@ -95,7 +95,7 @@ export function PaginationStudyResponseDtoToJSONTyped(value?: PaginationStudyRes
         'totalCount': value['totalCount'],
         'currentPage': value['currentPage'],
         'limit': value['limit'],
-        'data': ((value['data'] as Array<any>).map(ExtendedFilteredStudyDtoToJSON)),
+        'data': ((value['data'] as Array<any>).map(ListStudyDtoToJSON)),
     };
 }
 

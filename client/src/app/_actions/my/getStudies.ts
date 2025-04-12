@@ -1,34 +1,28 @@
 'use server';
 
-import { ActionResponse } from '@/types/action';
 import { ENV } from '@/constants/env';
-import { StudyType } from '@/types/study';
 import { cookies } from 'next/headers';
-import { fetchAPI } from '@/libs/api';
+import { Configuration, ListStudyDto, MyApi } from '@/services';
 
 export default async function getStudiesAction(
   type?: 'applicant' | 'participant',
-): Promise<ActionResponse<StudyType[]>> {
+){
   const cookieStore = await cookies();
   const token = cookieStore.get(ENV.COOKIE_ACCESS_TOKEN_KEY)?.value;
 
-  let url = '/my/studies';
+  const api = new MyApi(
+    new Configuration({
+      basePath: ENV.API_BASE_URL,
+      accessToken: token,
+    }),
+  );
 
-  if (type) {
-    url += `?type=${type}`;
-  }
-  const response = await fetchAPI<StudyType[]>(url, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  const data = await api.myControllerFindMyStudies({ type });
 
   return {
     status: 200,
     success: true,
     message: 'Fetch auth user data successfully',
-    data: response.data,
+    data: data as unknown as ListStudyDto[],
   };
 }

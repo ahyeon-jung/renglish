@@ -1,9 +1,6 @@
 'use server';
 
-import { PaginationParams, PaginationResponse } from '@/types/api';
-
-import { ActionResponse } from '@/types/action';
-import { StudyType } from '@/types/study';
+import { PaginationParams} from '@/types/api';
 import { Configuration, StudyApi } from '@/services';
 import { ENV } from '@/constants/env';
 
@@ -13,7 +10,7 @@ export default async function getStudiesAction({
   status,
   offset = 1,
   limit = 10,
-}: GetStudiesParams): Promise<ActionResponse<PaginationResponse<StudyType>>> {
+}: GetStudiesParams) {
   const api = new StudyApi(
     new Configuration({
       basePath: ENV.API_BASE_URL,
@@ -21,9 +18,8 @@ export default async function getStudiesAction({
     }),
   );
 
-  const response = await api.studyControllerFindAllRaw({ offset, limit, status });
+  const data = await api.studyControllerFindAll({ offset, limit, status });
 
-  const data = await response.raw?.json?.();
 
   return {
     status: 200,
