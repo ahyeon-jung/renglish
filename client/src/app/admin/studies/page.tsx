@@ -5,14 +5,14 @@ import React, { Suspense, useEffect, useState } from 'react';
 import Button from '@/components/Button';
 import StatusQueryTags from '@/app/studies/_components/StatusQueryTags';
 import StudyItem from './_components/StudyItem';
-import { StudyType } from '@/types/study';
 import clsx from 'clsx';
 import useSWRInfinite from 'swr/infinite';
 import { useSearchParams } from 'next/navigation';
+import { ListStudyDto } from '@/services';
 
 const PAGE_SIZE = 5;
 
-const getKey = (status: string | null) => (pageIndex: number, previousPageData: StudyType[]) => {
+const getKey = (status: string | null) => (pageIndex: number, previousPageData: ListStudyDto[]) => {
   if (previousPageData && !previousPageData.length) return null;
 
   let url = `/api/studies?limit=${PAGE_SIZE}&offset=${pageIndex + 1}`;
@@ -41,8 +41,8 @@ function StudiesContent() {
   const searchParams = useSearchParams();
   const status = searchParams.get('status');
 
-  const [studies, setStudies] = useState<StudyType[][]>([]);
-  const { data, size, setSize, isLoading } = useSWRInfinite<StudyType[]>(getKey(status), fetcher);
+  const [studies, setStudies] = useState<ListStudyDto[][]>([]);
+  const { data, size, setSize, isLoading } = useSWRInfinite<ListStudyDto[]>(getKey(status), fetcher);
   useEffect(() => {
     if (!data) return;
 

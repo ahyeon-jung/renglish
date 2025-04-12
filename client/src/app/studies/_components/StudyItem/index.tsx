@@ -1,12 +1,11 @@
 import ApplyToStudyModal from '../ApplyToStudyModal';
 import Image from 'next/image';
-import { StudyType } from '@/types/study';
 import clsx from 'clsx';
 import { formatDate } from '@/utils/format';
+import { ListStudyDto } from '@/services';
+import StudyMember from '../StudyMember';
 
-type StudyItemProps = StudyType;
-
-const APPLICANT_LIMIT = 8;
+type StudyItemProps = ListStudyDto;
 
 export default function StudyItem({ ...study }: StudyItemProps) {
   return (
@@ -21,10 +20,7 @@ export default function StudyItem({ ...study }: StudyItemProps) {
           <h2 className="text-xl font-semibold text-gray-800 mb-1">{study.title}</h2>
           <p className="text-gray-600 text-sm mb-2">{study.description}</p>
           <p className="text-sm text-gray-500">{formatDate(study.studiedAt, 'long')}</p>
-          <div className="mt-2 text-sm font-medium text-gray-700">
-            {study.isCompleted ? '예정 인원' : '참여자'}:{' '}
-            {study.isCompleted ? study.applicantCount : study.participantCount} / {APPLICANT_LIMIT}
-          </div>
+          <StudyMember applicants={study.applicants} participants={study.participants} isCompleted={study.isCompleted} />
         </div>
         <div className="flex-shrink-0">
           <Image

@@ -28,9 +28,11 @@ export async function handleError(e: unknown): Promise<{
     typeof e === 'object' &&
     e !== null &&
     'response' in e &&
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     typeof (e as any).response?.json === 'function'
   ) {
     try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const res = await (e as any).response.json();
       return {
         statusCode: res.statusCode ?? 500,

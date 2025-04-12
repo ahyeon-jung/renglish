@@ -1,5 +1,16 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { ExtendedFilteredStudyDto } from './extended-study.dto';
+import { ApiProperty, OmitType, PickType } from '@nestjs/swagger';
+import { Study } from '../entities/study.entity';
+import { Scene } from 'src/scene/entities/scene.entity';
+
+class ListStudySceneDto extends OmitType(Scene, ['dialogues', 'expressions']) {}
+
+class ListStudyDto extends PickType(Study, ['id', 'title', 'description', 'studiedAt', 'createdAt', 'updatedAt', 'applicants', 'participants']) {
+  @ApiProperty({ type: ListStudySceneDto })
+  scene: ListStudySceneDto;
+
+  @ApiProperty({ description: '스터디 진행 상황' })
+  isCompleted: boolean;
+}
 
 export class PaginationStudyResponseDto {
   @ApiProperty({ description: '전체 항목 수' })
@@ -11,6 +22,6 @@ export class PaginationStudyResponseDto {
   @ApiProperty({ description: '페이지당 항목 수' })
   limit: number;
 
-  @ApiProperty({ type: () => [ExtendedFilteredStudyDto], description: '응답 데이터 배열' })
-  data: ExtendedFilteredStudyDto[];
+  @ApiProperty({ type: () => [ListStudyDto], description: '응답 데이터 배열' })
+  data: ListStudyDto[];
 }

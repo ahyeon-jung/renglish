@@ -2,6 +2,7 @@ import { Controller, Get, UseGuards, Request, Put, Body, Query } from '@nestjs/c
 import { ApiBody, ApiOkResponse, ApiOperation, ApiQuery, ApiResponse } from '@nestjs/swagger';
 import { AccessTokenGuard } from 'src/auth/guards/access-token.guard';
 import { TAG } from 'src/common/constants/tag';
+import { Study } from 'src/study/entities/study.entity';
 import { StudyService } from 'src/study/study.service';
 import { UpdateUserDto } from 'src/user/dto/update-user.dto';
 import { User } from 'src/user/entities/user.entity';
@@ -47,6 +48,7 @@ export class MyController {
     type: String,
     required: false,
   })
+  @ApiOkResponse({ type: () => [Study] })
   findMyStudies(@Request() req, @Query('type') type?: string) {
     const userId = req.user['id'];
     return this.studyService.findByUser(userId, type);

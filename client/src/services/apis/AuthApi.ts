@@ -49,6 +49,46 @@ export interface AuthControllerRegisterRequest {
 export class AuthApi extends runtime.BaseAPI {
 
     /**
+     * 관리자 여부를 확인합니다.
+     * 관리자 여부 확인
+     */
+    async authControllerCheckIsAdminRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<boolean>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/api/auth/check/is-admin`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<boolean>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     * 관리자 여부를 확인합니다.
+     * 관리자 여부 확인
+     */
+    async authControllerCheckIsAdmin(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<boolean> {
+        const response = await this.authControllerCheckIsAdminRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
      * 구글 계정으로 로그인합니다.
      * 구글 로그인
      */

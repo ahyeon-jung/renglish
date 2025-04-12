@@ -1,11 +1,10 @@
 'use server';
 
-import { FetchError, handleError, handleFetchError } from '@/utils/error';
+import { handleError } from '@/utils/error';
 
 import { ActionResponse } from '@/types/action';
 import { ENV } from '@/constants/env';
 import { cookies } from 'next/headers';
-import { fetchAPI } from '@/libs/api';
 import { AuthApi, Configuration } from '@/services';
 
 type LoginAction = { email: string; password: string; rememberMe: boolean };

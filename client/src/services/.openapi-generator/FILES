@@ -25,8 +25,9 @@ models/CreateWritingDto.ts
 models/Dialogue.ts
 models/ExampleDto.ts
 models/Expression.ts
-models/ExtendedFilteredStudyDto.ts
 models/ExtendedSceneDto.ts
+models/ListStudyDto.ts
+models/ListStudySceneDto.ts
 models/LoginDto.ts
 models/LoginResponseDto.ts
 models/Movie.ts

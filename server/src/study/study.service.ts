@@ -56,6 +56,7 @@ export class StudyService {
   }
 
   async findAll(
+    userId: string,
     params: GetStudyParams & PaginationParams,
   ): Promise<PaginationResponse<ExtendedFilteredStudy>> {
     const { status, offset = 1, limit = 10 } = params;
@@ -73,12 +74,12 @@ export class StudyService {
         'study.title',
         'study.description',
         'study.studiedAt',
+        `GROUP_CONCAT(DISTINCT JSON_OBJECT('id', applicants.id, 'nickname', applicants.nickname)) AS applicantInfo`,
+        `GROUP_CONCAT(DISTINCT JSON_OBJECT('id', participants.id, 'nickname', participants.nickname)) AS participantInfo`,
         'scene.id',
         'scene.title',
         'movie.title',
         'movie.imageUrl',
-        'COUNT(DISTINCT participants.id) AS participantCount',
-        'COUNT(DISTINCT applicants.id) AS applicantCount',
       ])
       .groupBy('study.id')
       .addGroupBy('scene.id')
@@ -102,6 +103,13 @@ export class StudyService {
       const studiedAt = new Date(row.study_studiedAt);
       const isCompleted = studiedAt.getTime() > new Date().getTime();
 
+      const wrapped_applicants = `[${row.applicantInfo}]`;
+
+      const applicants  = JSON.parse(wrapped_applicants)
+
+      const wrapped_participants = `[${row.participantInfo}]`;
+      const participants = JSON.parse(wrapped_participants);
+
       return {
         id: row.study_id,
         title: row.study_title,
@@ -109,8 +117,8 @@ export class StudyService {
         studiedAt: row.study_studiedAt,
         participantCount: Number(row.participantCount),
         applicantCount: Number(row.applicantCount),
-        applicants: row.applicants ?? [],
-        participants: row.participants ?? [],
+        applicants,
+        participants,
         isCompleted,
         scene: {
           id: row.scene_id,

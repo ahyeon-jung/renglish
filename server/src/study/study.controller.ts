@@ -23,6 +23,7 @@ import { PaginationResponse } from 'src/common/utils/pagination.util';
 import { ExtendedFilteredStudy } from './types/filtered-study';
 import { DeleteResult } from 'typeorm';
 import { PaginationStudyResponseDto } from './dto/pagination-study.dto';
+import { OptionalTokenGuard } from 'src/auth/guards/optional-token.guard';
 
 @ApiTags('Study')
 @Controller('studies')
@@ -30,6 +31,7 @@ export class StudyController {
   constructor(private readonly studyService: StudyService) {}
 
   @Get()
+  @UseGuards(OptionalTokenGuard)
   @ApiQuery({
     name: 'status',
     description: `스터디의 진행 상황을 입력하세요 ${STUDY_STATUS.RECRUITING} ${STUDY_STATUS.COMPLETED}`,
@@ -55,11 +57,12 @@ export class StudyController {
   })
   @ApiOkResponse({ type: () => PaginationStudyResponseDto })
   findAll(
+    @Request() req,
     @Query('status') status?: string,
     @Query('offset') offset: number = 1,
     @Query('limit') limit: number = 10,
   ): Promise<PaginationResponse<ExtendedFilteredStudy>> {
-    return this.studyService.findAll({ status, offset, limit });
+    return this.studyService.findAll(req.user.id,{ status, offset, limit });
   }
 
   @Get(':studyId')

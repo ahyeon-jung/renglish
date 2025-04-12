@@ -19,6 +19,7 @@ import { UserService } from 'src/user/user.service';
 import { Response } from 'express';
 import { ConfigService } from '@nestjs/config';
 import { PasswordResetDto } from './dto/reset-password.dto';
+import { OptionalTokenGuard } from './guards/optional-token.guard';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -28,6 +29,17 @@ export class AuthController {
     private readonly userService: UserService,
     private readonly configService: ConfigService,
   ) {}
+
+  @UseGuards(OptionalTokenGuard)
+  @Post('check/is-admin')
+  @ApiOperation({
+    summary: '관리자 여부 확인',
+    description: '관리자 여부를 확인합니다.',
+  })
+  @ApiOkResponse({ type: Boolean })
+  async checkIsAdmin(@Req() req) {
+    return !!req.user.isAdmin;
+  }
 
   @Post('register')
   @ApiOperation({
