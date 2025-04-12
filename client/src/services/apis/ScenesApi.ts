@@ -18,6 +18,7 @@ import type {
   CreateSceneDto,
   CreateStudyDto,
   ExtendedSceneDto,
+  PaginationSceneResponseDto,
   UpdateSceneDto,
 } from '../models/index';
 import {
@@ -27,6 +28,8 @@ import {
     CreateStudyDtoToJSON,
     ExtendedSceneDtoFromJSON,
     ExtendedSceneDtoToJSON,
+    PaginationSceneResponseDtoFromJSON,
+    PaginationSceneResponseDtoToJSON,
     UpdateSceneDtoFromJSON,
     UpdateSceneDtoToJSON,
 } from '../models/index';
@@ -315,7 +318,7 @@ export class ScenesApi extends runtime.BaseAPI {
      * 모든 장면면을 가져옵니다(audioUrl 제외).
      * 모든 장면 가져오기
      */
-    async sceneControllerFindAllSceneRaw(requestParameters: SceneControllerFindAllSceneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async sceneControllerFindAllSceneRaw(requestParameters: SceneControllerFindAllSceneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginationSceneResponseDto>> {
         if (requestParameters['offset'] == null) {
             throw new runtime.RequiredError(
                 'offset',
@@ -361,15 +364,16 @@ export class ScenesApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => PaginationSceneResponseDtoFromJSON(jsonValue));
     }
 
     /**
      * 모든 장면면을 가져옵니다(audioUrl 제외).
      * 모든 장면 가져오기
      */
-    async sceneControllerFindAllScene(requestParameters: SceneControllerFindAllSceneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.sceneControllerFindAllSceneRaw(requestParameters, initOverrides);
+    async sceneControllerFindAllScene(requestParameters: SceneControllerFindAllSceneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginationSceneResponseDto> {
+        const response = await this.sceneControllerFindAllSceneRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**

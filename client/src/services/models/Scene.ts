@@ -87,12 +87,6 @@ export interface Scene {
     title: string;
     /**
      * 
-     * @type {Date}
-     * @memberof Scene
-     */
-    studiedAt: Date;
-    /**
-     * 
      * @type {string}
      * @memberof Scene
      */
@@ -144,7 +138,6 @@ export function instanceOfScene(value: object): value is Scene {
     if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     if (!('deletedAt' in value) || value['deletedAt'] === undefined) return false;
     if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('studiedAt' in value) || value['studiedAt'] === undefined) return false;
     if (!('description' in value) || value['description'] === undefined) return false;
     if (!('audioUrl' in value) || value['audioUrl'] === undefined) return false;
     if (!('movie' in value) || value['movie'] === undefined) return false;
@@ -170,7 +163,6 @@ export function SceneFromJSONTyped(json: any, ignoreDiscriminator: boolean): Sce
         'updatedAt': (new Date(json['updatedAt'])),
         'deletedAt': (new Date(json['deletedAt'])),
         'title': json['title'],
-        'studiedAt': (new Date(json['studiedAt'])),
         'description': json['description'],
         'audioUrl': json['audioUrl'],
         'movie': MovieFromJSON(json['movie']),
@@ -197,7 +189,6 @@ export function SceneToJSONTyped(value?: Scene | null, ignoreDiscriminator: bool
         'updatedAt': ((value['updatedAt']).toISOString()),
         'deletedAt': ((value['deletedAt']).toISOString()),
         'title': value['title'],
-        'studiedAt': ((value['studiedAt']).toISOString()),
         'description': value['description'],
         'audioUrl': value['audioUrl'],
         'movie': MovieToJSON(value['movie']),

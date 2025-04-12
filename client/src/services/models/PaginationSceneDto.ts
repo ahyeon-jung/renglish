@@ -13,20 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Movie } from './Movie';
-import {
-    MovieFromJSON,
-    MovieFromJSONTyped,
-    MovieToJSON,
-    MovieToJSONTyped,
-} from './Movie';
-import type { Study } from './Study';
-import {
-    StudyFromJSON,
-    StudyFromJSONTyped,
-    StudyToJSON,
-    StudyToJSONTyped,
-} from './Study';
 import type { Speaker } from './Speaker';
 import {
     SpeakerFromJSON,
@@ -38,93 +24,72 @@ import {
 /**
  * 
  * @export
- * @interface ListStudySceneDto
+ * @interface PaginationSceneDto
  */
-export interface ListStudySceneDto {
+export interface PaginationSceneDto {
     /**
      * 아이디
      * @type {string}
-     * @memberof ListStudySceneDto
+     * @memberof PaginationSceneDto
      */
     id: string;
     /**
      * 생성일
      * @type {Date}
-     * @memberof ListStudySceneDto
+     * @memberof PaginationSceneDto
      */
     createdAt: Date;
     /**
      * 수정일
      * @type {Date}
-     * @memberof ListStudySceneDto
+     * @memberof PaginationSceneDto
      */
     updatedAt: Date;
     /**
-     * 삭제일
-     * @type {Date}
-     * @memberof ListStudySceneDto
-     */
-    deletedAt: Date;
-    /**
      * 
      * @type {string}
-     * @memberof ListStudySceneDto
+     * @memberof PaginationSceneDto
      */
     title: string;
     /**
      * 
      * @type {string}
-     * @memberof ListStudySceneDto
+     * @memberof PaginationSceneDto
      */
     description: string;
     /**
      * 
      * @type {string}
-     * @memberof ListStudySceneDto
+     * @memberof PaginationSceneDto
      */
     audioUrl: string;
     /**
      * 
-     * @type {Movie}
-     * @memberof ListStudySceneDto
-     */
-    movie: Movie;
-    /**
-     * 
-     * @type {Study}
-     * @memberof ListStudySceneDto
-     */
-    study: Study;
-    /**
-     * 
      * @type {Array<Speaker>}
-     * @memberof ListStudySceneDto
+     * @memberof PaginationSceneDto
      */
     speakers: Array<Speaker>;
 }
 
 /**
- * Check if a given object implements the ListStudySceneDto interface.
+ * Check if a given object implements the PaginationSceneDto interface.
  */
-export function instanceOfListStudySceneDto(value: object): value is ListStudySceneDto {
+export function instanceOfPaginationSceneDto(value: object): value is PaginationSceneDto {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
-    if (!('deletedAt' in value) || value['deletedAt'] === undefined) return false;
     if (!('title' in value) || value['title'] === undefined) return false;
     if (!('description' in value) || value['description'] === undefined) return false;
     if (!('audioUrl' in value) || value['audioUrl'] === undefined) return false;
-    if (!('movie' in value) || value['movie'] === undefined) return false;
-    if (!('study' in value) || value['study'] === undefined) return false;
     if (!('speakers' in value) || value['speakers'] === undefined) return false;
     return true;
 }
 
-export function ListStudySceneDtoFromJSON(json: any): ListStudySceneDto {
-    return ListStudySceneDtoFromJSONTyped(json, false);
+export function PaginationSceneDtoFromJSON(json: any): PaginationSceneDto {
+    return PaginationSceneDtoFromJSONTyped(json, false);
 }
 
-export function ListStudySceneDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListStudySceneDto {
+export function PaginationSceneDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): PaginationSceneDto {
     if (json == null) {
         return json;
     }
@@ -133,21 +98,18 @@ export function ListStudySceneDtoFromJSONTyped(json: any, ignoreDiscriminator: b
         'id': json['id'],
         'createdAt': (new Date(json['createdAt'])),
         'updatedAt': (new Date(json['updatedAt'])),
-        'deletedAt': (new Date(json['deletedAt'])),
         'title': json['title'],
         'description': json['description'],
         'audioUrl': json['audioUrl'],
-        'movie': MovieFromJSON(json['movie']),
-        'study': StudyFromJSON(json['study']),
         'speakers': ((json['speakers'] as Array<any>).map(SpeakerFromJSON)),
     };
 }
 
-export function ListStudySceneDtoToJSON(json: any): ListStudySceneDto {
-    return ListStudySceneDtoToJSONTyped(json, false);
+export function PaginationSceneDtoToJSON(json: any): PaginationSceneDto {
+    return PaginationSceneDtoToJSONTyped(json, false);
 }
 
-export function ListStudySceneDtoToJSONTyped(value?: ListStudySceneDto | null, ignoreDiscriminator: boolean = false): any {
+export function PaginationSceneDtoToJSONTyped(value?: PaginationSceneDto | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -157,12 +119,9 @@ export function ListStudySceneDtoToJSONTyped(value?: ListStudySceneDto | null, i
         'id': value['id'],
         'createdAt': ((value['createdAt']).toISOString()),
         'updatedAt': ((value['updatedAt']).toISOString()),
-        'deletedAt': ((value['deletedAt']).toISOString()),
         'title': value['title'],
         'description': value['description'],
         'audioUrl': value['audioUrl'],
-        'movie': MovieToJSON(value['movie']),
-        'study': StudyToJSON(value['study']),
         'speakers': ((value['speakers'] as Array<any>).map(SpeakerToJSON)),
     };
 }

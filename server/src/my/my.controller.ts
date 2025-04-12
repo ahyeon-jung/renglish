@@ -48,7 +48,7 @@ export class MyController {
     type: String,
     required: false,
   })
-  @ApiOkResponse({ type: () => [Study] })
+  @ApiOkResponse({ type: Study, isArray: true })
   findMyStudies(@Request() req, @Query('type') type?: string) {
     const userId = req.user['id'];
     return this.studyService.findByUser(userId, type);

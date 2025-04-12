@@ -1,12 +1,12 @@
 import DeleteModal from '../DeleteModal';
 import Link from 'next/link';
 import { PATHS } from '@/constants/path';
-import { Scene } from '@/types/scene';
 import Text from '@/components/Text';
 import clsx from 'clsx';
 import { formatTitle } from '@/utils/format';
+import { PaginationSceneDto } from '@/services';
 
-type ScriptListItem = Scene;
+type ScriptListItem = PaginationSceneDto;
 
 export default function ScriptListItem({ id, title, description }: ScriptListItem) {
   return (

@@ -6,11 +6,12 @@ import { Scene } from './entities/scene.entity';
 import { DeleteResult, Like, Repository } from 'typeorm';
 import { Movie } from 'src/movie/entities/movie.entity';
 import { MovieService } from 'src/movie/movie.service';
-import { findAllWithPagination, PaginationResponse } from 'src/common/utils/pagination.util';
+import { findAllWithPagination} from 'src/common/utils/pagination.util';
 import { SearchParams } from 'src/common/dto/search-params.dto';
 import { UpdateSceneDto } from './dto/update-scene.dto';
 import { StudyService } from 'src/study/study.service';
 import { FilteredScene } from './types/filtered-scene';
+import { PaginationSceneResponseDto } from './dto/pagination-scene.dto';
 
 @Injectable()
 export class SceneService {
@@ -47,14 +48,14 @@ export class SceneService {
     return this.sceneRepository.delete(scene);
   }
 
-  async findAllScene(params: SearchParams): Promise<PaginationResponse<Scene>> {
+  async findAllScene(params: SearchParams): Promise<PaginationSceneResponseDto> {
     const { keyword, offset, limit } = params;
 
     const whereCondition = keyword
       ? [{ title: Like(`%${keyword}%`) }, { description: Like(`%${keyword}%`) }]
       : {};
 
-    const data = await findAllWithPagination(this.sceneRepository, whereCondition, [], {
+    const data = await findAllWithPagination(this.sceneRepository, whereCondition, ['speakers'], {
       offset,
       limit,
     });

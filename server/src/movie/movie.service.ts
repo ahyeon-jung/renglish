@@ -38,12 +38,12 @@ export class MovieService {
     const data = await findAllWithPagination(
       this.movieRepository,
       whereCondition,
-      ['scenes'],
+      ['scenes.study'],
       {
         offset,
         limit,
       },
-      { scenes: { studiedAt: 'DESC' } },
+      { scenes: { study: { studiedAt: 'DESC' } } },
     );
 
     return {

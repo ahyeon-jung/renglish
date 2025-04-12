@@ -1,22 +1,18 @@
 'use server';
 
-import { PaginationParams, PaginationResponse, SearchParams } from '@/types/api';
+import { PaginationParams, SearchParams } from '@/types/api';
 
-import { ActionResponse } from '@/types/action';
-import { Scene } from '@/types/scene';
-import { fetchAPI } from '@/libs/api';
+import { Configuration } from '@/services';
+import { ScenesApi } from '@/services';
+import { ENV } from '@/constants/env';
 
 type GetScenesParams = SearchParams & PaginationParams;
 
 export default async function getScenes({
-  keyword,
   offset = 1,
   limit = 10,
-}: GetScenesParams): Promise<ActionResponse<PaginationResponse<Scene>>> {
+}: GetScenesParams){
   const params = new URLSearchParams();
-  if (keyword) {
-    params.append('keyword', keyword);
-  }
   if (offset) {
     params.append('offset', offset.toString());
   }
@@ -24,16 +20,19 @@ export default async function getScenes({
     params.append('limit', limit.toString());
   }
 
-  const url = `/scenes?${params.toString()}`;
+  const api = new ScenesApi(
+    new Configuration({
+      basePath: ENV.API_BASE_URL,
+      accessToken: '',
+    }),
+  );
 
-  const response = await fetchAPI<PaginationResponse<Scene>>(url, {
-    method: 'GET',
-  });
+  const data = await api.sceneControllerFindAllScene({ offset, limit });
 
   return {
     status: 200,
     success: true,
     message: 'Fetch scenes successfully',
-    data: response.data,
+    data,
   };
 }

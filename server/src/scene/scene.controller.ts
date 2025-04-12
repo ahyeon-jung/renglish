@@ -27,6 +27,7 @@ import { FilteredStudy } from 'src/study/types/filtered-study';
 import { FilteredScene } from './types/filtered-scene';
 import { DeleteResult } from 'typeorm';
 import { ExtendedSceneDto } from './dto/extend-scene.dto';
+import { PaginationSceneResponseDto } from './dto/pagination-scene.dto';
 @ApiTags('Scenes')
 @Controller('scenes')
 export class SceneController {
@@ -141,11 +142,12 @@ export class SceneController {
     example: 10,
     type: Number,
   })
+  @ApiOkResponse({ type: () => PaginationSceneResponseDto })
   async findAllScene(
     @Query('keyword') keyword?: string,
     @Query('offset') offset: number = 1,
     @Query('limit') limit: number = 10,
-  ): Promise<PaginationResponse<Scene>> {
+  ): Promise<PaginationSceneResponseDto> {
     return this.sceneService.findAllScene({ keyword, offset, limit });
   }
 

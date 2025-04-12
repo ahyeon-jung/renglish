@@ -26,11 +26,11 @@ export interface UpdateSceneDto {
      */
     title?: string;
     /**
-     * 스터디 진행 날짜
-     * @type {Date}
+     * 장면의 오디오 URL
+     * @type {string}
      * @memberof UpdateSceneDto
      */
-    studiedAt?: Date;
+    audioUrl?: string;
     /**
      * Scene의 설명
      * @type {string}
@@ -57,7 +57,7 @@ export function UpdateSceneDtoFromJSONTyped(json: any, ignoreDiscriminator: bool
     return {
         
         'title': json['title'] == null ? undefined : json['title'],
-        'studiedAt': json['studiedAt'] == null ? undefined : (new Date(json['studiedAt'])),
+        'audioUrl': json['audioUrl'] == null ? undefined : json['audioUrl'],
         'description': json['description'] == null ? undefined : json['description'],
     };
 }
@@ -74,7 +74,7 @@ export function UpdateSceneDtoToJSONTyped(value?: UpdateSceneDto | null, ignoreD
     return {
         
         'title': value['title'],
-        'studiedAt': value['studiedAt'] == null ? undefined : ((value['studiedAt']).toISOString()),
+        'audioUrl': value['audioUrl'],
         'description': value['description'],
     };
 }

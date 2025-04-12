@@ -1,32 +1,24 @@
 'use client';
 
-import Dialogues, { ScriptAddDialoguesBodyType } from './_components/Dialogues';
-import Movie, { INITIAL_SCRIPT_ADD_MOVIE_BODY, ScriptAddMovieBodyType } from './_components/Movie';
+import Dialogues from './_components/Dialogues';
+import Movie from './_components/Movie';
 import { SCRIPT_ADD_STEP, ScriptAddStepType } from './_constants/step';
-import Scene, { INITIAL_SCRIPT_ADD_SCENE_BODY, ScriptAddSceneBodyType } from './_components/Scene';
-import Speakers, {
-  INITIAL_SCRIPT_ADD_SPEAKER_BODY,
-  ScriptAddSpeakersBodyType,
-} from './_components/Speakers';
+import Scene from './_components/Scene';
+import Speakers from './_components/Speakers';
 import { Step, useFunnel } from '@/hooks/useFunnel';
 
 import FileUpload from './_components/FileUpload';
-import SubmitConfirm from './_components/SubmitConfirm';
 import clsx from 'clsx';
 import { useState } from 'react';
 
 export type ScriptAddBodyType = {
-  movie: ScriptAddMovieBodyType;
-  scene: ScriptAddSceneBodyType;
-  speakers: ScriptAddSpeakersBodyType;
-  dialogues: ScriptAddDialoguesBodyType;
+  movieId: string;
+  sceneId: string;
 };
 
 const INITIAL_SCRIPT_ADD_BODY: ScriptAddBodyType = {
-  movie: INITIAL_SCRIPT_ADD_MOVIE_BODY,
-  scene: INITIAL_SCRIPT_ADD_SCENE_BODY,
-  speakers: INITIAL_SCRIPT_ADD_SPEAKER_BODY,
-  dialogues: [],
+  movieId: '',
+  sceneId: '',
 };
 
 export default function ScriptAdd() {
@@ -52,9 +44,6 @@ export default function ScriptAdd() {
         </Step>
         <Step currentStep={SCRIPT_ADD_STEP.DIALOGUES}>
           <Dialogues />
-        </Step>
-        <Step currentStep={SCRIPT_ADD_STEP.SUBMIT_CONFIRM}>
-          <SubmitConfirm />
         </Step>
       </Funnel>
     </main>

@@ -18,6 +18,8 @@ export * from './LoginDto';
 export * from './LoginResponseDto';
 export * from './Movie';
 export * from './PaginationMovieResponseDto';
+export * from './PaginationSceneDto';
+export * from './PaginationSceneResponseDto';
 export * from './PaginationStudyResponseDto';
 export * from './PaginationUserResponseDto';
 export * from './PasswordResetDto';

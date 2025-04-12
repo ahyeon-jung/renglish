@@ -1,4 +1,4 @@
-import { IsDateString, IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 
 import { ApiProperty } from '@nestjs/swagger';
 
@@ -20,15 +20,6 @@ export class CreateSceneDto {
   @IsNotEmpty({ message: 'AudioUrl is required' })
   @IsString()
   audioUrl: string;
-
-  @ApiProperty({
-    example: '2025-03-16 10:00:00',
-    description: '스터디 진행 날짜',
-    required: true,
-  })
-  @IsNotEmpty({ message: 'StudiedAt is required' })
-  @IsDateString({ strict: true }, { message: 'studiedAt must be a valid ISO date string' })
-  studiedAt: Date;
 
   @ApiProperty({
     type: String,

@@ -15,10 +15,13 @@
 
 import * as runtime from '../runtime';
 import type {
+  Study,
   UpdateUserDto,
   User,
 } from '../models/index';
 import {
+    StudyFromJSON,
+    StudyToJSON,
     UpdateUserDtoFromJSON,
     UpdateUserDtoToJSON,
     UserFromJSON,
@@ -87,7 +90,7 @@ export class MyApi extends runtime.BaseAPI {
      * 참여중인 스터디를 조회합니다.
      * 사용자가 참여중인 스터디 목록 [TOKEN]
      */
-    async myControllerFindMyStudiesRaw(requestParameters: MyControllerFindMyStudiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async myControllerFindMyStudiesRaw(requestParameters: MyControllerFindMyStudiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Study>>> {
         const queryParameters: any = {};
 
         if (requestParameters['type'] != null) {
@@ -111,15 +114,16 @@ export class MyApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(StudyFromJSON));
     }
 
     /**
      * 참여중인 스터디를 조회합니다.
      * 사용자가 참여중인 스터디 목록 [TOKEN]
      */
-    async myControllerFindMyStudies(requestParameters: MyControllerFindMyStudiesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.myControllerFindMyStudiesRaw(requestParameters, initOverrides);
+    async myControllerFindMyStudies(requestParameters: MyControllerFindMyStudiesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Study>> {
+        const response = await this.myControllerFindMyStudiesRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
