@@ -84,6 +84,13 @@ export class AuthController {
       return res.redirect(redirectUrl.toString());
     }
 
+    // 이미 존재하는 이메일의 경우 회원가입 불가능
+    if (user.email === email && user.provider !== 'kakao') {
+      const redirectUrl = new URL('http://localhost:3000/auth/blocked');
+
+      return res.redirect(redirectUrl.toString());
+    }
+
     const registerRedirect = new URL('http://localhost:3000/auth/register/social');
     registerRedirect.searchParams.set('email', email);
     registerRedirect.searchParams.set('provider', 'kakao');
