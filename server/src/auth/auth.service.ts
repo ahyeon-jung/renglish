@@ -13,7 +13,7 @@ import { Cache } from 'cache-manager';
 import { ChangePasswordDto } from './dto/update-auth.dto';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
 import { JwtService } from '@nestjs/jwt';
-import { LoginDto } from './dto/login.dto';
+import { LoginDto, LoginResponseDto } from './dto/login.dto';
 import { User } from 'src/user/entities/user.entity';
 import { UserService } from 'src/user/user.service';
 import { ConfigService } from '@nestjs/config';
@@ -107,9 +107,10 @@ export class AuthService {
   async validateUser(email: string, password: string): Promise<ExcludedPasswordUser> {
     const user = await this.userService.findUserByEmailWithPassword(email);
     if (!user) {
-      throw new UnauthorizedException('이메일 또는 비밀번호가 일치하지 않습니다.');
+      throw new UnauthorizedException(`${email} not found`);
     }
 
+    console.log(user);
     const isPasswordValid = await this.encryptionService.comparePassword(password, user.password);
     if (!isPasswordValid) {
       throw new UnauthorizedException('이메일 또는 비밀번호가 일치하지 않습니다.');
@@ -118,18 +119,17 @@ export class AuthService {
     return user;
   }
 
-  async login(loginDto: LoginDto) {
+  async login(loginDto: LoginDto): Promise<LoginResponseDto> {
     const user = await this.validateUser(loginDto.email, loginDto.password);
-    const payload = { email: user.email, sub: user.id };
 
     const { accessToken, refreshToken } = await this.generateTokens({
       id: user.id,
       email: user.email,
     });
+
     return {
-      access_token: accessToken,
-      refresh_token: refreshToken,
-      user,
+      accessToken: accessToken,
+      refreshToken: refreshToken,
     };
   }
 

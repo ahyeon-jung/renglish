@@ -12,6 +12,7 @@ import { GoogleStrategy } from './strategies/google.strategy';
 import { NaverStrategy } from './strategies/naver.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { EncryptionService } from './encryption.service';
+import { LocalAuthStrategy } from './strategies/local-auth-strategy';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { EncryptionService } from './encryption.service';
     AccessTokenStrategy,
     RefreshTokenStrategy,
     KakaoStrategy,
+    LocalAuthStrategy,
     GoogleStrategy,
     NaverStrategy,
     JwtStrategy,

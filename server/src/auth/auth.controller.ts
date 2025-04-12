@@ -8,11 +8,11 @@ import {
   Req,
   Res,
 } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiBody, ApiOkResponse } from '@nestjs/swagger';
 
 import { AuthService } from './auth.service';
 import { CreateUserDto } from '../user/dto/create-user.dto';
-import { LoginDto } from './dto/login.dto';
+import { LoginDto, LoginResponseDto } from './dto/login.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { UserService } from 'src/user/user.service';
@@ -45,7 +45,7 @@ export class AuthController {
     description: '사용자 로그인을 처리합니다.',
   })
   @ApiBody({ type: LoginDto })
-  @ApiResponse({ status: 200, description: '로그인 성공' })
+  @ApiOkResponse({ type: LoginResponseDto })
   async login(@Req() req) {
     return this.authService.login(req.user);
   }

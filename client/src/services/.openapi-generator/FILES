@@ -28,6 +28,7 @@ models/Expression.ts
 models/ExtendedFilteredStudyDto.ts
 models/ExtendedSceneDto.ts
 models/LoginDto.ts
+models/LoginResponseDto.ts
 models/Movie.ts
 models/PaginationMovieResponseDto.ts
 models/PaginationStudyResponseDto.ts

@@ -14,6 +14,7 @@ export * from './Expression';
 export * from './ExtendedFilteredStudyDto';
 export * from './ExtendedSceneDto';
 export * from './LoginDto';
+export * from './LoginResponseDto';
 export * from './Movie';
 export * from './PaginationMovieResponseDto';
 export * from './PaginationStudyResponseDto';

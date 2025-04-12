@@ -9,6 +9,8 @@ import { PATHS } from '@/constants/path';
 import applyToStudyAction from '@/app/_actions/studies/applyToStudy';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
+import Text from '@/components/Text';
+import { GATHER_TOWN_URL } from '@/constants/url';
 
 const USER_STATUS = { ALREADY_APPLIED: 'already', NO_AUTH: 'no_token', APPLY_SUCCESS: 'success' };
 
@@ -54,7 +56,17 @@ export default function ApplyToStudyModal({ studyId }: ApplyToStudyModalProps) {
       {userStatus === USER_STATUS.APPLY_SUCCESS && (
         <Modal className="w-[300px]" onClose={closeModal}>
           <Modal.Title>스터디 참여신청 완료</Modal.Title>
-          <Modal.Content>해당 일자에 참여해주세요</Modal.Content>
+          <Modal.Content>
+            <Text as="p" typography="body-lg">
+              해당 일자에 참여해주세요
+            </Text>
+            <Text as="p" typography="body-lg">
+            📌 게더타운 바로가기   
+            <Link href={GATHER_TOWN_URL}>
+              click herer!
+            </Link>
+            </Text>
+          </Modal.Content>
           <Button onClick={closeModal}>확인</Button>
         </Modal>
       )}
