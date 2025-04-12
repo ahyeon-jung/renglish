@@ -2,7 +2,7 @@
 
 import { ENV } from '@/constants/env';
 import { cookies } from 'next/headers';
-import { fetchAPI } from '@/libs/api';
+import { Configuration, MyApi } from '@/services';
 
 type UpdateNicknameActionBody = {
   nickname?: string;
@@ -13,7 +13,6 @@ export default async function updateNicknameAction(
 ) {
   const cookieStore = await cookies();
   const token = cookieStore.get(ENV.COOKIE_ACCESS_TOKEN_KEY)?.value;
-
   if (!token) {
     return {
       status: 401,
@@ -23,21 +22,26 @@ export default async function updateNicknameAction(
     };
   }
 
+  const api = new MyApi(
+    new Configuration({
+      basePath: ENV.API_BASE_URL,
+      accessToken: token,
+    }),
+  );
+
+
   try {
-    const response = await fetchAPI(`/auth/user`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
+    const response = await api.myControllerChangeUser({
+      updateUserDto: {
+        nickname: updateNicknameActionBody.nickname,
       },
-      body: JSON.stringify(updateNicknameActionBody),
-    });
+     });
 
     return {
       status: 200,
       success: true,
       message: 'Upload nickname successfully',
-      data: response.data,
+      data: response,
     };
   } catch (e) {
     return {

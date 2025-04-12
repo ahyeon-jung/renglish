@@ -16,10 +16,13 @@
 import * as runtime from '../runtime';
 import type {
   UpdateUserDto,
+  User,
 } from '../models/index';
 import {
     UpdateUserDtoFromJSON,
     UpdateUserDtoToJSON,
+    UserFromJSON,
+    UserToJSON,
 } from '../models/index';
 
 export interface MyControllerChangeUserRequest {
@@ -120,10 +123,10 @@ export class MyApi extends runtime.BaseAPI {
     }
 
     /**
-     * 현재 Q사용자 정보를 가져옵니다.
+     * 현재 사용자 정보를 가져옵니다.
      * 현재 사용자 정보 [TOKEN]
      */
-    async myControllerFindUserByTokenRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async myControllerFindUserByTokenRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -143,15 +146,16 @@ export class MyApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserFromJSON(jsonValue));
     }
 
     /**
-     * 현재 Q사용자 정보를 가져옵니다.
+     * 현재 사용자 정보를 가져옵니다.
      * 현재 사용자 정보 [TOKEN]
      */
-    async myControllerFindUserByToken(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.myControllerFindUserByTokenRaw(initOverrides);
+    async myControllerFindUserByToken(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<User> {
+        const response = await this.myControllerFindUserByTokenRaw(initOverrides);
+        return await response.value();
     }
 
 }

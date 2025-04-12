@@ -1,9 +1,10 @@
 import { Controller, Get, UseGuards, Request, Put, Body, Query } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiQuery, ApiResponse } from '@nestjs/swagger';
+import { ApiBody, ApiOkResponse, ApiOperation, ApiQuery, ApiResponse } from '@nestjs/swagger';
 import { AccessTokenGuard } from 'src/auth/guards/access-token.guard';
 import { TAG } from 'src/common/constants/tag';
 import { StudyService } from 'src/study/study.service';
 import { UpdateUserDto } from 'src/user/dto/update-user.dto';
+import { User } from 'src/user/entities/user.entity';
 import { UserService } from 'src/user/user.service';
 
 @UseGuards(AccessTokenGuard)
@@ -16,8 +17,9 @@ export class MyController {
   @Get('')
   @ApiOperation({
     summary: `현재 사용자 정보 ${TAG.TOKEN_REQUIRED}`,
-    description: '현재 Q사용자 정보를 가져옵니다.',
+    description: '현재 사용자 정보를 가져옵니다.',
   })
+  @ApiOkResponse({ type: User })
   findUserByToken(@Request() req) {
     return req.user;
   }

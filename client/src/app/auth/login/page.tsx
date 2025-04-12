@@ -15,12 +15,20 @@ export default function LoginPage() {
           <div className="border-t border-gray-300 w-full"></div>
         </div>
         <EmailLoginForm />
-        <div className="text-center">
-          Don&apos;t have an account?{' '}
-          <Link href={PATHS.AUTH.REGISTER} className="underline">
-            Rgister
-          </Link>
-        </div>
+        <div className="flex flex-col gap-2">
+          <div className="text-center">
+            Don&apos;t have an account?{' '}
+            <Link href={PATHS.AUTH.REGISTER} className="underline">
+              Register
+            </Link>
+          </div>
+          <div className="text-center">
+            Forgot your password?{' '}
+            <Link href={PATHS.AUTH.RESET_PASSWORD} className="underline">
+              Change Password
+            </Link>
+          </div>
+          </div>
       </div>
       </AuthContainer>
   );

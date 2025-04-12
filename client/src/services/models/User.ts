@@ -43,6 +43,24 @@ export interface User {
      * @memberof User
      */
     deletedAt: Date;
+    /**
+     * 소셜 계정 플랫폼
+     * @type {string}
+     * @memberof User
+     */
+    provider: string;
+    /**
+     * 이메일
+     * @type {string}
+     * @memberof User
+     */
+    email: string;
+    /**
+     * 닉네임
+     * @type {string}
+     * @memberof User
+     */
+    nickname: string;
 }
 
 /**
@@ -53,6 +71,9 @@ export function instanceOfUser(value: object): value is User {
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     if (!('deletedAt' in value) || value['deletedAt'] === undefined) return false;
+    if (!('provider' in value) || value['provider'] === undefined) return false;
+    if (!('email' in value) || value['email'] === undefined) return false;
+    if (!('nickname' in value) || value['nickname'] === undefined) return false;
     return true;
 }
 
@@ -70,6 +91,9 @@ export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User
         'createdAt': (new Date(json['createdAt'])),
         'updatedAt': (new Date(json['updatedAt'])),
         'deletedAt': (new Date(json['deletedAt'])),
+        'provider': json['provider'],
+        'email': json['email'],
+        'nickname': json['nickname'],
     };
 }
 
@@ -88,6 +112,9 @@ export function UserToJSONTyped(value?: User | null, ignoreDiscriminator: boolea
         'createdAt': ((value['createdAt']).toISOString()),
         'updatedAt': ((value['updatedAt']).toISOString()),
         'deletedAt': ((value['deletedAt']).toISOString()),
+        'provider': value['provider'],
+        'email': value['email'],
+        'nickname': value['nickname'],
     };
 }
 

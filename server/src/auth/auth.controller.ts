@@ -18,6 +18,7 @@ import { LocalAuthGuard } from './guards/local-auth.guard';
 import { UserService } from 'src/user/user.service';
 import { Response } from 'express';
 import { ConfigService } from '@nestjs/config';
+import { PasswordResetDto } from './dto/reset-password.dto';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -47,7 +48,10 @@ export class AuthController {
   @ApiBody({ type: LoginDto })
   @ApiOkResponse({ type: LoginResponseDto })
   async login(@Req() req) {
-    return this.authService.login(req.user);
+    return await this.authService.generateTokens({
+      id: req.user.id,
+      email: req.user.email,
+    });
   }
 
   @Get('kakao')
@@ -137,5 +141,15 @@ export class AuthController {
       email: req.user.email,
       password: `naver_${req.user.providerId}`,
     });
+  }
+
+  @Post('reset-password')
+  @ApiOperation({
+    summary: '비밀번호 초기화',
+    description: '비밀번호 초기화를 처리합니다.',
+  })
+  @ApiBody({ type: PasswordResetDto })
+  async passwordReset(@Body() passwordResetDto: PasswordResetDto) {
+    return this.authService.passwordReset(passwordResetDto);
   }
 }

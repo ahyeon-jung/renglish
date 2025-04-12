@@ -33,6 +33,7 @@ models/Movie.ts
 models/PaginationMovieResponseDto.ts
 models/PaginationStudyResponseDto.ts
 models/PaginationUserResponseDto.ts
+models/PasswordResetDto.ts
 models/PublicUserDto.ts
 models/Scene.ts
 models/SendEmailDto.ts

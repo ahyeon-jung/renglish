@@ -1,6 +1,8 @@
+import clsx from 'clsx';
 import Text from '../Text';
 
-export default function Content({ children }: React.PropsWithChildren) {
+type ContentProps = { className?: string } & React.PropsWithChildren
+export default function Content({ children, className }: ContentProps) {
   const isString = typeof children === 'string';
 
   return isString ? (
@@ -8,6 +10,6 @@ export default function Content({ children }: React.PropsWithChildren) {
       {children}
     </Text>
   ) : (
-    <div>{children}</div>
+    <div className={clsx('flex flex-col gap-2', className)}>{children}</div>
   );
 }

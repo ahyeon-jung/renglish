@@ -21,6 +21,7 @@ import { EncryptionService } from './encryption.service';
 import * as bcrypt from 'bcrypt';
 import { UpdateUserDto } from 'src/user/dto/update-user.dto';
 import { ExcludedPasswordUser } from '../user/types/excluded-password-user';
+import { PasswordResetDto } from './dto/reset-password.dto';
 
 @Injectable()
 export class AuthService {
@@ -109,8 +110,7 @@ export class AuthService {
     if (!user) {
       throw new UnauthorizedException(`${email} not found`);
     }
-
-    console.log(user);
+    
     const isPasswordValid = await this.encryptionService.comparePassword(password, user.password);
     if (!isPasswordValid) {
       throw new UnauthorizedException('이메일 또는 비밀번호가 일치하지 않습니다.');
@@ -121,12 +121,11 @@ export class AuthService {
 
   async login(loginDto: LoginDto): Promise<LoginResponseDto> {
     const user = await this.validateUser(loginDto.email, loginDto.password);
-
     const { accessToken, refreshToken } = await this.generateTokens({
       id: user.id,
       email: user.email,
     });
-
+   
     return {
       accessToken: accessToken,
       refreshToken: refreshToken,
@@ -194,5 +193,19 @@ export class AuthService {
     });
 
     return this.login({ email: newUser.email, password });
+  }
+
+  async passwordReset(passwordResetDto: PasswordResetDto) {
+    const { email, password } = passwordResetDto;
+
+    const user = await this.userService.findUserByEmail(email);
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    
+    const hashedPassword = await this.encryptionService.hashPassword(password);
+    await this.userService.updatePassword(user.id, hashedPassword);
+   
+    return "Password reset successfully";
   }
 }

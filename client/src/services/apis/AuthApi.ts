@@ -18,6 +18,7 @@ import type {
   CreateUserDto,
   LoginDto,
   LoginResponseDto,
+  PasswordResetDto,
 } from '../models/index';
 import {
     CreateUserDtoFromJSON,
@@ -26,10 +27,16 @@ import {
     LoginDtoToJSON,
     LoginResponseDtoFromJSON,
     LoginResponseDtoToJSON,
+    PasswordResetDtoFromJSON,
+    PasswordResetDtoToJSON,
 } from '../models/index';
 
 export interface AuthControllerLoginRequest {
     loginDto: LoginDto;
+}
+
+export interface AuthControllerPasswordResetRequest {
+    passwordResetDto: PasswordResetDto;
 }
 
 export interface AuthControllerRegisterRequest {
@@ -291,6 +298,51 @@ export class AuthApi extends runtime.BaseAPI {
      */
     async authControllerNaverLogin(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.authControllerNaverLoginRaw(initOverrides);
+    }
+
+    /**
+     * 비밀번호 초기화를 처리합니다.
+     * 비밀번호 초기화
+     */
+    async authControllerPasswordResetRaw(requestParameters: AuthControllerPasswordResetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['passwordResetDto'] == null) {
+            throw new runtime.RequiredError(
+                'passwordResetDto',
+                'Required parameter "passwordResetDto" was null or undefined when calling authControllerPasswordReset().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/api/auth/reset-password`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: PasswordResetDtoToJSON(requestParameters['passwordResetDto']),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * 비밀번호 초기화를 처리합니다.
+     * 비밀번호 초기화
+     */
+    async authControllerPasswordReset(requestParameters: AuthControllerPasswordResetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.authControllerPasswordResetRaw(requestParameters, initOverrides);
     }
 
     /**

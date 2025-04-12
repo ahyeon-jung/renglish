@@ -19,6 +19,7 @@ export * from './Movie';
 export * from './PaginationMovieResponseDto';
 export * from './PaginationStudyResponseDto';
 export * from './PaginationUserResponseDto';
+export * from './PasswordResetDto';
 export * from './PublicUserDto';
 export * from './Scene';
 export * from './SendEmailDto';
