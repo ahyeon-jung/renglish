@@ -3,7 +3,7 @@ import ScriptListItem from './_components/ScriptListItem';
 import clsx from 'clsx';
 import getScenes from '@/app/_actions/scenes/getScenes';
 
-export default async function Scripts({
+export default async function ScriptsPage({
   searchParams,
 }: {
   searchParams: Promise<{ keyword?: string }>;

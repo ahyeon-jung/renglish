@@ -1,4 +1,4 @@
-import { DAANGN_GROUP_URL } from '@/constants/url';
+import { OPEN_CHAT_URL } from '@/constants/url';
 import Link from 'next/link';
 import clsx from 'clsx';
 
@@ -27,28 +27,28 @@ export default function Introduce() {
         <div className="mt-6">
           <h2 className="text-lg font-semibold text-gray-700">📍 스터디 장소 & 일정</h2>
           <p className="text-gray-600 mt-2">
-            대면 스터디는 <strong>경기도 구리시 수택동</strong>에서 진행됩니다.
+            매주 일요일 오전 10시 <strong>게더타운</strong>에서 진행됩니다.
           </p>
           <p className="text-gray-600">2025년 3월 시작, 점점 확장 중! 🚀</p>
           <br />
           <p>
             매주 목요일 저녁 8시
             <br />
-            참가비: 5000원
+            보증금(참석시 환불): <del>3000원</del>{' '}
+            <strong className="text-orange-600 ml-1">현재 무료로 진행중</strong>
           </p>
         </div>
-        <div className="mt-6">
-          <h2 className="text-lg font-semibold text-gray-700">📢 참여 방법</h2>
-          <p className="text-gray-600 mt-2">
-            관심 있는 분들은 아래 Renglish 당근 모임 채널에 가입해주세요!
+        <div className="mt-8 text-center">
+          <p className="text-gray-700 mb-2">
+            📌 스터디 오픈 소식, 스크립트 업데이트, 질문은 아래 오픈채팅방에서!
           </p>
           <Link
             target="_blank"
             rel="noopener noreferrer"
-            href={DAANGN_GROUP_URL}
-            className="mt-3 inline-block bg-orange-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-orange-600 transition"
+            href={OPEN_CHAT_URL}
+            className="inline-block px-4 py-2 mt-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-full transition"
           >
-            모임 입장하기
+            오픈채팅방 바로가기 💬
           </Link>
         </div>
         <div className="mt-6 text-lg font-semibold text-orange-600">

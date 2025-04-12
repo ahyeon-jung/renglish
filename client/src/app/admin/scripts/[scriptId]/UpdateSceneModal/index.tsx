@@ -8,6 +8,7 @@ import { formatDate } from '@/utils/format';
 import updateSceneAction from '@/app/_actions/scenes/updateScene';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 type UpdateSceneModalProps = Scene;
 
@@ -17,7 +18,6 @@ export default function UpdateSceneModal({
   description,
   studiedAt,
 }: UpdateSceneModalProps) {
-  console.log(studiedAt);
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [updatedScene, setUpdatedScene] = useState({
@@ -54,8 +54,8 @@ export default function UpdateSceneModal({
       await updateSceneAction(id, updatedScene);
       router.refresh();
       closeUpdateSceneModal();
-    } catch (err) {
-      console.log(err);
+    } catch {
+      toast.error('Failed to update scene');
     }
   };
 

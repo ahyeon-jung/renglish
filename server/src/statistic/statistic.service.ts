@@ -13,7 +13,7 @@ export class StatisticService {
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
   ) {}
 
-  async create() {
+  async create(): Promise<Statistic> {
     return this.statisticRepository.save({ id: '1', type: 'visitor', count: 0 });
   }
 

@@ -2,10 +2,8 @@
 
 import { useEffect, useState } from 'react';
 
-import DialogListItem from '../../../../_components/DialogListItem';
 import { LANGUAGE_MODE } from '@/constants/language';
 import { Scene } from '@/types/scene';
-import { parseText } from '@/utils/content';
 import { useSearchParams } from 'next/navigation';
 
 type DialogList = Scene;
@@ -43,16 +41,15 @@ export default function DialogList({ dialogues }: DialogList) {
   }, [visibleDialogues]);
 
   return (
-    <ul className="mt-[45px] flex flex-col gap-[10px]">
-      {visibleDialogues.map((dialogue, index) => {
-        return (
-          <DialogListItem key={index} speaker={dialogue.speaker}>
-            {parseText(
-              mode === LANGUAGE_MODE.KOREAN ? dialogue.korean_script : dialogue.english_script,
-            )}
-          </DialogListItem>
-        );
-      })}
-    </ul>
+    <div className="flex flex-col gap-4">
+      {visibleDialogues.map((dialogue) => (
+        <div key={dialogue.id} className="border p-4 rounded-md">
+          <div className="text-sm text-gray-500">{dialogue.speaker.speakerName}</div>
+          <div className="text-lg">
+            {mode === LANGUAGE_MODE.KOREAN ? dialogue.koreanScript : dialogue.englishScript}
+          </div>
+        </div>
+      ))}
+    </div>
   );
 }

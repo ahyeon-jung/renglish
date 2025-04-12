@@ -12,6 +12,7 @@ export default function Overlay({ isModal = false, onClick }: OverlayProps) {
         onClick ? 'fixed' : 'absolute',
         'inset-0',
         'flex items-center justify-end bg-black/50',
+        'group-hover:bg-black/70',
       )}
     ></div>
   );

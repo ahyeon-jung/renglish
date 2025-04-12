@@ -5,6 +5,8 @@ import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { findAllWithPagination, PaginationResponse } from 'src/common/utils/pagination.util';
 import { PaginationParams } from 'src/common/dto/pagination-params.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+import { ExcludedPasswordUser } from './types/excluded-password-user';
 
 @Injectable()
 export class UserService {
@@ -24,7 +26,27 @@ export class UserService {
     }
   }
 
-  async findAll(params: PaginationParams): Promise<PaginationResponse<Omit<User, 'password'>>> {
+  async update(id: string, updateUserDto: UpdateUserDto): Promise<ExcludedPasswordUser> {
+    const user = await this.findUserById(id);
+    if (!user) {
+      throw new NotFoundException(`User with ID ${id} not found`);
+    }
+
+    await this.userRepository.update(id, updateUserDto);
+    return this.findUserById(id);
+  }
+
+  async updateRefreshToken(userId: string, refreshToken: string): Promise<void> {
+    const result = await this.userRepository.update(userId, {
+      hashedRefreshToken: refreshToken,
+    });
+
+    if (result.affected === 0) {
+      throw new NotFoundException('User not found or password update failed');
+    }
+  }
+
+  async findAll(params: PaginationParams): Promise<PaginationResponse<ExcludedPasswordUser>> {
     const { offset, limit } = params;
 
     const response = await findAllWithPagination(this.userRepository, {}, [], { offset, limit });
@@ -36,7 +58,7 @@ export class UserService {
     };
   }
 
-  async findUserById(id: string): Promise<Omit<User, 'password'>> {
+  async findUserById(id: string): Promise<ExcludedPasswordUser> {
     const user = await this.userRepository.findOne({
       where: { id },
     });
@@ -57,7 +79,7 @@ export class UserService {
     return !!user;
   }
 
-  async findUserByEmail(email: string): Promise<Omit<User, 'password'>> {
+  async findUserByEmail(email: string): Promise<ExcludedPasswordUser> {
     const user = await this.userRepository.findOne({
       where: { email },
     });

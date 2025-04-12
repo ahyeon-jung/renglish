@@ -16,20 +16,22 @@ import { UpdateInquiryDto } from './dto/update-inquiry.dto';
 import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Inquiry } from './entities/inquiry.entity';
 import { AccessTokenGuard } from 'src/auth/guards/access-token.guard';
+import { TAG } from 'src/common/constants/tag';
+import { DeleteResult } from 'typeorm';
 
 @ApiTags('Inquiries')
 @Controller('inquiries')
 export class InquiryController {
   constructor(private readonly inquiryService: InquiryService) {}
 
-  @Post()
+  @Post('/')
   @UseGuards(AccessTokenGuard)
   @ApiOperation({
-    summary: '문의사항 작성(Admin JWT 인증 필요)',
+    summary: `문의사항 작성 ${TAG.TOKEN_REQUIRED}`,
     description: '문의사항을 작성합니다.',
   })
   @ApiBody({ type: CreateInquiryDto })
-  create(@Request() req, @Body() createInquiryDto: CreateInquiryDto) {
+  create(@Request() req, @Body() createInquiryDto: CreateInquiryDto): Promise<Inquiry> {
     if (!req.user.isAdmin) {
       throw new UnauthorizedException('Only Admins are allowed to create inquiries.');
     }
@@ -46,39 +48,39 @@ export class InquiryController {
     return this.inquiryService.findAll();
   }
 
-  @Get(':inquiryId')
+  @Get('/:inquiryId')
   @ApiOperation({
     summary: '해당 ID 문의사항 가져오기',
     description: '해당 ID의 문의사항을 가져옵니다.',
   })
-  findOne(@Param('inquiryId') inquiryId: string) {
+  findOne(@Param('inquiryId') inquiryId: string): Promise<Inquiry> {
     return this.inquiryService.findOne(inquiryId);
   }
 
-  @Patch(':inquiryId')
+  @Patch('/:inquiryId')
   @UseGuards(AccessTokenGuard)
   @ApiOperation({
-    summary: '해당 ID 문의사항 업데이트(Admin JWT 인증 필요)',
+    summary: `문의사항 수정 ${TAG.TOKEN_REQUIRED}`,
     description: '해당 ID의 문의사항을 업데이트합니다.',
   })
   update(
     @Request() req,
     @Param('inquiryId') inquiryId: string,
     @Body() updateInquiryDto: UpdateInquiryDto,
-  ) {
+  ): Promise<Inquiry> {
     if (!req.user.isAdmin) {
       throw new UnauthorizedException('Only Admins are allowed to update inquiries.');
     }
     return this.inquiryService.update(inquiryId, updateInquiryDto);
   }
 
-  @Delete(':inquiryId')
+  @Delete('/:inquiryId')
   @UseGuards(AccessTokenGuard)
   @ApiOperation({
-    summary: '해당 ID 문의사항 삭제(Admin JWT 인증 필요)',
+    summary: `해당 ID 문의사항 삭제 ${TAG.TOKEN_REQUIRED}`,
     description: '해당 ID의 문의사항을 삭제합니다.',
   })
-  remove(@Request() req, @Param('inquiryId') inquiryId: string) {
+  remove(@Request() req, @Param('inquiryId') inquiryId: string): Promise<DeleteResult> {
     if (!req.user.isAdmin) {
       throw new UnauthorizedException('Only Admins are allowed to delete inquiries.');
     }

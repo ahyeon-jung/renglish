@@ -2,7 +2,7 @@ import DialogList from './_components/DialogList';
 import SceneHeader from '../../_components/SceneHeader';
 import getScene from '@/app/_actions/scenes/getScene';
 
-export default async function MovieScriptScene({
+export default async function MovieScenePracticeSpeakingPage({
   params,
 }: {
   params: Promise<{ movie: string; scene: string }>;

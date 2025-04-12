@@ -3,9 +3,9 @@ import Overlay from '../Overlay';
 import Title from './Title';
 import clsx from 'clsx';
 
-type ModalProps = { onClose: () => void } & React.PropsWithChildren;
+type ModalProps = { className?: string; onClose: () => void } & React.PropsWithChildren;
 
-export default function Modal({ onClose, children }: ModalProps) {
+export default function Modal({ className, onClose, children }: ModalProps) {
   return (
     <>
       <Overlay isModal onClick={onClose}></Overlay>
@@ -13,6 +13,7 @@ export default function Modal({ onClose, children }: ModalProps) {
         className={clsx(
           'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
           ' bg-white p-6 rounded-lg shadow-lg z-[var(--overlay-text-z-index)]',
+          className,
         )}
       >
         {children}

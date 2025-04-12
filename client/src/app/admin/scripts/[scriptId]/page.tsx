@@ -15,7 +15,7 @@ export default async function AdminMovieSceneEnglishKoreanScript({
 
   const speakerCount = scene.dialogues.reduce(
     (acc, dialogue) => {
-      const type = dialogue.speaker.speaker_type;
+      const type = dialogue.speaker.speakerType;
       acc[type] = (acc[type] || 0) + 1;
       return acc;
     },
@@ -35,10 +35,10 @@ export default async function AdminMovieSceneEnglishKoreanScript({
         {scene.dialogues.map((dialogue, index) => {
           return (
             <div key={index} className="relative flex items-center gap-4">
-              <div>{dialogue.speaker.speaker_type.toUpperCase()}</div>
+              <div>{dialogue.speaker.speakerType.toUpperCase()}</div>
               <div>
-                <Text>{parseText(dialogue.english_script, 'font-bold')}</Text>
-                <Text>{parseText(dialogue.korean_script)}</Text>
+                <Text>{parseText(dialogue.englishScript, 'font-bold')}</Text>
+                <Text>{parseText(dialogue.koreanScript)}</Text>
               </div>
               <UpdateDialogueModal {...dialogue} />
             </div>

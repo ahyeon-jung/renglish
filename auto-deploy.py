@@ -10,9 +10,9 @@ GITHUB_ID = os.getenv("AUTO_DEPLOY_GITHUB_ID")
 GITHUB_PW = os.getenv("AUTO_DEPLOY_GITHUB_PW")
 
 with sync_playwright() as p:
-    browser = p.chromium.launch(headless=False)
-    
-    # 1. cloudType 우회 설정
+    print("[1] Playwright 실행 시작")
+    browser = p.chromium.launch(headless=True)
+
     context = browser.new_context(
         user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
         viewport={"width": 1280, "height": 800},
@@ -26,50 +26,59 @@ with sync_playwright() as p:
     Object.defineProperty(navigator, 'language', { get: () => 'ko-KR' });
     Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3, 4, 5] });
     """)
+    print("[2] 브라우저 context 설정 완료")
 
     page = context.new_page()
 
-    # 2. 페이지 진입
-    page.goto("https://app.cloudtype.io/@jungahyeon0512/renglishdb:main")
+    try:
+        page.goto("https://app.cloudtype.io/@jungahyeon0512/renglishdb:main")
+        print("[3] Cloudtype 앱 페이지 진입 성공")
+    except Exception as e:
+        print(f"[3] 페이지 진입 실패: {e}")
 
-    # 3. 깃허브 로그인 버튼 클릭
-    with context.expect_page() as github:
-        page.click("a:has-text('GitHub 계정으로 로그인')")
+    try:
+        with context.expect_page() as github:
+            page.click("a:has-text('GitHub 계정으로 로그인')")
+        github_page = github.value
+        print("[4] GitHub 로그인 페이지 열기 성공")
+    except Exception as e:
+        print(f"[4] GitHub 로그인 페이지 열기 실패: {e}")
 
-    github_page = github.value
+    try:
+        github_page.wait_for_selector("input[name='login']")
+        github_page.fill("input[name='login']", GITHUB_ID)
+        github_page.fill("input[name='password']", GITHUB_PW)
+        github_page.click("input[name='commit']")
+        print("[5] GitHub 로그인 정보 입력 및 전송 성공")
+    except Exception as e:
+        print(f"[5] GitHub 로그인 실패: {e}")
 
-    # 4. 로그인 정보 채우기
-    github_page.wait_for_selector("input[name='login']")
-    github_page.fill("input[name='login']", GITHUB_ID)
-    github_page.fill("input[name='password']", GITHUB_PW)
-    github_page.click("input[name='commit']")
+    try:
+        time.sleep(3)
+        page.goto("https://app.cloudtype.io/@jungahyeon0512/renglishdb:main")
+        page.wait_for_load_state("networkidle")
+        print("[6] 로그인 후 Cloudtype 앱 페이지 재진입 성공")
+    except Exception as e:
+        print(f"[6] 재진입 실패: {e}")
 
-    page.wait_for_load_state("networkidle")
+    try:
+        divs = page.query_selector_all("div.x-card.select-none")
+        print(f"[7] 서비스 카드 {len(divs)}개 탐색됨")
 
-    # 4-1. cloudType 권한 허용(종종 권한 허용 페이지로 이동함)
-    time.sleep(3)
+        for i, div in enumerate(divs):
+            a_tags = div.query_selector_all("a")
 
-    # 5. 다시 앱 페이지로 진입(바로 진입 안됨)
-    page.goto("https://app.cloudtype.io/@jungahyeon0512/renglishdb:main")
-    page.wait_for_load_state("networkidle")
-
-    # 6. HTML 및 요소 출력
-    html = page.content()
-    divs = page.query_selector_all("div.x-card.select-none")
-
-    # DIVS = DB(0), SERVER(1)
-    # A_TAGS = 배포(0), 중지(1)
-    for i, div in enumerate(divs):
-      a_tags = div.query_selector_all("a")
-
-      if len(a_tags) >= 2:
-          try:
-              a_tags[0].click()
-              print(f"배포 완료")
-              page.wait_for_timeout(1000)
-          except Exception as e:
-              print(f"배포 클릭 실패")
-      else:
-          print(f"배포 클릭 실패")
+            if len(a_tags) >= 2:
+                try:
+                    a_tags[0].click()
+                    print(f"[8-{i}] 배포 클릭 성공")
+                    page.wait_for_timeout(1000)
+                except Exception as e:
+                    print(f"[8-{i}] 배포 클릭 실패: {e}")
+            else:
+                print(f"[8-{i}] a 태그 부족 (2개 미만)")
+    except Exception as e:
+        print(f"[7] 요소 탐색 실패: {e}")
 
     browser.close()
+    print("[9] 브라우저 종료 완료")

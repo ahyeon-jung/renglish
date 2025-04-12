@@ -21,3 +21,23 @@ export class LoginDto {
   @IsString({ message: 'Password must be a string' })
   password: string;
 }
+
+export class LoginResponseDto {
+  @ApiProperty({
+    example: 'accessToken',
+    description: '사용자의 액세스 토큰',
+    required: true,
+  })
+  @IsNotEmpty({ message: 'accessToken is required' })
+  @IsString({ message: 'accessToken must be a string' })
+  accessToken: string;
+
+  @ApiProperty({
+    example: 'refreshToken',
+    description: '사용자의 리프레시 토큰',
+    required: true,
+  })
+  @IsNotEmpty({ message: 'refreshToken is required' })
+  @IsString({ message: 'refreshToken must be a string' })
+  refreshToken: string;
+}

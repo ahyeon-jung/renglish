@@ -6,6 +6,7 @@ import { Trash2 } from 'lucide-react';
 import deleteScene from '@/app/_actions/scenes/deleteScene';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 type DeleteModalProps = { sceneId: string };
 
@@ -26,8 +27,8 @@ export default function DeleteModal({ sceneId }: DeleteModalProps) {
       await deleteScene(sceneId);
       router.refresh();
       closeDeleteModal();
-    } catch (err) {
-      console.log(err);
+    } catch {
+      toast.error('Failed to delete scene');
     }
   };
 

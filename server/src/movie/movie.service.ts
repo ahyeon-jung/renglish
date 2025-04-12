@@ -6,6 +6,7 @@ import { Movie } from './entities/movie.entity';
 import { Like, Repository } from 'typeorm';
 import { findAllWithPagination, PaginationResponse } from 'src/common/utils/pagination.util';
 import { SearchMovieParams } from './dto/search-movie.dto';
+import { MovieWithSimplifiedScenes } from './types/filtered-scene';
 
 @Injectable()
 export class MovieService {
@@ -18,7 +19,7 @@ export class MovieService {
     return this.movieRepository.save(createMovieDto);
   }
 
-  async findAll(params: SearchMovieParams): Promise<PaginationResponse<Movie>> {
+  async findAll(params: SearchMovieParams): Promise<PaginationResponse<MovieWithSimplifiedScenes>> {
     const { category, keyword, offset, limit } = params;
 
     let whereCondition: any = {};
@@ -34,7 +35,7 @@ export class MovieService {
       whereCondition = [{ title: Like(`%${keyword}%`) }, { description: Like(`%${keyword}%`) }];
     }
 
-    return await findAllWithPagination(
+    const data = await findAllWithPagination(
       this.movieRepository,
       whereCondition,
       ['scenes'],
@@ -44,6 +45,14 @@ export class MovieService {
       },
       { scenes: { studiedAt: 'DESC' } },
     );
+
+    return {
+      ...data,
+      data: data.data.map((movie) => ({
+        ...movie,
+        scenes: movie.scenes.map((scene) => ({ id: scene.id, title: scene.title })),
+      })),
+    };
   }
 
   async findMovieWithLatestScene(): Promise<Movie> {
@@ -88,7 +97,7 @@ export class MovieService {
     return this.movieRepository.save(movie);
   }
 
-  async updateImage(id: string, imageUrl: string) {
+  async updateImage(id: string, imageUrl: string): Promise<Movie> {
     const movie = await this.findOneById(id);
     if (!movie) {
       throw new NotFoundException(`Movie with ID ${id} not found`);

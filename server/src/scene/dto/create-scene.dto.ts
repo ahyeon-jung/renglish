@@ -1,8 +1,6 @@
-import { IsArray, IsNotEmpty, IsString } from 'class-validator';
+import { IsDateString, IsNotEmpty, IsString } from 'class-validator';
 
 import { ApiProperty } from '@nestjs/swagger';
-import { CreateDialogueDto } from 'src/dialogue/dto/create-dialogue.dto';
-import { CreateSpeakerDto } from 'src/speaker/dto/create-speaker.dto';
 
 export class CreateSceneDto {
   @ApiProperty({
@@ -20,7 +18,7 @@ export class CreateSceneDto {
     required: true,
   })
   @IsNotEmpty({ message: 'StudiedAt is required' })
-  @IsString({ message: 'StudiedAt must be a Date' })
+  @IsDateString({ strict: true }, { message: 'studiedAt must be a valid ISO date string' })
   studiedAt: Date;
 
   @ApiProperty({

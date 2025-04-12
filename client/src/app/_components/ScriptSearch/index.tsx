@@ -2,6 +2,7 @@
 
 import { RefObject, useEffect, useRef, useState } from 'react';
 
+import Categories from '../Categories';
 import Container from '../Container';
 import Image from 'next/image';
 import { OptionType } from '@/components/SearchBar/List';
@@ -58,7 +59,7 @@ export default function ScriptSearch() {
   }, []);
 
   return (
-    <div className="relative w-full pt-[80px] pb-[120px]">
+    <div className="relative w-full pt-[60px] pb-[30px]">
       <Image
         src={backgroundImage}
         alt="library background image"
@@ -70,7 +71,7 @@ export default function ScriptSearch() {
         <Text as="h3" typography="display-md" className="text-white">
           Learn English with Movies
         </Text>
-        <SearchBar>
+        <SearchBar className="w-[80%]">
           <SearchBar.InputWithSearch
             ref={searchBarRef as RefObject<HTMLInputElement>}
             value={keyword}
@@ -80,6 +81,7 @@ export default function ScriptSearch() {
           />
           <SearchBar.List options={keywordOptions} onItemClick={handleKeywordClick} />
         </SearchBar>
+        <Categories />
       </Container>
     </div>
   );

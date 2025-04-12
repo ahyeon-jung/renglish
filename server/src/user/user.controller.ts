@@ -1,8 +1,17 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { UserService } from './user.service';
-import { User } from './entities/user.entity';
-import { ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiOperation,
+  ApiParam,
+  ApiQuery,
+  ApiResponse,
+  ApiTags,
+  ApiOkResponse,
+} from '@nestjs/swagger';
 import { PaginationResponse } from 'src/common/utils/pagination.util';
+import { ExcludedPasswordUser } from './types/excluded-password-user';
+import { PublicUserDto } from './dto/public-user.dto';
+import { PaginationUserResponseDto } from './dto/pagination-user.dto';
 
 @ApiTags('Users')
 @Controller('users')
@@ -14,30 +23,7 @@ export class UserController {
     summary: '모든 사용자 정보 가져오기',
     description: '모든 사용자 정보를 가져옵니다.',
   })
-  @ApiResponse({
-    status: 200,
-    description: '모든 사용자 정보 가져오기 성공',
-    schema: {
-      example: {
-        statusCode: 200,
-        message: 'Request successful',
-        data: {
-          data: [
-            {
-              id: '0',
-              createdAt: '2025-03-23T10:17:38.718Z',
-              updatedAt: '2025-03-23T10:19:00.754Z',
-              deletedAt: null,
-              email: 'jah512@naver.com',
-            },
-          ],
-          totalCount: 1,
-          currentPage: 1,
-          totalPages: 1,
-        },
-      },
-    },
-  })
+  @ApiOkResponse({ type: PaginationUserResponseDto })
   @ApiQuery({
     name: 'offset',
     description: '가져올 페이지 번호 (기본값: 1)',
@@ -53,7 +39,7 @@ export class UserController {
   async findAll(
     @Query('offset') offset: number = 1,
     @Query('limit') limit: number = 10,
-  ): Promise<PaginationResponse<Omit<User, 'password'>>> {
+  ): Promise<PaginationResponse<ExcludedPasswordUser>> {
     return this.userService.findAll({ offset, limit });
   }
 
@@ -70,7 +56,7 @@ export class UserController {
   })
   @ApiResponse({ status: 200, description: '사용자 정보 찾기 성공' })
   @ApiResponse({ status: 404, description: '사용자 정보 찾기 실패' })
-  async findUserById(@Param('userId') userId: string): Promise<Omit<User, 'password'>> {
+  async findUserById(@Param('userId') userId: string): Promise<ExcludedPasswordUser> {
     const user = await this.userService.findUserById(userId);
     return user;
   }
@@ -88,7 +74,7 @@ export class UserController {
   })
   @ApiResponse({ status: 200, description: '사용자 정보 찾기 성공' })
   @ApiResponse({ status: 404, description: '사용자 정보 찾기 실패' })
-  async checkExistByEmail(@Param('email') email: string): Promise<Omit<User, 'password'>> {
+  async checkExistByEmail(@Param('email') email: string): Promise<ExcludedPasswordUser> {
     const user = await this.userService.findUserByEmail(email);
     return user;
   }

@@ -9,6 +9,7 @@ import useAdminStatus from '@/hooks/useAdminStatus';
 import { useState } from 'react';
 
 const ADMIN_NAV_OPTIONS = [
+  { label: 'home', path: PATHS.ADMIN.HOME },
   { label: 'users', path: PATHS.ADMIN.USERS.LIST },
   { label: 'scripts', path: PATHS.ADMIN.SCRIPTS.ADD },
   { label: 'notices', path: PATHS.ADMIN.NOTICES.ADD },

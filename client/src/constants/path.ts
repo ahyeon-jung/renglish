@@ -9,13 +9,18 @@ export const PATHS = {
       LIST: '/admin/scripts',
       DETAIL: (scriptId: string) => `/admin/scripts/${scriptId}`,
     },
+    STUDIES: {
+      ADD: '/admin/studies/add',
+      LIST: '/admin/studies',
+      DETAIL: (study: string) => `/admin/studies/${study}`,
+    },
     NOTICES: { ADD: '/admin/notices/add' },
   },
   AUTH: {
     LOGIN: '/auth/login',
     REGISTER: '/auth/register',
     LOGOUT: '/auth/logout',
-    PROFILE: '/profile',
+    RESET_PASSWORD: '/auth/reset-password',
   },
   MOVIE: {
     LIST: '/movies',
@@ -35,10 +40,18 @@ export const PATHS = {
       },
     },
   },
+  STUDIES: { LIST: '/studies' },
   NOTICES: {
+    LIST: '/notices',
     INSTALL: '/notices/install',
     ASSIGNMENT: '/notices/assignment',
     INTRODUCE: '/introduce',
     MEMBER: '/notices/member',
+  },
+  MY: {
+    PROFILE: '/my/profile',
+    STUDIES: '/my/studies',
+    WRITINGS: '/my/writings',
+    INQUIRIES: '/my/inquiries',
   },
 };

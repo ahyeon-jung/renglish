@@ -1,1 +1,2 @@
-export const DAANGN_GROUP_URL = 'https://www.daangn.com/kr/groups/ndZ6y0Nd?utm_medium=copy_link';
+export const OPEN_CHAT_URL = 'https://open.kakao.com/o/gukg7yqh';
+export const GATHER_TOWN_URL = 'https://gather.town/app/gukg7yqh/';

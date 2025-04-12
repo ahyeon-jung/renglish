@@ -9,17 +9,18 @@ import { parseText } from '@/utils/content';
 import updateDialogueAction from '@/app/_actions/dialogues/updateDialogue';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 type UpdateDialogueModalProps = Dialogue;
 
 export default function UpdateDialogueModal({
   id,
-  english_script,
-  korean_script,
+  englishScript,
+  koreanScript,
 }: UpdateDialogueModalProps) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  const [updateDialogueBody, setUpdateDialogueBody] = useState({ english_script, korean_script });
+  const [updateDialogueBody, setUpdateDialogueBody] = useState({ englishScript, koreanScript });
 
   const openUpdateDialogueModal = () => {
     setIsOpen(true);
@@ -42,8 +43,8 @@ export default function UpdateDialogueModal({
       await updateDialogueAction(id, updateDialogueBody);
       router.refresh();
       closeUpdateDialogueModal();
-    } catch (err) {
-      console.log(err);
+    } catch {
+      toast.error('Failed to update dialogue');
     }
   };
 
@@ -57,25 +58,25 @@ export default function UpdateDialogueModal({
             <div className="w-[900px] flex flex-col gap-4">
               <Field>
                 <Field.Label>English</Field.Label>
-                <div className="flex gap-2">Existing: {parseText(english_script, 'font-bold')}</div>
+                <div className="flex gap-2">Existing: {parseText(englishScript, 'font-bold')}</div>
                 <div className="flex gap-2">
-                  Current Example: {parseText(updateDialogueBody.english_script, 'font-bold')}
+                  Current Example: {parseText(updateDialogueBody.englishScript, 'font-bold')}
                 </div>
                 <Field.Input
-                  name="english_script"
-                  value={updateDialogueBody.english_script}
+                  name="englishScript"
+                  value={updateDialogueBody.englishScript}
                   onChange={handleInputChange}
                 />
               </Field>
               <Field>
                 <Field.Label>Korean</Field.Label>
-                <div className="flex gap-2">Existing: {parseText(korean_script, 'font-bold')}</div>
+                <div className="flex gap-2">Existing: {parseText(koreanScript, 'font-bold')}</div>
                 <div className="flex gap-2">
-                  Current Example: {parseText(updateDialogueBody.korean_script, 'font-bold')}
+                  Current Example: {parseText(updateDialogueBody.koreanScript, 'font-bold')}
                 </div>
                 <Field.Input
-                  name="korean_script"
-                  value={updateDialogueBody.korean_script}
+                  name="koreanScript"
+                  value={updateDialogueBody.koreanScript}
                   onChange={handleInputChange}
                 />
               </Field>

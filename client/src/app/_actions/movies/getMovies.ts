@@ -4,7 +4,8 @@ import { PaginationParams, PaginationResponse, SearchParams } from '@/types/api'
 
 import { ActionResponse } from '@/types/action';
 import { Movie } from '@/types/movie';
-import { fetchAPI } from '@/libs/api';
+import { Configuration, MoviesApi } from '@/services';
+import { ENV } from '@/constants/env';
 
 type GetMoviesParams = { category?: string } & SearchParams & PaginationParams;
 
@@ -14,29 +15,19 @@ export default async function getMovies({
   offset = 1,
   limit = 10,
 }: GetMoviesParams): Promise<ActionResponse<PaginationResponse<Movie>>> {
-  const params = new URLSearchParams();
-  if (keyword) {
-    params.append('keyword', keyword);
-  }
-  if (category) {
-    params.append('category', category);
-  }
-  if (offset) {
-    params.append('offset', offset.toString());
-  }
-  if (limit) {
-    params.append('limit', limit.toString());
-  }
+  const api = new MoviesApi(
+    new Configuration({
+      basePath: ENV.API_BASE_URL,
+      accessToken: '',
+    }),
+  );
 
-  const url = `/movies?${params.toString()}`;
-  const response = await fetchAPI<PaginationResponse<Movie>>(url, {
-    method: 'GET',
-  });
+  const response = await api.movieControllerFindAll({ offset, limit, category, keyword });
 
   return {
     status: 200,
     success: true,
     message: 'Fetch movies successfully',
-    data: response.data,
+    data: response as unknown as PaginationResponse<Movie>,
   };
 }

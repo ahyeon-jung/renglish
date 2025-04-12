@@ -6,8 +6,8 @@ import { cookies } from 'next/headers';
 import { fetchAPI } from '@/libs/api';
 
 type UpdateDialogueActionBody = {
-  english_script?: string;
-  korean_script?: string;
+  englishScript?: string;
+  koreanScript?: string;
   order?: number;
 };
 

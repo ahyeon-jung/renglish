@@ -7,6 +7,7 @@ import { ScriptAddStepType } from '../../_constants/step';
 import uploadScriptAction from '@/app/_actions/admin/uploadScript';
 import { useContext } from 'react';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 export default function SubmitConfirm() {
   const router = useRouter();
@@ -24,8 +25,8 @@ export default function SubmitConfirm() {
       if (response.success) {
         router.push(PATHS.ADMIN.HOME);
       }
-    } catch (err) {
-      console.log(err);
+    } catch {
+      toast.error('Failed to upload script');
     }
   };
 

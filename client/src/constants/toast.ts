@@ -1,5 +1,8 @@
 export const MESSAGE = {
-  COMMON: { ERROR: { SERVER: 'Server error. Please try again later.' } },
+  COMMON: {
+    ERROR: { SERVER: 'Server error. Please try again later.', FAIL: 'Sorry, try later' },
+    SUCCESS: { SAVE: 'Saved successfully' },
+  },
   AUTH: {
     ERROR: {
       ALREADY_EXISTS: 'This email is already registered.',

@@ -20,6 +20,11 @@ export class Movie extends BaseEntity {
   @Column()
   category: string;
 
+  @ApiProperty({
+    type: String,
+    example:
+      'https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fmovie-phinf.pstatic.net%2F20160520_45%2F14637112153058xJx0_JPEG%2Fmovie_image.jpg',
+  })
   @Column()
   imageUrl: string;
 
@@ -32,7 +37,7 @@ export class Movie extends BaseEntity {
   description: string;
 
   @ApiProperty({
-    type: [Scene],
+    type: () => [Scene],
     isArray: true,
   })
   @OneToMany(() => Scene, (scene) => scene.movie)

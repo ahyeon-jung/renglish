@@ -3,7 +3,7 @@
 import { PATHS } from '@/constants/path';
 import { useEffect } from 'react';
 
-export default function Logout() {
+export default function LogoutPage() {
   useEffect(() => {
     window.location.replace(PATHS.HOME);
   }, []);

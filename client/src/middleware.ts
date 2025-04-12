@@ -2,9 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import {
   logoutRouteMiddleware,
   withAdminRouteMiddleware,
+  withAuthRouteMiddleware,
   withoutAuthRouteMiddleware,
 } from './middlewares/auth';
 
+import { ENV } from './constants/env';
 import { PATHS } from './constants/path';
 import updateVisitorCount from './app/_actions/statics/updateVisitorCount';
 
@@ -17,7 +19,7 @@ const pageRoutesMap: Record<string, MiddlewareFunction> = {
   [PATHS.AUTH.REGISTER]: withoutAuthRouteMiddleware,
 
   // Routes that require a token (authenticated user)
-  [PATHS.AUTH.PROFILE]: withAdminRouteMiddleware,
+  [PATHS.MY.PROFILE]: withAuthRouteMiddleware,
   [PATHS.AUTH.LOGOUT]: logoutRouteMiddleware,
 
   // Admin routes that require admin token
@@ -28,16 +30,22 @@ export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const response = NextResponse.next();
 
-  let visitorId = request.cookies.get('visitorId')?.value;
+  if (request.nextUrl.pathname.startsWith('/api/cookies/refresh')) {
+    return NextResponse.next();
+  }
 
-  if (!visitorId) {
-    visitorId = crypto.randomUUID();
-    response.cookies.set('visitorId', visitorId, {
-      httpOnly: true,
-      maxAge: 60 * 30,
-    });
+  if (ENV.IS_PRODUCTION) {
+    let visitorId = request.cookies.get('visitorId')?.value;
 
-    await updateVisitorCount();
+    if (!visitorId) {
+      visitorId = crypto.randomUUID();
+      response.cookies.set('visitorId', visitorId, {
+        httpOnly: true,
+        maxAge: 60 * 30,
+      });
+
+      await updateVisitorCount();
+    }
   }
 
   if (pathname.startsWith(PATHS.ADMIN.HOME)) {

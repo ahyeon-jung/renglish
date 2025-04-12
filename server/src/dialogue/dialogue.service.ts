@@ -43,11 +43,11 @@ export class DialogueService {
     return this.dialogueRepository.save(dialogue);
   }
 
-  async findDialogueById(dialogueId: string) {
+  async findDialogueById(dialogueId: string): Promise<Dialogue> {
     return this.dialogueRepository.findOne({ where: { id: dialogueId } });
   }
 
-  async update(id: string, updateDialogueDto: UpdateDialogueDto) {
+  async update(id: string, updateDialogueDto: UpdateDialogueDto): Promise<Dialogue> {
     const dialogue = await this.findDialogueById(id);
     if (!dialogue) {
       throw new NotFoundException(`Dialogue with ID ${id} not found`);

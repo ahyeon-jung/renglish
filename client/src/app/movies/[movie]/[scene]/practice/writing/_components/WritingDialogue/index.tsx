@@ -14,11 +14,11 @@ export default function WritingDialogue({
   id,
   onChange,
   speaker,
-  korean_script,
-  english_script,
-  writing_script = '',
+  koreanScript,
+  englishScript,
+  writingScript = '',
 }: WritingDialogueProps) {
-  const [inputValue, setInputValue] = useState(writing_script);
+  const [inputValue, setInputValue] = useState(writingScript);
   const [isShowAnswerDialogue, setIsShowAnswerDialogue] = useState(false);
 
   const toggleIsShowAnswerDialogue = () => {
@@ -34,14 +34,14 @@ export default function WritingDialogue({
     <DialogListItem speaker={speaker} isBackground>
       <div className="flex gap-[5px]">
         <div>
-          {isShowAnswerDialogue && parseText(english_script)}
+          {isShowAnswerDialogue && parseText(englishScript)}
           <input
             value={inputValue}
             onChange={handleInputChange}
             className="border rounded-sm"
-            style={{ width: `${Math.min(english_script.length * 8, 350)}px` }}
+            style={{ width: `${Math.min(englishScript.length * 8, 350)}px` }}
           />
-          {parseText(korean_script)}
+          {parseText(koreanScript)}
         </div>
         <WandSparkles size={20} onClick={toggleIsShowAnswerDialogue} />
       </div>
