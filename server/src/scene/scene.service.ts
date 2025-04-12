@@ -32,6 +32,7 @@ export class SceneService {
       title: createSceneDto.title,
       description: createSceneDto.description,
       movie,
+      audioUrl: createSceneDto.audioUrl,
     });
 
     return await this.sceneRepository.save(scene);

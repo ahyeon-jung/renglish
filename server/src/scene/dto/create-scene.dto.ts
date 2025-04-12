@@ -13,6 +13,15 @@ export class CreateSceneDto {
   title: string;
 
   @ApiProperty({
+    example: 'https://example.com/audio.mp3',
+    description: '장면의 오디오 URL',
+    required: true,
+  })
+  @IsNotEmpty({ message: 'AudioUrl is required' })
+  @IsString()
+  audioUrl: string;
+
+  @ApiProperty({
     example: '2025-03-16 10:00:00',
     description: '스터디 진행 날짜',
     required: true,
