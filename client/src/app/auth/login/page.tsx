@@ -1,16 +1,12 @@
 import EmailLoginForm from './_components/EmailLoginForm';
-import Text from '@/components/Text';
-import clsx from 'clsx';
 import SocialButtons from '../_components/SocialButtons';
 import { PATHS } from '@/constants/path';
 import Link from 'next/link';
+import AuthContainer from '../_components/AuthContainer';
 
 export default function LoginPage() {
   return (
-    <main className={clsx('mt-[var(--header-height)] p-3 pt-[30px]', 'flex flex-col gap-4')}>
-      <Text as="h2" typography="display-lg">
-        Login
-      </Text>
+    <AuthContainer title="Login">
       <div className="flex flex-col gap-4">
         <SocialButtons type="login" />
         <div className="flex items-center gap-2">
@@ -26,6 +22,6 @@ export default function LoginPage() {
           </Link>
         </div>
       </div>
-    </main>
+      </AuthContainer>
   );
 }

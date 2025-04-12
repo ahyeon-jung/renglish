@@ -1,21 +1,18 @@
 'use client';
 
-import Text from '@/components/Text';
-import clsx from 'clsx';
 import EmailRegisterForm from './_components/EmailRegisterForm';
 import SocialButtons from '../_components/SocialButtons';
 import Link from 'next/link';
 import { PATHS } from '@/constants/path';
 import { useState } from 'react';
 import Button from '@/components/Button';
+import AuthContainer from '../_components/AuthContainer';
+
 export default function Register() {
   const [isEmailRegisterFormOpen, setIsEmailRegisterFormOpen] = useState(false);
 
   return (
-    <main className={clsx('mt-[var(--header-height)] p-3 pt-[30px]', 'flex flex-col gap-4')}>
-      <Text as="h2" typography="display-lg">
-        Register
-      </Text>
+    <AuthContainer title="Register">
       {isEmailRegisterFormOpen ? (
         <EmailRegisterForm />
       ) : (
@@ -35,6 +32,6 @@ export default function Register() {
           </div>
         </div>
       )}
-    </main>
+    </AuthContainer>
   );
 }
