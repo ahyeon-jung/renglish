@@ -3,6 +3,7 @@ import kakao_logo from '@/assets/social/kakao_logo.svg';
 import google_logo from '@/assets/social/google_logo.svg';
 import naver_logo from '@/assets/social/naver_logo.svg';
 import clsx from 'clsx';
+import Link from 'next/link';
 
 const SOCIAL_LOGINS = [
   {label: 'Google', icon: google_logo, className: "bg-[#FFFFFF] border border-[#747775]"},
@@ -26,7 +27,7 @@ export default function SocialButtons({type}: SocialButtonsProps) {
           className
       )}>
       <Image src={icon} alt="kakao" width={20} height={20} />
-      <div>{type === 'login' ? 'Login with' : 'Register with'} {label}</div>
+      <Link href="http://localhost:8080/api/auth/kakao">{type === 'login' ? 'Login with' : 'Register with'} {label}</Link>
      </div>
     ))}
    </div>

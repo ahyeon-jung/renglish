@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Request, UseGuards, Req, Res } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiBody, ApiParam } from '@nestjs/swagger';
 
 import { AuthService } from './auth.service';
@@ -10,81 +10,114 @@ import { AuthGuard } from '@nestjs/passport';
 import { TAG } from 'src/common/constants/tag';
 import { UpdateUserDto } from 'src/user/dto/update-user.dto';
 import { User } from 'src/user/entities/user.entity';
+import { LocalAuthGuard } from './guards/local-auth.guard';
+import { UserService } from 'src/user/user.service';
+import { Response } from 'express';
 
 @ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService, private readonly userService: UserService) {}
 
-  @Post('/register')
+  @Post('register')
   @ApiOperation({
-    summary: `회원가입 ${TAG.EMAIL_VERIFICATION_REQUIRED}`,
-    description: '새로운 사용자를 생성합니다.',
+    summary: '회원가입',
+    description: '새로운 사용자를 등록합니다.',
   })
   @ApiBody({ type: CreateUserDto })
-  signup(@Body() createUserDto: CreateUserDto): Promise<Omit<User, 'password'>> {
+  async register(@Body() createUserDto: CreateUserDto) {
     return this.authService.signup(createUserDto);
   }
 
-  @Post('/login')
+  @UseGuards(LocalAuthGuard)
+  @Post('login')
   @ApiOperation({
     summary: '로그인',
-    description: '사용자가 로그인을 시도합니다.',
+    description: '사용자 로그인을 처리합니다.',
   })
   @ApiBody({ type: LoginDto })
-  login(
-    @Body() loginAuthDto: LoginDto,
-  ): Promise<{ accessToken: string; refreshToken: string; email: string }> {
-    return this.authService.login(loginAuthDto);
+  @ApiResponse({ status: 200, description: '로그인 성공' })
+  async login(@Req() req) {
+    return this.authService.login(req.user);
   }
 
-  @UseGuards(AuthGuard('jwt-refresh'))
-  @Post('/refresh')
+  @Get('kakao')
+  @UseGuards(AuthGuard('kakao'))
   @ApiOperation({
-    summary: 'Access Token 재발급',
-    description:
-      '유효한 Refresh Token을 이용해 새로운 Access Token과 Refresh Token을 발급받습니다.',
+    summary: '카카오 로그인',
+    description: '카카오 계정으로 로그인합니다.',
   })
-  async refresh(@Request() req): Promise<{ accessToken: string; refreshToken: string }> {
-    const user = req.user;
-    const tokens = await this.authService.generateTokens(user);
-    return tokens;
+  async kakaoLogin() {
+    // 카카오 로그인 페이지로 리다이렉트
   }
 
-  @Get('/token/:token')
-  @UseGuards(AccessTokenGuard)
+  @Get('kakao/callback')
+  @UseGuards(AuthGuard('kakao'))
+  async kakaoCallback(@Request() req, @Res() res: Response) {
+    const { email, providerId, name } = req.user;
+    const user = await this.userService.findUserByEmail(email);
+  
+    if (user.provider === 'kakao') {
+      const { accessToken, refreshToken } = await this.authService.generateTokens({
+        id: user.id,
+        email: user.email,
+      });
+  
+      const redirectUrl = new URL('http://localhost:3000/auth/callback');
+      redirectUrl.searchParams.set('accessToken', accessToken);
+      redirectUrl.searchParams.set('refreshToken', refreshToken);
+  
+      return res.redirect(redirectUrl.toString());
+    }
+  
+    const registerRedirect = new URL('http://localhost:3000/auth/register/social');
+    registerRedirect.searchParams.set('email', email);
+    registerRedirect.searchParams.set('provider', 'kakao');
+    registerRedirect.searchParams.set('providerId', providerId);
+    registerRedirect.searchParams.set('nickname', name);
+  
+    return res.redirect(registerRedirect.toString());
+  }
+  
+
+  @UseGuards(AuthGuard('google'))
+  @Post('google')
   @ApiOperation({
-    summary: `토큰 유효성 검사 ${TAG.TOKEN_REQUIRED}`,
-    description: '토큰이 유효한지 확인합니다.',
+    summary: '구글 로그인',
+    description: '구글 계정으로 로그인합니다.',
   })
-  @ApiParam({
-    name: 'token',
-    description: '토큰',
-    example: 'e5e798e1-9241-4b95-8e2c-0b630bbd033f',
-    type: String,
+  async googleAuth(@Req() req) {}
+
+  @UseGuards(AuthGuard('google'))
+  @Post('google/callback')
+  @ApiOperation({
+    summary: '구글 로그인 콜백',
+    description: '구글 로그인 후 콜백을 처리합니다.',
   })
-  validateToken(@Param('token') token: string): { token: string } {
-    return { token };
+  async googleAuthRedirect(@Req() req) {
+    return `ㅇㅇㅇㅇㅇㅇㅇㅇㅇ`
   }
 
-  @Get('/check/is-admin')
-  @UseGuards(AccessTokenGuard)
+  @Get('naver')
+  @UseGuards(AuthGuard('naver'))
   @ApiOperation({
-    summary: `관리자 확인 ${TAG.TOKEN_REQUIRED}`,
-    description: '현재 사용자가 관리자인지 확인합니다.',
+    summary: '네이버 로그인',
+    description: '네이버 계정으로 로그인합니다.',
   })
-  async checkAdminByToken(@Request() req): Promise<{ isAdmin: boolean }> {
-    return { isAdmin: req.user.isAdmin };
+  async naverLogin() {
+    // 네이버 로그인 페이지로 리다이렉트
   }
 
-  @Put('/password/change')
+  @Get('naver/callback')
+  @UseGuards(AuthGuard('naver'))
   @ApiOperation({
-    summary: '비밀번호 변경',
-    description: '사용자가 비밀번호 변경을 시도합니다.',
+    summary: '네이버 로그인 콜백',
+    description: '네이버 로그인 후 콜백을 처리합니다.',
   })
-  @ApiResponse({ status: 200, description: '비밀번호 변경 성공' })
-  @ApiBody({ type: ChangePasswordDto })
-  changePassword(@Body() changePasswordDto: ChangePasswordDto): Promise<string> {
-    return this.authService.changePassword(changePasswordDto);
+  async naverCallback(@Request() req) {
+    return this.authService.login({
+      email: req.user.email,
+      password: `naver_${req.user.providerId}`,
+    });
   }
 }

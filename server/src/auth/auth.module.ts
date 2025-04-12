@@ -1,35 +1,41 @@
 import { ConfigModule, ConfigService } from '@nestjs/config';
-
-import { AccessTokenStrategy } from './strategies/access-token.strategy';
-import { AuthController } from './auth.controller';
-import { AuthService } from './auth.service';
-import { EncryptionService } from './encryption.service';
 import { JwtModule } from '@nestjs/jwt';
-import { LocalAuthStrategy } from './strategies/local-auth-strategy';
+import { PassportModule } from '@nestjs/passport';
 import { Module } from '@nestjs/common';
+import { UserModule } from '../user/user.module';
+import { AuthService } from './auth.service';
+import { AuthController } from './auth.controller';
+import { AccessTokenStrategy } from './strategies/access-token.strategy';
 import { RefreshTokenStrategy } from './strategies/refresh-token.strategy';
-import { UserModule } from 'src/user/user.module';
+import { KakaoStrategy } from './strategies/kakao.strategy';
+import { GoogleStrategy } from './strategies/google.strategy';
+import { NaverStrategy } from './strategies/naver.strategy';
+import { JwtStrategy } from './strategies/jwt.strategy';
+import { EncryptionService } from './encryption.service';
 
 @Module({
   imports: [
-    ConfigModule,
+    UserModule,
+    PassportModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
         secret: configService.get<string>('ACCESS_TOKEN_SECRET'),
-        signOptions: { expiresIn: '1h' },
+        signOptions: { expiresIn: '1d' },
       }),
     }),
-    UserModule,
   ],
   controllers: [AuthController],
   providers: [
     AuthService,
     EncryptionService,
     AccessTokenStrategy,
-    LocalAuthStrategy,
     RefreshTokenStrategy,
+    KakaoStrategy,
+    GoogleStrategy,
+    NaverStrategy,
+    JwtStrategy,
   ],
   exports: [AuthService],
 })

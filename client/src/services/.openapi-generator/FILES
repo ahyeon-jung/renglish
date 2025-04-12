@@ -14,7 +14,6 @@ apis/UsersApi.ts
 apis/WritingsApi.ts
 apis/index.ts
 index.ts
-models/ChangePasswordDto.ts
 models/CreateDialogueDto.ts
 models/CreateExpressionDto.ts
 models/CreateMovieDto.ts

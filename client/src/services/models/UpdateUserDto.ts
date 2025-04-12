@@ -20,6 +20,12 @@ import { mapValues } from '../runtime';
  */
 export interface UpdateUserDto {
     /**
+     * 소셜 로그인 플랫폼
+     * @type {string}
+     * @memberof UpdateUserDto
+     */
+    provider?: string;
+    /**
      * 사용자의 닉네임
      * @type {string}
      * @memberof UpdateUserDto
@@ -44,6 +50,7 @@ export function UpdateUserDtoFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
+        'provider': json['provider'] == null ? undefined : json['provider'],
         'nickname': json['nickname'] == null ? undefined : json['nickname'],
     };
 }
@@ -59,6 +66,7 @@ export function UpdateUserDtoToJSONTyped(value?: UpdateUserDto | null, ignoreDis
 
     return {
         
+        'provider': value['provider'],
         'nickname': value['nickname'],
     };
 }

@@ -15,33 +15,22 @@
 
 import * as runtime from '../runtime';
 import type {
-  ChangePasswordDto,
   CreateUserDto,
   LoginDto,
 } from '../models/index';
 import {
-    ChangePasswordDtoFromJSON,
-    ChangePasswordDtoToJSON,
     CreateUserDtoFromJSON,
     CreateUserDtoToJSON,
     LoginDtoFromJSON,
     LoginDtoToJSON,
 } from '../models/index';
 
-export interface AuthControllerChangePasswordRequest {
-    changePasswordDto: ChangePasswordDto;
-}
-
 export interface AuthControllerLoginRequest {
     loginDto: LoginDto;
 }
 
-export interface AuthControllerSignupRequest {
+export interface AuthControllerRegisterRequest {
     createUserDto: CreateUserDto;
-}
-
-export interface AuthControllerValidateTokenRequest {
-    token: string;
 }
 
 /**
@@ -50,22 +39,13 @@ export interface AuthControllerValidateTokenRequest {
 export class AuthApi extends runtime.BaseAPI {
 
     /**
-     * 사용자가 비밀번호 변경을 시도합니다.
-     * 비밀번호 변경
+     * 구글 계정으로 로그인합니다.
+     * 구글 로그인
      */
-    async authControllerChangePasswordRaw(requestParameters: AuthControllerChangePasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters['changePasswordDto'] == null) {
-            throw new runtime.RequiredError(
-                'changePasswordDto',
-                'Required parameter "changePasswordDto" was null or undefined when calling authControllerChangePassword().'
-            );
-        }
-
+    async authControllerGoogleAuthRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.accessToken) {
             const token = this.configuration.accessToken;
@@ -76,29 +56,28 @@ export class AuthApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/auth/password/change`,
-            method: 'PUT',
+            path: `/api/auth/google`,
+            method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ChangePasswordDtoToJSON(requestParameters['changePasswordDto']),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }
 
     /**
-     * 사용자가 비밀번호 변경을 시도합니다.
-     * 비밀번호 변경
+     * 구글 계정으로 로그인합니다.
+     * 구글 로그인
      */
-    async authControllerChangePassword(requestParameters: AuthControllerChangePasswordRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.authControllerChangePasswordRaw(requestParameters, initOverrides);
+    async authControllerGoogleAuth(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.authControllerGoogleAuthRaw(initOverrides);
     }
 
     /**
-     * 현재 사용자가 관리자인지 확인합니다.
-     * 관리자 확인 [TOKEN]
+     * 구글 로그인 후 콜백을 처리합니다.
+     * 구글 로그인 콜백
      */
-    async authControllerCheckAdminByTokenRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async authControllerGoogleAuthRedirectRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -112,7 +91,40 @@ export class AuthApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/auth/check/is-admin`,
+            path: `/api/auth/google/callback`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * 구글 로그인 후 콜백을 처리합니다.
+     * 구글 로그인 콜백
+     */
+    async authControllerGoogleAuthRedirect(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.authControllerGoogleAuthRedirectRaw(initOverrides);
+    }
+
+    /**
+     */
+    async authControllerKakaoCallbackRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/api/auth/kakao/callback`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -122,15 +134,48 @@ export class AuthApi extends runtime.BaseAPI {
     }
 
     /**
-     * 현재 사용자가 관리자인지 확인합니다.
-     * 관리자 확인 [TOKEN]
      */
-    async authControllerCheckAdminByToken(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.authControllerCheckAdminByTokenRaw(initOverrides);
+    async authControllerKakaoCallback(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.authControllerKakaoCallbackRaw(initOverrides);
     }
 
     /**
-     * 사용자가 로그인을 시도합니다.
+     * 카카오 계정으로 로그인합니다.
+     * 카카오 로그인
+     */
+    async authControllerKakaoLoginRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/api/auth/kakao`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * 카카오 계정으로 로그인합니다.
+     * 카카오 로그인
+     */
+    async authControllerKakaoLogin(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.authControllerKakaoLoginRaw(initOverrides);
+    }
+
+    /**
+     * 사용자 로그인을 처리합니다.
      * 로그인
      */
     async authControllerLoginRaw(requestParameters: AuthControllerLoginRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
@@ -167,7 +212,7 @@ export class AuthApi extends runtime.BaseAPI {
     }
 
     /**
-     * 사용자가 로그인을 시도합니다.
+     * 사용자 로그인을 처리합니다.
      * 로그인
      */
     async authControllerLogin(requestParameters: AuthControllerLoginRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
@@ -175,10 +220,10 @@ export class AuthApi extends runtime.BaseAPI {
     }
 
     /**
-     * 유효한 Refresh Token을 이용해 새로운 Access Token과 Refresh Token을 발급받습니다.
-     * Access Token 재발급
+     * 네이버 로그인 후 콜백을 처리합니다.
+     * 네이버 로그인 콜백
      */
-    async authControllerRefreshRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async authControllerNaverCallbackRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -192,8 +237,8 @@ export class AuthApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/auth/refresh`,
-            method: 'POST',
+            path: `/api/auth/naver/callback`,
+            method: 'GET',
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
@@ -202,22 +247,57 @@ export class AuthApi extends runtime.BaseAPI {
     }
 
     /**
-     * 유효한 Refresh Token을 이용해 새로운 Access Token과 Refresh Token을 발급받습니다.
-     * Access Token 재발급
+     * 네이버 로그인 후 콜백을 처리합니다.
+     * 네이버 로그인 콜백
      */
-    async authControllerRefresh(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.authControllerRefreshRaw(initOverrides);
+    async authControllerNaverCallback(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.authControllerNaverCallbackRaw(initOverrides);
     }
 
     /**
-     * 새로운 사용자를 생성합니다.
-     * 회원가입 [EMAIL VERIFICATION]
+     * 네이버 계정으로 로그인합니다.
+     * 네이버 로그인
      */
-    async authControllerSignupRaw(requestParameters: AuthControllerSignupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async authControllerNaverLoginRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/api/auth/naver`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * 네이버 계정으로 로그인합니다.
+     * 네이버 로그인
+     */
+    async authControllerNaverLogin(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.authControllerNaverLoginRaw(initOverrides);
+    }
+
+    /**
+     * 새로운 사용자를 등록합니다.
+     * 회원가입
+     */
+    async authControllerRegisterRaw(requestParameters: AuthControllerRegisterRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters['createUserDto'] == null) {
             throw new runtime.RequiredError(
                 'createUserDto',
-                'Required parameter "createUserDto" was null or undefined when calling authControllerSignup().'
+                'Required parameter "createUserDto" was null or undefined when calling authControllerRegister().'
             );
         }
 
@@ -247,53 +327,11 @@ export class AuthApi extends runtime.BaseAPI {
     }
 
     /**
-     * 새로운 사용자를 생성합니다.
-     * 회원가입 [EMAIL VERIFICATION]
+     * 새로운 사용자를 등록합니다.
+     * 회원가입
      */
-    async authControllerSignup(requestParameters: AuthControllerSignupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.authControllerSignupRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * 토큰이 유효한지 확인합니다.
-     * 토큰 유효성 검사 [TOKEN]
-     */
-    async authControllerValidateTokenRaw(requestParameters: AuthControllerValidateTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters['token'] == null) {
-            throw new runtime.RequiredError(
-                'token',
-                'Required parameter "token" was null or undefined when calling authControllerValidateToken().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/auth/token/{token}`.replace(`{${"token"}}`, encodeURIComponent(String(requestParameters['token']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * 토큰이 유효한지 확인합니다.
-     * 토큰 유효성 검사 [TOKEN]
-     */
-    async authControllerValidateToken(requestParameters: AuthControllerValidateTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.authControllerValidateTokenRaw(requestParameters, initOverrides);
+    async authControllerRegister(requestParameters: AuthControllerRegisterRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.authControllerRegisterRaw(requestParameters, initOverrides);
     }
 
 }

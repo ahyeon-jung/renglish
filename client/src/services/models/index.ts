@@ -1,6 +1,5 @@
 /* tslint:disable */
 /* eslint-disable */
-export * from './ChangePasswordDto';
 export * from './CreateDialogueDto';
 export * from './CreateExpressionDto';
 export * from './CreateMovieDto';

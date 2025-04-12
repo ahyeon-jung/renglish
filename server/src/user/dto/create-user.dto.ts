@@ -4,6 +4,13 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateUserDto {
   @ApiProperty({
+    example: 'kakao',
+    description: '소셜 로그인 플랫폼',
+    required: true,
+  })
+  provider: string;
+
+  @ApiProperty({
     example: 'user@example.com',
     description: '사용자의 이메일 주소',
     required: true,

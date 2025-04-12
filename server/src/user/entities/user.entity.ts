@@ -8,6 +8,9 @@ import { Writing } from 'src/writing/entities/writing.entity';
 @Entity()
 export class User extends BaseEntity {
   @Column()
+  provider: string;
+
+  @Column()
   email: string;
 
   @Column()

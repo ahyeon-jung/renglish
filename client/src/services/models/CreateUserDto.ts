@@ -20,6 +20,12 @@ import { mapValues } from '../runtime';
  */
 export interface CreateUserDto {
     /**
+     * 소셜 로그인 플랫폼
+     * @type {string}
+     * @memberof CreateUserDto
+     */
+    provider: string;
+    /**
      * 사용자의 이메일 주소
      * @type {string}
      * @memberof CreateUserDto
@@ -49,6 +55,7 @@ export interface CreateUserDto {
  * Check if a given object implements the CreateUserDto interface.
  */
 export function instanceOfCreateUserDto(value: object): value is CreateUserDto {
+    if (!('provider' in value) || value['provider'] === undefined) return false;
     if (!('email' in value) || value['email'] === undefined) return false;
     if (!('nickname' in value) || value['nickname'] === undefined) return false;
     if (!('how' in value) || value['how'] === undefined) return false;
@@ -66,6 +73,7 @@ export function CreateUserDtoFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
+        'provider': json['provider'],
         'email': json['email'],
         'nickname': json['nickname'],
         'how': json['how'],
@@ -84,6 +92,7 @@ export function CreateUserDtoToJSONTyped(value?: CreateUserDto | null, ignoreDis
 
     return {
         
+        'provider': value['provider'],
         'email': value['email'],
         'nickname': value['nickname'],
         'how': value['how'],
