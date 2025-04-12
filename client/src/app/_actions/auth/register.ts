@@ -1,10 +1,6 @@
 'use server';
 
-import { FetchError, handleFetchError } from '@/utils/error';
-
 import { ActionResponse } from '@/types/action';
-import { fetchAPI } from '@/libs/api';
-import { getUserByEmailAction } from '../users/getUser';
 import { AuthApi, Configuration } from '@/services';
 import { ENV } from '@/constants/env';
 
