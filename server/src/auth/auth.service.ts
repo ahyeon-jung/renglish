@@ -33,7 +33,7 @@ export class AuthService {
   ) {}
 
   async signup(createUserDto: CreateUserDto): Promise<Omit<User, 'password'>> {
-    const { email, password, nickname, how, provider} = createUserDto;
+    const { email, password, nickname, how, provider } = createUserDto;
 
     const isExistAccount = await this.userService.checkEmailExist(email);
     if (isExistAccount) {
@@ -58,7 +58,13 @@ export class AuthService {
     return this.userService.create(user);
   }
 
-  async generateTokens({id, email}: {id: string, email: string}): Promise<{ accessToken: string; refreshToken: string }> {
+  async generateTokens({
+    id,
+    email,
+  }: {
+    id: string;
+    email: string;
+  }): Promise<{ accessToken: string; refreshToken: string }> {
     const payload = { sub: id, email: email };
 
     const [accessToken, refreshToken] = await Promise.all([
@@ -116,7 +122,10 @@ export class AuthService {
     const user = await this.validateUser(loginDto.email, loginDto.password);
     const payload = { email: user.email, sub: user.id };
 
-    const { accessToken, refreshToken } = await this.generateTokens({id: user.id, email: user.email});
+    const { accessToken, refreshToken } = await this.generateTokens({
+      id: user.id,
+      email: user.email,
+    });
     return {
       access_token: accessToken,
       refresh_token: refreshToken,
@@ -145,7 +154,7 @@ export class AuthService {
     if (!user) {
       throw new UnauthorizedException('User not found');
     }
-  
+
     return user;
   }
 
@@ -156,7 +165,7 @@ export class AuthService {
 
     const user = await this.userService.findUserByEmailWithPassword(req.user.email);
     if (user) {
-      return this.login({email: user.email, password: user.password});
+      return this.login({ email: user.email, password: user.password });
     }
 
     const password = Math.random().toString(36).slice(-8);
@@ -170,7 +179,6 @@ export class AuthService {
     return this.login({ email: newUser.email, password });
   }
 
-  
   async signupSocial(createUserDto: CreateUserDto) {
     const user = await this.userService.findUserByEmail(createUserDto.email);
     if (!user) {

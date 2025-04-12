@@ -19,7 +19,7 @@ export async function GET(request: Request) {
   const response = await api.studyControllerFindAll({
     offset,
     limit,
-    status
+    status,
   });
 
   return Response.json(response.data);

@@ -1,4 +1,15 @@
-import { Body, Controller, Get, Param, Post, Put, Request, UseGuards, Req, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  Request,
+  UseGuards,
+  Req,
+  Res,
+} from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiBody, ApiParam } from '@nestjs/swagger';
 
 import { AuthService } from './auth.service';
@@ -17,7 +28,10 @@ import { Response } from 'express';
 @ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService, private readonly userService: UserService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly userService: UserService,
+  ) {}
 
   @Post('register')
   @ApiOperation({
@@ -56,29 +70,28 @@ export class AuthController {
   async kakaoCallback(@Request() req, @Res() res: Response) {
     const { email, providerId, name } = req.user;
     const user = await this.userService.findUserByEmail(email);
-  
+
     if (user.provider === 'kakao') {
       const { accessToken, refreshToken } = await this.authService.generateTokens({
         id: user.id,
         email: user.email,
       });
-  
+
       const redirectUrl = new URL('http://localhost:3000/auth/callback');
       redirectUrl.searchParams.set('accessToken', accessToken);
       redirectUrl.searchParams.set('refreshToken', refreshToken);
-  
+
       return res.redirect(redirectUrl.toString());
     }
-  
+
     const registerRedirect = new URL('http://localhost:3000/auth/register/social');
     registerRedirect.searchParams.set('email', email);
     registerRedirect.searchParams.set('provider', 'kakao');
     registerRedirect.searchParams.set('providerId', providerId);
     registerRedirect.searchParams.set('nickname', name);
-  
+
     return res.redirect(registerRedirect.toString());
   }
-  
 
   @UseGuards(AuthGuard('google'))
   @Post('google')
@@ -95,7 +108,7 @@ export class AuthController {
     description: '구글 로그인 후 콜백을 처리합니다.',
   })
   async googleAuthRedirect(@Req() req) {
-    return `ㅇㅇㅇㅇㅇㅇㅇㅇㅇ`
+    return `ㅇㅇㅇㅇㅇㅇㅇㅇㅇ`;
   }
 
   @Get('naver')

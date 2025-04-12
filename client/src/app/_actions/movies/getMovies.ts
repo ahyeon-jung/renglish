@@ -22,7 +22,7 @@ export default async function getMovies({
     }),
   );
 
-  const response = await api.movieControllerFindAll({offset, limit, category, keyword});
+  const response = await api.movieControllerFindAll({ offset, limit, category, keyword });
 
   return {
     status: 200,

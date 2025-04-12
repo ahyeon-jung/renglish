@@ -57,7 +57,7 @@ export default function Nav({ withAuth }: NavProps) {
               {DEFAULT_NAV_OPTIONS.map(({ label, path }) => (
                 <NavItem key={path} path={path} label={label} />
               ))}
-              <div className='bg-gray-400 h-[0.5px] w-full' />
+              <div className="bg-gray-400 h-[0.5px] w-full" />
               {(withAuth ? WITH_AUTH_NAV_OPTIONS : WITHOUT_AUTH_NAV_OPTIONS).map(
                 ({ label, path }) => (
                   <NavItem key={path} path={path} label={label} />

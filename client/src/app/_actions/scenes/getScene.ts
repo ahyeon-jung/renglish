@@ -14,16 +14,16 @@ export default async function getScene(sceneId: string): Promise<ActionResponse<
   const api = new ScenesApi(
     new Configuration({
       basePath: ENV.API_BASE_URL,
-      accessToken: token ?? "",
+      accessToken: token ?? '',
     }),
   );
 
-  const scene = await api.sceneControllerFindSceneById({sceneId});
-  
+  const scene = await api.sceneControllerFindSceneById({ sceneId });
+
   return {
     status: 200,
     success: true,
     message: 'Fetch scenes successfully',
-    data: scene as unknown as Scene
+    data: scene as unknown as Scene,
   };
 }

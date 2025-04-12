@@ -20,8 +20,8 @@ export default async function registerAction({
   email,
   password,
   nickname,
-  how = "no answer",
-  provider = "email",
+  how = 'no answer',
+  provider = 'email',
 }: RegisterActionProps): Promise<ActionResponse<null>> {
   if (!email || !password || !nickname) {
     return { status: 200, success: false, message: 'no required data', data: null };
@@ -34,7 +34,7 @@ export default async function registerAction({
     }),
   );
 
- await api.authControllerRegister({createUserDto: {email, password, nickname, provider, how}});
+  await api.authControllerRegister({ createUserDto: { email, password, nickname, provider, how } });
 
   return { status: 200, success: true, message: 'Register successfully', data: null };
 }

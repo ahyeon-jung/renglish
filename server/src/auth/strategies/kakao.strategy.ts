@@ -33,4 +33,4 @@ export class KakaoStrategy extends PassportStrategy(Strategy, 'kakao') {
       done(error);
     }
   }
-} 
+}

@@ -32,4 +32,4 @@ export class NaverStrategy extends PassportStrategy(Strategy, 'naver') {
       done(error, null);
     }
   }
-} 
+}

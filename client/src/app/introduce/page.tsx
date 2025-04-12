@@ -34,7 +34,8 @@ export default function Introduce() {
           <p>
             매주 목요일 저녁 8시
             <br />
-            보증금(참석시 환불): <del>3000원</del> <strong className="text-orange-600 ml-1">현재 무료로 진행중</strong>
+            보증금(참석시 환불): <del>3000원</del>{' '}
+            <strong className="text-orange-600 ml-1">현재 무료로 진행중</strong>
           </p>
         </div>
         <div className="mt-8 text-center">

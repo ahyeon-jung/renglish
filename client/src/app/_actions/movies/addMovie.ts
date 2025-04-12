@@ -19,7 +19,7 @@ export default async function addMovieAction(addMovieActionBody: AddMovieActionB
   const api = new MoviesApi(
     new Configuration({
       basePath: ENV.API_BASE_URL,
-      accessToken: token ?? "",
+      accessToken: token ?? '',
     }),
   );
 
@@ -32,7 +32,7 @@ export default async function addMovieAction(addMovieActionBody: AddMovieActionB
     },
   });
 
-  if (!response){
+  if (!response) {
     return {
       status: 400,
       success: false,
@@ -40,7 +40,7 @@ export default async function addMovieAction(addMovieActionBody: AddMovieActionB
       data: response,
     };
   }
-  
+
   return {
     status: 200,
     success: true,

@@ -24,6 +24,5 @@ export async function GET(request: Request) {
     category,
   });
 
-
   return Response.json(response.data);
 }

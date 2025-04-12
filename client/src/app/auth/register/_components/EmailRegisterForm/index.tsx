@@ -98,76 +98,76 @@ export default function EmailRegisterForm() {
     isAllRequiredRegisterDataExists && isVerifyEmail && isMatchedPasswordConfirm;
 
   return (
-      <form className="flex flex-col gap-3" onSubmit={handleRegisterSubmit}>
-        <div className="flex flex-col gap-2">
+    <form className="flex flex-col gap-3" onSubmit={handleRegisterSubmit}>
+      <div className="flex flex-col gap-2">
+        <Field>
+          <Field.Label>Email</Field.Label>
+          <Field.InputWithButton
+            inputProps={{
+              name: 'email',
+              placeholder: 'ex. renglish@gmail.com',
+              value: registerBody.email,
+              onChange: handleRegisterBodyChange,
+            }}
+            buttonProps={{
+              onClick: handleSendEmailVerifyClick,
+              disabled: isClickedSendEmailVerifyClicked,
+            }}
+          />
+        </Field>
+        {isClickedSendEmailVerifyClicked && (
           <Field>
-            <Field.Label>Email</Field.Label>
+            <Field.Label>Email Verification Code</Field.Label>
             <Field.InputWithButton
               inputProps={{
-                name: 'email',
-                placeholder: 'ex. renglish@gmail.com',
-                value: registerBody.email,
-                onChange: handleRegisterBodyChange,
+                placeholder: 'ex. ABCDEF',
+                value: verificationCode,
+                onChange: handleVerificationCodeChange,
               }}
               buttonProps={{
-                onClick: handleSendEmailVerifyClick,
-                disabled: isClickedSendEmailVerifyClicked,
+                onClick: handleVerifyCodeClick,
+                disabled: !verificationCode,
               }}
             />
           </Field>
-          {isClickedSendEmailVerifyClicked && (
-            <Field>
-              <Field.Label>Email Verification Code</Field.Label>
-              <Field.InputWithButton
-                inputProps={{
-                  placeholder: 'ex. ABCDEF',
-                  value: verificationCode,
-                  onChange: handleVerificationCodeChange,
-                }}
-                buttonProps={{
-                  onClick: handleVerifyCodeClick,
-                  disabled: !verificationCode,
-                }}
-              />
-            </Field>
-          )}
-          <Field>
-            <Field.Label>Nickname</Field.Label>
-            <Field.Input
-              name="nickname"
-              placeholder="ex. 123456"
-              value={registerBody.nickname}
-              onChange={handleRegisterBodyChange}
-            />
-          </Field>
-          <Field>
-            <Field.Label>Password</Field.Label>
-            <Field.Input
-              name="password"
-              placeholder="ex. 123456"
-              value={registerBody.password}
-              onChange={handleRegisterBodyChange}
-            />
-          </Field>
-          <Field>
-            <Field.Label>PasswordConfirm</Field.Label>
-            <Field.Input
-              placeholder="ex. 123456"
-              value={passwordConfirm}
-              onChange={handlePasswordConfirmChange}
-            />
-          </Field>
-          <Field>
-            <Field.Label>How did you find out about this page? (optional)</Field.Label>
-            <Field.Input
-              name="how"
-              placeholder="e.g. reglish study, search engine, social media"
-              value={registerBody.how}
-              onChange={handleRegisterBodyChange}
-            />
-          </Field>
-        </div>
-        <Button disabled={!isAvailableRegisterButton}>Register</Button>
-      </form>
+        )}
+        <Field>
+          <Field.Label>Nickname</Field.Label>
+          <Field.Input
+            name="nickname"
+            placeholder="ex. 123456"
+            value={registerBody.nickname}
+            onChange={handleRegisterBodyChange}
+          />
+        </Field>
+        <Field>
+          <Field.Label>Password</Field.Label>
+          <Field.Input
+            name="password"
+            placeholder="ex. 123456"
+            value={registerBody.password}
+            onChange={handleRegisterBodyChange}
+          />
+        </Field>
+        <Field>
+          <Field.Label>PasswordConfirm</Field.Label>
+          <Field.Input
+            placeholder="ex. 123456"
+            value={passwordConfirm}
+            onChange={handlePasswordConfirmChange}
+          />
+        </Field>
+        <Field>
+          <Field.Label>How did you find out about this page? (optional)</Field.Label>
+          <Field.Input
+            name="how"
+            placeholder="e.g. reglish study, search engine, social media"
+            value={registerBody.how}
+            onChange={handleRegisterBodyChange}
+          />
+        </Field>
+      </div>
+      <Button disabled={!isAvailableRegisterButton}>Register</Button>
+    </form>
   );
 }
