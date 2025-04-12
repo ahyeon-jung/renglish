@@ -2,28 +2,22 @@ import {
   Body,
   Controller,
   Get,
-  Param,
   Post,
-  Put,
   Request,
   UseGuards,
   Req,
   Res,
 } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse, ApiBody, ApiParam } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger';
 
 import { AuthService } from './auth.service';
 import { CreateUserDto } from '../user/dto/create-user.dto';
 import { LoginDto } from './dto/login.dto';
-import { ChangePasswordDto } from './dto/update-auth.dto';
-import { AccessTokenGuard } from './guards/access-token.guard';
 import { AuthGuard } from '@nestjs/passport';
-import { TAG } from 'src/common/constants/tag';
-import { UpdateUserDto } from 'src/user/dto/update-user.dto';
-import { User } from 'src/user/entities/user.entity';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { UserService } from 'src/user/user.service';
 import { Response } from 'express';
+import { ConfigService } from '@nestjs/config';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -31,6 +25,7 @@ export class AuthController {
   constructor(
     private readonly authService: AuthService,
     private readonly userService: UserService,
+    private readonly configService: ConfigService,
   ) {}
 
   @Post('register')
@@ -77,7 +72,8 @@ export class AuthController {
         email: user.email,
       });
 
-      const redirectUrl = new URL('http://localhost:3000/auth/callback');
+      const redirectUrl = new URL(this.configService.get('CLIENT_URL'));
+      redirectUrl.pathname = '/auth/callback';
       redirectUrl.searchParams.set('accessToken', accessToken);
       redirectUrl.searchParams.set('refreshToken', refreshToken);
 
@@ -86,12 +82,14 @@ export class AuthController {
 
     // 이미 존재하는 이메일의 경우 회원가입 불가능
     if (user.email === email && user.provider !== 'kakao') {
-      const redirectUrl = new URL('http://localhost:3000/auth/blocked');
+      const redirectUrl = new URL(this.configService.get('CLIENT_URL'));
+      redirectUrl.pathname = '/auth/blocked';
 
       return res.redirect(redirectUrl.toString());
     }
 
-    const registerRedirect = new URL('http://localhost:3000/auth/register/social');
+    const registerRedirect = new URL(this.configService.get('CLIENT_URL'));
+    registerRedirect.pathname = '/auth/register/social';
     registerRedirect.searchParams.set('email', email);
     registerRedirect.searchParams.set('provider', 'kakao');
     registerRedirect.searchParams.set('providerId', providerId);
