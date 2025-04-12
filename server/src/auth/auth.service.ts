@@ -110,7 +110,7 @@ export class AuthService {
     if (!user) {
       throw new UnauthorizedException(`${email} not found`);
     }
-    
+
     const isPasswordValid = await this.encryptionService.comparePassword(password, user.password);
     if (!isPasswordValid) {
       throw new UnauthorizedException('이메일 또는 비밀번호가 일치하지 않습니다.');
@@ -179,17 +179,19 @@ export class AuthService {
   }
 
   async signupSocial(createUserDto: CreateUserDto) {
-    const user = await this.userService.findUserByEmail(createUserDto.email);
+    const {email, provider, nickname} = createUserDto;
+    
+    const user = await this.userService.findUserByEmail(email);
     if (!user) {
-      throw new NotFoundException(`User with Email ${createUserDto.email} not found`);
+      throw new NotFoundException(`User with Email ${email} not found`);
     }
 
     const password = Math.random().toString(36).slice(-8);
     const newUser = await this.userService.create({
-      provider: createUserDto.provider,
-      email: createUserDto.email,
+      provider: provider,
+      email: email,
       password: password,
-      nickname: createUserDto.nickname,
+      nickname: nickname,
     });
 
     return this.login({ email: newUser.email, password });
@@ -197,6 +199,11 @@ export class AuthService {
 
   async passwordReset(passwordResetDto: PasswordResetDto) {
     const { email, password } = passwordResetDto;
+
+    const redisStatus = await this.cacheManager.get(email);
+    if (redisStatus !== this.configService.get('EMAIL_VERIFICATION_PASS')) {
+      throw new NotFoundException('not found verification email');
+    }
 
     const user = await this.userService.findUserByEmail(email);
     if (!user) {

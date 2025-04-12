@@ -144,6 +144,7 @@ export default function EmailRegisterForm() {
           <Field.Label>Password</Field.Label>
           <Field.Input
             name="password"
+            type="password"
             placeholder="ex. 123456"
             value={registerBody.password}
             onChange={handleRegisterBodyChange}
@@ -152,6 +153,7 @@ export default function EmailRegisterForm() {
         <Field>
           <Field.Label>PasswordConfirm</Field.Label>
           <Field.Input
+            type="password"
             placeholder="ex. 123456"
             value={passwordConfirm}
             onChange={handlePasswordConfirmChange}

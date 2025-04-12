@@ -20,6 +20,7 @@ export const PATHS = {
     LOGIN: '/auth/login',
     REGISTER: '/auth/register',
     LOGOUT: '/auth/logout',
+    RESET_PASSWORD: '/auth/reset-password',
   },
   MOVIE: {
     LIST: '/movies',
