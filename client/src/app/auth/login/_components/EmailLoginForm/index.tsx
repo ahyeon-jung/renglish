@@ -12,7 +12,7 @@ import { useState } from 'react';
 
 const INITIAL_LOGIN_BODY = { email: '', password: '', rememberMe: false };
 
-export default function LoginForm() {
+export default function EmailLoginForm() {
   const router = useRouter();
   const [loginBody, setLoginBody] = useState(INITIAL_LOGIN_BODY);
 

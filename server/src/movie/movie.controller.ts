@@ -1,7 +1,16 @@
 import { Controller, Get, Post, Body, Param, Delete, Query, Put, UseGuards } from '@nestjs/common';
 import { MovieService } from './movie.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
-import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody, ApiQuery, ApiOkResponse, getSchemaPath } from '@nestjs/swagger';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiParam,
+  ApiBody,
+  ApiQuery,
+  ApiOkResponse,
+  getSchemaPath,
+} from '@nestjs/swagger';
 import { Movie } from './entities/movie.entity';
 import { UpdateMovieImageDto } from './dto/update-movie.dto';
 import { TAG } from 'src/common/constants/tag';

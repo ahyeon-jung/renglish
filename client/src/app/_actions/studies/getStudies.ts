@@ -21,7 +21,7 @@ export default async function getStudiesAction({
     }),
   );
 
-  const response = await api.studyControllerFindAllRaw({offset, limit, status});
+  const response = await api.studyControllerFindAllRaw({ offset, limit, status });
 
   const data = await response.raw?.json?.();
 

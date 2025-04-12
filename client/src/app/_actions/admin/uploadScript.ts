@@ -14,9 +14,7 @@ export default async function uploadScriptAction({
   speakers,
   dialogues,
 }: UploadScriptActionProps) {
-  const {
-    data,
-  } = await addMovieAction(movie);
+  const { data } = await addMovieAction(movie);
 
   const movieId = data?.id;
   if (!movieId) throw new Error('Failed to create movie');

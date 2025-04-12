@@ -73,7 +73,14 @@ export class SceneService {
   async findSceneById(sceneId: string, userId?: string): Promise<FilteredScene> {
     const scene = await this.sceneRepository.findOne({
       where: { id: sceneId },
-      relations: ['speakers', 'dialogues', 'dialogues.speaker', 'study', 'study.participants', 'expressions'],
+      relations: [
+        'speakers',
+        'dialogues',
+        'dialogues.speaker',
+        'study',
+        'study.participants',
+        'expressions',
+      ],
       order: {
         dialogues: {
           order: 'ASC',

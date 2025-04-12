@@ -13,23 +13,21 @@ import { usePathname } from 'next/navigation';
 type NavProps = { withAuth: boolean };
 
 const DEFAULT_NAV_OPTIONS = [
-  { label: 'home', path: PATHS.HOME },
-  { label: 'introduce', path: PATHS.NOTICES.INTRODUCE },
-  { label: 'member guide', path: PATHS.NOTICES.MEMBER },
-  { label: 'assignment guide', path: PATHS.NOTICES.ASSIGNMENT },
-  { label: 'how to install', path: PATHS.NOTICES.INSTALL },
-  { label: 'movies', path: PATHS.MOVIE.LIST },
-  { label: 'studies', path: PATHS.STUDIES.LIST },
+  { label: 'Home', path: PATHS.HOME },
+  { label: 'Introduce', path: PATHS.NOTICES.INTRODUCE },
+  { label: 'Notices', path: PATHS.NOTICES.LIST },
+  { label: 'Movies', path: PATHS.MOVIE.LIST },
+  { label: 'Studies', path: PATHS.STUDIES.LIST },
 ];
 
 const WITHOUT_AUTH_NAV_OPTIONS = [
-  { label: 'login', path: PATHS.AUTH.LOGIN },
-  { label: 'register', path: PATHS.AUTH.REGISTER },
+  { label: 'Login', path: PATHS.AUTH.LOGIN },
+  { label: 'Register', path: PATHS.AUTH.REGISTER },
 ];
 
 const WITH_AUTH_NAV_OPTIONS = [
-  { label: 'profile', path: PATHS.MY.PROFILE },
-  { label: 'logout', path: PATHS.AUTH.LOGOUT },
+  { label: 'Profile', path: PATHS.MY.PROFILE },
+  { label: 'Logout', path: PATHS.AUTH.LOGOUT },
 ];
 
 export default function Nav({ withAuth }: NavProps) {
@@ -59,6 +57,7 @@ export default function Nav({ withAuth }: NavProps) {
               {DEFAULT_NAV_OPTIONS.map(({ label, path }) => (
                 <NavItem key={path} path={path} label={label} />
               ))}
+              <div className="bg-gray-400 h-[0.5px] w-full" />
               {(withAuth ? WITH_AUTH_NAV_OPTIONS : WITHOUT_AUTH_NAV_OPTIONS).map(
                 ({ label, path }) => (
                   <NavItem key={path} path={path} label={label} />

@@ -13,8 +13,8 @@ export default async function getMovie(movieId: string): Promise<ActionResponse<
     }),
   );
 
-  const movie = await api.movieControllerFindOne({movieId})
-  
+  const movie = await api.movieControllerFindOne({ movieId });
+
   return {
     status: 200,
     success: true,

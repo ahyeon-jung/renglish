@@ -1,6 +1,13 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { UserService } from './user.service';
-import { ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags, ApiOkResponse } from '@nestjs/swagger';
+import {
+  ApiOperation,
+  ApiParam,
+  ApiQuery,
+  ApiResponse,
+  ApiTags,
+  ApiOkResponse,
+} from '@nestjs/swagger';
 import { PaginationResponse } from 'src/common/utils/pagination.util';
 import { ExcludedPasswordUser } from './types/excluded-password-user';
 import { PublicUserDto } from './dto/public-user.dto';

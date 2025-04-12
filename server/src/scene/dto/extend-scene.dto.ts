@@ -1,5 +1,3 @@
-import { Scene } from "../entities/scene.entity";
+import { Scene } from '../entities/scene.entity';
 
-export class ExtendedSceneDto extends Scene{
-
-}
+export class ExtendedSceneDto extends Scene {}
