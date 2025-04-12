@@ -6,9 +6,7 @@ import {
   withoutAuthRouteMiddleware,
 } from './middlewares/auth';
 
-import { ENV } from './constants/env';
 import { PATHS } from './constants/path';
-import updateVisitorCount from './app/_actions/statics/updateVisitorCount';
 
 type MiddlewareFunction = (request: NextRequest) => Promise<Response> | Response;
 
@@ -28,24 +26,9 @@ const pageRoutesMap: Record<string, MiddlewareFunction> = {
 
 export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const response = NextResponse.next();
 
   if (request.nextUrl.pathname.startsWith('/api/cookies/refresh')) {
     return NextResponse.next();
-  }
-
-  if (ENV.IS_PRODUCTION) {
-    let visitorId = request.cookies.get('visitorId')?.value;
-
-    if (!visitorId) {
-      visitorId = crypto.randomUUID();
-      response.cookies.set('visitorId', visitorId, {
-        httpOnly: true,
-        maxAge: 60 * 30,
-      });
-
-      await updateVisitorCount();
-    }
   }
 
   if (pathname.startsWith(PATHS.ADMIN.HOME)) {
