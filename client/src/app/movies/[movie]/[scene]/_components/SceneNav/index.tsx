@@ -34,7 +34,9 @@ export default function SceneNav({ movieId, sceneId }: SceneNav) {
 
   return (
     <>
-      <div onClick={openSceneNav}>more</div>
+      <div className="p-2 rounded-2xl cursor-pointer hover:bg-gray-100" onClick={openSceneNav}>
+        more
+      </div>
       {isOpenSceneNav &&
         createPortal(
           <Dialog isOpen={isOpenSceneNav} onClose={closeSceneNav} isSub>

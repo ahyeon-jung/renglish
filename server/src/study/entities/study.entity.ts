@@ -1,4 +1,4 @@
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne } from 'typeorm';
 
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { BaseEntity } from 'src/common/entities/base.entity';
@@ -22,6 +22,7 @@ export class Study extends BaseEntity {
 
   @ManyToOne(() => Scene, (scene) => scene.study)
   @ApiProperty({ type: Scene })
+  @JoinColumn() 
   scene: Scene;
 
   @Transform(({ value }) => value ?? [], { toPlainOnly: true })

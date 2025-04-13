@@ -6,7 +6,7 @@ import Text from '@/components/Text';
 import clsx from 'clsx';
 import { useState } from 'react';
 
-type DialogListItem = {
+export type DialogListItemProps = {
   isBackground?: boolean;
   style?: React.CSSProperties;
   clickedText?: string;
@@ -19,7 +19,7 @@ export default function DialogListItem({
   style,
   clickedText,
   children,
-}: DialogListItem) {
+}: DialogListItemProps) {
   const [isClicked, setIsClickeded] = useState(false);
 
   const toggleIsClickeded = () => {
