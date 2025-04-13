@@ -11,6 +11,7 @@ import { SearchParams } from 'src/common/dto/search-params.dto';
 import { UpdateSceneDto } from './dto/update-scene.dto';
 import { StudyService } from 'src/study/study.service';
 import { FilteredScene } from './types/filtered-scene';
+import { CreateStudyDto } from 'src/study/dto/create-study.dto';
 
 @Injectable()
 export class SceneService {
@@ -80,6 +81,7 @@ export class SceneService {
         'dialogues.speaker',
         'study',
         'study.participants',
+        'study.applicants',
         'expressions',
       ],
       order: {
@@ -96,14 +98,29 @@ export class SceneService {
       ? scene.study?.participants?.some((user) => user.id === userId)
       : false;
 
+    const isApplicant = userId
+      ? scene.study?.applicants?.some((user) => user.id === userId)
+      : false;
+
     return {
       id: scene.id,
       title: scene.title,
-      audioUrl: isParticipant ? scene.audioUrl : null,
+      audioUrl: isParticipant ? scene.audioUrl : isApplicant ? scene.audioUrl : null,
       speakers: scene.speakers,
       dialogues: scene.dialogues,
       expressions: scene.expressions,
     };
+  }
+
+  async createNewStudy(sceneId: string, createStudyDto: CreateStudyDto): Promise<Scene> {
+    const scene = await this.findOneEntity(sceneId);
+    const study = await this.studyService.create(sceneId, createStudyDto);
+
+    scene.study = study;
+
+    await this.sceneRepository.save(scene);
+
+    return scene;
   }
 
   async addStudy({ sceneId, studyId }: { sceneId: string; studyId: string }): Promise<Scene> {

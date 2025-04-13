@@ -58,7 +58,7 @@ export class SceneController {
   @Post('/:sceneId/study')
   @UseGuards(AdminTokenGuard)
   @ApiOperation({
-    summary: `스터디 생성하기  ${TAG.ADMIN_REQUIRED}`,
+    summary: `새로운 스터디 생성하기  ${TAG.ADMIN_REQUIRED}`,
     description: '새로운 스터디를 생성합니다.',
   })
   @ApiParam({
@@ -78,8 +78,8 @@ export class SceneController {
   @Post('/:sceneId/study/:studyId')
   @UseGuards(AdminTokenGuard)
   @ApiOperation({
-    summary: `장면에 스터디 추가하기  ${TAG.ADMIN_REQUIRED}`,
-    description: '장면에 스터디 추가하기',
+    summary: `장면에 기존 스터디 추가  ${TAG.ADMIN_REQUIRED}`,
+    description: '장면에 기존의 스터디를 추가합니다.',
   })
   @ApiParam({
     name: 'sceneId',
