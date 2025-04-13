@@ -1,37 +1,34 @@
 'use server';
 
 import { ENV } from '@/constants/env';
-import { Scene } from '@/types/scene';
 import { cookies } from 'next/headers';
-import { fetchAPI } from '@/libs/api';
-
-type AddDialogueActionBody = {
-  english_script: string;
-  korean_script: string;
-  order: number;
-};
+import { Configuration } from '@/services/runtime';
+import { CreateDialogueDto, DialoguesApi } from '@/services';
 
 export default async function addDialogueAction(
   sceneId: string,
   speakerId: string,
-  addDialogueActionBody: AddDialogueActionBody,
+  addDialogueActionBody: CreateDialogueDto,
 ) {
   const cookieStore = await cookies();
   const token = cookieStore.get(ENV.COOKIE_ACCESS_TOKEN_KEY)?.value;
 
-  const response = await fetchAPI<Scene>(`/dialogues/${sceneId}/${speakerId}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(addDialogueActionBody),
+  const api = new DialoguesApi(
+    new Configuration({
+      basePath: ENV.API_BASE_URL,
+      accessToken: token ?? '',
+    }),
+  );
+  await api.dialogueControllerCreateDialogue({
+    sceneId: sceneId,
+    speakerId: speakerId,
+    createDialogueDto: addDialogueActionBody,
   });
 
   return {
     status: 200,
     success: true,
     message: 'Upload Scene successfully',
-    data: response.data,
+    data: null,
   };
 }

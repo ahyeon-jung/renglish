@@ -6,11 +6,13 @@ import { Scene } from './entities/scene.entity';
 import { DeleteResult, Like, Repository } from 'typeorm';
 import { Movie } from 'src/movie/entities/movie.entity';
 import { MovieService } from 'src/movie/movie.service';
-import { findAllWithPagination, PaginationResponse } from 'src/common/utils/pagination.util';
+import { findAllWithPagination} from 'src/common/utils/pagination.util';
 import { SearchParams } from 'src/common/dto/search-params.dto';
 import { UpdateSceneDto } from './dto/update-scene.dto';
 import { StudyService } from 'src/study/study.service';
 import { FilteredScene } from './types/filtered-scene';
+import { CreateStudyDto } from 'src/study/dto/create-study.dto';
+import { PaginationSceneResponseDto } from './dto/pagination-scene.dto';
 
 @Injectable()
 export class SceneService {
@@ -47,14 +49,14 @@ export class SceneService {
     return this.sceneRepository.delete(scene);
   }
 
-  async findAllScene(params: SearchParams): Promise<PaginationResponse<Scene>> {
+  async findAllScene(params: SearchParams): Promise<PaginationSceneResponseDto> {
     const { keyword, offset, limit } = params;
 
     const whereCondition = keyword
       ? [{ title: Like(`%${keyword}%`) }, { description: Like(`%${keyword}%`) }]
       : {};
 
-    const data = await findAllWithPagination(this.sceneRepository, whereCondition, [], {
+    const data = await findAllWithPagination(this.sceneRepository, whereCondition, ['speakers'], {
       offset,
       limit,
     });
@@ -80,6 +82,7 @@ export class SceneService {
         'dialogues.speaker',
         'study',
         'study.participants',
+        'study.applicants',
         'expressions',
       ],
       order: {
@@ -96,14 +99,29 @@ export class SceneService {
       ? scene.study?.participants?.some((user) => user.id === userId)
       : false;
 
+    const isApplicant = userId
+      ? scene.study?.applicants?.some((user) => user.id === userId)
+      : false;
+
     return {
       id: scene.id,
       title: scene.title,
-      audioUrl: isParticipant ? scene.audioUrl : null,
+      audioUrl: isParticipant ? scene.audioUrl : isApplicant ? scene.audioUrl : null,
       speakers: scene.speakers,
       dialogues: scene.dialogues,
       expressions: scene.expressions,
     };
+  }
+
+  async createNewStudy(sceneId: string, createStudyDto: CreateStudyDto): Promise<Scene> {
+    const scene = await this.findOneEntity(sceneId);
+    const study = await this.studyService.create(sceneId, createStudyDto);
+
+    scene.study = study;
+
+    await this.sceneRepository.save(scene);
+
+    return scene;
   }
 
   async addStudy({ sceneId, studyId }: { sceneId: string; studyId: string }): Promise<Scene> {

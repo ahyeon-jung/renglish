@@ -25,7 +25,7 @@ export class StudyService {
     private userRepository: Repository<User>,
   ) {}
 
-  async create(sceneId: string, createStudyDto: CreateStudyDto): Promise<FilteredStudy> {
+  async create(sceneId: string, createStudyDto: CreateStudyDto): Promise<Study> {
     const scene = await this.sceneRepository.findOne({
       where: { id: sceneId },
       relations: ['movie'],
@@ -39,20 +39,7 @@ export class StudyService {
       scene,
     });
 
-    const saved = await this.studyRepository.save(study);
-
-    return {
-      id: saved.id,
-      title: saved.title,
-      description: saved.description,
-      studiedAt: saved.studiedAt,
-      scene: {
-        id: scene.id,
-        movieImageUrl: scene.movie?.imageUrl,
-      },
-      createdAt: saved.createdAt,
-      updatedAt: saved.updatedAt,
-    };
+    return  await this.studyRepository.save(study);    
   }
 
   async findAll(

@@ -2,7 +2,6 @@ import { FunnelContext, FunnelContextType } from '@/hooks/useFunnel';
 import {
   MOVIE_CATEGORY,
   MOVIE_CATEGORY_OPTIONS,
-  MovieCategoryType,
 } from '@/constants/movie-category';
 import { SCRIPT_ADD_STEP, ScriptAddStepType } from '../../_constants/step';
 import { useContext, useState } from 'react';
@@ -10,15 +9,12 @@ import { useContext, useState } from 'react';
 import Field from '@/components/Field';
 import { ScriptAddBodyType } from '../../page';
 import StepFormContainer from '../StepFormContainer';
+import { CreateMovieDto } from '@/services';
+import addMovieAction from '@/app/_actions/movies/addMovie';
 
-export type ScriptAddMovieBodyType = {
-  title: string;
-  category: MovieCategoryType;
-  imageUrl: string;
-  description: string;
-};
+export type ScriptAddMovieBodyType = string
 
-export const INITIAL_SCRIPT_ADD_MOVIE_BODY: ScriptAddMovieBodyType = {
+export const INITIAL_SCRIPT_ADD_MOVIE_BODY: CreateMovieDto = {
   title: '',
   category: MOVIE_CATEGORY.DRAMA,
   imageUrl: '',
@@ -26,28 +22,30 @@ export const INITIAL_SCRIPT_ADD_MOVIE_BODY: ScriptAddMovieBodyType = {
 };
 
 export default function Movie() {
-  const { data, setStep, setData } = useContext(FunnelContext) as FunnelContextType<
+  const { setStep, setData } = useContext(FunnelContext) as FunnelContextType<
     ScriptAddStepType,
     ScriptAddBodyType
   >;
-  const [movieInfoBody, setMovieInfoBody] = useState(data.movie);
+  const [movieInfoBody, setMovieInfoBody] = useState<CreateMovieDto>(INITIAL_SCRIPT_ADD_MOVIE_BODY);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setMovieInfoBody((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleNextClick = () => {
-    setData((prev) => ({ ...prev, movie: movieInfoBody }));
+  const handleNextClick = async () => {
+    setData((prev) => ({ ...prev, movie: '' }));
+    await addMovieAction(movieInfoBody);
     setStep(SCRIPT_ADD_STEP.SCENE);
   };
 
   const isAvailableNextButton =
     movieInfoBody.title && movieInfoBody.imageUrl && movieInfoBody.description;
 
+
+
   return (
     <StepFormContainer
-      header="Movie Information"
       onNext={handleNextClick}
       disabled={!isAvailableNextButton}
     >

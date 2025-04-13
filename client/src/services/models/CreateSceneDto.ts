@@ -26,11 +26,11 @@ export interface CreateSceneDto {
      */
     title: string;
     /**
-     * 스터디 진행 날짜
-     * @type {Date}
+     * 장면의 오디오 URL
+     * @type {string}
      * @memberof CreateSceneDto
      */
-    studiedAt: Date;
+    audioUrl: string;
     /**
      * Scene의 설명
      * @type {string}
@@ -44,7 +44,7 @@ export interface CreateSceneDto {
  */
 export function instanceOfCreateSceneDto(value: object): value is CreateSceneDto {
     if (!('title' in value) || value['title'] === undefined) return false;
-    if (!('studiedAt' in value) || value['studiedAt'] === undefined) return false;
+    if (!('audioUrl' in value) || value['audioUrl'] === undefined) return false;
     if (!('description' in value) || value['description'] === undefined) return false;
     return true;
 }
@@ -60,7 +60,7 @@ export function CreateSceneDtoFromJSONTyped(json: any, ignoreDiscriminator: bool
     return {
         
         'title': json['title'],
-        'studiedAt': (new Date(json['studiedAt'])),
+        'audioUrl': json['audioUrl'],
         'description': json['description'],
     };
 }
@@ -77,7 +77,7 @@ export function CreateSceneDtoToJSONTyped(value?: CreateSceneDto | null, ignoreD
     return {
         
         'title': value['title'],
-        'studiedAt': ((value['studiedAt']).toISOString()),
+        'audioUrl': value['audioUrl'],
         'description': value['description'],
     };
 }

@@ -1,34 +1,36 @@
 import Button from '@/components/Button';
-import StepHeader from '../StepHeader';
 import StepIndicator from '../StepIndicator';
 
 type StepFormContainer = {
-  header: string;
   onNext: () => void;
   disabled?: boolean;
 } & React.PropsWithChildren &
   React.DetailedHTMLProps<React.FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>;
 
 export default function StepFormContainer({
-  header,
   children,
   onNext,
   disabled = false,
+  onSubmit,
   ...props
 }: StepFormContainer) {
-  const handleClickSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleClickSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onNext();
+    try {
+      onSubmit?.(e);
+      onNext();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <div className="flex flex-col gap-4">
       <StepIndicator />
-      <StepHeader>{header}</StepHeader>
       <form className="flex flex-col gap-4" onSubmit={handleClickSubmit} {...props}>
         <div className="flex flex-col gap-3">{children}</div>
         <Button type="submit" disabled={disabled}>
-          Next
+          Save and Next
         </Button>
       </form>
     </div>
