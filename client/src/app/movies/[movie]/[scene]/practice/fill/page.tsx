@@ -1,8 +1,7 @@
 import DialogListContainer from '../../_components/DialogListContainer';
-import DialogListItem from '../../_components/DialogListItem';
 import SceneHeader from '../../_components/SceneHeader';
 import getScene from '@/app/_actions/scenes/getScene';
-import { parseText } from '@/utils/content';
+import FillDialogueListItem from './FillDialogueListItem';
 
 export default async function MovieScenePracticeFill({
   params,
@@ -17,17 +16,7 @@ export default async function MovieScenePracticeFill({
     <main className="mt-[var(--header-height)] p-3">
       <SceneHeader title={slug.movie} movieId={slug.movie} sceneId={slug.scene} />
       <DialogListContainer>
-        {scene.dialogues.map((dialogue, index) => {
-          return (
-            <DialogListItem key={index} speaker={dialogue.speaker} isBackground>
-              {parseText(
-                dialogue.englishScript,
-                'text-white hover:text-black border-black border-b',
-              )}
-              {parseText(dialogue.koreanScript)}
-            </DialogListItem>
-          );
-        })}
+        {scene.dialogues.map((dialogue, index) => <FillDialogueListItem key={index} dialogue={dialogue} index={index} speaker={dialogue.speaker} />)}
       </DialogListContainer>
     </main>
   );
