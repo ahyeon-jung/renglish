@@ -17,7 +17,7 @@ export default async function promoteToParticipantAction({
   if (!token) {
     return {
       status: 401,
-      success: true,
+      success: false,
       message: 'No Authorization',
       data: null,
     };

@@ -11,10 +11,18 @@ export class ExpressionService {
   constructor(
     @InjectRepository(Expression)
     private readonly expressionRepository: Repository<Expression>,
-  ) {}
+  ) { }
 
   create(createExpressionDto: CreateExpressionDto): Promise<Expression> {
     return this.expressionRepository.save(createExpressionDto);
+  }
+
+  async findOne(id: string): Promise<Expression> {
+    const expression = await this.expressionRepository.findOne({
+      where: { id },
+    });
+
+    return expression;
   }
 
   async findWeeklyExpressions(): Promise<Expression[]> {
@@ -29,14 +37,19 @@ export class ExpressionService {
     return shuffled.slice(0, 10);
   }
 
-  async findOne(id: string): Promise<Expression> {
-    const expression = await this.expressionRepository.findOne({
-      where: { id },
+  async findExpressionsBySceneId(sceneId: string): Promise<Expression[]> {
+    const expressions = await this.expressionRepository.find({
+      where: {
+        scene: { id: sceneId },
+      },
+      relations: ['scene'],
     });
-    if (!expression) {
-      throw new Error(`Expression with id ${id} not found`);
+
+    if (!expressions || expressions.length === 0) {
+      throw new Error(`No expressions found for sceneId ${sceneId}`);
     }
-    return expression;
+
+    return expressions;
   }
 
   async update(id: string, updateExpressionDto: UpdateExpressionDto): Promise<Expression> {

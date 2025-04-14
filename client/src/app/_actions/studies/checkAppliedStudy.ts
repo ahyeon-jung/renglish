@@ -13,7 +13,7 @@ export default async function checkAppliedStudyAction({ studyId }: CheckAppliedS
   if (!token) {
     return {
       status: 401,
-      success: true,
+      success: false,
       message: 'No Authorization',
       data: null,
     };

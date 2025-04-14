@@ -3,6 +3,7 @@ export const SCRIPT_ADD_STEP = {
   SCENE: 'scene',
   SPEAKERS: 'speakers',
   DIALOGUES: 'dialogues',
+  EXPRESSIONS: 'expressions',
   SUBMIT_CONFIRM: 'submit-confirm',
 } as const;
 

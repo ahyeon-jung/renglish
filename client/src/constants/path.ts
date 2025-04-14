@@ -40,6 +40,7 @@ export const PATHS = {
       },
     },
   },
+  WEEKLY_EXPRESSIONS: '/expressions',
   STUDIES: { LIST: '/studies' },
   NOTICES: {
     LIST: '/notices',
