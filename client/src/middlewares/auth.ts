@@ -37,9 +37,5 @@ export async function withoutAuthRouteMiddleware(request: NextRequest) {
 
 export async function logoutRouteMiddleware() {
   const response = NextResponse.next();
-  console.log('logoutRouteMiddleware');
-  response.cookies.delete(ENV.COOKIE_ACCESS_TOKEN_KEY);
-  response.cookies.delete(ENV.COOKIE_REFRESH_TOKEN_KEY);
-
   return response;
 }
