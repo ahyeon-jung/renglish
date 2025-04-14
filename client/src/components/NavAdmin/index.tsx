@@ -17,12 +17,9 @@ const ADMIN_NAV_OPTIONS = [
 ];
 
 export default function NavAdmin() {
-  const { isAdmin } = useAdminStatus();
   const [isNavAdminOpen, setIsNavAdminOpen] = useState(false);
 
   const toggleNavAdmin = () => setIsNavAdminOpen((prev) => !prev);
-
-  if (!isAdmin) return null;
 
   return (
     <div className="flex flex-col gap-1">

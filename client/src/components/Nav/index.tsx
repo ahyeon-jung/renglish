@@ -10,7 +10,7 @@ import { PATHS } from '@/constants/path';
 import { createPortal } from 'react-dom';
 import { usePathname } from 'next/navigation';
 
-type NavProps = { withAuth: boolean };
+type NavProps = { hasToken: boolean, isAdmin: boolean };
 
 const DEFAULT_NAV_OPTIONS = [
   { label: 'Home', path: PATHS.HOME },
@@ -30,8 +30,9 @@ const WITH_AUTH_NAV_OPTIONS = [
   { label: 'Logout', path: PATHS.AUTH.LOGOUT },
 ];
 
-export default function Nav({ withAuth }: NavProps) {
+export default function Nav({ hasToken, isAdmin }: NavProps) {
   const pathname = usePathname();
+
   const [isOpenNav, setIsOpenNav] = useState(true);
   const [portalRoot, setPortalRoot] = useState<HTMLElement | null>(null);
 
@@ -44,7 +45,7 @@ export default function Nav({ withAuth }: NavProps) {
 
   useEffect(() => {
     closeNav();
-  }, [pathname, withAuth]);
+  }, [pathname]);
 
   return (
     <>
@@ -58,12 +59,12 @@ export default function Nav({ withAuth }: NavProps) {
                 <NavItem key={path} path={path} label={label} />
               ))}
               <div className="bg-gray-400 h-[0.5px] w-full" />
-              {(withAuth ? WITH_AUTH_NAV_OPTIONS : WITHOUT_AUTH_NAV_OPTIONS).map(
+              {(hasToken ? WITH_AUTH_NAV_OPTIONS : WITHOUT_AUTH_NAV_OPTIONS).map(
                 ({ label, path }) => (
                   <NavItem key={path} path={path} label={label} />
                 ),
               )}
-              <NavAdmin />
+              {isAdmin == true && <NavAdmin />}
             </nav>
           </Dialog>,
           portalRoot,
