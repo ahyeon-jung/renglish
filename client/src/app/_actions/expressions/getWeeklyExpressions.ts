@@ -2,18 +2,21 @@
 
 import { ActionResponse } from '@/types/action';
 import { ExpressionType } from '@/types/expression';
-import { fetchAPI } from '@/libs/api';
+import { Configuration, ExpressionApi } from '@/services';
+import { ENV } from '@/constants/env';
 
 export default async function getWeeklyExpressions(): Promise<ActionResponse<ExpressionType[]>> {
-  const url = `/expressions/weekly`;
-  const response = await fetchAPI<ExpressionType[]>(url, {
-    method: 'GET',
-  });
-
+  const api = new ExpressionApi(
+    new Configuration({
+      basePath: ENV.API_BASE_URL,
+      accessToken: '',
+    }),
+  );
+  const response = await api.expressionControllerFindWeeklyExpressions();
   return {
     status: 200,
     success: true,
     message: 'Fetch WeeklyExpressions successfully',
-    data: response.data,
+    data: response,
   };
 }

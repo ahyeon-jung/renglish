@@ -78,8 +78,8 @@ export interface SceneControllerUpdateDialogueRequest {
 export class ScenesApi extends runtime.BaseAPI {
 
     /**
-     * 장면에 스터디 추가하기
-     * 장면에 스터디 추가하기  [ADMIN]
+     * 장면에 기존의 스터디를 추가합니다.
+     * 장면에 기존 스터디 추가  [ADMIN]
      */
     async sceneControllerAddStudyRaw(requestParameters: SceneControllerAddStudyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters['sceneId'] == null) {
@@ -119,8 +119,8 @@ export class ScenesApi extends runtime.BaseAPI {
     }
 
     /**
-     * 장면에 스터디 추가하기
-     * 장면에 스터디 추가하기  [ADMIN]
+     * 장면에 기존의 스터디를 추가합니다.
+     * 장면에 기존 스터디 추가  [ADMIN]
      */
     async sceneControllerAddStudy(requestParameters: SceneControllerAddStudyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.sceneControllerAddStudyRaw(requestParameters, initOverrides);
@@ -128,7 +128,7 @@ export class ScenesApi extends runtime.BaseAPI {
 
     /**
      * 새로운 스터디를 생성합니다.
-     * 스터디 생성하기  [ADMIN]
+     * 새로운 스터디 생성하기  [ADMIN]
      */
     async sceneControllerCreateRaw(requestParameters: SceneControllerCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters['sceneId'] == null) {
@@ -172,7 +172,7 @@ export class ScenesApi extends runtime.BaseAPI {
 
     /**
      * 새로운 스터디를 생성합니다.
-     * 스터디 생성하기  [ADMIN]
+     * 새로운 스터디 생성하기  [ADMIN]
      */
     async sceneControllerCreate(requestParameters: SceneControllerCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.sceneControllerCreateRaw(requestParameters, initOverrides);

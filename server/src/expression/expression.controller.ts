@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Param, Delete, Put, UseGuards } from '@nes
 import { ExpressionService } from './expression.service';
 import { CreateExpressionDto } from './dto/create-expression.dto';
 import { UpdateExpressionDto } from './dto/update-expression.dto';
-import { ApiOperation, ApiParam } from '@nestjs/swagger';
+import { ApiOkResponse, ApiOperation, ApiParam } from '@nestjs/swagger';
 import { TAG } from 'src/common/constants/tag';
 import { AccessTokenGuard } from 'src/auth/guards/access-token.guard';
 import { AdminTokenGuard } from 'src/auth/guards/admin-token.guard';
@@ -11,14 +11,18 @@ import { DeleteResult } from 'typeorm';
 
 @Controller('expressions')
 export class ExpressionController {
-  constructor(private readonly expressionService: ExpressionService) {}
+  constructor(private readonly expressionService: ExpressionService) { }
 
   @Get('/weekly')
   @ApiOperation({
     summary: '이번주 영어 표현 가져오기',
     description: '이번주 영어 표현을 10개 가져옵니다.',
   })
-  findAll(): Promise<Expression[]> {
+  @ApiOkResponse({
+    type: [Expression],
+    description: '이번주 영어 표현 10개',
+  })
+  findWeeklyExpressions(): Promise<Expression[]> {
     return this.expressionService.findWeeklyExpressions();
   }
 
@@ -34,8 +38,11 @@ export class ExpressionController {
     example: '6ef26cb3-746c-4df1-90e0-66805f3f8320',
     type: String,
   })
-  findExpressionBySceneId(@Param('expressionId') expressionId: string): Promise<Expression> {
-    return this.expressionService.findOne(expressionId);
+  @ApiOkResponse({
+    type: [Expression],
+  })
+  findExpressionBySceneId(@Param('sceneId') sceneId: string): Promise<Expression> {
+    return this.expressionService.findOne(sceneId);
   }
 
   @Post('/:sceneId')

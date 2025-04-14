@@ -15,9 +15,10 @@ type NavProps = { hasToken: boolean, isAdmin: boolean };
 const DEFAULT_NAV_OPTIONS = [
   { label: 'Home', path: PATHS.HOME },
   { label: 'Introduce', path: PATHS.NOTICES.INTRODUCE },
-  { label: 'Notices', path: PATHS.NOTICES.LIST },
+  { label: 'Weekly Expressions', path: PATHS.WEEKLY_EXPRESSIONS },
   { label: 'Movies', path: PATHS.MOVIE.LIST },
   { label: 'Studies', path: PATHS.STUDIES.LIST },
+  { label: 'Notices', path: PATHS.NOTICES.LIST },
 ];
 
 const WITHOUT_AUTH_NAV_OPTIONS = [

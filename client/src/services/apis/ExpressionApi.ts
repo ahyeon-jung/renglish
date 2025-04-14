@@ -16,11 +16,14 @@
 import * as runtime from '../runtime';
 import type {
   CreateExpressionDto,
+  Expression,
   UpdateExpressionDto,
 } from '../models/index';
 import {
     CreateExpressionDtoFromJSON,
     CreateExpressionDtoToJSON,
+    ExpressionFromJSON,
+    ExpressionToJSON,
     UpdateExpressionDtoFromJSON,
     UpdateExpressionDtoToJSON,
 } from '../models/index';
@@ -31,7 +34,6 @@ export interface ExpressionControllerCreateRequest {
 }
 
 export interface ExpressionControllerFindExpressionBySceneIdRequest {
-    expressionId: string;
     sceneId: string;
 }
 
@@ -102,52 +104,10 @@ export class ExpressionApi extends runtime.BaseAPI {
     }
 
     /**
-     * 이번주 영어 표현을 10개 가져옵니다.
-     * 이번주 영어 표현 가져오기
-     */
-    async expressionControllerFindAllRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/expressions/weekly`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * 이번주 영어 표현을 10개 가져옵니다.
-     * 이번주 영어 표현 가져오기
-     */
-    async expressionControllerFindAll(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.expressionControllerFindAllRaw(initOverrides);
-    }
-
-    /**
      * 해당 장면의 영어 표현 가져오기
      * 해당 장면의 영어 표현 가져오기 [TOKEN]
      */
-    async expressionControllerFindExpressionBySceneIdRaw(requestParameters: ExpressionControllerFindExpressionBySceneIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters['expressionId'] == null) {
-            throw new runtime.RequiredError(
-                'expressionId',
-                'Required parameter "expressionId" was null or undefined when calling expressionControllerFindExpressionBySceneId().'
-            );
-        }
-
+    async expressionControllerFindExpressionBySceneIdRaw(requestParameters: ExpressionControllerFindExpressionBySceneIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Expression>>> {
         if (requestParameters['sceneId'] == null) {
             throw new runtime.RequiredError(
                 'sceneId',
@@ -168,21 +128,58 @@ export class ExpressionApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/api/expressions/{sceneId}`.replace(`{${"expressionId"}}`, encodeURIComponent(String(requestParameters['expressionId']))).replace(`{${"sceneId"}}`, encodeURIComponent(String(requestParameters['sceneId']))),
+            path: `/api/expressions/{sceneId}`.replace(`{${"sceneId"}}`, encodeURIComponent(String(requestParameters['sceneId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ExpressionFromJSON));
     }
 
     /**
      * 해당 장면의 영어 표현 가져오기
      * 해당 장면의 영어 표현 가져오기 [TOKEN]
      */
-    async expressionControllerFindExpressionBySceneId(requestParameters: ExpressionControllerFindExpressionBySceneIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.expressionControllerFindExpressionBySceneIdRaw(requestParameters, initOverrides);
+    async expressionControllerFindExpressionBySceneId(requestParameters: ExpressionControllerFindExpressionBySceneIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Expression>> {
+        const response = await this.expressionControllerFindExpressionBySceneIdRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * 이번주 영어 표현을 10개 가져옵니다.
+     * 이번주 영어 표현 가져오기
+     */
+    async expressionControllerFindWeeklyExpressionsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Expression>>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/api/expressions/weekly`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ExpressionFromJSON));
+    }
+
+    /**
+     * 이번주 영어 표현을 10개 가져옵니다.
+     * 이번주 영어 표현 가져오기
+     */
+    async expressionControllerFindWeeklyExpressions(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Expression>> {
+        const response = await this.expressionControllerFindWeeklyExpressionsRaw(initOverrides);
+        return await response.value();
     }
 
     /**
