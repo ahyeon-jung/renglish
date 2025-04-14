@@ -41,8 +41,8 @@ export class ExpressionController {
   @ApiOkResponse({
     type: [Expression],
   })
-  findExpressionBySceneId(@Param('sceneId') sceneId: string): Promise<Expression> {
-    return this.expressionService.findOne(sceneId);
+  findExpressionBySceneId(@Param('sceneId') sceneId: string): Promise<Expression[]> {
+    return this.expressionService.findExpressionsBySceneId(sceneId);
   }
 
   @Post('/:sceneId')
