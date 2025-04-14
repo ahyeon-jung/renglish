@@ -16,7 +16,7 @@ export default async function updateNicknameAction(
   if (!token) {
     return {
       status: 401,
-      success: true,
+      success: false,
       message: 'No Authorization',
       data: null,
     };
@@ -35,7 +35,7 @@ export default async function updateNicknameAction(
       updateUserDto: {
         nickname: updateNicknameActionBody.nickname,
       },
-     });
+    });
 
     return {
       status: 200,

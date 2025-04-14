@@ -4,7 +4,6 @@ import { ActionResponse } from '@/types/action';
 import { ENV } from '@/constants/env';
 import { ExpressionType } from '@/types/expression';
 import { cookies } from 'next/headers';
-import { fetchAPI } from '@/libs/api';
 import { ExpressionApi } from '@/services';
 import { Configuration } from '@/services';
 
@@ -17,7 +16,7 @@ export default async function getExpressionsByScene({
   if (!token) {
     return {
       status: 401,
-      success: true,
+      success: false,
       message: 'no authorization',
       data: null,
     };
