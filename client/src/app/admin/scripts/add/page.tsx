@@ -10,6 +10,7 @@ import { Step, useFunnel } from '@/hooks/useFunnel';
 import FileUpload from './_components/FileUpload';
 import clsx from 'clsx';
 import { useState } from 'react';
+import Expressions from './_components/Expressions';
 
 export type ScriptAddBodyType = {
   movieId: string;
@@ -44,6 +45,9 @@ export default function ScriptAdd() {
         </Step>
         <Step currentStep={SCRIPT_ADD_STEP.DIALOGUES}>
           <Dialogues />
+        </Step>
+        <Step currentStep={SCRIPT_ADD_STEP.EXPRESSIONS}>
+          <Expressions />
         </Step>
       </Funnel>
     </main>
