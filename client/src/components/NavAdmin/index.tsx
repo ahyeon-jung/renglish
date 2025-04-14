@@ -5,7 +5,6 @@ import { ChevronDown, ChevronRight } from 'lucide-react';
 import NavItem from '../NavItem';
 import { PATHS } from '@/constants/path';
 import Text from '../Text';
-import useAdminStatus from '@/hooks/useAdminStatus';
 import { useState } from 'react';
 
 const ADMIN_NAV_OPTIONS = [
