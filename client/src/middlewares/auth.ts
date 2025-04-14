@@ -34,8 +34,3 @@ export async function withoutAuthRouteMiddleware(request: NextRequest) {
 
   return NextResponse.next();
 }
-
-export async function logoutRouteMiddleware() {
-  const response = NextResponse.next();
-  return response;
-}

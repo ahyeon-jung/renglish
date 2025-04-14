@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import {
-  logoutRouteMiddleware,
   withAdminRouteMiddleware,
   withAuthRouteMiddleware,
   withoutAuthRouteMiddleware,
@@ -18,7 +17,7 @@ const pageRoutesMap: Record<string, MiddlewareFunction> = {
 
   // Routes that require a token (authenticated user)
   [PATHS.MY.PROFILE]: withAuthRouteMiddleware,
-  [PATHS.AUTH.LOGOUT]: logoutRouteMiddleware,
+  [PATHS.AUTH.LOGOUT]: withAuthRouteMiddleware,
 
   // Admin routes that require admin token
   admin: withAdminRouteMiddleware,
