@@ -13,7 +13,7 @@ const SCENE_OPTIONS = [
   { label: '영어-한글 대본 보기', path: PATHS.MOVIE.SCENE.SCRIPT.DUAL },
   { label: '스피킹 연습하기', path: PATHS.MOVIE.SCENE.PRACTICE.SPEAKING },
   { label: '빈칸 연습하기', path: PATHS.MOVIE.SCENE.PRACTICE.FILL },
-  { label: '작문 연습하기', path: PATHS.MOVIE.SCENE.PRACTICE.WRITING },
+  { label: '작문 연습하기(회원전용)', path: PATHS.MOVIE.SCENE.PRACTICE.WRITING },
   { label: '영어 표현학습하기(회원전용)', path: PATHS.MOVIE.SCENE.PRACTICE.EXPRESSION },
 ];
 

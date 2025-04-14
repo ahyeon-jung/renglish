@@ -10,6 +10,7 @@ const STEP_INDICATOR_OPTIONS = [
   { label: 'Scene', value: SCRIPT_ADD_STEP.SCENE },
   { label: 'Speakers', value: SCRIPT_ADD_STEP.SPEAKERS },
   { label: 'Conversation', value: SCRIPT_ADD_STEP.DIALOGUES },
+  { label: 'Expressions', value: SCRIPT_ADD_STEP.EXPRESSIONS },
 ];
 
 export default function StepIndicator() {

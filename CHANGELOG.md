@@ -2,6 +2,33 @@
 
 All important changes are managed in this document.
 
+## 2.1.2
+
+### Fixed
+
+- Fixed issue where login tokens were disppearing.
+
+## 2.1.1 - 04/12/2025 - 04/13/2025
+
+### Fixed
+
+- Changed creating scripts to saving individually and used codegen
+- Linked `Scene` to `Study` and exposed `audioUrl` based on participants and applicants.
+
+## 2.1.0 - 04/06/2025 - 04/12/2025
+
+### Added
+- Add Auto-login using cookies for token storage
+- Added `audioUrl` field when creating scripts in admin page
+- Added `nickname` field to user entity
+- Added `Study` entyty for maintaing applicants and participats with `User`
+- Change intro page button liked dangun to gather town.
+- Added notice list page and remove install, assignments from `Nav`
+
+### Refactor
+- 가드 전체 적용
+- 코드젠을 통한 서버 API 자동 생성
+
 ## 2.0.2 - 04/06/2025 - 04/06/2025
 
 ### Added

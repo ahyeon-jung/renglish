@@ -16,7 +16,7 @@ export default async function cancelToApplyToStudyAction({
   if (!token) {
     return {
       status: 401,
-      success: true,
+      success: false,
       message: 'No Authorization',
       data: null,
     };
