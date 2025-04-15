@@ -20,86 +20,98 @@ import {
     UserToJSON,
     UserToJSONTyped,
 } from './User';
-import type { ListStudySceneDto } from './ListStudySceneDto';
+import type { StudySceneDto } from './StudySceneDto';
 import {
-    ListStudySceneDtoFromJSON,
-    ListStudySceneDtoFromJSONTyped,
-    ListStudySceneDtoToJSON,
-    ListStudySceneDtoToJSONTyped,
-} from './ListStudySceneDto';
+    StudySceneDtoFromJSON,
+    StudySceneDtoFromJSONTyped,
+    StudySceneDtoToJSON,
+    StudySceneDtoToJSONTyped,
+} from './StudySceneDto';
 
 /**
  * 
  * @export
- * @interface ListStudyDto
+ * @interface StudyDto
  */
-export interface ListStudyDto {
+export interface StudyDto {
     /**
      * 아이디
      * @type {string}
-     * @memberof ListStudyDto
+     * @memberof StudyDto
      */
     id: string;
     /**
      * 생성일
      * @type {Date}
-     * @memberof ListStudyDto
+     * @memberof StudyDto
      */
     createdAt: Date;
     /**
      * 수정일
      * @type {Date}
-     * @memberof ListStudyDto
+     * @memberof StudyDto
      */
     updatedAt: Date;
     /**
      * 스터디 진행 일자
      * @type {Date}
-     * @memberof ListStudyDto
+     * @memberof StudyDto
      */
     studiedAt: Date;
     /**
      * 스터디 제목
      * @type {string}
-     * @memberof ListStudyDto
+     * @memberof StudyDto
      */
     title: string;
     /**
      * 스터디 설명
      * @type {string}
-     * @memberof ListStudyDto
+     * @memberof StudyDto
      */
     description: string;
     /**
-     * 스터디 진행 상황
+     * 스터디 완료 여부
      * @type {boolean}
-     * @memberof ListStudyDto
+     * @memberof StudyDto
      */
     isCompleted: boolean;
     /**
      * 스터디 신청자
      * @type {Array<User>}
-     * @memberof ListStudyDto
+     * @memberof StudyDto
      */
     applicants?: Array<User>;
     /**
      * 스터디 참여자
      * @type {Array<User>}
-     * @memberof ListStudyDto
+     * @memberof StudyDto
      */
     participants?: Array<User>;
     /**
      * 
-     * @type {ListStudySceneDto}
-     * @memberof ListStudyDto
+     * @type {StudySceneDto}
+     * @memberof StudyDto
      */
-    scene: ListStudySceneDto;
+    scene: StudySceneDto;
+    /**
+     * 참여자 수
+     * @type {number}
+     * @memberof StudyDto
+     */
+    participantCount: number;
+    /**
+     * 지원자 수
+     * @type {number}
+     * @memberof StudyDto
+     */
+    applicantCount: number;
 }
 
 /**
- * Check if a given object implements the ListStudyDto interface.
+ * Check if a given object implements the StudyDto interface.
  */
-export function instanceOfListStudyDto(value: object): value is ListStudyDto {
+export function instanceOfStudyDto(value: object): value is StudyDto {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
@@ -108,14 +120,16 @@ export function instanceOfListStudyDto(value: object): value is ListStudyDto {
     if (!('description' in value) || value['description'] === undefined) return false;
     if (!('isCompleted' in value) || value['isCompleted'] === undefined) return false;
     if (!('scene' in value) || value['scene'] === undefined) return false;
+    if (!('participantCount' in value) || value['participantCount'] === undefined) return false;
+    if (!('applicantCount' in value) || value['applicantCount'] === undefined) return false;
     return true;
 }
 
-export function ListStudyDtoFromJSON(json: any): ListStudyDto {
-    return ListStudyDtoFromJSONTyped(json, false);
+export function StudyDtoFromJSON(json: any): StudyDto {
+    return StudyDtoFromJSONTyped(json, false);
 }
 
-export function ListStudyDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListStudyDto {
+export function StudyDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): StudyDto {
     if (json == null) {
         return json;
     }
@@ -130,15 +144,17 @@ export function ListStudyDtoFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'isCompleted': json['isCompleted'],
         'applicants': json['applicants'] == null ? undefined : ((json['applicants'] as Array<any>).map(UserFromJSON)),
         'participants': json['participants'] == null ? undefined : ((json['participants'] as Array<any>).map(UserFromJSON)),
-        'scene': ListStudySceneDtoFromJSON(json['scene']),
+        'scene': StudySceneDtoFromJSON(json['scene']),
+        'participantCount': json['participantCount'],
+        'applicantCount': json['applicantCount'],
     };
 }
 
-export function ListStudyDtoToJSON(json: any): ListStudyDto {
-    return ListStudyDtoToJSONTyped(json, false);
+export function StudyDtoToJSON(json: any): StudyDto {
+    return StudyDtoToJSONTyped(json, false);
 }
 
-export function ListStudyDtoToJSONTyped(value?: ListStudyDto | null, ignoreDiscriminator: boolean = false): any {
+export function StudyDtoToJSONTyped(value?: StudyDto | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -154,7 +170,9 @@ export function ListStudyDtoToJSONTyped(value?: ListStudyDto | null, ignoreDiscr
         'isCompleted': value['isCompleted'],
         'applicants': value['applicants'] == null ? undefined : ((value['applicants'] as Array<any>).map(UserToJSON)),
         'participants': value['participants'] == null ? undefined : ((value['participants'] as Array<any>).map(UserToJSON)),
-        'scene': ListStudySceneDtoToJSON(value['scene']),
+        'scene': StudySceneDtoToJSON(value['scene']),
+        'participantCount': value['participantCount'],
+        'applicantCount': value['applicantCount'],
     };
 }
 

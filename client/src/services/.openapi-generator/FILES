@@ -42,6 +42,8 @@ models/Scene.ts
 models/SendEmailDto.ts
 models/Speaker.ts
 models/Study.ts
+models/StudyDto.ts
+models/StudySceneDto.ts
 models/UpdateDialogueDto.ts
 models/UpdateExpressionDto.ts
 models/UpdateMovieImageDto.ts

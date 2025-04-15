@@ -9,10 +9,12 @@ import updateStudyAction from '@/app/_actions/admin/studies/updateStudy';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import { StudyDto } from '@/services';
+import completeStudyAction from '@/app/_actions/studies/completeStudy';
 
-type InformationProps = StudyType;
+type InformationProps = StudyDto;
 
-export default function Information({ id, title, description, studiedAt }: InformationProps) {
+export default function Information({ id, title, description, studiedAt, isCompleted }: InformationProps) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [updateStudy, setUpdateStudyBody] = useState({
@@ -54,6 +56,15 @@ export default function Information({ id, title, description, studiedAt }: Infor
     }
   };
 
+  const handleCompleteStudyClick = async () => {
+    try {
+      await completeStudyAction(id);
+      router.refresh();
+    } catch {
+      toast.error('Failed to complete study');
+    }
+  };
+
   return (
     <>
       <div onClick={openInformationModal}>
@@ -61,6 +72,9 @@ export default function Information({ id, title, description, studiedAt }: Infor
         <div>{description}</div>
         <div>{formatDate(studiedAt)}</div>
       </div>
+      {isCompleted && (
+        <Button onClick={handleCompleteStudyClick}>스터디 완료로 변경</Button>
+      )}
       {isOpen && (
         <Modal onClose={closeInformationModal}>
           <Modal.Title>Update Scene</Modal.Title>

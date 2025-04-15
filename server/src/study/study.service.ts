@@ -8,7 +8,7 @@ import { User } from 'src/user/entities/user.entity';
 import { Scene } from 'src/scene/entities/scene.entity';
 import { STUDY_STATUS } from './enums/study-status.enum';
 
-import { GetStudyParams } from './dto/get-study.dto';
+import { GetStudyParams, StudyDto } from './dto/get-study.dto';
 import { PaginationParams } from 'src/common/dto/pagination-params.dto';
 import { ExtendedFilteredStudy, FilteredStudy } from './types/filtered-study';
 import { PaginationResponse } from 'src/common/utils/pagination.util';
@@ -88,7 +88,6 @@ export class StudyService {
       .getRawMany();
 
     const data = results.map((row) => {
-      console.log(row)
       const wrapped_applicants = `[${row.applicantInfo}]`;
 
       const applicants = JSON.parse(wrapped_applicants)
@@ -135,7 +134,7 @@ export class StudyService {
     return study;
   }
 
-  async findOne(id: string): Promise<ExtendedFilteredStudy> {
+  async findOne(id: string): Promise<StudyDto> {
     const study = await this.studyRepository.findOne({
       where: { id },
       relations: ['scene', 'participants', 'applicants'],

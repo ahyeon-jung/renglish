@@ -22,8 +22,9 @@ import { Study } from './entities/study.entity';
 import { PaginationResponse } from 'src/common/utils/pagination.util';
 import { ExtendedFilteredStudy } from './types/filtered-study';
 import { DeleteResult } from 'typeorm';
-import { PaginationStudyResponseDto } from './dto/pagination-study.dto';
+import { ListStudyDto, PaginationStudyResponseDto } from './dto/pagination-study.dto';
 import { OptionalTokenGuard } from 'src/auth/guards/optional-token.guard';
+import { StudyDto } from './dto/get-study.dto';
 
 @ApiTags('Study')
 @Controller('studies')
@@ -76,8 +77,8 @@ export class StudyController {
     summary: '스터디 조회하기',
     description: '스터디를 조회합니다.',
   })
-  @ApiOkResponse({ type: () => Study })
-  findOne(@Param('studyId') id: string): Promise<ExtendedFilteredStudy> {
+  @ApiOkResponse({ type: () => StudyDto })
+  findOne(@Param('studyId') id: string): Promise<StudyDto> {
     return this.studyService.findOne(id);
   }
 
