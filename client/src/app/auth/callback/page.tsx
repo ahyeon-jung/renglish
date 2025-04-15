@@ -1,9 +1,16 @@
 'use client';
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 
 export default function AuthCallback() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <AuthCallbackContent />
+    </Suspense>)
+}
+
+function AuthCallbackContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const accessToken = searchParams.get('access-token');
@@ -19,7 +26,7 @@ export default function AuthCallback() {
         router.push('/');
       });
     }
-  }, [accessToken, refreshToken]);
+  }, [router, accessToken, refreshToken]);
   return <div>AuthCallback</div>;
 }
 

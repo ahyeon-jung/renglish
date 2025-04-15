@@ -3,7 +3,6 @@
 import Button from '@/components/Button';
 import Field from '@/components/Field';
 import Modal from '@/components/Modal';
-import { StudyType } from '@/types/study';
 import { formatDate } from '@/utils/format';
 import updateStudyAction from '@/app/_actions/admin/studies/updateStudy';
 import { useRouter } from 'next/navigation';
