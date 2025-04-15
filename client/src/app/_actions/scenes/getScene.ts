@@ -2,23 +2,10 @@
 
 import { ActionResponse } from '@/types/action';
 import { Scene } from '@/types/scene';
-import { Configuration } from '@/services';
-import { ScenesApi } from '@/services';
-import { ENV } from '@/constants/env';
-import { cookies } from 'next/headers';
+import { sceneApi } from '@/libs/api';
 
 export default async function getScene(sceneId: string): Promise<ActionResponse<Scene>> {
-  const cookieStore = await cookies();
-  const token = cookieStore.get(ENV.COOKIE_ACCESS_TOKEN_KEY)?.value;
-
-  const api = new ScenesApi(
-    new Configuration({
-      basePath: ENV.API_BASE_URL,
-      accessToken: token ?? '',
-    }),
-  );
-
-  const scene = await api.sceneControllerFindSceneById({ sceneId });
+  const scene = await sceneApi.sceneControllerFindSceneById({ sceneId });
 
   return {
     status: 200,

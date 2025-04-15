@@ -2,8 +2,8 @@
 
 import { ENV } from '@/constants/env';
 import { cookies } from 'next/headers';
-import { Configuration } from '@/services/runtime';
-import { CreateDialogueDto, DialoguesApi } from '@/services';
+import { CreateDialogueDto } from '@/services';
+import { dialogueApi } from '@/libs/api';
 
 export default async function addDialogueAction(
   sceneId: string,
@@ -12,14 +12,16 @@ export default async function addDialogueAction(
 ) {
   const cookieStore = await cookies();
   const token = cookieStore.get(ENV.COOKIE_ACCESS_TOKEN_KEY)?.value;
+  if (!token) {
+    return {
+      status: 401,
+      success: false,
+      message: 'No Authorization',
+      data: null,
+    };
+  }
 
-  const api = new DialoguesApi(
-    new Configuration({
-      basePath: ENV.API_BASE_URL,
-      accessToken: token ?? '',
-    }),
-  );
-  await api.dialogueControllerCreateDialogue({
+  await dialogueApi.dialogueControllerCreateDialogue({
     sceneId: sceneId,
     speakerId: speakerId,
     createDialogueDto: addDialogueActionBody,

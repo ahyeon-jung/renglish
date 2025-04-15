@@ -2,8 +2,8 @@
 
 import { ENV } from '@/constants/env';
 import { cookies } from 'next/headers';
-import { Configuration, CreateSpeakerDto } from '@/services';
-import { SpeakersApi } from '@/services';
+import { CreateSpeakerDto } from '@/services';
+import { speakerApi } from '@/libs/api';
 
 export default async function addSpeakerAction(
   sceneId: string,
@@ -11,17 +11,18 @@ export default async function addSpeakerAction(
 ) {
   const cookieStore = await cookies();
   const token = cookieStore.get(ENV.COOKIE_ACCESS_TOKEN_KEY)?.value;
+  if (!token) {
+    return {
+      status: 401,
+      success: false,
+      message: 'No Authorization',
+      data: null,
+    };
+  }
 
-  
-  const api = new SpeakersApi(
-    new Configuration({
-      basePath: ENV.API_BASE_URL,
-      accessToken: token ?? '',
-    }),
-  );
-  const response = await api.speakerControllerCreateSpeaker({
+  const response = await speakerApi.speakerControllerCreateSpeaker({
     sceneId: sceneId,
-    createSpeakerDto:  addSpeakerActionBody,
+    createSpeakerDto: addSpeakerActionBody,
   });
 
   return {

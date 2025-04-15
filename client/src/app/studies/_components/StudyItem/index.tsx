@@ -2,12 +2,12 @@ import ApplyToStudyModal from '../ApplyToStudyModal';
 import Image from 'next/image';
 import clsx from 'clsx';
 import { formatDate } from '@/utils/format';
-import { ListStudyDto } from '@/services';
+import { ListStudyDto, StudyDto } from '@/services';
 import StudyMember from '../StudyMember';
 import Link from 'next/link';
 import { PATHS } from '@/constants/path';
 
-type StudyItemProps = ListStudyDto & { nonApplicantsButton?: boolean };
+type StudyItemProps = ListStudyDto & { nonApplicantsButton?: boolean } | StudyDto & { nonApplicantsButton?: boolean };
 
 export default function StudyItem({ nonApplicantsButton = false, ...study }: StudyItemProps) {
   return (

@@ -1,18 +1,9 @@
 'use server';
 
-import { Configuration, StudyApi } from '@/services';
-import { ENV } from '@/constants/env';
+import { studyApi } from '@/libs/api';
 
 export default async function getStudyAction(studyId: string) {
-  const api = new StudyApi(
-    new Configuration({
-      basePath: ENV.API_BASE_URL,
-      accessToken: '',
-    }),
-  );
-
-  const data = await api.studyControllerFindOne({ studyId });
-
+  const data = await studyApi.studyControllerFindOne({ studyId });
 
   return {
     status: 200,

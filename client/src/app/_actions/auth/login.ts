@@ -5,7 +5,7 @@ import { handleError } from '@/utils/error';
 import { ActionResponse } from '@/types/action';
 import { ENV } from '@/constants/env';
 import { cookies } from 'next/headers';
-import { AuthApi, Configuration } from '@/services';
+import { authApi } from '@/libs/api';
 
 type LoginAction = { email: string; password: string; rememberMe: boolean };
 
@@ -18,15 +18,8 @@ export default async function loginAction({
     return { status: 200, success: false, message: 'no required data', data: null };
   }
 
-  const api = new AuthApi(
-    new Configuration({
-      basePath: ENV.API_BASE_URL,
-      accessToken: '',
-    }),
-  );
-
   try {
-    const response = await api.authControllerLogin({
+    const response = await authApi.authControllerLogin({
       loginDto: { email, password }
     });
 

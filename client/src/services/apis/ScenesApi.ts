@@ -67,7 +67,7 @@ export interface SceneControllerFindSceneByIdRequest {
     sceneId: string;
 }
 
-export interface SceneControllerUpdateDialogueRequest {
+export interface SceneControllerUpdateSceneRequest {
     sceneId: string;
     updateSceneDto: UpdateSceneDto;
 }
@@ -423,18 +423,18 @@ export class ScenesApi extends runtime.BaseAPI {
      * 장면 정보를 변경합니다.
      * 장면 정보 변경하기
      */
-    async sceneControllerUpdateDialogueRaw(requestParameters: SceneControllerUpdateDialogueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async sceneControllerUpdateSceneRaw(requestParameters: SceneControllerUpdateSceneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters['sceneId'] == null) {
             throw new runtime.RequiredError(
                 'sceneId',
-                'Required parameter "sceneId" was null or undefined when calling sceneControllerUpdateDialogue().'
+                'Required parameter "sceneId" was null or undefined when calling sceneControllerUpdateScene().'
             );
         }
 
         if (requestParameters['updateSceneDto'] == null) {
             throw new runtime.RequiredError(
                 'updateSceneDto',
-                'Required parameter "updateSceneDto" was null or undefined when calling sceneControllerUpdateDialogue().'
+                'Required parameter "updateSceneDto" was null or undefined when calling sceneControllerUpdateScene().'
             );
         }
 
@@ -467,8 +467,8 @@ export class ScenesApi extends runtime.BaseAPI {
      * 장면 정보를 변경합니다.
      * 장면 정보 변경하기
      */
-    async sceneControllerUpdateDialogue(requestParameters: SceneControllerUpdateDialogueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.sceneControllerUpdateDialogueRaw(requestParameters, initOverrides);
+    async sceneControllerUpdateScene(requestParameters: SceneControllerUpdateSceneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.sceneControllerUpdateSceneRaw(requestParameters, initOverrides);
     }
 
 }

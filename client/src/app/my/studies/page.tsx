@@ -13,12 +13,12 @@ export default async function Studies() {
       <SubHeaderContainer title="My Study List" />
       <div className="mt-[45px]">
         <ListContainer title="현재 지원한 스터디">
-          {appliedStudies.map((study) => (
+          {appliedStudies?.map((study) => (
             <StudyItem key={study.id} {...study} />
           ))}
         </ListContainer>
         <ListContainer title="참여한 스터디">
-          {participatedStudies.map((study) => (
+          {participatedStudies?.map((study) => (
             <StudyItem key={study.id} {...study} nonApplicantsButton />
           ))}
         </ListContainer>

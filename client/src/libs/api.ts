@@ -1,10 +1,10 @@
-'use server';
-
 import { APIResponse } from '@/types/api';
 import { ENV } from '@/constants/env';
 import { FetchError } from '@/utils/error';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
+import { AuthApi, Configuration, DialoguesApi, EmailVerificationApi, ExpressionApi, MoviesApi, MyApi, ScenesApi, SpeakersApi, StudyApi, WritingsApi } from '@/services';
+import { fetchWithAutoRefresh } from './fetchWithRefresh';
 
 export async function fetchAPI<T = void>(endpoint: string, options?: RequestInit, isRetry = false) {
   const baseURL = ENV.API_BASE_URL;
@@ -63,3 +63,19 @@ export async function fetchAPI<T = void>(endpoint: string, options?: RequestInit
 
   return res.json() as Promise<APIResponse<T>>;
 }
+
+const config = new Configuration({
+  basePath: ENV.API_BASE_URL,
+  fetchApi: fetchWithAutoRefresh,
+});
+
+export const myApi = new MyApi(config);
+export const movieApi = new MoviesApi(config);
+export const authApi = new AuthApi(config);
+export const studyApi = new StudyApi(config);
+export const sceneApi = new ScenesApi(config);
+export const speakerApi = new SpeakersApi(config);
+export const expressionApi = new ExpressionApi(config);
+export const emailVerificationApi = new EmailVerificationApi(config);
+export const dialogueApi = new DialoguesApi(config);
+export const writingApi = new WritingsApi(config);
