@@ -2,9 +2,9 @@ import { ApiProperty, OmitType, PickType } from '@nestjs/swagger';
 import { Study } from '../entities/study.entity';
 import { Scene } from 'src/scene/entities/scene.entity';
 
-class ListStudySceneDto extends OmitType(Scene, ['dialogues', 'expressions']) {}
+class ListStudySceneDto extends OmitType(Scene, ['dialogues', 'expressions']) { }
 
-class ListStudyDto extends PickType(Study, ['id', 'title', 'description', 'studiedAt', 'createdAt', 'updatedAt', 'applicants', 'participants']) {
+class ListStudyDto extends PickType(Study, ['id', 'title', 'description', 'studiedAt', 'createdAt', 'updatedAt', 'applicants', 'participants', 'isCompleted']) {
   @ApiProperty({ type: ListStudySceneDto })
   scene: ListStudySceneDto;
 

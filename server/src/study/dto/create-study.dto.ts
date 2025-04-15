@@ -1,6 +1,7 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 import { ApiProperty } from '@nestjs/swagger';
+import { Transform } from 'class-transformer';
 
 export class CreateStudyDto {
   @ApiProperty({
@@ -29,4 +30,9 @@ export class CreateStudyDto {
   @IsNotEmpty()
   @IsString()
   description: string;
+
+  @IsOptional()
+  @IsBoolean()
+  @Transform(({ value }) => value ?? false)
+  isCompleted?: boolean;
 }
