@@ -31,7 +31,7 @@ export class AuthService {
     private readonly userService: UserService,
     private readonly encryptionService: EncryptionService,
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
-  ) {}
+  ) { }
 
   async signup(createUserDto: CreateUserDto): Promise<Omit<User, 'password'>> {
     const { email, password, nickname, how, provider } = createUserDto;
@@ -125,7 +125,7 @@ export class AuthService {
       id: user.id,
       email: user.email,
     });
-   
+
     return {
       accessToken: accessToken,
       refreshToken: refreshToken,
@@ -179,8 +179,8 @@ export class AuthService {
   }
 
   async signupSocial(createUserDto: CreateUserDto) {
-    const {email, provider, nickname} = createUserDto;
-    
+    const { email, provider, nickname } = createUserDto;
+
     const user = await this.userService.findUserByEmail(email);
     if (!user) {
       throw new NotFoundException(`User with Email ${email} not found`);
@@ -209,10 +209,10 @@ export class AuthService {
     if (!user) {
       throw new NotFoundException('User not found');
     }
-    
+
     const hashedPassword = await this.encryptionService.hashPassword(password);
     await this.userService.updatePassword(user.id, hashedPassword);
-   
+
     return "Password reset successfully";
   }
 }

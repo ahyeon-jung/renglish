@@ -20,6 +20,7 @@ import { Response } from 'express';
 import { ConfigService } from '@nestjs/config';
 import { PasswordResetDto } from './dto/reset-password.dto';
 import { OptionalTokenGuard } from './guards/optional-token.guard';
+import { NaverAuthGuard } from './guards/naver-auth.guard';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -28,7 +29,7 @@ export class AuthController {
     private readonly authService: AuthService,
     private readonly userService: UserService,
     private readonly configService: ConfigService,
-  ) {}
+  ) { }
 
   @UseGuards(OptionalTokenGuard)
   @Post('check/is-admin')
@@ -115,12 +116,12 @@ export class AuthController {
   }
 
   @UseGuards(AuthGuard('google'))
-  @Post('google')
+  @Get('google')
   @ApiOperation({
     summary: '구글 로그인',
     description: '구글 계정으로 로그인합니다.',
   })
-  async googleAuth(@Req() req) {}
+  async googleAuth(@Req() req) { }
 
   @UseGuards(AuthGuard('google'))
   @Post('google/callback')
@@ -143,16 +144,38 @@ export class AuthController {
   }
 
   @Get('naver/callback')
-  @UseGuards(AuthGuard('naver'))
+  @UseGuards(NaverAuthGuard)
   @ApiOperation({
     summary: '네이버 로그인 콜백',
     description: '네이버 로그인 후 콜백을 처리합니다.',
   })
-  async naverCallback(@Request() req) {
-    return this.authService.login({
-      email: req.user.email,
-      password: `naver_${req.user.providerId}`,
+  async naverCallback(@Request() req, @Res() res: Response) {
+    const user = req.user;
+
+    const socialAccount = await this.userService.checkIsSocialAccountByEmail(user.email, 'naver');
+
+    if (!socialAccount) {
+      const registerRedirect = new URL(this.configService.get('CLIENT_URL'));
+      registerRedirect.pathname = '/auth/register/social';
+      registerRedirect.searchParams.set('email', user.email);
+      registerRedirect.searchParams.set('provider', user.provider);
+      registerRedirect.searchParams.set('providerId', user.providerId);
+      registerRedirect.searchParams.set('nickname', user.name);
+
+      return res.redirect(registerRedirect.toString());
+    }
+
+    const { accessToken, refreshToken } = await this.authService.login({
+      email: user.email,
+      password: user.providerId,
     });
+
+    const redirectUrl = new URL(this.configService.get('CLIENT_URL'));
+    redirectUrl.pathname = '/auth/callback';
+    redirectUrl.searchParams.set('access-token', accessToken);
+    redirectUrl.searchParams.set('refresh-token', refreshToken);
+
+    return res.redirect(redirectUrl.toString());
   }
 
   @Post('reset-password')
