@@ -34,7 +34,7 @@ export class SceneController {
   constructor(
     private readonly sceneService: SceneService,
     private readonly studyService: StudyService,
-  ) {}
+  ) { }
 
   @Post(':movieId')
   @UseGuards(AdminTokenGuard)
@@ -111,7 +111,7 @@ export class SceneController {
     description: '장면 정보를 변경합니다.',
   })
   @ApiBody({ type: UpdateSceneDto })
-  updateDialogue(
+  updateScene(
     @Param('sceneId') sceneId: string,
     @Body() updateSceneDto: UpdateSceneDto,
   ): Promise<FilteredScene> {

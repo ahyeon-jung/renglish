@@ -187,15 +187,7 @@ export class StudyService {
         .setParameter('userId', userId);
     }
 
-    const results = await query.getMany();
-
-    const data = results.map((row) => {
-      const studiedAt = new Date(row.studiedAt);
-      const isCompleted = studiedAt.getTime() > new Date().getTime();
-      return { ...row, isCompleted };
-    });
-
-    return data;
+    return await query.getMany();
   }
 
   async isMember(studyId: string, userId: string): Promise<{ isMember: boolean }> {
