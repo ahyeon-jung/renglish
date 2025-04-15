@@ -107,7 +107,7 @@ export class AuthApi extends runtime.BaseAPI {
         }
         const response = await this.request({
             path: `/api/auth/google`,
-            method: 'POST',
+            method: 'GET',
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
@@ -142,7 +142,7 @@ export class AuthApi extends runtime.BaseAPI {
         }
         const response = await this.request({
             path: `/api/auth/google/callback`,
-            method: 'POST',
+            method: 'GET',
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);

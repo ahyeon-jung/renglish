@@ -77,6 +77,12 @@ export interface Study {
      */
     description: string;
     /**
+     * 스터디 완료 여부
+     * @type {boolean}
+     * @memberof Study
+     */
+    isCompleted: boolean;
+    /**
      * 
      * @type {Scene}
      * @memberof Study
@@ -107,6 +113,7 @@ export function instanceOfStudy(value: object): value is Study {
     if (!('studiedAt' in value) || value['studiedAt'] === undefined) return false;
     if (!('title' in value) || value['title'] === undefined) return false;
     if (!('description' in value) || value['description'] === undefined) return false;
+    if (!('isCompleted' in value) || value['isCompleted'] === undefined) return false;
     if (!('scene' in value) || value['scene'] === undefined) return false;
     return true;
 }
@@ -128,6 +135,7 @@ export function StudyFromJSONTyped(json: any, ignoreDiscriminator: boolean): Stu
         'studiedAt': (new Date(json['studiedAt'])),
         'title': json['title'],
         'description': json['description'],
+        'isCompleted': json['isCompleted'],
         'scene': SceneFromJSON(json['scene']),
         'applicants': json['applicants'] == null ? undefined : ((json['applicants'] as Array<any>).map(UserFromJSON)),
         'participants': json['participants'] == null ? undefined : ((json['participants'] as Array<any>).map(UserFromJSON)),
@@ -152,6 +160,7 @@ export function StudyToJSONTyped(value?: Study | null, ignoreDiscriminator: bool
         'studiedAt': ((value['studiedAt']).toISOString()),
         'title': value['title'],
         'description': value['description'],
+        'isCompleted': value['isCompleted'],
         'scene': SceneToJSON(value['scene']),
         'applicants': value['applicants'] == null ? undefined : ((value['applicants'] as Array<any>).map(UserToJSON)),
         'participants': value['participants'] == null ? undefined : ((value['participants'] as Array<any>).map(UserToJSON)),

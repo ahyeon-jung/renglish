@@ -22,13 +22,14 @@ import { Study } from './entities/study.entity';
 import { PaginationResponse } from 'src/common/utils/pagination.util';
 import { ExtendedFilteredStudy } from './types/filtered-study';
 import { DeleteResult } from 'typeorm';
-import { PaginationStudyResponseDto } from './dto/pagination-study.dto';
+import { ListStudyDto, PaginationStudyResponseDto } from './dto/pagination-study.dto';
 import { OptionalTokenGuard } from 'src/auth/guards/optional-token.guard';
+import { StudyDto } from './dto/get-study.dto';
 
 @ApiTags('Study')
 @Controller('studies')
 export class StudyController {
-  constructor(private readonly studyService: StudyService) {}
+  constructor(private readonly studyService: StudyService) { }
 
   @Get()
   @UseGuards(OptionalTokenGuard)
@@ -62,7 +63,7 @@ export class StudyController {
     @Query('offset') offset: number = 1,
     @Query('limit') limit: number = 10,
   ): Promise<PaginationResponse<ExtendedFilteredStudy>> {
-    return this.studyService.findAll(req.user.id,{ status, offset, limit });
+    return this.studyService.findAll(req.user.id, { status, offset, limit });
   }
 
   @Get(':studyId')
@@ -76,8 +77,8 @@ export class StudyController {
     summary: '스터디 조회하기',
     description: '스터디를 조회합니다.',
   })
-  @ApiOkResponse({ type: () => Study })
-  findOne(@Param('studyId') id: string): Promise<ExtendedFilteredStudy> {
+  @ApiOkResponse({ type: () => StudyDto })
+  findOne(@Param('studyId') id: string): Promise<StudyDto> {
     return this.studyService.findOne(id);
   }
 
@@ -189,5 +190,20 @@ export class StudyController {
     @Param('userId') userId: string,
   ): Promise<Study> {
     return this.studyService.removeParticipant(studyId, userId);
+  }
+
+  @Post(':studyId/complete')
+  @UseGuards(AdminTokenGuard)
+  @ApiOperation({
+    summary: `스터디 완료하기  ${TAG.ADMIN_REQUIRED}`,
+    description: '스터디를 완료합니다.',
+  })
+  @ApiParam({
+    name: 'studyId',
+    description: '스터디의 ID',
+    example: 'e5e798e1-9241-4b95-8e2c-0b630bbd033f',
+  })
+  completeStudy(@Param('studyId') studyId: string): Promise<Study> {
+    return this.studyService.completeStudy(studyId);
   }
 }

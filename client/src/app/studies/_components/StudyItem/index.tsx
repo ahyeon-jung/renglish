@@ -32,7 +32,7 @@ export default function StudyItem({ ...study }: StudyItemProps) {
           />
         </div>
       </div>
-      {study.isCompleted && <ApplyToStudyModal studyId={study.id} />}
+      {!study.isCompleted && <ApplyToStudyModal studyId={study.id} />}
     </div>
   );
 }

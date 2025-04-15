@@ -20,9 +20,13 @@ export class Study extends BaseEntity {
   @Column()
   description: string;
 
+  @ApiProperty({ description: '스터디 완료 여부' })
+  @Column({ default: false })
+  isCompleted: boolean;
+
   @ManyToOne(() => Scene, (scene) => scene.study)
   @ApiProperty({ type: Scene })
-  @JoinColumn() 
+  @JoinColumn()
   scene: Scene;
 
   @Transform(({ value }) => value ?? [], { toPlainOnly: true })

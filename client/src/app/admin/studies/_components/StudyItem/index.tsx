@@ -3,12 +3,24 @@ import { PATHS } from '@/constants/path';
 import clsx from 'clsx';
 import { formatDate } from '@/utils/format';
 import { ListStudyDto } from '@/services';
+import completeStudyAction from '@/app/_actions/studies/completeStudy';
+import Button from '@/components/Button';
 
 type StudyItemProps = ListStudyDto;
 
 const APPLICANT_LIMIT = 8;
 
 export default function StudyItem({ ...study }: StudyItemProps) {
+
+  const handleCompleteStudyClick = async () => {
+    try {
+      await completeStudyAction(study.id);
+
+    } catch {
+
+    }
+  };
+
   return (
     <Link
       className={clsx(
@@ -26,6 +38,9 @@ export default function StudyItem({ ...study }: StudyItemProps) {
             {study.isCompleted ? study.applicants?.length : study.participants?.length} / {APPLICANT_LIMIT}
           </div>
         </div>
+        {!study.isCompleted && (
+          <Button className='flex-[0.2]' onClick={handleCompleteStudyClick}>완료</Button>
+        )}
       </div>
     </Link>
   );

@@ -20,16 +20,16 @@ export class NaverStrategy extends PassportStrategy(Strategy, 'naver') {
     done: (error: any, user?: any) => void,
   ) {
     try {
-      const { id, displayName, emails } = profile;
-      const user = await this.authService.validateSocialUser({
+      const { id, nickname, email } = profile;
+      const user = {
         provider: 'naver',
         providerId: id,
-        email: emails[0].value,
-        name: displayName,
-      });
+        email,
+        name: nickname,
+      }
       done(null, user);
     } catch (error) {
-      done(error, null);
+      done(null, null);
     }
   }
 }

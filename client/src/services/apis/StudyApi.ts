@@ -17,6 +17,7 @@ import * as runtime from '../runtime';
 import type {
   PaginationStudyResponseDto,
   Study,
+  StudyDto,
   UpdateStudyDto,
 } from '../models/index';
 import {
@@ -24,6 +25,8 @@ import {
     PaginationStudyResponseDtoToJSON,
     StudyFromJSON,
     StudyToJSON,
+    StudyDtoFromJSON,
+    StudyDtoToJSON,
     UpdateStudyDtoFromJSON,
     UpdateStudyDtoToJSON,
 } from '../models/index';
@@ -35,6 +38,10 @@ export interface StudyControllerAddApplicantRequest {
 export interface StudyControllerAddParticipantRequest {
     studyId: string;
     userId: string;
+}
+
+export interface StudyControllerCompleteStudyRequest {
+    studyId: string;
 }
 
 export interface StudyControllerFindAllRequest {
@@ -169,6 +176,48 @@ export class StudyApi extends runtime.BaseAPI {
     }
 
     /**
+     * 스터디를 완료합니다.
+     * 스터디 완료하기  [ADMIN]
+     */
+    async studyControllerCompleteStudyRaw(requestParameters: StudyControllerCompleteStudyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters['studyId'] == null) {
+            throw new runtime.RequiredError(
+                'studyId',
+                'Required parameter "studyId" was null or undefined when calling studyControllerCompleteStudy().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/api/studies/{studyId}/complete`.replace(`{${"studyId"}}`, encodeURIComponent(String(requestParameters['studyId']))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * 스터디를 완료합니다.
+     * 스터디 완료하기  [ADMIN]
+     */
+    async studyControllerCompleteStudy(requestParameters: StudyControllerCompleteStudyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.studyControllerCompleteStudyRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * 스터디 목록을 조회합니다.
      * 스터디 목록 조회하기
      */
@@ -234,7 +283,7 @@ export class StudyApi extends runtime.BaseAPI {
      * 스터디를 조회합니다.
      * 스터디 조회하기
      */
-    async studyControllerFindOneRaw(requestParameters: StudyControllerFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Study>> {
+    async studyControllerFindOneRaw(requestParameters: StudyControllerFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StudyDto>> {
         if (requestParameters['studyId'] == null) {
             throw new runtime.RequiredError(
                 'studyId',
@@ -261,14 +310,14 @@ export class StudyApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => StudyFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => StudyDtoFromJSON(jsonValue));
     }
 
     /**
      * 스터디를 조회합니다.
      * 스터디 조회하기
      */
-    async studyControllerFindOne(requestParameters: StudyControllerFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Study> {
+    async studyControllerFindOne(requestParameters: StudyControllerFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StudyDto> {
         const response = await this.studyControllerFindOneRaw(requestParameters, initOverrides);
         return await response.value();
     }

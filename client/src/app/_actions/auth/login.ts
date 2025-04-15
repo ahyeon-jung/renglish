@@ -26,10 +26,10 @@ export default async function loginAction({
   );
 
   try {
-    const response = await api.authControllerLogin({ 
-      loginDto: { email, password } 
+    const response = await api.authControllerLogin({
+      loginDto: { email, password }
     });
-  
+
     const { accessToken, refreshToken } = response;
 
     const cookieStore = await cookies();

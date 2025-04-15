@@ -8,7 +8,7 @@ import { User } from 'src/user/entities/user.entity';
 import { Scene } from 'src/scene/entities/scene.entity';
 import { STUDY_STATUS } from './enums/study-status.enum';
 
-import { GetStudyParams } from './dto/get-study.dto';
+import { GetStudyParams, StudyDto } from './dto/get-study.dto';
 import { PaginationParams } from 'src/common/dto/pagination-params.dto';
 import { ExtendedFilteredStudy, FilteredStudy } from './types/filtered-study';
 import { PaginationResponse } from 'src/common/utils/pagination.util';
@@ -23,7 +23,7 @@ export class StudyService {
     private sceneRepository: Repository<Scene>,
     @InjectRepository(User)
     private userRepository: Repository<User>,
-  ) {}
+  ) { }
 
   async create(sceneId: string, createStudyDto: CreateStudyDto): Promise<Study> {
     const scene = await this.sceneRepository.findOne({
@@ -39,7 +39,7 @@ export class StudyService {
       scene,
     });
 
-    return  await this.studyRepository.save(study);    
+    return await this.studyRepository.save(study);
   }
 
   async findAll(
@@ -61,6 +61,7 @@ export class StudyService {
         'study.title',
         'study.description',
         'study.studiedAt',
+        'study.isCompleted',
         `GROUP_CONCAT(DISTINCT JSON_OBJECT('id', applicants.id, 'nickname', applicants.nickname)) AS applicantInfo`,
         `GROUP_CONCAT(DISTINCT JSON_OBJECT('id', participants.id, 'nickname', participants.nickname)) AS participantInfo`,
         'scene.id',
@@ -87,12 +88,9 @@ export class StudyService {
       .getRawMany();
 
     const data = results.map((row) => {
-      const studiedAt = new Date(row.study_studiedAt);
-      const isCompleted = studiedAt.getTime() > new Date().getTime();
-
       const wrapped_applicants = `[${row.applicantInfo}]`;
 
-      const applicants  = JSON.parse(wrapped_applicants)
+      const applicants = JSON.parse(wrapped_applicants)
 
       const wrapped_participants = `[${row.participantInfo}]`;
       const participants = JSON.parse(wrapped_participants);
@@ -106,7 +104,7 @@ export class StudyService {
         applicantCount: Number(row.applicantCount),
         applicants,
         participants,
-        isCompleted,
+        isCompleted: Boolean(row.study_isCompleted),
         scene: {
           id: row.scene_id,
           title: row.scene_title,
@@ -136,7 +134,7 @@ export class StudyService {
     return study;
   }
 
-  async findOne(id: string): Promise<ExtendedFilteredStudy> {
+  async findOne(id: string): Promise<StudyDto> {
     const study = await this.studyRepository.findOne({
       where: { id },
       relations: ['scene', 'participants', 'applicants'],
@@ -287,5 +285,14 @@ export class StudyService {
     if (!study) throw new NotFoundException('Study not found');
 
     return { count: study.participants.length };
+  }
+
+  async completeStudy(studyId: string): Promise<Study> {
+    const study = await this.studyRepository.findOne({
+      where: { id: studyId },
+    });
+    if (!study) throw new NotFoundException('Study not found');
+    study.isCompleted = true;
+    return this.studyRepository.save(study);
   }
 }
