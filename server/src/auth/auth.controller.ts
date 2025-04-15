@@ -121,16 +121,40 @@ export class AuthController {
     summary: '구글 로그인',
     description: '구글 계정으로 로그인합니다.',
   })
-  async googleAuth(@Req() req) { }
+  async googleAuth() { }
 
   @UseGuards(AuthGuard('google'))
-  @Post('google/callback')
+  @Get('google/callback')
   @ApiOperation({
     summary: '구글 로그인 콜백',
     description: '구글 로그인 후 콜백을 처리합니다.',
   })
-  async googleAuthRedirect(@Req() req) {
-    return `ㅇㅇㅇㅇㅇㅇㅇㅇㅇ`;
+  async googleAuthRedirect(@Request() req, @Res() res: Response) {
+    const user = req.user;
+    const socialAccount = await this.userService.checkIsSocialAccountByEmail(user.email, 'google');
+
+    if (!socialAccount) {
+      const registerRedirect = new URL(this.configService.get('CLIENT_URL'));
+      registerRedirect.pathname = '/auth/register/social';
+      registerRedirect.searchParams.set('email', user.email);
+      registerRedirect.searchParams.set('provider', 'google');
+      registerRedirect.searchParams.set('providerId', user.providerId);
+      registerRedirect.searchParams.set('nickname', user.name);
+
+      return res.redirect(registerRedirect.toString());
+    }
+
+    const { accessToken, refreshToken } = await this.authService.login({
+      email: user.email,
+      password: user.providerId,
+    });
+
+    const redirectUrl = new URL(this.configService.get('CLIENT_URL'));
+    redirectUrl.pathname = '/auth/callback';
+    redirectUrl.searchParams.set('access-token', accessToken);
+    redirectUrl.searchParams.set('refresh-token', refreshToken);
+
+    return res.redirect(redirectUrl.toString());
   }
 
   @Get('naver')
