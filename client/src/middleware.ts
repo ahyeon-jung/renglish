@@ -6,6 +6,7 @@ import {
 } from './middlewares/auth';
 
 import { PATHS } from './constants/path';
+import refreshTokenMiddleware from './middlewares/refreshToken';
 
 type MiddlewareFunction = (request: NextRequest) => Promise<Response> | Response;
 
@@ -28,6 +29,10 @@ export default async function middleware(request: NextRequest) {
 
   if (request.nextUrl.pathname.startsWith('/api/cookies/refresh')) {
     return NextResponse.next();
+  }
+
+  if (request.nextUrl.pathname.startsWith('/movies/')) {
+    return refreshTokenMiddleware(request, true);
   }
 
   if (pathname.startsWith(PATHS.ADMIN.HOME)) {

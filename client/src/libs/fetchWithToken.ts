@@ -1,10 +1,7 @@
 import { ENV } from '@/constants/env';
 import { cookies } from 'next/headers';
 
-export async function fetchWithToken(
-  input: RequestInfo,
-  init?: RequestInit,
-): Promise<Response> {
+export async function fetchWithToken(input: RequestInfo, init?: RequestInit): Promise<Response> {
   const cookieStore = await cookies();
 
   const accessToken = cookieStore.get(ENV.COOKIE_ACCESS_TOKEN_KEY)?.value;

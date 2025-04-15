@@ -11,7 +11,7 @@ export async function withAuthRouteMiddleware(request: NextRequest) {
     return NextResponse.redirect(new URL(PATHS.HOME, request.url));
   }
 
-  return refreshTokenMiddleware(request)
+  return refreshTokenMiddleware(request);
 }
 
 export async function withAdminRouteMiddleware(request: NextRequest) {

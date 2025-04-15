@@ -21,7 +21,7 @@ export class AuthController {
     private readonly authService: AuthService,
     private readonly userService: UserService,
     private readonly configService: ConfigService,
-  ) { }
+  ) {}
 
   @UseGuards(OptionalTokenGuard)
   @Post('check/is-admin')
@@ -63,8 +63,7 @@ export class AuthController {
   @Get('/check/:accessToken')
   @ApiOperation({
     summary: 'Access Token 유효성 확인',
-    description:
-      '유효한 Access Token인지 확인합니다.',
+    description: '유효한 Access Token인지 확인합니다.',
   })
   @ApiParam({ name: 'accessToken', type: String, description: 'Access Token' })
   @ApiOkResponse({ type: Boolean })
@@ -141,7 +140,7 @@ export class AuthController {
     summary: '구글 로그인',
     description: '구글 계정으로 로그인합니다.',
   })
-  async googleAuth() { }
+  async googleAuth() {}
 
   @UseGuards(AuthGuard('google'))
   @Get('google/callback')
