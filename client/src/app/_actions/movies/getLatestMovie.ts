@@ -1,18 +1,10 @@
 'use server';
 
-import { Configuration, MoviesApi } from '@/services';
-import { ENV } from '@/constants/env';
 import { Movie } from '@/types/movie';
+import { movieApi } from '@/libs/api';
 
 export default async function getLatestStudyAction() {
-  const api = new MoviesApi(
-    new Configuration({
-      basePath: ENV.API_BASE_URL,
-      accessToken: '',
-    }),
-  );
-
-  const movie = await api.movieControllerFindLatestScene();
+  const movie = await movieApi.movieControllerFindLatestScene();
 
   return {
     status: 200,

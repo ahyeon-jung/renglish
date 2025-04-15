@@ -24,7 +24,7 @@ export class User extends BaseEntity {
 
   @Column()
   password: string;
-  
+
   @ApiProperty({
     description: '닉네임',
     example: 'test',

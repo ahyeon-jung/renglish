@@ -25,7 +25,10 @@ export default function Speakers() {
   const [speakers, setSpeakers] = useState<CreateSpeakerDto[]>([]);
 
   const addSpeaker = (speaker: ScriptAddSpeakerType) => {
-    setSpeakers((prev) => [...prev, { speakerName: speaker.speaker_name, speakerType: speaker.speaker_type }]);
+    setSpeakers((prev) => [
+      ...prev,
+      { speakerName: speaker.speaker_name, speakerType: speaker.speaker_type },
+    ]);
   };
 
   const removeSpeaker = (speakerName: string) => {
@@ -34,7 +37,7 @@ export default function Speakers() {
 
   const handleNextClick = async () => {
     for (const speaker of speakers) {
-      await addSpeakerAction(selectedSceneId, speaker)
+      await addSpeakerAction(selectedSceneId, speaker);
     }
     setStep(SCRIPT_ADD_STEP.DIALOGUES);
   };

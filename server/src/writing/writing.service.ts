@@ -41,4 +41,11 @@ export class WritingService {
       relations: ['dialogue', 'dialogue.scene', 'dialogue.scene.movie'],
     });
   }
+
+  async findByUser(userId: string): Promise<Writing[]> {
+    return this.writingRepository.find({
+      where: { userId },
+      relations: ['dialogue'],
+    });
+  }
 }

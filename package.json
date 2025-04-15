@@ -2,7 +2,8 @@
   "scripts": {
     "dev": "concurrently -k -n client,server -c blue,green \"pnpm --filter ./client dev\" \"pnpm --filter ./server start:dev\"",
     "format": "prettier --write client/src server/src",
-    "generate:api": "openapi-generator-cli generate -i ./swagger.json -g typescript-fetch -o ./client/src/services"
+    "generate:api": "openapi-generator-cli generate -i ./swagger.json -g typescript-fetch -o ./client/src/services",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
@@ -14,8 +15,13 @@
     "eslint": "^9.22.0",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.1",
     "prettier": "^3.5.3",
     "semantic-release": "^24.2.3",
     "typescript": "^5.8.2"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": "eslint --fix"
   }
 }

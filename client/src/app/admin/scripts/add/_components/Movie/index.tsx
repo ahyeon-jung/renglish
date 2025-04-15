@@ -1,8 +1,5 @@
 import { FunnelContext, FunnelContextType } from '@/hooks/useFunnel';
-import {
-  MOVIE_CATEGORY,
-  MOVIE_CATEGORY_OPTIONS,
-} from '@/constants/movie-category';
+import { MOVIE_CATEGORY, MOVIE_CATEGORY_OPTIONS } from '@/constants/movie-category';
 import { SCRIPT_ADD_STEP, ScriptAddStepType } from '../../_constants/step';
 import { useContext, useState } from 'react';
 
@@ -12,7 +9,7 @@ import StepFormContainer from '../StepFormContainer';
 import { CreateMovieDto } from '@/services';
 import addMovieAction from '@/app/_actions/movies/addMovie';
 
-export type ScriptAddMovieBodyType = string
+export type ScriptAddMovieBodyType = string;
 
 export const INITIAL_SCRIPT_ADD_MOVIE_BODY: CreateMovieDto = {
   title: '',
@@ -42,13 +39,8 @@ export default function Movie() {
   const isAvailableNextButton =
     movieInfoBody.title && movieInfoBody.imageUrl && movieInfoBody.description;
 
-
-
   return (
-    <StepFormContainer
-      onNext={handleNextClick}
-      disabled={!isAvailableNextButton}
-    >
+    <StepFormContainer onNext={handleNextClick} disabled={!isAvailableNextButton}>
       <Field>
         <Field.Label>Title</Field.Label>
         <Field.Input value={movieInfoBody.title} name="title" onChange={handleChange} />

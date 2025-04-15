@@ -6,7 +6,7 @@ import { Scene } from './entities/scene.entity';
 import { DeleteResult, Like, Repository } from 'typeorm';
 import { Movie } from 'src/movie/entities/movie.entity';
 import { MovieService } from 'src/movie/movie.service';
-import { findAllWithPagination} from 'src/common/utils/pagination.util';
+import { findAllWithPagination } from 'src/common/utils/pagination.util';
 import { SearchParams } from 'src/common/dto/search-params.dto';
 import { UpdateSceneDto } from './dto/update-scene.dto';
 import { StudyService } from 'src/study/study.service';

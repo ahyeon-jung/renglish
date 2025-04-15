@@ -8,5 +8,6 @@ import { WritingService } from './writing.service';
   imports: [TypeOrmModule.forFeature([Writing])],
   controllers: [WritingController],
   providers: [WritingService],
+  exports: [WritingService],
 })
 export class WritingModule {}

@@ -2,11 +2,14 @@ import { Controller, Get, UseGuards, Request, Put, Body, Query } from '@nestjs/c
 import { ApiBody, ApiOkResponse, ApiOperation, ApiQuery, ApiResponse } from '@nestjs/swagger';
 import { AccessTokenGuard } from 'src/auth/guards/access-token.guard';
 import { TAG } from 'src/common/constants/tag';
-import { Study } from 'src/study/entities/study.entity';
+import { StudyDto } from 'src/study/dto/get-study.dto';
 import { StudyService } from 'src/study/study.service';
 import { UpdateUserDto } from 'src/user/dto/update-user.dto';
 import { User } from 'src/user/entities/user.entity';
 import { UserService } from 'src/user/user.service';
+import { WritingDto } from 'src/writing/dto/writing.dto';
+import { Writing } from 'src/writing/entities/writing.entity';
+import { WritingService } from 'src/writing/writing.service';
 
 @UseGuards(AccessTokenGuard)
 @Controller('my')
@@ -14,6 +17,7 @@ export class MyController {
   constructor(
     private readonly userService: UserService,
     private readonly studyService: StudyService,
+    private readonly writingService: WritingService,
   ) {}
   @Get('')
   @ApiOperation({
@@ -48,9 +52,21 @@ export class MyController {
     type: String,
     required: false,
   })
-  @ApiOkResponse({ type: Study, isArray: true })
+  @ApiOkResponse({ type: StudyDto, isArray: true })
   findMyStudies(@Request() req, @Query('type') type?: string) {
     const userId = req.user['id'];
     return this.studyService.findByUser(userId, type);
+  }
+
+  @Get('/writings')
+  @UseGuards(AccessTokenGuard)
+  @ApiOperation({
+    summary: `사용자가 작성한 작문 목록 ${TAG.TOKEN_REQUIRED}`,
+    description: '사용자가 작성한 작문을 조회합니다.',
+  })
+  @ApiOkResponse({ type: WritingDto, isArray: true })
+  findMyWritings(@Request() req) {
+    const userId = req.user['id'];
+    return this.writingService.findByUser(userId);
   }
 }

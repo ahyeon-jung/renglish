@@ -36,7 +36,9 @@ export async function handleError(e: unknown): Promise<{
       const res = await (e as any).response.json();
       return {
         statusCode: res.statusCode ?? 500,
-        message: Array.isArray(res.message) ? res.message.join(', ') : res.message ?? '서버 오류 발생',
+        message: Array.isArray(res.message)
+          ? res.message.join(', ')
+          : (res.message ?? '서버 오류 발생'),
         path: res.path,
       };
     } catch {

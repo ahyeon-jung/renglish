@@ -1,7 +1,7 @@
-"use client"
+'use client';
 
-import { useRouter } from "next/navigation";
-import Button from "../Button";
+import { useRouter } from 'next/navigation';
+import Button from '../Button';
 
 export default function NonAccess() {
   const router = useRouter();

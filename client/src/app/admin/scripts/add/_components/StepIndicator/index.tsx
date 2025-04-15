@@ -26,15 +26,10 @@ export default function StepIndicator() {
             key={index}
             className={clsx(
               'flex justify-center text-center p-2 rounded-4xl',
-              step === value
-                ? 'bg-yellow-300'
-                :
-                'bg-gray-100',
+              step === value ? 'bg-yellow-300' : 'bg-gray-100',
             )}
             onClick={() => {
-
               setStep(value);
-
             }}
           >
             {label}

@@ -2,7 +2,7 @@
 
 import { ENV } from '@/constants/env';
 import { cookies } from 'next/headers';
-import { Configuration, MyApi } from '@/services';
+import { myApi } from '@/libs/api';
 
 type UpdateNicknameActionBody = {
   nickname?: string;
@@ -22,16 +22,8 @@ export default async function updateNicknameAction(
     };
   }
 
-  const api = new MyApi(
-    new Configuration({
-      basePath: ENV.API_BASE_URL,
-      accessToken: token,
-    }),
-  );
-
-
   try {
-    const response = await api.myControllerChangeUser({
+    const response = await myApi.myControllerChangeUser({
       updateUserDto: {
         nickname: updateNicknameActionBody.nickname,
       },

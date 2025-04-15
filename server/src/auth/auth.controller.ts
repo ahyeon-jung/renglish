@@ -1,14 +1,5 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Post,
-  Request,
-  UseGuards,
-  Req,
-  Res,
-} from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiBody, ApiOkResponse } from '@nestjs/swagger';
+import { Body, Controller, Get, Post, Request, UseGuards, Req, Res } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiBody, ApiOkResponse, ApiParam } from '@nestjs/swagger';
 
 import { AuthService } from './auth.service';
 import { CreateUserDto } from '../user/dto/create-user.dto';
@@ -20,6 +11,8 @@ import { Response } from 'express';
 import { ConfigService } from '@nestjs/config';
 import { PasswordResetDto } from './dto/reset-password.dto';
 import { OptionalTokenGuard } from './guards/optional-token.guard';
+import { NaverAuthGuard } from './guards/naver-auth.guard';
+import { TokensDto } from './dto/tokens.dto';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -64,6 +57,33 @@ export class AuthController {
       id: req.user.id,
       email: req.user.email,
     });
+  }
+
+  @UseGuards(OptionalTokenGuard)
+  @Get('/check/:accessToken')
+  @ApiOperation({
+    summary: 'Access Token 유효성 확인',
+    description: '유효한 Access Token인지 확인합니다.',
+  })
+  @ApiParam({ name: 'accessToken', type: String, description: 'Access Token' })
+  @ApiOkResponse({ type: Boolean })
+  async checkValidAccessToken(@Request() req) {
+    const user = req.user;
+    return !!user;
+  }
+
+  @UseGuards(AuthGuard('jwt-refresh'))
+  @Post('/refresh')
+  @ApiOperation({
+    summary: 'Access Token 재발급',
+    description:
+      '유효한 Refresh Token을 이용해 새로운 Access Token과 Refresh Token을 발급받습니다.',
+  })
+  @ApiOkResponse({ type: TokensDto })
+  async refresh(@Request() req) {
+    const user = req.user;
+    const tokens = await this.authService.generateTokens(user);
+    return tokens;
   }
 
   @Get('kakao')
@@ -115,21 +135,45 @@ export class AuthController {
   }
 
   @UseGuards(AuthGuard('google'))
-  @Post('google')
+  @Get('google')
   @ApiOperation({
     summary: '구글 로그인',
     description: '구글 계정으로 로그인합니다.',
   })
-  async googleAuth(@Req() req) {}
+  async googleAuth() {}
 
   @UseGuards(AuthGuard('google'))
-  @Post('google/callback')
+  @Get('google/callback')
   @ApiOperation({
     summary: '구글 로그인 콜백',
     description: '구글 로그인 후 콜백을 처리합니다.',
   })
-  async googleAuthRedirect(@Req() req) {
-    return `ㅇㅇㅇㅇㅇㅇㅇㅇㅇ`;
+  async googleAuthRedirect(@Request() req, @Res() res: Response) {
+    const user = req.user;
+    const socialAccount = await this.userService.checkIsSocialAccountByEmail(user.email, 'google');
+
+    if (!socialAccount) {
+      const registerRedirect = new URL(this.configService.get('CLIENT_URL'));
+      registerRedirect.pathname = '/auth/register/social';
+      registerRedirect.searchParams.set('email', user.email);
+      registerRedirect.searchParams.set('provider', 'google');
+      registerRedirect.searchParams.set('providerId', user.providerId);
+      registerRedirect.searchParams.set('nickname', user.name);
+
+      return res.redirect(registerRedirect.toString());
+    }
+
+    const { accessToken, refreshToken } = await this.authService.login({
+      email: user.email,
+      password: user.providerId,
+    });
+
+    const redirectUrl = new URL(this.configService.get('CLIENT_URL'));
+    redirectUrl.pathname = '/auth/callback';
+    redirectUrl.searchParams.set('access-token', accessToken);
+    redirectUrl.searchParams.set('refresh-token', refreshToken);
+
+    return res.redirect(redirectUrl.toString());
   }
 
   @Get('naver')
@@ -143,16 +187,38 @@ export class AuthController {
   }
 
   @Get('naver/callback')
-  @UseGuards(AuthGuard('naver'))
+  @UseGuards(NaverAuthGuard)
   @ApiOperation({
     summary: '네이버 로그인 콜백',
     description: '네이버 로그인 후 콜백을 처리합니다.',
   })
-  async naverCallback(@Request() req) {
-    return this.authService.login({
-      email: req.user.email,
-      password: `naver_${req.user.providerId}`,
+  async naverCallback(@Request() req, @Res() res: Response) {
+    const user = req.user;
+
+    const socialAccount = await this.userService.checkIsSocialAccountByEmail(user.email, 'naver');
+
+    if (!socialAccount) {
+      const registerRedirect = new URL(this.configService.get('CLIENT_URL'));
+      registerRedirect.pathname = '/auth/register/social';
+      registerRedirect.searchParams.set('email', user.email);
+      registerRedirect.searchParams.set('provider', user.provider);
+      registerRedirect.searchParams.set('providerId', user.providerId);
+      registerRedirect.searchParams.set('nickname', user.name);
+
+      return res.redirect(registerRedirect.toString());
+    }
+
+    const { accessToken, refreshToken } = await this.authService.login({
+      email: user.email,
+      password: user.providerId,
     });
+
+    const redirectUrl = new URL(this.configService.get('CLIENT_URL'));
+    redirectUrl.pathname = '/auth/callback';
+    redirectUrl.searchParams.set('access-token', accessToken);
+    redirectUrl.searchParams.set('refresh-token', refreshToken);
+
+    return res.redirect(redirectUrl.toString());
   }
 
   @Post('reset-password')

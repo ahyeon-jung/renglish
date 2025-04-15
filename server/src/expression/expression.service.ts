@@ -11,7 +11,7 @@ export class ExpressionService {
   constructor(
     @InjectRepository(Expression)
     private readonly expressionRepository: Repository<Expression>,
-  ) { }
+  ) {}
 
   create(createExpressionDto: CreateExpressionDto): Promise<Expression> {
     return this.expressionRepository.save(createExpressionDto);

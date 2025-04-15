@@ -3,14 +3,13 @@
 import { ENV } from '@/constants/env';
 import { FetchError } from '@/utils/error';
 import { cookies } from 'next/headers';
-import { fetchAPI } from '@/libs/api';
+import { studyApi } from '@/libs/api';
 
 type applyToStudyActionProps = { studyId: string };
 
 export default async function applyToStudyAction({ studyId }: applyToStudyActionProps) {
   const cookieStore = await cookies();
   const token = cookieStore.get(ENV.COOKIE_ACCESS_TOKEN_KEY)?.value;
-
   if (!token) {
     return {
       status: 401,
@@ -21,19 +20,12 @@ export default async function applyToStudyAction({ studyId }: applyToStudyAction
   }
 
   try {
-    const response = await fetchAPI(`/studies/${studyId}/add-applicant`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
+    const response = await studyApi.studyControllerAddApplicant({ studyId });
     return {
       status: 200,
       success: true,
       message: 'Apply successfully',
-      data: response.data,
+      data: response,
     };
   } catch (e: unknown) {
     const err = e as FetchError;

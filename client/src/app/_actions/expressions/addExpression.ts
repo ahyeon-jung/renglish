@@ -2,8 +2,8 @@
 
 import { ENV } from '@/constants/env';
 import { cookies } from 'next/headers';
-import { CreateExpressionDto, ExpressionApi } from '@/services';
-import { Configuration } from '@/services';
+import { CreateExpressionDto } from '@/services';
+import { expressionApi } from '@/libs/api';
 
 export default async function addExpressionAction(
   sceneId: string,
@@ -11,14 +11,16 @@ export default async function addExpressionAction(
 ) {
   const cookieStore = await cookies();
   const token = cookieStore.get(ENV.COOKIE_ACCESS_TOKEN_KEY)?.value;
+  if (!token) {
+    return {
+      status: 401,
+      success: false,
+      message: 'No Authorization',
+      data: null,
+    };
+  }
 
-  const api = new ExpressionApi(
-    new Configuration({
-      basePath: ENV.API_BASE_URL,
-      accessToken: token ?? '',
-    }),
-  );
-  const response = await api.expressionControllerCreate({
+  const response = await expressionApi.expressionControllerCreate({
     sceneId: sceneId,
     createExpressionDto: addExpressionActionBody,
   });

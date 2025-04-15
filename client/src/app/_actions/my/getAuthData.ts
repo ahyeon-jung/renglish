@@ -1,8 +1,8 @@
 'use server';
 
 import { ENV } from '@/constants/env';
+import { myApi } from '@/libs/api';
 import { cookies } from 'next/headers';
-import { Configuration, MyApi } from '@/services';
 
 export default async function getAuthDataAction() {
   const cookieStore = await cookies();
@@ -16,14 +16,7 @@ export default async function getAuthDataAction() {
     };
   }
 
-  const api = new MyApi(
-    new Configuration({
-      basePath: ENV.API_BASE_URL,
-      accessToken: token,
-    }),
-  );
-
-  const response = await api.myControllerFindUserByToken();
+  const response = await myApi.myControllerFindUserByToken();
 
   return {
     status: 200,

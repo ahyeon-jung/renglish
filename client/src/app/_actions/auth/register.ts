@@ -1,8 +1,7 @@
 'use server';
 
 import { ActionResponse } from '@/types/action';
-import { AuthApi, Configuration } from '@/services';
-import { ENV } from '@/constants/env';
+import { authApi } from '@/libs/api';
 
 export type RegisterActionProps = {
   email: string;
@@ -23,14 +22,9 @@ export default async function registerAction({
     return { status: 200, success: false, message: 'no required data', data: null };
   }
 
-  const api = new AuthApi(
-    new Configuration({
-      basePath: ENV.API_BASE_URL,
-      accessToken: '',
-    }),
-  );
-
-  await api.authControllerRegister({ createUserDto: { email, password, nickname, provider, how } });
+  await authApi.authControllerRegister({
+    createUserDto: { email, password, nickname, provider, how },
+  });
 
   return { status: 200, success: true, message: 'Register successfully', data: null };
 }

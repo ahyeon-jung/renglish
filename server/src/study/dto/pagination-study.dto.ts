@@ -4,7 +4,17 @@ import { Scene } from 'src/scene/entities/scene.entity';
 
 class ListStudySceneDto extends OmitType(Scene, ['dialogues', 'expressions']) {}
 
-class ListStudyDto extends PickType(Study, ['id', 'title', 'description', 'studiedAt', 'createdAt', 'updatedAt', 'applicants', 'participants']) {
+export class ListStudyDto extends PickType(Study, [
+  'id',
+  'title',
+  'description',
+  'studiedAt',
+  'createdAt',
+  'updatedAt',
+  'applicants',
+  'participants',
+  'isCompleted',
+]) {
   @ApiProperty({ type: ListStudySceneDto })
   scene: ListStudySceneDto;
 

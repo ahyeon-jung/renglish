@@ -12,6 +12,13 @@ import { ExcludedPasswordUser } from './types/excluded-password-user';
 export class UserService {
   constructor(@InjectRepository(User) private readonly userRepository: Repository<User>) {}
 
+  async checkIsSocialAccountByEmail(email: string, provider: string): Promise<User | null> {
+    const user = await this.userRepository.findOne({
+      where: { email, provider },
+    });
+    return user ?? null;
+  }
+
   async create(createUserDto: CreateUserDto): Promise<Omit<User, 'password'>> {
     return this.userRepository.save(createUserDto);
   }

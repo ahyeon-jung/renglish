@@ -8,8 +8,8 @@ import CreatedDate from './_components/CreatedDate';
 export default async function Profile() {
   const { data } = await getAuthDataAction();
 
-  if (!data){
-    return <div>로그인 후 이용해주세요.</div>
+  if (!data) {
+    return <div>로그인 후 이용해주세요.</div>;
   }
 
   return (

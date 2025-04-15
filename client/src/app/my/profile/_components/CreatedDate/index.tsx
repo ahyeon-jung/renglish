@@ -1,7 +1,7 @@
 import Field from '@/components/Field';
 import { formatDate } from '@/utils/format';
 
-type CreatedDateProps = {createdAt: string}
+type CreatedDateProps = { createdAt: string };
 
 export default function CreatedDate({ createdAt }: CreatedDateProps) {
   return (

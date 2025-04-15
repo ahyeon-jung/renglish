@@ -4,10 +4,10 @@ import { ActionResponse } from '@/types/action';
 import { ENV } from '@/constants/env';
 import { ExpressionType } from '@/types/expression';
 import { cookies } from 'next/headers';
-import { ExpressionApi } from '@/services';
-import { Configuration } from '@/services';
+import { expressionApi } from '@/libs/api';
 
 type GetExpressionsBySceneProps = { sceneId: string };
+
 export default async function getExpressionsByScene({
   sceneId,
 }: GetExpressionsBySceneProps): Promise<ActionResponse<ExpressionType[] | null>> {
@@ -22,13 +22,7 @@ export default async function getExpressionsByScene({
     };
   }
 
-  const api = new ExpressionApi(
-    new Configuration({
-      basePath: ENV.API_BASE_URL,
-      accessToken: token,
-    }),
-  );
-  const response = await api.expressionControllerFindExpressionBySceneId({ sceneId });
+  const response = await expressionApi.expressionControllerFindExpressionBySceneId({ sceneId });
 
   return {
     status: 200,

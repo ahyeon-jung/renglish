@@ -42,7 +42,10 @@ function StudiesContent({}) {
   const status = searchParams.get('status');
 
   const [studies, setStudies] = useState<ListStudyDto[][]>([]);
-  const { data, size, setSize, isLoading } = useSWRInfinite<ListStudyDto[]>(getKey(status), fetcher);
+  const { data, size, setSize, isLoading } = useSWRInfinite<ListStudyDto[]>(
+    getKey(status),
+    fetcher,
+  );
   useEffect(() => {
     if (!data) return;
 
