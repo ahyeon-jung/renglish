@@ -16,72 +16,58 @@ import { mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface User
+ * @interface Writing
  */
-export interface User {
+export interface Writing {
     /**
      * 아이디
      * @type {string}
-     * @memberof User
+     * @memberof Writing
      */
     id: string;
     /**
      * 생성일
      * @type {Date}
-     * @memberof User
+     * @memberof Writing
      */
     createdAt: Date;
     /**
      * 수정일
      * @type {Date}
-     * @memberof User
+     * @memberof Writing
      */
     updatedAt: Date;
     /**
      * 삭제일
      * @type {Date}
-     * @memberof User
+     * @memberof Writing
      */
     deletedAt: Date;
     /**
-     * 소셜 계정 플랫폼
+     * 
      * @type {string}
-     * @memberof User
+     * @memberof Writing
      */
-    provider: string;
-    /**
-     * 이메일
-     * @type {string}
-     * @memberof User
-     */
-    email: string;
-    /**
-     * 닉네임
-     * @type {string}
-     * @memberof User
-     */
-    nickname: string;
+    writing: string;
 }
 
 /**
- * Check if a given object implements the User interface.
+ * Check if a given object implements the Writing interface.
  */
-export function instanceOfUser(value: object): value is User {
+export function instanceOfWriting(value: object): value is Writing {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     if (!('deletedAt' in value) || value['deletedAt'] === undefined) return false;
-    if (!('provider' in value) || value['provider'] === undefined) return false;
-    if (!('email' in value) || value['email'] === undefined) return false;
-    if (!('nickname' in value) || value['nickname'] === undefined) return false;
+    if (!('writing' in value) || value['writing'] === undefined) return false;
     return true;
 }
 
-export function UserFromJSON(json: any): User {
-    return UserFromJSONTyped(json, false);
+export function WritingFromJSON(json: any): Writing {
+    return WritingFromJSONTyped(json, false);
 }
 
-export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User {
+export function WritingFromJSONTyped(json: any, ignoreDiscriminator: boolean): Writing {
     if (json == null) {
         return json;
     }
@@ -91,17 +77,15 @@ export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User
         'createdAt': (new Date(json['createdAt'])),
         'updatedAt': (new Date(json['updatedAt'])),
         'deletedAt': (new Date(json['deletedAt'])),
-        'provider': json['provider'],
-        'email': json['email'],
-        'nickname': json['nickname'],
+        'writing': json['writing'],
     };
 }
 
-export function UserToJSON(json: any): User {
-    return UserToJSONTyped(json, false);
+export function WritingToJSON(json: any): Writing {
+    return WritingToJSONTyped(json, false);
 }
 
-export function UserToJSONTyped(value?: User | null, ignoreDiscriminator: boolean = false): any {
+export function WritingToJSONTyped(value?: Writing | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -112,9 +96,7 @@ export function UserToJSONTyped(value?: User | null, ignoreDiscriminator: boolea
         'createdAt': ((value['createdAt']).toISOString()),
         'updatedAt': ((value['updatedAt']).toISOString()),
         'deletedAt': ((value['deletedAt']).toISOString()),
-        'provider': value['provider'],
-        'email': value['email'],
-        'nickname': value['nickname'],
+        'writing': value['writing'],
     };
 }
 

@@ -53,5 +53,6 @@ models/UpdateStudyDto.ts
 models/UpdateUserDto.ts
 models/User.ts
 models/VerifyCodeDto.ts
+models/WritingDto.ts
 models/index.ts
 runtime.ts

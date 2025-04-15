@@ -20,7 +20,7 @@ export class AuthController {
     private readonly authService: AuthService,
     private readonly userService: UserService,
     private readonly configService: ConfigService,
-  ) {}
+  ) { }
 
   @UseGuards(OptionalTokenGuard)
   @Post('check/is-admin')
@@ -56,6 +56,19 @@ export class AuthController {
       id: req.user.id,
       email: req.user.email,
     });
+  }
+
+  @UseGuards(AuthGuard('jwt-refresh'))
+  @Post('/refresh')
+  @ApiOperation({
+    summary: 'Access Token 재발급',
+    description:
+      '유효한 Refresh Token을 이용해 새로운 Access Token과 Refresh Token을 발급받습니다.',
+  })
+  async refresh(@Request() req) {
+    const user = req.user;
+    const tokens = await this.authService.generateTokens(user);
+    return tokens;
   }
 
   @Get('kakao')
@@ -112,7 +125,7 @@ export class AuthController {
     summary: '구글 로그인',
     description: '구글 계정으로 로그인합니다.',
   })
-  async googleAuth() {}
+  async googleAuth() { }
 
   @UseGuards(AuthGuard('google'))
   @Get('google/callback')

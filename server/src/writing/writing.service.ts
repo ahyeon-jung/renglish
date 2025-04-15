@@ -9,7 +9,7 @@ export class WritingService {
   constructor(
     @InjectRepository(Writing)
     private readonly writingRepository: Repository<Writing>,
-  ) {}
+  ) { }
 
   async create(
     userId: string,
@@ -39,6 +39,13 @@ export class WritingService {
         user: { id: user.id },
       },
       relations: ['dialogue', 'dialogue.scene', 'dialogue.scene.movie'],
+    });
+  }
+
+  async findByUser(userId: string): Promise<Writing[]> {
+    return this.writingRepository.find({
+      where: { userId },
+      relations: ['dialogue'],
     });
   }
 }

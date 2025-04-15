@@ -39,3 +39,4 @@ export * from './UpdateStudyDto';
 export * from './UpdateUserDto';
 export * from './User';
 export * from './VerifyCodeDto';
+export * from './WritingDto';

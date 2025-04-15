@@ -13,68 +13,69 @@
  */
 
 import { mapValues } from '../runtime';
+import type { Dialogue } from './Dialogue';
+import {
+    DialogueFromJSON,
+    DialogueFromJSONTyped,
+    DialogueToJSON,
+    DialogueToJSONTyped,
+} from './Dialogue';
+
 /**
  * 
  * @export
- * @interface Speaker
+ * @interface WritingDto
  */
-export interface Speaker {
+export interface WritingDto {
     /**
      * 아이디
      * @type {string}
-     * @memberof Speaker
+     * @memberof WritingDto
      */
     id: string;
     /**
      * 생성일
      * @type {Date}
-     * @memberof Speaker
+     * @memberof WritingDto
      */
     createdAt: Date;
     /**
      * 수정일
      * @type {Date}
-     * @memberof Speaker
+     * @memberof WritingDto
      */
     updatedAt: Date;
     /**
-     * 삭제일
-     * @type {Date}
-     * @memberof Speaker
-     */
-    deletedAt: Date;
-    /**
      * 
      * @type {string}
-     * @memberof Speaker
+     * @memberof WritingDto
      */
-    speakerName: string;
+    writing: string;
     /**
      * 
-     * @type {string}
-     * @memberof Speaker
+     * @type {Dialogue}
+     * @memberof WritingDto
      */
-    speakerType: string;
+    dialogue: Dialogue;
 }
 
 /**
- * Check if a given object implements the Speaker interface.
+ * Check if a given object implements the WritingDto interface.
  */
-export function instanceOfSpeaker(value: object): value is Speaker {
+export function instanceOfWritingDto(value: object): value is WritingDto {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
-    if (!('deletedAt' in value) || value['deletedAt'] === undefined) return false;
-    if (!('speakerName' in value) || value['speakerName'] === undefined) return false;
-    if (!('speakerType' in value) || value['speakerType'] === undefined) return false;
+    if (!('writing' in value) || value['writing'] === undefined) return false;
+    if (!('dialogue' in value) || value['dialogue'] === undefined) return false;
     return true;
 }
 
-export function SpeakerFromJSON(json: any): Speaker {
-    return SpeakerFromJSONTyped(json, false);
+export function WritingDtoFromJSON(json: any): WritingDto {
+    return WritingDtoFromJSONTyped(json, false);
 }
 
-export function SpeakerFromJSONTyped(json: any, ignoreDiscriminator: boolean): Speaker {
+export function WritingDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): WritingDto {
     if (json == null) {
         return json;
     }
@@ -83,17 +84,16 @@ export function SpeakerFromJSONTyped(json: any, ignoreDiscriminator: boolean): S
         'id': json['id'],
         'createdAt': (new Date(json['createdAt'])),
         'updatedAt': (new Date(json['updatedAt'])),
-        'deletedAt': (new Date(json['deletedAt'])),
-        'speakerName': json['speaker_name'],
-        'speakerType': json['speaker_type'],
+        'writing': json['writing'],
+        'dialogue': DialogueFromJSON(json['dialogue']),
     };
 }
 
-export function SpeakerToJSON(json: any): Speaker {
-    return SpeakerToJSONTyped(json, false);
+export function WritingDtoToJSON(json: any): WritingDto {
+    return WritingDtoToJSONTyped(json, false);
 }
 
-export function SpeakerToJSONTyped(value?: Speaker | null, ignoreDiscriminator: boolean = false): any {
+export function WritingDtoToJSONTyped(value?: WritingDto | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -103,9 +103,8 @@ export function SpeakerToJSONTyped(value?: Speaker | null, ignoreDiscriminator: 
         'id': value['id'],
         'createdAt': ((value['createdAt']).toISOString()),
         'updatedAt': ((value['updatedAt']).toISOString()),
-        'deletedAt': ((value['deletedAt']).toISOString()),
-        'speaker_name': value['speakerName'],
-        'speaker_type': value['speakerType'],
+        'writing': value['writing'],
+        'dialogue': DialogueToJSON(value['dialogue']),
     };
 }
 
