@@ -50,6 +50,7 @@ export const PATHS = {
     MEMBER: '/notices/member',
   },
   MY: {
+    HOME: '/my',
     PROFILE: '/my/profile',
     STUDIES: '/my/studies',
     WRITINGS: '/my/writings',

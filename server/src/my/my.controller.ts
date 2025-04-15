@@ -2,6 +2,7 @@ import { Controller, Get, UseGuards, Request, Put, Body, Query } from '@nestjs/c
 import { ApiBody, ApiOkResponse, ApiOperation, ApiQuery, ApiResponse } from '@nestjs/swagger';
 import { AccessTokenGuard } from 'src/auth/guards/access-token.guard';
 import { TAG } from 'src/common/constants/tag';
+import { StudyDto } from 'src/study/dto/get-study.dto';
 import { Study } from 'src/study/entities/study.entity';
 import { StudyService } from 'src/study/study.service';
 import { UpdateUserDto } from 'src/user/dto/update-user.dto';
@@ -14,7 +15,7 @@ export class MyController {
   constructor(
     private readonly userService: UserService,
     private readonly studyService: StudyService,
-  ) {}
+  ) { }
   @Get('')
   @ApiOperation({
     summary: `현재 사용자 정보 ${TAG.TOKEN_REQUIRED}`,
@@ -48,7 +49,7 @@ export class MyController {
     type: String,
     required: false,
   })
-  @ApiOkResponse({ type: Study, isArray: true })
+  @ApiOkResponse({ type: StudyDto, isArray: true })
   findMyStudies(@Request() req, @Query('type') type?: string) {
     const userId = req.user['id'];
     return this.studyService.findByUser(userId, type);

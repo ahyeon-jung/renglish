@@ -19,7 +19,7 @@ export default async function Studies() {
         </ListContainer>
         <ListContainer title="참여한 스터디">
           {participatedStudies.map((study) => (
-            <StudyItem key={study.id} {...study} />
+            <StudyItem key={study.id} {...study} nonApplicantsButton />
           ))}
         </ListContainer>
       </div>

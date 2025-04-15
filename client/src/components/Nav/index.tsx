@@ -27,7 +27,7 @@ const WITHOUT_AUTH_NAV_OPTIONS = [
 ];
 
 const WITH_AUTH_NAV_OPTIONS = [
-  { label: 'Profile', path: PATHS.MY.PROFILE },
+  { label: 'My Page', path: PATHS.MY.HOME },
   { label: 'Logout', path: PATHS.AUTH.LOGOUT },
 ];
 
