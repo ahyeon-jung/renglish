@@ -2,6 +2,22 @@
 
 All important changes are managed in this document.
 
+2.1.3 - 04/13/2025 - 04/16/2025
+
+### Added
+
+- Google Social Login
+- Naver Social Login
+- Add participation study list for members
+- Add study status and add API for status change by admin
+- Add new expression page for the week and scene-based expression page
+- Create Admin tab for managing studies
+
+### Fixed
+
+- Fixed issue with disappearing login tokens
+- refresh token logic for persistent login by using cookies to store tokens and automatically refresh them when expired.
+
 ## 2.1.2
 
 ### Fixed
