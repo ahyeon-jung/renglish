@@ -5,7 +5,6 @@ import { Movie } from '@/types/movie';
 import { movieApi } from '@/libs/api';
 
 export default async function getMovie(movieId: string): Promise<ActionResponse<Movie>> {
-
   const movie = await movieApi.movieControllerFindOne({ movieId });
 
   return {

@@ -29,12 +29,10 @@ export default function CancelToApplyModal({ onClose, studyId }: CancelToApplyMo
       <Modal.Content>
         <Text as="p" typography="body-lg">
           이미 신청한 스터디입니다. 취소하시겠습니까?
-          </Text>
-          <Text as="p" typography="body-lg">
-          📌 게더타운 바로가기   
-          <Link href={GATHER_TOWN_URL}>
-            click herer!
-          </Link>            
+        </Text>
+        <Text as="p" typography="body-lg">
+          📌 게더타운 바로가기
+          <Link href={GATHER_TOWN_URL}>click herer!</Link>
         </Text>
       </Modal.Content>
       <Button onClick={handleCancelToApplyClick} variants="danger">

@@ -16,7 +16,14 @@ export default async function MovieScenePracticeFill({
     <main className="mt-[var(--header-height)] p-3">
       <SceneHeader title={slug.movie} movieId={slug.movie} sceneId={slug.scene} />
       <DialogListContainer>
-        {scene.dialogues.map((dialogue, index) => <FillDialogueListItem key={index} dialogue={dialogue} index={index} speaker={dialogue.speaker} />)}
+        {scene.dialogues.map((dialogue, index) => (
+          <FillDialogueListItem
+            key={index}
+            dialogue={dialogue}
+            index={index}
+            speaker={dialogue.speaker}
+          />
+        ))}
       </DialogListContainer>
     </main>
   );

@@ -29,7 +29,7 @@ import { StudyDto } from './dto/get-study.dto';
 @ApiTags('Study')
 @Controller('studies')
 export class StudyController {
-  constructor(private readonly studyService: StudyService) { }
+  constructor(private readonly studyService: StudyService) {}
 
   @Get()
   @UseGuards(OptionalTokenGuard)

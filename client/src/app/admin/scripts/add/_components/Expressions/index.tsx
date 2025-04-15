@@ -16,17 +16,20 @@ type ScriptAddDialogueBodyType = string;
 export type ScriptAddDialoguesBodyType = ScriptAddDialogueBodyType[];
 
 export default function Expressions() {
-  const {
-    setStep,
-
-  } = useContext(FunnelContext) as FunnelContextType<ScriptAddStepType, ScriptAddBodyType>;
+  const { setStep } = useContext(FunnelContext) as FunnelContextType<
+    ScriptAddStepType,
+    ScriptAddBodyType
+  >;
   const [scenes, setScenes] = useState<PaginationSceneDto[]>([]);
-  const [selectedScene, setSelectedScene] = useState<{ id: string, speakers: Speaker[] }>({ id: "", speakers: [] });
+  const [selectedScene, setSelectedScene] = useState<{ id: string; speakers: Speaker[] }>({
+    id: '',
+    speakers: [],
+  });
   const [expressionsBody, setExpressionsBody] = useState('');
 
   const handleExpressionsChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const input = e.target.value;
-    setExpressionsBody(input)
+    setExpressionsBody(input);
   };
 
   const handleNextClick = async () => {
@@ -35,29 +38,27 @@ export default function Expressions() {
       return;
     }
 
-    const formattedExpressions = expressionsBody
-      .split('\n\n')
-      .map((expressionBody) => {
-        const [expression, meaning, usage, ...examples] = expressionBody.split('\n');
-        if (!expression || !meaning || !usage || !examples) {
-          return;
-        }
+    const formattedExpressions = expressionsBody.split('\n\n').map((expressionBody) => {
+      const [expression, meaning, usage, ...examples] = expressionBody.split('\n');
+      if (!expression || !meaning || !usage || !examples) {
+        return;
+      }
 
-        const examplesArray = examples.map((example) => {
-          const [english, korean] = example.split(':');
-          return {
-            en: english,
-            ko: korean,
-          };
-        });
-
+      const examplesArray = examples.map((example) => {
+        const [english, korean] = example.split(':');
         return {
-          expression,
-          meaning,
-          usage,
-          examples: examplesArray,
+          en: english,
+          ko: korean,
         };
       });
+
+      return {
+        expression,
+        meaning,
+        usage,
+        examples: examplesArray,
+      };
+    });
 
     for (const expression of formattedExpressions) {
       if (!expression) {
@@ -65,11 +66,9 @@ export default function Expressions() {
       }
 
       await addExpressionAction(selectedScene.id, expression);
-
     }
     setStep(SCRIPT_ADD_STEP.SUBMIT_CONFIRM);
-  }
-
+  };
 
   useEffect(() => {
     const loadScenes = async () => {
@@ -86,7 +85,12 @@ export default function Expressions() {
         <Field.Select
           options={scenes.map(({ id, title }) => ({ value: id, label: title }))}
           value={selectedScene.id}
-          onChange={(e) => setSelectedScene({ id: e.target.value, speakers: scenes.find(scene => scene.id === e.target.value)?.speakers ?? [] })}
+          onChange={(e) =>
+            setSelectedScene({
+              id: e.target.value,
+              speakers: scenes.find((scene) => scene.id === e.target.value)?.speakers ?? [],
+            })
+          }
         />
       </Field>
       <div className="flex gap-3">

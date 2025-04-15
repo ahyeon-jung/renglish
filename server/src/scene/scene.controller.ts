@@ -34,7 +34,7 @@ export class SceneController {
   constructor(
     private readonly sceneService: SceneService,
     private readonly studyService: StudyService,
-  ) { }
+  ) {}
 
   @Post(':movieId')
   @UseGuards(AdminTokenGuard)

@@ -3,7 +3,19 @@ import { ENV } from '@/constants/env';
 import { FetchError } from '@/utils/error';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { AuthApi, Configuration, DialoguesApi, EmailVerificationApi, ExpressionApi, MoviesApi, MyApi, ScenesApi, SpeakersApi, StudyApi, WritingsApi } from '@/services';
+import {
+  AuthApi,
+  Configuration,
+  DialoguesApi,
+  EmailVerificationApi,
+  ExpressionApi,
+  MoviesApi,
+  MyApi,
+  ScenesApi,
+  SpeakersApi,
+  StudyApi,
+  WritingsApi,
+} from '@/services';
 import { fetchWithAutoRefresh } from './fetchWithRefresh';
 
 export async function fetchAPI<T = void>(endpoint: string, options?: RequestInit, isRetry = false) {

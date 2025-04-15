@@ -56,15 +56,15 @@ export default function ApplyToStudyModal({ studyId }: ApplyToStudyModalProps) {
       {userStatus === USER_STATUS.APPLY_SUCCESS && (
         <Modal className="w-[300px]" onClose={closeModal}>
           <Modal.Title>스터디 참여신청 완료</Modal.Title>
-          <Modal.Content className='flex flex-col gap-2'>
+          <Modal.Content className="flex flex-col gap-2">
             <Text as="p" typography="body-lg">
               해당 일자에 참여해주세요
             </Text>
             <Text as="p" typography="body-lg">
-            📌 게더타운 바로가기{' '}  
-            <Link href={GATHER_TOWN_URL} className='text-orange-500 underline'>
-              click here!
-            </Link>
+              📌 게더타운 바로가기{' '}
+              <Link href={GATHER_TOWN_URL} className="text-orange-500 underline">
+                click here!
+              </Link>
             </Text>
           </Modal.Content>
           <Button onClick={closeModal}>확인</Button>

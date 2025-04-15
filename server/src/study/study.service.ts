@@ -23,7 +23,7 @@ export class StudyService {
     private sceneRepository: Repository<Scene>,
     @InjectRepository(User)
     private userRepository: Repository<User>,
-  ) { }
+  ) {}
 
   async create(sceneId: string, createStudyDto: CreateStudyDto): Promise<Study> {
     const scene = await this.sceneRepository.findOne({
@@ -90,7 +90,7 @@ export class StudyService {
     const data = results.map((row) => {
       const wrapped_applicants = `[${row.applicantInfo}]`;
 
-      const applicants = JSON.parse(wrapped_applicants)
+      const applicants = JSON.parse(wrapped_applicants);
 
       const wrapped_participants = `[${row.participantInfo}]`;
       const participants = JSON.parse(wrapped_participants);

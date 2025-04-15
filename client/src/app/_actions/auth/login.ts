@@ -20,7 +20,7 @@ export default async function loginAction({
 
   try {
     const response = await authApi.authControllerLogin({
-      loginDto: { email, password }
+      loginDto: { email, password },
     });
 
     const { accessToken, refreshToken } = response;

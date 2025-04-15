@@ -1,15 +1,14 @@
-"use client";
+'use client';
 
-import { parseText } from "@/utils/content";
-import DialogListItem, { DialogListItemProps } from "../../_components/DialogListItem";
-import { Dialogue } from "@/types/dialogue";
-import { useState } from "react";
+import { parseText } from '@/utils/content';
+import DialogListItem, { DialogListItemProps } from '../../_components/DialogListItem';
+import { Dialogue } from '@/types/dialogue';
+import { useState } from 'react';
 
 type FillDialogueListItemProps = DialogListItemProps & {
   dialogue: Dialogue;
   index: number;
 };
-
 
 export default function FillDialogueListItem({ dialogue, index }: FillDialogueListItemProps) {
   const [isClicked, setIsClicked] = useState(false);
@@ -27,6 +26,6 @@ export default function FillDialogueListItem({ dialogue, index }: FillDialogueLi
         )}
         {parseText(dialogue.koreanScript)}
       </div>
-    </DialogListItem>);
+    </DialogListItem>
+  );
 }
-

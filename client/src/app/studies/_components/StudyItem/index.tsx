@@ -7,7 +7,9 @@ import StudyMember from '../StudyMember';
 import Link from 'next/link';
 import { PATHS } from '@/constants/path';
 
-type StudyItemProps = ListStudyDto & { nonApplicantsButton?: boolean } | StudyDto & { nonApplicantsButton?: boolean };
+type StudyItemProps =
+  | (ListStudyDto & { nonApplicantsButton?: boolean })
+  | (StudyDto & { nonApplicantsButton?: boolean });
 
 export default function StudyItem({ nonApplicantsButton = false, ...study }: StudyItemProps) {
   return (
@@ -25,7 +27,8 @@ export default function StudyItem({ nonApplicantsButton = false, ...study }: Stu
           <StudyMember
             applicants={study.applicants}
             participants={study.participants}
-            isCompleted={study.isCompleted} />
+            isCompleted={study.isCompleted}
+          />
           <Link
             href={PATHS.MOVIE.SCENE.SCRIPT.ENGLISH(study.scene.movie.title, study.scene.id)}
             className={clsx(

@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import Text from '../Text';
 
-type ContentProps = { className?: string } & React.PropsWithChildren
+type ContentProps = { className?: string } & React.PropsWithChildren;
 export default function Content({ children, className }: ContentProps) {
   const isString = typeof children === 'string';
 

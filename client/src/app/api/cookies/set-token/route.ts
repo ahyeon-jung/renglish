@@ -4,7 +4,12 @@ import { ENV } from '@/constants/env';
 export async function POST(req: Request) {
   const { accessToken, refreshToken, rememberMe } = await req.json();
 
-  const response = NextResponse.json({ status: 200, success: true, message: 'Tokens set successfully', data: null });
+  const response = NextResponse.json({
+    status: 200,
+    success: true,
+    message: 'Tokens set successfully',
+    data: null,
+  });
 
   response.cookies.set(ENV.COOKIE_ACCESS_TOKEN_KEY, accessToken, {
     httpOnly: true,

@@ -26,7 +26,7 @@ export class NaverStrategy extends PassportStrategy(Strategy, 'naver') {
         providerId: id,
         email,
         name: nickname,
-      }
+      };
       done(null, user);
     } catch (error) {
       done(null, null);

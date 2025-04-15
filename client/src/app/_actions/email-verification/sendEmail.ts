@@ -19,7 +19,9 @@ export default async function sendEmail({ email }: SendEmailParams): Promise<Act
       return { status: 409, success: false, message: 'Already exists email', data: null };
     }
 
-    await emailVerificationApi.emailVerificationControllerSendEmailWithOTP({ sendEmailDto: { email } });
+    await emailVerificationApi.emailVerificationControllerSendEmailWithOTP({
+      sendEmailDto: { email },
+    });
 
     return { status: 200, success: true, message: 'Send email successfully', data: null };
   } catch (e) {

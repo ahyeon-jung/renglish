@@ -10,8 +10,7 @@ export default function StudyMember({ ...study }: StudyItemProps) {
   return (
     <div>
       <div className="mt-2 text-sm font-medium text-gray-700">
-        {study.isCompleted ? '참여자' : '예정 인원'}:{' '}
-        {members?.length} / {APPLICANT_LIMIT}
+        {study.isCompleted ? '참여자' : '예정 인원'}: {members?.length} / {APPLICANT_LIMIT}
       </div>
 
       <div className="mt-2 flex gap-2 flex-wrap">

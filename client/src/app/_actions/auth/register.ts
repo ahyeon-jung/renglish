@@ -22,7 +22,9 @@ export default async function registerAction({
     return { status: 200, success: false, message: 'no required data', data: null };
   }
 
-  await authApi.authControllerRegister({ createUserDto: { email, password, nickname, provider, how } });
+  await authApi.authControllerRegister({
+    createUserDto: { email, password, nickname, provider, how },
+  });
 
   return { status: 200, success: true, message: 'Register successfully', data: null };
 }

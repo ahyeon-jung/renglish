@@ -16,13 +16,16 @@ type ScriptAddDialogueBodyType = string;
 export type ScriptAddDialoguesBodyType = ScriptAddDialogueBodyType[];
 
 export default function Dialogues() {
-  const {
-    setStep,
-
-  } = useContext(FunnelContext) as FunnelContextType<ScriptAddStepType, ScriptAddBodyType>;
+  const { setStep } = useContext(FunnelContext) as FunnelContextType<
+    ScriptAddStepType,
+    ScriptAddBodyType
+  >;
   const [mode, setMode] = useState<'html' | 'text'>('text');
   const [scenes, setScenes] = useState<PaginationSceneDto[]>([]);
-  const [selectedScene, setSelectedScene] = useState<{ id: string, speakers: Speaker[] }>({ id: "", speakers: [] });
+  const [selectedScene, setSelectedScene] = useState<{ id: string; speakers: Speaker[] }>({
+    id: '',
+    speakers: [],
+  });
   const [dialoguesBody, setDialoguesBody] = useState(`<p>Speaker Name</p>
 <p>English dialogue</p>
 <p>Korean dialogue</p>
@@ -45,9 +48,10 @@ export default function Dialogues() {
     const lastWord = input.split('\n')[words.length - 1];
 
     if (lastWord) {
-      const filteredSuggestions = scenes.filter((scene) => scene.id === selectedScene.id)
-      [0].speakers
-        .filter((name) => name.speakerName.toLowerCase().includes(lastWord.toLowerCase())).map((speaker) => speaker.speakerName);
+      const filteredSuggestions = scenes
+        .filter((scene) => scene.id === selectedScene.id)[0]
+        .speakers.filter((name) => name.speakerName.toLowerCase().includes(lastWord.toLowerCase()))
+        .map((speaker) => speaker.speakerName);
 
       setSuggestions(filteredSuggestions);
       if (textareaRef.current) {
@@ -93,30 +97,30 @@ export default function Dialogues() {
       alert('값을 입력해주세요.');
       return;
     }
-    const formattedDialogues = dialoguesBody
-      .split('\n\n')
-      .map((dialogue, index) => {
-        const [speaker, english, korean] = dialogue.split('\n');
-        if (!speaker || !english || !korean) {
-          return;
-        }
+    const formattedDialogues = dialoguesBody.split('\n\n').map((dialogue, index) => {
+      const [speaker, english, korean] = dialogue.split('\n');
+      if (!speaker || !english || !korean) {
+        return;
+      }
 
-        const speakerId = selectedScene.speakers.find(selectedSpeaker => selectedSpeaker.speakerName === speaker)?.id;
-        if (!speakerId) {
-          alert('올바른 형식으로 입력해주세요');
-          return;
-        }
+      const speakerId = selectedScene.speakers.find(
+        (selectedSpeaker) => selectedSpeaker.speakerName === speaker,
+      )?.id;
+      if (!speakerId) {
+        alert('올바른 형식으로 입력해주세요');
+        return;
+      }
 
-        const formattedEnglish = `<p>${english.replace(/\*\*(.*?)\*\*/g, "<span class='keypoint'>$1</span>")}</p>`;
-        const formattedKorean = `<p>${korean}</p>`;
+      const formattedEnglish = `<p>${english.replace(/\*\*(.*?)\*\*/g, "<span class='keypoint'>$1</span>")}</p>`;
+      const formattedKorean = `<p>${korean}</p>`;
 
-        return {
-          speakerId: speakerId,
-          english_script: formattedEnglish,
-          korean_script: formattedKorean,
-          order: index,
-        };
-      });
+      return {
+        speakerId: speakerId,
+        english_script: formattedEnglish,
+        korean_script: formattedKorean,
+        order: index,
+      };
+    });
 
     for (const dialogue of formattedDialogues) {
       if (!dialogue) {
@@ -128,11 +132,9 @@ export default function Dialogues() {
         koreanScript: dialogue.korean_script,
         order: dialogue.order,
       });
-
     }
     setStep(SCRIPT_ADD_STEP.SUBMIT_CONFIRM);
-  }
-
+  };
 
   useEffect(() => {
     const loadScenes = async () => {
@@ -149,7 +151,12 @@ export default function Dialogues() {
         <Field.Select
           options={scenes.map(({ id, title }) => ({ value: id, label: title }))}
           value={selectedScene.id}
-          onChange={(e) => setSelectedScene({ id: e.target.value, speakers: scenes.find(scene => scene.id === e.target.value)?.speakers ?? [] })}
+          onChange={(e) =>
+            setSelectedScene({
+              id: e.target.value,
+              speakers: scenes.find((scene) => scene.id === e.target.value)?.speakers ?? [],
+            })
+          }
         />
       </Field>
       <input
@@ -163,14 +170,23 @@ export default function Dialogues() {
           reader.onload = (event) => {
             try {
               const json = JSON.parse(event.target?.result as string);
-              setDialoguesBody(json.dialogues.map((dialogue: { speaker: string, english_script: string, korean_script: string }) => `${dialogue.speaker}
-${dialogue.english_script.replace(/^<p>/, '')
-                  .replace(/<\/p>$/, '')
-                  .replace(/<span class='keypoint'>(.*?)<\/span>/g, '**$1**')}
-${dialogue.korean_script.replace(/^<p>/, '')
-                  .replace(/<\/p>$/, '')}`).join('\n\n'));
+              setDialoguesBody(
+                json.dialogues
+                  .map(
+                    (dialogue: {
+                      speaker: string;
+                      english_script: string;
+                      korean_script: string;
+                    }) => `${dialogue.speaker}
+${dialogue.english_script
+  .replace(/^<p>/, '')
+  .replace(/<\/p>$/, '')
+  .replace(/<span class='keypoint'>(.*?)<\/span>/g, '**$1**')}
+${dialogue.korean_script.replace(/^<p>/, '').replace(/<\/p>$/, '')}`,
+                  )
+                  .join('\n\n'),
+              );
             } catch (err) {
-
               console.error('JSON 파싱 에러:', err);
               alert('올바른 JSON 파일을 업로드해주세요.');
             }
@@ -189,7 +205,10 @@ ${dialogue.korean_script.replace(/^<p>/, '')
       <Field>
         <Field.Label>Mode</Field.Label>
         <Field.Select
-          options={[{ value: 'html', label: 'HTML' }, { value: 'text', label: 'Text' }]}
+          options={[
+            { value: 'html', label: 'HTML' },
+            { value: 'text', label: 'Text' },
+          ]}
           value={mode}
           onChange={handleModeChange}
         />

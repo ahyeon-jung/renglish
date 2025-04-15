@@ -10,7 +10,7 @@ import { ExcludedPasswordUser } from './types/excluded-password-user';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectRepository(User) private readonly userRepository: Repository<User>) { }
+  constructor(@InjectRepository(User) private readonly userRepository: Repository<User>) {}
 
   async checkIsSocialAccountByEmail(email: string, provider: string): Promise<User | null> {
     const user = await this.userRepository.findOne({

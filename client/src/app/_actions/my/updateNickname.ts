@@ -22,7 +22,6 @@ export default async function updateNicknameAction(
     };
   }
 
-
   try {
     const response = await myApi.myControllerChangeUser({
       updateUserDto: {

@@ -48,10 +48,7 @@ export default function Scene() {
   }, []);
 
   return (
-    <StepFormContainer
-      onNext={handleNextClick}
-      disabled={!isAvailableNextButton}
-    >
+    <StepFormContainer onNext={handleNextClick} disabled={!isAvailableNextButton}>
       <Field>
         <Field.Label>Movie</Field.Label>
         <Field.Select

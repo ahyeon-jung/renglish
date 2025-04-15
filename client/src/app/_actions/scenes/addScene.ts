@@ -5,10 +5,7 @@ import { cookies } from 'next/headers';
 import { CreateSceneDto } from '@/services';
 import { sceneApi } from '@/libs/api';
 
-export default async function addSceneAction(
-  movieId: string,
-  addSceneActionBody: CreateSceneDto,
-) {
+export default async function addSceneAction(movieId: string, addSceneActionBody: CreateSceneDto) {
   const cookieStore = await cookies();
   const token = cookieStore.get(ENV.COOKIE_ACCESS_TOKEN_KEY)?.value;
   if (!token) {

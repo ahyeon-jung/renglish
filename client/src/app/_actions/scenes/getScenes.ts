@@ -5,10 +5,7 @@ import { sceneApi } from '@/libs/api';
 
 type GetScenesParams = SearchParams & PaginationParams;
 
-export default async function getScenes({
-  offset = 1,
-  limit = 10,
-}: GetScenesParams) {
+export default async function getScenes({ offset = 1, limit = 10 }: GetScenesParams) {
   const params = new URLSearchParams();
   if (offset) {
     params.append('offset', offset.toString());

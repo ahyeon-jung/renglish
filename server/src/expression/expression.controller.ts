@@ -11,7 +11,7 @@ import { DeleteResult } from 'typeorm';
 
 @Controller('expressions')
 export class ExpressionController {
-  constructor(private readonly expressionService: ExpressionService) { }
+  constructor(private readonly expressionService: ExpressionService) {}
 
   @Get('/weekly')
   @ApiOperation({

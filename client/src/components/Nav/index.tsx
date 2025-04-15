@@ -10,7 +10,7 @@ import { PATHS } from '@/constants/path';
 import { createPortal } from 'react-dom';
 import { usePathname } from 'next/navigation';
 
-type NavProps = { hasToken: boolean, isAdmin: boolean };
+type NavProps = { hasToken: boolean; isAdmin: boolean };
 
 const DEFAULT_NAV_OPTIONS = [
   { label: 'Home', path: PATHS.HOME },

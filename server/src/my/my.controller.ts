@@ -15,7 +15,7 @@ export class MyController {
   constructor(
     private readonly userService: UserService,
     private readonly studyService: StudyService,
-  ) { }
+  ) {}
   @Get('')
   @ApiOperation({
     summary: `현재 사용자 정보 ${TAG.TOKEN_REQUIRED}`,

@@ -1,7 +1,15 @@
-import { ApiProperty, PickType} from '@nestjs/swagger';
+import { ApiProperty, PickType } from '@nestjs/swagger';
 import { Scene } from '../entities/scene.entity';
 
-class PaginationSceneDto extends PickType(Scene, ['id', 'title', 'description', 'audioUrl','speakers', 'createdAt', 'updatedAt']) {}
+class PaginationSceneDto extends PickType(Scene, [
+  'id',
+  'title',
+  'description',
+  'audioUrl',
+  'speakers',
+  'createdAt',
+  'updatedAt',
+]) {}
 
 export class PaginationSceneResponseDto {
   @ApiProperty({ description: '전체 항목 수' })

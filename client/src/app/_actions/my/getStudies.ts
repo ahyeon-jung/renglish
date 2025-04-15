@@ -4,9 +4,7 @@ import { ENV } from '@/constants/env';
 import { cookies } from 'next/headers';
 import { myApi } from '@/libs/api';
 
-export default async function getStudiesAction(
-  type?: 'applicant' | 'participant',
-) {
+export default async function getStudiesAction(type?: 'applicant' | 'participant') {
   const cookieStore = await cookies();
   const token = cookieStore.get(ENV.COOKIE_ACCESS_TOKEN_KEY)?.value;
   if (!token) {

@@ -16,8 +16,9 @@ export default async function verifyCode({
   }
 
   try {
-
-    await emailVerificationApi.emailVerificationControllerVerifyCode({ verifyCodeDto: { email, code } })
+    await emailVerificationApi.emailVerificationControllerVerifyCode({
+      verifyCodeDto: { email, code },
+    });
 
     return { status: 200, success: true, message: 'Verify code successfully', data: null };
   } catch (e) {

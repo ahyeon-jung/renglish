@@ -31,7 +31,7 @@ export class AuthService {
     private readonly userService: UserService,
     private readonly encryptionService: EncryptionService,
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
-  ) { }
+  ) {}
 
   async signup(createUserDto: CreateUserDto): Promise<Omit<User, 'password'>> {
     const { email, password, nickname, how, provider } = createUserDto;
@@ -213,6 +213,6 @@ export class AuthService {
     const hashedPassword = await this.encryptionService.hashPassword(password);
     await this.userService.updatePassword(user.id, hashedPassword);
 
-    return "Password reset successfully";
+    return 'Password reset successfully';
   }
 }

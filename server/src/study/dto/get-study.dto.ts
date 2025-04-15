@@ -12,9 +12,19 @@ export class GetStudyParams extends SearchParams {
   status?: string;
 }
 
-class StudySceneDto extends OmitType(Scene, ['dialogues', 'expressions', 'speakers']) { }
+class StudySceneDto extends OmitType(Scene, ['dialogues', 'expressions', 'speakers']) {}
 
-export class StudyDto extends PickType(Study, ['id', 'title', 'description', 'studiedAt', 'createdAt', 'updatedAt', 'applicants', 'participants', 'isCompleted']) {
+export class StudyDto extends PickType(Study, [
+  'id',
+  'title',
+  'description',
+  'studiedAt',
+  'createdAt',
+  'updatedAt',
+  'applicants',
+  'participants',
+  'isCompleted',
+]) {
   @ApiProperty({ type: StudySceneDto })
   scene: StudySceneDto;
 

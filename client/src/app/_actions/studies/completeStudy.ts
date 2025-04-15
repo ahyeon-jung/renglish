@@ -1,8 +1,8 @@
-"use server";
+'use server';
 
-import { ENV } from "@/constants/env";
-import { studyApi } from "@/libs/api";
-import { cookies } from "next/headers";
+import { ENV } from '@/constants/env';
+import { studyApi } from '@/libs/api';
+import { cookies } from 'next/headers';
 
 export default async function completeStudyAction(studyId: string) {
   const cookieStore = await cookies();
@@ -25,4 +25,3 @@ export default async function completeStudyAction(studyId: string) {
     data: response,
   };
 }
-

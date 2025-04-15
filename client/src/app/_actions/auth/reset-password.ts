@@ -5,7 +5,7 @@ import { handleError } from '@/utils/error';
 import { ActionResponse } from '@/types/action';
 import { authApi } from '@/libs/api';
 
-type ResetPasswordActionProps = { email: string; password: string, passwordConfirm: string };
+type ResetPasswordActionProps = { email: string; password: string; passwordConfirm: string };
 
 export default async function resetPasswordAction({
   email,
@@ -17,13 +17,17 @@ export default async function resetPasswordAction({
   }
 
   if (password !== passwordConfirm) {
-    return { status: 200, success: false, message: 'password and passwordConfirm are not same', data: null };
+    return {
+      status: 200,
+      success: false,
+      message: 'password and passwordConfirm are not same',
+      data: null,
+    };
   }
-
 
   try {
     await authApi.authControllerPasswordReset({
-      passwordResetDto: { email, password }
+      passwordResetDto: { email, password },
     });
 
     return { status: 200, success: true, message: 'Password reset successfully', data: null };

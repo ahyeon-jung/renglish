@@ -1,13 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Post,
-  Request,
-  UseGuards,
-  Req,
-  Res,
-} from '@nestjs/common';
+import { Body, Controller, Get, Post, Request, UseGuards, Req, Res } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBody, ApiOkResponse } from '@nestjs/swagger';
 
 import { AuthService } from './auth.service';
@@ -29,7 +20,7 @@ export class AuthController {
     private readonly authService: AuthService,
     private readonly userService: UserService,
     private readonly configService: ConfigService,
-  ) { }
+  ) {}
 
   @UseGuards(OptionalTokenGuard)
   @Post('check/is-admin')
@@ -121,7 +112,7 @@ export class AuthController {
     summary: '구글 로그인',
     description: '구글 계정으로 로그인합니다.',
   })
-  async googleAuth() { }
+  async googleAuth() {}
 
   @UseGuards(AuthGuard('google'))
   @Get('google/callback')

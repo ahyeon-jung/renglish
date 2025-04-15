@@ -11,14 +11,10 @@ type StudyItemProps = ListStudyDto;
 const APPLICANT_LIMIT = 8;
 
 export default function StudyItem({ ...study }: StudyItemProps) {
-
   const handleCompleteStudyClick = async () => {
     try {
       await completeStudyAction(study.id);
-
-    } catch {
-
-    }
+    } catch {}
   };
 
   return (
@@ -35,11 +31,14 @@ export default function StudyItem({ ...study }: StudyItemProps) {
           <p className="text-sm text-gray-500">{formatDate(study.studiedAt, 'long')}</p>
           <div className="mt-2 text-sm font-medium text-gray-700">
             {study.isCompleted ? '예정 인원' : '참여자'}:{' '}
-            {study.isCompleted ? study.applicants?.length : study.participants?.length} / {APPLICANT_LIMIT}
+            {study.isCompleted ? study.applicants?.length : study.participants?.length} /{' '}
+            {APPLICANT_LIMIT}
           </div>
         </div>
         {!study.isCompleted && (
-          <Button className='flex-[0.2]' onClick={handleCompleteStudyClick}>완료</Button>
+          <Button className="flex-[0.2]" onClick={handleCompleteStudyClick}>
+            완료
+          </Button>
         )}
       </div>
     </Link>

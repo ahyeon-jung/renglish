@@ -28,8 +28,8 @@ export default function LoginPage() {
               Change Password
             </Link>
           </div>
-          </div>
+        </div>
       </div>
-      </AuthContainer>
+    </AuthContainer>
   );
 }

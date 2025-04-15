@@ -7,9 +7,24 @@ import Link from 'next/link';
 import { ENV } from '@/constants/env';
 
 const SOCIAL_LOGINS = [
-  { label: 'Google', icon: google_logo, className: 'bg-[#FFFFFF] border border-[#747775]', callbackUrl: `${ENV.API_BASE_URL}/api/auth/google` },
-  { label: 'Kakao', icon: kakao_logo, className: 'bg-[#FEE500]', callbackUrl: `${ENV.API_BASE_URL}/api/auth/kakao` },
-  { label: 'Naver', icon: naver_logo, className: 'gap-3 bg-[#03C75A] text-white', callbackUrl: `${ENV.API_BASE_URL}/api/auth/naver` },
+  {
+    label: 'Google',
+    icon: google_logo,
+    className: 'bg-[#FFFFFF] border border-[#747775]',
+    callbackUrl: `${ENV.API_BASE_URL}/api/auth/google`,
+  },
+  {
+    label: 'Kakao',
+    icon: kakao_logo,
+    className: 'bg-[#FEE500]',
+    callbackUrl: `${ENV.API_BASE_URL}/api/auth/kakao`,
+  },
+  {
+    label: 'Naver',
+    icon: naver_logo,
+    className: 'gap-3 bg-[#03C75A] text-white',
+    callbackUrl: `${ENV.API_BASE_URL}/api/auth/naver`,
+  },
 ];
 
 type SocialButtonsProps = {
