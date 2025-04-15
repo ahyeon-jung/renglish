@@ -38,7 +38,7 @@ export default function StudyItem({ ...study }: StudyItemProps) {
             {study.isCompleted ? study.applicants?.length : study.participants?.length} / {APPLICANT_LIMIT}
           </div>
         </div>
-        {study.isCompleted && (
+        {!study.isCompleted && (
           <Button className='flex-[0.2]' onClick={handleCompleteStudyClick}>완료</Button>
         )}
       </div>

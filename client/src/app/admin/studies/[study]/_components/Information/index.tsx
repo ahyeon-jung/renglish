@@ -72,7 +72,7 @@ export default function Information({ id, title, description, studiedAt, isCompl
         <div>{description}</div>
         <div>{formatDate(studiedAt)}</div>
       </div>
-      {isCompleted && (
+      {!isCompleted && (
         <Button onClick={handleCompleteStudyClick}>스터디 완료로 변경</Button>
       )}
       {isOpen && (

@@ -5,12 +5,12 @@ type StudyItemProps = Pick<ListStudyDto, 'applicants' | 'participants' | 'isComp
 const APPLICANT_LIMIT = 8;
 
 export default function StudyMember({ ...study }: StudyItemProps) {
-  const members = study.isCompleted ? study.applicants : study.participants;
+  const members = study.isCompleted ? study.participants : study.applicants;
 
   return (
     <div>
       <div className="mt-2 text-sm font-medium text-gray-700">
-        {study.isCompleted ? '예정 인원' : '참여자'}:{' '}
+        {study.isCompleted ? '참여자' : '예정 인원'}:{' '}
         {members?.length} / {APPLICANT_LIMIT}
       </div>
 
