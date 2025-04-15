@@ -14,9 +14,10 @@ import {
   ScenesApi,
   SpeakersApi,
   StudyApi,
+  UsersApi,
   WritingsApi,
 } from '@/services';
-import { fetchWithAutoRefresh } from './fetchWithRefresh';
+import { fetchWithToken } from './fetchWithToken';
 
 export async function fetchAPI<T = void>(endpoint: string, options?: RequestInit, isRetry = false) {
   const baseURL = ENV.API_BASE_URL;
@@ -78,7 +79,7 @@ export async function fetchAPI<T = void>(endpoint: string, options?: RequestInit
 
 const config = new Configuration({
   basePath: ENV.API_BASE_URL,
-  fetchApi: fetchWithAutoRefresh,
+  fetchApi: fetchWithToken,
 });
 
 export const myApi = new MyApi(config);
@@ -91,3 +92,4 @@ export const expressionApi = new ExpressionApi(config);
 export const emailVerificationApi = new EmailVerificationApi(config);
 export const dialogueApi = new DialoguesApi(config);
 export const writingApi = new WritingsApi(config);
+export const userApi = new UsersApi(config);

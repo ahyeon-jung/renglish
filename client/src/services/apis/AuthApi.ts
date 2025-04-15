@@ -19,6 +19,7 @@ import type {
   LoginDto,
   LoginResponseDto,
   PasswordResetDto,
+  TokensDto,
 } from '../models/index';
 import {
     CreateUserDtoFromJSON,
@@ -29,7 +30,13 @@ import {
     LoginResponseDtoToJSON,
     PasswordResetDtoFromJSON,
     PasswordResetDtoToJSON,
+    TokensDtoFromJSON,
+    TokensDtoToJSON,
 } from '../models/index';
+
+export interface AuthControllerCheckValidAccessTokenRequest {
+    accessToken: string;
+}
 
 export interface AuthControllerLoginRequest {
     loginDto: LoginDto;
@@ -85,6 +92,53 @@ export class AuthApi extends runtime.BaseAPI {
      */
     async authControllerCheckIsAdmin(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<boolean> {
         const response = await this.authControllerCheckIsAdminRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * 유효한 Access Token인지 확인합니다.
+     * Access Token 유효성 확인
+     */
+    async authControllerCheckValidAccessTokenRaw(requestParameters: AuthControllerCheckValidAccessTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<boolean>> {
+        if (requestParameters['accessToken'] == null) {
+            throw new runtime.RequiredError(
+                'accessToken',
+                'Required parameter "accessToken" was null or undefined when calling authControllerCheckValidAccessToken().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/api/auth/check/{accessToken}`.replace(`{${"accessToken"}}`, encodeURIComponent(String(requestParameters['accessToken']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        if (this.isJsonMime(response.headers.get('content-type'))) {
+            return new runtime.JSONApiResponse<boolean>(response);
+        } else {
+            return new runtime.TextApiResponse(response) as any;
+        }
+    }
+
+    /**
+     * 유효한 Access Token인지 확인합니다.
+     * Access Token 유효성 확인
+     */
+    async authControllerCheckValidAccessToken(requestParameters: AuthControllerCheckValidAccessTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<boolean> {
+        const response = await this.authControllerCheckValidAccessTokenRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -389,7 +443,7 @@ export class AuthApi extends runtime.BaseAPI {
      * 유효한 Refresh Token을 이용해 새로운 Access Token과 Refresh Token을 발급받습니다.
      * Access Token 재발급
      */
-    async authControllerRefreshRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async authControllerRefreshRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TokensDto>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -409,15 +463,16 @@ export class AuthApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => TokensDtoFromJSON(jsonValue));
     }
 
     /**
      * 유효한 Refresh Token을 이용해 새로운 Access Token과 Refresh Token을 발급받습니다.
      * Access Token 재발급
      */
-    async authControllerRefresh(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.authControllerRefreshRaw(initOverrides);
+    async authControllerRefresh(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TokensDto> {
+        const response = await this.authControllerRefreshRaw(initOverrides);
+        return await response.value();
     }
 
     /**

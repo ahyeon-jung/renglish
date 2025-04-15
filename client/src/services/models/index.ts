@@ -30,6 +30,7 @@ export * from './Speaker';
 export * from './Study';
 export * from './StudyDto';
 export * from './StudySceneDto';
+export * from './TokensDto';
 export * from './UpdateDialogueDto';
 export * from './UpdateExpressionDto';
 export * from './UpdateMovieImageDto';

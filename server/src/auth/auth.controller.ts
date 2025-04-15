@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post, Request, UseGuards, Req, Res } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiBody, ApiOkResponse } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiBody, ApiOkResponse, ApiParam } from '@nestjs/swagger';
 
 import { AuthService } from './auth.service';
 import { CreateUserDto } from '../user/dto/create-user.dto';
@@ -12,6 +12,7 @@ import { ConfigService } from '@nestjs/config';
 import { PasswordResetDto } from './dto/reset-password.dto';
 import { OptionalTokenGuard } from './guards/optional-token.guard';
 import { NaverAuthGuard } from './guards/naver-auth.guard';
+import { TokensDto } from './dto/tokens.dto';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -58,6 +59,20 @@ export class AuthController {
     });
   }
 
+  @UseGuards(OptionalTokenGuard)
+  @Get('/check/:accessToken')
+  @ApiOperation({
+    summary: 'Access Token 유효성 확인',
+    description:
+      '유효한 Access Token인지 확인합니다.',
+  })
+  @ApiParam({ name: 'accessToken', type: String, description: 'Access Token' })
+  @ApiOkResponse({ type: Boolean })
+  async checkValidAccessToken(@Request() req) {
+    const user = req.user;
+    return !!user;
+  }
+
   @UseGuards(AuthGuard('jwt-refresh'))
   @Post('/refresh')
   @ApiOperation({
@@ -65,6 +80,7 @@ export class AuthController {
     description:
       '유효한 Refresh Token을 이용해 새로운 Access Token과 Refresh Token을 발급받습니다.',
   })
+  @ApiOkResponse({ type: TokensDto })
   async refresh(@Request() req) {
     const user = req.user;
     const tokens = await this.authService.generateTokens(user);

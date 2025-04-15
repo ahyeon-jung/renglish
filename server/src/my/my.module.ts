@@ -8,4 +8,4 @@ import { WritingModule } from 'src/writing/writing.module';
   imports: [UserModule, StudyModule, WritingModule],
   controllers: [MyController],
 })
-export class MyModule { }
+export class MyModule {}

@@ -9,7 +9,7 @@ export class WritingService {
   constructor(
     @InjectRepository(Writing)
     private readonly writingRepository: Repository<Writing>,
-  ) { }
+  ) {}
 
   async create(
     userId: string,

@@ -7,7 +7,8 @@ export async function GET(req: Request, { params }: { params: Promise<{ token: s
 
   const cookieStore = await cookies();
 
-  cookieStore.set(ENV.COOKIE_REFRESH_TOKEN_KEY, token, {
+  cookieStore.delete(ENV.COOKIE_ACCESS_TOKEN_KEY);
+  cookieStore.set(ENV.COOKIE_ACCESS_TOKEN_KEY, token, {
     httpOnly: true,
     secure: true,
     path: '/',

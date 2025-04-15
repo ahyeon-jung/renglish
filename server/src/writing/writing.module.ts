@@ -10,4 +10,4 @@ import { WritingService } from './writing.service';
   providers: [WritingService],
   exports: [WritingService],
 })
-export class WritingModule { }
+export class WritingModule {}

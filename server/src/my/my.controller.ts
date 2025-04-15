@@ -18,7 +18,7 @@ export class MyController {
     private readonly userService: UserService,
     private readonly studyService: StudyService,
     private readonly writingService: WritingService,
-  ) { }
+  ) {}
   @Get('')
   @ApiOperation({
     summary: `현재 사용자 정보 ${TAG.TOKEN_REQUIRED}`,
@@ -69,5 +69,4 @@ export class MyController {
     const userId = req.user['id'];
     return this.writingService.findByUser(userId);
   }
-
 }
