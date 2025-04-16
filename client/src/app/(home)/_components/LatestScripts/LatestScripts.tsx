@@ -11,7 +11,7 @@ import { useDataFetching } from '@/hooks/useDataFetching';
 import { Movie } from '@/types/movie';
 import { QUERY_KEYS } from '@/hooks/queryKeys';
 
-export default function LatestScript() {
+export default function LatestScripts() {
   const { data, isLoading } = useDataFetching<{ data: Movie }>({
     queryKey: [QUERY_KEYS.MOVIE.LATEST],
     queryFn: getLatestMovieAction,
@@ -52,4 +52,4 @@ export default function LatestScript() {
       </Link>
     </Container>
   );
-}
+} 
