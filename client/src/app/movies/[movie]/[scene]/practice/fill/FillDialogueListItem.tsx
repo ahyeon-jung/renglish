@@ -1,9 +1,10 @@
 'use client';
 
 import { parseText } from '@/utils/content';
-import DialogListItem, { DialogListItemProps } from '../../_components/DialogListItem';
+import DialogListItem from '../../_components/DialogListItem';
 import { Dialogue } from '@/types/dialogue';
 import { useState } from 'react';
+import { DialogListItemProps } from '../../_components/DialogListItem/DialogListItem';
 
 type FillDialogueListItemProps = DialogListItemProps & {
   dialogue: Dialogue;

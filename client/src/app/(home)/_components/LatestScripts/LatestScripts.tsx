@@ -52,4 +52,4 @@ export default function LatestScripts() {
       </Link>
     </Container>
   );
-} 
+}

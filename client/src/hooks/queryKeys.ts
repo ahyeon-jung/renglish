@@ -16,4 +16,4 @@ export const QUERY_KEYS = {
   MOVIE: {
     LATEST: 'latest-movie',
   },
-} as const; 
+} as const;

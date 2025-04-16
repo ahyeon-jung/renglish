@@ -1,7 +1,7 @@
-import { CATEGORIES } from '@/app/movies/_components/Categories';
 import Link from 'next/link';
 import { PATHS } from '@/constants/path';
 import Tag from '@/components/Tag';
+import { CATEGORIES } from '@/constants/categories';
 
 export default function Categories() {
   return (
