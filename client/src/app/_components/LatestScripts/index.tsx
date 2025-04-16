@@ -9,10 +9,11 @@ import Text from '@/components/Text';
 import getLatestMovieAction from '@/app/_actions/movies/getLatestMovie';
 import { useDataFetching } from '@/hooks/useDataFetching';
 import { Movie } from '@/types/movie';
+import { QUERY_KEYS } from '@/hooks/queryKeys';
 
 export default function LatestScript() {
   const { data, isLoading } = useDataFetching<{ data: Movie }>({
-    queryKey: ['latest-movie'],
+    queryKey: [QUERY_KEYS.MOVIE.LATEST],
     queryFn: getLatestMovieAction,
   });
 

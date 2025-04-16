@@ -7,6 +7,7 @@ import StudyItem from '@/app/studies/_components/StudyItem';
 import getStudiesAction from '@/app/_actions/studies/getStudies';
 import { useDataFetching } from '@/hooks/useDataFetching';
 import { ListStudyDto, PaginationStudyResponseDto } from '@/services';
+import { QUERY_KEYS } from '@/hooks/queryKeys';
 
 type StudyResponse = {
   status: number;
@@ -17,7 +18,7 @@ type StudyResponse = {
 
 export default function RecruitingStudies() {
   const { data, isLoading } = useDataFetching<StudyResponse>({
-    queryKey: ['recruiting-studies'],
+    queryKey: [QUERY_KEYS.STUDY.RECRUITING],
     queryFn: () => getStudiesAction({ status: STUDY_STATUS_TAG.RECRUITING }),
   });
 

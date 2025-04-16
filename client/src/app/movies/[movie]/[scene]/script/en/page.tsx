@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { parseText, stripHtmlTags } from '@/utils/content';
 import { getTokenInClient } from '@/utils/cookie';

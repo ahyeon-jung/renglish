@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { use } from 'react';
 import { getTokenInClient } from '@/utils/cookie';
@@ -8,6 +8,7 @@ import ExpressionList from './_components/ExpressionList';
 import getExpressionsByScene from '@/app/_actions/expressions/getExpressionsByScene';
 import { ActionResponse } from '@/types/action';
 import { ExpressionType } from '@/types/expression';
+import { QUERY_KEYS } from '@/hooks/queryKeys';
 
 export default function MovieScenePracticeExpressionPage({
   params,
@@ -18,7 +19,7 @@ export default function MovieScenePracticeExpressionPage({
   const token = getTokenInClient() || '';
 
   const { data, isLoading } = useDataFetching<ActionResponse<ExpressionType[] | null>>({
-    queryKey: ['expressions', resolvedParams.scene, token],
+    queryKey: QUERY_KEYS.EXPRESSION.LIST(resolvedParams.scene, token),
     queryFn: () => getExpressionsByScene({ sceneId: resolvedParams.scene }),
     enabled: !!resolvedParams.scene,
   });

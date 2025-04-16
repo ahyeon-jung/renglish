@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { use } from 'react';
 import { getTokenInClient } from '@/utils/cookie';
