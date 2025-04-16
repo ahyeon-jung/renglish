@@ -12,6 +12,7 @@ export async function fetchWithToken(input: RequestInfo, init?: RequestInit): Pr
       ...(init?.headers || {}),
       Authorization: `Bearer ${accessToken}`,
     },
+    cache: 'force-cache',
   });
   return originalResponse;
 }
