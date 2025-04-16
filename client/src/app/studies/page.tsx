@@ -24,7 +24,10 @@ const getKey = (status: string | null) => (pageIndex: number, previousPageData: 
 };
 
 const fetcher = async (url: string) => {
-  const res = await fetch(`${url}`);
+  const res = await fetch(`${url}`, {
+    cache: 'force-cache',
+  });
+
   const data = await res.json();
   return data;
 };

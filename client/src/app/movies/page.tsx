@@ -25,7 +25,10 @@ const getKey = (category: string | null) => (pageIndex: number, previousPageData
 };
 
 const fetcher = async (url: string) => {
-  const res = await fetch(`${ENV.API_BASE_URL}${url}`);
+  const res = await fetch(`${ENV.API_BASE_URL}${url}`, {
+    cache: 'force-cache',
+  });
+
   const data = await res.json();
   return data;
 };

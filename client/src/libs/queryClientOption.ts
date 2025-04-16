@@ -1,4 +1,4 @@
-import { Query, defaultShouldDehydrateQuery } from "@tanstack/react-query";
+import { Query, defaultShouldDehydrateQuery } from '@tanstack/react-query';
 
 const queryClientOptions = {
   defaultOptions: {
@@ -10,7 +10,7 @@ const queryClientOptions = {
     },
     dehydrate: {
       shouldDehydrateQuery: (query: Query) =>
-        defaultShouldDehydrateQuery(query) || query.state.status === "pending",
+        defaultShouldDehydrateQuery(query) || query.state.status === 'pending',
     },
   },
 };
