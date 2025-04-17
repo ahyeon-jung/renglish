@@ -32,7 +32,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, swaggerConfig);
 
   if (process.env.NODE_ENV === 'development') {
-    fs.writeFileSync('../swagger.json', JSON.stringify(document, null, 2));
+    fs.writeFileSync('../../swagger.json', JSON.stringify(document, null, 2));
   }
 
   app.use(process.env.SWAGGER_JSON_PATH, (_, res) => {

@@ -1,8 +1,15 @@
 {
+  "name": "renglish",
+  "private": true,
   "scripts": {
-    "dev": "concurrently -k -n client,server -c blue,green \"pnpm --filter ./client dev\" \"pnpm --filter ./server start:dev\"",
+    "dev:client": "pnpm --filter client dev",
+    "dev:admin": "pnpm --filter admin dev",
+    "dev:server": "pnpm --filter server start:dev",
+    "dev": "concurrently -k -n client,admin,server -c blue,green,yellow \"pnpm dev:client\" \"pnpm dev:admin\" \"pnpm dev:server\"",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
     "format": "prettier --write client/src server/src",
-    "generate:api": "openapi-generator-cli generate -i ./swagger.json -g typescript-fetch -o ./packagesservices",
+    "generate:api": "openapi-generator-cli generate -i ./swagger.json -g typescript-fetch -o ./packages/services/src/generated",
     "prepare": "husky"
   },
   "devDependencies": {

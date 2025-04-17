@@ -1,14 +1,13 @@
 import { ENV } from '@/constants/env';
 import { PATHS } from '@/constants/path';
 import { authApi } from '@/libs/api';
-import { AuthApi, Configuration } from '@/services';
+import { AuthApi, Configuration } from '@renglish/services';
 import { NextRequest, NextResponse } from 'next/server';
 
 export default async function refreshTokenMiddleware(req: NextRequest, pass: boolean = false) {
   const res = NextResponse.next();
   const originRefreshToken = req.cookies.get(ENV.COOKIE_REFRESH_TOKEN_KEY)?.value;
   const originAccessToken = req.cookies.get(ENV.COOKIE_ACCESS_TOKEN_KEY)?.value;
-  console.log('ddddddddddddddddddddddddddddddddddddd');
 
   if (!originRefreshToken || !originAccessToken) {
     if (pass) {
