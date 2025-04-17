@@ -44,7 +44,7 @@ export default function Text({
   as = 'span',
   typography,
   ...props
-}: TextProps) {
+}: TextProps): React.JSX.Element {
   const classes = typography ? typographyClasses[typography] : '';
 
   return React.createElement(as, { ...props, className: clsx(classes, className) }, children);
