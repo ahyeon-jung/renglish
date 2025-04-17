@@ -1,4 +1,4 @@
-import '../styles/globals.css';
+import './globals.css';
 import '../styles/print.css';
 
 import { ENV } from '@/constants/env';
