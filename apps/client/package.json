@@ -1,6 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
+  "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,30 +10,29 @@
   },
   "dependencies": {
     "@next/third-parties": "^15.2.3",
-    "@renglish/services": "workspace:*",
     "@tanstack/react-query": "^5.74.3",
     "clsx": "^2.1.1",
     "lucide-react": "^0.479.0",
-    "next": "14.1.0",
+    "next": "15.2.1",
     "next-pwa": "^5.6.0",
     "next-runtime-env": "^3.2.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-to-print": "^3.0.5",
     "react-toastify": "^11.0.5",
-    "swr": "^2.3.3"
+    "swr": "^2.3.3",
+       "@renglish/services": "workspace:*"
   },
   "devDependencies": {
-    "tailwindcss": "^4.1.4",
-    "@tailwindcss/postcss": "^4",
     "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
     "@types/next-pwa": "^5.6.9",
     "@types/node": "^20",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
-    "autoprefixer": "^10.4.21",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "14.1.0",
+    "eslint-config-next": "15.2.1",
+    "tailwindcss": "^4",
     "typescript": "^5"
   }
 }
