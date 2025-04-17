@@ -10,7 +10,7 @@
     "lint": "pnpm -r lint",
     "format": "prettier --write client/src server/src",
     "generate:api": "openapi-generator-cli generate -i ./swagger.json -g typescript-fetch -o ./packages/services/src/generated",
-    "prepare": "husky",
+    "prepare": "if [ \"$NODE_ENV\" != \"production\" ]; then husky; fi",
     "precommit": "lint-staged",
     "vercel-build": "pnpm install --filter client && pnpm --filter client build",
     "vercel-start": "pnpm --filter client start"
