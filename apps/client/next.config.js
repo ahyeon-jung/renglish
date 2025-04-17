@@ -16,4 +16,12 @@ module.exports = withPWA({
       },
     ],
   },
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': require('path').resolve(__dirname, 'src'),
+      '@renglish/services': require('path').resolve(__dirname, '../../packages/services/src'),
+    };
+    return config;
+  },
 });
