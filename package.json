@@ -10,7 +10,8 @@
     "lint": "pnpm -r lint",
     "format": "prettier --write client/src server/src",
     "generate:api": "openapi-generator-cli generate -i ./swagger.json -g typescript-fetch -o ./packages/services/src/generated",
-    "prepare": "husky"
+    "prepare": "husky",
+    "precommit": "lint-staged"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
@@ -29,6 +30,12 @@
     "typescript": "^5.8.2"
   },
   "lint-staged": {
-    "*.{ts,tsx,js,jsx}": "eslint --fix"
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
   }
 }
