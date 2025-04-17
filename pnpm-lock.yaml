@@ -68,6 +68,9 @@ importers:
       '@mui/material':
         specifier: ^6.4.0
         version: 6.4.11(@emotion/react@11.14.0)(@emotion/styled@11.14.0)(@types/react@19.1.2)(react-dom@19.1.0)(react@19.1.0)
+      '@renglish/services':
+        specifier: workspace:*
+        version: link:../../packages/services
       react:
         specifier: ^19.0.0
         version: 19.1.0
