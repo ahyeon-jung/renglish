@@ -200,7 +200,7 @@ importers:
         specifier: 14.1.0
         version: 14.1.0(eslint@9.24.0)(typescript@5.8.2)
       typescript:
-        specifier: ^5
+        specifier: ^5.8.2
         version: 5.8.2
 
   apps/server:
