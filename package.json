@@ -1,9 +1,20 @@
 {
+  "name": "renglish",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "concurrently -k -n client,server -c blue,green \"pnpm --filter ./client dev\" \"pnpm --filter ./server start:dev\"",
+    "dev:client": "pnpm --filter client dev",
+    "dev:admin": "pnpm --filter admin dev",
+    "dev:server": "pnpm --filter server start:dev",
+    "dev": "concurrently -k -n client,admin,server -c blue,green,yellow \"pnpm dev:client\" \"pnpm dev:admin\" \"pnpm dev:server\"",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
     "format": "prettier --write client/src server/src",
-    "generate:api": "openapi-generator-cli generate -i ./swagger.json -g typescript-fetch -o ./client/src/services",
-    "prepare": "husky"
+    "generate:api": "openapi-generator-cli generate -i ./swagger.json -g typescript-fetch -o ./packages/services/src/generated",
+    "prepare": "node -e \"if (process.env.NODE_ENV !== 'production') { import('child_process').then(({execSync}) => execSync('npx husky install')) }\"",
+    "precommit": "lint-staged",
+    "vercel-build": "cd apps/client && pnpm install && pnpm install --save-dev typescript@5.8.2 && pnpm build",
+    "vercel-start": "pnpm --filter client start"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
@@ -12,7 +23,8 @@
     "@semantic-release/github": "^11.0.1",
     "@semantic-release/release-notes-generator": "^14.0.3",
     "concurrently": "^9.1.2",
-    "eslint": "^9.22.0",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "14.1.0",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.3",
     "husky": "^9.1.7",
@@ -22,6 +34,9 @@
     "typescript": "^5.8.2"
   },
   "lint-staged": {
-    "*.{ts,tsx,js,jsx}": "eslint --fix"
+    "*.{ts,tsx}": [
+      "eslint --fix --config .eslintrc.json",
+      "prettier --write"
+    ]
   }
 }
