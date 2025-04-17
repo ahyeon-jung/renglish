@@ -4,7 +4,7 @@ import { PATHS } from '@/constants/path';
 import Text from '@/components/Text';
 import clsx from 'clsx';
 import { formatTitle } from '@/utils/format';
-import { PaginationSceneDto } from '@/services';
+import { PaginationSceneDto } from '@renglish/services';
 
 type ScriptListItem = PaginationSceneDto;
 

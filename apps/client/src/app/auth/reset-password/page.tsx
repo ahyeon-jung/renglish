@@ -4,7 +4,7 @@ import Button from '@/components/Button';
 import AuthContainer from '../_components/AuthContainer';
 import Field from '@/components/Field';
 import { useState } from 'react';
-import resetPasswordAction from '@/app/_actions/auth/reset-password';
+import resetPasswordAction from '@/app/actions/auth/reset-password';
 import { MESSAGE } from '@/constants/toast';
 import { toast } from 'react-toastify';
 import { PATHS } from '@/constants/path';

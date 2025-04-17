@@ -2,13 +2,10 @@
 
 import { ENV } from '@/constants/env';
 import { cookies } from 'next/headers';
-import { CreateSpeakerDto } from '@/services';
-import { speakerApi } from '@/libs/api';
+import { CreateSceneDto } from '@renglish/services';
+import { sceneApi } from '@/libs/api';
 
-export default async function addSpeakerAction(
-  sceneId: string,
-  addSpeakerActionBody: CreateSpeakerDto,
-) {
+export default async function addSceneAction(movieId: string, addSceneActionBody: CreateSceneDto) {
   const cookieStore = await cookies();
   const token = cookieStore.get(ENV.COOKIE_ACCESS_TOKEN_KEY)?.value;
   if (!token) {
@@ -20,9 +17,9 @@ export default async function addSpeakerAction(
     };
   }
 
-  const response = await speakerApi.speakerControllerCreateSpeaker({
-    sceneId: sceneId,
-    createSpeakerDto: addSpeakerActionBody,
+  const response = await sceneApi.sceneControllerCreateScene({
+    movieId: movieId,
+    createSceneDto: addSceneActionBody,
   });
 
   return {

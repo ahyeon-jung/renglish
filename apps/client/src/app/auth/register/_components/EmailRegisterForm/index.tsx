@@ -1,16 +1,16 @@
 'use client';
 
-import registerAction, { RegisterActionProps } from '@/app/_actions/auth/register';
+import registerAction, { RegisterActionProps } from '@/app/actions/auth/register';
 
 import Button from '@/components/Button';
 import Field from '@/components/Field';
 import { MESSAGE } from '@/constants/toast';
 import { PATHS } from '@/constants/path';
-import sendEmail from '@/app/_actions/email-verification/sendEmail';
+import sendEmail from '@/app/actions/email-verification/sendEmail';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import verifyCode from '@/app/_actions/email-verification/verifyCode';
+import verifyCode from '@/app/actions/email-verification/verifyCode';
 
 const INITIAL_REGISTER_BODY = { email: '', password: '', nickname: '', how: '' };
 

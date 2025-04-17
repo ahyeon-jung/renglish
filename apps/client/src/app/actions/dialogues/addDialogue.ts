@@ -2,10 +2,14 @@
 
 import { ENV } from '@/constants/env';
 import { cookies } from 'next/headers';
-import { CreateSceneDto } from '@/services';
-import { sceneApi } from '@/libs/api';
+import { CreateDialogueDto } from '@renglish/services';
+import { dialogueApi } from '@/libs/api';
 
-export default async function addSceneAction(movieId: string, addSceneActionBody: CreateSceneDto) {
+export default async function addDialogueAction(
+  sceneId: string,
+  speakerId: string,
+  addDialogueActionBody: CreateDialogueDto,
+) {
   const cookieStore = await cookies();
   const token = cookieStore.get(ENV.COOKIE_ACCESS_TOKEN_KEY)?.value;
   if (!token) {
@@ -17,15 +21,16 @@ export default async function addSceneAction(movieId: string, addSceneActionBody
     };
   }
 
-  const response = await sceneApi.sceneControllerCreateScene({
-    movieId: movieId,
-    createSceneDto: addSceneActionBody,
+  await dialogueApi.dialogueControllerCreateDialogue({
+    sceneId: sceneId,
+    speakerId: speakerId,
+    createDialogueDto: addDialogueActionBody,
   });
 
   return {
     status: 200,
     success: true,
     message: 'Upload Scene successfully',
-    data: response,
+    data: null,
   };
 }

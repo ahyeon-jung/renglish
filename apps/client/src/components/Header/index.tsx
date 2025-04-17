@@ -7,7 +7,7 @@ import Text from '../Text';
 import clsx from 'clsx';
 import { cookies } from 'next/headers';
 import logo from '@/assets/logo.png';
-import adminAction from '@/app/_actions/auth/admin';
+import adminAction from '@/app/actions/auth/admin';
 
 export default async function Header() {
   const cookieStore = await cookies();

@@ -1,4 +1,4 @@
-import { ListStudyDto } from '@/services';
+import { ListStudyDto } from '@renglish/services';
 
 type StudyItemProps = Pick<ListStudyDto, 'applicants' | 'participants' | 'isCompleted'>;
 

@@ -2,7 +2,7 @@
 
 import Button from '@/components/Button';
 import { StudyUserType } from '@/types/study';
-import removeParticipantAction from '@/app/_actions/admin/studies/removeParticipant';
+import removeParticipantAction from '@/app/actions/admin/studies/removeParticipant';
 import { useRouter } from 'next/navigation';
 
 type ParticipantProps = { studyId: string } & StudyUserType;

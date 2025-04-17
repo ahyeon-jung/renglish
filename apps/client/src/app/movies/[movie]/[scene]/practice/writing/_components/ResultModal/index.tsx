@@ -5,7 +5,7 @@ import Modal from '@/components/Modal';
 import ResultDialogueItem from '../ResultDialogueItem';
 import Text from '@/components/Text';
 import { WritingDialogueType } from '@/types/dialogue';
-import addWritingAction from '@/app/_actions/writings/addWritings';
+import addWritingAction from '@/app/actions/writings/addWritings';
 import { useState } from 'react';
 
 type ResultModalProps = { dialogues: WritingDialogueType[] };

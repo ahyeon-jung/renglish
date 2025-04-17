@@ -30,6 +30,6 @@
     ".next/types/**/*.ts",
     "src/app/auth/login/_components/EmailLoginForm",
     "../../packages/services/src/**/*"
-  ],
+, "next.config.ㅓs"  ],
   "exclude": ["node_modules"]
 }

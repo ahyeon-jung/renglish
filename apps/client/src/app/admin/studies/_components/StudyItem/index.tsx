@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { PATHS } from '@/constants/path';
 import clsx from 'clsx';
 import { formatDate } from '@/utils/format';
-import { ListStudyDto } from '@/services';
-import completeStudyAction from '@/app/_actions/studies/completeStudy';
+import { ListStudyDto } from '@renglish/services';
+import completeStudyAction from '@/app/actions/studies/completeStudy';
 import Button from '@/components/Button';
 
 type StudyItemProps = ListStudyDto;

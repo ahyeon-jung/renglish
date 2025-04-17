@@ -5,7 +5,7 @@ import Field from '@/components/Field';
 import Modal from '@/components/Modal';
 import { Scene } from '@/types/scene';
 import { formatDate } from '@/utils/format';
-import updateSceneAction from '@/app/_actions/scenes/updateScene';
+import updateSceneAction from '@/app/actions/scenes/updateScene';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { toast } from 'react-toastify';

@@ -1,4 +1,4 @@
-import getWritingsAction from '@/app/_actions/my/getWritings';
+import getWritingsAction from '@/app/actions/my/getWritings';
 import ListContainer from '../_components/ListContainer';
 import SubHeaderContainer from '@/components/SubheaderContainer';
 import clsx from 'clsx';

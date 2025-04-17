@@ -1,4 +1,4 @@
-import getVisitorCount from '@/app/_actions/statics/getVisitorCount';
+import getVisitorCount from '@/app/actions/statics/getVisitorCount';
 
 export default async function Footer() {
   const { data: visitorCount } = await getVisitorCount();

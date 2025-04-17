@@ -8,7 +8,7 @@ import StudyItem from './_components/StudyItem';
 import clsx from 'clsx';
 import useSWRInfinite from 'swr/infinite';
 import { useSearchParams } from 'next/navigation';
-import { ListStudyDto } from '@/services';
+import { ListStudyDto } from '@renglish/services';
 
 const PAGE_SIZE = 4;
 

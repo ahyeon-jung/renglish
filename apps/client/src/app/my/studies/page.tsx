@@ -2,7 +2,7 @@ import ListContainer from '../_components/ListContainer';
 import StudyItem from '@/app/studies/_components/StudyItem';
 import SubHeaderContainer from '@/components/SubheaderContainer';
 import clsx from 'clsx';
-import getStudiesAction from '@/app/_actions/my/getStudies';
+import getStudiesAction from '@/app/actions/my/getStudies';
 
 export default async function Studies() {
   const { data: appliedStudies } = await getStudiesAction('applicant');

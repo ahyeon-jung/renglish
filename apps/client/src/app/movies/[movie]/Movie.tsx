@@ -1,7 +1,7 @@
 import MovieInfo from './_components/MovieInfo';
 import ScriptLink from '../_components/ScriptLink';
 import clsx from 'clsx';
-import getMovie from '@/app/_actions/movies/getMovie';
+import getMovie from '@/app/actions/movies/getMovie';
 
 export default async function MoviePage({ params }: { params: Promise<{ movie: string }> }) {
   const slug = await params;

@@ -5,7 +5,7 @@ import { getTokenInClient } from '@/utils/cookie';
 import { useDataFetching } from '@/hooks/useDataFetching';
 import DialogListContainer from '../../_components/DialogListContainer';
 import SceneHeader from '../../_components/SceneHeader';
-import getScene from '@/app/_actions/scenes/getScene';
+import getScene from '@/app/actions/scenes/getScene';
 import FillDialogueListItem from './FillDialogueListItem';
 
 export default function MovieScenePracticeFill({

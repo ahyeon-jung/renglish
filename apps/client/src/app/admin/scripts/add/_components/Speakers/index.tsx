@@ -6,10 +6,10 @@ import { useContext, useEffect, useState } from 'react';
 import { DeleteIcon } from 'lucide-react';
 import { ScriptAddBodyType } from '../../page';
 import StepFormContainer from '../StepFormContainer';
-import getScenes from '@/app/_actions/scenes/getScenes';
+import getScenes from '@/app/actions/scenes/getScenes';
 import Field from '@/components/Field';
-import addSpeakerAction from '@/app/_actions/speakers/addSpeaker';
-import { CreateSpeakerDto } from '@/services';
+import addSpeakerAction from '@/app/actions/speakers/addSpeaker';
+import { CreateSpeakerDto } from '@renglish/services';
 
 export type ScriptAddSpeakersBodyType = ScriptAddSpeakerType[];
 

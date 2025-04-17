@@ -6,10 +6,10 @@ import { useContext, useEffect, useRef, useState } from 'react';
 
 import { ScriptAddBodyType } from '../../page';
 import StepFormContainer from '../StepFormContainer';
-import { PaginationSceneDto, Speaker } from '@/services';
+import { PaginationSceneDto, Speaker } from '@renglish/services';
 import Field from '@/components/Field';
-import getScenes from '@/app/_actions/scenes/getScenes';
-import addDialogueAction from '@/app/_actions/dialogues/addDialogue';
+import getScenes from '@/app/actions/scenes/getScenes';
+import addDialogueAction from '@/app/actions/dialogues/addDialogue';
 
 type ScriptAddDialogueBodyType = string;
 

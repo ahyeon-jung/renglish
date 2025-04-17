@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Overlay from '@/components/Overlay';
 import { PATHS } from '@/constants/path';
 import Text from '@/components/Text';
-import getLatestMovieAction from '@/app/_actions/movies/getLatestMovie';
+import getLatestMovieAction from '@/app/actions/movies/getLatestMovie';
 import { useDataFetching } from '@/hooks/useDataFetching';
 import { Movie } from '@/types/movie';
 import { QUERY_KEYS } from '@/hooks/queryKeys';

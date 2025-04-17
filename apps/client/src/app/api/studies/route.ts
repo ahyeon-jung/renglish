@@ -1,4 +1,4 @@
-import { Configuration, StudyApi } from '@/services';
+import { Configuration, StudyApi } from '@renglish/services';
 import { ENV } from '@/constants/env';
 
 export async function GET(request: Request) {

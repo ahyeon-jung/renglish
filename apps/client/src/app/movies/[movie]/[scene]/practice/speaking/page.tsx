@@ -5,7 +5,7 @@ import { getTokenInClient } from '@/utils/cookie';
 import { useDataFetching } from '@/hooks/useDataFetching';
 import DialogList from './_components/DialogList';
 import SceneHeader from '../../_components/SceneHeader';
-import getScene from '@/app/_actions/scenes/getScene';
+import getScene from '@/app/actions/scenes/getScene';
 
 export default function MovieScenePracticeSpeakingPage({
   params,

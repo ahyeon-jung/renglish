@@ -1,6 +1,6 @@
 import ExpressionItem from './_components/ExpressionItem';
 import clsx from 'clsx';
-import getWeeklyExpressions from '../_actions/expressions/getWeeklyExpressions';
+import getWeeklyExpressions from '../actions/expressions/getWeeklyExpressions';
 
 export default async function WeeklyExpressionPage() {
   const { data } = await getWeeklyExpressions();

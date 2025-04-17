@@ -2,12 +2,12 @@
 
 import { ENV } from '@/constants/env';
 import { cookies } from 'next/headers';
-import { CreateExpressionDto } from '@/services';
-import { expressionApi } from '@/libs/api';
+import { CreateSpeakerDto } from '@renglish/services';
+import { speakerApi } from '@/libs/api';
 
-export default async function addExpressionAction(
+export default async function addSpeakerAction(
   sceneId: string,
-  addExpressionActionBody: CreateExpressionDto,
+  addSpeakerActionBody: CreateSpeakerDto,
 ) {
   const cookieStore = await cookies();
   const token = cookieStore.get(ENV.COOKIE_ACCESS_TOKEN_KEY)?.value;
@@ -20,15 +20,15 @@ export default async function addExpressionAction(
     };
   }
 
-  const response = await expressionApi.expressionControllerCreate({
+  const response = await speakerApi.speakerControllerCreateSpeaker({
     sceneId: sceneId,
-    createExpressionDto: addExpressionActionBody,
+    createSpeakerDto: addSpeakerActionBody,
   });
 
   return {
     status: 200,
     success: true,
-    message: 'Upload Expression successfully',
+    message: 'Upload Scene successfully',
     data: response,
   };
 }

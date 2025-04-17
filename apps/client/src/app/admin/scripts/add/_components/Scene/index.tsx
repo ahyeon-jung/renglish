@@ -5,9 +5,9 @@ import { useContext, useEffect, useState } from 'react';
 import Field from '@/components/Field';
 import { ScriptAddBodyType } from '../../page';
 import StepFormContainer from '../StepFormContainer';
-import { CreateSceneDto } from '@/services';
-import getMovies from '@/app/_actions/movies/getMovies';
-import addSceneAction from '@/app/_actions/scenes/addScene';
+import { CreateSceneDto } from '@renglish/services';
+import getMovies from '@/app/actions/movies/getMovies';
+import addSceneAction from '@/app/actions/scenes/addScene';
 
 const INITIAL_SCRIPT_ADD_SCENE_BODY: CreateSceneDto = {
   title: '',

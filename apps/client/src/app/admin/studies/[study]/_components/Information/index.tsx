@@ -4,12 +4,12 @@ import Button from '@/components/Button';
 import Field from '@/components/Field';
 import Modal from '@/components/Modal';
 import { formatDate } from '@/utils/format';
-import updateStudyAction from '@/app/_actions/admin/studies/updateStudy';
+import updateStudyAction from '@/app/actions/admin/studies/updateStudy';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import { StudyDto } from '@/services';
-import completeStudyAction from '@/app/_actions/studies/completeStudy';
+import { StudyDto } from '@renglish/services';
+import completeStudyAction from '@/app/actions/studies/completeStudy';
 
 type InformationProps = StudyDto;
 

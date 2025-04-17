@@ -2,7 +2,7 @@ import Email from './_components/Email';
 import Nickname from './_components/Nickname';
 import SubHeaderContainer from '@/components/SubheaderContainer';
 import clsx from 'clsx';
-import getAuthDataAction from '../../_actions/my/getAuthData';
+import getAuthDataAction from '../../actions/my/getAuthData';
 import CreatedDate from './_components/CreatedDate';
 
 export default async function Profile() {

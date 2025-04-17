@@ -1,7 +1,7 @@
-import Text from '@/components/Text';
+import Text from '@/components/Text/index';
 import UpdateDialogueModal from './UpdateDialogueModal';
 import UpdateSceneModal from './UpdateSceneModal';
-import getScene from '@/app/_actions/scenes/getScene';
+import getScene from '@/app/actions/scenes/getScene';
 import { parseText } from '@/utils/content';
 
 export default async function AdminMovieSceneEnglishKoreanScript({

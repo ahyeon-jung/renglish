@@ -2,7 +2,7 @@
 
 import Button from '@/components/Button';
 import clsx from 'clsx';
-import sendDiscordMessageAction from './_actions/webhook/sendDiscordMessage';
+import sendDiscordMessageAction from './actions/webhook/sendDiscordMessage';
 import { toast } from 'react-toastify';
 
 export default function KnockServerError() {

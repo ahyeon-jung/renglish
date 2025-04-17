@@ -3,10 +3,10 @@
 import { use } from 'react';
 import { getTokenInClient } from '@/utils/cookie';
 import { useDataFetching } from '@/hooks/useDataFetching';
-import checkTokenAction from '@/app/_actions/check/checkToken';
+import checkTokenAction from '@/app/actions/check/checkToken';
 import SceneHeader from '../../_components/SceneHeader';
 import WritingDialogues from './_components/WritingDialogues';
-import getScene from '@/app/_actions/scenes/getScene';
+import getScene from '@/app/actions/scenes/getScene';
 import { GoToLogin } from '@/components/Fallback';
 
 export default function MovieScenePracticeWriting({

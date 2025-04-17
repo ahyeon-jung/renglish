@@ -6,7 +6,7 @@ import Field from '@/components/Field';
 import Modal from '@/components/Modal';
 import { Pencil } from 'lucide-react';
 import { parseText } from '@/utils/content';
-import updateDialogueAction from '@/app/_actions/dialogues/updateDialogue';
+import updateDialogueAction from '@/app/actions/dialogues/updateDialogue';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { toast } from 'react-toastify';

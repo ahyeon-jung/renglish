@@ -2,7 +2,7 @@ import ApplyToStudyModal from '../ApplyToStudyModal';
 import Image from 'next/image';
 import clsx from 'clsx';
 import { formatDate } from '@/utils/format';
-import { ListStudyDto, StudyDto } from '@/services';
+import { ListStudyDto, StudyDto } from '@renglish/services';
 import StudyMember from '../StudyMember';
 import Link from 'next/link';
 import { PATHS } from '@/constants/path';

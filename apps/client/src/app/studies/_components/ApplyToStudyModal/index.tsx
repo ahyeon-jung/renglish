@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { MESSAGE } from '@/constants/toast';
 import Modal from '@/components/Modal';
 import { PATHS } from '@/constants/path';
-import applyToStudyAction from '@/app/_actions/studies/applyToStudy';
+import applyToStudyAction from '@/app/actions/studies/applyToStudy';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
 import Text from '@/components/Text';

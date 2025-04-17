@@ -4,9 +4,9 @@ import Container from '../Container';
 import { PATHS } from '@/constants/path';
 import { STUDY_STATUS_TAG } from '@/constants/tag';
 import StudyItem from '@/app/studies/_components/StudyItem';
-import getStudiesAction from '@/app/_actions/studies/getStudies';
+import getStudiesAction from '@/app/actions/studies/getStudies';
 import { useDataFetching } from '@/hooks/useDataFetching';
-import { ListStudyDto, PaginationStudyResponseDto } from '@/services';
+import { ListStudyDto, PaginationStudyResponseDto } from '@renglish/services';
 import { QUERY_KEYS } from '@/hooks/queryKeys';
 
 type StudyResponse = {

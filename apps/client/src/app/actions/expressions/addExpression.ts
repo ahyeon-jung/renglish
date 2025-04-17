@@ -2,13 +2,12 @@
 
 import { ENV } from '@/constants/env';
 import { cookies } from 'next/headers';
-import { CreateDialogueDto } from '@/services';
-import { dialogueApi } from '@/libs/api';
+import { CreateExpressionDto } from '@renglish/services';
+import { expressionApi } from '@/libs/api';
 
-export default async function addDialogueAction(
+export default async function addExpressionAction(
   sceneId: string,
-  speakerId: string,
-  addDialogueActionBody: CreateDialogueDto,
+  addExpressionActionBody: CreateExpressionDto,
 ) {
   const cookieStore = await cookies();
   const token = cookieStore.get(ENV.COOKIE_ACCESS_TOKEN_KEY)?.value;
@@ -21,16 +20,15 @@ export default async function addDialogueAction(
     };
   }
 
-  await dialogueApi.dialogueControllerCreateDialogue({
+  const response = await expressionApi.expressionControllerCreate({
     sceneId: sceneId,
-    speakerId: speakerId,
-    createDialogueDto: addDialogueActionBody,
+    createExpressionDto: addExpressionActionBody,
   });
 
   return {
     status: 200,
     success: true,
-    message: 'Upload Scene successfully',
-    data: null,
+    message: 'Upload Expression successfully',
+    data: response,
   };
 }

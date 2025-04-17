@@ -5,7 +5,7 @@ import { getTokenInClient } from '@/utils/cookie';
 import { useDataFetching } from '@/hooks/useDataFetching';
 import { GoToLogin } from '@/components/Fallback';
 import ExpressionList from './_components/ExpressionList';
-import getExpressionsByScene from '@/app/_actions/expressions/getExpressionsByScene';
+import getExpressionsByScene from '@/app/actions/expressions/getExpressionsByScene';
 import { ActionResponse } from '@/types/action';
 import { ExpressionType } from '@/types/expression';
 import { QUERY_KEYS } from '@/hooks/queryKeys';

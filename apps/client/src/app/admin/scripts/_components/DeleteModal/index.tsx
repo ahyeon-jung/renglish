@@ -3,7 +3,7 @@
 import Button from '@/components/Button';
 import Modal from '@/components/Modal';
 import { Trash2 } from 'lucide-react';
-import deleteScene from '@/app/_actions/scenes/deleteScene';
+import deleteScene from '@/app/actions/scenes/deleteScene';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { toast } from 'react-toastify';

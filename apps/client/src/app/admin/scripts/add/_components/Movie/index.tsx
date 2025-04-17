@@ -6,8 +6,8 @@ import { useContext, useState } from 'react';
 import Field from '@/components/Field';
 import { ScriptAddBodyType } from '../../page';
 import StepFormContainer from '../StepFormContainer';
-import { CreateMovieDto } from '@/services';
-import addMovieAction from '@/app/_actions/movies/addMovie';
+import { CreateMovieDto } from '@renglish/services';
+import addMovieAction from '@/app/actions/movies/addMovie';
 
 export type ScriptAddMovieBodyType = string;
 

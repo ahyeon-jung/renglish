@@ -1,6 +1,6 @@
 'use client';
 
-import logoutAction from '@/app/_actions/auth/logout';
+import logoutAction from '@/app/actions/auth/logout';
 import { PATHS } from '@/constants/path';
 import { useEffect } from 'react';
 

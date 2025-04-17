@@ -6,7 +6,7 @@ import { Suspense, useState } from 'react';
 import Button from '@/components/Button';
 import Field from '@/components/Field';
 import { useSearchParams } from 'next/navigation';
-import registerAction from '@/app/_actions/auth/register';
+import registerAction from '@/app/actions/auth/register';
 import { useRouter } from 'next/navigation';
 
 export default function SocialRegister() {

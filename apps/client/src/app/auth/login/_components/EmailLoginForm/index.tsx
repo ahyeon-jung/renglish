@@ -5,7 +5,7 @@ import Checkbox from '@/components/CheckBox';
 import Field from '@/components/Field';
 import { MESSAGE } from '@/constants/toast';
 import { PATHS } from '@/constants/path';
-import loginAction from '@/app/_actions/auth/login';
+import loginAction from '@/app/actions/auth/login';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';

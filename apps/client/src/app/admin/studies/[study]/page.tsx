@@ -2,7 +2,7 @@ import Applicant from './_components/Applicant';
 import Information from './_components/Information';
 import Participant from './_components/Participant';
 import Text from '@/components/Text';
-import getStudyAction from '@/app/_actions/studies/getStudy';
+import getStudyAction from '@/app/actions/studies/getStudy';
 
 export default async function AdminStudyDetail({ params }: { params: Promise<{ study: string }> }) {
   const { study: studyId } = await params;

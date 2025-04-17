@@ -5,7 +5,7 @@ import Field from '@/components/Field';
 import { MESSAGE } from '@/constants/toast';
 import { UserType } from '@/types/user';
 import { toast } from 'react-toastify';
-import updateNicknameAction from '@/app/_actions/my/updateNickname';
+import updateNicknameAction from '@/app/actions/my/updateNickname';
 import { useState } from 'react';
 
 type NicknameProps = Pick<UserType, 'id' | 'nickname'>;
