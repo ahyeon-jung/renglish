@@ -16,7 +16,7 @@ import {
   StudyApi,
   UsersApi,
   WritingsApi,
-} from '@/services';
+} from '@renglish/services';
 import { fetchWithToken } from './fetchWithToken';
 
 export async function fetchAPI<T = void>(endpoint: string, options?: RequestInit, isRetry = false) {
