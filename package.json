@@ -1,6 +1,7 @@
 {
   "name": "renglish",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev:client": "pnpm --filter client dev",
     "dev:admin": "pnpm --filter admin dev",
@@ -10,7 +11,7 @@
     "lint": "pnpm -r lint",
     "format": "prettier --write client/src server/src",
     "generate:api": "openapi-generator-cli generate -i ./swagger.json -g typescript-fetch -o ./packages/services/src/generated",
-    "prepare": "if [ \"$NODE_ENV\" != \"production\" ]; then husky; fi",
+    "prepare": "node -e \"if (process.env.NODE_ENV !== 'production') { import('child_process').then(({execSync}) => execSync('npx husky install')) }\"",
     "precommit": "lint-staged",
     "vercel-build": "pnpm install --filter client && pnpm --filter client build",
     "vercel-start": "pnpm --filter client start"
