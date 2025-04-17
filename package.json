@@ -13,7 +13,7 @@
     "generate:api": "openapi-generator-cli generate -i ./swagger.json -g typescript-fetch -o ./packages/services/src/generated",
     "prepare": "node -e \"if (process.env.NODE_ENV !== 'production') { import('child_process').then(({execSync}) => execSync('npx husky install')) }\"",
     "precommit": "lint-staged",
-    "vercel-build": "pnpm install --filter client && pnpm --filter client build",
+    "vercel-build": "cd apps/client && pnpm install --save-dev typescript && pnpm build",
     "vercel-start": "pnpm --filter client start"
   },
   "devDependencies": {
