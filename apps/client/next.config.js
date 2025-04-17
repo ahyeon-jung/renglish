@@ -24,4 +24,10 @@ module.exports = withPWA({
     };
     return config;
   },
+  // API 라우트를 정적 내보내기에서 제외
+  experimental: {
+    missingSuspenseWithCSRError: false,
+  },
+  // API 라우트를 제외
+  exclude: ['/api/**'],
 });
