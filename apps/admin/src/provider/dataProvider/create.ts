@@ -1,6 +1,8 @@
 import { CreateParams, CreateResult, DataProvider, RaRecord } from "react-admin";
 import RESOURCE from "../../constants/resource";
-import { movieApi } from "../../libs/api";
+import { dialogueApi, movieApi, sceneApi, speakerApi } from "../../libs/api";
+import { getGoogleDriveUrl } from "../../constants/url";
+import { ExtendedSceneDto, Speaker } from "@renglish/services";
 
 const create: DataProvider['create'] = async <RecordType extends RaRecord>(resource: string, params: CreateParams<RecordType>) => {
   if (resource === RESOURCE.MOVIES) {
@@ -8,11 +10,13 @@ const create: DataProvider['create'] = async <RecordType extends RaRecord>(resou
       return Promise.reject('Missing required fields');
     }
 
+    const imageUrl = params.data.imageUrl.startsWith('https://lh3.googleusercontent.com/d/') ? params.data.imageUrl : getGoogleDriveUrl(params.data.imageUrl);
+
     const data = await movieApi.movieControllerCreate({
       createMovieDto: {
         title: params.data.title,
         category: params.data.category,
-        imageUrl: params.data.imageUrl,
+        imageUrl,
         description: params.data.description,
       }
     })
@@ -20,6 +24,58 @@ const create: DataProvider['create'] = async <RecordType extends RaRecord>(resou
     return { data } as unknown as CreateResult<RecordType>
   }
 
+  if (resource === RESOURCE.SCENES) {
+    if (!params.data.content || !params.data.speakers || !params.data.title || !params.data.audioUrl || !params.data.description || !params.data.movieId) {
+      return Promise.reject('Missing required fields');
+    }
+
+    try {
+      // 장면 생성
+      const scene = await sceneApi.sceneControllerCreateScene({
+        movieId: params.data.movieId,
+        createSceneDto: {
+          title: params.data.title,
+          audioUrl: params.data.audioUrl,
+          description: params.data.description
+        }
+      }) as unknown as ExtendedSceneDto
+
+      // 발화자 생성
+      const speakers = params.data.speakers as Speaker[];
+
+      for (const speaker of speakers) {
+        await speakerApi.speakerControllerCreateSpeaker({
+          sceneId: scene.id,
+          createSpeakerDto: {
+            speakerName: speaker.speakerName,
+            speakerType: speaker.speakerType,
+          }
+        });
+      }
+
+      const parsedContent = params.data.content
+        ?.split('\n\n')
+        .map((line: string) => {
+          const [speakerName, englishScript, koreanScript] = line.split('\n');
+
+          const speakerId = params.data.speakers?.find((speaker: Speaker) => speaker.speakerName === speakerName)?.id;
+
+          const formattedEnglish = `<p>${englishScript.replace(/\*\*(.*?)\*\*/g, "<span class='keypoint'>$1</span>")}</p>`;
+          const formattedKorean = `<p>${koreanScript}</p>`;
+
+          return { speakerId, englishScript: formattedEnglish, koreanScript: formattedKorean };
+        })
+
+      for (const dialogue of parsedContent) {
+        await dialogueApi.dialogueControllerCreateDialogue({
+          speakerId: dialogue.speakerId,
+          sceneId: scene.id,
+          createDialogueDto: dialogue,
+        })
+      }
+      return { data: scene } as unknown as CreateResult<RecordType>
+    } catch { }
+  }
   return Promise.reject(`Unknown resource: ${resource}`);
 }
 
