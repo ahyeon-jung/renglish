@@ -4,9 +4,11 @@ import RESOURCE from '../../constants/resource'
 
 const MovieList = () => (
   <List<ExtendedSceneDto> resource={RESOURCE.MOVIES}>
-    <Datagrid rowClick="edit">
+    <Datagrid rowClick="show">
       <TextField source="id" />
       <TextField source="title" />
+      <TextField source="category" />
+      <TextField source="scenes.length" />
       <DateField source="createdAt" />
     </Datagrid>
   </List>

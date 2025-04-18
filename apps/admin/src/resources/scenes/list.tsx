@@ -4,7 +4,7 @@ import RESOURCE from '../../constants/resource'
 
 const SceneList = () => (
   <List<ExtendedSceneDto> resource={RESOURCE.SCENES}>
-    <Datagrid rowClick="edit">
+    <Datagrid rowClick="show">
       <TextField source="id" />
       <TextField source="title" />
       <DateField source="createdAt" />

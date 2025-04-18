@@ -1,7 +1,17 @@
-import { List } from "react-admin";
+import { ExtendedSceneDto } from '@renglish/services'
+import { List, Datagrid, TextField, DateField } from 'react-admin'
+import RESOURCE from '../../constants/resource'
 
-export default function UserList() {
-  return <List>
-    <div>hi</div>
+const UserList = () => (
+  <List<ExtendedSceneDto> resource={RESOURCE.USERS}>
+    <Datagrid rowClick="show">
+      <TextField source="id" />
+      <TextField source="email" />
+      <TextField source="nickname" />
+      <TextField source="provider" />
+      <DateField source="createdAt" />
+    </Datagrid>
   </List>
-}
+)
+
+export default UserList;

@@ -1,15 +1,15 @@
 import { Admin, Resource } from "react-admin";
-import { Layout } from "./Layout";
 import { SceneList, SceneCreate, SceneShow } from "./resources/scenes";
-import StudyList from "./resources/studies/list";
-import UserList from "./resources/users/list";
 import authProvider from "./provider/authProvider";
 import LoginPage from "./pages/Login";
 import RESOURCE from "./constants/resource";
 import dataProvider from "./provider/dataProvider";
-
-import MovieList from "./resources/movies/list";
+import { StudyEdit, StudyList, StudyShow } from "./resources/studies";
+import { UserList, UserShow } from "./resources/users";
+import { MovieList, MovieShow } from "./resources/movies";
 import ExpressionsList from "./resources/expressions/list";
+
+
 
 export const App = () => (
   <Admin
@@ -18,9 +18,9 @@ export const App = () => (
     loginPage={LoginPage}
   >
     <Resource name={RESOURCE.SCENES} list={SceneList} create={SceneCreate} show={SceneShow} />
-    <Resource name={RESOURCE.STUDIES} list={StudyList} />
-    <Resource name={RESOURCE.USERS} list={UserList} />
-    <Resource name={RESOURCE.MOVIES} list={MovieList} />
+    <Resource name={RESOURCE.STUDIES} list={StudyList} show={StudyShow} edit={StudyEdit} />
+    <Resource name={RESOURCE.USERS} list={UserList} show={UserShow} />
+    <Resource name={RESOURCE.MOVIES} list={MovieList} show={MovieShow} />
     <Resource name={RESOURCE.EXPRESSIONS} list={ExpressionsList} />
   </Admin>
 );
