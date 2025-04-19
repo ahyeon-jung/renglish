@@ -30,6 +30,7 @@ export const PATHS = {
         ENGLISH: (movie: string, script: string) => `/movies/${movie}/${script}/script/en`,
         KOREAN: (movie: string, script: string) => `/movies/${movie}/${script}/script/ko`,
         DUAL: (movie: string, script: string) => `/movies/${movie}/${script}/script/en-ko`,
+        DOWNLOAD: (movie: string, script: string) => `/movies/${movie}/${script}/script/download`,
       },
       PRACTICE: {
         FILL: (movie: string, script: string) => `/movies/${movie}/${script}/practice/fill`,
