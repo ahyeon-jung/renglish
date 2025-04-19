@@ -1,6 +1,6 @@
 import { CreateParams, CreateResult, DataProvider, RaRecord } from "react-admin";
 import RESOURCE from "../../constants/resource";
-import { dialogueApi, movieApi, sceneApi, speakerApi } from "../../libs/api";
+import { dialogueApi, movieApi, sceneApi, speakerApi, studyApi } from "../../libs/api";
 import { getGoogleDriveUrl } from "../../constants/url";
 import { ExtendedSceneDto, Speaker } from "@renglish/services";
 
@@ -75,6 +75,23 @@ const create: DataProvider['create'] = async <RecordType extends RaRecord>(resou
       }
       return { data: scene } as unknown as CreateResult<RecordType>
     } catch { }
+  }
+
+  if (resource === RESOURCE.STUDIES) {
+    if (!params.data.title || !params.data.description || !params.data.sceneId || !params.data.studiedAt) {
+      return Promise.reject('Missing required fields');
+    }
+
+    const data = await sceneApi.sceneControllerCreate({
+      sceneId: params.data.sceneId,
+      createStudyDto: {
+        title: params.data.title,
+        description: params.data.description,
+        studiedAt: params.data.studiedAt,
+      }
+    })
+
+    return { data } as unknown as CreateResult<RecordType>
   }
   return Promise.reject(`Unknown resource: ${resource}`);
 }
