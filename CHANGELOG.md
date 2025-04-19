@@ -2,7 +2,17 @@
 
 All important changes are managed in this document.
 
-2.1.3 - 04/13/2025 - 04/16/2025
+## 2.2.0 - 04/16/2025 - 04/19/2025
+
+### Refactor
+
+- chage project structure
+
+### Add
+
+- Add pdf download page
+
+## 2.1.3 - 04/13/2025 - 04/16/2025
 
 ### Added
 
