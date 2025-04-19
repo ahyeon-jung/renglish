@@ -7,12 +7,10 @@ import Text from '../Text';
 import clsx from 'clsx';
 import { cookies } from 'next/headers';
 import logo from '@/assets/logo.png';
-import adminAction from '@/app/actions/auth/admin';
 
 export default async function Header() {
   const cookieStore = await cookies();
   const token = cookieStore.get(ENV.COOKIE_ACCESS_TOKEN_KEY)?.value;
-  const isAdmin = await adminAction();
 
   return (
     <header
@@ -29,7 +27,7 @@ export default async function Header() {
         </Text>
       </Link>
       <div className="flex">
-        <Nav hasToken={!!token} isAdmin={isAdmin} />
+        <Nav hasToken={!!token} />
       </div>
     </header>
   );

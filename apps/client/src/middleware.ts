@@ -35,10 +35,6 @@ export default async function middleware(request: NextRequest) {
     return refreshTokenMiddleware(request, true);
   }
 
-  if (pathname.startsWith(PATHS.ADMIN.HOME)) {
-    return pageRoutesMap['admin'](request);
-  }
-
   if (pageRoutesMap[pathname]) {
     return pageRoutesMap[pathname](request);
   }

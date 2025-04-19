@@ -4,13 +4,12 @@ import { useEffect, useState } from 'react';
 
 import Dialog from '../Dialog';
 import { LayoutGrid } from 'lucide-react';
-import NavAdmin from '../NavAdmin';
 import NavItem from '../NavItem';
 import { PATHS } from '@/constants/path';
 import { createPortal } from 'react-dom';
 import { usePathname } from 'next/navigation';
 
-type NavProps = { hasToken: boolean; isAdmin: boolean };
+type NavProps = { hasToken: boolean; };
 
 const DEFAULT_NAV_OPTIONS = [
   { label: 'Home', path: PATHS.HOME },
@@ -31,7 +30,7 @@ const WITH_AUTH_NAV_OPTIONS = [
   { label: 'Logout', path: PATHS.AUTH.LOGOUT },
 ];
 
-export default function Nav({ hasToken, isAdmin }: NavProps) {
+export default function Nav({ hasToken }: NavProps) {
   const pathname = usePathname();
 
   const [isOpenNav, setIsOpenNav] = useState(true);
@@ -65,7 +64,6 @@ export default function Nav({ hasToken, isAdmin }: NavProps) {
                   <NavItem key={path} path={path} label={label} />
                 ),
               )}
-              {isAdmin == true && <NavAdmin />}
             </nav>
           </Dialog>,
           portalRoot,

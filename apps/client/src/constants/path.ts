@@ -1,21 +1,5 @@
 export const PATHS = {
   HOME: '/',
-  ADMIN: {
-    HOME: '/admin',
-    USERS: { LIST: '/admin/users' },
-    INQUIRIES: { LIST: '/admin/inquiries' },
-    SCRIPTS: {
-      ADD: '/admin/scripts/add',
-      LIST: '/admin/scripts',
-      DETAIL: (scriptId: string) => `/admin/scripts/${scriptId}`,
-    },
-    STUDIES: {
-      ADD: '/admin/studies/add',
-      LIST: '/admin/studies',
-      DETAIL: (study: string) => `/admin/studies/${study}`,
-    },
-    NOTICES: { ADD: '/admin/notices/add' },
-  },
   AUTH: {
     LOGIN: '/auth/login',
     REGISTER: '/auth/register',
