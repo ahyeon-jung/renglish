@@ -171,6 +171,9 @@ importers:
       react-toastify:
         specifier: ^11.0.5
         version: 11.0.5(react-dom@19.1.0)(react@19.1.0)
+      swiper:
+        specifier: ^11.2.6
+        version: 11.2.6
       swr:
         specifier: ^2.3.3
         version: 2.3.3(react@19.1.0)
@@ -12567,6 +12570,11 @@ packages:
     resolution: {integrity: sha512-E0K3AB6HvQd8yQNSMR7eE5bk+323AUxjtCz/4ZNKiahOlPhPJxqn3UPIGs00cyY/dhrTDJ61L7C/a8u6zhGrZg==}
     dependencies:
       '@scarf/scarf': 1.4.0
+    dev: false
+
+  /swiper@11.2.6:
+    resolution: {integrity: sha512-8aXpYKtjy3DjcbzZfz+/OX/GhcU5h+looA6PbAzHMZT6ESSycSp9nAjPCenczgJyslV+rUGse64LMGpWE3PX9Q==}
+    engines: {node: '>= 4.7.0'}
     dev: false
 
   /swr@2.3.3(react@19.1.0):

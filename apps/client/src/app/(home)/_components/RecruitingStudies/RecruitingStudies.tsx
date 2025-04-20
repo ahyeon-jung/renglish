@@ -9,6 +9,12 @@ import { useDataFetching } from '@/hooks/useDataFetching';
 import { ListStudyDto, PaginationStudyResponseDto } from '@renglish/services';
 import { QUERY_KEYS } from '@/hooks/queryKeys';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+
+import { Pagination } from 'swiper/modules';
+
 type StudyResponse = {
   status: number;
   success: boolean;
@@ -22,26 +28,36 @@ export default function RecruitingStudies() {
     queryFn: () => getStudiesAction({ status: STUDY_STATUS_TAG.RECRUITING }),
   });
 
-  if (isLoading) {
-    return (
-      <Container label="Recruiting Studies" goTo={PATHS.STUDIES.LIST}>
-        <div className="w-full space-y-4">
-          {[...Array(3)].map((_, index) => (
-            <div key={index} className="h-20 rounded-xl bg-gray-200 animate-pulse" />
-          ))}
-        </div>
-      </Container>
-    );
-  }
-
-  if (!data?.data?.data) return null;
-
   return (
     <Container label="Recruiting Studies" goTo={PATHS.STUDIES.LIST}>
       <div className="w-full">
-        {data.data.data.map((study: ListStudyDto) => (
-          <StudyItem key={study.id} {...study} />
-        ))}
+        {isLoading ? (
+          <div className="space-y-4">
+            {[...Array(3)].map((_, index) => (
+              <div
+                key={index}
+                className="h-20 rounded-xl bg-gray-200 animate-pulse"
+              />
+            ))}
+          </div>
+        ) : data?.data?.data ? (
+          <Swiper
+            spaceBetween={8}
+            slidesPerView={data.data.data.length > 1 ? 1.1 : 1}
+            pagination={{ clickable: true }}
+            style={{
+              '--swiper-pagination-color': '#f4c479',
+            } as React.CSSProperties}
+            modules={[Pagination]}
+            className="py-42"
+          >
+            {data.data.data.map((study: ListStudyDto) => (
+              <SwiperSlide key={study.id}>
+                <StudyItem {...study} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        ) : null}
       </div>
     </Container>
   );
