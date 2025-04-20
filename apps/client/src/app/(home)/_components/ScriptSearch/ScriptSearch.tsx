@@ -68,7 +68,7 @@ export default function ScriptSearch() {
       />
       <div className="absolute top-0 left-0 w-full h-full bg-black opacity-40"></div>
       <Container className="relative z-10 gap-0 justify-center items-center">
-        <Text as="h3" typography="display-sm" className="text-white mb-[10px]">
+        <Text as="h3" typography="display-md" className="text-white mb-[10px]">
           Learn English with Movies
         </Text>
         <SearchBar className="w-[80%] mb-[10px]">
