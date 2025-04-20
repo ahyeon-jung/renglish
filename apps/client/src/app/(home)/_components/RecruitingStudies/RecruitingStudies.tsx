@@ -29,7 +29,7 @@ export default function RecruitingStudies() {
   });
 
   return (
-    <Container label="Recruiting Studies" goTo={PATHS.STUDIES.LIST}>
+    <Container label="Recruiting Studies" goTo={PATHS.STUDIES.LIST} ellipsisDescription="더 많은 스터디 보러가기">
       <div className="w-full">
         {isLoading ? (
           <div className="space-y-4">

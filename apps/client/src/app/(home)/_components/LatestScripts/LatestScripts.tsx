@@ -30,10 +30,10 @@ export default function LatestScripts() {
   const movie = data.data;
 
   return (
-    <Container label="Latest Script" goTo={PATHS.MOVIE.LIST}>
+    <Container label="Latest Script" goTo={PATHS.MOVIE.LIST} ellipsisDescription="더 많은 대본 보러가기">
       <Link
         href={`/movies/${movie.title}/${movie.scenes[0].id}/script/en`}
-        className="group relative h-[85px] overflow-hidden rounded-xl"
+        className="group relative h-[90px] overflow-hidden rounded-xl"
       >
         <Text
           className="absolute right-4 bottom-0 text-white group-hover:text-orange-400 z-[var(--overlay-text-z-index)]"

@@ -40,6 +40,7 @@ export default function StudyItem({ nonApplicantsButton = false, ...study }: Stu
         </div>
         <Link
           className="relative flex-shrink-0 group"
+          title="대본 보러가기"
           href={PATHS.MOVIE.SCENE.SCRIPT.ENGLISH(study.scene.movie.title, study.scene.id)} >
           <div className={clsx(
             'absolute bottom-0 left-0 top-0 right-0',

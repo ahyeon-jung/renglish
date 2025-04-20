@@ -59,7 +59,7 @@ export default function ScriptSearch() {
   }, []);
 
   return (
-    <div className="relative w-full pt-[40px] pb-[50px]">
+    <div className="relative w-full pt-[50px] pb-[50px]">
       <Image
         src={backgroundImage}
         alt="library background image"
