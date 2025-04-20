@@ -7,6 +7,7 @@ import StudyMember from '../StudyMember';
 import Link from 'next/link';
 import { PATHS } from '@/constants/path';
 import Overlay from '@/components/Overlay';
+import Text from '@/components/Text';
 
 type StudyItemProps =
   | (ListStudyDto & { nonApplicantsButton?: boolean })
@@ -22,9 +23,15 @@ export default function StudyItem({ nonApplicantsButton = false, ...study }: Stu
     >
       <div className="flex items-center gap-7 justify-between">
         <div className="relative flex-1 pr-4">
-          <h2 className="text-xl font-semibold text-gray-800 mb-1">{study.title}</h2>
-          <p className="text-gray-600 text-sm mb-2">{study.description}</p>
-          <p className="text-sm text-gray-500">{formatDate(study.studiedAt, 'long')}</p>
+          <Text as="h2" typography='headline-md' className="text-gray-800 mb-1">
+            {study.title}
+          </Text>
+          <Text as="p" typography='body-md' className="text-gray-600 mb-2">
+            {study.description}
+          </Text>
+          <Text as="p" typography='body-md' className="text-sm text-gray-500">
+            {formatDate(study.studiedAt, 'long')}
+          </Text>
           <StudyMember
             applicants={study.applicants}
             participants={study.participants}
