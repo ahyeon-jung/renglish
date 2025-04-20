@@ -9,11 +9,10 @@ export default function NavItem({ path, label }: NavItemType) {
     <Link
       href={path}
       className={clsx(
-        'border-b border-b-white hover:border-b-black',
         'transition-all duration-300 ease-in-out',
       )}
     >
-      <Text className="cursor-pointer" as="label" typography="subHead-lg">
+      <Text className="cursor-pointer text-gray-700 hover:text-orange-500" as="label" typography="subHead-lg">
         {label}
       </Text>
     </Link>

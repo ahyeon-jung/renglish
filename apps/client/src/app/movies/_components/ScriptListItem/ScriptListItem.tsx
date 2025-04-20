@@ -19,17 +19,17 @@ export default function ScriptListItem({
   return (
     <li
       className={clsx(
-        'border border-gray-300 p-6 rounded-lg shadow-lg hover:shadow-xl',
+        'border border-gray-300 p-4 rounded-lg shadow-lg hover:shadow-xl',
         'transition-shadow duration-300',
       )}
     >
       <div className="flex justify-between gap-12">
-        <div className="flex flex-col gap-4 w-full">
+        <div className="flex flex-col gap-1 w-full">
           <Link className="flex flex-col gap-1" href={PATHS.MOVIE.DETAIL(id)}>
             <Text as="h3" typography="display-sm">
               {formatTitle(title)}
             </Text>
-            <Text as="p">{description}</Text>
+            <Text as="p" typography='body-md'>{description.split(' ').slice(0, 20).join(' ')}...</Text>
           </Link>
           <div className="flex flex-col gap-2">
             {scenes &&

@@ -1,9 +1,9 @@
 import React from 'react';
 import clsx from 'clsx';
 
-type OverlayProps = { isModal?: boolean; onClick?: () => void };
+type OverlayProps = { className?: string; isModal?: boolean; onClick?: () => void };
 
-export default function Overlay({ isModal = false, onClick }: OverlayProps) {
+export default function Overlay({ className, isModal = false, onClick }: OverlayProps) {
   return (
     <div
       onClick={onClick}
@@ -13,6 +13,7 @@ export default function Overlay({ isModal = false, onClick }: OverlayProps) {
         'inset-0',
         'flex items-center justify-end bg-black/50',
         'group-hover:bg-black/70',
+        className,
       )}
     ></div>
   );

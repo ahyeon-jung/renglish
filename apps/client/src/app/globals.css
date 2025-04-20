@@ -11,7 +11,7 @@
 }
 
 :root {
-  --header-height: 50px;
+  --header-height: 40px;
   --header-z-index: 1000;
   --nav-z-index: 9999;
   --overlay-z-index: 999;

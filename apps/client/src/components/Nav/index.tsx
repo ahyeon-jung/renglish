@@ -44,7 +44,9 @@ export default function Nav({ hasToken }: NavProps) {
   const closeNav = () => setIsOpenNav(false);
 
   useEffect(() => {
-    closeNav();
+    if (isOpenNav) {
+      closeNav();
+    }
   }, [pathname]);
 
   return (
@@ -53,17 +55,20 @@ export default function Nav({ hasToken }: NavProps) {
       {isOpenNav &&
         portalRoot &&
         createPortal(
-          <Dialog isOpen={isOpenNav} onClose={closeNav}>
+          <Dialog isOpen={isOpenNav} onClose={closeNav} color='gray-100'>
             <nav className="flex flex-col gap-2">
-              {DEFAULT_NAV_OPTIONS.map(({ label, path }) => (
-                <NavItem key={path} path={path} label={label} />
-              ))}
-              <div className="bg-gray-400 h-[0.5px] w-full" />
-              {(hasToken ? WITH_AUTH_NAV_OPTIONS : WITHOUT_AUTH_NAV_OPTIONS).map(
-                ({ label, path }) => (
+              <div className="flex flex-col gap-2 bg-gray-100">
+                {DEFAULT_NAV_OPTIONS.map(({ label, path }) => (
                   <NavItem key={path} path={path} label={label} />
-                ),
-              )}
+                ))}
+              </div>
+              <div className="flex flex-col gap-2 absolute pl-8 pt-2 top-[230px] left-0 w-full bottom-0 bg-white">
+                {(hasToken ? WITH_AUTH_NAV_OPTIONS : WITHOUT_AUTH_NAV_OPTIONS).map(
+                  ({ label, path }) => (
+                    <NavItem key={path} path={path} label={label} />
+                  ),
+                )}
+              </div>
             </nav>
           </Dialog>,
           portalRoot,

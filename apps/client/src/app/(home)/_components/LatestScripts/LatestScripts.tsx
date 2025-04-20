@@ -33,11 +33,11 @@ export default function LatestScripts() {
     <Container label="Latest Script" goTo={PATHS.MOVIE.LIST}>
       <Link
         href={`/movies/${movie.title}/${movie.scenes[0].id}/script/en`}
-        className="group relative h-[100px] overflow-hidden rounded-xl"
+        className="group relative h-[80px] overflow-hidden rounded-xl"
       >
         <Text
           className="absolute right-4 bottom-0 text-white group-hover:text-orange-400 z-[var(--overlay-text-z-index)]"
-          typography="display-xl"
+          typography="display-md"
         >
           {movie.title}
         </Text>
@@ -45,8 +45,8 @@ export default function LatestScripts() {
         <Image
           alt="inside out poster"
           src={movie.imageUrl}
-          width={500}
-          height={100}
+          width={400}
+          height={90}
           className="w-full h-full object-cover"
         />
       </Link>

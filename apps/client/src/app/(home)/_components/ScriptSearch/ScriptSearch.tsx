@@ -59,7 +59,7 @@ export default function ScriptSearch() {
   }, []);
 
   return (
-    <div className="relative w-full pt-[60px] pb-[30px]">
+    <div className="relative w-full pt-[30px] pb-[40px]">
       <Image
         src={backgroundImage}
         alt="library background image"
@@ -67,11 +67,11 @@ export default function ScriptSearch() {
         className="absolute top-0 left-0 w-full h-full"
       />
       <div className="absolute top-0 left-0 w-full h-full bg-black opacity-40"></div>
-      <Container className="relative z-10 flex flex-col justify-center items-center">
-        <Text as="h3" typography="display-md" className="text-white">
+      <Container className="relative z-10 gap-0 justify-center items-center">
+        <Text as="h3" typography="display-sm" className="text-white mb-[10px]">
           Learn English with Movies
         </Text>
-        <SearchBar className="w-[80%]">
+        <SearchBar className="w-[80%] mb-[10px]">
           <SearchBar.InputWithSearch
             ref={searchBarRef as RefObject<HTMLInputElement>}
             value={keyword}

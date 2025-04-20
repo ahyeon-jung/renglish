@@ -35,9 +35,10 @@ export default function DialogListItem({
       onClick={toggleIsClickeded}
       style={style}
       className={clsx(
-        'flex items-start gap-4 p-3 rounded-lg',
-        speaker.speakerType === 'a' ? ' flex-row-reverse' : '',
-        isBackground ? 'bg-gray-100 dark:bg-gray-800' : '',
+        'flex items-start gap-4 p-2 rounded-lg',
+        speaker.speakerType === 'a' ? 'flex-row-reverse' : '',
+        isBackground ? '' : '',
+
       )}
     >
       <div className={clsx('flex flex-col items-center', 'text-gray-600 dark:text-gray-300')}>
@@ -46,13 +47,13 @@ export default function DialogListItem({
       </div>
       <div
         className={clsx(
-          isBackground ? 'bg-white dark:bg-gray-700' : 'bg-gray-100 dark:bg-gray-800',
-          'text-gray-900 dark:text-gray-100',
+          speaker.speakerType === 'a' ? "bg-gray-50" : 'bg-[#f0f0f0]',
           'p-3 rounded-lg',
+          'text-gray-900',
         )}
       >
         {children}
-        {clickedText && isClicked && <Text>{clickedText}</Text>}
+        {clickedText && isClicked && <Text className='text-gray-500'>{clickedText}</Text>}
       </div>
     </li>
   );

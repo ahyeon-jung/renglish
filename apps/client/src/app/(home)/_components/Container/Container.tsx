@@ -11,10 +11,10 @@ type ContainerProps = {
 
 export default function Container({ label, goTo, className, children }: ContainerProps) {
   return (
-    <section className={clsx('flex flex-col gap-[4px]', className)}>
+    <section className={clsx('flex flex-col ', className)}>
       <div className="flex justify-between items-center">
         {label && (
-          <Text as="h3" typography="headline-lg">
+          <Text as="h3" typography="headline-md" className='text-gray-800'>
             {label}
           </Text>
         )}

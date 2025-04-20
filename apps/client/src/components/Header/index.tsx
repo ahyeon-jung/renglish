@@ -16,13 +16,13 @@ export default async function Header() {
     <header
       className={clsx(
         'fixed inset-x-0 top-0 bg-white shadow-sm',
-        'flex justify-between items-center px-4 py-4',
+        'flex justify-between items-center px-3 py-4',
         'h-[var(--header-height)] z-[var(--header-z-index)]',
       )}
     >
       <Link href={PATHS.HOME} className="flex gap-[4px] items-center">
-        <Image src={logo} alt="Renglish logo image" width={30} height={30} />
-        <Text as="h2" typography="headline-lg">
+        <Image src={logo} alt="Renglish logo image" width={25} height={25} />
+        <Text as="h2" className='text-gray-800' typography="headline-md">
           english
         </Text>
       </Link>
