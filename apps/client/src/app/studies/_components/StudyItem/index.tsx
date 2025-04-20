@@ -37,9 +37,9 @@ export default function StudyItem({ nonApplicantsButton = false, ...study }: Stu
           <div className={clsx(
             'absolute bottom-0 left-0 top-0 right-0',
             'pt-15',
-            'text-white text-center text-sm font-bold z-[10000]',
+            'text-orange-500 text-center text-sm font-bold z-[10000]',
             'rounded-xl hidden group-hover:block',
-            'bg-black/50',
+            'bg-black/70',
             'transition-opacity duration-300',
             'opacity-0 group-hover:opacity-100',
           )}>

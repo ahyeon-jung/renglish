@@ -33,7 +33,7 @@ export default function LatestScripts() {
     <Container label="Latest Script" goTo={PATHS.MOVIE.LIST}>
       <Link
         href={`/movies/${movie.title}/${movie.scenes[0].id}/script/en`}
-        className="group relative h-[80px] overflow-hidden rounded-xl"
+        className="group relative h-[85px] overflow-hidden rounded-xl"
       >
         <Text
           className="absolute right-4 bottom-0 text-white group-hover:text-orange-400 z-[var(--overlay-text-z-index)]"
