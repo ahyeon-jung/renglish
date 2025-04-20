@@ -55,6 +55,9 @@ with sync_playwright() as p:
 
     try:
         time.sleep(3)
+        html = page.content()
+        print("[HTML 출력]")
+        time.sleep(10)
         page.goto("https://app.cloudtype.io/@jungahyeon0512/renglishdb:main")
         page.wait_for_load_state("networkidle")
         print("[6] 로그인 후 Cloudtype 앱 페이지 재진입 성공")
