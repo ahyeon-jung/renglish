@@ -1,7 +1,6 @@
 'use client';
 
 import { parseText, stripHtmlTags } from '@/utils/content';
-import { getTokenInClient } from '@/utils/cookie';
 import { useDataFetching } from '@/hooks/useDataFetching';
 import { use } from 'react';
 
@@ -11,6 +10,7 @@ import DialogListItem from '../../_components/DialogListItem';
 import SceneHeader from '../../_components/SceneHeader';
 import Text from '@/components/Text';
 import getScene from '@/app/actions/scenes/getScene';
+import { useUserStore } from '@/stores/userStore';
 
 export default function MovieSceneEnglishScript({
   params,
@@ -18,10 +18,10 @@ export default function MovieSceneEnglishScript({
   params: Promise<{ movie: string; scene: string }>;
 }) {
   const resolvedParams = use(params);
-  const token = getTokenInClient() || '';
+  const { userId } = useUserStore();
 
   const { data, isLoading } = useDataFetching({
-    queryKey: ['scene', resolvedParams.scene, token],
+    queryKey: ['scene', resolvedParams.scene, userId ?? ''],
     queryFn: () => getScene(resolvedParams.scene),
     enabled: !!resolvedParams.scene,
   });
@@ -44,6 +44,8 @@ export default function MovieSceneEnglishScript({
   if (!data?.data) return null;
 
   const scene = data.data;
+
+
 
   return (
     <main className="mt-[var(--header-height)] py-3">

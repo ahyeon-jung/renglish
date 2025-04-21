@@ -9,22 +9,25 @@ import loginAction from '@/app/actions/auth/login';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { useUserStore } from '@/stores/userStore';
 
 const INITIAL_LOGIN_BODY = { email: '', password: '', rememberMe: false };
 
 export default function EmailLoginForm() {
   const router = useRouter();
+  const { setUserId } = useUserStore();
   const [loginBody, setLoginBody] = useState(INITIAL_LOGIN_BODY);
 
   const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      const { success } = await loginAction(loginBody);
+      const { success, data } = await loginAction(loginBody);
       if (!success) {
         toast.error(MESSAGE.AUTH.ERROR.UNMATCHED);
         return;
       }
+      setUserId(data || '');
       router.push(PATHS.HOME);
     } catch {
       toast.error(MESSAGE.COMMON.ERROR.SERVER);

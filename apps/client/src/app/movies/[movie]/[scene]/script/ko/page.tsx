@@ -16,7 +16,7 @@ export default async function MovieSceneKoreanScript({
   const { data: scene } = await getScene(slug.scene);
 
   return (
-    <main className="mt-[var(--header-height)]">
+    <main className="mt-[var(--header-height)] py-3">
       <SceneHeader title={slug.movie} movieId={slug.movie} sceneId={slug.scene} />
       <DialogListContainer>
         {scene.audioUrl && <AudioBox audioUrl={scene.audioUrl} />}

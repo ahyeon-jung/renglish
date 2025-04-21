@@ -13,7 +13,7 @@ export default async function loginAction({
   email,
   password,
   rememberMe,
-}: LoginAction): Promise<ActionResponse<null>> {
+}: LoginAction) {
   if (!email || !password) {
     return { status: 200, success: false, message: 'no required data', data: null };
   }
@@ -39,7 +39,7 @@ export default async function loginAction({
       ...(rememberMe && { maxAge: 1000 * 60 * 60 * 24 * 7 }),
     });
 
-    return { status: 200, success: true, message: 'Login successfully', data: null };
+    return { status: 200, success: true, message: 'Login successfully', data: email };
   } catch (e) {
     const err = await handleError(e);
     return { status: err.statusCode, success: false, message: err.message, data: null };
