@@ -2,6 +2,9 @@ from playwright.sync_api import sync_playwright
 from dotenv import load_dotenv
 import os
 import time
+import functools
+
+print = functools.partial(print, flush=True)
 
 load_dotenv()
 
@@ -55,8 +58,8 @@ with sync_playwright() as p:
 
     try:
         time.sleep(3)
-        html = page.content()
-        print("[HTML 출력]")
+        html = github_page.content()
+        print("[HTML 출력]", html)
         time.sleep(10)
         page.goto("https://app.cloudtype.io/@jungahyeon0512/renglishdb:main")
         page.wait_for_load_state("networkidle")
