@@ -6,6 +6,7 @@ import { ActionResponse } from '@/types/action';
 import { ENV } from '@/constants/env';
 import { cookies } from 'next/headers';
 import { authApi } from '@/libs/api';
+import { REMEMBER_ME_EXPIRATION_TIME } from '@/constants/time';
 
 type LoginAction = { email: string; password: string; rememberMe: boolean };
 
@@ -36,7 +37,7 @@ export default async function loginAction({
       httpOnly: true,
       secure: ENV.IS_PRODUCTION,
       path: '/',
-      ...(rememberMe && { maxAge: 1000 * 60 * 60 * 24 * 7 }),
+      ...(rememberMe && { maxAge: REMEMBER_ME_EXPIRATION_TIME }),
     });
 
     return { status: 200, success: true, message: 'Login successfully', data: email };

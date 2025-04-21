@@ -27,7 +27,7 @@ export default function EmailLoginForm() {
         toast.error(MESSAGE.AUTH.ERROR.UNMATCHED);
         return;
       }
-      setUserId(data || '');
+      setUserId(data || '', loginBody.rememberMe);
       router.push(PATHS.HOME);
     } catch {
       toast.error(MESSAGE.COMMON.ERROR.SERVER);

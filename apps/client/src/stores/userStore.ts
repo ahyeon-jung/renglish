@@ -1,13 +1,33 @@
+import { createDynamicUserStorage } from '@/libs/userStorage';
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
-type UserState = {
+interface UserState {
   userId: string | null;
-  setUserId: (id: string) => void;
+  rememberMe: boolean;
+  setUserId: (id: string, rememberMe: boolean) => void;
   clearUser: () => void;
-};
+}
 
-export const useUserStore = create<UserState>((set) => ({
-  userId: null,
-  setUserId: (id) => set({ userId: id }),
-  clearUser: () => set({ userId: null }),
-}));
+export const useUserStore = create<UserState>()(
+  persist(
+    (set) => ({
+      userId: null,
+      rememberMe: false,
+      setUserId: (id, rememberMe) =>
+        set({
+          userId: id,
+          rememberMe,
+        }),
+      clearUser: () => set({ userId: null, rememberMe: false }),
+    }),
+    {
+      name: 'user-store',
+      storage: createDynamicUserStorage(),
+      partialize: (state) => ({
+        userId: state.userId,
+        rememberMe: state.rememberMe,
+      }),
+    }
+  )
+);
