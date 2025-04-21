@@ -1,13 +1,12 @@
 'use client';
 
 import { use } from 'react';
-import { getTokenInClient } from '@/utils/cookie';
 import { useDataFetching } from '@/hooks/useDataFetching';
-import checkTokenAction from '@/app/actions/check/checkToken';
 import SceneHeader from '../../_components/SceneHeader';
 import WritingDialogues from './_components/WritingDialogues';
 import getScene from '@/app/actions/scenes/getScene';
 import { GoToLogin } from '@/components/Fallback';
+import { useUserStore } from '@/stores/userStore';
 
 export default function MovieScenePracticeWriting({
   params,
@@ -15,21 +14,16 @@ export default function MovieScenePracticeWriting({
   params: Promise<{ movie: string; scene: string }>;
 }) {
   const resolvedParams = use(params);
-  const token = getTokenInClient() || '';
-
-  const { data: isTokenValid } = useDataFetching({
-    queryKey: ['check-token', token],
-    queryFn: checkTokenAction,
-    enabled: !!token,
-  });
+  const { userId } = useUserStore();
 
   const { data, isLoading } = useDataFetching({
-    queryKey: ['scene', resolvedParams.scene, token],
+    queryKey: ['scene', resolvedParams.scene, userId ?? ''],
     queryFn: () => getScene(resolvedParams.scene),
-    enabled: !!resolvedParams.scene && isTokenValid,
+    enabled: !!resolvedParams.scene,
   });
 
-  if (!isTokenValid) return <GoToLogin />;
+
+  if (!userId) return <GoToLogin />;
 
   if (isLoading) {
     return (

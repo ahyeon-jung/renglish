@@ -4,7 +4,7 @@ export const QUERY_KEYS = {
     DETAIL: (sceneId: string, token: string) => ['scene', sceneId, token],
   },
   EXPRESSION: {
-    LIST: (sceneId: string, token: string) => ['expressions', sceneId, token],
+    LIST: (sceneId: string) => ['expressions', sceneId],
   },
   TOKEN: {
     CHECK: (token: string) => ['check-token', token],
