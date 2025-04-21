@@ -7,6 +7,7 @@ import {
 
 import { PATHS } from './constants/path';
 import refreshTokenMiddleware from './middlewares/refreshToken';
+import { hideSocialInformationMiddleware } from './middlewares/social';
 
 type MiddlewareFunction = (request: NextRequest) => Promise<Response> | Response;
 
@@ -14,7 +15,8 @@ const pageRoutesMap: Record<string, MiddlewareFunction> = {
   // Routes where no token is required
   [PATHS.AUTH.LOGIN]: withoutAuthRouteMiddleware,
   [PATHS.AUTH.REGISTER]: withoutAuthRouteMiddleware,
-  [PATHS.AUTH.REGISTER]: withoutAuthRouteMiddleware,
+
+  [PATHS.AUTH.SOCIAL_REGISTER]: hideSocialInformationMiddleware,
 
   // Routes that require a token (authenticated user)
   [PATHS.MY.PROFILE]: withAuthRouteMiddleware,
