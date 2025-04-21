@@ -6,45 +6,32 @@ export async function hideSocialInformationMiddleware(request: NextRequest) {
     const url = request.nextUrl.clone();
     const searchParams = url.searchParams;
 
-    const email = searchParams.get('email');
-    const nickname = searchParams.get('nickname');
-    const provider = searchParams.get('provider');
-    const providerId = searchParams.get('providerId');
+    const cookieKeys = ["provider", "providerId", "email", "nickname"];
+    const cookieData: Record<string, string> = {};
 
-    if (provider || nickname || email || providerId) {
+    let shouldRedirect = false;
+
+    for (const key of cookieKeys) {
+      const value = searchParams.get(key);
+      if (value) {
+        cookieData[key] = value;
+        searchParams.delete(key);
+        shouldRedirect = true;
+      }
+    }
+
+    if (shouldRedirect) {
       const redirectUrl = new URL(url);
-      if (provider) {
-        redirectUrl.searchParams.delete("provider");
-      }
-      if (providerId) {
-        redirectUrl.searchParams.delete("providerId");
-      }
-      if (nickname) {
-        redirectUrl.searchParams.delete("nickname");
-      }
-      if (email) {
-        redirectUrl.searchParams.delete("email");
-      }
+      redirectUrl.search = searchParams.toString();
 
       const response = NextResponse.redirect(redirectUrl, { status: 307 });
 
-      if (provider) {
-        response.cookies.set("provider", provider, { path: "/" });
-      }
-      if (providerId) {
-        response.cookies.set("providerId", providerId, { path: "/" });
-      }
-      if (email) {
-        response.cookies.set("email", email, { path: "/" });
-      }
-      if (nickname) {
-        response.cookies.set("nickname", nickname, { path: "/" });
+      for (const [key, value] of Object.entries(cookieData)) {
+        response.cookies.set(key, value, { path: "/" });
       }
 
       return response;
     }
-
-
     return NextResponse.next();
   } catch {
     return NextResponse.redirect(new URL(PATHS.HOME, request.url));
