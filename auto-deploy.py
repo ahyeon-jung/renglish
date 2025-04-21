@@ -34,7 +34,7 @@ with sync_playwright() as p:
     page = context.new_page()
 
     try:
-        page.goto("https://app.cloudtype.io/@jungahyeon0512/renglishdb:main")
+        page.goto(URL)
         print("[3] Cloudtype 앱 페이지 진입 성공")
     except Exception as e:
         print(f"[3] 페이지 진입 실패: {e}")
@@ -68,7 +68,7 @@ with sync_playwright() as p:
 
     try:
         time.sleep(30)
-        page.goto("https://app.cloudtype.io/@jungahyeon0512/renglishdb:main")
+        page.goto(URL)
         page.wait_for_load_state("networkidle")
         print("[6] 로그인 후 Cloudtype 앱 페이지 재진입 성공")
     except Exception as e:
