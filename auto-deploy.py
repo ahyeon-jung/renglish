@@ -57,17 +57,16 @@ with sync_playwright() as p:
         print(f"[5] GitHub 로그인 실패: {e}")
 
     try:
-        try:
-            h3 = github_page.query_selector("h3[data-target='sudo-credential-options.githubMobileChallengeValue']")
+        h3 = github_page.query_selector("h3[data-target='sudo-credential-options.githubMobileChallengeValue']")
         if h3:
             value = h3.inner_text().strip()
             print(f"[Github OTP 값]: {value}")
         else:
             print("[Github OTP 값]: 해당 요소를 찾을 수 없습니다.")
-        except Exception as e:
-            print(f"[Github OTP 값 추출 실패]: {e}")
+    except Exception as e:
+        print(f"[Github OTP 값 추출 실패]: {e}")
 
-
+    try:
         time.sleep(30)
         page.goto("https://app.cloudtype.io/@jungahyeon0512/renglishdb:main")
         page.wait_for_load_state("networkidle")
