@@ -1,7 +1,6 @@
 'use client';
 
 import { use } from 'react';
-import { getTokenInClient } from '@/utils/cookie';
 import { useDataFetching } from '@/hooks/useDataFetching';
 import { GoToLogin } from '@/components/Fallback';
 import ExpressionList from './_components/ExpressionList';
@@ -9,6 +8,7 @@ import getExpressionsByScene from '@/app/actions/expressions/getExpressionsBySce
 import { ActionResponse } from '@/types/action';
 import { ExpressionType } from '@/types/expression';
 import { QUERY_KEYS } from '@/hooks/queryKeys';
+import { useUserStore } from '@/stores/userStore';
 
 export default function MovieScenePracticeExpressionPage({
   params,
@@ -16,10 +16,11 @@ export default function MovieScenePracticeExpressionPage({
   params: Promise<{ movie: string; scene: string }>;
 }) {
   const resolvedParams = use(params);
-  const token = getTokenInClient() || '';
+  const { userId } = useUserStore();
+  if (!userId) return <GoToLogin />;
 
   const { data, isLoading } = useDataFetching<ActionResponse<ExpressionType[] | null>>({
-    queryKey: QUERY_KEYS.EXPRESSION.LIST(resolvedParams.scene, token),
+    queryKey: QUERY_KEYS.EXPRESSION.LIST(resolvedParams.scene),
     queryFn: () => getExpressionsByScene({ sceneId: resolvedParams.scene }),
     enabled: !!resolvedParams.scene,
   });

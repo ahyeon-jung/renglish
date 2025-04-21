@@ -23,7 +23,7 @@ export default function FillDialogueListItem({ dialogue, index }: FillDialogueLi
       <div onClick={toogleIsClicked}>
         {parseText(
           dialogue.englishScript,
-          isClicked ? 'text-gray-600 border-black border-b' : 'text-white border-black border-b',
+          isClicked ? 'text-gray-600 border-black border-b' : dialogue.speaker.speakerType === 'a' ? 'text-gray-50 border-black border-b' : 'text-[#f0f0f0] border-black border-b',
         )}
         {parseText(dialogue.koreanScript)}
       </div>

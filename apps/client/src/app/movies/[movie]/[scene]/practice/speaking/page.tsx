@@ -1,7 +1,6 @@
 'use client';
 
 import { use } from 'react';
-import { getTokenInClient } from '@/utils/cookie';
 import { useDataFetching } from '@/hooks/useDataFetching';
 import DialogList from './_components/DialogList';
 import SceneHeader from '../../_components/SceneHeader';
@@ -13,10 +12,9 @@ export default function MovieScenePracticeSpeakingPage({
   params: Promise<{ movie: string; scene: string }>;
 }) {
   const resolvedParams = use(params);
-  const token = getTokenInClient() || '';
 
   const { data, isLoading } = useDataFetching({
-    queryKey: ['scene', resolvedParams.scene, token],
+    queryKey: ['scene', resolvedParams.scene],
     queryFn: () => getScene(resolvedParams.scene),
     enabled: !!resolvedParams.scene,
   });
