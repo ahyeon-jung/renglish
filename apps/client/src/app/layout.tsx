@@ -38,6 +38,7 @@ export default function RootLayout({ children }: LayoutProps) {
           <Toast />
           <Header />
           {children}
+          <div id="modal-root" />
           <GoogleAnalytics gaId={ENV.GA_ID} />
         </AppProvider>
       </body>
