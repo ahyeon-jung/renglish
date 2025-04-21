@@ -59,6 +59,15 @@ const getList = async (resource: string, params: any) => {
     };
   }
 
+  if (resource === RESOURCE.EXPRESSIONS) {
+    const data = await expressionApi.expressionControllerFindWeeklyExpressions();
+
+    return {
+      data,
+      total: data.length,
+    };
+  }
+
   return {
     data: [],
     total: 0,

@@ -8,6 +8,7 @@ import { StudyCreate, StudyEdit, StudyList, StudyShow } from "./resources/studie
 import { UserList, UserShow } from "./resources/users";
 import { MovieList, MovieShow, MovieCreate } from "./resources/movies";
 import ExpressionsList from "./resources/expressions/list";
+import { ExpressionCreate } from "./resources/expressions";
 
 export const App = () => (
   <Admin
@@ -19,6 +20,6 @@ export const App = () => (
     <Resource name={RESOURCE.STUDIES} list={StudyList} show={StudyShow} edit={StudyEdit} create={StudyCreate} />
     <Resource name={RESOURCE.USERS} list={UserList} show={UserShow} />
     <Resource name={RESOURCE.MOVIES} list={MovieList} show={MovieShow} create={MovieCreate} />
-    <Resource name={RESOURCE.EXPRESSIONS} list={ExpressionsList} />
+    <Resource name={RESOURCE.EXPRESSIONS} list={ExpressionsList} create={ExpressionCreate} />
   </Admin>
 );
