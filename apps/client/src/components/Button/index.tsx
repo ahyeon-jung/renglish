@@ -17,9 +17,9 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const variantClasses = disabled
-    ? 'bg-gray-200 cursor-not-allowed'
+    ? 'bg-orange-300 text-white cursor-not-allowed'
     : variants === 'default'
-      ? 'bg-yellow-200 hover:bg-yellow-300 text-black cursor-pointer'
+      ? 'bg-orange-400 hover:bg-orange-500 text-white cursor-pointer'
       : variants === 'danger'
         ? 'bg-red-600 text-white'
         : variants === 'primary'

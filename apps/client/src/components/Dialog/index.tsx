@@ -3,11 +3,12 @@ import clsx from 'clsx';
 
 type DialogProps = {
   isSub?: boolean;
+  color?: string;
   isOpen?: boolean;
   onClose?: () => void;
 } & React.PropsWithChildren;
 
-export default function Dialog({ isSub, isOpen, onClose, children }: DialogProps) {
+export default function Dialog({ color = 'white', isSub, isOpen, onClose, children }: DialogProps) {
   if (!isOpen) return null;
 
   return (
@@ -24,7 +25,7 @@ export default function Dialog({ isSub, isOpen, onClose, children }: DialogProps
       ) : (
         <div
           className={clsx(
-            'h-full w-[250px] bg-white p-8',
+            `h-full w-[250px] bg-${color} p-8`,
             'shadow-lg transform transition-transform duration-300',
             isOpen ? 'translate-x-0' : 'translate-x-full',
           )}

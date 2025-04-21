@@ -43,7 +43,7 @@ export default function ApplyToStudyModal({ studyId }: ApplyToStudyModalProps) {
 
   return (
     <>
-      <Button onClick={handleApplyClick}>참여 하기</Button>
+      <Button onClick={handleApplyClick} title="스터디 참여하기">참여 하기</Button>
       {userStatus === USER_STATUS.NO_AUTH && (
         <Modal className="w-[300px]" onClose={closeModal}>
           <Modal.Title>스터디 참여하기</Modal.Title>

@@ -6,6 +6,7 @@ import Tag from '@/components/Tag';
 import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { CATEGORIES } from '@/constants/categories';
+import Text from '@/components/Text';
 
 export default function Categories() {
   const searchParams = useSearchParams();
@@ -19,7 +20,7 @@ export default function Categories() {
   return (
     <>
       <div className="text-right" onClick={toggleCategories}>
-        카테고리로 보기
+        <Text as="label" typography="subHead-md">카테고리로 보기</Text>
       </div>
       {isOpen && (
         <div className="grid grid-cols-5 place-items-center gap-y-2 my-2">

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@next/third-parties": "^15.2.3",
+    "@renglish/services": "workspace:*",
     "@tanstack/react-query": "^5.74.3",
     "clsx": "^2.1.1",
     "lucide-react": "^0.479.0",
@@ -20,8 +21,8 @@
     "react-dom": "^19.0.0",
     "react-to-print": "^3.0.5",
     "react-toastify": "^11.0.5",
-    "swr": "^2.3.3",
-    "@renglish/services": "workspace:*"
+    "swiper": "^11.2.6",
+    "swr": "^2.3.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

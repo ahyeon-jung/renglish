@@ -14,7 +14,7 @@ export default function BackButton({ title }: BackButton) {
   };
 
   return (
-    <div className="flex gap-[15px]">
+    <div className="flex gap-1">
       <ChevronLeft onClick={goToBefore} />
       {title && <Text>{title}</Text>}
     </div>

@@ -5,7 +5,7 @@ import clsx from 'clsx';
 export default function IntroducePage() {
   return (
     <main
-      className={clsx('mt-[var(--header-height)] py-4', 'flex flex-col items-center text-gray-800')}
+      className={clsx('mt-[var(--header-height)] p-3', 'flex flex-col items-center text-gray-800')}
     >
       <section className="text-center">
         <h1 className="text-2xl font-bold text-orange-600 mb-2">🎬 Reel + English, Renglish!</h1>

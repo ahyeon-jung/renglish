@@ -46,7 +46,7 @@ export default function MovieSceneEnglishScript({
   const scene = data.data;
 
   return (
-    <main className="mt-[var(--header-height)] p-3">
+    <main className="mt-[var(--header-height)] py-3">
       <SceneHeader
         title={resolvedParams.movie}
         movieId={resolvedParams.movie}

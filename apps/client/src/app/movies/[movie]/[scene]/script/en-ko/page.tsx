@@ -16,7 +16,7 @@ export default async function MovieSceneEnglishKoreanScript({
   const { data: scene } = await getScene(slug.scene);
 
   return (
-    <main className="mt-[var(--header-height)] p-3">
+    <main className="mt-[var(--header-height)]">
       <SceneHeader title={slug.movie} movieId={slug.movie} sceneId={slug.scene} />
       <DialogListContainer>
         {scene.audioUrl && <AudioBox audioUrl={scene.audioUrl} />}
@@ -25,7 +25,7 @@ export default async function MovieSceneEnglishKoreanScript({
             <DialogListItem key={index} speaker={dialogue.speaker} isBackground>
               <div>
                 <Text>{parseText(dialogue.englishScript)}</Text>
-                <Text>{parseText(dialogue.koreanScript)}</Text>
+                <Text className='text-gray-500'>{parseText(dialogue.koreanScript)}</Text>
               </div>
             </DialogListItem>
           );

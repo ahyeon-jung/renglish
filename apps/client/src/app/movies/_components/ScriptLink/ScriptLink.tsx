@@ -15,8 +15,8 @@ export default function ScriptLink({ index, title, id, movieTitle }: ScriptLink)
     <Link
       href={PATHS.MOVIE.SCENE.SCRIPT.ENGLISH(movieTitle, id.toString())}
       className={clsx(
-        'flex justify-between items-center bg-gray-100 p-2 rounded-sm',
-        'text-orange-600 hover:bg-yellow-200 hover:text-orange-800 transition-colors',
+        'flex justify-between items-center p-1 rounded-sm',
+        'text-orange-500 hover:text-orange-700 transition-colors',
       )}
     >
       <Text as="h4" typography="body-md">
