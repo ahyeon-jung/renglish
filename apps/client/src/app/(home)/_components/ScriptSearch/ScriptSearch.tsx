@@ -12,6 +12,7 @@ import Text from '@/components/Text';
 import backgroundImage from '@/assets/images/background.webp';
 import getMovies from '@/app/actions/movies/getMovies';
 import { useRouter } from 'next/navigation';
+import clsx from 'clsx';
 
 export default function ScriptSearch() {
   const router = useRouter();
@@ -59,7 +60,9 @@ export default function ScriptSearch() {
   }, []);
 
   return (
-    <div className="relative w-full pt-[50px] pb-[50px]">
+    <div className={clsx("relative w-full pt-[50px] pb-[50px]",
+      "md:pt-[120px] md:pb-[100px]"
+    )}>
       <Image
         src={backgroundImage}
         alt="library background image"
@@ -70,6 +73,9 @@ export default function ScriptSearch() {
       <Container className="relative z-10 gap-0 justify-center items-center">
         <Text as="h3" typography="display-md" className="text-white mb-[10px]">
           Learn English with Movies
+        </Text>
+        <Text as="h3" typography="body-lg" className="text-white mb-[10px]">
+          Reading scripts with friends and learn English
         </Text>
         <SearchBar className="w-[80%] mb-[10px]">
           <SearchBar.InputWithSearch
