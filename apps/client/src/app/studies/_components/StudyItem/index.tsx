@@ -21,8 +21,8 @@ export default function StudyItem({ nonApplicantsButton = false, ...study }: Stu
         'flex flex-col gap-3 border-1 border-gray-200',
       )}
     >
-      <div className="flex items-center gap-7 justify-between">
-        <div className="relative flex-1 pr-4">
+      <div className="flex items-center gap-2 justify-between">
+        <div className="relative flex-1">
           <Text as="h2" typography='headline-md' className="text-gray-800 mb-1">
             {study.title}
           </Text>

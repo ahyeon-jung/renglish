@@ -28,6 +28,8 @@ export default function RecruitingStudies() {
     queryFn: () => getStudiesAction({ status: STUDY_STATUS_TAG.RECRUITING }),
   });
 
+  const studies = data?.data?.data.sort((a, b) => new Date(a.studiedAt).getTime() - new Date(b.studiedAt).getTime());
+
   return (
     <Container label="Recruiting Studies" goTo={PATHS.STUDIES.LIST} ellipsisDescription="더 많은 스터디 보러가기">
       <div className="w-full">
@@ -40,10 +42,10 @@ export default function RecruitingStudies() {
               />
             ))}
           </div>
-        ) : data?.data?.data ? (
+        ) : studies ? (
           <Swiper
             spaceBetween={8}
-            slidesPerView={data.data.data.length > 1 ? 1.1 : 1}
+            slidesPerView={studies.length > 1 ? 1.1 : 1}
             pagination={{ clickable: true }}
             style={{
               '--swiper-pagination-color': '#f4c479',
@@ -51,7 +53,7 @@ export default function RecruitingStudies() {
             modules={[Pagination]}
             className="py-42"
           >
-            {data.data.data.map((study: ListStudyDto) => (
+            {studies.map((study: ListStudyDto) => (
               <SwiperSlide key={study.id}>
                 <StudyItem {...study} />
               </SwiperSlide>

@@ -28,7 +28,7 @@ const typographyClasses: Record<Typography, string> = {
   'body-xl': 'font-normal text-lg leading-7 tracking-[0.2px]',
   'display-xl': 'font-bold text-4xl leading-15 tracking-[-0.6px]',
   'display-lg': 'font-medium text-3xl leading-13 tracking-[-0.6px]',
-  'display-md': 'font-semibold text-2xl leading-10 tracking-[-0.4px]',
+  'display-md': 'text-xl font-semibold md:text-2xl leading-10 tracking-[-0.4px]',
   'display-sm': 'font-medium text-xl leading-9 tracking-[-0.2px]',
   'headline-lg': 'font-semibold text-xl leading-7 tracking-[0px]',
   'headline-md': 'font-semibold text-lg leading-7 tracking-[0.2px]',
