@@ -28,6 +28,7 @@ export default function Tag({
         // Size variants
         'py-2 px-4 text-sm w-[100px]': size === 'md',
         'py-1 px-2 text-xs w-[70px]': size === 'sm',
+        'md:py-2 md:px-3 md:text-sm md:w-[90px]': size === 'sm',
 
         // Default variant styles
         'bg-black text-white': isActive && variant === 'default',
