@@ -22,7 +22,7 @@ import { PaginationMovieResponseDto } from './dto/pagination-movie.dto';
 @ApiTags('Movies')
 @Controller('movies')
 export class MovieController {
-  constructor(private readonly movieService: MovieService) {}
+  constructor(private readonly movieService: MovieService) { }
 
   @Post()
   @UseGuards(AdminTokenGuard)
@@ -56,13 +56,20 @@ export class MovieController {
   }
 
   @Get('/latest')
+  @ApiQuery({
+    name: 'limit',
+    description: '가져올 영화 개수',
+    example: 1,
+    type: Number,
+    required: false,
+  })
   @ApiOperation({
     summary: '가장 최신 영화 가져오기',
     description: '가장 최신 업로드된 장면의 영화 정보를 가져옵니다.',
   })
-  @ApiOkResponse({ type: Movie })
-  findLatestScene(): Promise<Movie> {
-    return this.movieService.findMovieWithLatestScene();
+  @ApiOkResponse({ type: Movie, isArray: true })
+  findLatestScene(@Query('limit') limit: number = 1): Promise<Movie[]> {
+    return this.movieService.findMovieWithLatestScene(limit);
   }
 
   @Get()
