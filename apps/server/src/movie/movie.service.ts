@@ -13,7 +13,7 @@ export class MovieService {
   constructor(
     @InjectRepository(Movie)
     private readonly movieRepository: Repository<Movie>,
-  ) {}
+  ) { }
 
   async create(createMovieDto: CreateMovieDto): Promise<Movie> {
     return this.movieRepository.save(createMovieDto);
@@ -55,20 +55,21 @@ export class MovieService {
     };
   }
 
-  async findMovieWithLatestScene(): Promise<Movie> {
-    const movie = await this.movieRepository.findOne({
+  async findMovieWithLatestScene(limit: number = 1): Promise<Movie[]> {
+    const movies = await this.movieRepository.find({
       where: {},
       relations: ['scenes'],
       order: {
         scenes: { createdAt: 'DESC' },
       },
+      take: limit,
     });
 
-    if (!movie) {
+    if (!movies) {
       throw new NotFoundException('Movie not found');
     }
 
-    return movie;
+    return movies;
   }
 
   async findOneById(id: string): Promise<Movie> {

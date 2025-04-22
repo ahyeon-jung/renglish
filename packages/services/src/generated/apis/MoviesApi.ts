@@ -42,6 +42,10 @@ export interface MovieControllerFindAllRequest {
     keyword?: string;
 }
 
+export interface MovieControllerFindLatestSceneRequest {
+    limit?: number;
+}
+
 export interface MovieControllerFindOneRequest {
     movieId: string;
 }
@@ -183,8 +187,12 @@ export class MoviesApi extends runtime.BaseAPI {
      * 가장 최신 업로드된 장면의 영화 정보를 가져옵니다.
      * 가장 최신 영화 가져오기
      */
-    async movieControllerFindLatestSceneRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Movie>> {
+    async movieControllerFindLatestSceneRaw(requestParameters: MovieControllerFindLatestSceneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Movie>>> {
         const queryParameters: any = {};
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -203,15 +211,15 @@ export class MoviesApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => MovieFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(MovieFromJSON));
     }
 
     /**
      * 가장 최신 업로드된 장면의 영화 정보를 가져옵니다.
      * 가장 최신 영화 가져오기
      */
-    async movieControllerFindLatestScene(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Movie> {
-        const response = await this.movieControllerFindLatestSceneRaw(initOverrides);
+    async movieControllerFindLatestScene(requestParameters: MovieControllerFindLatestSceneRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Movie>> {
+        const response = await this.movieControllerFindLatestSceneRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

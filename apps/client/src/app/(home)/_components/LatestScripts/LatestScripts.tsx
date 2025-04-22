@@ -10,10 +10,16 @@ import getLatestMovieAction from '@/app/actions/movies/getLatestMovie';
 import { useDataFetching } from '@/hooks/useDataFetching';
 import { Movie } from '@/types/movie';
 import { QUERY_KEYS } from '@/hooks/queryKeys';
+import { Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { ActionResponse } from '@/types/action';
 
 export default function LatestScripts() {
-  const { data, isLoading } = useDataFetching<{ data: Movie }>({
-    queryKey: [QUERY_KEYS.MOVIE.LATEST],
+  const { data, isLoading } = useDataFetching<ActionResponse<Movie[]>>({
+    queryKey: [QUERY_KEYS.MOVIE.LATEST,],
     queryFn: getLatestMovieAction,
   });
 
@@ -27,29 +33,34 @@ export default function LatestScripts() {
 
   if (!data?.data) return null;
 
-  const movie = data.data;
-
   return (
     <Container label="Latest Script" goTo={PATHS.MOVIE.LIST} ellipsisDescription="더 많은 대본 보러가기">
-      <Link
-        href={`/movies/${movie.title}/${movie.scenes[0].id}/script/en`}
-        className="group relative h-[90px] overflow-hidden rounded-xl"
+      <Swiper
+        autoplay={{ delay: 5000, disableOnInteraction: false }}
+        modules={[Autoplay]}
+        className="w-full h-[90px] overflow-hidden rounded-xl"
       >
-        <Text
-          className="absolute right-4 bottom-0 text-white group-hover:text-orange-400 z-[var(--overlay-text-z-index)]"
-          typography="display-md"
-        >
-          {movie.title}
-        </Text>
-        <Overlay />
-        <Image
-          alt="inside out poster"
-          src={movie.imageUrl}
-          width={400}
-          height={90}
-          className="w-full h-full object-cover"
-        />
-      </Link>
+        {data.data.map((movie, i) => (
+          <SwiperSlide key={i} className="group relative h-[90px]">
+            <Link href={`/movies/${movie.title}/${movie.scenes[0].id}/script/en`}>
+              <Text
+                className="absolute right-4 bottom-0 text-white group-hover:text-orange-400 z-[var(--overlay-text-z-index)]"
+                typography="display-md"
+              >
+                {movie.title}
+              </Text>
+              <Overlay />
+              <Image
+                alt="inside out poster"
+                src={movie.imageUrl}
+                width={400}
+                height={90}
+                className="w-full h-full object-cover"
+              />
+            </Link>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </Container>
   );
 }

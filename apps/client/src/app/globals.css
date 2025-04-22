@@ -33,3 +33,9 @@ main {
   margin-right: auto;
   margin-left: auto;
 }
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 24px !important;
+  color: white !important;
+}
