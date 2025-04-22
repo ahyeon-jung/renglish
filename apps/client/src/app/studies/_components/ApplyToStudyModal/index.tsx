@@ -11,15 +11,22 @@ import { toast } from 'react-toastify';
 import { useState } from 'react';
 import Text from '@/components/Text';
 import { GATHER_TOWN_URL } from '@/constants/url';
+import { useUserStore } from '@/stores/userStore';
 
 const USER_STATUS = { ALREADY_APPLIED: 'already', NO_AUTH: 'no_token', APPLY_SUCCESS: 'success' };
 
 type ApplyToStudyModalProps = { studyId: string };
 
 export default function ApplyToStudyModal({ studyId }: ApplyToStudyModalProps) {
+  const { userId } = useUserStore();
   const [userStatus, setUserStatus] = useState<string | null>(null);
 
   const handleApplyClick = async () => {
+    if (!userId) {
+      setUserStatus(USER_STATUS.NO_AUTH);
+      return;
+    }
+
     try {
       const { status } = await applyToStudyAction({ studyId });
       if (status === 401) {

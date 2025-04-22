@@ -1,17 +1,12 @@
-import { ENV } from '@/constants/env';
 import Image from 'next/image';
 import Link from 'next/link';
 import Nav from '../Nav';
 import { PATHS } from '@/constants/path';
 import Text from '../Text';
 import clsx from 'clsx';
-import { cookies } from 'next/headers';
 import logo from '@/assets/logo.png';
 
 export default async function Header() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get(ENV.COOKIE_ACCESS_TOKEN_KEY)?.value;
-
   return (
     <header
       className={clsx(
@@ -27,7 +22,7 @@ export default async function Header() {
         </Text>
       </Link>
       <div className="flex">
-        <Nav hasToken={!!token} />
+        <Nav />
       </div>
     </header>
   );

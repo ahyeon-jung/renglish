@@ -38,7 +38,7 @@ export default function CancelToApplyModal({ onClose, studyId }: CancelToApplyMo
       <Button onClick={handleCancelToApplyClick} variants="danger">
         참여 취소 하기
       </Button>
-      <Button onClick={handleCancelToApplyClick}>닫기기</Button>
+      <Button onClick={onClose}>닫기</Button>
     </Modal>
   );
 }

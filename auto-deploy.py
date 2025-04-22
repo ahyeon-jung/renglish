@@ -2,6 +2,9 @@ from playwright.sync_api import sync_playwright
 from dotenv import load_dotenv
 import os
 import time
+import functools
+
+print = functools.partial(print, flush=True)
 
 load_dotenv()
 
@@ -31,7 +34,7 @@ with sync_playwright() as p:
     page = context.new_page()
 
     try:
-        page.goto("https://app.cloudtype.io/@jungahyeon0512/renglishdb:main")
+        page.goto(URL)
         print("[3] Cloudtype 앱 페이지 진입 성공")
     except Exception as e:
         print(f"[3] 페이지 진입 실패: {e}")
@@ -54,8 +57,18 @@ with sync_playwright() as p:
         print(f"[5] GitHub 로그인 실패: {e}")
 
     try:
-        time.sleep(3)
-        page.goto("https://app.cloudtype.io/@jungahyeon0512/renglishdb:main")
+        h3 = github_page.query_selector("h3[data-target='sudo-credential-options.githubMobileChallengeValue']")
+        if h3:
+            value = h3.inner_text().strip()
+            print(f"[Github OTP 값]: {value}")
+        else:
+            print("[Github OTP 값]: 해당 요소를 찾을 수 없습니다.")
+    except Exception as e:
+        print(f"[Github OTP 값 추출 실패]: {e}")
+
+    try:
+        time.sleep(30)
+        page.goto(URL)
         page.wait_for_load_state("networkidle")
         print("[6] 로그인 후 Cloudtype 앱 페이지 재진입 성공")
     except Exception as e:

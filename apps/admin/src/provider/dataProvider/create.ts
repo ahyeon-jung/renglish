@@ -1,6 +1,6 @@
 import { CreateParams, CreateResult, DataProvider, RaRecord } from "react-admin";
 import RESOURCE from "../../constants/resource";
-import { dialogueApi, movieApi, sceneApi, speakerApi, studyApi } from "../../libs/api";
+import { dialogueApi, expressionApi, movieApi, sceneApi, speakerApi, studyApi } from "../../libs/api";
 import { getGoogleDriveUrl } from "../../constants/url";
 import { ExtendedSceneDto, Speaker } from "@renglish/services";
 
@@ -88,6 +88,23 @@ const create: DataProvider['create'] = async <RecordType extends RaRecord>(resou
         title: params.data.title,
         description: params.data.description,
         studiedAt: params.data.studiedAt,
+      }
+    })
+
+    return { data } as unknown as CreateResult<RecordType>
+  }
+
+  if (resource === RESOURCE.EXPRESSIONS) {
+    if (!params.data.sceneId || !params.data.expression || !params.data.meaning || !params.data.usage || !params.data.examples) {
+      return Promise.reject('Missing required fields');
+    }
+    const data = await expressionApi.expressionControllerCreate({
+      sceneId: params.data.sceneId,
+      createExpressionDto: {
+        expression: params.data.expression,
+        meaning: params.data.meaning,
+        usage: params.data.usage,
+        examples: params.data.examples,
       }
     })
 

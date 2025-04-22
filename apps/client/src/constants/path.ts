@@ -3,6 +3,7 @@ export const PATHS = {
   AUTH: {
     LOGIN: '/auth/login',
     REGISTER: '/auth/register',
+    SOCIAL_REGISTER: '/auth/register/social',
     LOGOUT: '/auth/logout',
     RESET_PASSWORD: '/auth/reset-password',
   },

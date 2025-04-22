@@ -8,8 +8,7 @@ import NavItem from '../NavItem';
 import { PATHS } from '@/constants/path';
 import { createPortal } from 'react-dom';
 import { usePathname } from 'next/navigation';
-
-type NavProps = { hasToken: boolean; };
+import { useUserStore } from '@/stores/userStore';
 
 const DEFAULT_NAV_OPTIONS = [
   { label: 'Home', path: PATHS.HOME },
@@ -30,8 +29,9 @@ const WITH_AUTH_NAV_OPTIONS = [
   { label: 'Logout', path: PATHS.AUTH.LOGOUT },
 ];
 
-export default function Nav({ hasToken }: NavProps) {
+export default function Nav() {
   const pathname = usePathname();
+  const { userId } = useUserStore();
 
   const [isOpenNav, setIsOpenNav] = useState(true);
   const [portalRoot, setPortalRoot] = useState<HTMLElement | null>(null);
@@ -63,7 +63,7 @@ export default function Nav({ hasToken }: NavProps) {
                 ))}
               </div>
               <div className="flex flex-col gap-2 absolute pl-8 pt-2 top-[230px] left-0 w-full bottom-0 bg-white">
-                {(hasToken ? WITH_AUTH_NAV_OPTIONS : WITHOUT_AUTH_NAV_OPTIONS).map(
+                {(userId ? WITH_AUTH_NAV_OPTIONS : WITHOUT_AUTH_NAV_OPTIONS).map(
                   ({ label, path }) => (
                     <NavItem key={path} path={path} label={label} />
                   ),
