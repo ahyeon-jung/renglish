@@ -4,7 +4,11 @@ on:
   pull_request:
     branches:
       - 'main'
-
+      - 'dev'
+    types: [opened, reopened, edited]
+  issues:
+    types: [opened]
+    
 jobs:
   assign-reviewers-and-labels:
     runs-on: ubuntu-latest
@@ -17,5 +21,5 @@ jobs:
           curl -X PATCH \
           -H "Authorization: Bearer ${{ secrets.APP_TOKEN }}" \
           -H "Accept: application/vnd.github.v3+json" \
-          -d '{"assignees":["a-honey"]}' \
+          -d '{"assignees":["ahyeon-jung"]}' \
           "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}"
