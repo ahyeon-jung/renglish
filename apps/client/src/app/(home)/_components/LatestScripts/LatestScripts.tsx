@@ -56,6 +56,7 @@ export default function LatestScripts() {
                 width={400}
                 height={90}
                 className="w-full h-full object-cover"
+                priority
               />
             </Link>
           </SwiperSlide>
