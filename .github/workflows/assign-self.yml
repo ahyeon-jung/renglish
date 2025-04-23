@@ -1,4 +1,4 @@
-name: Auto Assign Assignee and Admin Label
+name: Auto Assign Assignee
 
 on:
   pull_request:
@@ -8,18 +8,28 @@ on:
     types: [opened, reopened, edited]
   issues:
     types: [opened]
-    
+
 jobs:
-  assign-reviewers-and-labels:
+  auto-assign:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
       - name: Assign PR to yourself
+        if: github.event_name == 'pull_request'
         run: |
+          echo "Assigning PR to ahyeon-jung..."
           curl -X PATCH \
-          -H "Authorization: Bearer ${{ secrets.APP_TOKEN }}" \
-          -H "Accept: application/vnd.github.v3+json" \
-          -d '{"assignees":["ahyeon-jung"]}' \
-          "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}"
+            -H "Authorization: Bearer ${{ secrets.APP_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -d '{"assignees":["ahyeon-jung"]}' \
+            "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}"
+
+      - name: Assign Issue to yourself
+        if: github.event_name == 'issues'
+        run: |
+          echo "Assigning issue to ahyeon-jung..."
+          curl -X PATCH \
+            -H "Authorization: Bearer ${{ secrets.APP_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -d '{"assignees":["ahyeon-jung"]}' \
+            "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}"
+
