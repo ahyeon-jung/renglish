@@ -16,11 +16,14 @@
 import * as runtime from '../runtime';
 import type {
   CreateSpeakerDto,
+  Speaker,
   UpdateSpeakerDto,
 } from '../models/index';
 import {
     CreateSpeakerDtoFromJSON,
     CreateSpeakerDtoToJSON,
+    SpeakerFromJSON,
+    SpeakerToJSON,
     UpdateSpeakerDtoFromJSON,
     UpdateSpeakerDtoToJSON,
 } from '../models/index';
@@ -136,6 +139,42 @@ export class SpeakersApi extends runtime.BaseAPI {
      */
     async speakerControllerFindOne(requestParameters: SpeakerControllerFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.speakerControllerFindOneRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * 발화자 정보를 가져옵니다.
+     * 발화자 정보를 가져옵니다.
+     */
+    async speakerControllerFindSpeakersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Speaker>>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("token", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/api/speakers`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(SpeakerFromJSON));
+    }
+
+    /**
+     * 발화자 정보를 가져옵니다.
+     * 발화자 정보를 가져옵니다.
+     */
+    async speakerControllerFindSpeakers(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Speaker>> {
+        const response = await this.speakerControllerFindSpeakersRaw(initOverrides);
+        return await response.value();
     }
 
     /**

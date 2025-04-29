@@ -1,7 +1,7 @@
 import { Controller, Get, Body, Param, Put, Post, UseGuards } from '@nestjs/common';
 import { SpeakerService } from './speaker.service';
 import { UpdateSpeakerDto } from './dto/update-speaker.dto';
-import { ApiBody, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiOkResponse, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateSpeakerDto } from './dto/create-speaker.dto';
 import { AdminTokenGuard } from 'src/auth/guards/admin-token.guard';
 import { TAG } from 'src/common/constants/tag';
@@ -10,7 +10,17 @@ import { Speaker } from './entities/speaker.entity';
 @ApiTags('Speakers')
 @Controller('speakers')
 export class SpeakerController {
-  constructor(private readonly speakerService: SpeakerService) {}
+  constructor(private readonly speakerService: SpeakerService) { }
+
+  @Get()
+  @ApiOperation({
+    summary: `발화자 정보를 가져옵니다.`,
+    description: '발화자 정보를 가져옵니다.',
+  })
+  @ApiOkResponse({ type: () => Speaker, isArray: true })
+  findSpeakers(): Promise<Speaker[]> {
+    return this.speakerService.findSpeakers();
+  }
 
   @Post(':sceneId')
   @UseGuards(AdminTokenGuard)

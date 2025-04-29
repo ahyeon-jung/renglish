@@ -1,6 +1,7 @@
-import { expressionApi, movieApi, sceneApi, studyApi, userApi } from "../../libs/api";
+import { expressionApi, movieApi, sceneApi, speakerApi, studyApi, userApi } from "../../libs/api";
 
 import RESOURCE from "../../constants/resource";
+import { SpeakersApi } from "@renglish/services";
 
 const getList = async (resource: string, params: any) => {
   if (resource === RESOURCE.SCENES) {
@@ -19,7 +20,6 @@ const getList = async (resource: string, params: any) => {
 
   if (resource === RESOURCE.USERS) {
     const { page, perPage } = params.pagination;
-
     const data = await userApi.userControllerFindAll({
       offset: page,
       limit: perPage,
@@ -62,6 +62,16 @@ const getList = async (resource: string, params: any) => {
   if (resource === RESOURCE.EXPRESSIONS) {
     const data = await expressionApi.expressionControllerFindWeeklyExpressions();
 
+    return {
+      data,
+      total: data.length,
+    };
+  }
+
+  if (resource === RESOURCE.SPEAKERS) {
+    const data = await speakerApi.speakerControllerFindSpeakers();
+
+    console.log(data)
     return {
       data,
       total: data.length,

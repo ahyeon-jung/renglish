@@ -1,6 +1,6 @@
 import { CreateParams, CreateResult, DataProvider, RaRecord } from "react-admin";
 import RESOURCE from "../../constants/resource";
-import { dialogueApi, expressionApi, movieApi, sceneApi, speakerApi, studyApi } from "../../libs/api";
+import { dialogueApi, expressionApi, movieApi, sceneApi, speakerApi } from "../../libs/api";
 import { getGoogleDriveUrl } from "../../constants/url";
 import { ExtendedSceneDto, Speaker } from "@renglish/services";
 
@@ -76,6 +76,29 @@ const create: DataProvider['create'] = async <RecordType extends RaRecord>(resou
       return { data: scene } as unknown as CreateResult<RecordType>
     } catch { }
   }
+
+  if (resource === RESOURCE.SPEAKERS) {
+    console.log(params.data)
+    if (params.data.speakers?.length !== 0 || !params.data.sceneId) {
+      return Promise.reject('Missing required fields');
+    }
+
+    try {
+      const speakers = params.data.speakers as Speaker[];
+
+      for (const speaker of speakers) {
+        await speakerApi.speakerControllerCreateSpeaker({
+          sceneId: params.data.sceneId,
+          createSpeakerDto: {
+            speakerName: speaker.speakerName,
+            speakerType: speaker.speakerType,
+          }
+        });
+      }
+      return { data: {} } as unknown as CreateResult<RecordType>
+    } catch { }
+  }
+
 
   if (resource === RESOURCE.STUDIES) {
     if (!params.data.title || !params.data.description || !params.data.sceneId || !params.data.studiedAt) {
