@@ -4,7 +4,7 @@ import RESOURCE from "../../constants/resource";
 import { SpeakersApi } from "@renglish/services";
 
 const getList = async (resource: string, params: any) => {
-  if (resource === RESOURCE.SCENES) {
+  if (resource === RESOURCE.SCENES || resource === RESOURCE.DIALOGUES) {
     const { page, perPage } = params.pagination;
 
     const data = await sceneApi.sceneControllerFindAllScene({
