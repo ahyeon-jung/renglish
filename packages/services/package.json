@@ -18,5 +18,11 @@
   "devDependencies": {
     "typescript": "^5.1.6",
     "@openapitools/openapi-generator-cli": "^2.7.0"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/src/index.js",
+      "require": "./dist/src/index.js"
+    }
   }
 } 
