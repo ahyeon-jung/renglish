@@ -71,7 +71,6 @@ const getList = async (resource: string, params: any) => {
   if (resource === RESOURCE.SPEAKERS) {
     const data = await speakerApi.speakerControllerFindSpeakers();
 
-    console.log(data)
     return {
       data,
       total: data.length,

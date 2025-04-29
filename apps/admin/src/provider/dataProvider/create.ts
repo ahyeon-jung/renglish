@@ -46,7 +46,6 @@ const create: DataProvider['create'] = async <RecordType extends RaRecord>(resou
   }
 
   if (resource === RESOURCE.SPEAKERS) {
-    console.log(params.data)
     if (params.data.speakers?.length !== 0 || !params.data.sceneId) {
       return Promise.reject('Missing required fields');
     }
@@ -106,7 +105,7 @@ const create: DataProvider['create'] = async <RecordType extends RaRecord>(resou
       createStudyDto: {
         title: params.data.title,
         description: params.data.description,
-        studiedAt: params.data.studiedAt,
+        studiedAt: new Date(params.data.studiedAt),
       }
     })
 

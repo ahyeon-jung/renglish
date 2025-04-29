@@ -23,8 +23,17 @@ export const StudyCreate = () => {
         <Typography variant="h6" gutterBottom>
           Create New Study
         </Typography>
-        <TextInput source="title" fullWidth />
-        <TextInput source="description" multiline fullWidth />
+        <TextInput
+          fullWidth
+          source="title"
+          placeholder="최대 15글자"
+        />
+        <TextInput
+          multiline
+          fullWidth
+          source="description"
+          placeholder="최대 20글자"
+        />
         <DateInput source="studiedAt" />
         <SelectScene />
       </SimpleForm>
