@@ -6,6 +6,7 @@ import { PATHS } from '@/constants/path';
 import clsx from 'clsx';
 import { createPortal } from 'react-dom';
 import { useState } from 'react';
+import { Ellipsis } from 'lucide-react';
 
 const SCENE_OPTIONS = [
   { label: '영어 대본만 보기', path: PATHS.MOVIE.SCENE.SCRIPT.ENGLISH },
@@ -21,9 +22,10 @@ const SCENE_OPTIONS = [
 export type SceneNavProps = {
   movieId: string;
   sceneId: string;
+  iconSize: number;
 };
 
-export default function SceneNav({ movieId, sceneId }: SceneNavProps) {
+export default function SceneNav({ movieId, sceneId, iconSize }: SceneNavProps) {
   const [isOpenSceneNav, setIsOpenSceneNav] = useState(false);
 
   const openSceneNav = () => {
@@ -35,8 +37,8 @@ export default function SceneNav({ movieId, sceneId }: SceneNavProps) {
 
   return (
     <>
-      <div className="p-2 rounded-2xl cursor-pointer hover:bg-gray-100" onClick={openSceneNav}>
-        more
+      <div className="cursor-pointer" title="다른 버전으로 보기" onClick={openSceneNav}>
+        <Ellipsis size={iconSize} />
       </div>
       {isOpenSceneNav &&
         createPortal(
