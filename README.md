@@ -1,21 +1,80 @@
-# REnglish
+# Renglish
 
-REnglish는 영어 회화 연습을 위한 영화 대본 애플리케이션입니다. 사용자는 영어 영화 대본을 통해 회화 연습을 하고, 이를 기반으로 여러 기능을 활용할 수 있습니다.
+<div align="center">
+  <img src="https://github.com/ahyeon-jung/renglish/blob/dev/apps/client/public/icon.png?raw=true" alt="logo" width="150" height="auto" />
+</div>
+<br/>
+
+> [Renglish(Reel + English)](https://renglish.vercel.app/)는 영어 회화 연습을 위한 영화 대본 기반 애플리케이션입니다. 사용자는 실력에 따라 빈칸 채우기, 한글/영어 대본 보기 등의 방식으로 연습할 수 있습니다. 회원가입 시 작문과 영어 표현 학습 기능이 열리며, 스터디에 참여한 회원은 자신의 녹음본을 대본과 함께 확인할 수 있습니다.
+
+## Table of contents
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Troubleshootings](#troubleshootings)
+- [Infrastructure](#infrastructure)
+- [Getting Started](#getting-started)
 
 ## Features
+### 최신 스크립트를 보고, 스터디 참여 선택을 결정합니다.
+> 최신 스크립트로 바로 접근 가능하며, 스터디 참여 버튼 선택 시 로그인 요청 혹은 스터디 참여 모달이 노출됩니다.
 
-- 영화 대본을 읽고 따라하는 방식으로 영어 회화를 연습
-- 주간 대본 업데이트 기능
-- 서버와 클라이언트를 통한 효율적인 데이터 처리
+|메인 페이지|마이 페이지|
+|:---:|:---:|
+|<img src="https://github.com/user-attachments/assets/822b2d0e-b5ca-4b6a-8e13-7b99391787d8" />|<img src="https://github.com/user-attachments/assets/822b2d0e-b5ca-4b6a-8e13-7b99391787d8"/>|
 
----
+### 관리자 페이지에서 핵심 영어 표현을 정리합니다.
+> 관리자 역할을 맡은 사용자가 관리자 페이지에서 영어 표현을 추가합니다. 회원 유저는 해당 장면에 속하는 영어 표현을 볼 수 있습니다.
+
+|관리자 페이지|영어표현 페이지|
+|:---:|:---:|
+|<img src="https://github.com/user-attachments/assets/822b2d0e-b5ca-4b6a-8e13-7b99391787d8" />|<img src="https://github.com/user-attachments/assets/822b2d0e-b5ca-4b6a-8e13-7b99391787d8" />|
+
+
+
+## Tech Stack
+- **Server**: NestJS
+- **Client**: Next.js, zustand
+- **Admin**: react-admin
+- **Database**: MySQL, Redis
+- TypeScript, openapi-generator, pnpm, ESLint, Prettier
+
+## Troubleshootings
+### Challenge 1
+- about
+
+### Challenge 2
+- about
+
+## Infrastructure
+- 인프라 구조 사진 추가
 
 ## Getting Started
+이 프로젝트를 로컬에서 실행하려면 다음 환경이 필요합니다.
 
-이 프로젝트는 **백엔드 서버**와 **프론트엔드 클라이언트**로 나뉘어져 있습니다. 각각의 서버를 설정하고 실행하는 방법은 아래에 설명되어 있습니다.
+- **Node.js**: 20.x 이상
+- **pnpm**: 패키지 매니저
 
-### 1. Getting Started - Backend Server
+### 동시 실행
 
+1. **의존성 설치**:
+
+   프로젝트의 의존성을 설치합니다.
+
+   ```bash
+   $ pnpm install
+   ```
+
+2. **실행**:
+
+   서버를 실행하려면 다음 명령어를 사용하세요.
+
+   ```bash
+   $ pnpm run dev
+   ```
+   
+### 개별 실행
+<details>
+   <summary>Server</summary>
 서버를 실행하려면 다음 단계를 따르세요.
 
 1. **서버 폴더로 이동**:
@@ -40,8 +99,10 @@ REnglish는 영어 회화 연습을 위한 영화 대본 애플리케이션입�
    $ pnpm run start
    ```
 
-### 2. Getting Started - Client (Frontend)
 
+</details>
+<details>
+   <summary>Client</summary>
 클라이언트 애플리케이션을 실행하려면 다음 단계를 따르세요.
 
 1. **클라이언트 폴더로 이동**:
@@ -65,29 +126,29 @@ REnglish는 영어 회화 연습을 위한 영화 대본 애플리케이션입�
    ```bash
    $ pnpm run dev
    ```
+</details>
+<details>
+   <summary>Admin</summary>
+어드민 애플리케이션을 실행하려면 다음 단계를 따르세요.
+1. **클라이언트 폴더로 이동**:
 
----
+   ```bash
+   $ cd client
+   ```
 
-## 기술 스택
+2. **의존성 설치**:
 
-- **Backend**: NestJS
-- **Frontend**: Next.js
-- **Database**: (필요한 경우, 사용된 데이터베이스 추가)
-- **기타**: TypeScript, pnpm, ESLint, Prettier
+   클라이언트의 의존성을 설치합니다.
 
----
+   ```bash
+   $ pnpm install
+   ```
 
-## 개발 환경 설정
+3. **클라이언트 실행**:
 
-이 프로젝트를 로컬에서 실행하려면 다음 환경이 필요합니다.
+   클라이언트를 실행하려면 다음 명령어를 사용하세요.
 
-- **Node.js**: 16.x 이상
-- **pnpm**: 패키지 매니저
-
-### pnpm 설치
-
-`pnpm`을 설치하려면 아래 명령어를 실행하세요:
-
-```bash
-npm install -g pnpm
-```
+   ```bash
+   $ pnpm run dev
+   ```
+</details>
