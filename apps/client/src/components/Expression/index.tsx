@@ -1,7 +1,7 @@
 import { ExpressionType } from '@/types/expression';
 
 type ExpressionProps = {
-  order: number;
+  order?: number;
 } & ExpressionType;
 
 export default function Expression({

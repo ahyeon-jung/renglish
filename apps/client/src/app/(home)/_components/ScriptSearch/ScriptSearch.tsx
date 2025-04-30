@@ -61,7 +61,7 @@ export default function ScriptSearch() {
 
   return (
     <div className={clsx("relative w-full pt-[50px] pb-[50px]",
-      "md:pt-[120px] md:pb-[100px]"
+      "md:pt-[60px] md:pb-[60px]"
     )}>
       <Image
         src={backgroundImage}
