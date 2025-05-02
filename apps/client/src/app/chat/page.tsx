@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { io } from 'socket.io-client';
+import { SOCKET_EVENTS } from './constants/socket-event';
 
 const WebRTCClient = () => {
   const [localStream, setLocalStream] = useState<MediaStream | null>(null);
@@ -55,7 +56,7 @@ const WebRTCClient = () => {
       pc.onicecandidate = (event) => {
         if (event.candidate) {
           console.log('ICE candidate 발견:', event.candidate);
-          socketRef.current?.emit('signal', {
+          socketRef.current?.emit(SOCKET_EVENTS.SIGNAL, {
             roomId,
             from: socketRef.current.id,
             signal: {
@@ -117,7 +118,7 @@ const WebRTCClient = () => {
       const answer = await pcRef.current.createAnswer();
       await pcRef.current.setLocalDescription(answer);
 
-      socketRef.current.emit('signal', {
+      socketRef.current.emit(SOCKET_EVENTS.SIGNAL, {
         roomId,
         from: socketRef.current.id,
         signal: {
@@ -162,18 +163,18 @@ const WebRTCClient = () => {
       }
     });
 
-    socketRef.current.on('connect', () => {
+    socketRef.current.on(SOCKET_EVENTS.CONNECT, () => {
       console.log('[socket] 연결됨:', socketRef.current.id);
       setConnectionStatus("소켓 연결됨");
       socketRef.current.emit('join', roomId);
     });
 
-    socketRef.current.on('connect_error', (error: any) => {
+    socketRef.current.on(SOCKET_EVENTS.DISCONNECT, (error: any) => {
       console.error('[socket] 연결 오류:', error);
       setConnectionStatus("소켓 연결 실패");
     });
 
-    socketRef.current.on('user-joined', async ({ userId }: { userId: string }) => {
+    socketRef.current.on(SOCKET_EVENTS.USER_JOINED, async ({ userId }: { userId: string }) => {
       console.log(`[signal] 새 사용자 참가: ${userId}`);
       setConnectionStatus("상대방이 참가했습니다");
 
@@ -195,7 +196,7 @@ const WebRTCClient = () => {
       }
     });
 
-    socketRef.current.on('room-info', async ({ initiator }: { initiator: boolean }) => {
+    socketRef.current.on(SOCKET_EVENTS.ROOM_INFO, async ({ initiator }: { initiator: boolean }) => {
       console.log('[room-info] 시작자 여부:', initiator);
       setConnectionStatus(initiator ? "대기 중..." : "연결 중...");
 
@@ -217,7 +218,7 @@ const WebRTCClient = () => {
       }
     });
 
-    socketRef.current.on('signal', async ({ from, signal }: { from: string, signal: any }) => {
+    socketRef.current.on(SOCKET_EVENTS.SIGNAL, async ({ from, signal }: { from: string, signal: any }) => {
       console.log('시그널 수신:', signal.type);
 
       switch (signal.type) {
@@ -239,7 +240,7 @@ const WebRTCClient = () => {
       }
     });
 
-    socketRef.current.on('user-left', ({ userId }: { userId: string }) => {
+    socketRef.current.on(SOCKET_EVENTS.USER_LEFT, ({ userId }: { userId: string }) => {
       console.log(`[signal] 사용자 연결 종료: ${userId}`);
       setConnectionStatus("상대방이 연결을 종료했습니다");
       if (remoteVideoRef.current) {
