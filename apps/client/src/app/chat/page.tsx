@@ -3,6 +3,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { io } from 'socket.io-client';
 import { SOCKET_EVENTS } from './constants/socket-event';
+import { ENV } from '@/constants/env';
+
+const SOCKET_URL = `${ENV.API_BASE_URL}/socket.io/chat`;
 
 const WebRTCClient = () => {
   const [localStream, setLocalStream] = useState<MediaStream | null>(null);
@@ -150,7 +153,7 @@ const WebRTCClient = () => {
   };
 
   useEffect(() => {
-    socketRef.current = io('http://localhost:8080/socket.io/chat', {
+    socketRef.current = io(SOCKET_URL, {
       transports: ['websocket'],
       reconnection: true,
     });
