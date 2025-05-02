@@ -8,6 +8,12 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "noEmit": true
-  },
-  "include": ["vite.config.ts"]
+  },"paths": {
+  "@renglish/services": ["../../packages/services/src/index.ts"],
+  "@renglish/services/*": ["../../packages/services/src/*"]
+},
+  "include": ["vite.config.ts"],
+  "references": [
+    { "path": "../../packages/services" }
+  ]
 }

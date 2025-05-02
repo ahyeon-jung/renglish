@@ -13,7 +13,7 @@ export class SpeakerService {
     private readonly speakerRepository: Repository<Speaker>,
     @InjectRepository(Scene)
     private readonly sceneRepository: Repository<Scene>,
-  ) {}
+  ) { }
 
   async create(sceneId: string, createSpeakerDto: CreateSpeakerDto): Promise<Speaker> {
     const { speaker_name, speaker_type } = createSpeakerDto;
@@ -31,6 +31,10 @@ export class SpeakerService {
     speaker.scene = scene;
 
     return this.speakerRepository.save(speaker);
+  }
+
+  async findSpeakers(): Promise<Speaker[]> {
+    return this.speakerRepository.find();
   }
 
   async findSpeakerById(id: string): Promise<Speaker> {

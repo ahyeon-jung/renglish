@@ -2,13 +2,15 @@ import * as expressBasicAuth from 'express-basic-auth';
 import * as fs from 'fs';
 import { AppModule } from './app.module';
 import { NestFactory } from '@nestjs/core';
-import { ResponseInterceptor } from './common/interceptors/response.interceptor';
 import { SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 import swaggerConfig from './configs/swagger.config';
+import { IoAdapter } from '@nestjs/platform-socket.io';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  app.useWebSocketAdapter(new IoAdapter(app));
 
   app.setGlobalPrefix('api');
 

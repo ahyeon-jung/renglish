@@ -24,7 +24,6 @@ const authProvider: AuthProvider = {
   checkError: error => {
     const status = error?.status || error?.response?.status
 
-    console.log('ddddddddddddasdf6a54d645')
     if (status === 401 || status === 403) {
       localStorage.removeItem('token')
       return Promise.reject()

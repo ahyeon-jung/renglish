@@ -7,7 +7,7 @@ import { StudyApi } from '@renglish/services';
 import { ENV } from '@/constants/env';
 import { fetchWithToken } from '@/libs/fetchWithToken';
 
-type GetStudiesParams = { status: string } & PaginationParams;
+type GetStudiesParams = { status?: string } & PaginationParams;
 
 export default async function getStudiesAction({
   status,

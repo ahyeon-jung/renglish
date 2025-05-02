@@ -24,6 +24,7 @@ import { StatisticModule } from './statistic/statistic.module';
 import { StudyModule } from './study/study.module';
 import { UserModule } from './user/user.module';
 import { WritingModule } from './writing/writing.module';
+import { SignalingModule } from './signaling/signaling.module';
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { WritingModule } from './writing/writing.module';
     EmailVerificationModule,
     StatisticModule,
     ExpressionModule,
+    SignalingModule,
     StudyModule,
     MyModule,
   ],

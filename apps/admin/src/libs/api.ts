@@ -15,22 +15,17 @@ import {
 import ENV from '../constants/env';
 
 const customFetch = (url: string, options: RequestInit = {}) => {
-  const token = localStorage.getItem('token'); // 예시로 로컬스토리지에서 토큰 가져오기
+  const token = localStorage.getItem('token');
 
-  console.log(token)
-  // 헤더를 추가
   const headers = new Headers(options.headers);
   if (token) {
     headers.set('Authorization', `Bearer ${token}`);
   }
 
-  // 필요한 경우 다른 헤더를 추가할 수도 있음
   headers.set('Content-Type', 'application/json');
 
-  // 옵션에 헤더 추가
   const updatedOptions = { ...options, headers };
 
-  // 기본 fetch 호출
   return fetch(url, updatedOptions);
 };
 
