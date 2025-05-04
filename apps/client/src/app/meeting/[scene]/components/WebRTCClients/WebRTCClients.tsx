@@ -8,6 +8,8 @@ import LocalVideo from '../LocalVideo';
 import { ICE_SERVERS } from '@/constants/ice-servers';
 import RemoteVideo from '../RemoteVideo';
 import clsx from 'clsx';
+import { useLocalVideo } from '../../hooks/useLocalVideo';
+import { toast } from 'react-toastify';
 
 const SOCKET_URL = `${ENV.API_BASE_URL}/socket.io/chat`;
 
@@ -16,55 +18,24 @@ type WebRTCClientsProps = {
 }
 
 export default function WebRTCClients({ sceneId }: WebRTCClientsProps) {
-  const [localStream, setLocalStream] = useState<MediaStream | null>(null);
-  const [videoEnabled, setVideoEnabled] = useState(true);
-  const [audioEnabled, setAudioEnabled] = useState(true);
-
   const [connectionStatus, setConnectionStatus] = useState<string>("연결 중...");
 
+  const {
+    localStream,
+    videoEnabled,
+    audioEnabled,
+    toggleAudio,
+    toggleVideo,
+    pcRef,
+    localVideoRef, startLocalStream,
+  } = useLocalVideo();
+
   const socketRef = useRef<any>(null);
-  const localVideoRef = useRef<HTMLVideoElement | null>(null);
   const remoteVideoRef = useRef<HTMLVideoElement | null>(null);
   const roomId = sceneId;
 
   const candidateQueue = useRef<RTCIceCandidateInit[]>([]);
   const remoteDescSet = useRef(false);
-  const pcRef = useRef<RTCPeerConnection | null>(null);
-
-  const toggleVideo = () => {
-    setVideoEnabled(prev => !prev);
-  };
-
-  const toggleAudio = () => {
-    setAudioEnabled(prev => !prev);
-  };
-
-  const startLocalStream = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        video: videoEnabled,
-        audio: audioEnabled
-      });
-
-      setLocalStream(stream);
-      if (localVideoRef.current) {
-        localVideoRef.current.srcObject = stream;
-      }
-
-
-      if (pcRef.current) {
-        stream.getTracks().forEach((track) => {
-          if (localStream) pcRef.current?.addTrack(track, stream);
-        });
-      }
-
-      return stream;
-    } catch (err) {
-      console.error('미디어 디바이스 접근 오류:', err);
-      setConnectionStatus("카메라/마이크 접근 실패");
-      return null;
-    }
-  };
 
   const createPeerConnection = () => {
     try {
@@ -129,11 +100,9 @@ export default function WebRTCClients({ sceneId }: WebRTCClientsProps) {
     if (!pcRef.current) return;
 
     try {
-      console.log('원격 Offer 설정 중');
       await pcRef.current.setRemoteDescription(new RTCSessionDescription(offer));
       remoteDescSet.current = true;
 
-      console.log('Answer 생성 중');
       const answer = await pcRef.current.createAnswer();
       await pcRef.current.setLocalDescription(answer);
 
@@ -183,19 +152,15 @@ export default function WebRTCClients({ sceneId }: WebRTCClientsProps) {
     });
 
     socketRef.current.on(SOCKET_EVENTS.CONNECT, () => {
-      console.log('[socket] 연결됨:', socketRef.current.id);
-      setConnectionStatus("소켓 연결됨");
       socketRef.current.emit('join', roomId);
     });
 
     socketRef.current.on(SOCKET_EVENTS.DISCONNECT, (error: any) => {
-      console.error('[socket] 연결 오류:', error);
-      setConnectionStatus("소켓 연결 실패");
+      toast.error('소켓 연결에 실패했습니다.')
     });
 
     socketRef.current.on(SOCKET_EVENTS.USER_JOINED, async ({ userId }: { userId: string }) => {
-      console.log(`[signal] 새 사용자 참가: ${userId}`);
-      setConnectionStatus("상대방이 참가했습니다");
+      toast(`${userId}가 입장했습니다.`)
 
       if (pc) {
         try {
@@ -260,8 +225,7 @@ export default function WebRTCClients({ sceneId }: WebRTCClientsProps) {
     });
 
     socketRef.current.on(SOCKET_EVENTS.USER_LEFT, ({ userId }: { userId: string }) => {
-      console.log(`[signal] 사용자 연결 종료: ${userId}`);
-      setConnectionStatus("상대방이 연결을 종료했습니다");
+      toast(`${userId}(이)가 나갔습니다.`)
       if (remoteVideoRef.current) {
         remoteVideoRef.current.srcObject = null;
       }
