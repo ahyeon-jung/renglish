@@ -2,19 +2,23 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { io } from 'socket.io-client';
-import { SOCKET_EVENTS } from './constants/socket-event';
+import { SOCKET_EVENTS } from '@/constants/socket-event';
 import { ENV } from '@/constants/env';
 
 const SOCKET_URL = `${ENV.API_BASE_URL}/socket.io/chat`;
 
-const WebRTCClient = () => {
+type WebRTCClientsProps = {
+  sceneId: string;
+}
+
+export default function WebRTCClients({ sceneId }: WebRTCClientsProps) {
   const [localStream, setLocalStream] = useState<MediaStream | null>(null);
   const [connectionStatus, setConnectionStatus] = useState<string>("연결 중...");
 
   const socketRef = useRef<any>(null);
   const localVideoRef = useRef<HTMLVideoElement | null>(null);
   const remoteVideoRef = useRef<HTMLVideoElement | null>(null);
-  const roomId = 'myRoom123';
+  const roomId = sceneId;
 
   const candidateQueue = useRef<RTCIceCandidateInit[]>([]);
   const remoteDescSet = useRef(false);
@@ -320,5 +324,3 @@ const WebRTCClient = () => {
     </div>
   );
 };
-
-export default WebRTCClient;
