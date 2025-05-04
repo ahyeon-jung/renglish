@@ -295,11 +295,11 @@ export default function WebRTCClients({ sceneId }: WebRTCClientsProps) {
   }, []);
 
   return (
-    <div className="p-4">
+    <div className="p-2 fixed top-0 right-0">
       <h2 className="text-2xl font-bold mb-4">WebRTC 화상 채팅</h2>
       <div className="mb-2 text-blue-600">{connectionStatus}</div>
 
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-col flex-wrap gap-4">
         <div className="border p-2 rounded-lg">
           <h3 className="text-lg font-semibold mb-2">내 화면</h3>
           <video
@@ -307,7 +307,7 @@ export default function WebRTCClients({ sceneId }: WebRTCClientsProps) {
             autoPlay
             playsInline
             muted
-            className="bg-gray-200 w-80 h-60 object-cover"
+            className="bg-gray-200 w-60 h-40 object-cover"
           />
         </div>
 
@@ -317,7 +317,7 @@ export default function WebRTCClients({ sceneId }: WebRTCClientsProps) {
             ref={remoteVideoRef}
             autoPlay
             playsInline
-            className="bg-gray-200 w-80 h-60 object-cover"
+            className="bg-gray-200 w-60 h-40 object-cover"
           />
         </div>
       </div>

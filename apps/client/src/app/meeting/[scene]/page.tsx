@@ -1,4 +1,6 @@
+import { Suspense } from "react";
 import Script from "./components/Script";
+import ScriptModeSelector from "./components/ScriptModeSelector";
 import WebRTCClients from "./components/WebRTCClients";
 
 export default async function MeetingScenePage(
@@ -7,9 +9,12 @@ export default async function MeetingScenePage(
   const slug = await params;
 
   return (
-    <div>
-      <Script />
-      <WebRTCClients sceneId={slug.scene} />
-    </div>
+    <Suspense>
+      <div>
+        <ScriptModeSelector />
+        <Script scene={slug.scene} />
+        <WebRTCClients sceneId={slug.scene} />
+      </div>
+    </Suspense>
   )
 }
