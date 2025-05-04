@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { io } from 'socket.io-client';
 import { SOCKET_EVENTS } from '@/constants/socket-event';
 import { ENV } from '@/constants/env';
+import LocalVideo from '../LocalVideo';
 
 const SOCKET_URL = `${ENV.API_BASE_URL}/socket.io/chat`;
 
@@ -13,6 +14,9 @@ type WebRTCClientsProps = {
 
 export default function WebRTCClients({ sceneId }: WebRTCClientsProps) {
   const [localStream, setLocalStream] = useState<MediaStream | null>(null);
+  const [videoEnabled, setVideoEnabled] = useState(true);
+  const [audioEnabled, setAudioEnabled] = useState(true);
+
   const [connectionStatus, setConnectionStatus] = useState<string>("연결 중...");
 
   const socketRef = useRef<any>(null);
@@ -24,11 +28,19 @@ export default function WebRTCClients({ sceneId }: WebRTCClientsProps) {
   const remoteDescSet = useRef(false);
   const pcRef = useRef<RTCPeerConnection | null>(null);
 
+  const toggleVideo = () => {
+    setVideoEnabled(prev => !prev);
+  };
+
+  const toggleAudio = () => {
+    setAudioEnabled(prev => !prev);
+  };
+
   const startLocalStream = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
-        video: true,
-        audio: true
+        video: videoEnabled,
+        audio: audioEnabled
       });
 
       setLocalStream(stream);
@@ -298,19 +310,15 @@ export default function WebRTCClients({ sceneId }: WebRTCClientsProps) {
     <div className="p-2 fixed top-0 right-0">
       <h2 className="text-2xl font-bold mb-4">WebRTC 화상 채팅</h2>
       <div className="mb-2 text-blue-600">{connectionStatus}</div>
-
       <div className="flex flex-col flex-wrap gap-4">
-        <div className="border p-2 rounded-lg">
-          <h3 className="text-lg font-semibold mb-2">내 화면</h3>
-          <video
-            ref={localVideoRef}
-            autoPlay
-            playsInline
-            muted
-            className="bg-gray-200 w-60 h-40 object-cover"
-          />
-        </div>
-
+        <LocalVideo
+          stream={localStream}
+          isVideoEnabled={videoEnabled}
+          isAudioEnabled={audioEnabled}
+          videoRef={localVideoRef as React.RefObject<HTMLVideoElement>}
+          toggleVideo={toggleVideo}
+          toggleAudio={toggleAudio}
+        />
         <div className="border p-2 rounded-lg">
           <h3 className="text-lg font-semibold mb-2">상대방 화면</h3>
           <video
