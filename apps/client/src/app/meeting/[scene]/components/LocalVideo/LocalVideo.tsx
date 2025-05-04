@@ -35,8 +35,7 @@ export default function LocalVideo({
   }, [stream, isVideoEnabled, isAudioEnabled, videoRef]);
 
   return (
-    <div className="flex flex-col gap-1 bg-white border p-2 rounded-lg">
-      <h3 className="text-lg font-semibold mb-2">내 화면</h3>
+    <div className="flex flex-col gap-1">
       <video
         ref={videoRef}
         autoPlay
@@ -44,7 +43,7 @@ export default function LocalVideo({
         muted
         className="bg-gray-200 w-60 h-40 object-cover"
       />
-      <div className="flex gap-2">
+      <div className="flex gap-2 w-60">
         <Button
           size='sm'
           onClick={toggleVideo}

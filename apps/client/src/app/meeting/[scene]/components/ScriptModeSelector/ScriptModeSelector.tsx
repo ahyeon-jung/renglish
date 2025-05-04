@@ -21,7 +21,7 @@ export default function ScriptModeSelector() {
   }, [])
 
   return (
-    <div className="fixed top-[80px] left-6 flex flex-col gap-2">
+    <div className="fixed top-[var(--header-height)] mt-6 left-6 flex flex-col gap-2">
       {SCRIPT_OPTIONS.map(({ label, value }) => (
         <div className={
           clsx("p-3 px-5 rounded-xl", mode === value ? "bg-orange-100" : 'bg-gray-200')

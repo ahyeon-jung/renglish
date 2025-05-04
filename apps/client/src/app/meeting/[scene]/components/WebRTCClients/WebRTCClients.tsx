@@ -5,6 +5,9 @@ import { io } from 'socket.io-client';
 import { SOCKET_EVENTS } from '@/constants/socket-event';
 import { ENV } from '@/constants/env';
 import LocalVideo from '../LocalVideo';
+import { ICE_SERVERS } from '@/constants/ice-servers';
+import RemoteVideo from '../RemoteVideo';
+import clsx from 'clsx';
 
 const SOCKET_URL = `${ENV.API_BASE_URL}/socket.io/chat`;
 
@@ -66,36 +69,7 @@ export default function WebRTCClients({ sceneId }: WebRTCClientsProps) {
   const createPeerConnection = () => {
     try {
       const pc = new RTCPeerConnection({
-        iceServers: [
-          { urls: 'stun:stun.l.google.com:19302' },
-          { urls: 'stun:stun1.l.google.com:19302' },
-          {
-            urls: 'turn:openrelay.metered.ca:80',
-            username: 'openrelayproject',
-            credential: 'openrelayproject'
-          },
-          {
-            urls: 'turn:openrelay.metered.ca:443',
-            username: 'openrelayproject',
-            credential: 'openrelayproject'
-          },
-
-          {
-            urls: 'turn:numb.viagenie.ca',
-            username: 'webrtc@live.com',
-            credential: 'muazkh'
-          },
-          {
-            urls: 'turn:192.158.29.39:3478?transport=udp',
-            username: '28224511:1379330808',
-            credential: 'JZEOEt2V3Qb0y27GRntt2u2PAYA='
-          },
-          {
-            urls: 'turn:192.158.29.39:3478?transport=tcp',
-            username: '28224511:1379330808',
-            credential: 'JZEOEt2V3Qb0y27GRntt2u2PAYA='
-          }
-        ],
+        iceServers: ICE_SERVERS
       });
 
       pc.onicecandidate = (event) => {
@@ -307,28 +281,20 @@ export default function WebRTCClients({ sceneId }: WebRTCClientsProps) {
   }, []);
 
   return (
-    <div className="p-2 fixed top-0 right-0">
-      <h2 className="text-2xl font-bold mb-4">WebRTC 화상 채팅</h2>
-      <div className="mb-2 text-blue-600">{connectionStatus}</div>
-      <div className="flex flex-col flex-wrap gap-4">
-        <LocalVideo
-          stream={localStream}
-          isVideoEnabled={videoEnabled}
-          isAudioEnabled={audioEnabled}
-          videoRef={localVideoRef as React.RefObject<HTMLVideoElement>}
-          toggleVideo={toggleVideo}
-          toggleAudio={toggleAudio}
-        />
-        <div className="border p-2 rounded-lg">
-          <h3 className="text-lg font-semibold mb-2">상대방 화면</h3>
-          <video
-            ref={remoteVideoRef}
-            autoPlay
-            playsInline
-            className="bg-gray-200 w-60 h-40 object-cover"
-          />
-        </div>
-      </div>
+    <div className={clsx(
+      "p-2 fixed top-[var(--header-height)] right-0",
+      "flex flex-col flex-wrap gap-4 bg-gray-300"
+    )}>
+      <div>{connectionStatus}</div>
+      <LocalVideo
+        stream={localStream}
+        isVideoEnabled={videoEnabled}
+        isAudioEnabled={audioEnabled}
+        videoRef={localVideoRef as React.RefObject<HTMLVideoElement>}
+        toggleVideo={toggleVideo}
+        toggleAudio={toggleAudio}
+      />
+      <RemoteVideo videoRef={remoteVideoRef as React.RefObject<HTMLVideoElement>} />
     </div>
   );
 };
