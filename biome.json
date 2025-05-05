@@ -1,0 +1,26 @@
+{
+  "$schema": "https://biomejs.dev/schemas/configuration.json",
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "lineWidth": 100
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "correctness": {
+        "noUnusedImports": "error"
+      },
+      "style": {
+        "useShorthandFunctionType": "error"
+      },
+      "suspicious": {
+        "noExplicitAny": "off"
+      }
+    }
+  },
+  "files": {
+    "include": ["**", "apps/**/*.{ts,tsx,js,jsx,json}"]
+  }
+}
