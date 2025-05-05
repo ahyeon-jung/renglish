@@ -41,9 +41,14 @@ export default function DialogListItem({
 
       )}
     >
-      <div className={clsx('flex flex-col items-center', 'text-gray-600 dark:text-gray-300')}>
+      <div
+        title={speaker.speakerName}
+        className={clsx(
+          'flex flex-col items-center',
+          'text-gray-600 dark:text-gray-300'
+        )}>
         <CircleUserRound className="w-8 h-8" />
-        <span className="text-sm font-medium">{speaker.speakerName}</span>
+        <span className="text-sm text-center font-medium truncate w-12">{speaker.speakerName}</span>
       </div>
       <div
         className={clsx(
