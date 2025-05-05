@@ -71,7 +71,7 @@
 - about
 
 ## Infrastructure
-- 인프라 구조 사진 추가
+![image](https://github.com/user-attachments/assets/8e556188-8484-420f-8dd1-21c34539d683)
 
 ## Structure
 ```
