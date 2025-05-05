@@ -13,6 +13,7 @@
     "@renglish/services": "workspace:*",
     "@tanstack/react-query": "^5.74.3",
     "@tanstack/react-query-devtools": "^5.74.4",
+    "@tanstack/react-virtual": "^3.13.6",
     "clsx": "^2.1.1",
     "lucide-react": "^0.479.0",
     "next": "15.2.4",
