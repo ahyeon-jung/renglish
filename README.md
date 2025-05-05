@@ -8,11 +8,38 @@
 > [Renglish(Reel + English)](https://renglish.vercel.app/)는 영어 회화 연습을 위한 영화 대본 기반 애플리케이션입니다. 사용자는 실력에 따라 빈칸 채우기, 한글/영어 대본 보기 등의 방식으로 연습할 수 있습니다. 회원가입 시 작문과 영어 표현 학습 기능이 열리며, 스터디에 참여한 회원은 자신의 녹음본을 대본과 함께 확인할 수 있습니다.
 
 ## Table of contents
-- [Features](#features)
 - [Tech Stack](#tech-stack)
+- [Features](#features)
 - [Troubleshootings](#troubleshootings)
 - [Infrastructure](#infrastructure)
+- [Structure](#structure)
 - [Getting Started](#getting-started)
+
+## Tech Stack
+- **Client**
+  - **Next.js**
+  - **@tanstack/react-query**
+  - **@tanstack/react-virtual**
+  - **zustand**
+  - **next-pwa**
+  - **swiper**
+  - **socket.io-client**
+  - **react-toastify**
+- **Admin**
+  - **react-admin**
+  - **react-hook-form**
+  - **@mui/material**
+- **Server**
+  - **@nestjs**
+  - **@nestjs/swagger**
+  - **bcrypt**
+  - **socket.io**
+  - **class-validator**
+  - **cache-manager**
+- **Database**
+  - **MySQL**
+  - **Redis**
+- TypeScript, openapi-generator, pnpm, biome
 
 ## Features
 ### 최신 스크립트를 보고, 스터디 참여 선택을 결정합니다.
@@ -29,14 +56,12 @@
 |:---:|:---:|
 |<img src="https://github.com/user-attachments/assets/822b2d0e-b5ca-4b6a-8e13-7b99391787d8" />|<img src="https://github.com/user-attachments/assets/822b2d0e-b5ca-4b6a-8e13-7b99391787d8" />|
 
+### 스터디 참여자는 대본을 보며 음성 및 비디오를 공유할 수 있습니다.
+> 스터디 참여자는 미팅 페이지에 들어가 함께 대본을 보며 음성 및 비디오를 공유합니다. 각 참여자들은 다른 참여자의 위치에 따라 이동할 수 있으며 파트너 및 피드백 선정 기능이 있습니다.
 
-
-## Tech Stack
-- **Server**: NestJS
-- **Client**: Next.js, zustand
-- **Admin**: react-admin
-- **Database**: MySQL, Redis
-- TypeScript, openapi-generator, pnpm, ESLint, Prettier
+|스터디 목록 페이지|미팅 페이지|
+|:---:|:---:|
+|<img src="https://github.com/user-attachments/assets/822b2d0e-b5ca-4b6a-8e13-7b99391787d8" />|<img src="https://github.com/user-attachments/assets/822b2d0e-b5ca-4b6a-8e13-7b99391787d8" />|
 
 ## Troubleshootings
 ### Challenge 1
@@ -47,6 +72,26 @@
 
 ## Infrastructure
 - 인프라 구조 사진 추가
+
+## Structure
+```
+├── apps/
+|   ├── client/
+|   |    ├── src/
+|   |    |    ├── app/
+|   |    |    |    ├── action
+|   |    |    |    ├── movies
+|   |    |    |    └── users
+|   |    |    ├── components
+|   |    |    └── constatns/
+|   ├── admin/
+|   └── server/
+├── packages/
+│   └── services/         
+├── biome.json
+├── pnpm-workspace.yaml
+└── package.json
+```
 
 ## Getting Started
 이 프로젝트를 로컬에서 실행하려면 다음 환경이 필요합니다.
