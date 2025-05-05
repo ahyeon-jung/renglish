@@ -20,16 +20,16 @@ export default function ScriptListItem({
     <li
       className={clsx(
         'border border-gray-300 p-4 rounded-lg shadow-lg hover:shadow-xl',
-        'transition-shadow duration-300',
+        'transition-shadow duration-300 list-none',
       )}
     >
       <div className="flex justify-between gap-12">
         <div className="flex flex-col gap-1 w-full">
           <Link className="flex flex-col gap-1" href={PATHS.MOVIE.DETAIL(id)}>
-            <Text as="h3" typography="display-sm">
+            <Text className='truncate w-[250px]' as="h3" typography="display-sm">
               {formatTitle(title)}
             </Text>
-            <Text as="p" typography='body-md'>{description.split(' ').slice(0, 20).join(' ')}...</Text>
+            <Text className='line-clamp-3' as="p" typography='body-md'>{description}</Text>
           </Link>
           <div className="flex flex-col gap-2">
             {scenes &&

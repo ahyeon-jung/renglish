@@ -19,7 +19,7 @@ export default function ScriptLink({ index, title, id, movieTitle }: ScriptLink)
         'text-orange-500 hover:text-orange-700 transition-colors',
       )}
     >
-      <Text as="h4" typography="body-md">
+      <Text className='truncate w-[170px]' as="h4" typography="body-md">
         {title}
       </Text>
       <Text as="div" typography="subHead-md">
