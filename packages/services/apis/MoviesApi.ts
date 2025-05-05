@@ -12,13 +12,13 @@
  * Do not edit the class manually.
  */
 
-import * as runtime from '../runtime';
+import * as runtime from "../runtime";
 import type {
   CreateMovieDto,
   Movie,
   PaginationMovieResponseDto,
   UpdateMovieImageDto,
-} from '../models/index';
+} from "../models/index";
 import {
   CreateMovieDtoFromJSON,
   CreateMovieDtoToJSON,
@@ -28,7 +28,7 @@ import {
   PaginationMovieResponseDtoToJSON,
   UpdateMovieImageDtoFromJSON,
   UpdateMovieImageDtoToJSON,
-} from '../models/index';
+} from "../models/index";
 
 export interface MovieControllerCreateRequest {
   createMovieDto: CreateMovieDto;
@@ -66,9 +66,9 @@ export class MoviesApi extends runtime.BaseAPI {
     requestParameters: MovieControllerCreateRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<Movie>> {
-    if (requestParameters['createMovieDto'] == null) {
+    if (requestParameters["createMovieDto"] == null) {
       throw new runtime.RequiredError(
-        'createMovieDto',
+        "createMovieDto",
         'Required parameter "createMovieDto" was null or undefined when calling movieControllerCreate().',
       );
     }
@@ -77,23 +77,23 @@ export class MoviesApi extends runtime.BaseAPI {
 
     const headerParameters: runtime.HTTPHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters["Content-Type"] = "application/json";
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/movies`,
-        method: 'POST',
+        method: "POST",
         headers: headerParameters,
         query: queryParameters,
-        body: CreateMovieDtoToJSON(requestParameters['createMovieDto']),
+        body: CreateMovieDtoToJSON(requestParameters["createMovieDto"]),
       },
       initOverrides,
     );
@@ -128,52 +128,52 @@ export class MoviesApi extends runtime.BaseAPI {
     requestParameters: MovieControllerFindAllRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<PaginationMovieResponseDto>> {
-    if (requestParameters['offset'] == null) {
+    if (requestParameters["offset"] == null) {
       throw new runtime.RequiredError(
-        'offset',
+        "offset",
         'Required parameter "offset" was null or undefined when calling movieControllerFindAll().',
       );
     }
 
-    if (requestParameters['limit'] == null) {
+    if (requestParameters["limit"] == null) {
       throw new runtime.RequiredError(
-        'limit',
+        "limit",
         'Required parameter "limit" was null or undefined when calling movieControllerFindAll().',
       );
     }
 
     const queryParameters: any = {};
 
-    if (requestParameters['category'] != null) {
-      queryParameters['category'] = requestParameters['category'];
+    if (requestParameters["category"] != null) {
+      queryParameters["category"] = requestParameters["category"];
     }
 
-    if (requestParameters['keyword'] != null) {
-      queryParameters['keyword'] = requestParameters['keyword'];
+    if (requestParameters["keyword"] != null) {
+      queryParameters["keyword"] = requestParameters["keyword"];
     }
 
-    if (requestParameters['offset'] != null) {
-      queryParameters['offset'] = requestParameters['offset'];
+    if (requestParameters["offset"] != null) {
+      queryParameters["offset"] = requestParameters["offset"];
     }
 
-    if (requestParameters['limit'] != null) {
-      queryParameters['limit'] = requestParameters['limit'];
+    if (requestParameters["limit"] != null) {
+      queryParameters["limit"] = requestParameters["limit"];
     }
 
     const headerParameters: runtime.HTTPHeaders = {};
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/movies`,
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -210,16 +210,16 @@ export class MoviesApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/movies/latest`,
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -248,9 +248,9 @@ export class MoviesApi extends runtime.BaseAPI {
     requestParameters: MovieControllerFindOneRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<Movie>> {
-    if (requestParameters['movieId'] == null) {
+    if (requestParameters["movieId"] == null) {
       throw new runtime.RequiredError(
-        'movieId',
+        "movieId",
         'Required parameter "movieId" was null or undefined when calling movieControllerFindOne().',
       );
     }
@@ -261,19 +261,19 @@ export class MoviesApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/movies/{movieId}`.replace(
-          `{${'movieId'}}`,
-          encodeURIComponent(String(requestParameters['movieId'])),
+          `{${"movieId"}}`,
+          encodeURIComponent(String(requestParameters["movieId"])),
         ),
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -303,9 +303,9 @@ export class MoviesApi extends runtime.BaseAPI {
     requestParameters: MovieControllerRemoveRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<Movie>> {
-    if (requestParameters['movieId'] == null) {
+    if (requestParameters["movieId"] == null) {
       throw new runtime.RequiredError(
-        'movieId',
+        "movieId",
         'Required parameter "movieId" was null or undefined when calling movieControllerRemove().',
       );
     }
@@ -316,19 +316,19 @@ export class MoviesApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/movies/{movieId}`.replace(
-          `{${'movieId'}}`,
-          encodeURIComponent(String(requestParameters['movieId'])),
+          `{${"movieId"}}`,
+          encodeURIComponent(String(requestParameters["movieId"])),
         ),
-        method: 'DELETE',
+        method: "DELETE",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -358,16 +358,16 @@ export class MoviesApi extends runtime.BaseAPI {
     requestParameters: MovieControllerUpdateImageUrlRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<Movie>> {
-    if (requestParameters['movieId'] == null) {
+    if (requestParameters["movieId"] == null) {
       throw new runtime.RequiredError(
-        'movieId',
+        "movieId",
         'Required parameter "movieId" was null or undefined when calling movieControllerUpdateImageUrl().',
       );
     }
 
-    if (requestParameters['updateMovieImageDto'] == null) {
+    if (requestParameters["updateMovieImageDto"] == null) {
       throw new runtime.RequiredError(
-        'updateMovieImageDto',
+        "updateMovieImageDto",
         'Required parameter "updateMovieImageDto" was null or undefined when calling movieControllerUpdateImageUrl().',
       );
     }
@@ -376,26 +376,26 @@ export class MoviesApi extends runtime.BaseAPI {
 
     const headerParameters: runtime.HTTPHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters["Content-Type"] = "application/json";
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/movies/{movieId}`.replace(
-          `{${'movieId'}}`,
-          encodeURIComponent(String(requestParameters['movieId'])),
+          `{${"movieId"}}`,
+          encodeURIComponent(String(requestParameters["movieId"])),
         ),
-        method: 'PUT',
+        method: "PUT",
         headers: headerParameters,
         query: queryParameters,
-        body: UpdateMovieImageDtoToJSON(requestParameters['updateMovieImageDto']),
+        body: UpdateMovieImageDtoToJSON(requestParameters["updateMovieImageDto"]),
       },
       initOverrides,
     );

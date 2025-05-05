@@ -15,25 +15,31 @@
  * @interface CreateSpeakerDto
  */
 export interface CreateSpeakerDto {
-    /**
-     * The name of the speaker
-     * @type {string}
-     * @memberof CreateSpeakerDto
-     */
-    speakerName: string;
-    /**
-     * The type of the speaker (e.g., A, B, etc.)
-     * @type {string}
-     * @memberof CreateSpeakerDto
-     */
-    speakerType: string;
+  /**
+   * The name of the speaker
+   * @type {string}
+   * @memberof CreateSpeakerDto
+   */
+  speakerName: string;
+  /**
+   * The type of the speaker (e.g., A, B, etc.)
+   * @type {string}
+   * @memberof CreateSpeakerDto
+   */
+  speakerType: string;
 }
 /**
  * Check if a given object implements the CreateSpeakerDto interface.
  */
 export declare function instanceOfCreateSpeakerDto(value: object): value is CreateSpeakerDto;
 export declare function CreateSpeakerDtoFromJSON(json: any): CreateSpeakerDto;
-export declare function CreateSpeakerDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateSpeakerDto;
+export declare function CreateSpeakerDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): CreateSpeakerDto;
 export declare function CreateSpeakerDtoToJSON(json: any): CreateSpeakerDto;
-export declare function CreateSpeakerDtoToJSONTyped(value?: CreateSpeakerDto | null, ignoreDiscriminator?: boolean): any;
+export declare function CreateSpeakerDtoToJSONTyped(
+  value?: CreateSpeakerDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=CreateSpeakerDto.d.ts.map

@@ -1,8 +1,8 @@
-'use server';
+"use server";
 
-import { ActionResponse } from '@/types/action';
-import { ExpressionType } from '@/types/expression';
-import { expressionApi } from '@/libs/api';
+import { ActionResponse } from "@/types/action";
+import { ExpressionType } from "@/types/expression";
+import { expressionApi } from "@/libs/api";
 
 export default async function getWeeklyExpressions(): Promise<ActionResponse<ExpressionType[]>> {
   try {
@@ -10,16 +10,15 @@ export default async function getWeeklyExpressions(): Promise<ActionResponse<Exp
     return {
       status: 200,
       success: true,
-      message: 'Fetch WeeklyExpressions successfully',
+      message: "Fetch WeeklyExpressions successfully",
       data: response,
     };
   } catch {
     return {
       status: 500,
       success: true,
-      message: 'Internet Server Error',
+      message: "Internet Server Error",
       data: [],
     };
   }
-
 }

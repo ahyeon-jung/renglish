@@ -1,7 +1,7 @@
-import Field from '@/components/Field';
-import { UserType } from '@/types/user';
+import Field from "@/components/Field";
+import { UserType } from "@/types/user";
 
-type EmailProps = Pick<UserType, 'email'>;
+type EmailProps = Pick<UserType, "email">;
 
 export default function Email({ email }: EmailProps) {
   return (

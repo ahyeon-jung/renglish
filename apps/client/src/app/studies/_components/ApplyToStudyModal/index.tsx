@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import Button from '@/components/Button';
-import CancelToApplyModal from '../CancelToApplyModal';
-import Link from 'next/link';
-import { MESSAGE } from '@/constants/toast';
-import Modal from '@/components/Modal';
-import { PATHS } from '@/constants/path';
-import applyToStudyAction from '@/app/actions/studies/applyToStudy';
-import { toast } from 'react-toastify';
-import { useState } from 'react';
-import Text from '@/components/Text';
-import { GATHER_TOWN_URL } from '@/constants/url';
-import { useUserStore } from '@/stores/userStore';
+import Button from "@/components/Button";
+import CancelToApplyModal from "../CancelToApplyModal";
+import Link from "next/link";
+import { MESSAGE } from "@/constants/toast";
+import Modal from "@/components/Modal";
+import { PATHS } from "@/constants/path";
+import applyToStudyAction from "@/app/actions/studies/applyToStudy";
+import { toast } from "react-toastify";
+import { useState } from "react";
+import Text from "@/components/Text";
+import { GATHER_TOWN_URL } from "@/constants/url";
+import { useUserStore } from "@/stores/userStore";
 
-const USER_STATUS = { ALREADY_APPLIED: 'already', NO_AUTH: 'no_token', APPLY_SUCCESS: 'success' };
+const USER_STATUS = { ALREADY_APPLIED: "already", NO_AUTH: "no_token", APPLY_SUCCESS: "success" };
 
 type ApplyToStudyModalProps = { studyId: string };
 
@@ -50,7 +50,9 @@ export default function ApplyToStudyModal({ studyId }: ApplyToStudyModalProps) {
 
   return (
     <>
-      <Button onClick={handleApplyClick} title="스터디 참여하기">참여 하기</Button>
+      <Button onClick={handleApplyClick} title="스터디 참여하기">
+        참여 하기
+      </Button>
       {userStatus === USER_STATUS.NO_AUTH && (
         <Modal className="w-[300px]" onClose={closeModal}>
           <Modal.Title>스터디 참여하기</Modal.Title>
@@ -68,7 +70,7 @@ export default function ApplyToStudyModal({ studyId }: ApplyToStudyModalProps) {
               해당 일자에 참여해주세요
             </Text>
             <Text as="p" typography="body-lg">
-              📌 게더타운 바로가기{' '}
+              📌 게더타운 바로가기{" "}
               <Link href={GATHER_TOWN_URL} className="text-orange-500 underline">
                 click here!
               </Link>

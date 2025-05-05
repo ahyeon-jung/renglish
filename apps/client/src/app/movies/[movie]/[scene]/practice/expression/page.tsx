@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { use } from 'react';
-import { useDataFetching } from '@/hooks/useDataFetching';
-import { GoToLogin } from '@/components/Fallback';
-import ExpressionList from './_components/ExpressionList';
-import getExpressionsByScene from '@/app/actions/expressions/getExpressionsByScene';
-import { ActionResponse } from '@/types/action';
-import { ExpressionType } from '@/types/expression';
-import { QUERY_KEYS } from '@/hooks/queryKeys';
-import { useUserStore } from '@/stores/userStore';
+import { use } from "react";
+import { useDataFetching } from "@/hooks/useDataFetching";
+import { GoToLogin } from "@/components/Fallback";
+import ExpressionList from "./_components/ExpressionList";
+import getExpressionsByScene from "@/app/actions/expressions/getExpressionsByScene";
+import { ActionResponse } from "@/types/action";
+import { ExpressionType } from "@/types/expression";
+import { QUERY_KEYS } from "@/hooks/queryKeys";
+import { useUserStore } from "@/stores/userStore";
 
 export default function MovieScenePracticeExpressionPage({
   params,

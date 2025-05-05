@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useRouter, useSearchParams } from 'next/navigation';
-import { Suspense, useEffect } from 'react';
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useEffect } from "react";
 
 export default function AuthCallback() {
   return (
@@ -14,17 +14,17 @@ export default function AuthCallback() {
 function AuthCallbackContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const accessToken = searchParams.get('access-token');
-  const refreshToken = searchParams.get('refresh-token');
+  const accessToken = searchParams.get("access-token");
+  const refreshToken = searchParams.get("refresh-token");
 
   useEffect(() => {
     if (accessToken && refreshToken) {
-      fetch('/api/cookies/set-token', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      fetch("/api/cookies/set-token", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ accessToken, refreshToken }),
       }).then(() => {
-        router.push('/');
+        router.push("/");
       });
     }
   }, [router, accessToken, refreshToken]);

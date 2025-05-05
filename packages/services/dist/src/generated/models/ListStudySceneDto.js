@@ -11,73 +11,63 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { MovieFromJSON, MovieToJSON, } from './Movie';
-import { StudyFromJSON, StudyToJSON, } from './Study';
-import { SpeakerFromJSON, SpeakerToJSON, } from './Speaker';
+import { MovieFromJSON, MovieToJSON } from "./Movie";
+import { StudyFromJSON, StudyToJSON } from "./Study";
+import { SpeakerFromJSON, SpeakerToJSON } from "./Speaker";
 /**
  * Check if a given object implements the ListStudySceneDto interface.
  */
 export function instanceOfListStudySceneDto(value) {
-    if (!('id' in value) || value['id'] === undefined)
-        return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined)
-        return false;
-    if (!('updatedAt' in value) || value['updatedAt'] === undefined)
-        return false;
-    if (!('deletedAt' in value) || value['deletedAt'] === undefined)
-        return false;
-    if (!('title' in value) || value['title'] === undefined)
-        return false;
-    if (!('description' in value) || value['description'] === undefined)
-        return false;
-    if (!('audioUrl' in value) || value['audioUrl'] === undefined)
-        return false;
-    if (!('movie' in value) || value['movie'] === undefined)
-        return false;
-    if (!('study' in value) || value['study'] === undefined)
-        return false;
-    if (!('speakers' in value) || value['speakers'] === undefined)
-        return false;
-    return true;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("deletedAt" in value) || value["deletedAt"] === undefined) return false;
+  if (!("title" in value) || value["title"] === undefined) return false;
+  if (!("description" in value) || value["description"] === undefined) return false;
+  if (!("audioUrl" in value) || value["audioUrl"] === undefined) return false;
+  if (!("movie" in value) || value["movie"] === undefined) return false;
+  if (!("study" in value) || value["study"] === undefined) return false;
+  if (!("speakers" in value) || value["speakers"] === undefined) return false;
+  return true;
 }
 export function ListStudySceneDtoFromJSON(json) {
-    return ListStudySceneDtoFromJSONTyped(json, false);
+  return ListStudySceneDtoFromJSONTyped(json, false);
 }
 export function ListStudySceneDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'id': json['id'],
-        'createdAt': (new Date(json['createdAt'])),
-        'updatedAt': (new Date(json['updatedAt'])),
-        'deletedAt': (new Date(json['deletedAt'])),
-        'title': json['title'],
-        'description': json['description'],
-        'audioUrl': json['audioUrl'],
-        'movie': MovieFromJSON(json['movie']),
-        'study': StudyFromJSON(json['study']),
-        'speakers': (json['speakers'].map(SpeakerFromJSON)),
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    id: json["id"],
+    createdAt: new Date(json["createdAt"]),
+    updatedAt: new Date(json["updatedAt"]),
+    deletedAt: new Date(json["deletedAt"]),
+    title: json["title"],
+    description: json["description"],
+    audioUrl: json["audioUrl"],
+    movie: MovieFromJSON(json["movie"]),
+    study: StudyFromJSON(json["study"]),
+    speakers: json["speakers"].map(SpeakerFromJSON),
+  };
 }
 export function ListStudySceneDtoToJSON(json) {
-    return ListStudySceneDtoToJSONTyped(json, false);
+  return ListStudySceneDtoToJSONTyped(json, false);
 }
 export function ListStudySceneDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'id': value['id'],
-        'createdAt': ((value['createdAt']).toISOString()),
-        'updatedAt': ((value['updatedAt']).toISOString()),
-        'deletedAt': ((value['deletedAt']).toISOString()),
-        'title': value['title'],
-        'description': value['description'],
-        'audioUrl': value['audioUrl'],
-        'movie': MovieToJSON(value['movie']),
-        'study': StudyToJSON(value['study']),
-        'speakers': (value['speakers'].map(SpeakerToJSON)),
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    id: value["id"],
+    createdAt: value["createdAt"].toISOString(),
+    updatedAt: value["updatedAt"].toISOString(),
+    deletedAt: value["deletedAt"].toISOString(),
+    title: value["title"],
+    description: value["description"],
+    audioUrl: value["audioUrl"],
+    movie: MovieToJSON(value["movie"]),
+    study: StudyToJSON(value["study"]),
+    speakers: value["speakers"].map(SpeakerToJSON),
+  };
 }
 //# sourceMappingURL=ListStudySceneDto.js.map

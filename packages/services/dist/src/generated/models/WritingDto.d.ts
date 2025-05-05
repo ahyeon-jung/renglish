@@ -9,50 +9,56 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { Dialogue } from './Dialogue';
+import type { Dialogue } from "./Dialogue";
 /**
  *
  * @export
  * @interface WritingDto
  */
 export interface WritingDto {
-    /**
-     * 아이디
-     * @type {string}
-     * @memberof WritingDto
-     */
-    id: string;
-    /**
-     * 생성일
-     * @type {Date}
-     * @memberof WritingDto
-     */
-    createdAt: Date;
-    /**
-     * 수정일
-     * @type {Date}
-     * @memberof WritingDto
-     */
-    updatedAt: Date;
-    /**
-     *
-     * @type {string}
-     * @memberof WritingDto
-     */
-    writing: string;
-    /**
-     *
-     * @type {Dialogue}
-     * @memberof WritingDto
-     */
-    dialogue: Dialogue;
+  /**
+   * 아이디
+   * @type {string}
+   * @memberof WritingDto
+   */
+  id: string;
+  /**
+   * 생성일
+   * @type {Date}
+   * @memberof WritingDto
+   */
+  createdAt: Date;
+  /**
+   * 수정일
+   * @type {Date}
+   * @memberof WritingDto
+   */
+  updatedAt: Date;
+  /**
+   *
+   * @type {string}
+   * @memberof WritingDto
+   */
+  writing: string;
+  /**
+   *
+   * @type {Dialogue}
+   * @memberof WritingDto
+   */
+  dialogue: Dialogue;
 }
 /**
  * Check if a given object implements the WritingDto interface.
  */
 export declare function instanceOfWritingDto(value: object): value is WritingDto;
 export declare function WritingDtoFromJSON(json: any): WritingDto;
-export declare function WritingDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): WritingDto;
+export declare function WritingDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): WritingDto;
 export declare function WritingDtoToJSON(json: any): WritingDto;
-export declare function WritingDtoToJSONTyped(value?: WritingDto | null, ignoreDiscriminator?: boolean): any;
+export declare function WritingDtoToJSONTyped(
+  value?: WritingDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=WritingDto.d.ts.map

@@ -11,47 +11,43 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { PublicUserDtoFromJSON, PublicUserDtoToJSON, } from './PublicUserDto';
+import { PublicUserDtoFromJSON, PublicUserDtoToJSON } from "./PublicUserDto";
 /**
  * Check if a given object implements the PaginationUserResponseDto interface.
  */
 export function instanceOfPaginationUserResponseDto(value) {
-    if (!('totalCount' in value) || value['totalCount'] === undefined)
-        return false;
-    if (!('currentPage' in value) || value['currentPage'] === undefined)
-        return false;
-    if (!('limit' in value) || value['limit'] === undefined)
-        return false;
-    if (!('data' in value) || value['data'] === undefined)
-        return false;
-    return true;
+  if (!("totalCount" in value) || value["totalCount"] === undefined) return false;
+  if (!("currentPage" in value) || value["currentPage"] === undefined) return false;
+  if (!("limit" in value) || value["limit"] === undefined) return false;
+  if (!("data" in value) || value["data"] === undefined) return false;
+  return true;
 }
 export function PaginationUserResponseDtoFromJSON(json) {
-    return PaginationUserResponseDtoFromJSONTyped(json, false);
+  return PaginationUserResponseDtoFromJSONTyped(json, false);
 }
 export function PaginationUserResponseDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'totalCount': json['totalCount'],
-        'currentPage': json['currentPage'],
-        'limit': json['limit'],
-        'data': (json['data'].map(PublicUserDtoFromJSON)),
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    totalCount: json["totalCount"],
+    currentPage: json["currentPage"],
+    limit: json["limit"],
+    data: json["data"].map(PublicUserDtoFromJSON),
+  };
 }
 export function PaginationUserResponseDtoToJSON(json) {
-    return PaginationUserResponseDtoToJSONTyped(json, false);
+  return PaginationUserResponseDtoToJSONTyped(json, false);
 }
 export function PaginationUserResponseDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'totalCount': value['totalCount'],
-        'currentPage': value['currentPage'],
-        'limit': value['limit'],
-        'data': (value['data'].map(PublicUserDtoToJSON)),
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    totalCount: value["totalCount"],
+    currentPage: value["currentPage"],
+    limit: value["limit"],
+    data: value["data"].map(PublicUserDtoToJSON),
+  };
 }
 //# sourceMappingURL=PaginationUserResponseDto.js.map

@@ -12,9 +12,9 @@
  * Do not edit the class manually.
  */
 
-import * as runtime from '../runtime';
-import type { CreateWritingDto } from '../models/index';
-import { CreateWritingDtoFromJSON, CreateWritingDtoToJSON } from '../models/index';
+import * as runtime from "../runtime";
+import type { CreateWritingDto } from "../models/index";
+import { CreateWritingDtoFromJSON, CreateWritingDtoToJSON } from "../models/index";
 
 export interface WritingControllerCreateRequest {
   dialogueId: string;
@@ -37,16 +37,16 @@ export class WritingsApi extends runtime.BaseAPI {
     requestParameters: WritingControllerCreateRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['dialogueId'] == null) {
+    if (requestParameters["dialogueId"] == null) {
       throw new runtime.RequiredError(
-        'dialogueId',
+        "dialogueId",
         'Required parameter "dialogueId" was null or undefined when calling writingControllerCreate().',
       );
     }
 
-    if (requestParameters['createWritingDto'] == null) {
+    if (requestParameters["createWritingDto"] == null) {
       throw new runtime.RequiredError(
-        'createWritingDto',
+        "createWritingDto",
         'Required parameter "createWritingDto" was null or undefined when calling writingControllerCreate().',
       );
     }
@@ -55,26 +55,26 @@ export class WritingsApi extends runtime.BaseAPI {
 
     const headerParameters: runtime.HTTPHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters["Content-Type"] = "application/json";
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/writings/{dialogueId}`.replace(
-          `{${'dialogueId'}}`,
-          encodeURIComponent(String(requestParameters['dialogueId'])),
+          `{${"dialogueId"}}`,
+          encodeURIComponent(String(requestParameters["dialogueId"])),
         ),
-        method: 'POST',
+        method: "POST",
         headers: headerParameters,
         query: queryParameters,
-        body: CreateWritingDtoToJSON(requestParameters['createWritingDto']),
+        body: CreateWritingDtoToJSON(requestParameters["createWritingDto"]),
       },
       initOverrides,
     );
@@ -101,9 +101,9 @@ export class WritingsApi extends runtime.BaseAPI {
     requestParameters: WritingControllerFindAllByMovieIdRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['movieId'] == null) {
+    if (requestParameters["movieId"] == null) {
       throw new runtime.RequiredError(
-        'movieId',
+        "movieId",
         'Required parameter "movieId" was null or undefined when calling writingControllerFindAllByMovieId().',
       );
     }
@@ -114,19 +114,19 @@ export class WritingsApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/writings/{movieId}`.replace(
-          `{${'movieId'}}`,
-          encodeURIComponent(String(requestParameters['movieId'])),
+          `{${"movieId"}}`,
+          encodeURIComponent(String(requestParameters["movieId"])),
         ),
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },

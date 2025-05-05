@@ -15,18 +15,18 @@
  * @interface TokensDto
  */
 export interface TokensDto {
-    /**
-     * 사용자의 액세스 토큰
-     * @type {string}
-     * @memberof TokensDto
-     */
-    accessToken: string;
-    /**
-     * 사용자의 리프레시 토큰
-     * @type {string}
-     * @memberof TokensDto
-     */
-    refreshToken: string;
+  /**
+   * 사용자의 액세스 토큰
+   * @type {string}
+   * @memberof TokensDto
+   */
+  accessToken: string;
+  /**
+   * 사용자의 리프레시 토큰
+   * @type {string}
+   * @memberof TokensDto
+   */
+  refreshToken: string;
 }
 /**
  * Check if a given object implements the TokensDto interface.
@@ -35,5 +35,8 @@ export declare function instanceOfTokensDto(value: object): value is TokensDto;
 export declare function TokensDtoFromJSON(json: any): TokensDto;
 export declare function TokensDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): TokensDto;
 export declare function TokensDtoToJSON(json: any): TokensDto;
-export declare function TokensDtoToJSONTyped(value?: TokensDto | null, ignoreDiscriminator?: boolean): any;
+export declare function TokensDtoToJSONTyped(
+  value?: TokensDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=TokensDto.d.ts.map

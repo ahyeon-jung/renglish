@@ -1,1 +1,1 @@
-export { default } from './ScriptModeSelector';
+export { default } from "./ScriptModeSelector";

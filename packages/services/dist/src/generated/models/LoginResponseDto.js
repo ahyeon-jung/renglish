@@ -15,34 +15,32 @@
  * Check if a given object implements the LoginResponseDto interface.
  */
 export function instanceOfLoginResponseDto(value) {
-    if (!('accessToken' in value) || value['accessToken'] === undefined)
-        return false;
-    if (!('refreshToken' in value) || value['refreshToken'] === undefined)
-        return false;
-    return true;
+  if (!("accessToken" in value) || value["accessToken"] === undefined) return false;
+  if (!("refreshToken" in value) || value["refreshToken"] === undefined) return false;
+  return true;
 }
 export function LoginResponseDtoFromJSON(json) {
-    return LoginResponseDtoFromJSONTyped(json, false);
+  return LoginResponseDtoFromJSONTyped(json, false);
 }
 export function LoginResponseDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'accessToken': json['accessToken'],
-        'refreshToken': json['refreshToken'],
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    accessToken: json["accessToken"],
+    refreshToken: json["refreshToken"],
+  };
 }
 export function LoginResponseDtoToJSON(json) {
-    return LoginResponseDtoToJSONTyped(json, false);
+  return LoginResponseDtoToJSONTyped(json, false);
 }
 export function LoginResponseDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'accessToken': value['accessToken'],
-        'refreshToken': value['refreshToken'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    accessToken: value["accessToken"],
+    refreshToken: value["refreshToken"],
+  };
 }
 //# sourceMappingURL=LoginResponseDto.js.map

@@ -11,238 +11,293 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import * as runtime from '../runtime';
-import { CreateMovieDtoToJSON, MovieFromJSON, PaginationMovieResponseDtoFromJSON, UpdateMovieImageDtoToJSON, } from '../models/index';
+import * as runtime from "../runtime";
+import {
+  CreateMovieDtoToJSON,
+  MovieFromJSON,
+  PaginationMovieResponseDtoFromJSON,
+  UpdateMovieImageDtoToJSON,
+} from "../models/index";
 /**
  *
  */
 export class MoviesApi extends runtime.BaseAPI {
-    /**
-     * 새로운 영화 정보를 생성합니다.
-     * 영화 정보 생성 [TOKEN]
-     */
-    async movieControllerCreateRaw(requestParameters, initOverrides) {
-        if (requestParameters['createMovieDto'] == null) {
-            throw new runtime.RequiredError('createMovieDto', 'Required parameter "createMovieDto" was null or undefined when calling movieControllerCreate().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        headerParameters['Content-Type'] = 'application/json';
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/movies`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: CreateMovieDtoToJSON(requestParameters['createMovieDto']),
-        }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => MovieFromJSON(jsonValue));
+  /**
+   * 새로운 영화 정보를 생성합니다.
+   * 영화 정보 생성 [TOKEN]
+   */
+  async movieControllerCreateRaw(requestParameters, initOverrides) {
+    if (requestParameters["createMovieDto"] == null) {
+      throw new runtime.RequiredError(
+        "createMovieDto",
+        'Required parameter "createMovieDto" was null or undefined when calling movieControllerCreate().',
+      );
     }
-    /**
-     * 새로운 영화 정보를 생성합니다.
-     * 영화 정보 생성 [TOKEN]
-     */
-    async movieControllerCreate(requestParameters, initOverrides) {
-        const response = await this.movieControllerCreateRaw(requestParameters, initOverrides);
-        switch (response.raw.status) {
-            case 200:
-                return await response.value();
-            case 201:
-                return null;
-            default:
-                return await response.value();
-        }
+    const queryParameters = {};
+    const headerParameters = {};
+    headerParameters["Content-Type"] = "application/json";
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 모든 영화 정보를 가져옵니다.
-     * 모든 영화 정보 가져오기
-     */
-    async movieControllerFindAllRaw(requestParameters, initOverrides) {
-        if (requestParameters['offset'] == null) {
-            throw new runtime.RequiredError('offset', 'Required parameter "offset" was null or undefined when calling movieControllerFindAll().');
-        }
-        if (requestParameters['limit'] == null) {
-            throw new runtime.RequiredError('limit', 'Required parameter "limit" was null or undefined when calling movieControllerFindAll().');
-        }
-        const queryParameters = {};
-        if (requestParameters['category'] != null) {
-            queryParameters['category'] = requestParameters['category'];
-        }
-        if (requestParameters['keyword'] != null) {
-            queryParameters['keyword'] = requestParameters['keyword'];
-        }
-        if (requestParameters['offset'] != null) {
-            queryParameters['offset'] = requestParameters['offset'];
-        }
-        if (requestParameters['limit'] != null) {
-            queryParameters['limit'] = requestParameters['limit'];
-        }
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/movies`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => PaginationMovieResponseDtoFromJSON(jsonValue));
-    }
-    /**
-     * 모든 영화 정보를 가져옵니다.
-     * 모든 영화 정보 가져오기
-     */
-    async movieControllerFindAll(requestParameters, initOverrides) {
-        const response = await this.movieControllerFindAllRaw(requestParameters, initOverrides);
+    const response = await this.request(
+      {
+        path: `/api/movies`,
+        method: "POST",
+        headers: headerParameters,
+        query: queryParameters,
+        body: CreateMovieDtoToJSON(requestParameters["createMovieDto"]),
+      },
+      initOverrides,
+    );
+    return new runtime.JSONApiResponse(response, (jsonValue) => MovieFromJSON(jsonValue));
+  }
+  /**
+   * 새로운 영화 정보를 생성합니다.
+   * 영화 정보 생성 [TOKEN]
+   */
+  async movieControllerCreate(requestParameters, initOverrides) {
+    const response = await this.movieControllerCreateRaw(requestParameters, initOverrides);
+    switch (response.raw.status) {
+      case 200:
+        return await response.value();
+      case 201:
+        return null;
+      default:
         return await response.value();
     }
-    /**
-     * 가장 최신 업로드된 장면의 영화 정보를 가져옵니다.
-     * 가장 최신 영화 가져오기
-     */
-    async movieControllerFindLatestSceneRaw(requestParameters, initOverrides) {
-        const queryParameters = {};
-        if (requestParameters['limit'] != null) {
-            queryParameters['limit'] = requestParameters['limit'];
-        }
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/movies/latest`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(MovieFromJSON));
+  }
+  /**
+   * 모든 영화 정보를 가져옵니다.
+   * 모든 영화 정보 가져오기
+   */
+  async movieControllerFindAllRaw(requestParameters, initOverrides) {
+    if (requestParameters["offset"] == null) {
+      throw new runtime.RequiredError(
+        "offset",
+        'Required parameter "offset" was null or undefined when calling movieControllerFindAll().',
+      );
     }
-    /**
-     * 가장 최신 업로드된 장면의 영화 정보를 가져옵니다.
-     * 가장 최신 영화 가져오기
-     */
-    async movieControllerFindLatestScene(requestParameters = {}, initOverrides) {
-        const response = await this.movieControllerFindLatestSceneRaw(requestParameters, initOverrides);
-        return await response.value();
+    if (requestParameters["limit"] == null) {
+      throw new runtime.RequiredError(
+        "limit",
+        'Required parameter "limit" was null or undefined when calling movieControllerFindAll().',
+      );
     }
-    /**
-     * 영화 아이디로 영화화 정보를 가져옵니다.
-     * 영화 아이디로 영화 정보 찾기
-     */
-    async movieControllerFindOneRaw(requestParameters, initOverrides) {
-        if (requestParameters['movieId'] == null) {
-            throw new runtime.RequiredError('movieId', 'Required parameter "movieId" was null or undefined when calling movieControllerFindOne().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/movies/{movieId}`.replace(`{${"movieId"}}`, encodeURIComponent(String(requestParameters['movieId']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => MovieFromJSON(jsonValue));
+    const queryParameters = {};
+    if (requestParameters["category"] != null) {
+      queryParameters["category"] = requestParameters["category"];
     }
-    /**
-     * 영화 아이디로 영화화 정보를 가져옵니다.
-     * 영화 아이디로 영화 정보 찾기
-     */
-    async movieControllerFindOne(requestParameters, initOverrides) {
-        const response = await this.movieControllerFindOneRaw(requestParameters, initOverrides);
-        return await response.value();
+    if (requestParameters["keyword"] != null) {
+      queryParameters["keyword"] = requestParameters["keyword"];
     }
-    /**
-     * 영화 아이디로 영화화 정보를 삭제합니다.
-     * 영화 정보 삭제 [TOKEN]
-     */
-    async movieControllerRemoveRaw(requestParameters, initOverrides) {
-        if (requestParameters['movieId'] == null) {
-            throw new runtime.RequiredError('movieId', 'Required parameter "movieId" was null or undefined when calling movieControllerRemove().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/movies/{movieId}`.replace(`{${"movieId"}}`, encodeURIComponent(String(requestParameters['movieId']))),
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => MovieFromJSON(jsonValue));
+    if (requestParameters["offset"] != null) {
+      queryParameters["offset"] = requestParameters["offset"];
     }
-    /**
-     * 영화 아이디로 영화화 정보를 삭제합니다.
-     * 영화 정보 삭제 [TOKEN]
-     */
-    async movieControllerRemove(requestParameters, initOverrides) {
-        const response = await this.movieControllerRemoveRaw(requestParameters, initOverrides);
-        return await response.value();
+    if (requestParameters["limit"] != null) {
+      queryParameters["limit"] = requestParameters["limit"];
     }
-    /**
-     * 영화 이미지를 추가합니다.
-     * 영화 이미지 추가 [TOKEN]
-     */
-    async movieControllerUpdateImageUrlRaw(requestParameters, initOverrides) {
-        if (requestParameters['movieId'] == null) {
-            throw new runtime.RequiredError('movieId', 'Required parameter "movieId" was null or undefined when calling movieControllerUpdateImageUrl().');
-        }
-        if (requestParameters['updateMovieImageDto'] == null) {
-            throw new runtime.RequiredError('updateMovieImageDto', 'Required parameter "updateMovieImageDto" was null or undefined when calling movieControllerUpdateImageUrl().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        headerParameters['Content-Type'] = 'application/json';
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/movies/{movieId}`.replace(`{${"movieId"}}`, encodeURIComponent(String(requestParameters['movieId']))),
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-            body: UpdateMovieImageDtoToJSON(requestParameters['updateMovieImageDto']),
-        }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => MovieFromJSON(jsonValue));
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 영화 이미지를 추가합니다.
-     * 영화 이미지 추가 [TOKEN]
-     */
-    async movieControllerUpdateImageUrl(requestParameters, initOverrides) {
-        const response = await this.movieControllerUpdateImageUrlRaw(requestParameters, initOverrides);
-        return await response.value();
+    const response = await this.request(
+      {
+        path: `/api/movies`,
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.JSONApiResponse(response, (jsonValue) =>
+      PaginationMovieResponseDtoFromJSON(jsonValue),
+    );
+  }
+  /**
+   * 모든 영화 정보를 가져옵니다.
+   * 모든 영화 정보 가져오기
+   */
+  async movieControllerFindAll(requestParameters, initOverrides) {
+    const response = await this.movieControllerFindAllRaw(requestParameters, initOverrides);
+    return await response.value();
+  }
+  /**
+   * 가장 최신 업로드된 장면의 영화 정보를 가져옵니다.
+   * 가장 최신 영화 가져오기
+   */
+  async movieControllerFindLatestSceneRaw(requestParameters, initOverrides) {
+    const queryParameters = {};
+    if (requestParameters["limit"] != null) {
+      queryParameters["limit"] = requestParameters["limit"];
     }
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    const response = await this.request(
+      {
+        path: `/api/movies/latest`,
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(MovieFromJSON));
+  }
+  /**
+   * 가장 최신 업로드된 장면의 영화 정보를 가져옵니다.
+   * 가장 최신 영화 가져오기
+   */
+  async movieControllerFindLatestScene(requestParameters = {}, initOverrides) {
+    const response = await this.movieControllerFindLatestSceneRaw(requestParameters, initOverrides);
+    return await response.value();
+  }
+  /**
+   * 영화 아이디로 영화화 정보를 가져옵니다.
+   * 영화 아이디로 영화 정보 찾기
+   */
+  async movieControllerFindOneRaw(requestParameters, initOverrides) {
+    if (requestParameters["movieId"] == null) {
+      throw new runtime.RequiredError(
+        "movieId",
+        'Required parameter "movieId" was null or undefined when calling movieControllerFindOne().',
+      );
+    }
+    const queryParameters = {};
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    const response = await this.request(
+      {
+        path: `/api/movies/{movieId}`.replace(
+          `{${"movieId"}}`,
+          encodeURIComponent(String(requestParameters["movieId"])),
+        ),
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.JSONApiResponse(response, (jsonValue) => MovieFromJSON(jsonValue));
+  }
+  /**
+   * 영화 아이디로 영화화 정보를 가져옵니다.
+   * 영화 아이디로 영화 정보 찾기
+   */
+  async movieControllerFindOne(requestParameters, initOverrides) {
+    const response = await this.movieControllerFindOneRaw(requestParameters, initOverrides);
+    return await response.value();
+  }
+  /**
+   * 영화 아이디로 영화화 정보를 삭제합니다.
+   * 영화 정보 삭제 [TOKEN]
+   */
+  async movieControllerRemoveRaw(requestParameters, initOverrides) {
+    if (requestParameters["movieId"] == null) {
+      throw new runtime.RequiredError(
+        "movieId",
+        'Required parameter "movieId" was null or undefined when calling movieControllerRemove().',
+      );
+    }
+    const queryParameters = {};
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    const response = await this.request(
+      {
+        path: `/api/movies/{movieId}`.replace(
+          `{${"movieId"}}`,
+          encodeURIComponent(String(requestParameters["movieId"])),
+        ),
+        method: "DELETE",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.JSONApiResponse(response, (jsonValue) => MovieFromJSON(jsonValue));
+  }
+  /**
+   * 영화 아이디로 영화화 정보를 삭제합니다.
+   * 영화 정보 삭제 [TOKEN]
+   */
+  async movieControllerRemove(requestParameters, initOverrides) {
+    const response = await this.movieControllerRemoveRaw(requestParameters, initOverrides);
+    return await response.value();
+  }
+  /**
+   * 영화 이미지를 추가합니다.
+   * 영화 이미지 추가 [TOKEN]
+   */
+  async movieControllerUpdateImageUrlRaw(requestParameters, initOverrides) {
+    if (requestParameters["movieId"] == null) {
+      throw new runtime.RequiredError(
+        "movieId",
+        'Required parameter "movieId" was null or undefined when calling movieControllerUpdateImageUrl().',
+      );
+    }
+    if (requestParameters["updateMovieImageDto"] == null) {
+      throw new runtime.RequiredError(
+        "updateMovieImageDto",
+        'Required parameter "updateMovieImageDto" was null or undefined when calling movieControllerUpdateImageUrl().',
+      );
+    }
+    const queryParameters = {};
+    const headerParameters = {};
+    headerParameters["Content-Type"] = "application/json";
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    const response = await this.request(
+      {
+        path: `/api/movies/{movieId}`.replace(
+          `{${"movieId"}}`,
+          encodeURIComponent(String(requestParameters["movieId"])),
+        ),
+        method: "PUT",
+        headers: headerParameters,
+        query: queryParameters,
+        body: UpdateMovieImageDtoToJSON(requestParameters["updateMovieImageDto"]),
+      },
+      initOverrides,
+    );
+    return new runtime.JSONApiResponse(response, (jsonValue) => MovieFromJSON(jsonValue));
+  }
+  /**
+   * 영화 이미지를 추가합니다.
+   * 영화 이미지 추가 [TOKEN]
+   */
+  async movieControllerUpdateImageUrl(requestParameters, initOverrides) {
+    const response = await this.movieControllerUpdateImageUrlRaw(requestParameters, initOverrides);
+    return await response.value();
+  }
 }
 //# sourceMappingURL=MoviesApi.js.map

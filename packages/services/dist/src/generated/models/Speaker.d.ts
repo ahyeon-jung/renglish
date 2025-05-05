@@ -15,42 +15,42 @@
  * @interface Speaker
  */
 export interface Speaker {
-    /**
-     * 아이디
-     * @type {string}
-     * @memberof Speaker
-     */
-    id: string;
-    /**
-     * 생성일
-     * @type {Date}
-     * @memberof Speaker
-     */
-    createdAt: Date;
-    /**
-     * 수정일
-     * @type {Date}
-     * @memberof Speaker
-     */
-    updatedAt: Date;
-    /**
-     * 삭제일
-     * @type {Date}
-     * @memberof Speaker
-     */
-    deletedAt: Date;
-    /**
-     *
-     * @type {string}
-     * @memberof Speaker
-     */
-    speakerName: string;
-    /**
-     *
-     * @type {string}
-     * @memberof Speaker
-     */
-    speakerType: string;
+  /**
+   * 아이디
+   * @type {string}
+   * @memberof Speaker
+   */
+  id: string;
+  /**
+   * 생성일
+   * @type {Date}
+   * @memberof Speaker
+   */
+  createdAt: Date;
+  /**
+   * 수정일
+   * @type {Date}
+   * @memberof Speaker
+   */
+  updatedAt: Date;
+  /**
+   * 삭제일
+   * @type {Date}
+   * @memberof Speaker
+   */
+  deletedAt: Date;
+  /**
+   *
+   * @type {string}
+   * @memberof Speaker
+   */
+  speakerName: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Speaker
+   */
+  speakerType: string;
 }
 /**
  * Check if a given object implements the Speaker interface.
@@ -59,5 +59,8 @@ export declare function instanceOfSpeaker(value: object): value is Speaker;
 export declare function SpeakerFromJSON(json: any): Speaker;
 export declare function SpeakerFromJSONTyped(json: any, ignoreDiscriminator: boolean): Speaker;
 export declare function SpeakerToJSON(json: any): Speaker;
-export declare function SpeakerToJSONTyped(value?: Speaker | null, ignoreDiscriminator?: boolean): any;
+export declare function SpeakerToJSONTyped(
+  value?: Speaker | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=Speaker.d.ts.map

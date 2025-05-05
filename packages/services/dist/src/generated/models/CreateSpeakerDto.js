@@ -15,34 +15,32 @@
  * Check if a given object implements the CreateSpeakerDto interface.
  */
 export function instanceOfCreateSpeakerDto(value) {
-    if (!('speakerName' in value) || value['speakerName'] === undefined)
-        return false;
-    if (!('speakerType' in value) || value['speakerType'] === undefined)
-        return false;
-    return true;
+  if (!("speakerName" in value) || value["speakerName"] === undefined) return false;
+  if (!("speakerType" in value) || value["speakerType"] === undefined) return false;
+  return true;
 }
 export function CreateSpeakerDtoFromJSON(json) {
-    return CreateSpeakerDtoFromJSONTyped(json, false);
+  return CreateSpeakerDtoFromJSONTyped(json, false);
 }
 export function CreateSpeakerDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'speakerName': json['speaker_name'],
-        'speakerType': json['speaker_type'],
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    speakerName: json["speaker_name"],
+    speakerType: json["speaker_type"],
+  };
 }
 export function CreateSpeakerDtoToJSON(json) {
-    return CreateSpeakerDtoToJSONTyped(json, false);
+  return CreateSpeakerDtoToJSONTyped(json, false);
 }
 export function CreateSpeakerDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'speaker_name': value['speakerName'],
-        'speaker_type': value['speakerType'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    speaker_name: value["speakerName"],
+    speaker_type: value["speakerType"],
+  };
 }
 //# sourceMappingURL=CreateSpeakerDto.js.map

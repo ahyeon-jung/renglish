@@ -12,8 +12,8 @@
  * Do not edit the class manually.
  */
 
-import * as runtime from '../runtime';
-import type { PaginationStudyResponseDto, Study, StudyDto, UpdateStudyDto } from '../models/index';
+import * as runtime from "../runtime";
+import type { PaginationStudyResponseDto, Study, StudyDto, UpdateStudyDto } from "../models/index";
 import {
   PaginationStudyResponseDtoFromJSON,
   PaginationStudyResponseDtoToJSON,
@@ -23,7 +23,7 @@ import {
   StudyDtoToJSON,
   UpdateStudyDtoFromJSON,
   UpdateStudyDtoToJSON,
-} from '../models/index';
+} from "../models/index";
 
 export interface StudyControllerAddApplicantRequest {
   studyId: string;
@@ -83,9 +83,9 @@ export class StudyApi extends runtime.BaseAPI {
     requestParameters: StudyControllerAddApplicantRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<Study>> {
-    if (requestParameters['studyId'] == null) {
+    if (requestParameters["studyId"] == null) {
       throw new runtime.RequiredError(
-        'studyId',
+        "studyId",
         'Required parameter "studyId" was null or undefined when calling studyControllerAddApplicant().',
       );
     }
@@ -96,19 +96,19 @@ export class StudyApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/studies/{studyId}/add-applicant`.replace(
-          `{${'studyId'}}`,
-          encodeURIComponent(String(requestParameters['studyId'])),
+          `{${"studyId"}}`,
+          encodeURIComponent(String(requestParameters["studyId"])),
         ),
-        method: 'POST',
+        method: "POST",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -138,16 +138,16 @@ export class StudyApi extends runtime.BaseAPI {
     requestParameters: StudyControllerAddParticipantRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<Study>> {
-    if (requestParameters['studyId'] == null) {
+    if (requestParameters["studyId"] == null) {
       throw new runtime.RequiredError(
-        'studyId',
+        "studyId",
         'Required parameter "studyId" was null or undefined when calling studyControllerAddParticipant().',
       );
     }
 
-    if (requestParameters['userId'] == null) {
+    if (requestParameters["userId"] == null) {
       throw new runtime.RequiredError(
-        'userId',
+        "userId",
         'Required parameter "userId" was null or undefined when calling studyControllerAddParticipant().',
       );
     }
@@ -158,18 +158,18 @@ export class StudyApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/studies/{studyId}/add-participant/{userId}`
-          .replace(`{${'studyId'}}`, encodeURIComponent(String(requestParameters['studyId'])))
-          .replace(`{${'userId'}}`, encodeURIComponent(String(requestParameters['userId']))),
-        method: 'POST',
+          .replace(`{${"studyId"}}`, encodeURIComponent(String(requestParameters["studyId"])))
+          .replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters["userId"]))),
+        method: "POST",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -199,9 +199,9 @@ export class StudyApi extends runtime.BaseAPI {
     requestParameters: StudyControllerCompleteStudyRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['studyId'] == null) {
+    if (requestParameters["studyId"] == null) {
       throw new runtime.RequiredError(
-        'studyId',
+        "studyId",
         'Required parameter "studyId" was null or undefined when calling studyControllerCompleteStudy().',
       );
     }
@@ -212,19 +212,19 @@ export class StudyApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/studies/{studyId}/complete`.replace(
-          `{${'studyId'}}`,
-          encodeURIComponent(String(requestParameters['studyId'])),
+          `{${"studyId"}}`,
+          encodeURIComponent(String(requestParameters["studyId"])),
         ),
-        method: 'POST',
+        method: "POST",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -253,48 +253,48 @@ export class StudyApi extends runtime.BaseAPI {
     requestParameters: StudyControllerFindAllRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<PaginationStudyResponseDto>> {
-    if (requestParameters['offset'] == null) {
+    if (requestParameters["offset"] == null) {
       throw new runtime.RequiredError(
-        'offset',
+        "offset",
         'Required parameter "offset" was null or undefined when calling studyControllerFindAll().',
       );
     }
 
-    if (requestParameters['limit'] == null) {
+    if (requestParameters["limit"] == null) {
       throw new runtime.RequiredError(
-        'limit',
+        "limit",
         'Required parameter "limit" was null or undefined when calling studyControllerFindAll().',
       );
     }
 
     const queryParameters: any = {};
 
-    if (requestParameters['status'] != null) {
-      queryParameters['status'] = requestParameters['status'];
+    if (requestParameters["status"] != null) {
+      queryParameters["status"] = requestParameters["status"];
     }
 
-    if (requestParameters['offset'] != null) {
-      queryParameters['offset'] = requestParameters['offset'];
+    if (requestParameters["offset"] != null) {
+      queryParameters["offset"] = requestParameters["offset"];
     }
 
-    if (requestParameters['limit'] != null) {
-      queryParameters['limit'] = requestParameters['limit'];
+    if (requestParameters["limit"] != null) {
+      queryParameters["limit"] = requestParameters["limit"];
     }
 
     const headerParameters: runtime.HTTPHeaders = {};
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/studies`,
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -326,9 +326,9 @@ export class StudyApi extends runtime.BaseAPI {
     requestParameters: StudyControllerFindOneRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<StudyDto>> {
-    if (requestParameters['studyId'] == null) {
+    if (requestParameters["studyId"] == null) {
       throw new runtime.RequiredError(
-        'studyId',
+        "studyId",
         'Required parameter "studyId" was null or undefined when calling studyControllerFindOne().',
       );
     }
@@ -339,19 +339,19 @@ export class StudyApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/studies/{studyId}`.replace(
-          `{${'studyId'}}`,
-          encodeURIComponent(String(requestParameters['studyId'])),
+          `{${"studyId"}}`,
+          encodeURIComponent(String(requestParameters["studyId"])),
         ),
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -381,9 +381,9 @@ export class StudyApi extends runtime.BaseAPI {
     requestParameters: StudyControllerRemoveRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['studyId'] == null) {
+    if (requestParameters["studyId"] == null) {
       throw new runtime.RequiredError(
-        'studyId',
+        "studyId",
         'Required parameter "studyId" was null or undefined when calling studyControllerRemove().',
       );
     }
@@ -394,19 +394,19 @@ export class StudyApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/studies/{studyId}`.replace(
-          `{${'studyId'}}`,
-          encodeURIComponent(String(requestParameters['studyId'])),
+          `{${"studyId"}}`,
+          encodeURIComponent(String(requestParameters["studyId"])),
         ),
-        method: 'DELETE',
+        method: "DELETE",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -435,9 +435,9 @@ export class StudyApi extends runtime.BaseAPI {
     requestParameters: StudyControllerRemoveApplicantRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<Study>> {
-    if (requestParameters['studyId'] == null) {
+    if (requestParameters["studyId"] == null) {
       throw new runtime.RequiredError(
-        'studyId',
+        "studyId",
         'Required parameter "studyId" was null or undefined when calling studyControllerRemoveApplicant().',
       );
     }
@@ -448,19 +448,19 @@ export class StudyApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/studies/{studyId}/remove-applicant`.replace(
-          `{${'studyId'}}`,
-          encodeURIComponent(String(requestParameters['studyId'])),
+          `{${"studyId"}}`,
+          encodeURIComponent(String(requestParameters["studyId"])),
         ),
-        method: 'DELETE',
+        method: "DELETE",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -490,16 +490,16 @@ export class StudyApi extends runtime.BaseAPI {
     requestParameters: StudyControllerRemoveApplicantByAdminRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<Study>> {
-    if (requestParameters['studyId'] == null) {
+    if (requestParameters["studyId"] == null) {
       throw new runtime.RequiredError(
-        'studyId',
+        "studyId",
         'Required parameter "studyId" was null or undefined when calling studyControllerRemoveApplicantByAdmin().',
       );
     }
 
-    if (requestParameters['userId'] == null) {
+    if (requestParameters["userId"] == null) {
       throw new runtime.RequiredError(
-        'userId',
+        "userId",
         'Required parameter "userId" was null or undefined when calling studyControllerRemoveApplicantByAdmin().',
       );
     }
@@ -510,18 +510,18 @@ export class StudyApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/studies/{studyId}/remove-applicant/{userId}`
-          .replace(`{${'studyId'}}`, encodeURIComponent(String(requestParameters['studyId'])))
-          .replace(`{${'userId'}}`, encodeURIComponent(String(requestParameters['userId']))),
-        method: 'DELETE',
+          .replace(`{${"studyId"}}`, encodeURIComponent(String(requestParameters["studyId"])))
+          .replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters["userId"]))),
+        method: "DELETE",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -554,16 +554,16 @@ export class StudyApi extends runtime.BaseAPI {
     requestParameters: StudyControllerRemoveParticipantsRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<Study>> {
-    if (requestParameters['studyId'] == null) {
+    if (requestParameters["studyId"] == null) {
       throw new runtime.RequiredError(
-        'studyId',
+        "studyId",
         'Required parameter "studyId" was null or undefined when calling studyControllerRemoveParticipants().',
       );
     }
 
-    if (requestParameters['userId'] == null) {
+    if (requestParameters["userId"] == null) {
       throw new runtime.RequiredError(
-        'userId',
+        "userId",
         'Required parameter "userId" was null or undefined when calling studyControllerRemoveParticipants().',
       );
     }
@@ -574,18 +574,18 @@ export class StudyApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/studies/{studyId}/remove-participant/{userId}`
-          .replace(`{${'studyId'}}`, encodeURIComponent(String(requestParameters['studyId'])))
-          .replace(`{${'userId'}}`, encodeURIComponent(String(requestParameters['userId']))),
-        method: 'DELETE',
+          .replace(`{${"studyId"}}`, encodeURIComponent(String(requestParameters["studyId"])))
+          .replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters["userId"]))),
+        method: "DELETE",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -618,16 +618,16 @@ export class StudyApi extends runtime.BaseAPI {
     requestParameters: StudyControllerUpdateRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['studyId'] == null) {
+    if (requestParameters["studyId"] == null) {
       throw new runtime.RequiredError(
-        'studyId',
+        "studyId",
         'Required parameter "studyId" was null or undefined when calling studyControllerUpdate().',
       );
     }
 
-    if (requestParameters['updateStudyDto'] == null) {
+    if (requestParameters["updateStudyDto"] == null) {
       throw new runtime.RequiredError(
-        'updateStudyDto',
+        "updateStudyDto",
         'Required parameter "updateStudyDto" was null or undefined when calling studyControllerUpdate().',
       );
     }
@@ -636,26 +636,26 @@ export class StudyApi extends runtime.BaseAPI {
 
     const headerParameters: runtime.HTTPHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters["Content-Type"] = "application/json";
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/studies/{studyId}`.replace(
-          `{${'studyId'}}`,
-          encodeURIComponent(String(requestParameters['studyId'])),
+          `{${"studyId"}}`,
+          encodeURIComponent(String(requestParameters["studyId"])),
         ),
-        method: 'PUT',
+        method: "PUT",
         headers: headerParameters,
         query: queryParameters,
-        body: UpdateStudyDtoToJSON(requestParameters['updateStudyDto']),
+        body: UpdateStudyDtoToJSON(requestParameters["updateStudyDto"]),
       },
       initOverrides,
     );

@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import Button from '@/components/Button';
-import Checkbox from '@/components/CheckBox';
-import Field from '@/components/Field';
-import { MESSAGE } from '@/constants/toast';
-import { PATHS } from '@/constants/path';
-import loginAction from '@/app/actions/auth/login';
-import { toast } from 'react-toastify';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { useUserStore } from '@/stores/userStore';
+import Button from "@/components/Button";
+import Checkbox from "@/components/CheckBox";
+import Field from "@/components/Field";
+import { MESSAGE } from "@/constants/toast";
+import { PATHS } from "@/constants/path";
+import loginAction from "@/app/actions/auth/login";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useUserStore } from "@/stores/userStore";
 
-const INITIAL_LOGIN_BODY = { email: '', password: '', rememberMe: false };
+const INITIAL_LOGIN_BODY = { email: "", password: "", rememberMe: false };
 
 export default function EmailLoginForm() {
   const router = useRouter();
@@ -27,12 +27,12 @@ export default function EmailLoginForm() {
         toast.error(MESSAGE.AUTH.ERROR.UNMATCHED);
         return;
       }
-      setUserId(data || '', loginBody.rememberMe);
+      setUserId(data || "", loginBody.rememberMe);
       router.push(PATHS.HOME);
     } catch {
       toast.error(MESSAGE.COMMON.ERROR.SERVER);
     } finally {
-      setLoginBody((prev) => ({ ...prev, password: '' }));
+      setLoginBody((prev) => ({ ...prev, password: "" }));
     }
   };
 

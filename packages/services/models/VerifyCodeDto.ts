@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
  *
  * @export
@@ -37,8 +37,8 @@ export interface VerifyCodeDto {
  * Check if a given object implements the VerifyCodeDto interface.
  */
 export function instanceOfVerifyCodeDto(value: object): value is VerifyCodeDto {
-  if (!('email' in value) || value['email'] === undefined) return false;
-  if (!('code' in value) || value['code'] === undefined) return false;
+  if (!("email" in value) || value["email"] === undefined) return false;
+  if (!("code" in value) || value["code"] === undefined) return false;
   return true;
 }
 
@@ -51,8 +51,8 @@ export function VerifyCodeDtoFromJSONTyped(json: any, ignoreDiscriminator: boole
     return json;
   }
   return {
-    email: json['email'],
-    code: json['code'],
+    email: json["email"],
+    code: json["code"],
   };
 }
 
@@ -69,7 +69,7 @@ export function VerifyCodeDtoToJSONTyped(
   }
 
   return {
-    email: value['email'],
-    code: value['code'],
+    email: value["email"],
+    code: value["code"],
   };
 }

@@ -1,8 +1,8 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { ExpressionController } from './expression.controller';
-import { ExpressionService } from './expression.service';
+import { Test, TestingModule } from "@nestjs/testing";
+import { ExpressionController } from "./expression.controller";
+import { ExpressionService } from "./expression.service";
 
-describe('ExpressionController', () => {
+describe("ExpressionController", () => {
   let controller: ExpressionController;
 
   beforeEach(async () => {
@@ -14,7 +14,7 @@ describe('ExpressionController', () => {
     controller = module.get<ExpressionController>(ExpressionController);
   });
 
-  it('should be defined', () => {
+  it("should be defined", () => {
     expect(controller).toBeDefined();
   });
 });

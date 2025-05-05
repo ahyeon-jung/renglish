@@ -1,11 +1,11 @@
-import { OPEN_CHAT_URL } from '@/constants/url';
-import Link from 'next/link';
-import clsx from 'clsx';
+import { OPEN_CHAT_URL } from "@/constants/url";
+import Link from "next/link";
+import clsx from "clsx";
 
 export default function IntroducePage() {
   return (
     <main
-      className={clsx('mt-[var(--header-height)] p-3', 'flex flex-col items-center text-gray-800')}
+      className={clsx("mt-[var(--header-height)] p-3", "flex flex-col items-center text-gray-800")}
     >
       <section className="text-center">
         <h1 className="text-2xl font-bold text-orange-600 mb-2">🎬 Reel + English, Renglish!</h1>
@@ -34,7 +34,7 @@ export default function IntroducePage() {
           <p>
             매주 목요일 저녁 8시
             <br />
-            보증금(참석시 환불): <del>3000원</del>{' '}
+            보증금(참석시 환불): <del>3000원</del>{" "}
             <strong className="text-orange-600 ml-1">현재 무료로 진행중</strong>
           </p>
         </div>

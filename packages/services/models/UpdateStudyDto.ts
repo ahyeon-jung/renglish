@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
  *
  * @export
@@ -58,9 +58,9 @@ export function UpdateStudyDtoFromJSONTyped(
     return json;
   }
   return {
-    title: json['title'] == null ? undefined : json['title'],
-    studiedAt: json['studiedAt'] == null ? undefined : new Date(json['studiedAt']),
-    description: json['description'] == null ? undefined : json['description'],
+    title: json["title"] == null ? undefined : json["title"],
+    studiedAt: json["studiedAt"] == null ? undefined : new Date(json["studiedAt"]),
+    description: json["description"] == null ? undefined : json["description"],
   };
 }
 
@@ -77,8 +77,8 @@ export function UpdateStudyDtoToJSONTyped(
   }
 
   return {
-    title: value['title'],
-    studiedAt: value['studiedAt'] == null ? undefined : value['studiedAt'].toISOString(),
-    description: value['description'],
+    title: value["title"],
+    studiedAt: value["studiedAt"] == null ? undefined : value["studiedAt"].toISOString(),
+    description: value["description"],
   };
 }

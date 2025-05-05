@@ -1,1 +1,1 @@
-export { default } from './LatestScripts';
+export { default } from "./LatestScripts";

@@ -11,43 +11,40 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { PaginationSceneDtoFromJSON, PaginationSceneDtoToJSON, } from './PaginationSceneDto';
+import { PaginationSceneDtoFromJSON, PaginationSceneDtoToJSON } from "./PaginationSceneDto";
 /**
  * Check if a given object implements the PaginationSceneResponseDto interface.
  */
 export function instanceOfPaginationSceneResponseDto(value) {
-    if (!('totalCount' in value) || value['totalCount'] === undefined)
-        return false;
-    if (!('currentPage' in value) || value['currentPage'] === undefined)
-        return false;
-    if (!('data' in value) || value['data'] === undefined)
-        return false;
-    return true;
+  if (!("totalCount" in value) || value["totalCount"] === undefined) return false;
+  if (!("currentPage" in value) || value["currentPage"] === undefined) return false;
+  if (!("data" in value) || value["data"] === undefined) return false;
+  return true;
 }
 export function PaginationSceneResponseDtoFromJSON(json) {
-    return PaginationSceneResponseDtoFromJSONTyped(json, false);
+  return PaginationSceneResponseDtoFromJSONTyped(json, false);
 }
 export function PaginationSceneResponseDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'totalCount': json['totalCount'],
-        'currentPage': json['currentPage'],
-        'data': (json['data'].map(PaginationSceneDtoFromJSON)),
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    totalCount: json["totalCount"],
+    currentPage: json["currentPage"],
+    data: json["data"].map(PaginationSceneDtoFromJSON),
+  };
 }
 export function PaginationSceneResponseDtoToJSON(json) {
-    return PaginationSceneResponseDtoToJSONTyped(json, false);
+  return PaginationSceneResponseDtoToJSONTyped(json, false);
 }
 export function PaginationSceneResponseDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'totalCount': value['totalCount'],
-        'currentPage': value['currentPage'],
-        'data': (value['data'].map(PaginationSceneDtoToJSON)),
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    totalCount: value["totalCount"],
+    currentPage: value["currentPage"],
+    data: value["data"].map(PaginationSceneDtoToJSON),
+  };
 }
 //# sourceMappingURL=PaginationSceneResponseDto.js.map

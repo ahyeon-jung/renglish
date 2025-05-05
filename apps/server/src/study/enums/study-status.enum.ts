@@ -1,4 +1,4 @@
 export enum STUDY_STATUS {
-  RECRUITING = 'recruiting',
-  COMPLETED = 'completed',
+  RECRUITING = "recruiting",
+  COMPLETED = "completed",
 }

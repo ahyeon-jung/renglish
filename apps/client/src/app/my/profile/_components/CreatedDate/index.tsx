@@ -1,5 +1,5 @@
-import Field from '@/components/Field';
-import { formatDate } from '@/utils/format';
+import Field from "@/components/Field";
+import { formatDate } from "@/utils/format";
 
 type CreatedDateProps = { createdAt: string };
 

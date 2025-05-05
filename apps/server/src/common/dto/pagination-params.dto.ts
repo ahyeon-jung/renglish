@@ -1,4 +1,4 @@
-import { IsInt, Min } from 'class-validator';
+import { IsInt, Min } from "class-validator";
 
 export class PaginationParams {
   @IsInt()

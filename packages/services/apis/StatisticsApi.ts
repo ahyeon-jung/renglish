@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import * as runtime from '../runtime';
+import * as runtime from "../runtime";
 
 /**
  *
@@ -30,16 +30,16 @@ export class StatisticsApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/statistics/visitor`,
-        method: 'POST',
+        method: "POST",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -71,16 +71,16 @@ export class StatisticsApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/statistics/visitor/count`,
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -113,16 +113,16 @@ export class StatisticsApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/statistics/visitor/count`,
-        method: 'POST',
+        method: "POST",
         headers: headerParameters,
         query: queryParameters,
       },

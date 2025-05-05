@@ -9,67 +9,67 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { Scene } from './Scene';
+import type { Scene } from "./Scene";
 /**
  *
  * @export
  * @interface Movie
  */
 export interface Movie {
-    /**
-     * 아이디
-     * @type {string}
-     * @memberof Movie
-     */
-    id: string;
-    /**
-     * 생성일
-     * @type {Date}
-     * @memberof Movie
-     */
-    createdAt: Date;
-    /**
-     * 수정일
-     * @type {Date}
-     * @memberof Movie
-     */
-    updatedAt: Date;
-    /**
-     * 삭제일
-     * @type {Date}
-     * @memberof Movie
-     */
-    deletedAt: Date;
-    /**
-     *
-     * @type {string}
-     * @memberof Movie
-     */
-    title: string;
-    /**
-     *
-     * @type {string}
-     * @memberof Movie
-     */
-    category: string;
-    /**
-     *
-     * @type {string}
-     * @memberof Movie
-     */
-    imageUrl: string;
-    /**
-     *
-     * @type {string}
-     * @memberof Movie
-     */
-    description: string;
-    /**
-     *
-     * @type {Array<Array<Scene>>}
-     * @memberof Movie
-     */
-    scenes: Array<Array<Scene>>;
+  /**
+   * 아이디
+   * @type {string}
+   * @memberof Movie
+   */
+  id: string;
+  /**
+   * 생성일
+   * @type {Date}
+   * @memberof Movie
+   */
+  createdAt: Date;
+  /**
+   * 수정일
+   * @type {Date}
+   * @memberof Movie
+   */
+  updatedAt: Date;
+  /**
+   * 삭제일
+   * @type {Date}
+   * @memberof Movie
+   */
+  deletedAt: Date;
+  /**
+   *
+   * @type {string}
+   * @memberof Movie
+   */
+  title: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Movie
+   */
+  category: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Movie
+   */
+  imageUrl: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Movie
+   */
+  description: string;
+  /**
+   *
+   * @type {Array<Array<Scene>>}
+   * @memberof Movie
+   */
+  scenes: Array<Array<Scene>>;
 }
 /**
  * Check if a given object implements the Movie interface.

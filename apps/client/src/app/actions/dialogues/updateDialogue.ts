@@ -1,8 +1,8 @@
-'use server';
+"use server";
 
-import { ENV } from '@/constants/env';
-import { cookies } from 'next/headers';
-import { dialogueApi } from '@/libs/api';
+import { ENV } from "@/constants/env";
+import { cookies } from "next/headers";
+import { dialogueApi } from "@/libs/api";
 
 type UpdateDialogueActionBody = {
   englishScript?: string;
@@ -20,7 +20,7 @@ export default async function updateDialogueAction(
     return {
       status: 401,
       success: false,
-      message: 'No Authorization',
+      message: "No Authorization",
       data: null,
     };
   }
@@ -33,7 +33,7 @@ export default async function updateDialogueAction(
   return {
     status: 200,
     success: true,
-    message: 'Upload Dialogue successfully',
+    message: "Upload Dialogue successfully",
     data: response,
   };
 }

@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, createContext, useContext, useState } from 'react';
+import React, { Dispatch, SetStateAction, createContext, useContext, useState } from "react";
 
 export interface FunnelContextType<TStep, TData> {
   step: TStep;
@@ -42,7 +42,7 @@ export const Step = <TStep, TData>({
   const context = useContext<FunnelContextType<TStep, TData> | undefined>(FunnelContext);
 
   if (!context) {
-    throw new Error('Step must be used within a Funnel');
+    throw new Error("Step must be used within a Funnel");
   }
 
   const { step } = context;

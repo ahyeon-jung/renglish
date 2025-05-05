@@ -15,42 +15,38 @@
  * Check if a given object implements the CreateMovieDto interface.
  */
 export function instanceOfCreateMovieDto(value) {
-    if (!('title' in value) || value['title'] === undefined)
-        return false;
-    if (!('category' in value) || value['category'] === undefined)
-        return false;
-    if (!('imageUrl' in value) || value['imageUrl'] === undefined)
-        return false;
-    if (!('description' in value) || value['description'] === undefined)
-        return false;
-    return true;
+  if (!("title" in value) || value["title"] === undefined) return false;
+  if (!("category" in value) || value["category"] === undefined) return false;
+  if (!("imageUrl" in value) || value["imageUrl"] === undefined) return false;
+  if (!("description" in value) || value["description"] === undefined) return false;
+  return true;
 }
 export function CreateMovieDtoFromJSON(json) {
-    return CreateMovieDtoFromJSONTyped(json, false);
+  return CreateMovieDtoFromJSONTyped(json, false);
 }
 export function CreateMovieDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'title': json['title'],
-        'category': json['category'],
-        'imageUrl': json['imageUrl'],
-        'description': json['description'],
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    title: json["title"],
+    category: json["category"],
+    imageUrl: json["imageUrl"],
+    description: json["description"],
+  };
 }
 export function CreateMovieDtoToJSON(json) {
-    return CreateMovieDtoToJSONTyped(json, false);
+  return CreateMovieDtoToJSONTyped(json, false);
 }
 export function CreateMovieDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'title': value['title'],
-        'category': value['category'],
-        'imageUrl': value['imageUrl'],
-        'description': value['description'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    title: value["title"],
+    category: value["category"],
+    imageUrl: value["imageUrl"],
+    description: value["description"],
+  };
 }
 //# sourceMappingURL=CreateMovieDto.js.map

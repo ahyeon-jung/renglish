@@ -1,9 +1,9 @@
-'use server';
+"use server";
 
-import { ENV } from '@/constants/env';
-import { cookies } from 'next/headers';
-import { CreateExpressionDto } from '@renglish/services';
-import { expressionApi } from '@/libs/api';
+import { ENV } from "@/constants/env";
+import { cookies } from "next/headers";
+import { CreateExpressionDto } from "@renglish/services";
+import { expressionApi } from "@/libs/api";
 
 export default async function addExpressionAction(
   sceneId: string,
@@ -15,7 +15,7 @@ export default async function addExpressionAction(
     return {
       status: 401,
       success: false,
-      message: 'No Authorization',
+      message: "No Authorization",
       data: null,
     };
   }
@@ -28,7 +28,7 @@ export default async function addExpressionAction(
   return {
     status: 200,
     success: true,
-    message: 'Upload Expression successfully',
+    message: "Upload Expression successfully",
     data: response,
   };
 }

@@ -9,147 +9,207 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import * as runtime from '../runtime';
-import type { PaginationStudyResponseDto, Study, StudyDto, UpdateStudyDto } from '../models/index';
+import * as runtime from "../runtime";
+import type { PaginationStudyResponseDto, Study, StudyDto, UpdateStudyDto } from "../models/index";
 export interface StudyControllerAddApplicantRequest {
-    studyId: string;
+  studyId: string;
 }
 export interface StudyControllerAddParticipantRequest {
-    studyId: string;
-    userId: string;
+  studyId: string;
+  userId: string;
 }
 export interface StudyControllerCompleteStudyRequest {
-    studyId: string;
+  studyId: string;
 }
 export interface StudyControllerFindAllRequest {
-    offset: number;
-    limit: number;
-    status?: string;
+  offset: number;
+  limit: number;
+  status?: string;
 }
 export interface StudyControllerFindOneRequest {
-    studyId: string;
+  studyId: string;
 }
 export interface StudyControllerRemoveRequest {
-    studyId: string;
+  studyId: string;
 }
 export interface StudyControllerRemoveApplicantRequest {
-    studyId: string;
+  studyId: string;
 }
 export interface StudyControllerRemoveApplicantByAdminRequest {
-    studyId: string;
-    userId: string;
+  studyId: string;
+  userId: string;
 }
 export interface StudyControllerRemoveParticipantsRequest {
-    studyId: string;
-    userId: string;
+  studyId: string;
+  userId: string;
 }
 export interface StudyControllerUpdateRequest {
-    studyId: string;
-    updateStudyDto: UpdateStudyDto;
+  studyId: string;
+  updateStudyDto: UpdateStudyDto;
 }
 /**
  *
  */
 export declare class StudyApi extends runtime.BaseAPI {
-    /**
-     * 스터디에 참여중인지 조회합니다(applicant).
-     * 스터디 지원하기  [TOKEN]
-     */
-    studyControllerAddApplicantRaw(requestParameters: StudyControllerAddApplicantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Study>>;
-    /**
-     * 스터디에 참여중인지 조회합니다(applicant).
-     * 스터디 지원하기  [TOKEN]
-     */
-    studyControllerAddApplicant(requestParameters: StudyControllerAddApplicantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Study>;
-    /**
-     * 스터디 참여자를 수락합니다(participant).
-     * 스터디 참여 수락하기  [ADMIN]
-     */
-    studyControllerAddParticipantRaw(requestParameters: StudyControllerAddParticipantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Study>>;
-    /**
-     * 스터디 참여자를 수락합니다(participant).
-     * 스터디 참여 수락하기  [ADMIN]
-     */
-    studyControllerAddParticipant(requestParameters: StudyControllerAddParticipantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Study>;
-    /**
-     * 스터디를 완료합니다.
-     * 스터디 완료하기  [ADMIN]
-     */
-    studyControllerCompleteStudyRaw(requestParameters: StudyControllerCompleteStudyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * 스터디를 완료합니다.
-     * 스터디 완료하기  [ADMIN]
-     */
-    studyControllerCompleteStudy(requestParameters: StudyControllerCompleteStudyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * 스터디 목록을 조회합니다.
-     * 스터디 목록 조회하기
-     */
-    studyControllerFindAllRaw(requestParameters: StudyControllerFindAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginationStudyResponseDto>>;
-    /**
-     * 스터디 목록을 조회합니다.
-     * 스터디 목록 조회하기
-     */
-    studyControllerFindAll(requestParameters: StudyControllerFindAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginationStudyResponseDto>;
-    /**
-     * 스터디를 조회합니다.
-     * 스터디 조회하기
-     */
-    studyControllerFindOneRaw(requestParameters: StudyControllerFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StudyDto>>;
-    /**
-     * 스터디를 조회합니다.
-     * 스터디 조회하기
-     */
-    studyControllerFindOne(requestParameters: StudyControllerFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StudyDto>;
-    /**
-     * 스터디를 삭제합니다.
-     * 스터디 삭제하기 [ADMIN]
-     */
-    studyControllerRemoveRaw(requestParameters: StudyControllerRemoveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * 스터디를 삭제합니다.
-     * 스터디 삭제하기 [ADMIN]
-     */
-    studyControllerRemove(requestParameters: StudyControllerRemoveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * 토큰 유저가 스터디 지원을 취소합니다(applicant).
-     * 스터디 지원 취소하기  [TOKEN]
-     */
-    studyControllerRemoveApplicantRaw(requestParameters: StudyControllerRemoveApplicantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Study>>;
-    /**
-     * 토큰 유저가 스터디 지원을 취소합니다(applicant).
-     * 스터디 지원 취소하기  [TOKEN]
-     */
-    studyControllerRemoveApplicant(requestParameters: StudyControllerRemoveApplicantRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Study>;
-    /**
-     * 관리자가 스터디 지원자를 제거합니다(applicant).
-     * 스터디 지원자 취소하기  [ADMIN]
-     */
-    studyControllerRemoveApplicantByAdminRaw(requestParameters: StudyControllerRemoveApplicantByAdminRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Study>>;
-    /**
-     * 관리자가 스터디 지원자를 제거합니다(applicant).
-     * 스터디 지원자 취소하기  [ADMIN]
-     */
-    studyControllerRemoveApplicantByAdmin(requestParameters: StudyControllerRemoveApplicantByAdminRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Study>;
-    /**
-     * 관리자가 스터디 참여자를 지원자로 변경합니다(applicant).
-     * 스터디 참여자 취소하기  [ADMIN]
-     */
-    studyControllerRemoveParticipantsRaw(requestParameters: StudyControllerRemoveParticipantsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Study>>;
-    /**
-     * 관리자가 스터디 참여자를 지원자로 변경합니다(applicant).
-     * 스터디 참여자 취소하기  [ADMIN]
-     */
-    studyControllerRemoveParticipants(requestParameters: StudyControllerRemoveParticipantsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Study>;
-    /**
-     * 스터디를 수정합니다.
-     * 스터디 수정하기 [ADMIN]
-     */
-    studyControllerUpdateRaw(requestParameters: StudyControllerUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * 스터디를 수정합니다.
-     * 스터디 수정하기 [ADMIN]
-     */
-    studyControllerUpdate(requestParameters: StudyControllerUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+  /**
+   * 스터디에 참여중인지 조회합니다(applicant).
+   * 스터디 지원하기  [TOKEN]
+   */
+  studyControllerAddApplicantRaw(
+    requestParameters: StudyControllerAddApplicantRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<Study>>;
+  /**
+   * 스터디에 참여중인지 조회합니다(applicant).
+   * 스터디 지원하기  [TOKEN]
+   */
+  studyControllerAddApplicant(
+    requestParameters: StudyControllerAddApplicantRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<Study>;
+  /**
+   * 스터디 참여자를 수락합니다(participant).
+   * 스터디 참여 수락하기  [ADMIN]
+   */
+  studyControllerAddParticipantRaw(
+    requestParameters: StudyControllerAddParticipantRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<Study>>;
+  /**
+   * 스터디 참여자를 수락합니다(participant).
+   * 스터디 참여 수락하기  [ADMIN]
+   */
+  studyControllerAddParticipant(
+    requestParameters: StudyControllerAddParticipantRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<Study>;
+  /**
+   * 스터디를 완료합니다.
+   * 스터디 완료하기  [ADMIN]
+   */
+  studyControllerCompleteStudyRaw(
+    requestParameters: StudyControllerCompleteStudyRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<void>>;
+  /**
+   * 스터디를 완료합니다.
+   * 스터디 완료하기  [ADMIN]
+   */
+  studyControllerCompleteStudy(
+    requestParameters: StudyControllerCompleteStudyRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<void>;
+  /**
+   * 스터디 목록을 조회합니다.
+   * 스터디 목록 조회하기
+   */
+  studyControllerFindAllRaw(
+    requestParameters: StudyControllerFindAllRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<PaginationStudyResponseDto>>;
+  /**
+   * 스터디 목록을 조회합니다.
+   * 스터디 목록 조회하기
+   */
+  studyControllerFindAll(
+    requestParameters: StudyControllerFindAllRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<PaginationStudyResponseDto>;
+  /**
+   * 스터디를 조회합니다.
+   * 스터디 조회하기
+   */
+  studyControllerFindOneRaw(
+    requestParameters: StudyControllerFindOneRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<StudyDto>>;
+  /**
+   * 스터디를 조회합니다.
+   * 스터디 조회하기
+   */
+  studyControllerFindOne(
+    requestParameters: StudyControllerFindOneRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<StudyDto>;
+  /**
+   * 스터디를 삭제합니다.
+   * 스터디 삭제하기 [ADMIN]
+   */
+  studyControllerRemoveRaw(
+    requestParameters: StudyControllerRemoveRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<void>>;
+  /**
+   * 스터디를 삭제합니다.
+   * 스터디 삭제하기 [ADMIN]
+   */
+  studyControllerRemove(
+    requestParameters: StudyControllerRemoveRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<void>;
+  /**
+   * 토큰 유저가 스터디 지원을 취소합니다(applicant).
+   * 스터디 지원 취소하기  [TOKEN]
+   */
+  studyControllerRemoveApplicantRaw(
+    requestParameters: StudyControllerRemoveApplicantRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<Study>>;
+  /**
+   * 토큰 유저가 스터디 지원을 취소합니다(applicant).
+   * 스터디 지원 취소하기  [TOKEN]
+   */
+  studyControllerRemoveApplicant(
+    requestParameters: StudyControllerRemoveApplicantRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<Study>;
+  /**
+   * 관리자가 스터디 지원자를 제거합니다(applicant).
+   * 스터디 지원자 취소하기  [ADMIN]
+   */
+  studyControllerRemoveApplicantByAdminRaw(
+    requestParameters: StudyControllerRemoveApplicantByAdminRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<Study>>;
+  /**
+   * 관리자가 스터디 지원자를 제거합니다(applicant).
+   * 스터디 지원자 취소하기  [ADMIN]
+   */
+  studyControllerRemoveApplicantByAdmin(
+    requestParameters: StudyControllerRemoveApplicantByAdminRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<Study>;
+  /**
+   * 관리자가 스터디 참여자를 지원자로 변경합니다(applicant).
+   * 스터디 참여자 취소하기  [ADMIN]
+   */
+  studyControllerRemoveParticipantsRaw(
+    requestParameters: StudyControllerRemoveParticipantsRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<Study>>;
+  /**
+   * 관리자가 스터디 참여자를 지원자로 변경합니다(applicant).
+   * 스터디 참여자 취소하기  [ADMIN]
+   */
+  studyControllerRemoveParticipants(
+    requestParameters: StudyControllerRemoveParticipantsRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<Study>;
+  /**
+   * 스터디를 수정합니다.
+   * 스터디 수정하기 [ADMIN]
+   */
+  studyControllerUpdateRaw(
+    requestParameters: StudyControllerUpdateRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<void>>;
+  /**
+   * 스터디를 수정합니다.
+   * 스터디 수정하기 [ADMIN]
+   */
+  studyControllerUpdate(
+    requestParameters: StudyControllerUpdateRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<void>;
 }
 //# sourceMappingURL=StudyApi.d.ts.map

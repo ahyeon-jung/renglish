@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
  *
  * @export
@@ -58,9 +58,9 @@ export function UpdateDialogueDtoFromJSONTyped(
     return json;
   }
   return {
-    englishScript: json['english_script'] == null ? undefined : json['english_script'],
-    koreanScript: json['korean_script'] == null ? undefined : json['korean_script'],
-    order: json['order'] == null ? undefined : json['order'],
+    englishScript: json["english_script"] == null ? undefined : json["english_script"],
+    koreanScript: json["korean_script"] == null ? undefined : json["korean_script"],
+    order: json["order"] == null ? undefined : json["order"],
   };
 }
 
@@ -77,8 +77,8 @@ export function UpdateDialogueDtoToJSONTyped(
   }
 
   return {
-    english_script: value['englishScript'],
-    korean_script: value['koreanScript'],
-    order: value['order'],
+    english_script: value["englishScript"],
+    korean_script: value["koreanScript"],
+    order: value["order"],
   };
 }

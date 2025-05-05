@@ -1,4 +1,4 @@
-import getVisitorCount from '@/app/actions/statics/getVisitorCount';
+import getVisitorCount from "@/app/actions/statics/getVisitorCount";
 
 export default async function Footer() {
   const { data: visitorCount } = await getVisitorCount();
@@ -10,7 +10,7 @@ export default async function Footer() {
           Visitors: <span>{visitorCount}</span>
         </p>
         <p className="text-sm">
-          Contact:{' '}
+          Contact:{" "}
           <a href="mailto:ahyeon.aisha@gmail.com" className="underline">
             email here
           </a>

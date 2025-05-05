@@ -12,32 +12,32 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { Movie } from './Movie';
-import { MovieFromJSON, MovieFromJSONTyped, MovieToJSON, MovieToJSONTyped } from './Movie';
-import type { Study } from './Study';
-import { StudyFromJSON, StudyFromJSONTyped, StudyToJSON, StudyToJSONTyped } from './Study';
-import type { Dialogue } from './Dialogue';
+import { mapValues } from "../runtime";
+import type { Movie } from "./Movie";
+import { MovieFromJSON, MovieFromJSONTyped, MovieToJSON, MovieToJSONTyped } from "./Movie";
+import type { Study } from "./Study";
+import { StudyFromJSON, StudyFromJSONTyped, StudyToJSON, StudyToJSONTyped } from "./Study";
+import type { Dialogue } from "./Dialogue";
 import {
   DialogueFromJSON,
   DialogueFromJSONTyped,
   DialogueToJSON,
   DialogueToJSONTyped,
-} from './Dialogue';
-import type { Expression } from './Expression';
+} from "./Dialogue";
+import type { Expression } from "./Expression";
 import {
   ExpressionFromJSON,
   ExpressionFromJSONTyped,
   ExpressionToJSON,
   ExpressionToJSONTyped,
-} from './Expression';
-import type { Speaker } from './Speaker';
+} from "./Expression";
+import type { Speaker } from "./Speaker";
 import {
   SpeakerFromJSON,
   SpeakerFromJSONTyped,
   SpeakerToJSON,
   SpeakerToJSONTyped,
-} from './Speaker';
+} from "./Speaker";
 
 /**
  *
@@ -123,18 +123,18 @@ export interface ExtendedSceneDto {
  * Check if a given object implements the ExtendedSceneDto interface.
  */
 export function instanceOfExtendedSceneDto(value: object): value is ExtendedSceneDto {
-  if (!('id' in value) || value['id'] === undefined) return false;
-  if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
-  if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
-  if (!('deletedAt' in value) || value['deletedAt'] === undefined) return false;
-  if (!('title' in value) || value['title'] === undefined) return false;
-  if (!('description' in value) || value['description'] === undefined) return false;
-  if (!('audioUrl' in value) || value['audioUrl'] === undefined) return false;
-  if (!('movie' in value) || value['movie'] === undefined) return false;
-  if (!('study' in value) || value['study'] === undefined) return false;
-  if (!('speakers' in value) || value['speakers'] === undefined) return false;
-  if (!('dialogues' in value) || value['dialogues'] === undefined) return false;
-  if (!('expressions' in value) || value['expressions'] === undefined) return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("deletedAt" in value) || value["deletedAt"] === undefined) return false;
+  if (!("title" in value) || value["title"] === undefined) return false;
+  if (!("description" in value) || value["description"] === undefined) return false;
+  if (!("audioUrl" in value) || value["audioUrl"] === undefined) return false;
+  if (!("movie" in value) || value["movie"] === undefined) return false;
+  if (!("study" in value) || value["study"] === undefined) return false;
+  if (!("speakers" in value) || value["speakers"] === undefined) return false;
+  if (!("dialogues" in value) || value["dialogues"] === undefined) return false;
+  if (!("expressions" in value) || value["expressions"] === undefined) return false;
   return true;
 }
 
@@ -150,18 +150,18 @@ export function ExtendedSceneDtoFromJSONTyped(
     return json;
   }
   return {
-    id: json['id'],
-    createdAt: new Date(json['createdAt']),
-    updatedAt: new Date(json['updatedAt']),
-    deletedAt: new Date(json['deletedAt']),
-    title: json['title'],
-    description: json['description'],
-    audioUrl: json['audioUrl'],
-    movie: MovieFromJSON(json['movie']),
-    study: StudyFromJSON(json['study']),
-    speakers: (json['speakers'] as Array<any>).map(SpeakerFromJSON),
-    dialogues: (json['dialogues'] as Array<any>).map(DialogueFromJSON),
-    expressions: (json['expressions'] as Array<any>).map(ExpressionFromJSON),
+    id: json["id"],
+    createdAt: new Date(json["createdAt"]),
+    updatedAt: new Date(json["updatedAt"]),
+    deletedAt: new Date(json["deletedAt"]),
+    title: json["title"],
+    description: json["description"],
+    audioUrl: json["audioUrl"],
+    movie: MovieFromJSON(json["movie"]),
+    study: StudyFromJSON(json["study"]),
+    speakers: (json["speakers"] as Array<any>).map(SpeakerFromJSON),
+    dialogues: (json["dialogues"] as Array<any>).map(DialogueFromJSON),
+    expressions: (json["expressions"] as Array<any>).map(ExpressionFromJSON),
   };
 }
 
@@ -178,17 +178,17 @@ export function ExtendedSceneDtoToJSONTyped(
   }
 
   return {
-    id: value['id'],
-    createdAt: value['createdAt'].toISOString(),
-    updatedAt: value['updatedAt'].toISOString(),
-    deletedAt: value['deletedAt'].toISOString(),
-    title: value['title'],
-    description: value['description'],
-    audioUrl: value['audioUrl'],
-    movie: MovieToJSON(value['movie']),
-    study: StudyToJSON(value['study']),
-    speakers: (value['speakers'] as Array<any>).map(SpeakerToJSON),
-    dialogues: (value['dialogues'] as Array<any>).map(DialogueToJSON),
-    expressions: (value['expressions'] as Array<any>).map(ExpressionToJSON),
+    id: value["id"],
+    createdAt: value["createdAt"].toISOString(),
+    updatedAt: value["updatedAt"].toISOString(),
+    deletedAt: value["deletedAt"].toISOString(),
+    title: value["title"],
+    description: value["description"],
+    audioUrl: value["audioUrl"],
+    movie: MovieToJSON(value["movie"]),
+    study: StudyToJSON(value["study"]),
+    speakers: (value["speakers"] as Array<any>).map(SpeakerToJSON),
+    dialogues: (value["dialogues"] as Array<any>).map(DialogueToJSON),
+    expressions: (value["expressions"] as Array<any>).map(ExpressionToJSON),
   };
 }

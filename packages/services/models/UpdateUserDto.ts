@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
  *
  * @export
@@ -49,8 +49,8 @@ export function UpdateUserDtoFromJSONTyped(json: any, ignoreDiscriminator: boole
     return json;
   }
   return {
-    provider: json['provider'] == null ? undefined : json['provider'],
-    nickname: json['nickname'] == null ? undefined : json['nickname'],
+    provider: json["provider"] == null ? undefined : json["provider"],
+    nickname: json["nickname"] == null ? undefined : json["nickname"],
   };
 }
 
@@ -67,7 +67,7 @@ export function UpdateUserDtoToJSONTyped(
   }
 
   return {
-    provider: value['provider'],
-    nickname: value['nickname'],
+    provider: value["provider"],
+    nickname: value["nickname"],
   };
 }

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
  *
  * @export
@@ -58,9 +58,9 @@ export function UpdateSceneDtoFromJSONTyped(
     return json;
   }
   return {
-    title: json['title'] == null ? undefined : json['title'],
-    audioUrl: json['audioUrl'] == null ? undefined : json['audioUrl'],
-    description: json['description'] == null ? undefined : json['description'],
+    title: json["title"] == null ? undefined : json["title"],
+    audioUrl: json["audioUrl"] == null ? undefined : json["audioUrl"],
+    description: json["description"] == null ? undefined : json["description"],
   };
 }
 
@@ -77,8 +77,8 @@ export function UpdateSceneDtoToJSONTyped(
   }
 
   return {
-    title: value['title'],
-    audioUrl: value['audioUrl'],
-    description: value['description'],
+    title: value["title"],
+    audioUrl: value["audioUrl"],
+    description: value["description"],
   };
 }

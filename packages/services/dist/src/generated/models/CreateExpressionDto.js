@@ -11,47 +11,43 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ExampleDtoFromJSON, ExampleDtoToJSON, } from './ExampleDto';
+import { ExampleDtoFromJSON, ExampleDtoToJSON } from "./ExampleDto";
 /**
  * Check if a given object implements the CreateExpressionDto interface.
  */
 export function instanceOfCreateExpressionDto(value) {
-    if (!('expression' in value) || value['expression'] === undefined)
-        return false;
-    if (!('meaning' in value) || value['meaning'] === undefined)
-        return false;
-    if (!('usage' in value) || value['usage'] === undefined)
-        return false;
-    if (!('examples' in value) || value['examples'] === undefined)
-        return false;
-    return true;
+  if (!("expression" in value) || value["expression"] === undefined) return false;
+  if (!("meaning" in value) || value["meaning"] === undefined) return false;
+  if (!("usage" in value) || value["usage"] === undefined) return false;
+  if (!("examples" in value) || value["examples"] === undefined) return false;
+  return true;
 }
 export function CreateExpressionDtoFromJSON(json) {
-    return CreateExpressionDtoFromJSONTyped(json, false);
+  return CreateExpressionDtoFromJSONTyped(json, false);
 }
 export function CreateExpressionDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'expression': json['expression'],
-        'meaning': json['meaning'],
-        'usage': json['usage'],
-        'examples': (json['examples'].map(ExampleDtoFromJSON)),
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    expression: json["expression"],
+    meaning: json["meaning"],
+    usage: json["usage"],
+    examples: json["examples"].map(ExampleDtoFromJSON),
+  };
 }
 export function CreateExpressionDtoToJSON(json) {
-    return CreateExpressionDtoToJSONTyped(json, false);
+  return CreateExpressionDtoToJSONTyped(json, false);
 }
 export function CreateExpressionDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'expression': value['expression'],
-        'meaning': value['meaning'],
-        'usage': value['usage'],
-        'examples': (value['examples'].map(ExampleDtoToJSON)),
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    expression: value["expression"],
+    meaning: value["meaning"],
+    usage: value["usage"],
+    examples: value["examples"].map(ExampleDtoToJSON),
+  };
 }
 //# sourceMappingURL=CreateExpressionDto.js.map

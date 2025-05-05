@@ -15,13 +15,15 @@ import DialogueCreate from "./resources/dialogues/create";
 import DialogueList from "./resources/dialogues/list";
 
 export const App = () => (
-  <Admin
-    dataProvider={dataProvider}
-    authProvider={authProvider}
-    loginPage={LoginPage}
-  >
+  <Admin dataProvider={dataProvider} authProvider={authProvider} loginPage={LoginPage}>
     <Resource name={RESOURCE.SCENES} list={SceneList} create={SceneCreate} show={SceneShow} />
-    <Resource name={RESOURCE.STUDIES} list={StudyList} show={StudyShow} edit={StudyEdit} create={StudyCreate} />
+    <Resource
+      name={RESOURCE.STUDIES}
+      list={StudyList}
+      show={StudyShow}
+      edit={StudyEdit}
+      create={StudyCreate}
+    />
     <Resource name={RESOURCE.SPEAKERS} list={SpeakerList} create={SpeakerCreate} />
     <Resource name={RESOURCE.USERS} list={UserList} show={UserShow} />
     <Resource name={RESOURCE.DIALOGUES} list={DialogueList} create={DialogueCreate} />

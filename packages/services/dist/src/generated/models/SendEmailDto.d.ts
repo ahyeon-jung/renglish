@@ -15,19 +15,25 @@
  * @interface SendEmailDto
  */
 export interface SendEmailDto {
-    /**
-     * 인증 요청을 보낼 사용자의 이메일 주소
-     * @type {string}
-     * @memberof SendEmailDto
-     */
-    email: string;
+  /**
+   * 인증 요청을 보낼 사용자의 이메일 주소
+   * @type {string}
+   * @memberof SendEmailDto
+   */
+  email: string;
 }
 /**
  * Check if a given object implements the SendEmailDto interface.
  */
 export declare function instanceOfSendEmailDto(value: object): value is SendEmailDto;
 export declare function SendEmailDtoFromJSON(json: any): SendEmailDto;
-export declare function SendEmailDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): SendEmailDto;
+export declare function SendEmailDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): SendEmailDto;
 export declare function SendEmailDtoToJSON(json: any): SendEmailDto;
-export declare function SendEmailDtoToJSONTyped(value?: SendEmailDto | null, ignoreDiscriminator?: boolean): any;
+export declare function SendEmailDtoToJSONTyped(
+  value?: SendEmailDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=SendEmailDto.d.ts.map

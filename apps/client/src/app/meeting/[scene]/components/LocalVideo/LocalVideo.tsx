@@ -1,6 +1,6 @@
-import Button from '@/components/Button';
-import Text from '@/components/Text';
-import { useEffect } from 'react';
+import Button from "@/components/Button";
+import Text from "@/components/Text";
+import { useEffect } from "react";
 
 type LocalVideoProps = {
   stream: MediaStream | null;
@@ -19,16 +19,15 @@ export default function LocalVideo({
   toggleVideo,
   toggleAudio,
 }: LocalVideoProps) {
-
   useEffect(() => {
     if (stream && videoRef.current) {
       videoRef.current.srcObject = stream;
 
-      stream.getVideoTracks().forEach(track => {
+      stream.getVideoTracks().forEach((track) => {
         track.enabled = isVideoEnabled;
       });
 
-      stream.getAudioTracks().forEach(track => {
+      stream.getAudioTracks().forEach((track) => {
         track.enabled = isAudioEnabled;
       });
     }
@@ -44,21 +43,16 @@ export default function LocalVideo({
         className="bg-gray-200 w-60 h-40 object-cover"
       />
       <div className="flex gap-2 w-60">
-        <Button
-          size='sm'
-          onClick={toggleVideo}
-        >
-          <Text typography='body-md'> {isVideoEnabled ? "비디오 끄기" : "비디오 켜기"}</Text>
+        <Button size="sm" onClick={toggleVideo}>
+          <Text typography="body-md"> {isVideoEnabled ? "비디오 끄기" : "비디오 켜기"}</Text>
         </Button>
         <Button
-          size='sm'
-          variants='danger'
+          size="sm"
+          variants="danger"
           onClick={toggleAudio}
           className="px-4 py-2 bg-red-500 text-white rounded"
         >
-          <Text typography='body-md'>
-            {isAudioEnabled ? "마이크 끄기" : "마이크 켜기"}
-          </Text>
+          <Text typography="body-md">{isAudioEnabled ? "마이크 끄기" : "마이크 켜기"}</Text>
         </Button>
       </div>
     </div>

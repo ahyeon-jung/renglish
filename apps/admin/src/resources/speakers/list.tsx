@@ -1,5 +1,5 @@
-import { List, Datagrid, TextField, DateField } from 'react-admin'
-import RESOURCE from '../../constants/resource'
+import { List, Datagrid, TextField, DateField } from "react-admin";
+import RESOURCE from "../../constants/resource";
 
 const SpeakerList = () => (
   <List resource={RESOURCE.SPEAKERS}>
@@ -10,6 +10,6 @@ const SpeakerList = () => (
       <DateField source="createdAt" />
     </Datagrid>
   </List>
-)
+);
 
-export default SpeakerList
+export default SpeakerList;

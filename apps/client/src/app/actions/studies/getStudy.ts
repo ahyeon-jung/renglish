@@ -1,6 +1,6 @@
-'use server';
+"use server";
 
-import { studyApi } from '@/libs/api';
+import { studyApi } from "@/libs/api";
 
 export default async function getStudyAction(studyId: string) {
   const data = await studyApi.studyControllerFindOne({ studyId });
@@ -8,7 +8,7 @@ export default async function getStudyAction(studyId: string) {
   return {
     status: 200,
     success: true,
-    message: 'Fetch Studies successfully',
+    message: "Fetch Studies successfully",
     data,
   };
 }

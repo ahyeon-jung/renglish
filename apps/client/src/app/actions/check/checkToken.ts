@@ -1,7 +1,7 @@
-'use server';
+"use server";
 
-import { ENV } from '@/constants/env';
-import { cookies } from 'next/headers';
+import { ENV } from "@/constants/env";
+import { cookies } from "next/headers";
 
 export default async function checkTokenAction() {
   const cookieStore = await cookies();

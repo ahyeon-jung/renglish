@@ -15,34 +15,32 @@
  * Check if a given object implements the ExampleDto interface.
  */
 export function instanceOfExampleDto(value) {
-    if (!('en' in value) || value['en'] === undefined)
-        return false;
-    if (!('ko' in value) || value['ko'] === undefined)
-        return false;
-    return true;
+  if (!("en" in value) || value["en"] === undefined) return false;
+  if (!("ko" in value) || value["ko"] === undefined) return false;
+  return true;
 }
 export function ExampleDtoFromJSON(json) {
-    return ExampleDtoFromJSONTyped(json, false);
+  return ExampleDtoFromJSONTyped(json, false);
 }
 export function ExampleDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'en': json['en'],
-        'ko': json['ko'],
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    en: json["en"],
+    ko: json["ko"],
+  };
 }
 export function ExampleDtoToJSON(json) {
-    return ExampleDtoToJSONTyped(json, false);
+  return ExampleDtoToJSONTyped(json, false);
 }
 export function ExampleDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'en': value['en'],
-        'ko': value['ko'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    en: value["en"],
+    ko: value["ko"],
+  };
 }
 //# sourceMappingURL=ExampleDto.js.map

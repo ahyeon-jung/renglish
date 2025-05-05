@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import Button from '@/components/Button';
-import Field from '@/components/Field';
-import { MESSAGE } from '@/constants/toast';
-import { UserType } from '@/types/user';
-import { toast } from 'react-toastify';
-import updateNicknameAction from '@/app/actions/my/updateNickname';
-import { useState } from 'react';
+import Button from "@/components/Button";
+import Field from "@/components/Field";
+import { MESSAGE } from "@/constants/toast";
+import { UserType } from "@/types/user";
+import { toast } from "react-toastify";
+import updateNicknameAction from "@/app/actions/my/updateNickname";
+import { useState } from "react";
 
-type NicknameProps = Pick<UserType, 'id' | 'nickname'>;
+type NicknameProps = Pick<UserType, "id" | "nickname">;
 
 export default function Nickname({ nickname }: NicknameProps) {
   const [nicknameValue, setNicknameValue] = useState(nickname);

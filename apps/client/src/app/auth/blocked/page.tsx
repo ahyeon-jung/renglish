@@ -1,5 +1,5 @@
-import Text from '@/components/Text';
-import AuthContainer from '../_components/AuthContainer';
+import Text from "@/components/Text";
+import AuthContainer from "../_components/AuthContainer";
 
 export default function Blocked() {
   return (

@@ -12,8 +12,8 @@
  * Do not edit the class manually.
  */
 
-import * as runtime from '../runtime';
-import type { StudyDto, UpdateUserDto, User, WritingDto } from '../models/index';
+import * as runtime from "../runtime";
+import type { StudyDto, UpdateUserDto, User, WritingDto } from "../models/index";
 import {
   StudyDtoFromJSON,
   StudyDtoToJSON,
@@ -23,7 +23,7 @@ import {
   UserToJSON,
   WritingDtoFromJSON,
   WritingDtoToJSON,
-} from '../models/index';
+} from "../models/index";
 
 export interface MyControllerChangeUserRequest {
   updateUserDto: UpdateUserDto;
@@ -45,9 +45,9 @@ export class MyApi extends runtime.BaseAPI {
     requestParameters: MyControllerChangeUserRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['updateUserDto'] == null) {
+    if (requestParameters["updateUserDto"] == null) {
       throw new runtime.RequiredError(
-        'updateUserDto',
+        "updateUserDto",
         'Required parameter "updateUserDto" was null or undefined when calling myControllerChangeUser().',
       );
     }
@@ -56,23 +56,23 @@ export class MyApi extends runtime.BaseAPI {
 
     const headerParameters: runtime.HTTPHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters["Content-Type"] = "application/json";
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/my`,
-        method: 'PUT',
+        method: "PUT",
         headers: headerParameters,
         query: queryParameters,
-        body: UpdateUserDtoToJSON(requestParameters['updateUserDto']),
+        body: UpdateUserDtoToJSON(requestParameters["updateUserDto"]),
       },
       initOverrides,
     );
@@ -101,24 +101,24 @@ export class MyApi extends runtime.BaseAPI {
   ): Promise<runtime.ApiResponse<Array<StudyDto>>> {
     const queryParameters: any = {};
 
-    if (requestParameters['type'] != null) {
-      queryParameters['type'] = requestParameters['type'];
+    if (requestParameters["type"] != null) {
+      queryParameters["type"] = requestParameters["type"];
     }
 
     const headerParameters: runtime.HTTPHeaders = {};
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/my/studies`,
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -153,16 +153,16 @@ export class MyApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/my/writings`,
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -196,16 +196,16 @@ export class MyApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/my`,
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },

@@ -1,1 +1,1 @@
-export { default } from './ScriptSearch';
+export { default } from "./ScriptSearch";

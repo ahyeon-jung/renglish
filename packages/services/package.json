@@ -4,9 +4,7 @@
   "private": true,
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
@@ -25,4 +23,4 @@
       "require": "./dist/src/index.js"
     }
   }
-} 
+}

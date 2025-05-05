@@ -17,21 +17,21 @@ export default async function RandomExpression() {
           <div
             key={index}
             className={clsx(
-              'rounded-2xl p-4 bg-white',
-              'flex flex-col gap-3 border-1 border-gray-200',
+              "rounded-2xl p-4 bg-white",
+              "flex flex-col gap-3 border-1 border-gray-200",
             )}
           >
-            <Text as="h5" typography='headline-md' className="text-orange-400">
+            <Text as="h5" typography="headline-md" className="text-orange-400">
               {expression.expression}
             </Text>
             <ul className="space-y-1 text-gray-700 list-disc list-inside">
               <li>
-                <Text typography='body-lg'>
+                <Text typography="body-lg">
                   <span className="font-semibold">뜻:</span> {expression.meaning}
                 </Text>
               </li>
               <li>
-                <Text typography='body-lg'>
+                <Text typography="body-lg">
                   <span className="font-semibold">의미:</span> {expression.usage}
                 </Text>
               </li>

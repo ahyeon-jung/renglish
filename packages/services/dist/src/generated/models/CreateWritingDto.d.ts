@@ -15,19 +15,25 @@
  * @interface CreateWritingDto
  */
 export interface CreateWritingDto {
-    /**
-     *
-     * @type {string}
-     * @memberof CreateWritingDto
-     */
-    writing: string;
+  /**
+   *
+   * @type {string}
+   * @memberof CreateWritingDto
+   */
+  writing: string;
 }
 /**
  * Check if a given object implements the CreateWritingDto interface.
  */
 export declare function instanceOfCreateWritingDto(value: object): value is CreateWritingDto;
 export declare function CreateWritingDtoFromJSON(json: any): CreateWritingDto;
-export declare function CreateWritingDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateWritingDto;
+export declare function CreateWritingDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): CreateWritingDto;
 export declare function CreateWritingDtoToJSON(json: any): CreateWritingDto;
-export declare function CreateWritingDtoToJSONTyped(value?: CreateWritingDto | null, ignoreDiscriminator?: boolean): any;
+export declare function CreateWritingDtoToJSONTyped(
+  value?: CreateWritingDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=CreateWritingDto.d.ts.map

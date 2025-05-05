@@ -4,7 +4,7 @@ import {
   TextField,
   DateField,
   BooleanField,
-  useRecordContext
+  useRecordContext,
 } from "react-admin";
 import { Box, Typography, Chip } from "@mui/material";
 

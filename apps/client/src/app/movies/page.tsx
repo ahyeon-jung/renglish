@@ -1,6 +1,6 @@
-import { Suspense } from 'react';
+import { Suspense } from "react";
 
-import MoviesPage from './Movies';
+import MoviesPage from "./Movies";
 
 export default function Movies() {
   return (

@@ -1,22 +1,22 @@
-import './globals.css';
-import '../styles/print.css';
+import "./globals.css";
+import "../styles/print.css";
 
-import { ENV } from '@/constants/env';
-import { GoogleAnalytics } from '@next/third-parties/google';
-import Header from '@/components/Header';
-import type { Metadata } from 'next';
-import Toast from '@/components/Toast';
-import AppProvider from '@/providers/AppProvider';
+import { ENV } from "@/constants/env";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import Header from "@/components/Header";
+import type { Metadata } from "next";
+import Toast from "@/components/Toast";
+import AppProvider from "@/providers/AppProvider";
 
 export const metadata: Metadata = {
-  title: 'REnglish',
-  description: 'Improve your English skills with scripts',
-  keywords: ['English', 'Learning', 'Practice', '영어 공부', '영어 대본', '대본'],
+  title: "REnglish",
+  description: "Improve your English skills with scripts",
+  keywords: ["English", "Learning", "Practice", "영어 공부", "영어 대본", "대본"],
   openGraph: {
-    title: 'REnglish',
-    description: 'Improve your English skills with scripts',
-    type: 'website',
-    url: 'https://renglish.vercel.app/',
+    title: "REnglish",
+    description: "Improve your English skills with scripts",
+    type: "website",
+    url: "https://renglish.vercel.app/",
   },
   verification: {
     google: ENV.GC_ID,

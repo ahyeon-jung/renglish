@@ -1,11 +1,11 @@
-'use server';
+"use server";
 
-import { FetchError, handleFetchError } from '@/utils/error';
+import { FetchError, handleFetchError } from "@/utils/error";
 
-import { ActionResponse } from '@/types/action';
-import { writingApi } from '@/libs/api';
-import { cookies } from 'next/headers';
-import { ENV } from '@/constants/env';
+import { ActionResponse } from "@/types/action";
+import { writingApi } from "@/libs/api";
+import { cookies } from "next/headers";
+import { ENV } from "@/constants/env";
 
 type AddWritingActionParams = { dialogueId: string; writing: string };
 
@@ -14,7 +14,7 @@ export default async function addWritingAction({
   writing,
 }: AddWritingActionParams): Promise<ActionResponse<null>> {
   if (!dialogueId || !writing) {
-    return { status: 200, success: false, message: 'no required data', data: null };
+    return { status: 200, success: false, message: "no required data", data: null };
   }
 
   const cookieStore = await cookies();
@@ -23,7 +23,7 @@ export default async function addWritingAction({
     return {
       status: 401,
       success: false,
-      message: 'No Authorization',
+      message: "No Authorization",
       data: null,
     };
   }
@@ -37,7 +37,7 @@ export default async function addWritingAction({
     return {
       status: 200,
       success: true,
-      message: 'Save dialogue writing successfully',
+      message: "Save dialogue writing successfully",
       data: null,
     };
   } catch (e) {

@@ -15,38 +15,35 @@
  * Check if a given object implements the CreateStudyDto interface.
  */
 export function instanceOfCreateStudyDto(value) {
-    if (!('title' in value) || value['title'] === undefined)
-        return false;
-    if (!('studiedAt' in value) || value['studiedAt'] === undefined)
-        return false;
-    if (!('description' in value) || value['description'] === undefined)
-        return false;
-    return true;
+  if (!("title" in value) || value["title"] === undefined) return false;
+  if (!("studiedAt" in value) || value["studiedAt"] === undefined) return false;
+  if (!("description" in value) || value["description"] === undefined) return false;
+  return true;
 }
 export function CreateStudyDtoFromJSON(json) {
-    return CreateStudyDtoFromJSONTyped(json, false);
+  return CreateStudyDtoFromJSONTyped(json, false);
 }
 export function CreateStudyDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'title': json['title'],
-        'studiedAt': (new Date(json['studiedAt'])),
-        'description': json['description'],
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    title: json["title"],
+    studiedAt: new Date(json["studiedAt"]),
+    description: json["description"],
+  };
 }
 export function CreateStudyDtoToJSON(json) {
-    return CreateStudyDtoToJSONTyped(json, false);
+  return CreateStudyDtoToJSONTyped(json, false);
 }
 export function CreateStudyDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'title': value['title'],
-        'studiedAt': ((value['studiedAt']).toISOString()),
-        'description': value['description'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    title: value["title"],
+    studiedAt: value["studiedAt"].toISOString(),
+    description: value["description"],
+  };
 }
 //# sourceMappingURL=CreateStudyDto.js.map

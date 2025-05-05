@@ -1,28 +1,28 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from 'react';
-import { io } from 'socket.io-client';
-import { SOCKET_EVENTS } from '@/constants/socket-event';
-import { ENV } from '@/constants/env';
-import LocalVideo from '../LocalVideo';
-import { ICE_SERVERS } from '@/constants/ice-servers';
-import RemoteVideo from '../RemoteVideo';
-import clsx from 'clsx';
-import { useLocalVideo } from '../../hooks/useLocalVideo';
-import { toast } from 'react-toastify';
+import React, { useEffect, useRef, useState } from "react";
+import { io } from "socket.io-client";
+import { SOCKET_EVENTS } from "@/constants/socket-event";
+import { ENV } from "@/constants/env";
+import LocalVideo from "../LocalVideo";
+import { ICE_SERVERS } from "@/constants/ice-servers";
+import RemoteVideo from "../RemoteVideo";
+import clsx from "clsx";
+import { useLocalVideo } from "../../hooks/useLocalVideo";
+import { toast } from "react-toastify";
 
 const SOCKET_URL = `${ENV.API_BASE_URL}/socket.io/chat`;
 const SOCKET_OPTION = {
-  transports: ['websocket'],
+  transports: ["websocket"],
   reconnection: true,
 };
 const PEER_CONNECTION_OPTIONS = {
-  iceServers: ICE_SERVERS
-}
+  iceServers: ICE_SERVERS,
+};
 
 type WebRTCClientsProps = {
   sceneId: string;
-}
+};
 
 export default function WebRTCClients({ sceneId: roomId }: WebRTCClientsProps) {
   const {
@@ -32,7 +32,8 @@ export default function WebRTCClients({ sceneId: roomId }: WebRTCClientsProps) {
     toggleAudio,
     toggleVideo,
     pcRef,
-    localVideoRef, startLocalStream,
+    localVideoRef,
+    startLocalStream,
   } = useLocalVideo();
 
   const socketRef = useRef<any>(null);
@@ -50,7 +51,7 @@ export default function WebRTCClients({ sceneId: roomId }: WebRTCClientsProps) {
             roomId,
             from: socketRef.current.id,
             signal: {
-              type: 'ice-candidate',
+              type: "ice-candidate",
               candidate: event.candidate,
             },
           });
@@ -66,7 +67,7 @@ export default function WebRTCClients({ sceneId: roomId }: WebRTCClientsProps) {
       pcRef.current = pc;
       return pc;
     } catch (err) {
-      console.error('PeerConnection 생성 오류:', err);
+      console.error("PeerConnection 생성 오류:", err);
       return null;
     }
   };
@@ -85,13 +86,12 @@ export default function WebRTCClients({ sceneId: roomId }: WebRTCClientsProps) {
         roomId,
         from: socketRef.current.id,
         signal: {
-          type: 'answer',
+          type: "answer",
           answer,
         },
       });
-
     } catch (err) {
-      console.error('Offer 처리 오류:', err);
+      console.error("Offer 처리 오류:", err);
     }
   };
 
@@ -102,7 +102,7 @@ export default function WebRTCClients({ sceneId: roomId }: WebRTCClientsProps) {
       await pcRef.current.setRemoteDescription(new RTCSessionDescription(answer));
       remoteDescSet.current = true;
     } catch (err) {
-      console.error('Answer 처리 오류:', err);
+      console.error("Answer 처리 오류:", err);
     }
   };
 
@@ -111,9 +111,9 @@ export default function WebRTCClients({ sceneId: roomId }: WebRTCClientsProps) {
 
     const pc = createPeerConnection();
 
-    startLocalStream().then(stream => {
+    startLocalStream().then((stream) => {
       if (stream && pc) {
-        stream.getTracks().forEach(track => pc.addTrack(track, stream));
+        stream.getTracks().forEach((track) => pc.addTrack(track, stream));
       }
     });
 
@@ -122,11 +122,11 @@ export default function WebRTCClients({ sceneId: roomId }: WebRTCClientsProps) {
     });
 
     socketRef.current.on(SOCKET_EVENTS.DISCONNECT, () => {
-      toast.error('소켓 연결에 실패했습니다.')
+      toast.error("소켓 연결에 실패했습니다.");
     });
 
     socketRef.current.on(SOCKET_EVENTS.USER_JOINED, async ({ userId }: { userId: string }) => {
-      toast(`${userId}가 입장했습니다.`)
+      toast(`${userId}가 입장했습니다.`);
 
       if (pc) {
         try {
@@ -136,34 +136,37 @@ export default function WebRTCClients({ sceneId: roomId }: WebRTCClientsProps) {
             roomId,
             from: socketRef.current.id,
             signal: {
-              type: 'offer',
+              type: "offer",
               offer,
             },
           });
         } catch (err) {
-          console.error('Offer 생성 오류:', err);
+          console.error("Offer 생성 오류:", err);
         }
       }
     });
 
-    socketRef.current.on(SOCKET_EVENTS.SIGNAL, async ({ signal }: { from: string, signal: any }) => {
-      switch (signal.type) {
-        case 'offer':
-          await handleOffer(signal.offer);
-          break;
-        case 'answer':
-          await handleAnswer(signal.answer);
-          break;
-        case 'ice-candidate':
-          if (pcRef.current?.remoteDescription) {
-            await pcRef.current.addIceCandidate(new RTCIceCandidate(signal.candidate));
-          }
-          break;
-      }
-    });
+    socketRef.current.on(
+      SOCKET_EVENTS.SIGNAL,
+      async ({ signal }: { from: string; signal: any }) => {
+        switch (signal.type) {
+          case "offer":
+            await handleOffer(signal.offer);
+            break;
+          case "answer":
+            await handleAnswer(signal.answer);
+            break;
+          case "ice-candidate":
+            if (pcRef.current?.remoteDescription) {
+              await pcRef.current.addIceCandidate(new RTCIceCandidate(signal.candidate));
+            }
+            break;
+        }
+      },
+    );
 
     socketRef.current.on(SOCKET_EVENTS.USER_LEFT, ({ userId }: { userId: string }) => {
-      toast(`${userId}(이)가 나갔습니다.`)
+      toast(`${userId}(이)가 나갔습니다.`);
 
       if (remoteVideoRef.current) {
         remoteVideoRef.current.srcObject = null;
@@ -172,7 +175,7 @@ export default function WebRTCClients({ sceneId: roomId }: WebRTCClientsProps) {
 
     return () => {
       if (localStream) {
-        localStream.getTracks().forEach(track => track.stop());
+        localStream.getTracks().forEach((track) => track.stop());
       }
 
       if (pcRef.current) {
@@ -184,10 +187,12 @@ export default function WebRTCClients({ sceneId: roomId }: WebRTCClientsProps) {
   }, []);
 
   return (
-    <div className={clsx(
-      "p-2 fixed top-[var(--header-height)] right-0",
-      "flex flex-col flex-wrap gap-4 bg-gray-300"
-    )}>
+    <div
+      className={clsx(
+        "p-2 fixed top-[var(--header-height)] right-0",
+        "flex flex-col flex-wrap gap-4 bg-gray-300",
+      )}
+    >
       <LocalVideo
         stream={localStream}
         isVideoEnabled={videoEnabled}
@@ -199,4 +204,4 @@ export default function WebRTCClients({ sceneId: roomId }: WebRTCClientsProps) {
       <RemoteVideo videoRef={remoteVideoRef as React.RefObject<HTMLVideoElement>} />
     </div>
   );
-};
+}

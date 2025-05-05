@@ -81,6 +81,6 @@ const getList = async (resource: string, params: any) => {
     data: [],
     total: 0,
   };
-}
+};
 
 export default getList;

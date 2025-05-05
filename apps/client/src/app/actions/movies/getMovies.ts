@@ -1,10 +1,10 @@
-'use server';
+"use server";
 
-import { PaginationParams, PaginationResponse, SearchParams } from '@/types/api';
+import { PaginationParams, PaginationResponse, SearchParams } from "@/types/api";
 
-import { ActionResponse } from '@/types/action';
-import { Movie } from '@/types/movie';
-import { movieApi } from '@/libs/api';
+import { ActionResponse } from "@/types/action";
+import { Movie } from "@/types/movie";
+import { movieApi } from "@/libs/api";
 
 type GetMoviesParams = { category?: string } & SearchParams & PaginationParams;
 
@@ -19,7 +19,7 @@ export default async function getMovies({
   return {
     status: 200,
     success: true,
-    message: 'Fetch movies successfully',
+    message: "Fetch movies successfully",
     data: response as unknown as PaginationResponse<Movie>,
   };
 }

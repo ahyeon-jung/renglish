@@ -15,31 +15,37 @@
  * @interface UpdateDialogueDto
  */
 export interface UpdateDialogueDto {
-    /**
-     * 영어 대사
-     * @type {string}
-     * @memberof UpdateDialogueDto
-     */
-    englishScript?: string;
-    /**
-     * 한국어 대사
-     * @type {string}
-     * @memberof UpdateDialogueDto
-     */
-    koreanScript?: string;
-    /**
-     *
-     * @type {number}
-     * @memberof UpdateDialogueDto
-     */
-    order?: number;
+  /**
+   * 영어 대사
+   * @type {string}
+   * @memberof UpdateDialogueDto
+   */
+  englishScript?: string;
+  /**
+   * 한국어 대사
+   * @type {string}
+   * @memberof UpdateDialogueDto
+   */
+  koreanScript?: string;
+  /**
+   *
+   * @type {number}
+   * @memberof UpdateDialogueDto
+   */
+  order?: number;
 }
 /**
  * Check if a given object implements the UpdateDialogueDto interface.
  */
 export declare function instanceOfUpdateDialogueDto(value: object): value is UpdateDialogueDto;
 export declare function UpdateDialogueDtoFromJSON(json: any): UpdateDialogueDto;
-export declare function UpdateDialogueDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateDialogueDto;
+export declare function UpdateDialogueDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): UpdateDialogueDto;
 export declare function UpdateDialogueDtoToJSON(json: any): UpdateDialogueDto;
-export declare function UpdateDialogueDtoToJSONTyped(value?: UpdateDialogueDto | null, ignoreDiscriminator?: boolean): any;
+export declare function UpdateDialogueDtoToJSONTyped(
+  value?: UpdateDialogueDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=UpdateDialogueDto.d.ts.map

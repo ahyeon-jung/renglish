@@ -1,6 +1,6 @@
-'use server';
+"use server";
 
-import { ENV } from '@/constants/env';
+import { ENV } from "@/constants/env";
 
 export default async function sendDiscordMessageAction(message: string) {
   const payload = {
@@ -9,9 +9,9 @@ export default async function sendDiscordMessageAction(message: string) {
 
   try {
     const response = await fetch(ENV.WEBHOOK_URL, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(payload),
     });
@@ -20,14 +20,14 @@ export default async function sendDiscordMessageAction(message: string) {
       return {
         status: 200,
         success: true,
-        message: 'Fetch scenes successfully',
+        message: "Fetch scenes successfully",
         data: null,
       };
     } else {
       return {
         status: 500,
         success: false,
-        message: 'Fetch scenes successfully',
+        message: "Fetch scenes successfully",
         data: null,
       };
     }
@@ -35,7 +35,7 @@ export default async function sendDiscordMessageAction(message: string) {
     return {
       status: 500,
       success: false,
-      message: 'Fetch scenes successfully',
+      message: "Fetch scenes successfully",
       data: null,
     };
   }

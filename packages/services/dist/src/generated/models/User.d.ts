@@ -15,48 +15,48 @@
  * @interface User
  */
 export interface User {
-    /**
-     * 아이디
-     * @type {string}
-     * @memberof User
-     */
-    id: string;
-    /**
-     * 생성일
-     * @type {Date}
-     * @memberof User
-     */
-    createdAt: Date;
-    /**
-     * 수정일
-     * @type {Date}
-     * @memberof User
-     */
-    updatedAt: Date;
-    /**
-     * 삭제일
-     * @type {Date}
-     * @memberof User
-     */
-    deletedAt: Date;
-    /**
-     * 소셜 계정 플랫폼
-     * @type {string}
-     * @memberof User
-     */
-    provider: string;
-    /**
-     * 이메일
-     * @type {string}
-     * @memberof User
-     */
-    email: string;
-    /**
-     * 닉네임
-     * @type {string}
-     * @memberof User
-     */
-    nickname: string;
+  /**
+   * 아이디
+   * @type {string}
+   * @memberof User
+   */
+  id: string;
+  /**
+   * 생성일
+   * @type {Date}
+   * @memberof User
+   */
+  createdAt: Date;
+  /**
+   * 수정일
+   * @type {Date}
+   * @memberof User
+   */
+  updatedAt: Date;
+  /**
+   * 삭제일
+   * @type {Date}
+   * @memberof User
+   */
+  deletedAt: Date;
+  /**
+   * 소셜 계정 플랫폼
+   * @type {string}
+   * @memberof User
+   */
+  provider: string;
+  /**
+   * 이메일
+   * @type {string}
+   * @memberof User
+   */
+  email: string;
+  /**
+   * 닉네임
+   * @type {string}
+   * @memberof User
+   */
+  nickname: string;
 }
 /**
  * Check if a given object implements the User interface.

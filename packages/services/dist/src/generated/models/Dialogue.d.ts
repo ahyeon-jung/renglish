@@ -9,68 +9,68 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { Scene } from './Scene';
-import type { Speaker } from './Speaker';
+import type { Scene } from "./Scene";
+import type { Speaker } from "./Speaker";
 /**
  *
  * @export
  * @interface Dialogue
  */
 export interface Dialogue {
-    /**
-     * 아이디
-     * @type {string}
-     * @memberof Dialogue
-     */
-    id: string;
-    /**
-     * 생성일
-     * @type {Date}
-     * @memberof Dialogue
-     */
-    createdAt: Date;
-    /**
-     * 수정일
-     * @type {Date}
-     * @memberof Dialogue
-     */
-    updatedAt: Date;
-    /**
-     * 삭제일
-     * @type {Date}
-     * @memberof Dialogue
-     */
-    deletedAt: Date;
-    /**
-     *
-     * @type {string}
-     * @memberof Dialogue
-     */
-    englishScript: string;
-    /**
-     *
-     * @type {string}
-     * @memberof Dialogue
-     */
-    koreanScript: string;
-    /**
-     *
-     * @type {number}
-     * @memberof Dialogue
-     */
-    order: number;
-    /**
-     *
-     * @type {Scene}
-     * @memberof Dialogue
-     */
-    scene: Scene;
-    /**
-     *
-     * @type {Speaker}
-     * @memberof Dialogue
-     */
-    speaker: Speaker;
+  /**
+   * 아이디
+   * @type {string}
+   * @memberof Dialogue
+   */
+  id: string;
+  /**
+   * 생성일
+   * @type {Date}
+   * @memberof Dialogue
+   */
+  createdAt: Date;
+  /**
+   * 수정일
+   * @type {Date}
+   * @memberof Dialogue
+   */
+  updatedAt: Date;
+  /**
+   * 삭제일
+   * @type {Date}
+   * @memberof Dialogue
+   */
+  deletedAt: Date;
+  /**
+   *
+   * @type {string}
+   * @memberof Dialogue
+   */
+  englishScript: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Dialogue
+   */
+  koreanScript: string;
+  /**
+   *
+   * @type {number}
+   * @memberof Dialogue
+   */
+  order: number;
+  /**
+   *
+   * @type {Scene}
+   * @memberof Dialogue
+   */
+  scene: Scene;
+  /**
+   *
+   * @type {Speaker}
+   * @memberof Dialogue
+   */
+  speaker: Speaker;
 }
 /**
  * Check if a given object implements the Dialogue interface.
@@ -79,5 +79,8 @@ export declare function instanceOfDialogue(value: object): value is Dialogue;
 export declare function DialogueFromJSON(json: any): Dialogue;
 export declare function DialogueFromJSONTyped(json: any, ignoreDiscriminator: boolean): Dialogue;
 export declare function DialogueToJSON(json: any): Dialogue;
-export declare function DialogueToJSONTyped(value?: Dialogue | null, ignoreDiscriminator?: boolean): any;
+export declare function DialogueToJSONTyped(
+  value?: Dialogue | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=Dialogue.d.ts.map

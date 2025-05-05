@@ -9,93 +9,134 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import * as runtime from '../runtime';
-import type { CreateMovieDto, Movie, PaginationMovieResponseDto, UpdateMovieImageDto } from '../models/index';
+import * as runtime from "../runtime";
+import type {
+  CreateMovieDto,
+  Movie,
+  PaginationMovieResponseDto,
+  UpdateMovieImageDto,
+} from "../models/index";
 export interface MovieControllerCreateRequest {
-    createMovieDto: CreateMovieDto;
+  createMovieDto: CreateMovieDto;
 }
 export interface MovieControllerFindAllRequest {
-    offset: number;
-    limit: number;
-    category?: string;
-    keyword?: string;
+  offset: number;
+  limit: number;
+  category?: string;
+  keyword?: string;
 }
 export interface MovieControllerFindLatestSceneRequest {
-    limit?: number;
+  limit?: number;
 }
 export interface MovieControllerFindOneRequest {
-    movieId: string;
+  movieId: string;
 }
 export interface MovieControllerRemoveRequest {
-    movieId: string;
+  movieId: string;
 }
 export interface MovieControllerUpdateImageUrlRequest {
-    movieId: string;
-    updateMovieImageDto: UpdateMovieImageDto;
+  movieId: string;
+  updateMovieImageDto: UpdateMovieImageDto;
 }
 /**
  *
  */
 export declare class MoviesApi extends runtime.BaseAPI {
-    /**
-     * 새로운 영화 정보를 생성합니다.
-     * 영화 정보 생성 [TOKEN]
-     */
-    movieControllerCreateRaw(requestParameters: MovieControllerCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Movie>>;
-    /**
-     * 새로운 영화 정보를 생성합니다.
-     * 영화 정보 생성 [TOKEN]
-     */
-    movieControllerCreate(requestParameters: MovieControllerCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Movie | null | undefined>;
-    /**
-     * 모든 영화 정보를 가져옵니다.
-     * 모든 영화 정보 가져오기
-     */
-    movieControllerFindAllRaw(requestParameters: MovieControllerFindAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PaginationMovieResponseDto>>;
-    /**
-     * 모든 영화 정보를 가져옵니다.
-     * 모든 영화 정보 가져오기
-     */
-    movieControllerFindAll(requestParameters: MovieControllerFindAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaginationMovieResponseDto>;
-    /**
-     * 가장 최신 업로드된 장면의 영화 정보를 가져옵니다.
-     * 가장 최신 영화 가져오기
-     */
-    movieControllerFindLatestSceneRaw(requestParameters: MovieControllerFindLatestSceneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Movie>>>;
-    /**
-     * 가장 최신 업로드된 장면의 영화 정보를 가져옵니다.
-     * 가장 최신 영화 가져오기
-     */
-    movieControllerFindLatestScene(requestParameters?: MovieControllerFindLatestSceneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Movie>>;
-    /**
-     * 영화 아이디로 영화화 정보를 가져옵니다.
-     * 영화 아이디로 영화 정보 찾기
-     */
-    movieControllerFindOneRaw(requestParameters: MovieControllerFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Movie>>;
-    /**
-     * 영화 아이디로 영화화 정보를 가져옵니다.
-     * 영화 아이디로 영화 정보 찾기
-     */
-    movieControllerFindOne(requestParameters: MovieControllerFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Movie>;
-    /**
-     * 영화 아이디로 영화화 정보를 삭제합니다.
-     * 영화 정보 삭제 [TOKEN]
-     */
-    movieControllerRemoveRaw(requestParameters: MovieControllerRemoveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Movie>>;
-    /**
-     * 영화 아이디로 영화화 정보를 삭제합니다.
-     * 영화 정보 삭제 [TOKEN]
-     */
-    movieControllerRemove(requestParameters: MovieControllerRemoveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Movie>;
-    /**
-     * 영화 이미지를 추가합니다.
-     * 영화 이미지 추가 [TOKEN]
-     */
-    movieControllerUpdateImageUrlRaw(requestParameters: MovieControllerUpdateImageUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Movie>>;
-    /**
-     * 영화 이미지를 추가합니다.
-     * 영화 이미지 추가 [TOKEN]
-     */
-    movieControllerUpdateImageUrl(requestParameters: MovieControllerUpdateImageUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Movie>;
+  /**
+   * 새로운 영화 정보를 생성합니다.
+   * 영화 정보 생성 [TOKEN]
+   */
+  movieControllerCreateRaw(
+    requestParameters: MovieControllerCreateRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<Movie>>;
+  /**
+   * 새로운 영화 정보를 생성합니다.
+   * 영화 정보 생성 [TOKEN]
+   */
+  movieControllerCreate(
+    requestParameters: MovieControllerCreateRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<Movie | null | undefined>;
+  /**
+   * 모든 영화 정보를 가져옵니다.
+   * 모든 영화 정보 가져오기
+   */
+  movieControllerFindAllRaw(
+    requestParameters: MovieControllerFindAllRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<PaginationMovieResponseDto>>;
+  /**
+   * 모든 영화 정보를 가져옵니다.
+   * 모든 영화 정보 가져오기
+   */
+  movieControllerFindAll(
+    requestParameters: MovieControllerFindAllRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<PaginationMovieResponseDto>;
+  /**
+   * 가장 최신 업로드된 장면의 영화 정보를 가져옵니다.
+   * 가장 최신 영화 가져오기
+   */
+  movieControllerFindLatestSceneRaw(
+    requestParameters: MovieControllerFindLatestSceneRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<Array<Movie>>>;
+  /**
+   * 가장 최신 업로드된 장면의 영화 정보를 가져옵니다.
+   * 가장 최신 영화 가져오기
+   */
+  movieControllerFindLatestScene(
+    requestParameters?: MovieControllerFindLatestSceneRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<Array<Movie>>;
+  /**
+   * 영화 아이디로 영화화 정보를 가져옵니다.
+   * 영화 아이디로 영화 정보 찾기
+   */
+  movieControllerFindOneRaw(
+    requestParameters: MovieControllerFindOneRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<Movie>>;
+  /**
+   * 영화 아이디로 영화화 정보를 가져옵니다.
+   * 영화 아이디로 영화 정보 찾기
+   */
+  movieControllerFindOne(
+    requestParameters: MovieControllerFindOneRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<Movie>;
+  /**
+   * 영화 아이디로 영화화 정보를 삭제합니다.
+   * 영화 정보 삭제 [TOKEN]
+   */
+  movieControllerRemoveRaw(
+    requestParameters: MovieControllerRemoveRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<Movie>>;
+  /**
+   * 영화 아이디로 영화화 정보를 삭제합니다.
+   * 영화 정보 삭제 [TOKEN]
+   */
+  movieControllerRemove(
+    requestParameters: MovieControllerRemoveRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<Movie>;
+  /**
+   * 영화 이미지를 추가합니다.
+   * 영화 이미지 추가 [TOKEN]
+   */
+  movieControllerUpdateImageUrlRaw(
+    requestParameters: MovieControllerUpdateImageUrlRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<Movie>>;
+  /**
+   * 영화 이미지를 추가합니다.
+   * 영화 이미지 추가 [TOKEN]
+   */
+  movieControllerUpdateImageUrl(
+    requestParameters: MovieControllerUpdateImageUrlRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<Movie>;
 }
 //# sourceMappingURL=MoviesApi.d.ts.map

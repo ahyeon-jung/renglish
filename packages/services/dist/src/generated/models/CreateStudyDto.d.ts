@@ -15,31 +15,37 @@
  * @interface CreateStudyDto
  */
 export interface CreateStudyDto {
-    /**
-     * 스터디명
-     * @type {string}
-     * @memberof CreateStudyDto
-     */
-    title: string;
-    /**
-     * 스터디 진행 날짜
-     * @type {Date}
-     * @memberof CreateStudyDto
-     */
-    studiedAt: Date;
-    /**
-     * 스터디 설명
-     * @type {string}
-     * @memberof CreateStudyDto
-     */
-    description: string;
+  /**
+   * 스터디명
+   * @type {string}
+   * @memberof CreateStudyDto
+   */
+  title: string;
+  /**
+   * 스터디 진행 날짜
+   * @type {Date}
+   * @memberof CreateStudyDto
+   */
+  studiedAt: Date;
+  /**
+   * 스터디 설명
+   * @type {string}
+   * @memberof CreateStudyDto
+   */
+  description: string;
 }
 /**
  * Check if a given object implements the CreateStudyDto interface.
  */
 export declare function instanceOfCreateStudyDto(value: object): value is CreateStudyDto;
 export declare function CreateStudyDtoFromJSON(json: any): CreateStudyDto;
-export declare function CreateStudyDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateStudyDto;
+export declare function CreateStudyDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): CreateStudyDto;
 export declare function CreateStudyDtoToJSON(json: any): CreateStudyDto;
-export declare function CreateStudyDtoToJSONTyped(value?: CreateStudyDto | null, ignoreDiscriminator?: boolean): any;
+export declare function CreateStudyDtoToJSONTyped(
+  value?: CreateStudyDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=CreateStudyDto.d.ts.map

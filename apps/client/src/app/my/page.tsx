@@ -1,12 +1,12 @@
-import Button from '@/components/Button';
-import Link from 'next/link';
-import { PATHS } from '@/constants/path';
-import React from 'react';
-import clsx from 'clsx';
+import Button from "@/components/Button";
+import Link from "next/link";
+import { PATHS } from "@/constants/path";
+import React from "react";
+import clsx from "clsx";
 
 export default function MyPage() {
   return (
-    <main className={clsx('mt-[var(--header-height)]', 'flex flex-col gap-4 py-4 px-2')}>
+    <main className={clsx("mt-[var(--header-height)]", "flex flex-col gap-4 py-4 px-2")}>
       <Link href={PATHS.MY.PROFILE}>
         <Button>내 정보</Button>
       </Link>

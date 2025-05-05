@@ -12,16 +12,16 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { Scene } from './Scene';
-import { SceneFromJSON, SceneFromJSONTyped, SceneToJSON, SceneToJSONTyped } from './Scene';
-import type { Speaker } from './Speaker';
+import { mapValues } from "../runtime";
+import type { Scene } from "./Scene";
+import { SceneFromJSON, SceneFromJSONTyped, SceneToJSON, SceneToJSONTyped } from "./Scene";
+import type { Speaker } from "./Speaker";
 import {
   SpeakerFromJSON,
   SpeakerFromJSONTyped,
   SpeakerToJSON,
   SpeakerToJSONTyped,
-} from './Speaker';
+} from "./Speaker";
 
 /**
  *
@@ -89,15 +89,15 @@ export interface Dialogue {
  * Check if a given object implements the Dialogue interface.
  */
 export function instanceOfDialogue(value: object): value is Dialogue {
-  if (!('id' in value) || value['id'] === undefined) return false;
-  if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
-  if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
-  if (!('deletedAt' in value) || value['deletedAt'] === undefined) return false;
-  if (!('englishScript' in value) || value['englishScript'] === undefined) return false;
-  if (!('koreanScript' in value) || value['koreanScript'] === undefined) return false;
-  if (!('order' in value) || value['order'] === undefined) return false;
-  if (!('scene' in value) || value['scene'] === undefined) return false;
-  if (!('speaker' in value) || value['speaker'] === undefined) return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("deletedAt" in value) || value["deletedAt"] === undefined) return false;
+  if (!("englishScript" in value) || value["englishScript"] === undefined) return false;
+  if (!("koreanScript" in value) || value["koreanScript"] === undefined) return false;
+  if (!("order" in value) || value["order"] === undefined) return false;
+  if (!("scene" in value) || value["scene"] === undefined) return false;
+  if (!("speaker" in value) || value["speaker"] === undefined) return false;
   return true;
 }
 
@@ -110,15 +110,15 @@ export function DialogueFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     return json;
   }
   return {
-    id: json['id'],
-    createdAt: new Date(json['createdAt']),
-    updatedAt: new Date(json['updatedAt']),
-    deletedAt: new Date(json['deletedAt']),
-    englishScript: json['english_script'],
-    koreanScript: json['korean_script'],
-    order: json['order'],
-    scene: SceneFromJSON(json['scene']),
-    speaker: SpeakerFromJSON(json['speaker']),
+    id: json["id"],
+    createdAt: new Date(json["createdAt"]),
+    updatedAt: new Date(json["updatedAt"]),
+    deletedAt: new Date(json["deletedAt"]),
+    englishScript: json["english_script"],
+    koreanScript: json["korean_script"],
+    order: json["order"],
+    scene: SceneFromJSON(json["scene"]),
+    speaker: SpeakerFromJSON(json["speaker"]),
   };
 }
 
@@ -135,14 +135,14 @@ export function DialogueToJSONTyped(
   }
 
   return {
-    id: value['id'],
-    createdAt: value['createdAt'].toISOString(),
-    updatedAt: value['updatedAt'].toISOString(),
-    deletedAt: value['deletedAt'].toISOString(),
-    english_script: value['englishScript'],
-    korean_script: value['koreanScript'],
-    order: value['order'],
-    scene: SceneToJSON(value['scene']),
-    speaker: SpeakerToJSON(value['speaker']),
+    id: value["id"],
+    createdAt: value["createdAt"].toISOString(),
+    updatedAt: value["updatedAt"].toISOString(),
+    deletedAt: value["deletedAt"].toISOString(),
+    english_script: value["englishScript"],
+    korean_script: value["koreanScript"],
+    order: value["order"],
+    scene: SceneToJSON(value["scene"]),
+    speaker: SpeakerToJSON(value["speaker"]),
   };
 }

@@ -15,25 +15,31 @@
  * @interface UpdateSpeakerDto
  */
 export interface UpdateSpeakerDto {
-    /**
-     * The name of the speaker
-     * @type {string}
-     * @memberof UpdateSpeakerDto
-     */
-    speakerName?: string;
-    /**
-     * The type of the speaker (e.g., A, B, etc.)
-     * @type {string}
-     * @memberof UpdateSpeakerDto
-     */
-    speakerType?: string;
+  /**
+   * The name of the speaker
+   * @type {string}
+   * @memberof UpdateSpeakerDto
+   */
+  speakerName?: string;
+  /**
+   * The type of the speaker (e.g., A, B, etc.)
+   * @type {string}
+   * @memberof UpdateSpeakerDto
+   */
+  speakerType?: string;
 }
 /**
  * Check if a given object implements the UpdateSpeakerDto interface.
  */
 export declare function instanceOfUpdateSpeakerDto(value: object): value is UpdateSpeakerDto;
 export declare function UpdateSpeakerDtoFromJSON(json: any): UpdateSpeakerDto;
-export declare function UpdateSpeakerDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateSpeakerDto;
+export declare function UpdateSpeakerDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): UpdateSpeakerDto;
 export declare function UpdateSpeakerDtoToJSON(json: any): UpdateSpeakerDto;
-export declare function UpdateSpeakerDtoToJSONTyped(value?: UpdateSpeakerDto | null, ignoreDiscriminator?: boolean): any;
+export declare function UpdateSpeakerDtoToJSONTyped(
+  value?: UpdateSpeakerDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=UpdateSpeakerDto.d.ts.map

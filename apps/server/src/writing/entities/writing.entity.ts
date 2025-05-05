@@ -1,9 +1,9 @@
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
 
-import { ApiProperty } from '@nestjs/swagger';
-import { BaseEntity } from 'src/common/entities/base.entity';
-import { Dialogue } from 'src/dialogue/entities/dialogue.entity';
-import { User } from 'src/user/entities/user.entity';
+import { ApiProperty } from "@nestjs/swagger";
+import { BaseEntity } from "src/common/entities/base.entity";
+import { Dialogue } from "src/dialogue/entities/dialogue.entity";
+import { User } from "src/user/entities/user.entity";
 
 @Entity()
 export class Writing extends BaseEntity {
@@ -20,11 +20,19 @@ export class Writing extends BaseEntity {
   @Column()
   dialogueId: string;
 
-  @ManyToOne(() => User, (user) => user.writings, { eager: false })
-  @JoinColumn({ name: 'userId' })
+  @ManyToOne(
+    () => User,
+    (user) => user.writings,
+    { eager: false },
+  )
+  @JoinColumn({ name: "userId" })
   user?: User;
 
-  @ManyToOne(() => Dialogue, (dialogue) => dialogue.writings, { eager: false })
-  @JoinColumn({ name: 'dialogueId' })
+  @ManyToOne(
+    () => Dialogue,
+    (dialogue) => dialogue.writings,
+    { eager: false },
+  )
+  @JoinColumn({ name: "dialogueId" })
   dialogue?: Dialogue;
 }

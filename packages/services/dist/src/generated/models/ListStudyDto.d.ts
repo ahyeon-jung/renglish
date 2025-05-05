@@ -9,81 +9,87 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { User } from './User';
-import type { ListStudySceneDto } from './ListStudySceneDto';
+import type { User } from "./User";
+import type { ListStudySceneDto } from "./ListStudySceneDto";
 /**
  *
  * @export
  * @interface ListStudyDto
  */
 export interface ListStudyDto {
-    /**
-     * 아이디
-     * @type {string}
-     * @memberof ListStudyDto
-     */
-    id: string;
-    /**
-     * 생성일
-     * @type {Date}
-     * @memberof ListStudyDto
-     */
-    createdAt: Date;
-    /**
-     * 수정일
-     * @type {Date}
-     * @memberof ListStudyDto
-     */
-    updatedAt: Date;
-    /**
-     * 스터디 진행 일자
-     * @type {Date}
-     * @memberof ListStudyDto
-     */
-    studiedAt: Date;
-    /**
-     * 스터디 제목
-     * @type {string}
-     * @memberof ListStudyDto
-     */
-    title: string;
-    /**
-     * 스터디 설명
-     * @type {string}
-     * @memberof ListStudyDto
-     */
-    description: string;
-    /**
-     * 스터디 진행 상황
-     * @type {boolean}
-     * @memberof ListStudyDto
-     */
-    isCompleted: boolean;
-    /**
-     * 스터디 신청자
-     * @type {Array<User>}
-     * @memberof ListStudyDto
-     */
-    applicants?: Array<User>;
-    /**
-     * 스터디 참여자
-     * @type {Array<User>}
-     * @memberof ListStudyDto
-     */
-    participants?: Array<User>;
-    /**
-     *
-     * @type {ListStudySceneDto}
-     * @memberof ListStudyDto
-     */
-    scene: ListStudySceneDto;
+  /**
+   * 아이디
+   * @type {string}
+   * @memberof ListStudyDto
+   */
+  id: string;
+  /**
+   * 생성일
+   * @type {Date}
+   * @memberof ListStudyDto
+   */
+  createdAt: Date;
+  /**
+   * 수정일
+   * @type {Date}
+   * @memberof ListStudyDto
+   */
+  updatedAt: Date;
+  /**
+   * 스터디 진행 일자
+   * @type {Date}
+   * @memberof ListStudyDto
+   */
+  studiedAt: Date;
+  /**
+   * 스터디 제목
+   * @type {string}
+   * @memberof ListStudyDto
+   */
+  title: string;
+  /**
+   * 스터디 설명
+   * @type {string}
+   * @memberof ListStudyDto
+   */
+  description: string;
+  /**
+   * 스터디 진행 상황
+   * @type {boolean}
+   * @memberof ListStudyDto
+   */
+  isCompleted: boolean;
+  /**
+   * 스터디 신청자
+   * @type {Array<User>}
+   * @memberof ListStudyDto
+   */
+  applicants?: Array<User>;
+  /**
+   * 스터디 참여자
+   * @type {Array<User>}
+   * @memberof ListStudyDto
+   */
+  participants?: Array<User>;
+  /**
+   *
+   * @type {ListStudySceneDto}
+   * @memberof ListStudyDto
+   */
+  scene: ListStudySceneDto;
 }
 /**
  * Check if a given object implements the ListStudyDto interface.
  */
 export declare function instanceOfListStudyDto(value: object): value is ListStudyDto;
 export declare function ListStudyDtoFromJSON(json: any): ListStudyDto;
-export declare function ListStudyDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListStudyDto;
+export declare function ListStudyDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): ListStudyDto;
 export declare function ListStudyDtoToJSON(json: any): ListStudyDto;
-export declare function ListStudyDtoToJSONTyped(value?: ListStudyDto | null, ignoreDiscriminator?: boolean): any;
+export declare function ListStudyDtoToJSONTyped(
+  value?: ListStudyDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=ListStudyDto.d.ts.map

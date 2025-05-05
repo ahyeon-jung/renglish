@@ -11,47 +11,43 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ListStudyDtoFromJSON, ListStudyDtoToJSON, } from './ListStudyDto';
+import { ListStudyDtoFromJSON, ListStudyDtoToJSON } from "./ListStudyDto";
 /**
  * Check if a given object implements the PaginationStudyResponseDto interface.
  */
 export function instanceOfPaginationStudyResponseDto(value) {
-    if (!('totalCount' in value) || value['totalCount'] === undefined)
-        return false;
-    if (!('currentPage' in value) || value['currentPage'] === undefined)
-        return false;
-    if (!('limit' in value) || value['limit'] === undefined)
-        return false;
-    if (!('data' in value) || value['data'] === undefined)
-        return false;
-    return true;
+  if (!("totalCount" in value) || value["totalCount"] === undefined) return false;
+  if (!("currentPage" in value) || value["currentPage"] === undefined) return false;
+  if (!("limit" in value) || value["limit"] === undefined) return false;
+  if (!("data" in value) || value["data"] === undefined) return false;
+  return true;
 }
 export function PaginationStudyResponseDtoFromJSON(json) {
-    return PaginationStudyResponseDtoFromJSONTyped(json, false);
+  return PaginationStudyResponseDtoFromJSONTyped(json, false);
 }
 export function PaginationStudyResponseDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'totalCount': json['totalCount'],
-        'currentPage': json['currentPage'],
-        'limit': json['limit'],
-        'data': (json['data'].map(ListStudyDtoFromJSON)),
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    totalCount: json["totalCount"],
+    currentPage: json["currentPage"],
+    limit: json["limit"],
+    data: json["data"].map(ListStudyDtoFromJSON),
+  };
 }
 export function PaginationStudyResponseDtoToJSON(json) {
-    return PaginationStudyResponseDtoToJSONTyped(json, false);
+  return PaginationStudyResponseDtoToJSONTyped(json, false);
 }
 export function PaginationStudyResponseDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'totalCount': value['totalCount'],
-        'currentPage': value['currentPage'],
-        'limit': value['limit'],
-        'data': (value['data'].map(ListStudyDtoToJSON)),
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    totalCount: value["totalCount"],
+    currentPage: value["currentPage"],
+    limit: value["limit"],
+    data: value["data"].map(ListStudyDtoToJSON),
+  };
 }
 //# sourceMappingURL=PaginationStudyResponseDto.js.map

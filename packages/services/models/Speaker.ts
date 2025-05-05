@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
  *
  * @export
@@ -61,12 +61,12 @@ export interface Speaker {
  * Check if a given object implements the Speaker interface.
  */
 export function instanceOfSpeaker(value: object): value is Speaker {
-  if (!('id' in value) || value['id'] === undefined) return false;
-  if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
-  if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
-  if (!('deletedAt' in value) || value['deletedAt'] === undefined) return false;
-  if (!('speakerName' in value) || value['speakerName'] === undefined) return false;
-  if (!('speakerType' in value) || value['speakerType'] === undefined) return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("deletedAt" in value) || value["deletedAt"] === undefined) return false;
+  if (!("speakerName" in value) || value["speakerName"] === undefined) return false;
+  if (!("speakerType" in value) || value["speakerType"] === undefined) return false;
   return true;
 }
 
@@ -79,12 +79,12 @@ export function SpeakerFromJSONTyped(json: any, ignoreDiscriminator: boolean): S
     return json;
   }
   return {
-    id: json['id'],
-    createdAt: new Date(json['createdAt']),
-    updatedAt: new Date(json['updatedAt']),
-    deletedAt: new Date(json['deletedAt']),
-    speakerName: json['speaker_name'],
-    speakerType: json['speaker_type'],
+    id: json["id"],
+    createdAt: new Date(json["createdAt"]),
+    updatedAt: new Date(json["updatedAt"]),
+    deletedAt: new Date(json["deletedAt"]),
+    speakerName: json["speaker_name"],
+    speakerType: json["speaker_type"],
   };
 }
 
@@ -101,11 +101,11 @@ export function SpeakerToJSONTyped(
   }
 
   return {
-    id: value['id'],
-    createdAt: value['createdAt'].toISOString(),
-    updatedAt: value['updatedAt'].toISOString(),
-    deletedAt: value['deletedAt'].toISOString(),
-    speaker_name: value['speakerName'],
-    speaker_type: value['speakerType'],
+    id: value["id"],
+    createdAt: value["createdAt"].toISOString(),
+    updatedAt: value["updatedAt"].toISOString(),
+    deletedAt: value["deletedAt"].toISOString(),
+    speaker_name: value["speakerName"],
+    speaker_type: value["speakerType"],
   };
 }

@@ -9,44 +9,52 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { ListStudyDto } from './ListStudyDto';
+import type { ListStudyDto } from "./ListStudyDto";
 /**
  *
  * @export
  * @interface PaginationStudyResponseDto
  */
 export interface PaginationStudyResponseDto {
-    /**
-     * 전체 항목 수
-     * @type {number}
-     * @memberof PaginationStudyResponseDto
-     */
-    totalCount: number;
-    /**
-     * 현재 페이지 번호
-     * @type {number}
-     * @memberof PaginationStudyResponseDto
-     */
-    currentPage: number;
-    /**
-     * 페이지당 항목 수
-     * @type {number}
-     * @memberof PaginationStudyResponseDto
-     */
-    limit: number;
-    /**
-     * 응답 데이터 배열
-     * @type {Array<ListStudyDto>}
-     * @memberof PaginationStudyResponseDto
-     */
-    data: Array<ListStudyDto>;
+  /**
+   * 전체 항목 수
+   * @type {number}
+   * @memberof PaginationStudyResponseDto
+   */
+  totalCount: number;
+  /**
+   * 현재 페이지 번호
+   * @type {number}
+   * @memberof PaginationStudyResponseDto
+   */
+  currentPage: number;
+  /**
+   * 페이지당 항목 수
+   * @type {number}
+   * @memberof PaginationStudyResponseDto
+   */
+  limit: number;
+  /**
+   * 응답 데이터 배열
+   * @type {Array<ListStudyDto>}
+   * @memberof PaginationStudyResponseDto
+   */
+  data: Array<ListStudyDto>;
 }
 /**
  * Check if a given object implements the PaginationStudyResponseDto interface.
  */
-export declare function instanceOfPaginationStudyResponseDto(value: object): value is PaginationStudyResponseDto;
+export declare function instanceOfPaginationStudyResponseDto(
+  value: object,
+): value is PaginationStudyResponseDto;
 export declare function PaginationStudyResponseDtoFromJSON(json: any): PaginationStudyResponseDto;
-export declare function PaginationStudyResponseDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): PaginationStudyResponseDto;
+export declare function PaginationStudyResponseDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): PaginationStudyResponseDto;
 export declare function PaginationStudyResponseDtoToJSON(json: any): PaginationStudyResponseDto;
-export declare function PaginationStudyResponseDtoToJSONTyped(value?: PaginationStudyResponseDto | null, ignoreDiscriminator?: boolean): any;
+export declare function PaginationStudyResponseDtoToJSONTyped(
+  value?: PaginationStudyResponseDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=PaginationStudyResponseDto.d.ts.map

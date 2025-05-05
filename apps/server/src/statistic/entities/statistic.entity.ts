@@ -1,7 +1,7 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity } from "typeorm";
 
-import { ApiProperty } from '@nestjs/swagger';
-import { BaseEntity } from 'src/common/entities/base.entity';
+import { ApiProperty } from "@nestjs/swagger";
+import { BaseEntity } from "src/common/entities/base.entity";
 
 @Entity()
 export class Statistic extends BaseEntity {
@@ -11,7 +11,7 @@ export class Statistic extends BaseEntity {
   @Column()
   @ApiProperty({
     type: String,
-    example: 'visitor',
+    example: "visitor",
   })
   type: string;
 

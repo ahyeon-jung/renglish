@@ -1,8 +1,8 @@
-'use server';
+"use server";
 
-import { ENV } from '@/constants/env';
-import { myApi } from '@/libs/api';
-import { cookies } from 'next/headers';
+import { ENV } from "@/constants/env";
+import { myApi } from "@/libs/api";
+import { cookies } from "next/headers";
 
 export default async function getAuthDataAction() {
   const cookieStore = await cookies();
@@ -11,7 +11,7 @@ export default async function getAuthDataAction() {
     return {
       status: 401,
       success: false,
-      message: 'No Authorization',
+      message: "No Authorization",
       data: null,
     };
   }
@@ -21,7 +21,7 @@ export default async function getAuthDataAction() {
   return {
     status: 200,
     success: true,
-    message: 'Fetch auth user data successfully',
+    message: "Fetch auth user data successfully",
     data: response,
   };
 }

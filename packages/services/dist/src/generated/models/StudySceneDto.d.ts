@@ -9,75 +9,81 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { Movie } from './Movie';
-import type { Study } from './Study';
+import type { Movie } from "./Movie";
+import type { Study } from "./Study";
 /**
  *
  * @export
  * @interface StudySceneDto
  */
 export interface StudySceneDto {
-    /**
-     * 아이디
-     * @type {string}
-     * @memberof StudySceneDto
-     */
-    id: string;
-    /**
-     * 생성일
-     * @type {Date}
-     * @memberof StudySceneDto
-     */
-    createdAt: Date;
-    /**
-     * 수정일
-     * @type {Date}
-     * @memberof StudySceneDto
-     */
-    updatedAt: Date;
-    /**
-     * 삭제일
-     * @type {Date}
-     * @memberof StudySceneDto
-     */
-    deletedAt: Date;
-    /**
-     *
-     * @type {string}
-     * @memberof StudySceneDto
-     */
-    title: string;
-    /**
-     *
-     * @type {string}
-     * @memberof StudySceneDto
-     */
-    description: string;
-    /**
-     *
-     * @type {string}
-     * @memberof StudySceneDto
-     */
-    audioUrl: string;
-    /**
-     *
-     * @type {Movie}
-     * @memberof StudySceneDto
-     */
-    movie: Movie;
-    /**
-     *
-     * @type {Study}
-     * @memberof StudySceneDto
-     */
-    study: Study;
+  /**
+   * 아이디
+   * @type {string}
+   * @memberof StudySceneDto
+   */
+  id: string;
+  /**
+   * 생성일
+   * @type {Date}
+   * @memberof StudySceneDto
+   */
+  createdAt: Date;
+  /**
+   * 수정일
+   * @type {Date}
+   * @memberof StudySceneDto
+   */
+  updatedAt: Date;
+  /**
+   * 삭제일
+   * @type {Date}
+   * @memberof StudySceneDto
+   */
+  deletedAt: Date;
+  /**
+   *
+   * @type {string}
+   * @memberof StudySceneDto
+   */
+  title: string;
+  /**
+   *
+   * @type {string}
+   * @memberof StudySceneDto
+   */
+  description: string;
+  /**
+   *
+   * @type {string}
+   * @memberof StudySceneDto
+   */
+  audioUrl: string;
+  /**
+   *
+   * @type {Movie}
+   * @memberof StudySceneDto
+   */
+  movie: Movie;
+  /**
+   *
+   * @type {Study}
+   * @memberof StudySceneDto
+   */
+  study: Study;
 }
 /**
  * Check if a given object implements the StudySceneDto interface.
  */
 export declare function instanceOfStudySceneDto(value: object): value is StudySceneDto;
 export declare function StudySceneDtoFromJSON(json: any): StudySceneDto;
-export declare function StudySceneDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): StudySceneDto;
+export declare function StudySceneDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): StudySceneDto;
 export declare function StudySceneDtoToJSON(json: any): StudySceneDto;
-export declare function StudySceneDtoToJSONTyped(value?: StudySceneDto | null, ignoreDiscriminator?: boolean): any;
+export declare function StudySceneDtoToJSONTyped(
+  value?: StudySceneDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=StudySceneDto.d.ts.map

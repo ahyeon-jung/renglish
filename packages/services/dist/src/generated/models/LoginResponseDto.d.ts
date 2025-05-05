@@ -15,25 +15,31 @@
  * @interface LoginResponseDto
  */
 export interface LoginResponseDto {
-    /**
-     * 사용자의 액세스 토큰
-     * @type {string}
-     * @memberof LoginResponseDto
-     */
-    accessToken: string;
-    /**
-     * 사용자의 리프레시 토큰
-     * @type {string}
-     * @memberof LoginResponseDto
-     */
-    refreshToken: string;
+  /**
+   * 사용자의 액세스 토큰
+   * @type {string}
+   * @memberof LoginResponseDto
+   */
+  accessToken: string;
+  /**
+   * 사용자의 리프레시 토큰
+   * @type {string}
+   * @memberof LoginResponseDto
+   */
+  refreshToken: string;
 }
 /**
  * Check if a given object implements the LoginResponseDto interface.
  */
 export declare function instanceOfLoginResponseDto(value: object): value is LoginResponseDto;
 export declare function LoginResponseDtoFromJSON(json: any): LoginResponseDto;
-export declare function LoginResponseDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): LoginResponseDto;
+export declare function LoginResponseDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): LoginResponseDto;
 export declare function LoginResponseDtoToJSON(json: any): LoginResponseDto;
-export declare function LoginResponseDtoToJSONTyped(value?: LoginResponseDto | null, ignoreDiscriminator?: boolean): any;
+export declare function LoginResponseDtoToJSONTyped(
+  value?: LoginResponseDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=LoginResponseDto.d.ts.map

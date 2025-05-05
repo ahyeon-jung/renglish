@@ -9,38 +9,46 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { PaginationSceneDto } from './PaginationSceneDto';
+import type { PaginationSceneDto } from "./PaginationSceneDto";
 /**
  *
  * @export
  * @interface PaginationSceneResponseDto
  */
 export interface PaginationSceneResponseDto {
-    /**
-     * 전체 항목 수
-     * @type {number}
-     * @memberof PaginationSceneResponseDto
-     */
-    totalCount: number;
-    /**
-     * 현재 페이지 번호
-     * @type {number}
-     * @memberof PaginationSceneResponseDto
-     */
-    currentPage: number;
-    /**
-     * 응답 데이터 배열
-     * @type {Array<PaginationSceneDto>}
-     * @memberof PaginationSceneResponseDto
-     */
-    data: Array<PaginationSceneDto>;
+  /**
+   * 전체 항목 수
+   * @type {number}
+   * @memberof PaginationSceneResponseDto
+   */
+  totalCount: number;
+  /**
+   * 현재 페이지 번호
+   * @type {number}
+   * @memberof PaginationSceneResponseDto
+   */
+  currentPage: number;
+  /**
+   * 응답 데이터 배열
+   * @type {Array<PaginationSceneDto>}
+   * @memberof PaginationSceneResponseDto
+   */
+  data: Array<PaginationSceneDto>;
 }
 /**
  * Check if a given object implements the PaginationSceneResponseDto interface.
  */
-export declare function instanceOfPaginationSceneResponseDto(value: object): value is PaginationSceneResponseDto;
+export declare function instanceOfPaginationSceneResponseDto(
+  value: object,
+): value is PaginationSceneResponseDto;
 export declare function PaginationSceneResponseDtoFromJSON(json: any): PaginationSceneResponseDto;
-export declare function PaginationSceneResponseDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): PaginationSceneResponseDto;
+export declare function PaginationSceneResponseDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): PaginationSceneResponseDto;
 export declare function PaginationSceneResponseDtoToJSON(json: any): PaginationSceneResponseDto;
-export declare function PaginationSceneResponseDtoToJSONTyped(value?: PaginationSceneResponseDto | null, ignoreDiscriminator?: boolean): any;
+export declare function PaginationSceneResponseDtoToJSONTyped(
+  value?: PaginationSceneResponseDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=PaginationSceneResponseDto.d.ts.map

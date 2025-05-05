@@ -1,10 +1,4 @@
-import {
-  Show,
-  SimpleShowLayout,
-  TextField,
-  DateField,
-  useRecordContext
-} from "react-admin";
+import { Show, SimpleShowLayout, TextField, DateField, useRecordContext } from "react-admin";
 import { Box, Typography, Card, CardContent } from "@mui/material";
 
 const ScenesList = () => {
@@ -26,9 +20,7 @@ const ScenesList = () => {
             <Typography variant="body2" color="text.secondary">
               ID: {scene.id}
             </Typography>
-            <Typography variant="body2">
-              Title: {scene.title}
-            </Typography>
+            <Typography variant="body2">Title: {scene.title}</Typography>
           </CardContent>
         </Card>
       ))}

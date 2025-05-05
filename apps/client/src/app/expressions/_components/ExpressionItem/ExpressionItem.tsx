@@ -1,5 +1,5 @@
-import Expression from '@/components/Expression';
-import { ExpressionType } from '@/types/expression';
+import Expression from "@/components/Expression";
+import { ExpressionType } from "@/types/expression";
 
 type ExpressionProps = {
   order: number;

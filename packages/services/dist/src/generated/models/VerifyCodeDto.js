@@ -15,34 +15,32 @@
  * Check if a given object implements the VerifyCodeDto interface.
  */
 export function instanceOfVerifyCodeDto(value) {
-    if (!('email' in value) || value['email'] === undefined)
-        return false;
-    if (!('code' in value) || value['code'] === undefined)
-        return false;
-    return true;
+  if (!("email" in value) || value["email"] === undefined) return false;
+  if (!("code" in value) || value["code"] === undefined) return false;
+  return true;
 }
 export function VerifyCodeDtoFromJSON(json) {
-    return VerifyCodeDtoFromJSONTyped(json, false);
+  return VerifyCodeDtoFromJSONTyped(json, false);
 }
 export function VerifyCodeDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'email': json['email'],
-        'code': json['code'],
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    email: json["email"],
+    code: json["code"],
+  };
 }
 export function VerifyCodeDtoToJSON(json) {
-    return VerifyCodeDtoToJSONTyped(json, false);
+  return VerifyCodeDtoToJSONTyped(json, false);
 }
 export function VerifyCodeDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'email': value['email'],
-        'code': value['code'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    email: value["email"],
+    code: value["code"],
+  };
 }
 //# sourceMappingURL=VerifyCodeDto.js.map

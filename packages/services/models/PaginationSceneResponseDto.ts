@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { PaginationSceneDto } from './PaginationSceneDto';
+import { mapValues } from "../runtime";
+import type { PaginationSceneDto } from "./PaginationSceneDto";
 import {
   PaginationSceneDtoFromJSON,
   PaginationSceneDtoFromJSONTyped,
   PaginationSceneDtoToJSON,
   PaginationSceneDtoToJSONTyped,
-} from './PaginationSceneDto';
+} from "./PaginationSceneDto";
 
 /**
  *
@@ -53,9 +53,9 @@ export interface PaginationSceneResponseDto {
 export function instanceOfPaginationSceneResponseDto(
   value: object,
 ): value is PaginationSceneResponseDto {
-  if (!('totalCount' in value) || value['totalCount'] === undefined) return false;
-  if (!('currentPage' in value) || value['currentPage'] === undefined) return false;
-  if (!('data' in value) || value['data'] === undefined) return false;
+  if (!("totalCount" in value) || value["totalCount"] === undefined) return false;
+  if (!("currentPage" in value) || value["currentPage"] === undefined) return false;
+  if (!("data" in value) || value["data"] === undefined) return false;
   return true;
 }
 
@@ -71,9 +71,9 @@ export function PaginationSceneResponseDtoFromJSONTyped(
     return json;
   }
   return {
-    totalCount: json['totalCount'],
-    currentPage: json['currentPage'],
-    data: (json['data'] as Array<any>).map(PaginationSceneDtoFromJSON),
+    totalCount: json["totalCount"],
+    currentPage: json["currentPage"],
+    data: (json["data"] as Array<any>).map(PaginationSceneDtoFromJSON),
   };
 }
 
@@ -90,8 +90,8 @@ export function PaginationSceneResponseDtoToJSONTyped(
   }
 
   return {
-    totalCount: value['totalCount'],
-    currentPage: value['currentPage'],
-    data: (value['data'] as Array<any>).map(PaginationSceneDtoToJSON),
+    totalCount: value["totalCount"],
+    currentPage: value["currentPage"],
+    data: (value["data"] as Array<any>).map(PaginationSceneDtoToJSON),
   };
 }

@@ -1,1 +1,1 @@
-export { default } from './ScriptListItem';
+export { default } from "./ScriptListItem";

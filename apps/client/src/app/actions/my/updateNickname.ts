@@ -1,8 +1,8 @@
-'use server';
+"use server";
 
-import { ENV } from '@/constants/env';
-import { cookies } from 'next/headers';
-import { myApi } from '@/libs/api';
+import { ENV } from "@/constants/env";
+import { cookies } from "next/headers";
+import { myApi } from "@/libs/api";
 
 type UpdateNicknameActionBody = {
   nickname?: string;
@@ -17,7 +17,7 @@ export default async function updateNicknameAction(
     return {
       status: 401,
       success: false,
-      message: 'No Authorization',
+      message: "No Authorization",
       data: null,
     };
   }
@@ -32,7 +32,7 @@ export default async function updateNicknameAction(
     return {
       status: 200,
       success: true,
-      message: 'Upload nickname successfully',
+      message: "Upload nickname successfully",
       data: response,
     };
   } catch (e) {
@@ -40,7 +40,7 @@ export default async function updateNicknameAction(
       status: 500,
       success: false,
       data: null,
-      message: e instanceof Error ? e.message : 'Unknown error',
+      message: e instanceof Error ? e.message : "Unknown error",
     };
   }
 }

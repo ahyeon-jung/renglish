@@ -1,5 +1,5 @@
-import { REMEMBER_ME_EXPIRATION_TIME } from '@/constants/time';
-import type { PersistStorage, StorageValue } from 'zustand/middleware';
+import { REMEMBER_ME_EXPIRATION_TIME } from "@/constants/time";
+import type { PersistStorage, StorageValue } from "zustand/middleware";
 
 export const createDynamicUserStorage = (): PersistStorage<any> => ({
   getItem: (name) => {

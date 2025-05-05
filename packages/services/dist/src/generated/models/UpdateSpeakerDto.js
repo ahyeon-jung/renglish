@@ -15,30 +15,30 @@
  * Check if a given object implements the UpdateSpeakerDto interface.
  */
 export function instanceOfUpdateSpeakerDto(value) {
-    return true;
+  return true;
 }
 export function UpdateSpeakerDtoFromJSON(json) {
-    return UpdateSpeakerDtoFromJSONTyped(json, false);
+  return UpdateSpeakerDtoFromJSONTyped(json, false);
 }
 export function UpdateSpeakerDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'speakerName': json['speaker_name'] == null ? undefined : json['speaker_name'],
-        'speakerType': json['speaker_type'] == null ? undefined : json['speaker_type'],
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    speakerName: json["speaker_name"] == null ? undefined : json["speaker_name"],
+    speakerType: json["speaker_type"] == null ? undefined : json["speaker_type"],
+  };
 }
 export function UpdateSpeakerDtoToJSON(json) {
-    return UpdateSpeakerDtoToJSONTyped(json, false);
+  return UpdateSpeakerDtoToJSONTyped(json, false);
 }
 export function UpdateSpeakerDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'speaker_name': value['speakerName'],
-        'speaker_type': value['speakerType'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    speaker_name: value["speakerName"],
+    speaker_type: value["speakerType"],
+  };
 }
 //# sourceMappingURL=UpdateSpeakerDto.js.map

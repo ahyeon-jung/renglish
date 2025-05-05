@@ -11,83 +11,71 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { MovieFromJSON, MovieToJSON, } from './Movie';
-import { StudyFromJSON, StudyToJSON, } from './Study';
-import { DialogueFromJSON, DialogueToJSON, } from './Dialogue';
-import { ExpressionFromJSON, ExpressionToJSON, } from './Expression';
-import { SpeakerFromJSON, SpeakerToJSON, } from './Speaker';
+import { MovieFromJSON, MovieToJSON } from "./Movie";
+import { StudyFromJSON, StudyToJSON } from "./Study";
+import { DialogueFromJSON, DialogueToJSON } from "./Dialogue";
+import { ExpressionFromJSON, ExpressionToJSON } from "./Expression";
+import { SpeakerFromJSON, SpeakerToJSON } from "./Speaker";
 /**
  * Check if a given object implements the ExtendedSceneDto interface.
  */
 export function instanceOfExtendedSceneDto(value) {
-    if (!('id' in value) || value['id'] === undefined)
-        return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined)
-        return false;
-    if (!('updatedAt' in value) || value['updatedAt'] === undefined)
-        return false;
-    if (!('deletedAt' in value) || value['deletedAt'] === undefined)
-        return false;
-    if (!('title' in value) || value['title'] === undefined)
-        return false;
-    if (!('description' in value) || value['description'] === undefined)
-        return false;
-    if (!('audioUrl' in value) || value['audioUrl'] === undefined)
-        return false;
-    if (!('movie' in value) || value['movie'] === undefined)
-        return false;
-    if (!('study' in value) || value['study'] === undefined)
-        return false;
-    if (!('speakers' in value) || value['speakers'] === undefined)
-        return false;
-    if (!('dialogues' in value) || value['dialogues'] === undefined)
-        return false;
-    if (!('expressions' in value) || value['expressions'] === undefined)
-        return false;
-    return true;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("deletedAt" in value) || value["deletedAt"] === undefined) return false;
+  if (!("title" in value) || value["title"] === undefined) return false;
+  if (!("description" in value) || value["description"] === undefined) return false;
+  if (!("audioUrl" in value) || value["audioUrl"] === undefined) return false;
+  if (!("movie" in value) || value["movie"] === undefined) return false;
+  if (!("study" in value) || value["study"] === undefined) return false;
+  if (!("speakers" in value) || value["speakers"] === undefined) return false;
+  if (!("dialogues" in value) || value["dialogues"] === undefined) return false;
+  if (!("expressions" in value) || value["expressions"] === undefined) return false;
+  return true;
 }
 export function ExtendedSceneDtoFromJSON(json) {
-    return ExtendedSceneDtoFromJSONTyped(json, false);
+  return ExtendedSceneDtoFromJSONTyped(json, false);
 }
 export function ExtendedSceneDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'id': json['id'],
-        'createdAt': (new Date(json['createdAt'])),
-        'updatedAt': (new Date(json['updatedAt'])),
-        'deletedAt': (new Date(json['deletedAt'])),
-        'title': json['title'],
-        'description': json['description'],
-        'audioUrl': json['audioUrl'],
-        'movie': MovieFromJSON(json['movie']),
-        'study': StudyFromJSON(json['study']),
-        'speakers': (json['speakers'].map(SpeakerFromJSON)),
-        'dialogues': (json['dialogues'].map(DialogueFromJSON)),
-        'expressions': (json['expressions'].map(ExpressionFromJSON)),
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    id: json["id"],
+    createdAt: new Date(json["createdAt"]),
+    updatedAt: new Date(json["updatedAt"]),
+    deletedAt: new Date(json["deletedAt"]),
+    title: json["title"],
+    description: json["description"],
+    audioUrl: json["audioUrl"],
+    movie: MovieFromJSON(json["movie"]),
+    study: StudyFromJSON(json["study"]),
+    speakers: json["speakers"].map(SpeakerFromJSON),
+    dialogues: json["dialogues"].map(DialogueFromJSON),
+    expressions: json["expressions"].map(ExpressionFromJSON),
+  };
 }
 export function ExtendedSceneDtoToJSON(json) {
-    return ExtendedSceneDtoToJSONTyped(json, false);
+  return ExtendedSceneDtoToJSONTyped(json, false);
 }
 export function ExtendedSceneDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'id': value['id'],
-        'createdAt': ((value['createdAt']).toISOString()),
-        'updatedAt': ((value['updatedAt']).toISOString()),
-        'deletedAt': ((value['deletedAt']).toISOString()),
-        'title': value['title'],
-        'description': value['description'],
-        'audioUrl': value['audioUrl'],
-        'movie': MovieToJSON(value['movie']),
-        'study': StudyToJSON(value['study']),
-        'speakers': (value['speakers'].map(SpeakerToJSON)),
-        'dialogues': (value['dialogues'].map(DialogueToJSON)),
-        'expressions': (value['expressions'].map(ExpressionToJSON)),
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    id: value["id"],
+    createdAt: value["createdAt"].toISOString(),
+    updatedAt: value["updatedAt"].toISOString(),
+    deletedAt: value["deletedAt"].toISOString(),
+    title: value["title"],
+    description: value["description"],
+    audioUrl: value["audioUrl"],
+    movie: MovieToJSON(value["movie"]),
+    study: StudyToJSON(value["study"]),
+    speakers: value["speakers"].map(SpeakerToJSON),
+    dialogues: value["dialogues"].map(DialogueToJSON),
+    expressions: value["expressions"].map(ExpressionToJSON),
+  };
 }
 //# sourceMappingURL=ExtendedSceneDto.js.map

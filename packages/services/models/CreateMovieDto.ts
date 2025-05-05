@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
  *
  * @export
@@ -49,10 +49,10 @@ export interface CreateMovieDto {
  * Check if a given object implements the CreateMovieDto interface.
  */
 export function instanceOfCreateMovieDto(value: object): value is CreateMovieDto {
-  if (!('title' in value) || value['title'] === undefined) return false;
-  if (!('category' in value) || value['category'] === undefined) return false;
-  if (!('imageUrl' in value) || value['imageUrl'] === undefined) return false;
-  if (!('description' in value) || value['description'] === undefined) return false;
+  if (!("title" in value) || value["title"] === undefined) return false;
+  if (!("category" in value) || value["category"] === undefined) return false;
+  if (!("imageUrl" in value) || value["imageUrl"] === undefined) return false;
+  if (!("description" in value) || value["description"] === undefined) return false;
   return true;
 }
 
@@ -68,10 +68,10 @@ export function CreateMovieDtoFromJSONTyped(
     return json;
   }
   return {
-    title: json['title'],
-    category: json['category'],
-    imageUrl: json['imageUrl'],
-    description: json['description'],
+    title: json["title"],
+    category: json["category"],
+    imageUrl: json["imageUrl"],
+    description: json["description"],
   };
 }
 
@@ -88,9 +88,9 @@ export function CreateMovieDtoToJSONTyped(
   }
 
   return {
-    title: value['title'],
-    category: value['category'],
-    imageUrl: value['imageUrl'],
-    description: value['description'],
+    title: value["title"],
+    category: value["category"],
+    imageUrl: value["imageUrl"],
+    description: value["description"],
   };
 }

@@ -11,147 +11,183 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import * as runtime from '../runtime';
-import { CreateSpeakerDtoToJSON, SpeakerFromJSON, UpdateSpeakerDtoToJSON, } from '../models/index';
+import * as runtime from "../runtime";
+import { CreateSpeakerDtoToJSON, SpeakerFromJSON, UpdateSpeakerDtoToJSON } from "../models/index";
 /**
  *
  */
 export class SpeakersApi extends runtime.BaseAPI {
-    /**
-     * 새로운 발화자 정보를 생성합니다.
-     * 발화자 정보 생성 [ADMIN]
-     */
-    async speakerControllerCreateSpeakerRaw(requestParameters, initOverrides) {
-        if (requestParameters['sceneId'] == null) {
-            throw new runtime.RequiredError('sceneId', 'Required parameter "sceneId" was null or undefined when calling speakerControllerCreateSpeaker().');
-        }
-        if (requestParameters['createSpeakerDto'] == null) {
-            throw new runtime.RequiredError('createSpeakerDto', 'Required parameter "createSpeakerDto" was null or undefined when calling speakerControllerCreateSpeaker().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        headerParameters['Content-Type'] = 'application/json';
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/speakers/{sceneId}`.replace(`{${"sceneId"}}`, encodeURIComponent(String(requestParameters['sceneId']))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: CreateSpeakerDtoToJSON(requestParameters['createSpeakerDto']),
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+  /**
+   * 새로운 발화자 정보를 생성합니다.
+   * 발화자 정보 생성 [ADMIN]
+   */
+  async speakerControllerCreateSpeakerRaw(requestParameters, initOverrides) {
+    if (requestParameters["sceneId"] == null) {
+      throw new runtime.RequiredError(
+        "sceneId",
+        'Required parameter "sceneId" was null or undefined when calling speakerControllerCreateSpeaker().',
+      );
     }
-    /**
-     * 새로운 발화자 정보를 생성합니다.
-     * 발화자 정보 생성 [ADMIN]
-     */
-    async speakerControllerCreateSpeaker(requestParameters, initOverrides) {
-        await this.speakerControllerCreateSpeakerRaw(requestParameters, initOverrides);
+    if (requestParameters["createSpeakerDto"] == null) {
+      throw new runtime.RequiredError(
+        "createSpeakerDto",
+        'Required parameter "createSpeakerDto" was null or undefined when calling speakerControllerCreateSpeaker().',
+      );
     }
-    /**
-     * 발화자 정보를 발화자 정보를 가져옵니다.
-     * 발화자 정보 가져오기
-     */
-    async speakerControllerFindOneRaw(requestParameters, initOverrides) {
-        if (requestParameters['speakerId'] == null) {
-            throw new runtime.RequiredError('speakerId', 'Required parameter "speakerId" was null or undefined when calling speakerControllerFindOne().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/speakers/{speakerId}`.replace(`{${"speakerId"}}`, encodeURIComponent(String(requestParameters['speakerId']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+    const queryParameters = {};
+    const headerParameters = {};
+    headerParameters["Content-Type"] = "application/json";
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 발화자 정보를 발화자 정보를 가져옵니다.
-     * 발화자 정보 가져오기
-     */
-    async speakerControllerFindOne(requestParameters, initOverrides) {
-        await this.speakerControllerFindOneRaw(requestParameters, initOverrides);
+    const response = await this.request(
+      {
+        path: `/api/speakers/{sceneId}`.replace(
+          `{${"sceneId"}}`,
+          encodeURIComponent(String(requestParameters["sceneId"])),
+        ),
+        method: "POST",
+        headers: headerParameters,
+        query: queryParameters,
+        body: CreateSpeakerDtoToJSON(requestParameters["createSpeakerDto"]),
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 새로운 발화자 정보를 생성합니다.
+   * 발화자 정보 생성 [ADMIN]
+   */
+  async speakerControllerCreateSpeaker(requestParameters, initOverrides) {
+    await this.speakerControllerCreateSpeakerRaw(requestParameters, initOverrides);
+  }
+  /**
+   * 발화자 정보를 발화자 정보를 가져옵니다.
+   * 발화자 정보 가져오기
+   */
+  async speakerControllerFindOneRaw(requestParameters, initOverrides) {
+    if (requestParameters["speakerId"] == null) {
+      throw new runtime.RequiredError(
+        "speakerId",
+        'Required parameter "speakerId" was null or undefined when calling speakerControllerFindOne().',
+      );
     }
-    /**
-     * 발화자 정보를 가져옵니다.
-     * 발화자 정보를 가져옵니다.
-     */
-    async speakerControllerFindSpeakersRaw(initOverrides) {
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/speakers`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(SpeakerFromJSON));
+    const queryParameters = {};
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 발화자 정보를 가져옵니다.
-     * 발화자 정보를 가져옵니다.
-     */
-    async speakerControllerFindSpeakers(initOverrides) {
-        const response = await this.speakerControllerFindSpeakersRaw(initOverrides);
-        return await response.value();
+    const response = await this.request(
+      {
+        path: `/api/speakers/{speakerId}`.replace(
+          `{${"speakerId"}}`,
+          encodeURIComponent(String(requestParameters["speakerId"])),
+        ),
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 발화자 정보를 발화자 정보를 가져옵니다.
+   * 발화자 정보 가져오기
+   */
+  async speakerControllerFindOne(requestParameters, initOverrides) {
+    await this.speakerControllerFindOneRaw(requestParameters, initOverrides);
+  }
+  /**
+   * 발화자 정보를 가져옵니다.
+   * 발화자 정보를 가져옵니다.
+   */
+  async speakerControllerFindSpeakersRaw(initOverrides) {
+    const queryParameters = {};
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 발화자 정보를 변경합니다.
-     * 발화자 정보 변경하기 [ADMIN]
-     */
-    async speakerControllerUpdateRaw(requestParameters, initOverrides) {
-        if (requestParameters['speakerId'] == null) {
-            throw new runtime.RequiredError('speakerId', 'Required parameter "speakerId" was null or undefined when calling speakerControllerUpdate().');
-        }
-        if (requestParameters['updateSpeakerDto'] == null) {
-            throw new runtime.RequiredError('updateSpeakerDto', 'Required parameter "updateSpeakerDto" was null or undefined when calling speakerControllerUpdate().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        headerParameters['Content-Type'] = 'application/json';
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/speakers/{speakerId}`.replace(`{${"speakerId"}}`, encodeURIComponent(String(requestParameters['speakerId']))),
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-            body: UpdateSpeakerDtoToJSON(requestParameters['updateSpeakerDto']),
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+    const response = await this.request(
+      {
+        path: `/api/speakers`,
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(SpeakerFromJSON));
+  }
+  /**
+   * 발화자 정보를 가져옵니다.
+   * 발화자 정보를 가져옵니다.
+   */
+  async speakerControllerFindSpeakers(initOverrides) {
+    const response = await this.speakerControllerFindSpeakersRaw(initOverrides);
+    return await response.value();
+  }
+  /**
+   * 발화자 정보를 변경합니다.
+   * 발화자 정보 변경하기 [ADMIN]
+   */
+  async speakerControllerUpdateRaw(requestParameters, initOverrides) {
+    if (requestParameters["speakerId"] == null) {
+      throw new runtime.RequiredError(
+        "speakerId",
+        'Required parameter "speakerId" was null or undefined when calling speakerControllerUpdate().',
+      );
     }
-    /**
-     * 발화자 정보를 변경합니다.
-     * 발화자 정보 변경하기 [ADMIN]
-     */
-    async speakerControllerUpdate(requestParameters, initOverrides) {
-        await this.speakerControllerUpdateRaw(requestParameters, initOverrides);
+    if (requestParameters["updateSpeakerDto"] == null) {
+      throw new runtime.RequiredError(
+        "updateSpeakerDto",
+        'Required parameter "updateSpeakerDto" was null or undefined when calling speakerControllerUpdate().',
+      );
     }
+    const queryParameters = {};
+    const headerParameters = {};
+    headerParameters["Content-Type"] = "application/json";
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    const response = await this.request(
+      {
+        path: `/api/speakers/{speakerId}`.replace(
+          `{${"speakerId"}}`,
+          encodeURIComponent(String(requestParameters["speakerId"])),
+        ),
+        method: "PUT",
+        headers: headerParameters,
+        query: queryParameters,
+        body: UpdateSpeakerDtoToJSON(requestParameters["updateSpeakerDto"]),
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 발화자 정보를 변경합니다.
+   * 발화자 정보 변경하기 [ADMIN]
+   */
+  async speakerControllerUpdate(requestParameters, initOverrides) {
+    await this.speakerControllerUpdateRaw(requestParameters, initOverrides);
+  }
 }
 //# sourceMappingURL=SpeakersApi.js.map

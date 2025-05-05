@@ -1,5 +1,5 @@
-import { Movie } from './script';
-import { Scene } from './scene';
+import { Movie } from "./script";
+import { Scene } from "./scene";
 
 type StudySceneType = Scene & { movie: Movie };
 

@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  */
 
-import * as runtime from '../runtime';
-import type { SendEmailDto, VerifyCodeDto } from '../models/index';
+import * as runtime from "../runtime";
+import type { SendEmailDto, VerifyCodeDto } from "../models/index";
 import {
   SendEmailDtoFromJSON,
   SendEmailDtoToJSON,
   VerifyCodeDtoFromJSON,
   VerifyCodeDtoToJSON,
-} from '../models/index';
+} from "../models/index";
 
 export interface EmailVerificationControllerSendEmailWithOTPRequest {
   sendEmailDto: SendEmailDto;
@@ -41,9 +41,9 @@ export class EmailVerificationApi extends runtime.BaseAPI {
     requestParameters: EmailVerificationControllerSendEmailWithOTPRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['sendEmailDto'] == null) {
+    if (requestParameters["sendEmailDto"] == null) {
       throw new runtime.RequiredError(
-        'sendEmailDto',
+        "sendEmailDto",
         'Required parameter "sendEmailDto" was null or undefined when calling emailVerificationControllerSendEmailWithOTP().',
       );
     }
@@ -52,23 +52,23 @@ export class EmailVerificationApi extends runtime.BaseAPI {
 
     const headerParameters: runtime.HTTPHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters["Content-Type"] = "application/json";
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/email-verification/send-email`,
-        method: 'POST',
+        method: "POST",
         headers: headerParameters,
         query: queryParameters,
-        body: SendEmailDtoToJSON(requestParameters['sendEmailDto']),
+        body: SendEmailDtoToJSON(requestParameters["sendEmailDto"]),
       },
       initOverrides,
     );
@@ -95,9 +95,9 @@ export class EmailVerificationApi extends runtime.BaseAPI {
     requestParameters: EmailVerificationControllerVerifyCodeRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['verifyCodeDto'] == null) {
+    if (requestParameters["verifyCodeDto"] == null) {
       throw new runtime.RequiredError(
-        'verifyCodeDto',
+        "verifyCodeDto",
         'Required parameter "verifyCodeDto" was null or undefined when calling emailVerificationControllerVerifyCode().',
       );
     }
@@ -106,23 +106,23 @@ export class EmailVerificationApi extends runtime.BaseAPI {
 
     const headerParameters: runtime.HTTPHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters["Content-Type"] = "application/json";
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/email-verification/verify-code`,
-        method: 'POST',
+        method: "POST",
         headers: headerParameters,
         query: queryParameters,
-        body: VerifyCodeDtoToJSON(requestParameters['verifyCodeDto']),
+        body: VerifyCodeDtoToJSON(requestParameters["verifyCodeDto"]),
       },
       initOverrides,
     );

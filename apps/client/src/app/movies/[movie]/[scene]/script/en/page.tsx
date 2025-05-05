@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { parseText, stripHtmlTags } from '@/utils/content';
-import { useDataFetching } from '@/hooks/useDataFetching';
-import { use } from 'react';
+import { parseText, stripHtmlTags } from "@/utils/content";
+import { useDataFetching } from "@/hooks/useDataFetching";
+import { use } from "react";
 
-import AudioBox from '../../_components/AudioBox';
-import DialogListContainer from '../../_components/DialogListContainer';
-import DialogListItem from '../../_components/DialogListItem';
-import SceneHeader from '../../_components/SceneHeader';
-import Text from '@/components/Text';
-import getScene from '@/app/actions/scenes/getScene';
-import { useUserStore } from '@/stores/userStore';
+import AudioBox from "../../_components/AudioBox";
+import DialogListContainer from "../../_components/DialogListContainer";
+import DialogListItem from "../../_components/DialogListItem";
+import SceneHeader from "../../_components/SceneHeader";
+import Text from "@/components/Text";
+import getScene from "@/app/actions/scenes/getScene";
+import { useUserStore } from "@/stores/userStore";
 
 export default function MovieSceneEnglishScript({
   params,
@@ -21,7 +21,7 @@ export default function MovieSceneEnglishScript({
   const { userId } = useUserStore();
 
   const { data, isLoading } = useDataFetching({
-    queryKey: ['scene', resolvedParams.scene, userId ?? ''],
+    queryKey: ["scene", resolvedParams.scene, userId ?? ""],
     queryFn: () => getScene(resolvedParams.scene),
     enabled: !!resolvedParams.scene,
   });
@@ -44,8 +44,6 @@ export default function MovieSceneEnglishScript({
   if (!data?.data) return null;
 
   const scene = data.data;
-
-
 
   return (
     <main className="mt-[var(--header-height)] py-3">

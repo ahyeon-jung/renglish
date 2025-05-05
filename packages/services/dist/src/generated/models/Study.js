@@ -11,72 +11,63 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { UserFromJSON, UserToJSON, } from './User';
-import { SceneFromJSON, SceneToJSON, } from './Scene';
+import { UserFromJSON, UserToJSON } from "./User";
+import { SceneFromJSON, SceneToJSON } from "./Scene";
 /**
  * Check if a given object implements the Study interface.
  */
 export function instanceOfStudy(value) {
-    if (!('id' in value) || value['id'] === undefined)
-        return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined)
-        return false;
-    if (!('updatedAt' in value) || value['updatedAt'] === undefined)
-        return false;
-    if (!('deletedAt' in value) || value['deletedAt'] === undefined)
-        return false;
-    if (!('studiedAt' in value) || value['studiedAt'] === undefined)
-        return false;
-    if (!('title' in value) || value['title'] === undefined)
-        return false;
-    if (!('description' in value) || value['description'] === undefined)
-        return false;
-    if (!('isCompleted' in value) || value['isCompleted'] === undefined)
-        return false;
-    if (!('scene' in value) || value['scene'] === undefined)
-        return false;
-    return true;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("deletedAt" in value) || value["deletedAt"] === undefined) return false;
+  if (!("studiedAt" in value) || value["studiedAt"] === undefined) return false;
+  if (!("title" in value) || value["title"] === undefined) return false;
+  if (!("description" in value) || value["description"] === undefined) return false;
+  if (!("isCompleted" in value) || value["isCompleted"] === undefined) return false;
+  if (!("scene" in value) || value["scene"] === undefined) return false;
+  return true;
 }
 export function StudyFromJSON(json) {
-    return StudyFromJSONTyped(json, false);
+  return StudyFromJSONTyped(json, false);
 }
 export function StudyFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'id': json['id'],
-        'createdAt': (new Date(json['createdAt'])),
-        'updatedAt': (new Date(json['updatedAt'])),
-        'deletedAt': (new Date(json['deletedAt'])),
-        'studiedAt': (new Date(json['studiedAt'])),
-        'title': json['title'],
-        'description': json['description'],
-        'isCompleted': json['isCompleted'],
-        'scene': SceneFromJSON(json['scene']),
-        'applicants': json['applicants'] == null ? undefined : (json['applicants'].map(UserFromJSON)),
-        'participants': json['participants'] == null ? undefined : (json['participants'].map(UserFromJSON)),
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    id: json["id"],
+    createdAt: new Date(json["createdAt"]),
+    updatedAt: new Date(json["updatedAt"]),
+    deletedAt: new Date(json["deletedAt"]),
+    studiedAt: new Date(json["studiedAt"]),
+    title: json["title"],
+    description: json["description"],
+    isCompleted: json["isCompleted"],
+    scene: SceneFromJSON(json["scene"]),
+    applicants: json["applicants"] == null ? undefined : json["applicants"].map(UserFromJSON),
+    participants: json["participants"] == null ? undefined : json["participants"].map(UserFromJSON),
+  };
 }
 export function StudyToJSON(json) {
-    return StudyToJSONTyped(json, false);
+  return StudyToJSONTyped(json, false);
 }
 export function StudyToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'id': value['id'],
-        'createdAt': ((value['createdAt']).toISOString()),
-        'updatedAt': ((value['updatedAt']).toISOString()),
-        'deletedAt': ((value['deletedAt']).toISOString()),
-        'studiedAt': ((value['studiedAt']).toISOString()),
-        'title': value['title'],
-        'description': value['description'],
-        'isCompleted': value['isCompleted'],
-        'scene': SceneToJSON(value['scene']),
-        'applicants': value['applicants'] == null ? undefined : (value['applicants'].map(UserToJSON)),
-        'participants': value['participants'] == null ? undefined : (value['participants'].map(UserToJSON)),
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    id: value["id"],
+    createdAt: value["createdAt"].toISOString(),
+    updatedAt: value["updatedAt"].toISOString(),
+    deletedAt: value["deletedAt"].toISOString(),
+    studiedAt: value["studiedAt"].toISOString(),
+    title: value["title"],
+    description: value["description"],
+    isCompleted: value["isCompleted"],
+    scene: SceneToJSON(value["scene"]),
+    applicants: value["applicants"] == null ? undefined : value["applicants"].map(UserToJSON),
+    participants: value["participants"] == null ? undefined : value["participants"].map(UserToJSON),
+  };
 }
 //# sourceMappingURL=Study.js.map

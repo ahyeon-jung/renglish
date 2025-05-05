@@ -1,26 +1,28 @@
-import { useLogin, useNotify, Notification } from 'react-admin'
-import { useState } from 'react'
+import { useLogin, useNotify, Notification } from "react-admin";
+import { useState } from "react";
 
 const LoginPage = () => {
-  const login = useLogin()
-  const notify = useNotify()
-  const [loading, setLoading] = useState(false)
-  const [form, setForm] = useState({ username: '', password: '' })
+  const login = useLogin();
+  const notify = useNotify();
+  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState({ username: "", password: "" });
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
+    e.preventDefault();
+    setLoading(true);
 
     try {
-      await login(form)
+      await login(form);
     } catch (error) {
-      notify('로그인 실패', { type: 'error' })
-      setLoading(false)
+      notify("로그인 실패", { type: "error" });
+      setLoading(false);
     }
-  }
+  };
 
   return (
-    <div style={{ display: 'flex', height: '100vh', alignItems: 'center', justifyContent: 'center' }}>
+    <div
+      style={{ display: "flex", height: "100vh", alignItems: "center", justifyContent: "center" }}
+    >
       <form onSubmit={handleSubmit} style={{ width: 300 }}>
         <h2>로그인</h2>
         <div>
@@ -28,7 +30,7 @@ const LoginPage = () => {
           <input
             type="text"
             value={form.username}
-            onChange={e => setForm({ ...form, username: e.target.value })}
+            onChange={(e) => setForm({ ...form, username: e.target.value })}
             required
           />
         </div>
@@ -37,17 +39,17 @@ const LoginPage = () => {
           <input
             type="password"
             value={form.password}
-            onChange={e => setForm({ ...form, password: e.target.value })}
+            onChange={(e) => setForm({ ...form, password: e.target.value })}
             required
           />
         </div>
         <button type="submit" disabled={loading} style={{ marginTop: 20 }}>
-          {loading ? '로그인 중...' : '로그인'}
+          {loading ? "로그인 중..." : "로그인"}
         </button>
       </form>
       <Notification />
     </div>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;

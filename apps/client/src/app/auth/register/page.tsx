@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import EmailRegisterForm from './_components/EmailRegisterForm';
-import SocialButtons from '../_components/SocialButtons';
-import Link from 'next/link';
-import { PATHS } from '@/constants/path';
-import { useState } from 'react';
-import Button from '@/components/Button';
-import AuthContainer from '../_components/AuthContainer';
+import EmailRegisterForm from "./_components/EmailRegisterForm";
+import SocialButtons from "../_components/SocialButtons";
+import Link from "next/link";
+import { PATHS } from "@/constants/path";
+import { useState } from "react";
+import Button from "@/components/Button";
+import AuthContainer from "../_components/AuthContainer";
 
 export default function Register() {
   const [isEmailRegisterFormOpen, setIsEmailRegisterFormOpen] = useState(false);
@@ -25,7 +25,7 @@ export default function Register() {
           </div>
           <Button onClick={() => setIsEmailRegisterFormOpen(true)}>Email Register</Button>
           <div className="text-center">
-            Already have an account?{' '}
+            Already have an account?{" "}
             <Link href={PATHS.AUTH.LOGIN} className="underline">
               Login
             </Link>

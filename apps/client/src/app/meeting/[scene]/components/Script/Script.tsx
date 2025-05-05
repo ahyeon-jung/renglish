@@ -1,37 +1,35 @@
-"use client"
+"use client";
 
-import Text from '@/components/Text';
-import getScene from '@/app/actions/scenes/getScene';
-import { parseText } from '@/utils/content';
-import { useUserStore } from '@/stores/userStore';
-import { useDataFetching } from '@/hooks/useDataFetching';
-import DialogListContainer from '@/app/movies/[movie]/[scene]/_components/DialogListContainer';
-import DialogListItem from '@/app/movies/[movie]/[scene]/_components/DialogListItem';
-import AudioBox from '@/app/movies/[movie]/[scene]/_components/AudioBox';
-import { useState } from 'react';
-import { useSearchParams } from 'next/navigation';
-import { SCRIPT_MODE_SEARCH } from '@/constants/script-mode';
+import Text from "@/components/Text";
+import getScene from "@/app/actions/scenes/getScene";
+import { parseText } from "@/utils/content";
+import { useUserStore } from "@/stores/userStore";
+import { useDataFetching } from "@/hooks/useDataFetching";
+import DialogListContainer from "@/app/movies/[movie]/[scene]/_components/DialogListContainer";
+import DialogListItem from "@/app/movies/[movie]/[scene]/_components/DialogListItem";
+import AudioBox from "@/app/movies/[movie]/[scene]/_components/AudioBox";
+import { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { SCRIPT_MODE_SEARCH } from "@/constants/script-mode";
 
 type ScriptProps = {
   scene: string; // 제목 혹은 id
-}
+};
 
 const SCRIPT_MODE = {
-  BLANK: 'blank',
-  ENGLISH: 'english',
-  KOREAN: 'korean',
-  DUAL: 'dual'
-}
+  BLANK: "blank",
+  ENGLISH: "english",
+  KOREAN: "korean",
+  DUAL: "dual",
+};
 
-export default function Script({
-  scene
-}: ScriptProps) {
+export default function Script({ scene }: ScriptProps) {
   const { userId } = useUserStore();
   const searchParams = useSearchParams();
   const mode = searchParams.get(SCRIPT_MODE_SEARCH);
 
   const { data, isLoading } = useDataFetching({
-    queryKey: ['scene', scene, userId ?? ''],
+    queryKey: ["scene", scene, userId ?? ""],
     queryFn: () => getScene(scene),
     enabled: !!scene,
   });
@@ -57,29 +55,37 @@ export default function Script({
 
   return (
     <main className="mt-[var(--header-height)] py-3">
-
       <DialogListContainer>
         {script.audioUrl && <AudioBox audioUrl={script.audioUrl} />}
         {script.dialogues.map((dialogue, index) => {
           return (
             <DialogListItem key={index} speaker={dialogue.speaker} isBackground>
-              {
-                mode === SCRIPT_MODE.BLANK ? <div>
-                  <Text>{parseText(dialogue.englishScript, dialogue.speaker.speakerType === 'a' ? 'text-gray-50 border-black border-b' : 'text-[#f0f0f0] border-black border-b')}</Text>
-                  <Text className='text-gray-500'>{parseText(dialogue.koreanScript)}</Text>
-                </div> :
-                  mode === SCRIPT_MODE.ENGLISH ? <div>
-                    <Text>{parseText(dialogue.englishScript)}</Text>
-                  </div> :
-                    mode === SCRIPT_MODE.KOREAN ? <div>
-                      <Text>{parseText(dialogue.koreanScript)}</Text>
-                    </div> :
-                      <div>
-                        <Text>{parseText(dialogue.englishScript)}</Text>
-                        <Text className='text-gray-500'>{parseText(dialogue.koreanScript)}</Text>
-                      </div>
-
-              }
+              {mode === SCRIPT_MODE.BLANK ? (
+                <div>
+                  <Text>
+                    {parseText(
+                      dialogue.englishScript,
+                      dialogue.speaker.speakerType === "a"
+                        ? "text-gray-50 border-black border-b"
+                        : "text-[#f0f0f0] border-black border-b",
+                    )}
+                  </Text>
+                  <Text className="text-gray-500">{parseText(dialogue.koreanScript)}</Text>
+                </div>
+              ) : mode === SCRIPT_MODE.ENGLISH ? (
+                <div>
+                  <Text>{parseText(dialogue.englishScript)}</Text>
+                </div>
+              ) : mode === SCRIPT_MODE.KOREAN ? (
+                <div>
+                  <Text>{parseText(dialogue.koreanScript)}</Text>
+                </div>
+              ) : (
+                <div>
+                  <Text>{parseText(dialogue.englishScript)}</Text>
+                  <Text className="text-gray-500">{parseText(dialogue.koreanScript)}</Text>
+                </div>
+              )}
             </DialogListItem>
           );
         })}

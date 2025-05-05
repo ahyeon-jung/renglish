@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { use } from 'react';
-import { useDataFetching } from '@/hooks/useDataFetching';
-import DialogList from './_components/DialogList';
-import SceneHeader from '../../_components/SceneHeader';
-import getScene from '@/app/actions/scenes/getScene';
+import { use } from "react";
+import { useDataFetching } from "@/hooks/useDataFetching";
+import DialogList from "./_components/DialogList";
+import SceneHeader from "../../_components/SceneHeader";
+import getScene from "@/app/actions/scenes/getScene";
 
 export default function MovieScenePracticeSpeakingPage({
   params,
@@ -14,7 +14,7 @@ export default function MovieScenePracticeSpeakingPage({
   const resolvedParams = use(params);
 
   const { data, isLoading } = useDataFetching({
-    queryKey: ['scene', resolvedParams.scene],
+    queryKey: ["scene", resolvedParams.scene],
     queryFn: () => getScene(resolvedParams.scene),
     enabled: !!resolvedParams.scene,
   });

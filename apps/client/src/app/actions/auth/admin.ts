@@ -1,8 +1,8 @@
-'use server';
+"use server";
 
-import { ENV } from '@/constants/env';
-import { cookies } from 'next/headers';
-import { authApi } from '@/libs/api';
+import { ENV } from "@/constants/env";
+import { cookies } from "next/headers";
+import { authApi } from "@/libs/api";
 
 export default async function adminAction() {
   try {

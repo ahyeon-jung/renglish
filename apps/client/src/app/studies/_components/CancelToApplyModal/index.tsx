@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import Button from '@/components/Button';
-import { MESSAGE } from '@/constants/toast';
-import Modal from '@/components/Modal';
-import cancelToApplyToStudyAction from '@/app/actions/studies/canceToApplyToStudy';
-import { toast } from 'react-toastify';
-import Text from '@/components/Text';
-import Link from 'next/link';
-import { GATHER_TOWN_URL } from '@/constants/url';
+import Button from "@/components/Button";
+import { MESSAGE } from "@/constants/toast";
+import Modal from "@/components/Modal";
+import cancelToApplyToStudyAction from "@/app/actions/studies/canceToApplyToStudy";
+import { toast } from "react-toastify";
+import Text from "@/components/Text";
+import Link from "next/link";
+import { GATHER_TOWN_URL } from "@/constants/url";
 
 type CancelToApplyModalProps = { studyId: string; onClose: () => void };
 

@@ -15,38 +15,35 @@
  * Check if a given object implements the CreateDialogueDto interface.
  */
 export function instanceOfCreateDialogueDto(value) {
-    if (!('englishScript' in value) || value['englishScript'] === undefined)
-        return false;
-    if (!('koreanScript' in value) || value['koreanScript'] === undefined)
-        return false;
-    if (!('order' in value) || value['order'] === undefined)
-        return false;
-    return true;
+  if (!("englishScript" in value) || value["englishScript"] === undefined) return false;
+  if (!("koreanScript" in value) || value["koreanScript"] === undefined) return false;
+  if (!("order" in value) || value["order"] === undefined) return false;
+  return true;
 }
 export function CreateDialogueDtoFromJSON(json) {
-    return CreateDialogueDtoFromJSONTyped(json, false);
+  return CreateDialogueDtoFromJSONTyped(json, false);
 }
 export function CreateDialogueDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'englishScript': json['english_script'],
-        'koreanScript': json['korean_script'],
-        'order': json['order'],
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    englishScript: json["english_script"],
+    koreanScript: json["korean_script"],
+    order: json["order"],
+  };
 }
 export function CreateDialogueDtoToJSON(json) {
-    return CreateDialogueDtoToJSONTyped(json, false);
+  return CreateDialogueDtoToJSONTyped(json, false);
 }
 export function CreateDialogueDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'english_script': value['englishScript'],
-        'korean_script': value['koreanScript'],
-        'order': value['order'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    english_script: value["englishScript"],
+    korean_script: value["koreanScript"],
+    order: value["order"],
+  };
 }
 //# sourceMappingURL=CreateDialogueDto.js.map

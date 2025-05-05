@@ -3,9 +3,7 @@ import Script from "./components/Script";
 import ScriptModeSelector from "./components/ScriptModeSelector";
 import WebRTCClients from "./components/WebRTCClients";
 
-export default async function MeetingScenePage(
-  { params }: { params: Promise<{ scene: string }> }
-) {
+export default async function MeetingScenePage({ params }: { params: Promise<{ scene: string }> }) {
   const slug = await params;
 
   return (
@@ -16,5 +14,5 @@ export default async function MeetingScenePage(
         <WebRTCClients sceneId={slug.scene} />
       </div>
     </Suspense>
-  )
+  );
 }

@@ -11,174 +11,213 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import * as runtime from '../runtime';
+import * as runtime from "../runtime";
 /**
  *
  */
 export class NoticesApi extends runtime.BaseAPI {
-    /**
-     * 공지사항을 추가합니다.
-     * 공지사항 작성 [ADMIN]
-     */
-    async noticeControllerCreateRaw(requestParameters, initOverrides) {
-        if (requestParameters['body'] == null) {
-            throw new runtime.RequiredError('body', 'Required parameter "body" was null or undefined when calling noticeControllerCreate().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        headerParameters['Content-Type'] = 'application/json';
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/notices`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: requestParameters['body'],
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+  /**
+   * 공지사항을 추가합니다.
+   * 공지사항 작성 [ADMIN]
+   */
+  async noticeControllerCreateRaw(requestParameters, initOverrides) {
+    if (requestParameters["body"] == null) {
+      throw new runtime.RequiredError(
+        "body",
+        'Required parameter "body" was null or undefined when calling noticeControllerCreate().',
+      );
     }
-    /**
-     * 공지사항을 추가합니다.
-     * 공지사항 작성 [ADMIN]
-     */
-    async noticeControllerCreate(requestParameters, initOverrides) {
-        await this.noticeControllerCreateRaw(requestParameters, initOverrides);
+    const queryParameters = {};
+    const headerParameters = {};
+    headerParameters["Content-Type"] = "application/json";
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 모든 공지사항을 가져옵니다.
-     * 모든 공지사항 가져오기
-     */
-    async noticeControllerFindAllRaw(initOverrides) {
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/notices`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+    const response = await this.request(
+      {
+        path: `/api/notices`,
+        method: "POST",
+        headers: headerParameters,
+        query: queryParameters,
+        body: requestParameters["body"],
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 공지사항을 추가합니다.
+   * 공지사항 작성 [ADMIN]
+   */
+  async noticeControllerCreate(requestParameters, initOverrides) {
+    await this.noticeControllerCreateRaw(requestParameters, initOverrides);
+  }
+  /**
+   * 모든 공지사항을 가져옵니다.
+   * 모든 공지사항 가져오기
+   */
+  async noticeControllerFindAllRaw(initOverrides) {
+    const queryParameters = {};
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 모든 공지사항을 가져옵니다.
-     * 모든 공지사항 가져오기
-     */
-    async noticeControllerFindAll(initOverrides) {
-        await this.noticeControllerFindAllRaw(initOverrides);
+    const response = await this.request(
+      {
+        path: `/api/notices`,
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 모든 공지사항을 가져옵니다.
+   * 모든 공지사항 가져오기
+   */
+  async noticeControllerFindAll(initOverrides) {
+    await this.noticeControllerFindAllRaw(initOverrides);
+  }
+  /**
+   * 해당 ID의 공지사항을 가져옵니다.
+   * 해당 ID 공지사항 가져오기
+   */
+  async noticeControllerFindOneRaw(requestParameters, initOverrides) {
+    if (requestParameters["noticeId"] == null) {
+      throw new runtime.RequiredError(
+        "noticeId",
+        'Required parameter "noticeId" was null or undefined when calling noticeControllerFindOne().',
+      );
     }
-    /**
-     * 해당 ID의 공지사항을 가져옵니다.
-     * 해당 ID 공지사항 가져오기
-     */
-    async noticeControllerFindOneRaw(requestParameters, initOverrides) {
-        if (requestParameters['noticeId'] == null) {
-            throw new runtime.RequiredError('noticeId', 'Required parameter "noticeId" was null or undefined when calling noticeControllerFindOne().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/notices/{noticeId}`.replace(`{${"noticeId"}}`, encodeURIComponent(String(requestParameters['noticeId']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+    const queryParameters = {};
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 해당 ID의 공지사항을 가져옵니다.
-     * 해당 ID 공지사항 가져오기
-     */
-    async noticeControllerFindOne(requestParameters, initOverrides) {
-        await this.noticeControllerFindOneRaw(requestParameters, initOverrides);
+    const response = await this.request(
+      {
+        path: `/api/notices/{noticeId}`.replace(
+          `{${"noticeId"}}`,
+          encodeURIComponent(String(requestParameters["noticeId"])),
+        ),
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 해당 ID의 공지사항을 가져옵니다.
+   * 해당 ID 공지사항 가져오기
+   */
+  async noticeControllerFindOne(requestParameters, initOverrides) {
+    await this.noticeControllerFindOneRaw(requestParameters, initOverrides);
+  }
+  /**
+   * 해당 ID의 공지사항을 삭제합니다.
+   * 해당 ID 공지사항 삭제 [ADMIN]
+   */
+  async noticeControllerRemoveRaw(requestParameters, initOverrides) {
+    if (requestParameters["noticeId"] == null) {
+      throw new runtime.RequiredError(
+        "noticeId",
+        'Required parameter "noticeId" was null or undefined when calling noticeControllerRemove().',
+      );
     }
-    /**
-     * 해당 ID의 공지사항을 삭제합니다.
-     * 해당 ID 공지사항 삭제 [ADMIN]
-     */
-    async noticeControllerRemoveRaw(requestParameters, initOverrides) {
-        if (requestParameters['noticeId'] == null) {
-            throw new runtime.RequiredError('noticeId', 'Required parameter "noticeId" was null or undefined when calling noticeControllerRemove().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/notices/{noticeId}`.replace(`{${"noticeId"}}`, encodeURIComponent(String(requestParameters['noticeId']))),
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+    const queryParameters = {};
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 해당 ID의 공지사항을 삭제합니다.
-     * 해당 ID 공지사항 삭제 [ADMIN]
-     */
-    async noticeControllerRemove(requestParameters, initOverrides) {
-        await this.noticeControllerRemoveRaw(requestParameters, initOverrides);
+    const response = await this.request(
+      {
+        path: `/api/notices/{noticeId}`.replace(
+          `{${"noticeId"}}`,
+          encodeURIComponent(String(requestParameters["noticeId"])),
+        ),
+        method: "DELETE",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 해당 ID의 공지사항을 삭제합니다.
+   * 해당 ID 공지사항 삭제 [ADMIN]
+   */
+  async noticeControllerRemove(requestParameters, initOverrides) {
+    await this.noticeControllerRemoveRaw(requestParameters, initOverrides);
+  }
+  /**
+   * 해당 ID의 공지사항을 업데이트합니다.
+   * 공지사항 수정 [ADMIN]
+   */
+  async noticeControllerUpdateRaw(requestParameters, initOverrides) {
+    if (requestParameters["noticeId"] == null) {
+      throw new runtime.RequiredError(
+        "noticeId",
+        'Required parameter "noticeId" was null or undefined when calling noticeControllerUpdate().',
+      );
     }
-    /**
-     * 해당 ID의 공지사항을 업데이트합니다.
-     * 공지사항 수정 [ADMIN]
-     */
-    async noticeControllerUpdateRaw(requestParameters, initOverrides) {
-        if (requestParameters['noticeId'] == null) {
-            throw new runtime.RequiredError('noticeId', 'Required parameter "noticeId" was null or undefined when calling noticeControllerUpdate().');
-        }
-        if (requestParameters['body'] == null) {
-            throw new runtime.RequiredError('body', 'Required parameter "body" was null or undefined when calling noticeControllerUpdate().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        headerParameters['Content-Type'] = 'application/json';
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/notices/{noticeId}`.replace(`{${"noticeId"}}`, encodeURIComponent(String(requestParameters['noticeId']))),
-            method: 'PATCH',
-            headers: headerParameters,
-            query: queryParameters,
-            body: requestParameters['body'],
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+    if (requestParameters["body"] == null) {
+      throw new runtime.RequiredError(
+        "body",
+        'Required parameter "body" was null or undefined when calling noticeControllerUpdate().',
+      );
     }
-    /**
-     * 해당 ID의 공지사항을 업데이트합니다.
-     * 공지사항 수정 [ADMIN]
-     */
-    async noticeControllerUpdate(requestParameters, initOverrides) {
-        await this.noticeControllerUpdateRaw(requestParameters, initOverrides);
+    const queryParameters = {};
+    const headerParameters = {};
+    headerParameters["Content-Type"] = "application/json";
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
+    const response = await this.request(
+      {
+        path: `/api/notices/{noticeId}`.replace(
+          `{${"noticeId"}}`,
+          encodeURIComponent(String(requestParameters["noticeId"])),
+        ),
+        method: "PATCH",
+        headers: headerParameters,
+        query: queryParameters,
+        body: requestParameters["body"],
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 해당 ID의 공지사항을 업데이트합니다.
+   * 공지사항 수정 [ADMIN]
+   */
+  async noticeControllerUpdate(requestParameters, initOverrides) {
+    await this.noticeControllerUpdateRaw(requestParameters, initOverrides);
+  }
 }
 //# sourceMappingURL=NoticesApi.js.map

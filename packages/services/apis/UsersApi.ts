@@ -12,12 +12,12 @@
  * Do not edit the class manually.
  */
 
-import * as runtime from '../runtime';
-import type { PaginationUserResponseDto } from '../models/index';
+import * as runtime from "../runtime";
+import type { PaginationUserResponseDto } from "../models/index";
 import {
   PaginationUserResponseDtoFromJSON,
   PaginationUserResponseDtoToJSON,
-} from '../models/index';
+} from "../models/index";
 
 export interface UserControllerCheckExistByEmailRequest {
   email: string;
@@ -44,9 +44,9 @@ export class UsersApi extends runtime.BaseAPI {
     requestParameters: UserControllerCheckExistByEmailRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['email'] == null) {
+    if (requestParameters["email"] == null) {
       throw new runtime.RequiredError(
-        'email',
+        "email",
         'Required parameter "email" was null or undefined when calling userControllerCheckExistByEmail().',
       );
     }
@@ -57,19 +57,19 @@ export class UsersApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/users/email/{email}`.replace(
-          `{${'email'}}`,
-          encodeURIComponent(String(requestParameters['email'])),
+          `{${"email"}}`,
+          encodeURIComponent(String(requestParameters["email"])),
         ),
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -98,44 +98,44 @@ export class UsersApi extends runtime.BaseAPI {
     requestParameters: UserControllerFindAllRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<PaginationUserResponseDto>> {
-    if (requestParameters['offset'] == null) {
+    if (requestParameters["offset"] == null) {
       throw new runtime.RequiredError(
-        'offset',
+        "offset",
         'Required parameter "offset" was null or undefined when calling userControllerFindAll().',
       );
     }
 
-    if (requestParameters['limit'] == null) {
+    if (requestParameters["limit"] == null) {
       throw new runtime.RequiredError(
-        'limit',
+        "limit",
         'Required parameter "limit" was null or undefined when calling userControllerFindAll().',
       );
     }
 
     const queryParameters: any = {};
 
-    if (requestParameters['offset'] != null) {
-      queryParameters['offset'] = requestParameters['offset'];
+    if (requestParameters["offset"] != null) {
+      queryParameters["offset"] = requestParameters["offset"];
     }
 
-    if (requestParameters['limit'] != null) {
-      queryParameters['limit'] = requestParameters['limit'];
+    if (requestParameters["limit"] != null) {
+      queryParameters["limit"] = requestParameters["limit"];
     }
 
     const headerParameters: runtime.HTTPHeaders = {};
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/users`,
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -167,9 +167,9 @@ export class UsersApi extends runtime.BaseAPI {
     requestParameters: UserControllerFindUserByIdRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['userId'] == null) {
+    if (requestParameters["userId"] == null) {
       throw new runtime.RequiredError(
-        'userId',
+        "userId",
         'Required parameter "userId" was null or undefined when calling userControllerFindUserById().',
       );
     }
@@ -180,19 +180,19 @@ export class UsersApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/users/{userId}`.replace(
-          `{${'userId'}}`,
-          encodeURIComponent(String(requestParameters['userId'])),
+          `{${"userId"}}`,
+          encodeURIComponent(String(requestParameters["userId"])),
         ),
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },

@@ -15,37 +15,43 @@
  * @interface CreateMovieDto
  */
 export interface CreateMovieDto {
-    /**
-     * 영화 제목
-     * @type {string}
-     * @memberof CreateMovieDto
-     */
-    title: string;
-    /**
-     * 카테고리
-     * @type {string}
-     * @memberof CreateMovieDto
-     */
-    category: string;
-    /**
-     * 영화 이미지 주소
-     * @type {string}
-     * @memberof CreateMovieDto
-     */
-    imageUrl: string;
-    /**
-     * 영화 설명
-     * @type {string}
-     * @memberof CreateMovieDto
-     */
-    description: string;
+  /**
+   * 영화 제목
+   * @type {string}
+   * @memberof CreateMovieDto
+   */
+  title: string;
+  /**
+   * 카테고리
+   * @type {string}
+   * @memberof CreateMovieDto
+   */
+  category: string;
+  /**
+   * 영화 이미지 주소
+   * @type {string}
+   * @memberof CreateMovieDto
+   */
+  imageUrl: string;
+  /**
+   * 영화 설명
+   * @type {string}
+   * @memberof CreateMovieDto
+   */
+  description: string;
 }
 /**
  * Check if a given object implements the CreateMovieDto interface.
  */
 export declare function instanceOfCreateMovieDto(value: object): value is CreateMovieDto;
 export declare function CreateMovieDtoFromJSON(json: any): CreateMovieDto;
-export declare function CreateMovieDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateMovieDto;
+export declare function CreateMovieDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): CreateMovieDto;
 export declare function CreateMovieDtoToJSON(json: any): CreateMovieDto;
-export declare function CreateMovieDtoToJSONTyped(value?: CreateMovieDto | null, ignoreDiscriminator?: boolean): any;
+export declare function CreateMovieDtoToJSONTyped(
+  value?: CreateMovieDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=CreateMovieDto.d.ts.map

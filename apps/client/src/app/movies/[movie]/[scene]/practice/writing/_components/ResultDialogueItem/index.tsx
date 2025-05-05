@@ -1,23 +1,23 @@
-import { WritingDialogueType } from '@/types/dialogue';
-import { stripHtmlTags } from '@/utils/content';
+import { WritingDialogueType } from "@/types/dialogue";
+import { stripHtmlTags } from "@/utils/content";
 
 type ResultDialogueItemProps = WritingDialogueType;
 
 function getHighlightedDifference(correct: string, userInput: string) {
-  const correctWords = correct.split(' ');
-  const userWords = userInput.split(' ');
+  const correctWords = correct.split(" ");
+  const userWords = userInput.split(" ");
 
   return correctWords.map((word, index) => {
     if (word !== userWords[index]) {
       return (
         <span key={index} className="text-red-500">
-          {userWords[index] || '___'}
+          {userWords[index] || "___"}
         </span>
       );
     }
     return (
       <span key={index} className="text-green-600">
-        {word}{' '}
+        {word}{" "}
       </span>
     );
   });
@@ -28,7 +28,7 @@ export default function ResultDialogueItem({
   writingScript,
 }: ResultDialogueItemProps) {
   const correctText = stripHtmlTags(englishScript);
-  const userText = stripHtmlTags(writingScript || '');
+  const userText = stripHtmlTags(writingScript || "");
 
   const isCorrect = correctText === userText;
 

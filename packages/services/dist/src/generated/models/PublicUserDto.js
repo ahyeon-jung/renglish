@@ -15,54 +15,47 @@
  * Check if a given object implements the PublicUserDto interface.
  */
 export function instanceOfPublicUserDto(value) {
-    if (!('id' in value) || value['id'] === undefined)
-        return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined)
-        return false;
-    if (!('updatedAt' in value) || value['updatedAt'] === undefined)
-        return false;
-    if (!('deletedAt' in value) || value['deletedAt'] === undefined)
-        return false;
-    if (!('provider' in value) || value['provider'] === undefined)
-        return false;
-    if (!('email' in value) || value['email'] === undefined)
-        return false;
-    if (!('nickname' in value) || value['nickname'] === undefined)
-        return false;
-    return true;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("deletedAt" in value) || value["deletedAt"] === undefined) return false;
+  if (!("provider" in value) || value["provider"] === undefined) return false;
+  if (!("email" in value) || value["email"] === undefined) return false;
+  if (!("nickname" in value) || value["nickname"] === undefined) return false;
+  return true;
 }
 export function PublicUserDtoFromJSON(json) {
-    return PublicUserDtoFromJSONTyped(json, false);
+  return PublicUserDtoFromJSONTyped(json, false);
 }
 export function PublicUserDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'id': json['id'],
-        'createdAt': (new Date(json['createdAt'])),
-        'updatedAt': (new Date(json['updatedAt'])),
-        'deletedAt': (new Date(json['deletedAt'])),
-        'provider': json['provider'],
-        'email': json['email'],
-        'nickname': json['nickname'],
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    id: json["id"],
+    createdAt: new Date(json["createdAt"]),
+    updatedAt: new Date(json["updatedAt"]),
+    deletedAt: new Date(json["deletedAt"]),
+    provider: json["provider"],
+    email: json["email"],
+    nickname: json["nickname"],
+  };
 }
 export function PublicUserDtoToJSON(json) {
-    return PublicUserDtoToJSONTyped(json, false);
+  return PublicUserDtoToJSONTyped(json, false);
 }
 export function PublicUserDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'id': value['id'],
-        'createdAt': ((value['createdAt']).toISOString()),
-        'updatedAt': ((value['updatedAt']).toISOString()),
-        'deletedAt': ((value['deletedAt']).toISOString()),
-        'provider': value['provider'],
-        'email': value['email'],
-        'nickname': value['nickname'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    id: value["id"],
+    createdAt: value["createdAt"].toISOString(),
+    updatedAt: value["updatedAt"].toISOString(),
+    deletedAt: value["deletedAt"].toISOString(),
+    provider: value["provider"],
+    email: value["email"],
+    nickname: value["nickname"],
+  };
 }
 //# sourceMappingURL=PublicUserDto.js.map

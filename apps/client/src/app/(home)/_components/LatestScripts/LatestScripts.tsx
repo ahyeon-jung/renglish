@@ -1,25 +1,25 @@
-'use client';
+"use client";
 
-import Container from '../Container';
-import Image from 'next/image';
-import Link from 'next/link';
-import Overlay from '@/components/Overlay';
-import { PATHS } from '@/constants/path';
-import Text from '@/components/Text';
-import getLatestMovieAction from '@/app/actions/movies/getLatestMovie';
-import { useDataFetching } from '@/hooks/useDataFetching';
-import { Movie } from '@/types/movie';
-import { QUERY_KEYS } from '@/hooks/queryKeys';
-import { Autoplay } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import Container from "../Container";
+import Image from "next/image";
+import Link from "next/link";
+import Overlay from "@/components/Overlay";
+import { PATHS } from "@/constants/path";
+import Text from "@/components/Text";
+import getLatestMovieAction from "@/app/actions/movies/getLatestMovie";
+import { useDataFetching } from "@/hooks/useDataFetching";
+import { Movie } from "@/types/movie";
+import { QUERY_KEYS } from "@/hooks/queryKeys";
+import { Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-import 'swiper/css';
-import 'swiper/css/navigation';
-import { ActionResponse } from '@/types/action';
+import "swiper/css";
+import "swiper/css/navigation";
+import { ActionResponse } from "@/types/action";
 
 export default function LatestScripts() {
   const { data, isLoading } = useDataFetching<ActionResponse<Movie[]>>({
-    queryKey: [QUERY_KEYS.MOVIE.LATEST,],
+    queryKey: [QUERY_KEYS.MOVIE.LATEST],
     queryFn: getLatestMovieAction,
   });
 
@@ -34,7 +34,11 @@ export default function LatestScripts() {
   if (!data?.data) return null;
 
   return (
-    <Container label="Latest Script" goTo={PATHS.MOVIE.LIST} ellipsisDescription="더 많은 대본 보러가기">
+    <Container
+      label="Latest Script"
+      goTo={PATHS.MOVIE.LIST}
+      ellipsisDescription="더 많은 대본 보러가기"
+    >
       <Swiper
         autoplay={{ delay: 5000, disableOnInteraction: false }}
         modules={[Autoplay]}

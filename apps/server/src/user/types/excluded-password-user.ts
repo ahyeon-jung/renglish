@@ -1,3 +1,3 @@
-import { User } from '../entities/user.entity';
+import { User } from "../entities/user.entity";
 
-export type ExcludedPasswordUser = Omit<User, 'password'>;
+export type ExcludedPasswordUser = Omit<User, "password">;

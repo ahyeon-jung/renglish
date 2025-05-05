@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
  *
  * @export
@@ -43,9 +43,9 @@ export interface CreateStudyDto {
  * Check if a given object implements the CreateStudyDto interface.
  */
 export function instanceOfCreateStudyDto(value: object): value is CreateStudyDto {
-  if (!('title' in value) || value['title'] === undefined) return false;
-  if (!('studiedAt' in value) || value['studiedAt'] === undefined) return false;
-  if (!('description' in value) || value['description'] === undefined) return false;
+  if (!("title" in value) || value["title"] === undefined) return false;
+  if (!("studiedAt" in value) || value["studiedAt"] === undefined) return false;
+  if (!("description" in value) || value["description"] === undefined) return false;
   return true;
 }
 
@@ -61,9 +61,9 @@ export function CreateStudyDtoFromJSONTyped(
     return json;
   }
   return {
-    title: json['title'],
-    studiedAt: new Date(json['studiedAt']),
-    description: json['description'],
+    title: json["title"],
+    studiedAt: new Date(json["studiedAt"]),
+    description: json["description"],
   };
 }
 
@@ -80,8 +80,8 @@ export function CreateStudyDtoToJSONTyped(
   }
 
   return {
-    title: value['title'],
-    studiedAt: value['studiedAt'].toISOString(),
-    description: value['description'],
+    title: value["title"],
+    studiedAt: value["studiedAt"].toISOString(),
+    description: value["description"],
   };
 }

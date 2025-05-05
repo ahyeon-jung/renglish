@@ -15,30 +15,29 @@
  * Check if a given object implements the CreateWritingDto interface.
  */
 export function instanceOfCreateWritingDto(value) {
-    if (!('writing' in value) || value['writing'] === undefined)
-        return false;
-    return true;
+  if (!("writing" in value) || value["writing"] === undefined) return false;
+  return true;
 }
 export function CreateWritingDtoFromJSON(json) {
-    return CreateWritingDtoFromJSONTyped(json, false);
+  return CreateWritingDtoFromJSONTyped(json, false);
 }
 export function CreateWritingDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'writing': json['writing'],
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    writing: json["writing"],
+  };
 }
 export function CreateWritingDtoToJSON(json) {
-    return CreateWritingDtoToJSONTyped(json, false);
+  return CreateWritingDtoToJSONTyped(json, false);
 }
 export function CreateWritingDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'writing': value['writing'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    writing: value["writing"],
+  };
 }
 //# sourceMappingURL=CreateWritingDto.js.map

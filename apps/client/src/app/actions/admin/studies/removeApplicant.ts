@@ -1,9 +1,9 @@
-'use server';
+"use server";
 
-import { ENV } from '@/constants/env';
-import { FetchError } from '@/utils/error';
-import { cookies } from 'next/headers';
-import { fetchAPI } from '@/libs/api';
+import { ENV } from "@/constants/env";
+import { FetchError } from "@/utils/error";
+import { cookies } from "next/headers";
+import { fetchAPI } from "@/libs/api";
 
 type RemoveApplicantProps = { studyId: string; userId: string };
 
@@ -15,16 +15,16 @@ export default async function removeApplicantAction({ studyId, userId }: RemoveA
     return {
       status: 401,
       success: false,
-      message: 'No Authorization',
+      message: "No Authorization",
       data: null,
     };
   }
 
   try {
     const response = await fetchAPI(`/studies/${studyId}/remove-applicant/${userId}`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     });
@@ -32,14 +32,14 @@ export default async function removeApplicantAction({ studyId, userId }: RemoveA
     return {
       status: 200,
       success: true,
-      message: 'Apply successfully',
+      message: "Apply successfully",
       data: response.data,
     };
   } catch (e: unknown) {
     const err = e as FetchError;
 
     const status = err.response?.status ?? 500;
-    const message = err.message || 'Unexpected error';
+    const message = err.message || "Unexpected error";
 
     return {
       status,

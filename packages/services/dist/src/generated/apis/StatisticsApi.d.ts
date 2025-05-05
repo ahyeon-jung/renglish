@@ -9,38 +9,50 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import * as runtime from '../runtime';
+import * as runtime from "../runtime";
 /**
  *
  */
 export declare class StatisticsApi extends runtime.BaseAPI {
-    /**
-     * 방문자 row 추가(관리자 전용)
-     */
-    statisticControllerCreateStaticsRowRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * 방문자 row 추가(관리자 전용)
-     */
-    statisticControllerCreateStaticsRow(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * 현재 몇명이 방문했는지 조회합니다
-     * 방문자 수 조회하기
-     */
-    statisticControllerGetVisitorCountRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * 현재 몇명이 방문했는지 조회합니다
-     * 방문자 수 조회하기
-     */
-    statisticControllerGetVisitorCount(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * 현재 방문자를 식별하여 첫 방문의 경우 카운트합니다.
-     * 방문자 수 업데이트하기
-     */
-    statisticControllerUpdateVisitorCountRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * 현재 방문자를 식별하여 첫 방문의 경우 카운트합니다.
-     * 방문자 수 업데이트하기
-     */
-    statisticControllerUpdateVisitorCount(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+  /**
+   * 방문자 row 추가(관리자 전용)
+   */
+  statisticControllerCreateStaticsRowRaw(
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<void>>;
+  /**
+   * 방문자 row 추가(관리자 전용)
+   */
+  statisticControllerCreateStaticsRow(
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<void>;
+  /**
+   * 현재 몇명이 방문했는지 조회합니다
+   * 방문자 수 조회하기
+   */
+  statisticControllerGetVisitorCountRaw(
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<void>>;
+  /**
+   * 현재 몇명이 방문했는지 조회합니다
+   * 방문자 수 조회하기
+   */
+  statisticControllerGetVisitorCount(
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<void>;
+  /**
+   * 현재 방문자를 식별하여 첫 방문의 경우 카운트합니다.
+   * 방문자 수 업데이트하기
+   */
+  statisticControllerUpdateVisitorCountRaw(
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<void>>;
+  /**
+   * 현재 방문자를 식별하여 첫 방문의 경우 카운트합니다.
+   * 방문자 수 업데이트하기
+   */
+  statisticControllerUpdateVisitorCount(
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<void>;
 }
 //# sourceMappingURL=StatisticsApi.d.ts.map

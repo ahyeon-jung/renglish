@@ -9,82 +9,88 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { Movie } from './Movie';
-import type { Study } from './Study';
-import type { Speaker } from './Speaker';
+import type { Movie } from "./Movie";
+import type { Study } from "./Study";
+import type { Speaker } from "./Speaker";
 /**
  *
  * @export
  * @interface ListStudySceneDto
  */
 export interface ListStudySceneDto {
-    /**
-     * 아이디
-     * @type {string}
-     * @memberof ListStudySceneDto
-     */
-    id: string;
-    /**
-     * 생성일
-     * @type {Date}
-     * @memberof ListStudySceneDto
-     */
-    createdAt: Date;
-    /**
-     * 수정일
-     * @type {Date}
-     * @memberof ListStudySceneDto
-     */
-    updatedAt: Date;
-    /**
-     * 삭제일
-     * @type {Date}
-     * @memberof ListStudySceneDto
-     */
-    deletedAt: Date;
-    /**
-     *
-     * @type {string}
-     * @memberof ListStudySceneDto
-     */
-    title: string;
-    /**
-     *
-     * @type {string}
-     * @memberof ListStudySceneDto
-     */
-    description: string;
-    /**
-     *
-     * @type {string}
-     * @memberof ListStudySceneDto
-     */
-    audioUrl: string;
-    /**
-     *
-     * @type {Movie}
-     * @memberof ListStudySceneDto
-     */
-    movie: Movie;
-    /**
-     *
-     * @type {Study}
-     * @memberof ListStudySceneDto
-     */
-    study: Study;
-    /**
-     *
-     * @type {Array<Speaker>}
-     * @memberof ListStudySceneDto
-     */
-    speakers: Array<Speaker>;
+  /**
+   * 아이디
+   * @type {string}
+   * @memberof ListStudySceneDto
+   */
+  id: string;
+  /**
+   * 생성일
+   * @type {Date}
+   * @memberof ListStudySceneDto
+   */
+  createdAt: Date;
+  /**
+   * 수정일
+   * @type {Date}
+   * @memberof ListStudySceneDto
+   */
+  updatedAt: Date;
+  /**
+   * 삭제일
+   * @type {Date}
+   * @memberof ListStudySceneDto
+   */
+  deletedAt: Date;
+  /**
+   *
+   * @type {string}
+   * @memberof ListStudySceneDto
+   */
+  title: string;
+  /**
+   *
+   * @type {string}
+   * @memberof ListStudySceneDto
+   */
+  description: string;
+  /**
+   *
+   * @type {string}
+   * @memberof ListStudySceneDto
+   */
+  audioUrl: string;
+  /**
+   *
+   * @type {Movie}
+   * @memberof ListStudySceneDto
+   */
+  movie: Movie;
+  /**
+   *
+   * @type {Study}
+   * @memberof ListStudySceneDto
+   */
+  study: Study;
+  /**
+   *
+   * @type {Array<Speaker>}
+   * @memberof ListStudySceneDto
+   */
+  speakers: Array<Speaker>;
 }
 /**
  * Check if a given object implements the ListStudySceneDto interface.
  */
 export declare function instanceOfListStudySceneDto(value: object): value is ListStudySceneDto;
 export declare function ListStudySceneDtoFromJSON(json: any): ListStudySceneDto;
-export declare function ListStudySceneDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListStudySceneDto;
+export declare function ListStudySceneDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): ListStudySceneDto;
 export declare function ListStudySceneDtoToJSON(json: any): ListStudySceneDto;
-export declare function ListStudySceneDtoToJSONTyped(value?: ListStudySceneDto | null, ignoreDiscriminator?: boolean): any;
+export declare function ListStudySceneDtoToJSONTyped(
+  value?: ListStudySceneDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=ListStudySceneDto.d.ts.map

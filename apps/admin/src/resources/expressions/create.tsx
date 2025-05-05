@@ -34,8 +34,8 @@ export const ExpressionCreate = () => {
               ...expr,
               sceneId,
             },
-          })
-        )
+          }),
+        ),
       );
 
       notify("✅ Expressions created");
