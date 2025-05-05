@@ -1,9 +1,10 @@
 'use client';
 
+import { useRef, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { useVirtualizer } from '@tanstack/react-virtual';
 
-import Button from '@/components/Button';
 import Categories from './_components/Categories';
 import ScriptListItem from './_components/ScriptListItem';
 import clsx from 'clsx';
@@ -17,6 +18,7 @@ const PAGE_SIZE = 5;
 export default function MoviesPage() {
   const searchParams = useSearchParams();
   const category = searchParams.get('category');
+  const parentRef = useRef<HTMLDivElement | null>(null);
 
   const {
     data,
@@ -42,20 +44,64 @@ export default function MoviesPage() {
 
   const movies = data?.pages.flatMap(page => page.data.data) ?? [];
 
+  const rowVirtualizer = useVirtualizer({
+    count: hasNextPage ? movies.length + 1 : movies.length,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => 190,
+    overscan: 5,
+  });
+
+  useEffect(() => {
+    const [lastItem] = [...rowVirtualizer.getVirtualItems()].reverse();
+
+    if (!lastItem) return;
+
+    if (
+      lastItem.index >= movies.length - 1 &&
+      hasNextPage &&
+      !isFetchingNextPage
+    ) {
+      fetchNextPage();
+    }
+  }, [rowVirtualizer.getVirtualItems(), movies.length, hasNextPage, isFetchingNextPage]);
+
   return (
     <main className={clsx('mt-[var(--header-height)] p-3')}>
       <Categories />
       {isLoading && <div>Loading...</div>}
-      <ul className="flex flex-col gap-[15px]">
-        {movies.length > 0
-          ? movies.map((movie, index) => <ScriptListItem key={index} {...movie} />)
-          : !isLoading && <div>No movies found</div>}
-        {hasNextPage && (
-          <Button onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
-            {isFetchingNextPage ? 'Loading more...' : 'Load More'}
-          </Button>
-        )}
-      </ul>
+      <div
+        ref={parentRef}
+        className="relative h-[85vh] overflow-auto"
+      >
+        <div
+          className="relative"
+          style={{ height: `${rowVirtualizer.getTotalSize()}px` }}
+        >
+
+          {rowVirtualizer.getVirtualItems().map(virtualRow => {
+            const movie = movies[virtualRow.index];
+
+            return movie ? (
+              <div
+                key={virtualRow.key}
+                className="absolute top-0 left-0 w-full"
+                style={{ transform: `translateY(${virtualRow.start}px)` }}
+              >
+
+                <ScriptListItem {...movie} />
+              </div>
+            ) : (
+              <div
+                key={virtualRow.key}
+                className="absolute top-0 left-0 w-full text-center"
+                style={{ transform: `translateY(${virtualRow.start}px)` }}
+              >
+                {hasNextPage ? 'Loading more...' : 'No more items'}
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </main>
   );
 }
