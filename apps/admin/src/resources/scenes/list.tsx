@@ -1,5 +1,5 @@
-import { ExtendedSceneDto } from "@renglish/services";
-import { List, Datagrid, TextField, DateField } from "react-admin";
+import type { ExtendedSceneDto } from "@renglish/services";
+import { Datagrid, DateField, List, TextField } from "react-admin";
 import RESOURCE from "../../constants/resource";
 
 const SceneList = () => (

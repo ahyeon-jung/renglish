@@ -1,15 +1,13 @@
-import RESOURCE from "../../constants/resource";
+import { Box, Link, Typography } from "@mui/material";
 import {
   Create,
+  SelectInput,
   SimpleForm,
   TextInput,
-  ArrayInput,
-  SimpleFormIterator,
-  SelectInput,
   useGetList,
 } from "react-admin";
+import RESOURCE from "../../constants/resource";
 import { AUDIO_STORAGE_URL, VIDEO_TO_MP3_URL } from "../../constants/url";
-import { Typography, Box, Link } from "@mui/material";
 
 const SelectMovie = () => {
   const { data } = useGetList(RESOURCE.MOVIES);
@@ -41,19 +39,6 @@ export default function SceneCreate() {
             </Link>
           </Box>
           <TextInput source="audioUrl" />
-        </Box>
-        <Box width="100%" mb={2}>
-          <Typography variant="h6">발화자 정보</Typography>
-          <ArrayInput source="speakers">
-            <SimpleFormIterator>
-              <TextInput source="speakerName" label="이름" />
-              <TextInput source="speakerType" label="타입" />
-            </SimpleFormIterator>
-          </ArrayInput>
-        </Box>
-        <Box width="100%" mb={2}>
-          <Typography variant="h6">대화</Typography>
-          <TextInput source="content" multiline fullWidth rows={6} />
         </Box>
       </SimpleForm>
     </Create>

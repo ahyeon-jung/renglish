@@ -1,8 +1,8 @@
-import { CreateParams, CreateResult, DataProvider, RaRecord } from "react-admin";
+import type { ExtendedSceneDto, Speaker } from "@renglish/services";
+import type { CreateParams, CreateResult, DataProvider, RaRecord } from "react-admin";
 import RESOURCE from "../../constants/resource";
-import { dialogueApi, expressionApi, movieApi, sceneApi, speakerApi } from "../../libs/api";
 import { getGoogleDriveUrl } from "../../constants/url";
-import { ExtendedSceneDto, Speaker } from "@renglish/services";
+import { dialogueApi, expressionApi, movieApi, sceneApi, speakerApi } from "../../libs/api";
 
 const create: DataProvider["create"] = async <RecordType extends RaRecord>(
   resource: string,
@@ -36,8 +36,6 @@ const create: DataProvider["create"] = async <RecordType extends RaRecord>(
 
   if (resource === RESOURCE.SCENES) {
     if (
-      !params.data.content ||
-      !params.data.speakers ||
       !params.data.title ||
       !params.data.audioUrl ||
       !params.data.description ||
@@ -47,7 +45,6 @@ const create: DataProvider["create"] = async <RecordType extends RaRecord>(
     }
 
     try {
-      // 장면 생성
       const scene = (await sceneApi.sceneControllerCreateScene({
         movieId: params.data.movieId,
         createSceneDto: {
@@ -58,11 +55,11 @@ const create: DataProvider["create"] = async <RecordType extends RaRecord>(
       })) as unknown as ExtendedSceneDto;
 
       return { data: scene } as unknown as CreateResult<RecordType>;
-    } catch {}
+    } catch { }
   }
 
   if (resource === RESOURCE.SPEAKERS) {
-    if (params.data.speakers?.length !== 0 || !params.data.sceneId) {
+    if (params.data.speakers?.length === 0 || !params.data.sceneId) {
       return Promise.reject("Missing required fields");
     }
 
@@ -79,7 +76,7 @@ const create: DataProvider["create"] = async <RecordType extends RaRecord>(
         });
       }
       return { data: {} } as unknown as CreateResult<RecordType>;
-    } catch {}
+    } catch { }
   }
 
   if (resource === RESOURCE.DIALOGUES) {
@@ -110,7 +107,7 @@ const create: DataProvider["create"] = async <RecordType extends RaRecord>(
       }
 
       return { data: {} } as unknown as CreateResult<RecordType>;
-    } catch {}
+    } catch { }
   }
 
   if (resource === RESOURCE.STUDIES) {
