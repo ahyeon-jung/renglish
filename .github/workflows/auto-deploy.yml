@@ -2,7 +2,7 @@ name: Auto Deploy for Database and Server
 
 on:
   schedule:
-    - cron: '0 20 * * *' # 한국시간 오전 5시
+    - cron: '30 21 * * *' # 한국시간 오전 6시 30분
   workflow_dispatch:
 
 jobs:
