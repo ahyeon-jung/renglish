@@ -4,10 +4,10 @@ import applyToStudyAction from "@/app/actions/studies/applyToStudy";
 import Button from "@/components/Button";
 import Modal from "@/components/Modal";
 import Text from "@/components/Text";
-import { PATHS } from "@/constants/path";
 import { MESSAGE } from "@/constants/toast";
 import { GATHER_TOWN_URL } from "@/constants/url";
 import { useUserStore } from "@/stores/userStore";
+import { goToLoginWithRedirect } from "@/utils/path";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -59,7 +59,7 @@ export default function ApplyToStudyModal({ studyId }: ApplyToStudyModalProps) {
         <Modal className="w-[300px]" onClose={closeModal}>
           <Modal.Title>스터디 참여하기</Modal.Title>
           <Modal.Content>로그인 후 참여 신청해주세요</Modal.Content>
-          <Link href={`${PATHS.AUTH.LOGIN}?redirect=${encodeURIComponent(pathname)}`}>
+          <Link href={goToLoginWithRedirect(pathname)}>
             <Button>로그인하러 가기</Button>
           </Link>
         </Modal>

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import { PATHS } from "@/constants/path";
 import { useUserStore } from "@/stores/userStore";
+import { goToLoginWithRedirect, goToLogoutWithRedirect } from "@/utils/path";
 import { LayoutGrid } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { createPortal } from "react-dom";
@@ -74,7 +75,7 @@ function getAuthNavOptions(userId: string | null, pathname: string) {
       { label: "My Page", path: PATHS.MY.HOME },
       {
         label: "Logout",
-        path: `${PATHS.AUTH.LOGOUT}?redirect=${encodeURIComponent(pathname)}`,
+        path: goToLoginWithRedirect(pathname),
       },
     ];
   }
@@ -82,7 +83,7 @@ function getAuthNavOptions(userId: string | null, pathname: string) {
   return [
     {
       label: "Login",
-      path: `${PATHS.AUTH.LOGIN}?redirect=${encodeURIComponent(pathname)}`,
+      path: goToLogoutWithRedirect(pathname),
     },
     { label: "Register", path: PATHS.AUTH.REGISTER },
   ];
