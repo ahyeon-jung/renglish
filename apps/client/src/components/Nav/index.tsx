@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { PATHS } from "@/constants/path";
 import { useUserStore } from "@/stores/userStore";
 import { LayoutGrid } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { createPortal } from "react-dom";
 import Dialog from "../Dialog";
 import NavItem from "../NavItem";
@@ -18,19 +19,9 @@ const DEFAULT_NAV_OPTIONS = [
   { label: "Notices", path: PATHS.NOTICES.LIST },
 ];
 
-const WITHOUT_AUTH_NAV_OPTIONS = [
-  { label: "Login", path: PATHS.AUTH.LOGIN },
-  { label: "Register", path: PATHS.AUTH.REGISTER },
-];
-
-const WITH_AUTH_NAV_OPTIONS = [
-  { label: "My Page", path: PATHS.MY.HOME },
-  { label: "Logout", path: PATHS.AUTH.LOGOUT },
-];
-
 export default function Nav() {
   const { userId } = useUserStore();
-
+  const pathname = usePathname();
   const [isOpenNav, setIsOpenNav] = useState(true);
   const [portalRoot, setPortalRoot] = useState<HTMLElement | null>(null);
 
@@ -45,7 +36,9 @@ export default function Nav() {
     if (isOpenNav) {
       closeNav();
     }
-  }, [isOpenNav]);
+  }, [pathname]);
+
+  const authNavOptions = getAuthNavOptions(userId, pathname);
 
   return (
     <>
@@ -61,7 +54,7 @@ export default function Nav() {
                 ))}
               </div>
               <div className="flex flex-col gap-2 absolute pl-8 pt-2 top-[230px] left-0 w-full bottom-0 bg-white">
-                {(userId ? WITH_AUTH_NAV_OPTIONS : WITHOUT_AUTH_NAV_OPTIONS).map(
+                {authNavOptions.map(
                   ({ label, path }) => (
                     <NavItem key={path} path={path} label={label} />
                   ),
@@ -73,4 +66,24 @@ export default function Nav() {
         )}
     </>
   );
+}
+
+function getAuthNavOptions(userId: string | null, pathname: string) {
+  if (userId) {
+    return [
+      { label: "My Page", path: PATHS.MY.HOME },
+      {
+        label: "Logout",
+        path: `${PATHS.AUTH.LOGOUT}?redirect=${encodeURIComponent(pathname)}`,
+      },
+    ];
+  }
+
+  return [
+    {
+      label: "Login",
+      path: `${PATHS.AUTH.LOGIN}?redirect=${encodeURIComponent(pathname)}`,
+    },
+    { label: "Register", path: PATHS.AUTH.REGISTER },
+  ];
 }
