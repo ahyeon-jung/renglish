@@ -2,13 +2,12 @@
 
 import { useEffect, useState } from "react";
 
-import Dialog from "../Dialog";
-import { LayoutGrid } from "lucide-react";
-import NavItem from "../NavItem";
 import { PATHS } from "@/constants/path";
-import { createPortal } from "react-dom";
-import { usePathname } from "next/navigation";
 import { useUserStore } from "@/stores/userStore";
+import { LayoutGrid } from "lucide-react";
+import { createPortal } from "react-dom";
+import Dialog from "../Dialog";
+import NavItem from "../NavItem";
 
 const DEFAULT_NAV_OPTIONS = [
   { label: "Home", path: PATHS.HOME },
@@ -30,7 +29,6 @@ const WITH_AUTH_NAV_OPTIONS = [
 ];
 
 export default function Nav() {
-  const pathname = usePathname();
   const { userId } = useUserStore();
 
   const [isOpenNav, setIsOpenNav] = useState(true);
@@ -47,7 +45,7 @@ export default function Nav() {
     if (isOpenNav) {
       closeNav();
     }
-  }, [pathname]);
+  }, [isOpenNav]);
 
   return (
     <>
