@@ -1,5 +1,7 @@
-type FieldMessageProps = { label: string };
+import clsx from "clsx";
 
-export default function FieldMessage({ label }: FieldMessageProps) {
-  return <div>{label}</div>;
+type FieldMessageProps = { label: string, varients?: 'error' | 'default' | 'success' };
+
+export default function FieldMessage({ label, varients = 'default' }: FieldMessageProps) {
+  return <div className={clsx(varients === 'error' ? "text-red-700" : "")}>{label}</div>;
 }

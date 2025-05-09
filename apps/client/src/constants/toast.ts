@@ -3,6 +3,11 @@ export const MESSAGE = {
     ERROR: { SERVER: "Server error. Please try again later or contact me.", FAIL: "Sorry, try later" },
     SUCCESS: { SAVE: "Saved successfully" },
   },
+  EMAIL: {
+    ERROR: {
+      UNFORMAT: "Enter a valid email format.",
+    }
+  },
   AUTH: {
     ERROR: {
       ALREADY_EXISTS: "This email is already registered.",

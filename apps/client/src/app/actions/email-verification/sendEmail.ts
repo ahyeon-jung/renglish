@@ -2,15 +2,20 @@
 
 import { FetchError, handleFetchError } from "@/utils/error";
 
-import { ActionResponse } from "@/types/action";
+import { EMAIL_REGEX } from "@/constants/regex";
 import { emailVerificationApi } from "@/libs/api";
+import type { ActionResponse } from "@/types/action";
 import { getUserByEmailAction } from "../users/getUser";
 
 type SendEmailParams = { email: string };
 
 export default async function sendEmail({ email }: SendEmailParams): Promise<ActionResponse<null>> {
   if (!email) {
-    return { status: 200, success: false, message: "no required data", data: null };
+    return { status: 400, success: false, message: "no required data", data: null };
+  }
+
+  if (!EMAIL_REGEX.test(email)) {
+    return { status: 400, success: false, message: "Enter a valid email format.", data: null };
   }
 
   try {

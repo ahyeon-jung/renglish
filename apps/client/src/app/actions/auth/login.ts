@@ -1,6 +1,7 @@
 "use server";
 
 import { ENV } from "@/constants/env";
+import { EMAIL_REGEX } from "@/constants/regex";
 import { REMEMBER_ME_EXPIRATION_TIME } from "@/constants/time";
 import { authApi } from "@/libs/api";
 import { handleError } from "@/utils/error";
@@ -11,6 +12,10 @@ type LoginAction = { email: string; password: string; rememberMe: boolean };
 export default async function loginAction({ email, password, rememberMe }: LoginAction) {
   if (!email || !password) {
     return { status: 400, success: false, message: "no required data", data: null };
+  }
+
+  if (!EMAIL_REGEX.test(email)) {
+    return { status: 400, success: false, message: "Enter a valid email format.", data: null };
   }
 
   try {
