@@ -1,18 +1,16 @@
 "use server";
 
-import { handleError } from "@/utils/error";
-
-import { ActionResponse } from "@/types/action";
 import { ENV } from "@/constants/env";
-import { cookies } from "next/headers";
-import { authApi } from "@/libs/api";
 import { REMEMBER_ME_EXPIRATION_TIME } from "@/constants/time";
+import { authApi } from "@/libs/api";
+import { handleError } from "@/utils/error";
+import { cookies } from "next/headers";
 
 type LoginAction = { email: string; password: string; rememberMe: boolean };
 
 export default async function loginAction({ email, password, rememberMe }: LoginAction) {
   if (!email || !password) {
-    return { status: 200, success: false, message: "no required data", data: null };
+    return { status: 400, success: false, message: "no required data", data: null };
   }
 
   try {
@@ -39,6 +37,6 @@ export default async function loginAction({ email, password, rememberMe }: Login
     return { status: 200, success: true, message: "Login successfully", data: email };
   } catch (e) {
     const err = await handleError(e);
-    return { status: err.statusCode, success: false, message: err.message, data: null };
+    return { status: err.statusCode === 400 ? 401 : err.statusCode, success: false, message: err.message, data: null };
   }
 }

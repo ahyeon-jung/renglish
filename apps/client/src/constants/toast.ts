@@ -1,6 +1,6 @@
 export const MESSAGE = {
   COMMON: {
-    ERROR: { SERVER: "Server error. Please try again later.", FAIL: "Sorry, try later" },
+    ERROR: { SERVER: "Server error. Please try again later or contact me.", FAIL: "Sorry, try later" },
     SUCCESS: { SAVE: "Saved successfully" },
   },
   AUTH: {

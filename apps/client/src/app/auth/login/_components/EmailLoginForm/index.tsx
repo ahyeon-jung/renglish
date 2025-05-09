@@ -23,9 +23,14 @@ export default function EmailLoginForm() {
     e.preventDefault();
 
     try {
-      const { success, data } = await loginAction(loginBody);
+      const { success, data, status } = await loginAction(loginBody);
       if (!success) {
-        toast.error(MESSAGE.AUTH.ERROR.UNMATCHED);
+        if (status === 401) {
+          toast.error(MESSAGE.AUTH.ERROR.UNMATCHED);
+          return;
+        }
+
+        toast.error(MESSAGE.COMMON.ERROR.SERVER);
         return;
       }
       setUserId(data || "", loginBody.rememberMe);
