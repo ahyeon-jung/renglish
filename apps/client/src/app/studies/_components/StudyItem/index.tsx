@@ -1,13 +1,12 @@
-import ApplyToStudyModal from "../ApplyToStudyModal";
-import Image from "next/image";
-import clsx from "clsx";
-import { formatDate } from "@/utils/format";
-import { ListStudyDto, StudyDto } from "@renglish/services";
-import StudyMember from "../StudyMember";
-import Link from "next/link";
-import { PATHS } from "@/constants/path";
-import Overlay from "@/components/Overlay";
 import Text from "@/components/Text";
+import { PATHS } from "@/constants/path";
+import { formatDate } from "@/utils/format";
+import type { ListStudyDto, StudyDto } from "@renglish/services";
+import clsx from "clsx";
+import Image from "next/image";
+import Link from "next/link";
+import ApplyToStudyModal from "../ApplyToStudyModal";
+import StudyMember from "../StudyMember";
 
 type StudyItemProps =
   | (ListStudyDto & { nonApplicantsButton?: boolean })
@@ -65,7 +64,7 @@ export default function StudyItem({ nonApplicantsButton = false, ...study }: Stu
           />
         </Link>
       </div>
-      {!nonApplicantsButton && !study.isCompleted && <ApplyToStudyModal studyId={study.id} />}
+      {!nonApplicantsButton && !study.isCompleted && <ApplyToStudyModal sceneId={study.scene.id} studyId={study.id} />}
     </div>
   );
 }

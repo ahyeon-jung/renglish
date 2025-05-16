@@ -35,6 +35,9 @@ export const PATHS = {
     INTRODUCE: "/introduce",
     MEMBER: "/notices/member",
   },
+  MEETING: {
+    DETAIL: (id: string) => `/meeting/${id}`
+  },
   MY: {
     HOME: "/my",
     PROFILE: "/my/profile",
