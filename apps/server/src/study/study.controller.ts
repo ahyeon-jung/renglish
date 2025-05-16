@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Post,
   Put,
   Query,
@@ -60,8 +61,8 @@ export class StudyController {
   findAll(
     @Request() req,
     @Query('status') status?: string,
-    @Query('offset') offset: number = 1,
-    @Query('limit') limit: number = 10,
+    @Query('offset', ParseIntPipe) offset = 1,
+    @Query('limit', ParseIntPipe) limit = 10,
   ): Promise<PaginationResponse<ExtendedFilteredStudy>> {
     return this.studyService.findAll(req.user.id, { status, offset, limit });
   }
@@ -122,7 +123,7 @@ export class StudyController {
   })
   @ApiOkResponse({ type: Study })
   addApplicant(@Param('studyId') studyId: string, @Request() req): Promise<Study> {
-    const userId = req.user['id'];
+    const userId = req.user.id
     return this.studyService.addApplicants(studyId, userId);
   }
 
@@ -134,7 +135,7 @@ export class StudyController {
   })
   @ApiOkResponse({ type: Study })
   removeApplicant(@Param('studyId') studyId: string, @Request() req): Promise<Study> {
-    const userId = req.user['id'];
+    const userId = req.user.id;
     return this.studyService.removeApplicant(studyId, userId);
   }
 
