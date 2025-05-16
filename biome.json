@@ -22,5 +22,10 @@
   },
   "files": {
     "include": ["**", "apps/**/*.{ts,tsx,js,jsx,json}"]
+  },
+  "javascript": {
+    "parser": {
+      "unsafeParameterDecoratorsEnabled": true
+    }
   }
 }

@@ -1,35 +1,35 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Post,
+  Put,
   Query,
   Request,
   UseGuards,
-  Put,
 } from '@nestjs/common';
-import { StudyService } from './study.service';
-import { UpdateStudyDto } from './dto/update-study.dto';
+import type { UpdateStudyDto } from './dto/update-study.dto';
+import type { StudyService } from './study.service';
 
-import { AccessTokenGuard } from 'src/auth/guards/access-token.guard';
 import { ApiOkResponse, ApiOperation, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
-import { TAG } from 'src/common/constants/tag';
-import { STUDY_STATUS } from './enums/study-status.enum';
+import { AccessTokenGuard } from 'src/auth/guards/access-token.guard';
 import { AdminTokenGuard } from 'src/auth/guards/admin-token.guard';
-import { Study } from './entities/study.entity';
-import { PaginationResponse } from 'src/common/utils/pagination.util';
-import { ExtendedFilteredStudy } from './types/filtered-study';
-import { DeleteResult } from 'typeorm';
-import { ListStudyDto, PaginationStudyResponseDto } from './dto/pagination-study.dto';
 import { OptionalTokenGuard } from 'src/auth/guards/optional-token.guard';
+import { TAG } from 'src/common/constants/tag';
+import type { PaginationResponse } from 'src/common/utils/pagination.util';
+import type { DeleteResult } from 'typeorm';
 import { StudyDto } from './dto/get-study.dto';
+import { PaginationStudyResponseDto } from './dto/pagination-study.dto';
+import { Study } from './entities/study.entity';
+import { STUDY_STATUS } from './enums/study-status.enum';
+import type { ExtendedFilteredStudy } from './types/filtered-study';
 
 @ApiTags('Study')
 @Controller('studies')
 export class StudyController {
-  constructor(private readonly studyService: StudyService) {}
+  constructor(private readonly studyService: StudyService) { }
 
   @Get()
   @UseGuards(OptionalTokenGuard)
