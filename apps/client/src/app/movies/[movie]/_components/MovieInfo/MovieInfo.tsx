@@ -1,7 +1,7 @@
-import Image from 'next/image';
-import { Movie } from '@/types/movie';
-import Text from '@/components/Text';
-import { formatTitle } from '@/utils/format';
+import Image from "next/image";
+import { Movie } from "@/types/movie";
+import Text from "@/components/Text";
+import { formatTitle } from "@/utils/format";
 
 export default function MovieInfo({ title, imageUrl, description }: Movie) {
   return (

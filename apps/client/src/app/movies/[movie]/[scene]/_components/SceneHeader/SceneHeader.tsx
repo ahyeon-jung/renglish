@@ -1,13 +1,13 @@
-import SceneNav from '../SceneNav';
+import SceneNav from "../SceneNav";
 
-import SubHeaderContainer from '@/components/SubheaderContainer';
-import { formatTitle } from '@/utils/format';
-import { SceneNavProps } from '../SceneNav/SceneNav';
-import { AlignJustify, Info as InfoIcon } from 'lucide-react';
-import Link from 'next/link';
-import { PATHS } from '@/constants/path';
+import SubHeaderContainer from "@/components/SubheaderContainer";
+import { formatTitle } from "@/utils/format";
+import { SceneNavProps } from "../SceneNav/SceneNav";
+import { AlignJustify, Info as InfoIcon } from "lucide-react";
+import Link from "next/link";
+import { PATHS } from "@/constants/path";
 
-type Header = { title: string } & Omit<SceneNavProps, 'iconSize'> & React.PropsWithChildren;
+type Header = { title: string } & Omit<SceneNavProps, "iconSize"> & React.PropsWithChildren;
 
 export default function SceneHeader({ title, children, movieId, sceneId }: Header) {
   const iconSize = 21;

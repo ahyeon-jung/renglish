@@ -15,32 +15,32 @@
  * Check if a given object implements the UpdateDialogueDto interface.
  */
 export function instanceOfUpdateDialogueDto(value) {
-    return true;
+  return true;
 }
 export function UpdateDialogueDtoFromJSON(json) {
-    return UpdateDialogueDtoFromJSONTyped(json, false);
+  return UpdateDialogueDtoFromJSONTyped(json, false);
 }
 export function UpdateDialogueDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'englishScript': json['english_script'] == null ? undefined : json['english_script'],
-        'koreanScript': json['korean_script'] == null ? undefined : json['korean_script'],
-        'order': json['order'] == null ? undefined : json['order'],
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    englishScript: json["english_script"] == null ? undefined : json["english_script"],
+    koreanScript: json["korean_script"] == null ? undefined : json["korean_script"],
+    order: json["order"] == null ? undefined : json["order"],
+  };
 }
 export function UpdateDialogueDtoToJSON(json) {
-    return UpdateDialogueDtoToJSONTyped(json, false);
+  return UpdateDialogueDtoToJSONTyped(json, false);
 }
 export function UpdateDialogueDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'english_script': value['englishScript'],
-        'korean_script': value['koreanScript'],
-        'order': value['order'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    english_script: value["englishScript"],
+    korean_script: value["koreanScript"],
+    order: value["order"],
+  };
 }
 //# sourceMappingURL=UpdateDialogueDto.js.map

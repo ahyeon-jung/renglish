@@ -15,50 +15,44 @@
  * Check if a given object implements the Speaker interface.
  */
 export function instanceOfSpeaker(value) {
-    if (!('id' in value) || value['id'] === undefined)
-        return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined)
-        return false;
-    if (!('updatedAt' in value) || value['updatedAt'] === undefined)
-        return false;
-    if (!('deletedAt' in value) || value['deletedAt'] === undefined)
-        return false;
-    if (!('speakerName' in value) || value['speakerName'] === undefined)
-        return false;
-    if (!('speakerType' in value) || value['speakerType'] === undefined)
-        return false;
-    return true;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("deletedAt" in value) || value["deletedAt"] === undefined) return false;
+  if (!("speakerName" in value) || value["speakerName"] === undefined) return false;
+  if (!("speakerType" in value) || value["speakerType"] === undefined) return false;
+  return true;
 }
 export function SpeakerFromJSON(json) {
-    return SpeakerFromJSONTyped(json, false);
+  return SpeakerFromJSONTyped(json, false);
 }
 export function SpeakerFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'id': json['id'],
-        'createdAt': (new Date(json['createdAt'])),
-        'updatedAt': (new Date(json['updatedAt'])),
-        'deletedAt': (new Date(json['deletedAt'])),
-        'speakerName': json['speaker_name'],
-        'speakerType': json['speaker_type'],
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    id: json["id"],
+    createdAt: new Date(json["createdAt"]),
+    updatedAt: new Date(json["updatedAt"]),
+    deletedAt: new Date(json["deletedAt"]),
+    speakerName: json["speaker_name"],
+    speakerType: json["speaker_type"],
+  };
 }
 export function SpeakerToJSON(json) {
-    return SpeakerToJSONTyped(json, false);
+  return SpeakerToJSONTyped(json, false);
 }
 export function SpeakerToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'id': value['id'],
-        'createdAt': ((value['createdAt']).toISOString()),
-        'updatedAt': ((value['updatedAt']).toISOString()),
-        'deletedAt': ((value['deletedAt']).toISOString()),
-        'speaker_name': value['speakerName'],
-        'speaker_type': value['speakerType'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    id: value["id"],
+    createdAt: value["createdAt"].toISOString(),
+    updatedAt: value["updatedAt"].toISOString(),
+    deletedAt: value["deletedAt"].toISOString(),
+    speaker_name: value["speakerName"],
+    speaker_type: value["speakerType"],
+  };
 }
 //# sourceMappingURL=Speaker.js.map

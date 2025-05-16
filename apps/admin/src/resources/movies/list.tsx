@@ -1,6 +1,6 @@
-import { ExtendedSceneDto } from '@renglish/services'
-import { List, Datagrid, TextField, DateField } from 'react-admin'
-import RESOURCE from '../../constants/resource'
+import { ExtendedSceneDto } from "@renglish/services";
+import { List, Datagrid, TextField, DateField } from "react-admin";
+import RESOURCE from "../../constants/resource";
 
 const MovieList = () => (
   <List<ExtendedSceneDto> resource={RESOURCE.MOVIES}>
@@ -12,6 +12,6 @@ const MovieList = () => (
       <DateField source="createdAt" />
     </Datagrid>
   </List>
-)
+);
 
-export default MovieList
+export default MovieList;

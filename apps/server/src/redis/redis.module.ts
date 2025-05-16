@@ -1,9 +1,9 @@
-import * as redisStore from 'cache-manager-redis-store';
+import * as redisStore from "cache-manager-redis-store";
 
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule, ConfigService } from "@nestjs/config";
 
-import { CacheModule } from '@nestjs/common/cache';
-import { Module } from '@nestjs/common';
+import { CacheModule } from "@nestjs/common/cache";
+import { Module } from "@nestjs/common";
 
 @Module({
   imports: [
@@ -13,11 +13,11 @@ import { Module } from '@nestjs/common';
       useFactory: async (configService: ConfigService) => {
         return {
           store: redisStore,
-          host: configService.get<string>('REDIS_HOST'),
-          port: configService.get<number>('REDIS_PORT'),
-          ttl: configService.get<number>('REDIS_TTL'),
-          auth_pass: configService.get<string>('REDIS_PASSWORD'),
-          username: configService.get<string>('REDIS_USER'),
+          host: configService.get<string>("REDIS_HOST"),
+          port: configService.get<number>("REDIS_PORT"),
+          ttl: configService.get<number>("REDIS_TTL"),
+          auth_pass: configService.get<string>("REDIS_PASSWORD"),
+          username: configService.get<string>("REDIS_USER"),
         };
       },
       isGlobal: true,

@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import DialogListContainer from '../../../../_components/DialogListContainer';
-import ResultModal from '../ResultModal';
-import WritingDialogue from '../WritingDialogue';
-import { WritingDialogueType } from '@/types/dialogue';
-import { useState } from 'react';
+import DialogListContainer from "../../../../_components/DialogListContainer";
+import ResultModal from "../ResultModal";
+import WritingDialogue from "../WritingDialogue";
+import { WritingDialogueType } from "@/types/dialogue";
+import { useState } from "react";
 
 type WritingDialoguesProps = { dialogues: WritingDialogueType[] };
 

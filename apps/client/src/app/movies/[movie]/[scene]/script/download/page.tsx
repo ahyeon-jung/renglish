@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
-import { useReactToPrint } from 'react-to-print';
-import { use } from 'react';
-import { useDataFetching } from '@/hooks/useDataFetching';
-import { parseText } from '@/utils/content';
-import getScene from '@/app/actions/scenes/getScene';
-import { Scene } from '@/types/scene';
-import Button from '@/components/Button';
-import { useUserStore } from '@/stores/userStore';
-import { GoToLogin } from '@/components/Fallback';
-import SceneHeader from '../../_components/SceneHeader';
+import { useEffect, useRef, useState } from "react";
+import { useReactToPrint } from "react-to-print";
+import { use } from "react";
+import { useDataFetching } from "@/hooks/useDataFetching";
+import { parseText } from "@/utils/content";
+import getScene from "@/app/actions/scenes/getScene";
+import { Scene } from "@/types/scene";
+import Button from "@/components/Button";
+import { useUserStore } from "@/stores/userStore";
+import { GoToLogin } from "@/components/Fallback";
+import SceneHeader from "../../_components/SceneHeader";
 
-type DownloadMode = 'english' | 'korean' | 'dual';
+type DownloadMode = "english" | "korean" | "dual";
 
 const PrintableScene = ({
   scene,
@@ -23,21 +23,22 @@ const PrintableScene = ({
   title: string;
   downloadMode: DownloadMode;
 }) => {
-
   return (
     <div>
-      <h1>{title.replaceAll('%20', ' ')}</h1>
+      <h1>{title.replaceAll("%20", " ")}</h1>
       <ul className="flex flex-col gap-3">
         {scene.dialogues.map((dialogue: any, idx: number) => (
           <li key={idx} className="flex gap-3">
             <div className="font-bold"> - </div>
             <div>
-              {downloadMode === 'english' && parseText(dialogue.englishScript, 'text-bold')}
-              {downloadMode === 'korean' && parseText(dialogue.koreanScript, 'text-bold')}
-              {downloadMode === 'dual' && (
+              {downloadMode === "english" && parseText(dialogue.englishScript, "text-bold")}
+              {downloadMode === "korean" && parseText(dialogue.koreanScript, "text-bold")}
+              {downloadMode === "dual" && (
                 <>
-                  <div>{parseText(dialogue.englishScript, 'text-bold')}</div>
-                  <div className="text-gray-500">{parseText(dialogue.koreanScript, 'text-bold')}</div>
+                  <div>{parseText(dialogue.englishScript, "text-bold")}</div>
+                  <div className="text-gray-500">
+                    {parseText(dialogue.koreanScript, "text-bold")}
+                  </div>
                 </>
               )}
             </div>
@@ -58,7 +59,7 @@ export default function MovieSceneEnglishScript({
   const { userId } = useUserStore();
 
   const { data, isLoading } = useDataFetching({
-    queryKey: ['scene', resolvedParams.scene, userId ?? ''],
+    queryKey: ["scene", resolvedParams.scene, userId ?? ""],
     queryFn: () => getScene(resolvedParams.scene),
     enabled: !!resolvedParams.scene,
   });
@@ -84,9 +85,13 @@ export default function MovieSceneEnglishScript({
 
   return (
     <div>
-      <div style={{ display: 'none' }}>
+      <div style={{ display: "none" }}>
         <div ref={printRef}>
-          <PrintableScene scene={scene} title={resolvedParams.movie} downloadMode={downloadMode || 'english'} />
+          <PrintableScene
+            scene={scene}
+            title={resolvedParams.movie}
+            downloadMode={downloadMode || "english"}
+          />
         </div>
       </div>
       <main className="mt-[var(--header-height)] p-3 space-y-2">
@@ -95,9 +100,9 @@ export default function MovieSceneEnglishScript({
           movieId={resolvedParams.movie}
           sceneId={resolvedParams.scene}
         />
-        <Button onClick={() => setDownloadMode('english')}>English only script download</Button>
-        <Button onClick={() => setDownloadMode('korean')}>Korean only script download</Button>
-        <Button onClick={() => setDownloadMode('dual')}>Dual script download</Button>
+        <Button onClick={() => setDownloadMode("english")}>English only script download</Button>
+        <Button onClick={() => setDownloadMode("korean")}>Korean only script download</Button>
+        <Button onClick={() => setDownloadMode("dual")}>Dual script download</Button>
       </main>
     </div>
   );

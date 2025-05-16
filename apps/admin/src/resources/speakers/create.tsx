@@ -1,13 +1,26 @@
 import RESOURCE from "../../constants/resource";
-import { Create, SimpleForm, TextInput, ArrayInput, SimpleFormIterator, SelectInput, useGetList } from "react-admin";
+import {
+  Create,
+  SimpleForm,
+  TextInput,
+  ArrayInput,
+  SimpleFormIterator,
+  SelectInput,
+  useGetList,
+} from "react-admin";
 import { Typography, Box } from "@mui/material";
 
 const SelectScene = () => {
   const { data } = useGetList(RESOURCE.SCENES);
   return (
-    <SelectInput source="sceneId" choices={data?.map((scene) => ({ id: scene.id, name: scene.title })) || []} optionText="name" optionValue="id" />
-  )
-}
+    <SelectInput
+      source="sceneId"
+      choices={data?.map((scene) => ({ id: scene.id, name: scene.title })) || []}
+      optionText="name"
+      optionValue="id"
+    />
+  );
+};
 
 export default function SpeakerCreate() {
   return (

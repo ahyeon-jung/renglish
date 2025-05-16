@@ -15,25 +15,31 @@
  * @interface UpdateUserDto
  */
 export interface UpdateUserDto {
-    /**
-     * 소셜 로그인 플랫폼
-     * @type {string}
-     * @memberof UpdateUserDto
-     */
-    provider?: string;
-    /**
-     * 사용자의 닉네임
-     * @type {string}
-     * @memberof UpdateUserDto
-     */
-    nickname?: string;
+  /**
+   * 소셜 로그인 플랫폼
+   * @type {string}
+   * @memberof UpdateUserDto
+   */
+  provider?: string;
+  /**
+   * 사용자의 닉네임
+   * @type {string}
+   * @memberof UpdateUserDto
+   */
+  nickname?: string;
 }
 /**
  * Check if a given object implements the UpdateUserDto interface.
  */
 export declare function instanceOfUpdateUserDto(value: object): value is UpdateUserDto;
 export declare function UpdateUserDtoFromJSON(json: any): UpdateUserDto;
-export declare function UpdateUserDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateUserDto;
+export declare function UpdateUserDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): UpdateUserDto;
 export declare function UpdateUserDtoToJSON(json: any): UpdateUserDto;
-export declare function UpdateUserDtoToJSONTyped(value?: UpdateUserDto | null, ignoreDiscriminator?: boolean): any;
+export declare function UpdateUserDtoToJSONTyped(
+  value?: UpdateUserDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=UpdateUserDto.d.ts.map

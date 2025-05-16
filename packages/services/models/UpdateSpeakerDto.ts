@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
  *
  * @export
@@ -52,8 +52,8 @@ export function UpdateSpeakerDtoFromJSONTyped(
     return json;
   }
   return {
-    speakerName: json['speaker_name'] == null ? undefined : json['speaker_name'],
-    speakerType: json['speaker_type'] == null ? undefined : json['speaker_type'],
+    speakerName: json["speaker_name"] == null ? undefined : json["speaker_name"],
+    speakerType: json["speaker_type"] == null ? undefined : json["speaker_type"],
   };
 }
 
@@ -70,7 +70,7 @@ export function UpdateSpeakerDtoToJSONTyped(
   }
 
   return {
-    speaker_name: value['speakerName'],
-    speaker_type: value['speakerType'],
+    speaker_name: value["speakerName"],
+    speaker_type: value["speakerType"],
   };
 }

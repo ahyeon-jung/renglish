@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { PublicUserDto } from './PublicUserDto';
+import { mapValues } from "../runtime";
+import type { PublicUserDto } from "./PublicUserDto";
 import {
   PublicUserDtoFromJSON,
   PublicUserDtoFromJSONTyped,
   PublicUserDtoToJSON,
   PublicUserDtoToJSONTyped,
-} from './PublicUserDto';
+} from "./PublicUserDto";
 
 /**
  *
@@ -59,10 +59,10 @@ export interface PaginationUserResponseDto {
 export function instanceOfPaginationUserResponseDto(
   value: object,
 ): value is PaginationUserResponseDto {
-  if (!('totalCount' in value) || value['totalCount'] === undefined) return false;
-  if (!('currentPage' in value) || value['currentPage'] === undefined) return false;
-  if (!('limit' in value) || value['limit'] === undefined) return false;
-  if (!('data' in value) || value['data'] === undefined) return false;
+  if (!("totalCount" in value) || value["totalCount"] === undefined) return false;
+  if (!("currentPage" in value) || value["currentPage"] === undefined) return false;
+  if (!("limit" in value) || value["limit"] === undefined) return false;
+  if (!("data" in value) || value["data"] === undefined) return false;
   return true;
 }
 
@@ -78,10 +78,10 @@ export function PaginationUserResponseDtoFromJSONTyped(
     return json;
   }
   return {
-    totalCount: json['totalCount'],
-    currentPage: json['currentPage'],
-    limit: json['limit'],
-    data: (json['data'] as Array<any>).map(PublicUserDtoFromJSON),
+    totalCount: json["totalCount"],
+    currentPage: json["currentPage"],
+    limit: json["limit"],
+    data: (json["data"] as Array<any>).map(PublicUserDtoFromJSON),
   };
 }
 
@@ -98,9 +98,9 @@ export function PaginationUserResponseDtoToJSONTyped(
   }
 
   return {
-    totalCount: value['totalCount'],
-    currentPage: value['currentPage'],
-    limit: value['limit'],
-    data: (value['data'] as Array<any>).map(PublicUserDtoToJSON),
+    totalCount: value["totalCount"],
+    currentPage: value["currentPage"],
+    limit: value["limit"],
+    data: (value["data"] as Array<any>).map(PublicUserDtoToJSON),
   };
 }

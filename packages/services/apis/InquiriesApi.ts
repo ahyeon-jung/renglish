@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import * as runtime from '../runtime';
+import * as runtime from "../runtime";
 
 export interface InquiryControllerCreateRequest {
   body: object;
@@ -43,9 +43,9 @@ export class InquiriesApi extends runtime.BaseAPI {
     requestParameters: InquiryControllerCreateRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['body'] == null) {
+    if (requestParameters["body"] == null) {
       throw new runtime.RequiredError(
-        'body',
+        "body",
         'Required parameter "body" was null or undefined when calling inquiryControllerCreate().',
       );
     }
@@ -54,23 +54,23 @@ export class InquiriesApi extends runtime.BaseAPI {
 
     const headerParameters: runtime.HTTPHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters["Content-Type"] = "application/json";
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/inquiries`,
-        method: 'POST',
+        method: "POST",
         headers: headerParameters,
         query: queryParameters,
-        body: requestParameters['body'] as any,
+        body: requestParameters["body"] as any,
       },
       initOverrides,
     );
@@ -102,16 +102,16 @@ export class InquiriesApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/inquiries`,
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -139,9 +139,9 @@ export class InquiriesApi extends runtime.BaseAPI {
     requestParameters: InquiryControllerFindOneRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['inquiryId'] == null) {
+    if (requestParameters["inquiryId"] == null) {
       throw new runtime.RequiredError(
-        'inquiryId',
+        "inquiryId",
         'Required parameter "inquiryId" was null or undefined when calling inquiryControllerFindOne().',
       );
     }
@@ -152,19 +152,19 @@ export class InquiriesApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/inquiries/{inquiryId}`.replace(
-          `{${'inquiryId'}}`,
-          encodeURIComponent(String(requestParameters['inquiryId'])),
+          `{${"inquiryId"}}`,
+          encodeURIComponent(String(requestParameters["inquiryId"])),
         ),
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -193,9 +193,9 @@ export class InquiriesApi extends runtime.BaseAPI {
     requestParameters: InquiryControllerRemoveRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['inquiryId'] == null) {
+    if (requestParameters["inquiryId"] == null) {
       throw new runtime.RequiredError(
-        'inquiryId',
+        "inquiryId",
         'Required parameter "inquiryId" was null or undefined when calling inquiryControllerRemove().',
       );
     }
@@ -206,19 +206,19 @@ export class InquiriesApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/inquiries/{inquiryId}`.replace(
-          `{${'inquiryId'}}`,
-          encodeURIComponent(String(requestParameters['inquiryId'])),
+          `{${"inquiryId"}}`,
+          encodeURIComponent(String(requestParameters["inquiryId"])),
         ),
-        method: 'DELETE',
+        method: "DELETE",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -247,16 +247,16 @@ export class InquiriesApi extends runtime.BaseAPI {
     requestParameters: InquiryControllerUpdateRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['inquiryId'] == null) {
+    if (requestParameters["inquiryId"] == null) {
       throw new runtime.RequiredError(
-        'inquiryId',
+        "inquiryId",
         'Required parameter "inquiryId" was null or undefined when calling inquiryControllerUpdate().',
       );
     }
 
-    if (requestParameters['body'] == null) {
+    if (requestParameters["body"] == null) {
       throw new runtime.RequiredError(
-        'body',
+        "body",
         'Required parameter "body" was null or undefined when calling inquiryControllerUpdate().',
       );
     }
@@ -265,26 +265,26 @@ export class InquiriesApi extends runtime.BaseAPI {
 
     const headerParameters: runtime.HTTPHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters["Content-Type"] = "application/json";
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/inquiries/{inquiryId}`.replace(
-          `{${'inquiryId'}}`,
-          encodeURIComponent(String(requestParameters['inquiryId'])),
+          `{${"inquiryId"}}`,
+          encodeURIComponent(String(requestParameters["inquiryId"])),
         ),
-        method: 'PATCH',
+        method: "PATCH",
         headers: headerParameters,
         query: queryParameters,
-        body: requestParameters['body'] as any,
+        body: requestParameters["body"] as any,
       },
       initOverrides,
     );

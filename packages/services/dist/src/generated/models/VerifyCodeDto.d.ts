@@ -15,25 +15,31 @@
  * @interface VerifyCodeDto
  */
 export interface VerifyCodeDto {
-    /**
-     * 인증 요청을 받은 사용자의 이메일 주소
-     * @type {string}
-     * @memberof VerifyCodeDto
-     */
-    email: string;
-    /**
-     * 사용자가 받은 인증코드
-     * @type {string}
-     * @memberof VerifyCodeDto
-     */
-    code: string;
+  /**
+   * 인증 요청을 받은 사용자의 이메일 주소
+   * @type {string}
+   * @memberof VerifyCodeDto
+   */
+  email: string;
+  /**
+   * 사용자가 받은 인증코드
+   * @type {string}
+   * @memberof VerifyCodeDto
+   */
+  code: string;
 }
 /**
  * Check if a given object implements the VerifyCodeDto interface.
  */
 export declare function instanceOfVerifyCodeDto(value: object): value is VerifyCodeDto;
 export declare function VerifyCodeDtoFromJSON(json: any): VerifyCodeDto;
-export declare function VerifyCodeDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): VerifyCodeDto;
+export declare function VerifyCodeDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): VerifyCodeDto;
 export declare function VerifyCodeDtoToJSON(json: any): VerifyCodeDto;
-export declare function VerifyCodeDtoToJSONTyped(value?: VerifyCodeDto | null, ignoreDiscriminator?: boolean): any;
+export declare function VerifyCodeDtoToJSONTyped(
+  value?: VerifyCodeDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=VerifyCodeDto.d.ts.map

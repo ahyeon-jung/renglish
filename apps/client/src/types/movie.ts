@@ -1,4 +1,4 @@
-import { Scene } from './scene';
+import { Scene } from "./scene";
 
 export type Movie = {
   id: string;

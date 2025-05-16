@@ -15,55 +15,61 @@
  * @interface PublicUserDto
  */
 export interface PublicUserDto {
-    /**
-     * 아이디
-     * @type {string}
-     * @memberof PublicUserDto
-     */
-    id: string;
-    /**
-     * 생성일
-     * @type {Date}
-     * @memberof PublicUserDto
-     */
-    createdAt: Date;
-    /**
-     * 수정일
-     * @type {Date}
-     * @memberof PublicUserDto
-     */
-    updatedAt: Date;
-    /**
-     * 삭제일
-     * @type {Date}
-     * @memberof PublicUserDto
-     */
-    deletedAt: Date;
-    /**
-     * 소셜 계정 플랫폼
-     * @type {string}
-     * @memberof PublicUserDto
-     */
-    provider: string;
-    /**
-     * 이메일
-     * @type {string}
-     * @memberof PublicUserDto
-     */
-    email: string;
-    /**
-     * 닉네임
-     * @type {string}
-     * @memberof PublicUserDto
-     */
-    nickname: string;
+  /**
+   * 아이디
+   * @type {string}
+   * @memberof PublicUserDto
+   */
+  id: string;
+  /**
+   * 생성일
+   * @type {Date}
+   * @memberof PublicUserDto
+   */
+  createdAt: Date;
+  /**
+   * 수정일
+   * @type {Date}
+   * @memberof PublicUserDto
+   */
+  updatedAt: Date;
+  /**
+   * 삭제일
+   * @type {Date}
+   * @memberof PublicUserDto
+   */
+  deletedAt: Date;
+  /**
+   * 소셜 계정 플랫폼
+   * @type {string}
+   * @memberof PublicUserDto
+   */
+  provider: string;
+  /**
+   * 이메일
+   * @type {string}
+   * @memberof PublicUserDto
+   */
+  email: string;
+  /**
+   * 닉네임
+   * @type {string}
+   * @memberof PublicUserDto
+   */
+  nickname: string;
 }
 /**
  * Check if a given object implements the PublicUserDto interface.
  */
 export declare function instanceOfPublicUserDto(value: object): value is PublicUserDto;
 export declare function PublicUserDtoFromJSON(json: any): PublicUserDto;
-export declare function PublicUserDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): PublicUserDto;
+export declare function PublicUserDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): PublicUserDto;
 export declare function PublicUserDtoToJSON(json: any): PublicUserDto;
-export declare function PublicUserDtoToJSONTyped(value?: PublicUserDto | null, ignoreDiscriminator?: boolean): any;
+export declare function PublicUserDtoToJSONTyped(
+  value?: PublicUserDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=PublicUserDto.d.ts.map

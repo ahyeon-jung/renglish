@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
  *
  * @export
@@ -31,7 +31,7 @@ export interface CreateWritingDto {
  * Check if a given object implements the CreateWritingDto interface.
  */
 export function instanceOfCreateWritingDto(value: object): value is CreateWritingDto {
-  if (!('writing' in value) || value['writing'] === undefined) return false;
+  if (!("writing" in value) || value["writing"] === undefined) return false;
   return true;
 }
 
@@ -47,7 +47,7 @@ export function CreateWritingDtoFromJSONTyped(
     return json;
   }
   return {
-    writing: json['writing'],
+    writing: json["writing"],
   };
 }
 
@@ -64,6 +64,6 @@ export function CreateWritingDtoToJSONTyped(
   }
 
   return {
-    writing: value['writing'],
+    writing: value["writing"],
   };
 }

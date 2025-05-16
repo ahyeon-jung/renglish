@@ -15,30 +15,30 @@
  * Check if a given object implements the UpdateUserDto interface.
  */
 export function instanceOfUpdateUserDto(value) {
-    return true;
+  return true;
 }
 export function UpdateUserDtoFromJSON(json) {
-    return UpdateUserDtoFromJSONTyped(json, false);
+  return UpdateUserDtoFromJSONTyped(json, false);
 }
 export function UpdateUserDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'provider': json['provider'] == null ? undefined : json['provider'],
-        'nickname': json['nickname'] == null ? undefined : json['nickname'],
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    provider: json["provider"] == null ? undefined : json["provider"],
+    nickname: json["nickname"] == null ? undefined : json["nickname"],
+  };
 }
 export function UpdateUserDtoToJSON(json) {
-    return UpdateUserDtoToJSONTyped(json, false);
+  return UpdateUserDtoToJSONTyped(json, false);
 }
 export function UpdateUserDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'provider': value['provider'],
-        'nickname': value['nickname'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    provider: value["provider"],
+    nickname: value["nickname"],
+  };
 }
 //# sourceMappingURL=UpdateUserDto.js.map

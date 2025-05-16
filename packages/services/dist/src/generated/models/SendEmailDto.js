@@ -15,30 +15,29 @@
  * Check if a given object implements the SendEmailDto interface.
  */
 export function instanceOfSendEmailDto(value) {
-    if (!('email' in value) || value['email'] === undefined)
-        return false;
-    return true;
+  if (!("email" in value) || value["email"] === undefined) return false;
+  return true;
 }
 export function SendEmailDtoFromJSON(json) {
-    return SendEmailDtoFromJSONTyped(json, false);
+  return SendEmailDtoFromJSONTyped(json, false);
 }
 export function SendEmailDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'email': json['email'],
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    email: json["email"],
+  };
 }
 export function SendEmailDtoToJSON(json) {
-    return SendEmailDtoToJSONTyped(json, false);
+  return SendEmailDtoToJSONTyped(json, false);
 }
 export function SendEmailDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'email': value['email'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    email: value["email"],
+  };
 }
 //# sourceMappingURL=SendEmailDto.js.map

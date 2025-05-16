@@ -15,34 +15,32 @@
  * Check if a given object implements the LoginDto interface.
  */
 export function instanceOfLoginDto(value) {
-    if (!('email' in value) || value['email'] === undefined)
-        return false;
-    if (!('password' in value) || value['password'] === undefined)
-        return false;
-    return true;
+  if (!("email" in value) || value["email"] === undefined) return false;
+  if (!("password" in value) || value["password"] === undefined) return false;
+  return true;
 }
 export function LoginDtoFromJSON(json) {
-    return LoginDtoFromJSONTyped(json, false);
+  return LoginDtoFromJSONTyped(json, false);
 }
 export function LoginDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'email': json['email'],
-        'password': json['password'],
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    email: json["email"],
+    password: json["password"],
+  };
 }
 export function LoginDtoToJSON(json) {
-    return LoginDtoToJSONTyped(json, false);
+  return LoginDtoToJSONTyped(json, false);
 }
 export function LoginDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'email': value['email'],
-        'password': value['password'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    email: value["email"],
+    password: value["password"],
+  };
 }
 //# sourceMappingURL=LoginDto.js.map

@@ -11,174 +11,213 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import * as runtime from '../runtime';
+import * as runtime from "../runtime";
 /**
  *
  */
 export class InquiriesApi extends runtime.BaseAPI {
-    /**
-     * 문의사항을 작성합니다.
-     * 문의사항 작성 [TOKEN]
-     */
-    async inquiryControllerCreateRaw(requestParameters, initOverrides) {
-        if (requestParameters['body'] == null) {
-            throw new runtime.RequiredError('body', 'Required parameter "body" was null or undefined when calling inquiryControllerCreate().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        headerParameters['Content-Type'] = 'application/json';
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/inquiries`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: requestParameters['body'],
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+  /**
+   * 문의사항을 작성합니다.
+   * 문의사항 작성 [TOKEN]
+   */
+  async inquiryControllerCreateRaw(requestParameters, initOverrides) {
+    if (requestParameters["body"] == null) {
+      throw new runtime.RequiredError(
+        "body",
+        'Required parameter "body" was null or undefined when calling inquiryControllerCreate().',
+      );
     }
-    /**
-     * 문의사항을 작성합니다.
-     * 문의사항 작성 [TOKEN]
-     */
-    async inquiryControllerCreate(requestParameters, initOverrides) {
-        await this.inquiryControllerCreateRaw(requestParameters, initOverrides);
+    const queryParameters = {};
+    const headerParameters = {};
+    headerParameters["Content-Type"] = "application/json";
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 모든 문의사항을 가져옵니다.
-     * 모든 문의사항 가져오기
-     */
-    async inquiryControllerFindAllRaw(initOverrides) {
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/inquiries`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+    const response = await this.request(
+      {
+        path: `/api/inquiries`,
+        method: "POST",
+        headers: headerParameters,
+        query: queryParameters,
+        body: requestParameters["body"],
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 문의사항을 작성합니다.
+   * 문의사항 작성 [TOKEN]
+   */
+  async inquiryControllerCreate(requestParameters, initOverrides) {
+    await this.inquiryControllerCreateRaw(requestParameters, initOverrides);
+  }
+  /**
+   * 모든 문의사항을 가져옵니다.
+   * 모든 문의사항 가져오기
+   */
+  async inquiryControllerFindAllRaw(initOverrides) {
+    const queryParameters = {};
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 모든 문의사항을 가져옵니다.
-     * 모든 문의사항 가져오기
-     */
-    async inquiryControllerFindAll(initOverrides) {
-        await this.inquiryControllerFindAllRaw(initOverrides);
+    const response = await this.request(
+      {
+        path: `/api/inquiries`,
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 모든 문의사항을 가져옵니다.
+   * 모든 문의사항 가져오기
+   */
+  async inquiryControllerFindAll(initOverrides) {
+    await this.inquiryControllerFindAllRaw(initOverrides);
+  }
+  /**
+   * 해당 ID의 문의사항을 가져옵니다.
+   * 해당 ID 문의사항 가져오기
+   */
+  async inquiryControllerFindOneRaw(requestParameters, initOverrides) {
+    if (requestParameters["inquiryId"] == null) {
+      throw new runtime.RequiredError(
+        "inquiryId",
+        'Required parameter "inquiryId" was null or undefined when calling inquiryControllerFindOne().',
+      );
     }
-    /**
-     * 해당 ID의 문의사항을 가져옵니다.
-     * 해당 ID 문의사항 가져오기
-     */
-    async inquiryControllerFindOneRaw(requestParameters, initOverrides) {
-        if (requestParameters['inquiryId'] == null) {
-            throw new runtime.RequiredError('inquiryId', 'Required parameter "inquiryId" was null or undefined when calling inquiryControllerFindOne().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/inquiries/{inquiryId}`.replace(`{${"inquiryId"}}`, encodeURIComponent(String(requestParameters['inquiryId']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+    const queryParameters = {};
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 해당 ID의 문의사항을 가져옵니다.
-     * 해당 ID 문의사항 가져오기
-     */
-    async inquiryControllerFindOne(requestParameters, initOverrides) {
-        await this.inquiryControllerFindOneRaw(requestParameters, initOverrides);
+    const response = await this.request(
+      {
+        path: `/api/inquiries/{inquiryId}`.replace(
+          `{${"inquiryId"}}`,
+          encodeURIComponent(String(requestParameters["inquiryId"])),
+        ),
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 해당 ID의 문의사항을 가져옵니다.
+   * 해당 ID 문의사항 가져오기
+   */
+  async inquiryControllerFindOne(requestParameters, initOverrides) {
+    await this.inquiryControllerFindOneRaw(requestParameters, initOverrides);
+  }
+  /**
+   * 해당 ID의 문의사항을 삭제합니다.
+   * 해당 ID 문의사항 삭제 [TOKEN]
+   */
+  async inquiryControllerRemoveRaw(requestParameters, initOverrides) {
+    if (requestParameters["inquiryId"] == null) {
+      throw new runtime.RequiredError(
+        "inquiryId",
+        'Required parameter "inquiryId" was null or undefined when calling inquiryControllerRemove().',
+      );
     }
-    /**
-     * 해당 ID의 문의사항을 삭제합니다.
-     * 해당 ID 문의사항 삭제 [TOKEN]
-     */
-    async inquiryControllerRemoveRaw(requestParameters, initOverrides) {
-        if (requestParameters['inquiryId'] == null) {
-            throw new runtime.RequiredError('inquiryId', 'Required parameter "inquiryId" was null or undefined when calling inquiryControllerRemove().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/inquiries/{inquiryId}`.replace(`{${"inquiryId"}}`, encodeURIComponent(String(requestParameters['inquiryId']))),
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+    const queryParameters = {};
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 해당 ID의 문의사항을 삭제합니다.
-     * 해당 ID 문의사항 삭제 [TOKEN]
-     */
-    async inquiryControllerRemove(requestParameters, initOverrides) {
-        await this.inquiryControllerRemoveRaw(requestParameters, initOverrides);
+    const response = await this.request(
+      {
+        path: `/api/inquiries/{inquiryId}`.replace(
+          `{${"inquiryId"}}`,
+          encodeURIComponent(String(requestParameters["inquiryId"])),
+        ),
+        method: "DELETE",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 해당 ID의 문의사항을 삭제합니다.
+   * 해당 ID 문의사항 삭제 [TOKEN]
+   */
+  async inquiryControllerRemove(requestParameters, initOverrides) {
+    await this.inquiryControllerRemoveRaw(requestParameters, initOverrides);
+  }
+  /**
+   * 해당 ID의 문의사항을 업데이트합니다.
+   * 문의사항 수정 [TOKEN]
+   */
+  async inquiryControllerUpdateRaw(requestParameters, initOverrides) {
+    if (requestParameters["inquiryId"] == null) {
+      throw new runtime.RequiredError(
+        "inquiryId",
+        'Required parameter "inquiryId" was null or undefined when calling inquiryControllerUpdate().',
+      );
     }
-    /**
-     * 해당 ID의 문의사항을 업데이트합니다.
-     * 문의사항 수정 [TOKEN]
-     */
-    async inquiryControllerUpdateRaw(requestParameters, initOverrides) {
-        if (requestParameters['inquiryId'] == null) {
-            throw new runtime.RequiredError('inquiryId', 'Required parameter "inquiryId" was null or undefined when calling inquiryControllerUpdate().');
-        }
-        if (requestParameters['body'] == null) {
-            throw new runtime.RequiredError('body', 'Required parameter "body" was null or undefined when calling inquiryControllerUpdate().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        headerParameters['Content-Type'] = 'application/json';
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/inquiries/{inquiryId}`.replace(`{${"inquiryId"}}`, encodeURIComponent(String(requestParameters['inquiryId']))),
-            method: 'PATCH',
-            headers: headerParameters,
-            query: queryParameters,
-            body: requestParameters['body'],
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+    if (requestParameters["body"] == null) {
+      throw new runtime.RequiredError(
+        "body",
+        'Required parameter "body" was null or undefined when calling inquiryControllerUpdate().',
+      );
     }
-    /**
-     * 해당 ID의 문의사항을 업데이트합니다.
-     * 문의사항 수정 [TOKEN]
-     */
-    async inquiryControllerUpdate(requestParameters, initOverrides) {
-        await this.inquiryControllerUpdateRaw(requestParameters, initOverrides);
+    const queryParameters = {};
+    const headerParameters = {};
+    headerParameters["Content-Type"] = "application/json";
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
+    const response = await this.request(
+      {
+        path: `/api/inquiries/{inquiryId}`.replace(
+          `{${"inquiryId"}}`,
+          encodeURIComponent(String(requestParameters["inquiryId"])),
+        ),
+        method: "PATCH",
+        headers: headerParameters,
+        query: queryParameters,
+        body: requestParameters["body"],
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 해당 ID의 문의사항을 업데이트합니다.
+   * 문의사항 수정 [TOKEN]
+   */
+  async inquiryControllerUpdate(requestParameters, initOverrides) {
+    await this.inquiryControllerUpdateRaw(requestParameters, initOverrides);
+  }
 }
 //# sourceMappingURL=InquiriesApi.js.map

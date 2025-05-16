@@ -15,25 +15,31 @@
  * @interface PasswordResetDto
  */
 export interface PasswordResetDto {
-    /**
-     * 사용자의 이메일 주소
-     * @type {string}
-     * @memberof PasswordResetDto
-     */
-    email: string;
-    /**
-     * 사용자의 비밀번호
-     * @type {string}
-     * @memberof PasswordResetDto
-     */
-    password: string;
+  /**
+   * 사용자의 이메일 주소
+   * @type {string}
+   * @memberof PasswordResetDto
+   */
+  email: string;
+  /**
+   * 사용자의 비밀번호
+   * @type {string}
+   * @memberof PasswordResetDto
+   */
+  password: string;
 }
 /**
  * Check if a given object implements the PasswordResetDto interface.
  */
 export declare function instanceOfPasswordResetDto(value: object): value is PasswordResetDto;
 export declare function PasswordResetDtoFromJSON(json: any): PasswordResetDto;
-export declare function PasswordResetDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): PasswordResetDto;
+export declare function PasswordResetDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): PasswordResetDto;
 export declare function PasswordResetDtoToJSON(json: any): PasswordResetDto;
-export declare function PasswordResetDtoToJSONTyped(value?: PasswordResetDto | null, ignoreDiscriminator?: boolean): any;
+export declare function PasswordResetDtoToJSONTyped(
+  value?: PasswordResetDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=PasswordResetDto.d.ts.map

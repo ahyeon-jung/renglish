@@ -15,32 +15,32 @@
  * Check if a given object implements the UpdateStudyDto interface.
  */
 export function instanceOfUpdateStudyDto(value) {
-    return true;
+  return true;
 }
 export function UpdateStudyDtoFromJSON(json) {
-    return UpdateStudyDtoFromJSONTyped(json, false);
+  return UpdateStudyDtoFromJSONTyped(json, false);
 }
 export function UpdateStudyDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'title': json['title'] == null ? undefined : json['title'],
-        'studiedAt': json['studiedAt'] == null ? undefined : (new Date(json['studiedAt'])),
-        'description': json['description'] == null ? undefined : json['description'],
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    title: json["title"] == null ? undefined : json["title"],
+    studiedAt: json["studiedAt"] == null ? undefined : new Date(json["studiedAt"]),
+    description: json["description"] == null ? undefined : json["description"],
+  };
 }
 export function UpdateStudyDtoToJSON(json) {
-    return UpdateStudyDtoToJSONTyped(json, false);
+  return UpdateStudyDtoToJSONTyped(json, false);
 }
 export function UpdateStudyDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'title': value['title'],
-        'studiedAt': value['studiedAt'] == null ? undefined : ((value['studiedAt']).toISOString()),
-        'description': value['description'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    title: value["title"],
+    studiedAt: value["studiedAt"] == null ? undefined : value["studiedAt"].toISOString(),
+    description: value["description"],
+  };
 }
 //# sourceMappingURL=UpdateStudyDto.js.map

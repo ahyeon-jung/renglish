@@ -11,47 +11,43 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { MovieFromJSON, MovieToJSON, } from './Movie';
+import { MovieFromJSON, MovieToJSON } from "./Movie";
 /**
  * Check if a given object implements the PaginationMovieResponseDto interface.
  */
 export function instanceOfPaginationMovieResponseDto(value) {
-    if (!('totalCount' in value) || value['totalCount'] === undefined)
-        return false;
-    if (!('currentPage' in value) || value['currentPage'] === undefined)
-        return false;
-    if (!('limit' in value) || value['limit'] === undefined)
-        return false;
-    if (!('data' in value) || value['data'] === undefined)
-        return false;
-    return true;
+  if (!("totalCount" in value) || value["totalCount"] === undefined) return false;
+  if (!("currentPage" in value) || value["currentPage"] === undefined) return false;
+  if (!("limit" in value) || value["limit"] === undefined) return false;
+  if (!("data" in value) || value["data"] === undefined) return false;
+  return true;
 }
 export function PaginationMovieResponseDtoFromJSON(json) {
-    return PaginationMovieResponseDtoFromJSONTyped(json, false);
+  return PaginationMovieResponseDtoFromJSONTyped(json, false);
 }
 export function PaginationMovieResponseDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'totalCount': json['totalCount'],
-        'currentPage': json['currentPage'],
-        'limit': json['limit'],
-        'data': (json['data'].map(MovieFromJSON)),
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    totalCount: json["totalCount"],
+    currentPage: json["currentPage"],
+    limit: json["limit"],
+    data: json["data"].map(MovieFromJSON),
+  };
 }
 export function PaginationMovieResponseDtoToJSON(json) {
-    return PaginationMovieResponseDtoToJSONTyped(json, false);
+  return PaginationMovieResponseDtoToJSONTyped(json, false);
 }
 export function PaginationMovieResponseDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'totalCount': value['totalCount'],
-        'currentPage': value['currentPage'],
-        'limit': value['limit'],
-        'data': (value['data'].map(MovieToJSON)),
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    totalCount: value["totalCount"],
+    currentPage: value["currentPage"],
+    limit: value["limit"],
+    data: value["data"].map(MovieToJSON),
+  };
 }
 //# sourceMappingURL=PaginationMovieResponseDto.js.map

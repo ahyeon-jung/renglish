@@ -11,39 +11,39 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ExampleDtoFromJSON, ExampleDtoToJSON, } from './ExampleDto';
+import { ExampleDtoFromJSON, ExampleDtoToJSON } from "./ExampleDto";
 /**
  * Check if a given object implements the UpdateExpressionDto interface.
  */
 export function instanceOfUpdateExpressionDto(value) {
-    return true;
+  return true;
 }
 export function UpdateExpressionDtoFromJSON(json) {
-    return UpdateExpressionDtoFromJSONTyped(json, false);
+  return UpdateExpressionDtoFromJSONTyped(json, false);
 }
 export function UpdateExpressionDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'expression': json['expression'] == null ? undefined : json['expression'],
-        'meaning': json['meaning'] == null ? undefined : json['meaning'],
-        'usage': json['usage'] == null ? undefined : json['usage'],
-        'examples': json['examples'] == null ? undefined : (json['examples'].map(ExampleDtoFromJSON)),
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    expression: json["expression"] == null ? undefined : json["expression"],
+    meaning: json["meaning"] == null ? undefined : json["meaning"],
+    usage: json["usage"] == null ? undefined : json["usage"],
+    examples: json["examples"] == null ? undefined : json["examples"].map(ExampleDtoFromJSON),
+  };
 }
 export function UpdateExpressionDtoToJSON(json) {
-    return UpdateExpressionDtoToJSONTyped(json, false);
+  return UpdateExpressionDtoToJSONTyped(json, false);
 }
 export function UpdateExpressionDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'expression': value['expression'],
-        'meaning': value['meaning'],
-        'usage': value['usage'],
-        'examples': value['examples'] == null ? undefined : (value['examples'].map(ExampleDtoToJSON)),
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    expression: value["expression"],
+    meaning: value["meaning"],
+    usage: value["usage"],
+    examples: value["examples"] == null ? undefined : value["examples"].map(ExampleDtoToJSON),
+  };
 }
 //# sourceMappingURL=UpdateExpressionDto.js.map

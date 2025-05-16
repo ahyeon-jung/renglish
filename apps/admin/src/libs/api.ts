@@ -11,18 +11,18 @@ import {
   StudyApi,
   UsersApi,
   WritingsApi,
-} from '@renglish/services';
-import ENV from '../constants/env';
+} from "@renglish/services";
+import ENV from "../constants/env";
 
 const customFetch = (url: string, options: RequestInit = {}) => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
 
   const headers = new Headers(options.headers);
   if (token) {
-    headers.set('Authorization', `Bearer ${token}`);
+    headers.set("Authorization", `Bearer ${token}`);
   }
 
-  headers.set('Content-Type', 'application/json');
+  headers.set("Content-Type", "application/json");
 
   const updatedOptions = { ...options, headers };
 

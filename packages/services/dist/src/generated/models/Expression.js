@@ -11,63 +11,55 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ExampleDtoFromJSON, ExampleDtoToJSON, } from './ExampleDto';
+import { ExampleDtoFromJSON, ExampleDtoToJSON } from "./ExampleDto";
 /**
  * Check if a given object implements the Expression interface.
  */
 export function instanceOfExpression(value) {
-    if (!('id' in value) || value['id'] === undefined)
-        return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined)
-        return false;
-    if (!('updatedAt' in value) || value['updatedAt'] === undefined)
-        return false;
-    if (!('deletedAt' in value) || value['deletedAt'] === undefined)
-        return false;
-    if (!('expression' in value) || value['expression'] === undefined)
-        return false;
-    if (!('meaning' in value) || value['meaning'] === undefined)
-        return false;
-    if (!('usage' in value) || value['usage'] === undefined)
-        return false;
-    if (!('examples' in value) || value['examples'] === undefined)
-        return false;
-    return true;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("deletedAt" in value) || value["deletedAt"] === undefined) return false;
+  if (!("expression" in value) || value["expression"] === undefined) return false;
+  if (!("meaning" in value) || value["meaning"] === undefined) return false;
+  if (!("usage" in value) || value["usage"] === undefined) return false;
+  if (!("examples" in value) || value["examples"] === undefined) return false;
+  return true;
 }
 export function ExpressionFromJSON(json) {
-    return ExpressionFromJSONTyped(json, false);
+  return ExpressionFromJSONTyped(json, false);
 }
 export function ExpressionFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'id': json['id'],
-        'createdAt': (new Date(json['createdAt'])),
-        'updatedAt': (new Date(json['updatedAt'])),
-        'deletedAt': (new Date(json['deletedAt'])),
-        'expression': json['expression'],
-        'meaning': json['meaning'],
-        'usage': json['usage'],
-        'examples': (json['examples'].map(ExampleDtoFromJSON)),
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    id: json["id"],
+    createdAt: new Date(json["createdAt"]),
+    updatedAt: new Date(json["updatedAt"]),
+    deletedAt: new Date(json["deletedAt"]),
+    expression: json["expression"],
+    meaning: json["meaning"],
+    usage: json["usage"],
+    examples: json["examples"].map(ExampleDtoFromJSON),
+  };
 }
 export function ExpressionToJSON(json) {
-    return ExpressionToJSONTyped(json, false);
+  return ExpressionToJSONTyped(json, false);
 }
 export function ExpressionToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'id': value['id'],
-        'createdAt': ((value['createdAt']).toISOString()),
-        'updatedAt': ((value['updatedAt']).toISOString()),
-        'deletedAt': ((value['deletedAt']).toISOString()),
-        'expression': value['expression'],
-        'meaning': value['meaning'],
-        'usage': value['usage'],
-        'examples': (value['examples'].map(ExampleDtoToJSON)),
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    id: value["id"],
+    createdAt: value["createdAt"].toISOString(),
+    updatedAt: value["updatedAt"].toISOString(),
+    deletedAt: value["deletedAt"].toISOString(),
+    expression: value["expression"],
+    meaning: value["meaning"],
+    usage: value["usage"],
+    examples: value["examples"].map(ExampleDtoToJSON),
+  };
 }
 //# sourceMappingURL=Expression.js.map

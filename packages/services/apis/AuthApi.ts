@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  */
 
-import * as runtime from '../runtime';
+import * as runtime from "../runtime";
 import type {
   CreateUserDto,
   LoginDto,
   LoginResponseDto,
   PasswordResetDto,
   TokensDto,
-} from '../models/index';
+} from "../models/index";
 import {
   CreateUserDtoFromJSON,
   CreateUserDtoToJSON,
@@ -31,7 +31,7 @@ import {
   PasswordResetDtoToJSON,
   TokensDtoFromJSON,
   TokensDtoToJSON,
-} from '../models/index';
+} from "../models/index";
 
 export interface AuthControllerCheckValidAccessTokenRequest {
   accessToken: string;
@@ -66,23 +66,23 @@ export class AuthApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/auth/check/is-admin`,
-        method: 'POST',
+        method: "POST",
         headers: headerParameters,
         query: queryParameters,
       },
       initOverrides,
     );
 
-    if (this.isJsonMime(response.headers.get('content-type'))) {
+    if (this.isJsonMime(response.headers.get("content-type"))) {
       return new runtime.JSONApiResponse<boolean>(response);
     } else {
       return new runtime.TextApiResponse(response) as any;
@@ -108,9 +108,9 @@ export class AuthApi extends runtime.BaseAPI {
     requestParameters: AuthControllerCheckValidAccessTokenRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<boolean>> {
-    if (requestParameters['accessToken'] == null) {
+    if (requestParameters["accessToken"] == null) {
       throw new runtime.RequiredError(
-        'accessToken',
+        "accessToken",
         'Required parameter "accessToken" was null or undefined when calling authControllerCheckValidAccessToken().',
       );
     }
@@ -121,26 +121,26 @@ export class AuthApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/auth/check/{accessToken}`.replace(
-          `{${'accessToken'}}`,
-          encodeURIComponent(String(requestParameters['accessToken'])),
+          `{${"accessToken"}}`,
+          encodeURIComponent(String(requestParameters["accessToken"])),
         ),
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
       initOverrides,
     );
 
-    if (this.isJsonMime(response.headers.get('content-type'))) {
+    if (this.isJsonMime(response.headers.get("content-type"))) {
       return new runtime.JSONApiResponse<boolean>(response);
     } else {
       return new runtime.TextApiResponse(response) as any;
@@ -175,16 +175,16 @@ export class AuthApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/auth/google`,
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -217,16 +217,16 @@ export class AuthApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/auth/google/callback`,
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -257,16 +257,16 @@ export class AuthApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/auth/kakao/callback`,
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -297,16 +297,16 @@ export class AuthApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/auth/kakao`,
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -334,9 +334,9 @@ export class AuthApi extends runtime.BaseAPI {
     requestParameters: AuthControllerLoginRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<LoginResponseDto>> {
-    if (requestParameters['loginDto'] == null) {
+    if (requestParameters["loginDto"] == null) {
       throw new runtime.RequiredError(
-        'loginDto',
+        "loginDto",
         'Required parameter "loginDto" was null or undefined when calling authControllerLogin().',
       );
     }
@@ -345,23 +345,23 @@ export class AuthApi extends runtime.BaseAPI {
 
     const headerParameters: runtime.HTTPHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters["Content-Type"] = "application/json";
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/auth/login`,
-        method: 'POST',
+        method: "POST",
         headers: headerParameters,
         query: queryParameters,
-        body: LoginDtoToJSON(requestParameters['loginDto']),
+        body: LoginDtoToJSON(requestParameters["loginDto"]),
       },
       initOverrides,
     );
@@ -396,16 +396,16 @@ export class AuthApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/auth/naver/callback`,
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -438,16 +438,16 @@ export class AuthApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/auth/naver`,
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -475,9 +475,9 @@ export class AuthApi extends runtime.BaseAPI {
     requestParameters: AuthControllerPasswordResetRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['passwordResetDto'] == null) {
+    if (requestParameters["passwordResetDto"] == null) {
       throw new runtime.RequiredError(
-        'passwordResetDto',
+        "passwordResetDto",
         'Required parameter "passwordResetDto" was null or undefined when calling authControllerPasswordReset().',
       );
     }
@@ -486,23 +486,23 @@ export class AuthApi extends runtime.BaseAPI {
 
     const headerParameters: runtime.HTTPHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters["Content-Type"] = "application/json";
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/auth/reset-password`,
-        method: 'POST',
+        method: "POST",
         headers: headerParameters,
         query: queryParameters,
-        body: PasswordResetDtoToJSON(requestParameters['passwordResetDto']),
+        body: PasswordResetDtoToJSON(requestParameters["passwordResetDto"]),
       },
       initOverrides,
     );
@@ -534,16 +534,16 @@ export class AuthApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/auth/refresh`,
-        method: 'POST',
+        method: "POST",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -572,9 +572,9 @@ export class AuthApi extends runtime.BaseAPI {
     requestParameters: AuthControllerRegisterRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['createUserDto'] == null) {
+    if (requestParameters["createUserDto"] == null) {
       throw new runtime.RequiredError(
-        'createUserDto',
+        "createUserDto",
         'Required parameter "createUserDto" was null or undefined when calling authControllerRegister().',
       );
     }
@@ -583,23 +583,23 @@ export class AuthApi extends runtime.BaseAPI {
 
     const headerParameters: runtime.HTTPHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters["Content-Type"] = "application/json";
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/auth/register`,
-        method: 'POST',
+        method: "POST",
         headers: headerParameters,
         query: queryParameters,
-        body: CreateUserDtoToJSON(requestParameters['createUserDto']),
+        body: CreateUserDtoToJSON(requestParameters["createUserDto"]),
       },
       initOverrides,
     );

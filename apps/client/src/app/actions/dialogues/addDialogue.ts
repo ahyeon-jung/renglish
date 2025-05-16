@@ -1,9 +1,9 @@
-'use server';
+"use server";
 
-import { ENV } from '@/constants/env';
-import { cookies } from 'next/headers';
-import { CreateDialogueDto } from '@renglish/services';
-import { dialogueApi } from '@/libs/api';
+import { ENV } from "@/constants/env";
+import { cookies } from "next/headers";
+import { CreateDialogueDto } from "@renglish/services";
+import { dialogueApi } from "@/libs/api";
 
 export default async function addDialogueAction(
   sceneId: string,
@@ -16,7 +16,7 @@ export default async function addDialogueAction(
     return {
       status: 401,
       success: false,
-      message: 'No Authorization',
+      message: "No Authorization",
       data: null,
     };
   }
@@ -30,7 +30,7 @@ export default async function addDialogueAction(
   return {
     status: 200,
     success: true,
-    message: 'Upload Scene successfully',
+    message: "Upload Scene successfully",
     data: null,
   };
 }

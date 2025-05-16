@@ -1,4 +1,4 @@
-import Text from '@/components/Text';
+import Text from "@/components/Text";
 
 type ListContainerProps = { title: string } & React.PropsWithChildren;
 

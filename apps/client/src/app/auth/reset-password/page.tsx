@@ -1,25 +1,25 @@
-'use client';
+"use client";
 
-import Button from '@/components/Button';
-import AuthContainer from '../_components/AuthContainer';
-import Field from '@/components/Field';
-import { useState } from 'react';
-import resetPasswordAction from '@/app/actions/auth/reset-password';
-import { MESSAGE } from '@/constants/toast';
-import { toast } from 'react-toastify';
-import { PATHS } from '@/constants/path';
-import { useRouter } from 'next/navigation';
+import Button from "@/components/Button";
+import AuthContainer from "../_components/AuthContainer";
+import Field from "@/components/Field";
+import { useState } from "react";
+import resetPasswordAction from "@/app/actions/auth/reset-password";
+import { MESSAGE } from "@/constants/toast";
+import { toast } from "react-toastify";
+import { PATHS } from "@/constants/path";
+import { useRouter } from "next/navigation";
 
 export default function PasswordResetPage() {
   const router = useRouter();
 
   const [isClickedSendEmailVerifyClicked, setIsClickedSendEmailVerifyClicked] = useState(false);
   const [isCodeVerified, setIsCodeVerified] = useState(false);
-  const [verificationCode, setVerificationCode] = useState('');
+  const [verificationCode, setVerificationCode] = useState("");
   const [passwordResetBody, setPasswordResetBody] = useState({
-    email: '',
-    password: '',
-    passwordConfirm: '',
+    email: "",
+    password: "",
+    passwordConfirm: "",
   });
 
   const handlePasswordResetSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -68,8 +68,8 @@ export default function PasswordResetPage() {
             <Field.Label>Email</Field.Label>
             <Field.InputWithButton
               inputProps={{
-                name: 'email',
-                placeholder: 'ex. renglish@gmail.com',
+                name: "email",
+                placeholder: "ex. renglish@gmail.com",
                 value: passwordResetBody.email,
                 onChange: handlePasswordResetBodyChange,
               }}
@@ -84,7 +84,7 @@ export default function PasswordResetPage() {
             <Field.InputWithButton
               inputProps={{
                 readOnly: !isClickedSendEmailVerifyClicked,
-                placeholder: 'ex. ABCDEF',
+                placeholder: "ex. ABCDEF",
                 value: verificationCode,
                 onChange: handleVerificationCodeChange,
               }}

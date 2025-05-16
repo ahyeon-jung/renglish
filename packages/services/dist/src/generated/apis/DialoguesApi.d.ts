@@ -9,40 +9,52 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import * as runtime from '../runtime';
-import type { CreateDialogueDto, UpdateDialogueDto } from '../models/index';
+import * as runtime from "../runtime";
+import type { CreateDialogueDto, UpdateDialogueDto } from "../models/index";
 export interface DialogueControllerCreateDialogueRequest {
-    speakerId: string;
-    sceneId: string;
-    createDialogueDto: CreateDialogueDto;
+  speakerId: string;
+  sceneId: string;
+  createDialogueDto: CreateDialogueDto;
 }
 export interface DialogueControllerUpdateDialogueRequest {
-    dialogueId: string;
-    updateDialogueDto: UpdateDialogueDto;
+  dialogueId: string;
+  updateDialogueDto: UpdateDialogueDto;
 }
 /**
  *
  */
 export declare class DialoguesApi extends runtime.BaseAPI {
-    /**
-     * 새로운 대사 정보를 생성합니다.
-     * 대사 정보 생성 [ADMIN]
-     */
-    dialogueControllerCreateDialogueRaw(requestParameters: DialogueControllerCreateDialogueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * 새로운 대사 정보를 생성합니다.
-     * 대사 정보 생성 [ADMIN]
-     */
-    dialogueControllerCreateDialogue(requestParameters: DialogueControllerCreateDialogueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * 대사 정보를 변경합니다.
-     * 대사 정보 변경 [ADMIN]
-     */
-    dialogueControllerUpdateDialogueRaw(requestParameters: DialogueControllerUpdateDialogueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * 대사 정보를 변경합니다.
-     * 대사 정보 변경 [ADMIN]
-     */
-    dialogueControllerUpdateDialogue(requestParameters: DialogueControllerUpdateDialogueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+  /**
+   * 새로운 대사 정보를 생성합니다.
+   * 대사 정보 생성 [ADMIN]
+   */
+  dialogueControllerCreateDialogueRaw(
+    requestParameters: DialogueControllerCreateDialogueRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<void>>;
+  /**
+   * 새로운 대사 정보를 생성합니다.
+   * 대사 정보 생성 [ADMIN]
+   */
+  dialogueControllerCreateDialogue(
+    requestParameters: DialogueControllerCreateDialogueRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<void>;
+  /**
+   * 대사 정보를 변경합니다.
+   * 대사 정보 변경 [ADMIN]
+   */
+  dialogueControllerUpdateDialogueRaw(
+    requestParameters: DialogueControllerUpdateDialogueRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<void>>;
+  /**
+   * 대사 정보를 변경합니다.
+   * 대사 정보 변경 [ADMIN]
+   */
+  dialogueControllerUpdateDialogue(
+    requestParameters: DialogueControllerUpdateDialogueRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<void>;
 }
 //# sourceMappingURL=DialoguesApi.d.ts.map

@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import AudioBox from '../../_components/AudioBox';
-import DialogListContainer from '../../_components/DialogListContainer';
-import DialogListItem from '../../_components/DialogListItem';
-import SceneHeader from '../../_components/SceneHeader';
-import Text from '@/components/Text';
-import getScene from '@/app/actions/scenes/getScene';
-import { parseText } from '@/utils/content';
-import { use } from 'react';
-import { useUserStore } from '@/stores/userStore';
-import { useDataFetching } from '@/hooks/useDataFetching';
+import AudioBox from "../../_components/AudioBox";
+import DialogListContainer from "../../_components/DialogListContainer";
+import DialogListItem from "../../_components/DialogListItem";
+import SceneHeader from "../../_components/SceneHeader";
+import Text from "@/components/Text";
+import getScene from "@/app/actions/scenes/getScene";
+import { parseText } from "@/utils/content";
+import { use } from "react";
+import { useUserStore } from "@/stores/userStore";
+import { useDataFetching } from "@/hooks/useDataFetching";
 
 export default function MovieSceneEnglishKoreanScript({
   params,
@@ -20,7 +20,7 @@ export default function MovieSceneEnglishKoreanScript({
   const { userId } = useUserStore();
 
   const { data, isLoading } = useDataFetching({
-    queryKey: ['scene', resolvedParams.scene, userId ?? ''],
+    queryKey: ["scene", resolvedParams.scene, userId ?? ""],
     queryFn: () => getScene(resolvedParams.scene),
     enabled: !!resolvedParams.scene,
   });
@@ -44,14 +44,13 @@ export default function MovieSceneEnglishKoreanScript({
 
   const scene = data.data;
 
-
-
   return (
     <main className="mt-[var(--header-height)] py-3">
       <SceneHeader
         title={resolvedParams.movie}
         movieId={resolvedParams.movie}
-        sceneId={resolvedParams.scene} />
+        sceneId={resolvedParams.scene}
+      />
       <DialogListContainer>
         {scene.audioUrl && <AudioBox audioUrl={scene.audioUrl} />}
         {scene.dialogues.map((dialogue, index) => {
@@ -59,7 +58,7 @@ export default function MovieSceneEnglishKoreanScript({
             <DialogListItem key={index} speaker={dialogue.speaker} isBackground>
               <div>
                 <Text>{parseText(dialogue.englishScript)}</Text>
-                <Text className='text-gray-500'>{parseText(dialogue.koreanScript)}</Text>
+                <Text className="text-gray-500">{parseText(dialogue.koreanScript)}</Text>
               </div>
             </DialogListItem>
           );

@@ -1,13 +1,13 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
 import {
   withAdminRouteMiddleware,
   withAuthRouteMiddleware,
   withoutAuthRouteMiddleware,
-} from './middlewares/auth';
+} from "./middlewares/auth";
 
-import { PATHS } from './constants/path';
-import refreshTokenMiddleware from './middlewares/refreshToken';
-import { hideSocialInformationMiddleware } from './middlewares/social';
+import { PATHS } from "./constants/path";
+import refreshTokenMiddleware from "./middlewares/refreshToken";
+import { hideSocialInformationMiddleware } from "./middlewares/social";
 
 type MiddlewareFunction = (request: NextRequest) => Promise<Response> | Response;
 
@@ -29,11 +29,11 @@ const pageRoutesMap: Record<string, MiddlewareFunction> = {
 export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  if (request.nextUrl.pathname.startsWith('/api/cookies/refresh')) {
+  if (request.nextUrl.pathname.startsWith("/api/cookies/refresh")) {
     return NextResponse.next();
   }
 
-  if (request.nextUrl.pathname.startsWith('/movies/')) {
+  if (request.nextUrl.pathname.startsWith("/movies/")) {
     return refreshTokenMiddleware(request, true);
   }
 

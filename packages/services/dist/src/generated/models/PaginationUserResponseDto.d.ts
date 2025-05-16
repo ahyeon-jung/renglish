@@ -9,44 +9,52 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { PublicUserDto } from './PublicUserDto';
+import type { PublicUserDto } from "./PublicUserDto";
 /**
  *
  * @export
  * @interface PaginationUserResponseDto
  */
 export interface PaginationUserResponseDto {
-    /**
-     * 전체 항목 수
-     * @type {number}
-     * @memberof PaginationUserResponseDto
-     */
-    totalCount: number;
-    /**
-     * 현재 페이지 번호
-     * @type {number}
-     * @memberof PaginationUserResponseDto
-     */
-    currentPage: number;
-    /**
-     * 페이지당 항목 수
-     * @type {number}
-     * @memberof PaginationUserResponseDto
-     */
-    limit: number;
-    /**
-     * 응답 데이터 배열
-     * @type {Array<PublicUserDto>}
-     * @memberof PaginationUserResponseDto
-     */
-    data: Array<PublicUserDto>;
+  /**
+   * 전체 항목 수
+   * @type {number}
+   * @memberof PaginationUserResponseDto
+   */
+  totalCount: number;
+  /**
+   * 현재 페이지 번호
+   * @type {number}
+   * @memberof PaginationUserResponseDto
+   */
+  currentPage: number;
+  /**
+   * 페이지당 항목 수
+   * @type {number}
+   * @memberof PaginationUserResponseDto
+   */
+  limit: number;
+  /**
+   * 응답 데이터 배열
+   * @type {Array<PublicUserDto>}
+   * @memberof PaginationUserResponseDto
+   */
+  data: Array<PublicUserDto>;
 }
 /**
  * Check if a given object implements the PaginationUserResponseDto interface.
  */
-export declare function instanceOfPaginationUserResponseDto(value: object): value is PaginationUserResponseDto;
+export declare function instanceOfPaginationUserResponseDto(
+  value: object,
+): value is PaginationUserResponseDto;
 export declare function PaginationUserResponseDtoFromJSON(json: any): PaginationUserResponseDto;
-export declare function PaginationUserResponseDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): PaginationUserResponseDto;
+export declare function PaginationUserResponseDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): PaginationUserResponseDto;
 export declare function PaginationUserResponseDtoToJSON(json: any): PaginationUserResponseDto;
-export declare function PaginationUserResponseDtoToJSONTyped(value?: PaginationUserResponseDto | null, ignoreDiscriminator?: boolean): any;
+export declare function PaginationUserResponseDtoToJSONTyped(
+  value?: PaginationUserResponseDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=PaginationUserResponseDto.d.ts.map

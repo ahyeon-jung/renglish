@@ -9,11 +9,11 @@ const dataProvider: DataProvider = {
   getOne,
   create,
   update,
-  getMany: async () => Promise.reject('Not implemented'),
-  getManyReference: async () => Promise.reject('Not implemented'),
-  updateMany: async () => Promise.reject('Not implemented'),
-  delete: async () => Promise.reject('Not implemented'),
-  deleteMany: async () => Promise.reject('Not implemented'),
+  getMany: async () => Promise.reject("Not implemented"),
+  getManyReference: async () => Promise.reject("Not implemented"),
+  updateMany: async () => Promise.reject("Not implemented"),
+  delete: async () => Promise.reject("Not implemented"),
+  deleteMany: async () => Promise.reject("Not implemented"),
 };
 
 export default dataProvider;

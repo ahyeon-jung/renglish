@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
  *
  * @export
@@ -43,9 +43,9 @@ export interface CreateDialogueDto {
  * Check if a given object implements the CreateDialogueDto interface.
  */
 export function instanceOfCreateDialogueDto(value: object): value is CreateDialogueDto {
-  if (!('englishScript' in value) || value['englishScript'] === undefined) return false;
-  if (!('koreanScript' in value) || value['koreanScript'] === undefined) return false;
-  if (!('order' in value) || value['order'] === undefined) return false;
+  if (!("englishScript" in value) || value["englishScript"] === undefined) return false;
+  if (!("koreanScript" in value) || value["koreanScript"] === undefined) return false;
+  if (!("order" in value) || value["order"] === undefined) return false;
   return true;
 }
 
@@ -61,9 +61,9 @@ export function CreateDialogueDtoFromJSONTyped(
     return json;
   }
   return {
-    englishScript: json['english_script'],
-    koreanScript: json['korean_script'],
-    order: json['order'],
+    englishScript: json["english_script"],
+    koreanScript: json["korean_script"],
+    order: json["order"],
   };
 }
 
@@ -80,8 +80,8 @@ export function CreateDialogueDtoToJSONTyped(
   }
 
   return {
-    english_script: value['englishScript'],
-    korean_script: value['koreanScript'],
-    order: value['order'],
+    english_script: value["englishScript"],
+    korean_script: value["koreanScript"],
+    order: value["order"],
   };
 }

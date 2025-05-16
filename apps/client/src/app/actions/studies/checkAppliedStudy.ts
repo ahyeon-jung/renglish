@@ -1,8 +1,8 @@
-'use server';
+"use server";
 
-import { ENV } from '@/constants/env';
-import { cookies } from 'next/headers';
-import { fetchAPI } from '@/libs/api';
+import { ENV } from "@/constants/env";
+import { cookies } from "next/headers";
+import { fetchAPI } from "@/libs/api";
 
 type CheckAppliedStudyActionProps = { studyId: string };
 
@@ -14,15 +14,15 @@ export default async function checkAppliedStudyAction({ studyId }: CheckAppliedS
     return {
       status: 401,
       success: false,
-      message: 'No Authorization',
+      message: "No Authorization",
       data: null,
     };
   }
 
   const response = await fetchAPI(`/studies/${studyId}/is-member`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
   });
@@ -30,7 +30,7 @@ export default async function checkAppliedStudyAction({ studyId }: CheckAppliedS
   return {
     status: 200,
     success: true,
-    message: 'Apply successfully',
+    message: "Apply successfully",
     data: response.data,
   };
 }

@@ -1,5 +1,5 @@
-import IndicatorContainer from './IndicatorContainer';
-import IndicatorItem from './IndicatorItem';
+import IndicatorContainer from "./IndicatorContainer";
+import IndicatorItem from "./IndicatorItem";
 
 function Indicator({ children }: React.PropsWithChildren) {
   return <IndicatorContainer>{children}</IndicatorContainer>;

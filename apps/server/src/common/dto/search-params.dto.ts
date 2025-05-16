@@ -1,6 +1,6 @@
-import { IsOptional, IsString } from 'class-validator';
+import { IsOptional, IsString } from "class-validator";
 
-import { PaginationParams } from './pagination-params.dto';
+import { PaginationParams } from "./pagination-params.dto";
 
 export class SearchParams extends PaginationParams {
   @IsOptional()

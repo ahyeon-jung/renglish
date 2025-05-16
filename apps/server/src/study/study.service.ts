@@ -1,29 +1,28 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Brackets, DeleteResult, Repository } from 'typeorm';
-import { Study } from './entities/study.entity';
-import { CreateStudyDto } from './dto/create-study.dto';
-import { UpdateStudyDto } from './dto/update-study.dto';
-import { User } from 'src/user/entities/user.entity';
 import { Scene } from 'src/scene/entities/scene.entity';
+import { User } from 'src/user/entities/user.entity';
+import { Brackets, type DeleteResult, type Repository } from 'typeorm';
+import type { CreateStudyDto } from './dto/create-study.dto';
+import type { UpdateStudyDto } from './dto/update-study.dto';
+import { Study } from './entities/study.entity';
 import { STUDY_STATUS } from './enums/study-status.enum';
 
-import { GetStudyParams, StudyDto } from './dto/get-study.dto';
-import { PaginationParams } from 'src/common/dto/pagination-params.dto';
-import { ExtendedFilteredStudy, FilteredStudy } from './types/filtered-study';
-import { PaginationResponse } from 'src/common/utils/pagination.util';
+import type { PaginationParams } from 'src/common/dto/pagination-params.dto';
+import type { PaginationResponse } from 'src/common/utils/pagination.util';
+import type { GetStudyParams, StudyDto } from './dto/get-study.dto';
+import type { ExtendedFilteredStudy, } from './types/filtered-study';
 
 @Injectable()
 export class StudyService {
   constructor(
     @InjectRepository(Study)
     private studyRepository: Repository<Study>,
-
     @InjectRepository(Scene)
     private sceneRepository: Repository<Scene>,
     @InjectRepository(User)
     private userRepository: Repository<User>,
-  ) {}
+  ) { }
 
   async create(sceneId: string, createStudyDto: CreateStudyDto): Promise<Study> {
     const scene = await this.sceneRepository.findOne({
@@ -74,9 +73,9 @@ export class StudyService {
       .addGroupBy('movie.id');
 
     if (status === STUDY_STATUS.RECRUITING) {
-      baseQuery.where('study.studiedAt > NOW()');
+      baseQuery.where('study.isCompleted = false');
     } else if (status === STUDY_STATUS.COMPLETED) {
-      baseQuery.where('study.studiedAt <= NOW()');
+      baseQuery.where('study.isCompleted = true');
     }
 
     const totalCount = await baseQuery.getCount();

@@ -11,138 +11,158 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import * as runtime from '../runtime';
-import { StudyDtoFromJSON, UpdateUserDtoToJSON, UserFromJSON, WritingDtoFromJSON, } from '../models/index';
+import * as runtime from "../runtime";
+import {
+  StudyDtoFromJSON,
+  UpdateUserDtoToJSON,
+  UserFromJSON,
+  WritingDtoFromJSON,
+} from "../models/index";
 /**
  *
  */
 export class MyApi extends runtime.BaseAPI {
-    /**
-     * 사용자가 정보 변경을 시도합니다.
-     * 사용자 정보 변경 [TOKEN]
-     */
-    async myControllerChangeUserRaw(requestParameters, initOverrides) {
-        if (requestParameters['updateUserDto'] == null) {
-            throw new runtime.RequiredError('updateUserDto', 'Required parameter "updateUserDto" was null or undefined when calling myControllerChangeUser().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        headerParameters['Content-Type'] = 'application/json';
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/my`,
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-            body: UpdateUserDtoToJSON(requestParameters['updateUserDto']),
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+  /**
+   * 사용자가 정보 변경을 시도합니다.
+   * 사용자 정보 변경 [TOKEN]
+   */
+  async myControllerChangeUserRaw(requestParameters, initOverrides) {
+    if (requestParameters["updateUserDto"] == null) {
+      throw new runtime.RequiredError(
+        "updateUserDto",
+        'Required parameter "updateUserDto" was null or undefined when calling myControllerChangeUser().',
+      );
     }
-    /**
-     * 사용자가 정보 변경을 시도합니다.
-     * 사용자 정보 변경 [TOKEN]
-     */
-    async myControllerChangeUser(requestParameters, initOverrides) {
-        await this.myControllerChangeUserRaw(requestParameters, initOverrides);
+    const queryParameters = {};
+    const headerParameters = {};
+    headerParameters["Content-Type"] = "application/json";
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 참여중인 스터디를 조회합니다.
-     * 사용자가 참여중인 스터디 목록 [TOKEN]
-     */
-    async myControllerFindMyStudiesRaw(requestParameters, initOverrides) {
-        const queryParameters = {};
-        if (requestParameters['type'] != null) {
-            queryParameters['type'] = requestParameters['type'];
-        }
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/my/studies`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(StudyDtoFromJSON));
+    const response = await this.request(
+      {
+        path: `/api/my`,
+        method: "PUT",
+        headers: headerParameters,
+        query: queryParameters,
+        body: UpdateUserDtoToJSON(requestParameters["updateUserDto"]),
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 사용자가 정보 변경을 시도합니다.
+   * 사용자 정보 변경 [TOKEN]
+   */
+  async myControllerChangeUser(requestParameters, initOverrides) {
+    await this.myControllerChangeUserRaw(requestParameters, initOverrides);
+  }
+  /**
+   * 참여중인 스터디를 조회합니다.
+   * 사용자가 참여중인 스터디 목록 [TOKEN]
+   */
+  async myControllerFindMyStudiesRaw(requestParameters, initOverrides) {
+    const queryParameters = {};
+    if (requestParameters["type"] != null) {
+      queryParameters["type"] = requestParameters["type"];
     }
-    /**
-     * 참여중인 스터디를 조회합니다.
-     * 사용자가 참여중인 스터디 목록 [TOKEN]
-     */
-    async myControllerFindMyStudies(requestParameters = {}, initOverrides) {
-        const response = await this.myControllerFindMyStudiesRaw(requestParameters, initOverrides);
-        return await response.value();
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 사용자가 작성한 작문을 조회합니다.
-     * 사용자가 작성한 작문 목록 [TOKEN]
-     */
-    async myControllerFindMyWritingsRaw(initOverrides) {
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/my/writings`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(WritingDtoFromJSON));
+    const response = await this.request(
+      {
+        path: `/api/my/studies`,
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(StudyDtoFromJSON));
+  }
+  /**
+   * 참여중인 스터디를 조회합니다.
+   * 사용자가 참여중인 스터디 목록 [TOKEN]
+   */
+  async myControllerFindMyStudies(requestParameters = {}, initOverrides) {
+    const response = await this.myControllerFindMyStudiesRaw(requestParameters, initOverrides);
+    return await response.value();
+  }
+  /**
+   * 사용자가 작성한 작문을 조회합니다.
+   * 사용자가 작성한 작문 목록 [TOKEN]
+   */
+  async myControllerFindMyWritingsRaw(initOverrides) {
+    const queryParameters = {};
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 사용자가 작성한 작문을 조회합니다.
-     * 사용자가 작성한 작문 목록 [TOKEN]
-     */
-    async myControllerFindMyWritings(initOverrides) {
-        const response = await this.myControllerFindMyWritingsRaw(initOverrides);
-        return await response.value();
+    const response = await this.request(
+      {
+        path: `/api/my/writings`,
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(WritingDtoFromJSON));
+  }
+  /**
+   * 사용자가 작성한 작문을 조회합니다.
+   * 사용자가 작성한 작문 목록 [TOKEN]
+   */
+  async myControllerFindMyWritings(initOverrides) {
+    const response = await this.myControllerFindMyWritingsRaw(initOverrides);
+    return await response.value();
+  }
+  /**
+   * 현재 사용자 정보를 가져옵니다.
+   * 현재 사용자 정보 [TOKEN]
+   */
+  async myControllerFindUserByTokenRaw(initOverrides) {
+    const queryParameters = {};
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 현재 사용자 정보를 가져옵니다.
-     * 현재 사용자 정보 [TOKEN]
-     */
-    async myControllerFindUserByTokenRaw(initOverrides) {
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/my`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => UserFromJSON(jsonValue));
-    }
-    /**
-     * 현재 사용자 정보를 가져옵니다.
-     * 현재 사용자 정보 [TOKEN]
-     */
-    async myControllerFindUserByToken(initOverrides) {
-        const response = await this.myControllerFindUserByTokenRaw(initOverrides);
-        return await response.value();
-    }
+    const response = await this.request(
+      {
+        path: `/api/my`,
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.JSONApiResponse(response, (jsonValue) => UserFromJSON(jsonValue));
+  }
+  /**
+   * 현재 사용자 정보를 가져옵니다.
+   * 현재 사용자 정보 [TOKEN]
+   */
+  async myControllerFindUserByToken(initOverrides) {
+    const response = await this.myControllerFindUserByTokenRaw(initOverrides);
+    return await response.value();
+  }
 }
 //# sourceMappingURL=MyApi.js.map

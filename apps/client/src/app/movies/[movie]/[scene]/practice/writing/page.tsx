@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { use } from 'react';
-import { useDataFetching } from '@/hooks/useDataFetching';
-import SceneHeader from '../../_components/SceneHeader';
-import WritingDialogues from './_components/WritingDialogues';
-import getScene from '@/app/actions/scenes/getScene';
-import { GoToLogin } from '@/components/Fallback';
-import { useUserStore } from '@/stores/userStore';
+import { use } from "react";
+import { useDataFetching } from "@/hooks/useDataFetching";
+import SceneHeader from "../../_components/SceneHeader";
+import WritingDialogues from "./_components/WritingDialogues";
+import getScene from "@/app/actions/scenes/getScene";
+import { GoToLogin } from "@/components/Fallback";
+import { useUserStore } from "@/stores/userStore";
 
 export default function MovieScenePracticeWriting({
   params,
@@ -17,11 +17,10 @@ export default function MovieScenePracticeWriting({
   const { userId } = useUserStore();
 
   const { data, isLoading } = useDataFetching({
-    queryKey: ['scene', resolvedParams.scene, userId ?? ''],
+    queryKey: ["scene", resolvedParams.scene, userId ?? ""],
     queryFn: () => getScene(resolvedParams.scene),
     enabled: !!resolvedParams.scene,
   });
-
 
   if (!userId) return <GoToLogin />;
 

@@ -11,117 +11,146 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import * as runtime from '../runtime';
-import { PaginationUserResponseDtoFromJSON, } from '../models/index';
+import * as runtime from "../runtime";
+import { PaginationUserResponseDtoFromJSON } from "../models/index";
 /**
  *
  */
 export class UsersApi extends runtime.BaseAPI {
-    /**
-     * 이메일로 사용자 정보를 가져옵니다.
-     * 이메일로 사용자 찾기
-     */
-    async userControllerCheckExistByEmailRaw(requestParameters, initOverrides) {
-        if (requestParameters['email'] == null) {
-            throw new runtime.RequiredError('email', 'Required parameter "email" was null or undefined when calling userControllerCheckExistByEmail().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/users/email/{email}`.replace(`{${"email"}}`, encodeURIComponent(String(requestParameters['email']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+  /**
+   * 이메일로 사용자 정보를 가져옵니다.
+   * 이메일로 사용자 찾기
+   */
+  async userControllerCheckExistByEmailRaw(requestParameters, initOverrides) {
+    if (requestParameters["email"] == null) {
+      throw new runtime.RequiredError(
+        "email",
+        'Required parameter "email" was null or undefined when calling userControllerCheckExistByEmail().',
+      );
     }
-    /**
-     * 이메일로 사용자 정보를 가져옵니다.
-     * 이메일로 사용자 찾기
-     */
-    async userControllerCheckExistByEmail(requestParameters, initOverrides) {
-        await this.userControllerCheckExistByEmailRaw(requestParameters, initOverrides);
+    const queryParameters = {};
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 모든 사용자 정보를 가져옵니다.
-     * 모든 사용자 정보 가져오기
-     */
-    async userControllerFindAllRaw(requestParameters, initOverrides) {
-        if (requestParameters['offset'] == null) {
-            throw new runtime.RequiredError('offset', 'Required parameter "offset" was null or undefined when calling userControllerFindAll().');
-        }
-        if (requestParameters['limit'] == null) {
-            throw new runtime.RequiredError('limit', 'Required parameter "limit" was null or undefined when calling userControllerFindAll().');
-        }
-        const queryParameters = {};
-        if (requestParameters['offset'] != null) {
-            queryParameters['offset'] = requestParameters['offset'];
-        }
-        if (requestParameters['limit'] != null) {
-            queryParameters['limit'] = requestParameters['limit'];
-        }
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/users`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => PaginationUserResponseDtoFromJSON(jsonValue));
+    const response = await this.request(
+      {
+        path: `/api/users/email/{email}`.replace(
+          `{${"email"}}`,
+          encodeURIComponent(String(requestParameters["email"])),
+        ),
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 이메일로 사용자 정보를 가져옵니다.
+   * 이메일로 사용자 찾기
+   */
+  async userControllerCheckExistByEmail(requestParameters, initOverrides) {
+    await this.userControllerCheckExistByEmailRaw(requestParameters, initOverrides);
+  }
+  /**
+   * 모든 사용자 정보를 가져옵니다.
+   * 모든 사용자 정보 가져오기
+   */
+  async userControllerFindAllRaw(requestParameters, initOverrides) {
+    if (requestParameters["offset"] == null) {
+      throw new runtime.RequiredError(
+        "offset",
+        'Required parameter "offset" was null or undefined when calling userControllerFindAll().',
+      );
     }
-    /**
-     * 모든 사용자 정보를 가져옵니다.
-     * 모든 사용자 정보 가져오기
-     */
-    async userControllerFindAll(requestParameters, initOverrides) {
-        const response = await this.userControllerFindAllRaw(requestParameters, initOverrides);
-        return await response.value();
+    if (requestParameters["limit"] == null) {
+      throw new runtime.RequiredError(
+        "limit",
+        'Required parameter "limit" was null or undefined when calling userControllerFindAll().',
+      );
     }
-    /**
-     * 아이디로 사용자 정보를 가져옵니다.
-     * 아이디로 사용자 찾기
-     */
-    async userControllerFindUserByIdRaw(requestParameters, initOverrides) {
-        if (requestParameters['userId'] == null) {
-            throw new runtime.RequiredError('userId', 'Required parameter "userId" was null or undefined when calling userControllerFindUserById().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/users/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+    const queryParameters = {};
+    if (requestParameters["offset"] != null) {
+      queryParameters["offset"] = requestParameters["offset"];
     }
-    /**
-     * 아이디로 사용자 정보를 가져옵니다.
-     * 아이디로 사용자 찾기
-     */
-    async userControllerFindUserById(requestParameters, initOverrides) {
-        await this.userControllerFindUserByIdRaw(requestParameters, initOverrides);
+    if (requestParameters["limit"] != null) {
+      queryParameters["limit"] = requestParameters["limit"];
     }
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    const response = await this.request(
+      {
+        path: `/api/users`,
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.JSONApiResponse(response, (jsonValue) =>
+      PaginationUserResponseDtoFromJSON(jsonValue),
+    );
+  }
+  /**
+   * 모든 사용자 정보를 가져옵니다.
+   * 모든 사용자 정보 가져오기
+   */
+  async userControllerFindAll(requestParameters, initOverrides) {
+    const response = await this.userControllerFindAllRaw(requestParameters, initOverrides);
+    return await response.value();
+  }
+  /**
+   * 아이디로 사용자 정보를 가져옵니다.
+   * 아이디로 사용자 찾기
+   */
+  async userControllerFindUserByIdRaw(requestParameters, initOverrides) {
+    if (requestParameters["userId"] == null) {
+      throw new runtime.RequiredError(
+        "userId",
+        'Required parameter "userId" was null or undefined when calling userControllerFindUserById().',
+      );
+    }
+    const queryParameters = {};
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    const response = await this.request(
+      {
+        path: `/api/users/{userId}`.replace(
+          `{${"userId"}}`,
+          encodeURIComponent(String(requestParameters["userId"])),
+        ),
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 아이디로 사용자 정보를 가져옵니다.
+   * 아이디로 사용자 찾기
+   */
+  async userControllerFindUserById(requestParameters, initOverrides) {
+    await this.userControllerFindUserByIdRaw(requestParameters, initOverrides);
+  }
 }
 //# sourceMappingURL=UsersApi.js.map

@@ -11,180 +11,232 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import * as runtime from '../runtime';
-import { CreateExpressionDtoToJSON, ExpressionFromJSON, UpdateExpressionDtoToJSON, } from '../models/index';
+import * as runtime from "../runtime";
+import {
+  CreateExpressionDtoToJSON,
+  ExpressionFromJSON,
+  UpdateExpressionDtoToJSON,
+} from "../models/index";
 /**
  *
  */
 export class ExpressionApi extends runtime.BaseAPI {
-    /**
-     * 해당 장면의 영어 표현 추가하기
-     * 영어 표현 추가하기 [ADMIN]
-     */
-    async expressionControllerCreateRaw(requestParameters, initOverrides) {
-        if (requestParameters['sceneId'] == null) {
-            throw new runtime.RequiredError('sceneId', 'Required parameter "sceneId" was null or undefined when calling expressionControllerCreate().');
-        }
-        if (requestParameters['createExpressionDto'] == null) {
-            throw new runtime.RequiredError('createExpressionDto', 'Required parameter "createExpressionDto" was null or undefined when calling expressionControllerCreate().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        headerParameters['Content-Type'] = 'application/json';
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/expressions/{sceneId}`.replace(`{${"sceneId"}}`, encodeURIComponent(String(requestParameters['sceneId']))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: CreateExpressionDtoToJSON(requestParameters['createExpressionDto']),
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+  /**
+   * 해당 장면의 영어 표현 추가하기
+   * 영어 표현 추가하기 [ADMIN]
+   */
+  async expressionControllerCreateRaw(requestParameters, initOverrides) {
+    if (requestParameters["sceneId"] == null) {
+      throw new runtime.RequiredError(
+        "sceneId",
+        'Required parameter "sceneId" was null or undefined when calling expressionControllerCreate().',
+      );
     }
-    /**
-     * 해당 장면의 영어 표현 추가하기
-     * 영어 표현 추가하기 [ADMIN]
-     */
-    async expressionControllerCreate(requestParameters, initOverrides) {
-        await this.expressionControllerCreateRaw(requestParameters, initOverrides);
+    if (requestParameters["createExpressionDto"] == null) {
+      throw new runtime.RequiredError(
+        "createExpressionDto",
+        'Required parameter "createExpressionDto" was null or undefined when calling expressionControllerCreate().',
+      );
     }
-    /**
-     * 해당 장면의 영어 표현 가져오기
-     * 해당 장면의 영어 표현 가져오기 [TOKEN]
-     */
-    async expressionControllerFindExpressionBySceneIdRaw(requestParameters, initOverrides) {
-        if (requestParameters['sceneId'] == null) {
-            throw new runtime.RequiredError('sceneId', 'Required parameter "sceneId" was null or undefined when calling expressionControllerFindExpressionBySceneId().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/expressions/{sceneId}`.replace(`{${"sceneId"}}`, encodeURIComponent(String(requestParameters['sceneId']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ExpressionFromJSON));
+    const queryParameters = {};
+    const headerParameters = {};
+    headerParameters["Content-Type"] = "application/json";
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 해당 장면의 영어 표현 가져오기
-     * 해당 장면의 영어 표현 가져오기 [TOKEN]
-     */
-    async expressionControllerFindExpressionBySceneId(requestParameters, initOverrides) {
-        const response = await this.expressionControllerFindExpressionBySceneIdRaw(requestParameters, initOverrides);
-        return await response.value();
+    const response = await this.request(
+      {
+        path: `/api/expressions/{sceneId}`.replace(
+          `{${"sceneId"}}`,
+          encodeURIComponent(String(requestParameters["sceneId"])),
+        ),
+        method: "POST",
+        headers: headerParameters,
+        query: queryParameters,
+        body: CreateExpressionDtoToJSON(requestParameters["createExpressionDto"]),
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 해당 장면의 영어 표현 추가하기
+   * 영어 표현 추가하기 [ADMIN]
+   */
+  async expressionControllerCreate(requestParameters, initOverrides) {
+    await this.expressionControllerCreateRaw(requestParameters, initOverrides);
+  }
+  /**
+   * 해당 장면의 영어 표현 가져오기
+   * 해당 장면의 영어 표현 가져오기 [TOKEN]
+   */
+  async expressionControllerFindExpressionBySceneIdRaw(requestParameters, initOverrides) {
+    if (requestParameters["sceneId"] == null) {
+      throw new runtime.RequiredError(
+        "sceneId",
+        'Required parameter "sceneId" was null or undefined when calling expressionControllerFindExpressionBySceneId().',
+      );
     }
-    /**
-     * 이번주 영어 표현을 10개 가져옵니다.
-     * 이번주 영어 표현 가져오기
-     */
-    async expressionControllerFindWeeklyExpressionsRaw(initOverrides) {
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/expressions/weekly`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ExpressionFromJSON));
+    const queryParameters = {};
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 이번주 영어 표현을 10개 가져옵니다.
-     * 이번주 영어 표현 가져오기
-     */
-    async expressionControllerFindWeeklyExpressions(initOverrides) {
-        const response = await this.expressionControllerFindWeeklyExpressionsRaw(initOverrides);
-        return await response.value();
+    const response = await this.request(
+      {
+        path: `/api/expressions/{sceneId}`.replace(
+          `{${"sceneId"}}`,
+          encodeURIComponent(String(requestParameters["sceneId"])),
+        ),
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ExpressionFromJSON));
+  }
+  /**
+   * 해당 장면의 영어 표현 가져오기
+   * 해당 장면의 영어 표현 가져오기 [TOKEN]
+   */
+  async expressionControllerFindExpressionBySceneId(requestParameters, initOverrides) {
+    const response = await this.expressionControllerFindExpressionBySceneIdRaw(
+      requestParameters,
+      initOverrides,
+    );
+    return await response.value();
+  }
+  /**
+   * 이번주 영어 표현을 10개 가져옵니다.
+   * 이번주 영어 표현 가져오기
+   */
+  async expressionControllerFindWeeklyExpressionsRaw(initOverrides) {
+    const queryParameters = {};
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 영어 표현 수정하기
-     * 영어 표현 삭제하기 [ADMIN]
-     */
-    async expressionControllerRemoveRaw(requestParameters, initOverrides) {
-        if (requestParameters['expressionId'] == null) {
-            throw new runtime.RequiredError('expressionId', 'Required parameter "expressionId" was null or undefined when calling expressionControllerRemove().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/expressions/{expressionId}`.replace(`{${"expressionId"}}`, encodeURIComponent(String(requestParameters['expressionId']))),
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+    const response = await this.request(
+      {
+        path: `/api/expressions/weekly`,
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ExpressionFromJSON));
+  }
+  /**
+   * 이번주 영어 표현을 10개 가져옵니다.
+   * 이번주 영어 표현 가져오기
+   */
+  async expressionControllerFindWeeklyExpressions(initOverrides) {
+    const response = await this.expressionControllerFindWeeklyExpressionsRaw(initOverrides);
+    return await response.value();
+  }
+  /**
+   * 영어 표현 수정하기
+   * 영어 표현 삭제하기 [ADMIN]
+   */
+  async expressionControllerRemoveRaw(requestParameters, initOverrides) {
+    if (requestParameters["expressionId"] == null) {
+      throw new runtime.RequiredError(
+        "expressionId",
+        'Required parameter "expressionId" was null or undefined when calling expressionControllerRemove().',
+      );
     }
-    /**
-     * 영어 표현 수정하기
-     * 영어 표현 삭제하기 [ADMIN]
-     */
-    async expressionControllerRemove(requestParameters, initOverrides) {
-        await this.expressionControllerRemoveRaw(requestParameters, initOverrides);
+    const queryParameters = {};
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 영어 표현 수정하기
-     * 영어 표현 수정하기 [ADMIN]
-     */
-    async expressionControllerUpdateRaw(requestParameters, initOverrides) {
-        if (requestParameters['expressionId'] == null) {
-            throw new runtime.RequiredError('expressionId', 'Required parameter "expressionId" was null or undefined when calling expressionControllerUpdate().');
-        }
-        if (requestParameters['updateExpressionDto'] == null) {
-            throw new runtime.RequiredError('updateExpressionDto', 'Required parameter "updateExpressionDto" was null or undefined when calling expressionControllerUpdate().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        headerParameters['Content-Type'] = 'application/json';
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/expressions/{expressionId}`.replace(`{${"expressionId"}}`, encodeURIComponent(String(requestParameters['expressionId']))),
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-            body: UpdateExpressionDtoToJSON(requestParameters['updateExpressionDto']),
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+    const response = await this.request(
+      {
+        path: `/api/expressions/{expressionId}`.replace(
+          `{${"expressionId"}}`,
+          encodeURIComponent(String(requestParameters["expressionId"])),
+        ),
+        method: "DELETE",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 영어 표현 수정하기
+   * 영어 표현 삭제하기 [ADMIN]
+   */
+  async expressionControllerRemove(requestParameters, initOverrides) {
+    await this.expressionControllerRemoveRaw(requestParameters, initOverrides);
+  }
+  /**
+   * 영어 표현 수정하기
+   * 영어 표현 수정하기 [ADMIN]
+   */
+  async expressionControllerUpdateRaw(requestParameters, initOverrides) {
+    if (requestParameters["expressionId"] == null) {
+      throw new runtime.RequiredError(
+        "expressionId",
+        'Required parameter "expressionId" was null or undefined when calling expressionControllerUpdate().',
+      );
     }
-    /**
-     * 영어 표현 수정하기
-     * 영어 표현 수정하기 [ADMIN]
-     */
-    async expressionControllerUpdate(requestParameters, initOverrides) {
-        await this.expressionControllerUpdateRaw(requestParameters, initOverrides);
+    if (requestParameters["updateExpressionDto"] == null) {
+      throw new runtime.RequiredError(
+        "updateExpressionDto",
+        'Required parameter "updateExpressionDto" was null or undefined when calling expressionControllerUpdate().',
+      );
     }
+    const queryParameters = {};
+    const headerParameters = {};
+    headerParameters["Content-Type"] = "application/json";
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    const response = await this.request(
+      {
+        path: `/api/expressions/{expressionId}`.replace(
+          `{${"expressionId"}}`,
+          encodeURIComponent(String(requestParameters["expressionId"])),
+        ),
+        method: "PUT",
+        headers: headerParameters,
+        query: queryParameters,
+        body: UpdateExpressionDtoToJSON(requestParameters["updateExpressionDto"]),
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 영어 표현 수정하기
+   * 영어 표현 수정하기 [ADMIN]
+   */
+  async expressionControllerUpdate(requestParameters, initOverrides) {
+    await this.expressionControllerUpdateRaw(requestParameters, initOverrides);
+  }
 }
 //# sourceMappingURL=ExpressionApi.js.map

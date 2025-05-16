@@ -9,38 +9,50 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import * as runtime from '../runtime';
-import type { CreateWritingDto } from '../models/index';
+import * as runtime from "../runtime";
+import type { CreateWritingDto } from "../models/index";
 export interface WritingControllerCreateRequest {
-    dialogueId: string;
-    createWritingDto: CreateWritingDto;
+  dialogueId: string;
+  createWritingDto: CreateWritingDto;
 }
 export interface WritingControllerFindAllByMovieIdRequest {
-    movieId: string;
+  movieId: string;
 }
 /**
  *
  */
 export declare class WritingsApi extends runtime.BaseAPI {
-    /**
-     * 사용자가 작성한 대사의 대본을 저장합니다.
-     * 사용자가 작성한 대사의 대본 저장하기 [TOKEN]
-     */
-    writingControllerCreateRaw(requestParameters: WritingControllerCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * 사용자가 작성한 대사의 대본을 저장합니다.
-     * 사용자가 작성한 대사의 대본 저장하기 [TOKEN]
-     */
-    writingControllerCreate(requestParameters: WritingControllerCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * 사용자가 작성한 작문 정보를 가져옵니다.
-     * 사용자가 작성한 작문 정보 가져오기 [TOKEN]
-     */
-    writingControllerFindAllByMovieIdRaw(requestParameters: WritingControllerFindAllByMovieIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * 사용자가 작성한 작문 정보를 가져옵니다.
-     * 사용자가 작성한 작문 정보 가져오기 [TOKEN]
-     */
-    writingControllerFindAllByMovieId(requestParameters: WritingControllerFindAllByMovieIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+  /**
+   * 사용자가 작성한 대사의 대본을 저장합니다.
+   * 사용자가 작성한 대사의 대본 저장하기 [TOKEN]
+   */
+  writingControllerCreateRaw(
+    requestParameters: WritingControllerCreateRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<void>>;
+  /**
+   * 사용자가 작성한 대사의 대본을 저장합니다.
+   * 사용자가 작성한 대사의 대본 저장하기 [TOKEN]
+   */
+  writingControllerCreate(
+    requestParameters: WritingControllerCreateRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<void>;
+  /**
+   * 사용자가 작성한 작문 정보를 가져옵니다.
+   * 사용자가 작성한 작문 정보 가져오기 [TOKEN]
+   */
+  writingControllerFindAllByMovieIdRaw(
+    requestParameters: WritingControllerFindAllByMovieIdRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<void>>;
+  /**
+   * 사용자가 작성한 작문 정보를 가져옵니다.
+   * 사용자가 작성한 작문 정보 가져오기 [TOKEN]
+   */
+  writingControllerFindAllByMovieId(
+    requestParameters: WritingControllerFindAllByMovieIdRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<void>;
 }
 //# sourceMappingURL=WritingsApi.d.ts.map

@@ -15,18 +15,18 @@
  * @interface LoginDto
  */
 export interface LoginDto {
-    /**
-     * 사용자의 이메일 주소
-     * @type {string}
-     * @memberof LoginDto
-     */
-    email: string;
-    /**
-     * 사용자의 비밀번호
-     * @type {string}
-     * @memberof LoginDto
-     */
-    password: string;
+  /**
+   * 사용자의 이메일 주소
+   * @type {string}
+   * @memberof LoginDto
+   */
+  email: string;
+  /**
+   * 사용자의 비밀번호
+   * @type {string}
+   * @memberof LoginDto
+   */
+  password: string;
 }
 /**
  * Check if a given object implements the LoginDto interface.
@@ -35,5 +35,8 @@ export declare function instanceOfLoginDto(value: object): value is LoginDto;
 export declare function LoginDtoFromJSON(json: any): LoginDto;
 export declare function LoginDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): LoginDto;
 export declare function LoginDtoToJSON(json: any): LoginDto;
-export declare function LoginDtoToJSONTyped(value?: LoginDto | null, ignoreDiscriminator?: boolean): any;
+export declare function LoginDtoToJSONTyped(
+  value?: LoginDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=LoginDto.d.ts.map

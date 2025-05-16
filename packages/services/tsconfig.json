@@ -18,9 +18,6 @@
       "*": ["src/*", "src/generated/*"]
     }
   },
-  "include": [
-    "src/**/*",
-    "src/generated/**/*"
-  ],
+  "include": ["src/**/*", "src/generated/**/*"],
   "exclude": ["node_modules", "dist"]
-} 
+}

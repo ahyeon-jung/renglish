@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { use } from 'react';
-import { useDataFetching } from '@/hooks/useDataFetching';
-import DialogListContainer from '../../_components/DialogListContainer';
-import SceneHeader from '../../_components/SceneHeader';
-import getScene from '@/app/actions/scenes/getScene';
-import FillDialogueListItem from './FillDialogueListItem';
-import { useUserStore } from '@/stores/userStore';
+import { use } from "react";
+import { useDataFetching } from "@/hooks/useDataFetching";
+import DialogListContainer from "../../_components/DialogListContainer";
+import SceneHeader from "../../_components/SceneHeader";
+import getScene from "@/app/actions/scenes/getScene";
+import FillDialogueListItem from "./FillDialogueListItem";
+import { useUserStore } from "@/stores/userStore";
 
 export default function MovieScenePracticeFill({
   params,
@@ -17,7 +17,7 @@ export default function MovieScenePracticeFill({
   const { userId } = useUserStore();
 
   const { data, isLoading } = useDataFetching({
-    queryKey: ['scene', resolvedParams.scene, userId ?? ''],
+    queryKey: ["scene", resolvedParams.scene, userId ?? ""],
     queryFn: () => getScene(resolvedParams.scene),
     enabled: !!resolvedParams.scene,
   });

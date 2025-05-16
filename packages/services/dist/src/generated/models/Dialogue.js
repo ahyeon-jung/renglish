@@ -11,68 +11,59 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { SceneFromJSON, SceneToJSON, } from './Scene';
-import { SpeakerFromJSON, SpeakerToJSON, } from './Speaker';
+import { SceneFromJSON, SceneToJSON } from "./Scene";
+import { SpeakerFromJSON, SpeakerToJSON } from "./Speaker";
 /**
  * Check if a given object implements the Dialogue interface.
  */
 export function instanceOfDialogue(value) {
-    if (!('id' in value) || value['id'] === undefined)
-        return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined)
-        return false;
-    if (!('updatedAt' in value) || value['updatedAt'] === undefined)
-        return false;
-    if (!('deletedAt' in value) || value['deletedAt'] === undefined)
-        return false;
-    if (!('englishScript' in value) || value['englishScript'] === undefined)
-        return false;
-    if (!('koreanScript' in value) || value['koreanScript'] === undefined)
-        return false;
-    if (!('order' in value) || value['order'] === undefined)
-        return false;
-    if (!('scene' in value) || value['scene'] === undefined)
-        return false;
-    if (!('speaker' in value) || value['speaker'] === undefined)
-        return false;
-    return true;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("deletedAt" in value) || value["deletedAt"] === undefined) return false;
+  if (!("englishScript" in value) || value["englishScript"] === undefined) return false;
+  if (!("koreanScript" in value) || value["koreanScript"] === undefined) return false;
+  if (!("order" in value) || value["order"] === undefined) return false;
+  if (!("scene" in value) || value["scene"] === undefined) return false;
+  if (!("speaker" in value) || value["speaker"] === undefined) return false;
+  return true;
 }
 export function DialogueFromJSON(json) {
-    return DialogueFromJSONTyped(json, false);
+  return DialogueFromJSONTyped(json, false);
 }
 export function DialogueFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'id': json['id'],
-        'createdAt': (new Date(json['createdAt'])),
-        'updatedAt': (new Date(json['updatedAt'])),
-        'deletedAt': (new Date(json['deletedAt'])),
-        'englishScript': json['english_script'],
-        'koreanScript': json['korean_script'],
-        'order': json['order'],
-        'scene': SceneFromJSON(json['scene']),
-        'speaker': SpeakerFromJSON(json['speaker']),
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    id: json["id"],
+    createdAt: new Date(json["createdAt"]),
+    updatedAt: new Date(json["updatedAt"]),
+    deletedAt: new Date(json["deletedAt"]),
+    englishScript: json["english_script"],
+    koreanScript: json["korean_script"],
+    order: json["order"],
+    scene: SceneFromJSON(json["scene"]),
+    speaker: SpeakerFromJSON(json["speaker"]),
+  };
 }
 export function DialogueToJSON(json) {
-    return DialogueToJSONTyped(json, false);
+  return DialogueToJSONTyped(json, false);
 }
 export function DialogueToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'id': value['id'],
-        'createdAt': ((value['createdAt']).toISOString()),
-        'updatedAt': ((value['updatedAt']).toISOString()),
-        'deletedAt': ((value['deletedAt']).toISOString()),
-        'english_script': value['englishScript'],
-        'korean_script': value['koreanScript'],
-        'order': value['order'],
-        'scene': SceneToJSON(value['scene']),
-        'speaker': SpeakerToJSON(value['speaker']),
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    id: value["id"],
+    createdAt: value["createdAt"].toISOString(),
+    updatedAt: value["updatedAt"].toISOString(),
+    deletedAt: value["deletedAt"].toISOString(),
+    english_script: value["englishScript"],
+    korean_script: value["koreanScript"],
+    order: value["order"],
+    scene: SceneToJSON(value["scene"]),
+    speaker: SpeakerToJSON(value["speaker"]),
+  };
 }
 //# sourceMappingURL=Dialogue.js.map

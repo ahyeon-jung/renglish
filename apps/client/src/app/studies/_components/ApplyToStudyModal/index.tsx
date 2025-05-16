@@ -1,24 +1,27 @@
-'use client';
+"use client";
 
-import Button from '@/components/Button';
-import CancelToApplyModal from '../CancelToApplyModal';
-import Link from 'next/link';
-import { MESSAGE } from '@/constants/toast';
-import Modal from '@/components/Modal';
-import { PATHS } from '@/constants/path';
-import applyToStudyAction from '@/app/actions/studies/applyToStudy';
-import { toast } from 'react-toastify';
-import { useState } from 'react';
-import Text from '@/components/Text';
-import { GATHER_TOWN_URL } from '@/constants/url';
-import { useUserStore } from '@/stores/userStore';
+import applyToStudyAction from "@/app/actions/studies/applyToStudy";
+import Button from "@/components/Button";
+import Modal from "@/components/Modal";
+import Text from "@/components/Text";
+import { PATHS } from "@/constants/path";
+import { MESSAGE } from "@/constants/toast";
+import { GATHER_TOWN_URL } from "@/constants/url";
+import { useUserStore } from "@/stores/userStore";
+import { goToLoginWithRedirect } from "@/utils/path";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import AlreadyAppliedModal from "../AlreadyAppliedModal";
 
-const USER_STATUS = { ALREADY_APPLIED: 'already', NO_AUTH: 'no_token', APPLY_SUCCESS: 'success' };
+const USER_STATUS = { ALREADY_APPLIED: "already", NO_AUTH: "no_token", APPLY_SUCCESS: "success" };
 
-type ApplyToStudyModalProps = { studyId: string };
+type ApplyToStudyModalProps = { sceneId: string; studyId: string };
 
-export default function ApplyToStudyModal({ studyId }: ApplyToStudyModalProps) {
+export default function ApplyToStudyModal({ sceneId, studyId }: ApplyToStudyModalProps) {
   const { userId } = useUserStore();
+  const pathname = usePathname();
   const [userStatus, setUserStatus] = useState<string | null>(null);
 
   const handleApplyClick = async () => {
@@ -50,12 +53,14 @@ export default function ApplyToStudyModal({ studyId }: ApplyToStudyModalProps) {
 
   return (
     <>
-      <Button onClick={handleApplyClick} title="스터디 참여하기">참여 하기</Button>
+      <Button onClick={handleApplyClick} title="스터디 참여하기">
+        참여 하기
+      </Button>
       {userStatus === USER_STATUS.NO_AUTH && (
         <Modal className="w-[300px]" onClose={closeModal}>
           <Modal.Title>스터디 참여하기</Modal.Title>
           <Modal.Content>로그인 후 참여 신청해주세요</Modal.Content>
-          <Link href={PATHS.AUTH.LOGIN}>
+          <Link href={goToLoginWithRedirect(pathname)}>
             <Button>로그인하러 가기</Button>
           </Link>
         </Modal>
@@ -67,18 +72,18 @@ export default function ApplyToStudyModal({ studyId }: ApplyToStudyModalProps) {
             <Text as="p" typography="body-lg">
               해당 일자에 참여해주세요
             </Text>
-            <Text as="p" typography="body-lg">
-              📌 게더타운 바로가기{' '}
-              <Link href={GATHER_TOWN_URL} className="text-orange-500 underline">
-                click here!
-              </Link>
-            </Text>
+            <Link href={GATHER_TOWN_URL}>
+              <Button >게더타운 가기</Button>
+            </Link>
+            <Link href={PATHS.MEETING.DETAIL(sceneId)}>
+              <Button variants="success" >온라인 미팅 하러가기</Button>
+            </Link>
           </Modal.Content>
           <Button onClick={closeModal}>확인</Button>
         </Modal>
       )}
       {userStatus === USER_STATUS.ALREADY_APPLIED && (
-        <CancelToApplyModal onClose={closeModal} studyId={studyId} />
+        <AlreadyAppliedModal sceneId={sceneId} onClose={closeModal} studyId={studyId} />
       )}
     </>
   );

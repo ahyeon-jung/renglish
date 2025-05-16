@@ -15,31 +15,37 @@
  * @interface CreateSceneDto
  */
 export interface CreateSceneDto {
-    /**
-     * Scene의 제목
-     * @type {string}
-     * @memberof CreateSceneDto
-     */
-    title: string;
-    /**
-     * 장면의 오디오 URL
-     * @type {string}
-     * @memberof CreateSceneDto
-     */
-    audioUrl: string;
-    /**
-     * Scene의 설명
-     * @type {string}
-     * @memberof CreateSceneDto
-     */
-    description: string;
+  /**
+   * Scene의 제목
+   * @type {string}
+   * @memberof CreateSceneDto
+   */
+  title: string;
+  /**
+   * 장면의 오디오 URL
+   * @type {string}
+   * @memberof CreateSceneDto
+   */
+  audioUrl: string;
+  /**
+   * Scene의 설명
+   * @type {string}
+   * @memberof CreateSceneDto
+   */
+  description: string;
 }
 /**
  * Check if a given object implements the CreateSceneDto interface.
  */
 export declare function instanceOfCreateSceneDto(value: object): value is CreateSceneDto;
 export declare function CreateSceneDtoFromJSON(json: any): CreateSceneDto;
-export declare function CreateSceneDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateSceneDto;
+export declare function CreateSceneDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): CreateSceneDto;
 export declare function CreateSceneDtoToJSON(json: any): CreateSceneDto;
-export declare function CreateSceneDtoToJSONTyped(value?: CreateSceneDto | null, ignoreDiscriminator?: boolean): any;
+export declare function CreateSceneDtoToJSONTyped(
+  value?: CreateSceneDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=CreateSceneDto.d.ts.map

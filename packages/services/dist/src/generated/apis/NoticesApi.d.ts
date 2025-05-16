@@ -9,73 +9,101 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import * as runtime from '../runtime';
+import * as runtime from "../runtime";
 export interface NoticeControllerCreateRequest {
-    body: object;
+  body: object;
 }
 export interface NoticeControllerFindOneRequest {
-    noticeId: string;
+  noticeId: string;
 }
 export interface NoticeControllerRemoveRequest {
-    noticeId: string;
+  noticeId: string;
 }
 export interface NoticeControllerUpdateRequest {
-    noticeId: string;
-    body: object;
+  noticeId: string;
+  body: object;
 }
 /**
  *
  */
 export declare class NoticesApi extends runtime.BaseAPI {
-    /**
-     * 공지사항을 추가합니다.
-     * 공지사항 작성 [ADMIN]
-     */
-    noticeControllerCreateRaw(requestParameters: NoticeControllerCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * 공지사항을 추가합니다.
-     * 공지사항 작성 [ADMIN]
-     */
-    noticeControllerCreate(requestParameters: NoticeControllerCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * 모든 공지사항을 가져옵니다.
-     * 모든 공지사항 가져오기
-     */
-    noticeControllerFindAllRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * 모든 공지사항을 가져옵니다.
-     * 모든 공지사항 가져오기
-     */
-    noticeControllerFindAll(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * 해당 ID의 공지사항을 가져옵니다.
-     * 해당 ID 공지사항 가져오기
-     */
-    noticeControllerFindOneRaw(requestParameters: NoticeControllerFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * 해당 ID의 공지사항을 가져옵니다.
-     * 해당 ID 공지사항 가져오기
-     */
-    noticeControllerFindOne(requestParameters: NoticeControllerFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * 해당 ID의 공지사항을 삭제합니다.
-     * 해당 ID 공지사항 삭제 [ADMIN]
-     */
-    noticeControllerRemoveRaw(requestParameters: NoticeControllerRemoveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * 해당 ID의 공지사항을 삭제합니다.
-     * 해당 ID 공지사항 삭제 [ADMIN]
-     */
-    noticeControllerRemove(requestParameters: NoticeControllerRemoveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * 해당 ID의 공지사항을 업데이트합니다.
-     * 공지사항 수정 [ADMIN]
-     */
-    noticeControllerUpdateRaw(requestParameters: NoticeControllerUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * 해당 ID의 공지사항을 업데이트합니다.
-     * 공지사항 수정 [ADMIN]
-     */
-    noticeControllerUpdate(requestParameters: NoticeControllerUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+  /**
+   * 공지사항을 추가합니다.
+   * 공지사항 작성 [ADMIN]
+   */
+  noticeControllerCreateRaw(
+    requestParameters: NoticeControllerCreateRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<void>>;
+  /**
+   * 공지사항을 추가합니다.
+   * 공지사항 작성 [ADMIN]
+   */
+  noticeControllerCreate(
+    requestParameters: NoticeControllerCreateRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<void>;
+  /**
+   * 모든 공지사항을 가져옵니다.
+   * 모든 공지사항 가져오기
+   */
+  noticeControllerFindAllRaw(
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<void>>;
+  /**
+   * 모든 공지사항을 가져옵니다.
+   * 모든 공지사항 가져오기
+   */
+  noticeControllerFindAll(
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<void>;
+  /**
+   * 해당 ID의 공지사항을 가져옵니다.
+   * 해당 ID 공지사항 가져오기
+   */
+  noticeControllerFindOneRaw(
+    requestParameters: NoticeControllerFindOneRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<void>>;
+  /**
+   * 해당 ID의 공지사항을 가져옵니다.
+   * 해당 ID 공지사항 가져오기
+   */
+  noticeControllerFindOne(
+    requestParameters: NoticeControllerFindOneRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<void>;
+  /**
+   * 해당 ID의 공지사항을 삭제합니다.
+   * 해당 ID 공지사항 삭제 [ADMIN]
+   */
+  noticeControllerRemoveRaw(
+    requestParameters: NoticeControllerRemoveRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<void>>;
+  /**
+   * 해당 ID의 공지사항을 삭제합니다.
+   * 해당 ID 공지사항 삭제 [ADMIN]
+   */
+  noticeControllerRemove(
+    requestParameters: NoticeControllerRemoveRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<void>;
+  /**
+   * 해당 ID의 공지사항을 업데이트합니다.
+   * 공지사항 수정 [ADMIN]
+   */
+  noticeControllerUpdateRaw(
+    requestParameters: NoticeControllerUpdateRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<void>>;
+  /**
+   * 해당 ID의 공지사항을 업데이트합니다.
+   * 공지사항 수정 [ADMIN]
+   */
+  noticeControllerUpdate(
+    requestParameters: NoticeControllerUpdateRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<void>;
 }
 //# sourceMappingURL=NoticesApi.d.ts.map

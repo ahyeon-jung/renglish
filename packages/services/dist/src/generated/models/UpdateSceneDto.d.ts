@@ -15,31 +15,37 @@
  * @interface UpdateSceneDto
  */
 export interface UpdateSceneDto {
-    /**
-     * Scene의 제목
-     * @type {string}
-     * @memberof UpdateSceneDto
-     */
-    title?: string;
-    /**
-     * 장면의 오디오 URL
-     * @type {string}
-     * @memberof UpdateSceneDto
-     */
-    audioUrl?: string;
-    /**
-     * Scene의 설명
-     * @type {string}
-     * @memberof UpdateSceneDto
-     */
-    description?: string;
+  /**
+   * Scene의 제목
+   * @type {string}
+   * @memberof UpdateSceneDto
+   */
+  title?: string;
+  /**
+   * 장면의 오디오 URL
+   * @type {string}
+   * @memberof UpdateSceneDto
+   */
+  audioUrl?: string;
+  /**
+   * Scene의 설명
+   * @type {string}
+   * @memberof UpdateSceneDto
+   */
+  description?: string;
 }
 /**
  * Check if a given object implements the UpdateSceneDto interface.
  */
 export declare function instanceOfUpdateSceneDto(value: object): value is UpdateSceneDto;
 export declare function UpdateSceneDtoFromJSON(json: any): UpdateSceneDto;
-export declare function UpdateSceneDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateSceneDto;
+export declare function UpdateSceneDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): UpdateSceneDto;
 export declare function UpdateSceneDtoToJSON(json: any): UpdateSceneDto;
-export declare function UpdateSceneDtoToJSONTyped(value?: UpdateSceneDto | null, ignoreDiscriminator?: boolean): any;
+export declare function UpdateSceneDtoToJSONTyped(
+  value?: UpdateSceneDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=UpdateSceneDto.d.ts.map

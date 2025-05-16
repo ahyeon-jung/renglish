@@ -1,1 +1,1 @@
-export { default } from './ScriptLink';
+export { default } from "./ScriptLink";

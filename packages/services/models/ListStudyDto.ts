@@ -12,16 +12,16 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { User } from './User';
-import { UserFromJSON, UserFromJSONTyped, UserToJSON, UserToJSONTyped } from './User';
-import type { ListStudySceneDto } from './ListStudySceneDto';
+import { mapValues } from "../runtime";
+import type { User } from "./User";
+import { UserFromJSON, UserFromJSONTyped, UserToJSON, UserToJSONTyped } from "./User";
+import type { ListStudySceneDto } from "./ListStudySceneDto";
 import {
   ListStudySceneDtoFromJSON,
   ListStudySceneDtoFromJSONTyped,
   ListStudySceneDtoToJSON,
   ListStudySceneDtoToJSONTyped,
-} from './ListStudySceneDto';
+} from "./ListStudySceneDto";
 
 /**
  *
@@ -95,14 +95,14 @@ export interface ListStudyDto {
  * Check if a given object implements the ListStudyDto interface.
  */
 export function instanceOfListStudyDto(value: object): value is ListStudyDto {
-  if (!('id' in value) || value['id'] === undefined) return false;
-  if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
-  if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
-  if (!('studiedAt' in value) || value['studiedAt'] === undefined) return false;
-  if (!('title' in value) || value['title'] === undefined) return false;
-  if (!('description' in value) || value['description'] === undefined) return false;
-  if (!('isCompleted' in value) || value['isCompleted'] === undefined) return false;
-  if (!('scene' in value) || value['scene'] === undefined) return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("studiedAt" in value) || value["studiedAt"] === undefined) return false;
+  if (!("title" in value) || value["title"] === undefined) return false;
+  if (!("description" in value) || value["description"] === undefined) return false;
+  if (!("isCompleted" in value) || value["isCompleted"] === undefined) return false;
+  if (!("scene" in value) || value["scene"] === undefined) return false;
   return true;
 }
 
@@ -115,20 +115,20 @@ export function ListStudyDtoFromJSONTyped(json: any, ignoreDiscriminator: boolea
     return json;
   }
   return {
-    id: json['id'],
-    createdAt: new Date(json['createdAt']),
-    updatedAt: new Date(json['updatedAt']),
-    studiedAt: new Date(json['studiedAt']),
-    title: json['title'],
-    description: json['description'],
-    isCompleted: json['isCompleted'],
+    id: json["id"],
+    createdAt: new Date(json["createdAt"]),
+    updatedAt: new Date(json["updatedAt"]),
+    studiedAt: new Date(json["studiedAt"]),
+    title: json["title"],
+    description: json["description"],
+    isCompleted: json["isCompleted"],
     applicants:
-      json['applicants'] == null ? undefined : (json['applicants'] as Array<any>).map(UserFromJSON),
+      json["applicants"] == null ? undefined : (json["applicants"] as Array<any>).map(UserFromJSON),
     participants:
-      json['participants'] == null
+      json["participants"] == null
         ? undefined
-        : (json['participants'] as Array<any>).map(UserFromJSON),
-    scene: ListStudySceneDtoFromJSON(json['scene']),
+        : (json["participants"] as Array<any>).map(UserFromJSON),
+    scene: ListStudySceneDtoFromJSON(json["scene"]),
   };
 }
 
@@ -145,19 +145,19 @@ export function ListStudyDtoToJSONTyped(
   }
 
   return {
-    id: value['id'],
-    createdAt: value['createdAt'].toISOString(),
-    updatedAt: value['updatedAt'].toISOString(),
-    studiedAt: value['studiedAt'].toISOString(),
-    title: value['title'],
-    description: value['description'],
-    isCompleted: value['isCompleted'],
+    id: value["id"],
+    createdAt: value["createdAt"].toISOString(),
+    updatedAt: value["updatedAt"].toISOString(),
+    studiedAt: value["studiedAt"].toISOString(),
+    title: value["title"],
+    description: value["description"],
+    isCompleted: value["isCompleted"],
     applicants:
-      value['applicants'] == null ? undefined : (value['applicants'] as Array<any>).map(UserToJSON),
+      value["applicants"] == null ? undefined : (value["applicants"] as Array<any>).map(UserToJSON),
     participants:
-      value['participants'] == null
+      value["participants"] == null
         ? undefined
-        : (value['participants'] as Array<any>).map(UserToJSON),
-    scene: ListStudySceneDtoToJSON(value['scene']),
+        : (value["participants"] as Array<any>).map(UserToJSON),
+    scene: ListStudySceneDtoToJSON(value["scene"]),
   };
 }

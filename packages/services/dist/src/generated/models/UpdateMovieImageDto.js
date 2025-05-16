@@ -15,30 +15,29 @@
  * Check if a given object implements the UpdateMovieImageDto interface.
  */
 export function instanceOfUpdateMovieImageDto(value) {
-    if (!('imageUrl' in value) || value['imageUrl'] === undefined)
-        return false;
-    return true;
+  if (!("imageUrl" in value) || value["imageUrl"] === undefined) return false;
+  return true;
 }
 export function UpdateMovieImageDtoFromJSON(json) {
-    return UpdateMovieImageDtoFromJSONTyped(json, false);
+  return UpdateMovieImageDtoFromJSONTyped(json, false);
 }
 export function UpdateMovieImageDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'imageUrl': json['imageUrl'],
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    imageUrl: json["imageUrl"],
+  };
 }
 export function UpdateMovieImageDtoToJSON(json) {
-    return UpdateMovieImageDtoToJSONTyped(json, false);
+  return UpdateMovieImageDtoToJSONTyped(json, false);
 }
 export function UpdateMovieImageDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'imageUrl': value['imageUrl'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    imageUrl: value["imageUrl"],
+  };
 }
 //# sourceMappingURL=UpdateMovieImageDto.js.map

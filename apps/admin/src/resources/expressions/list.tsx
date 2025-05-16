@@ -1,5 +1,5 @@
-import { List, Datagrid, TextField } from 'react-admin'
-import RESOURCE from '../../constants/resource'
+import { List, Datagrid, TextField } from "react-admin";
+import RESOURCE from "../../constants/resource";
 
 const ExpressionsList = () => (
   <List resource={RESOURCE.EXPRESSIONS}>
@@ -9,6 +9,6 @@ const ExpressionsList = () => (
       <TextField source="usage" />
     </Datagrid>
   </List>
-)
+);
 
-export default ExpressionsList
+export default ExpressionsList;

@@ -1,9 +1,9 @@
-'use server';
+"use server";
 
-import { ENV } from '@/constants/env';
-import { MovieCategoryType } from '@/constants/movie-category';
-import { movieApi } from '@/libs/api';
-import { cookies } from 'next/headers';
+import { ENV } from "@/constants/env";
+import { MovieCategoryType } from "@/constants/movie-category";
+import { movieApi } from "@/libs/api";
+import { cookies } from "next/headers";
 
 type AddMovieActionBody = {
   title: string;
@@ -19,7 +19,7 @@ export default async function addMovieAction(addMovieActionBody: AddMovieActionB
     return {
       status: 401,
       success: false,
-      message: 'No Authorization',
+      message: "No Authorization",
       data: null,
     };
   }
@@ -37,7 +37,7 @@ export default async function addMovieAction(addMovieActionBody: AddMovieActionB
     return {
       status: 400,
       success: false,
-      message: 'Failed to upload movie',
+      message: "Failed to upload movie",
       data: response,
     };
   }
@@ -45,7 +45,7 @@ export default async function addMovieAction(addMovieActionBody: AddMovieActionB
   return {
     status: 200,
     success: true,
-    message: 'Upload movie successfully',
+    message: "Upload movie successfully",
     data: response,
   };
 }

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
  *
  * @export
@@ -37,8 +37,8 @@ export interface LoginDto {
  * Check if a given object implements the LoginDto interface.
  */
 export function instanceOfLoginDto(value: object): value is LoginDto {
-  if (!('email' in value) || value['email'] === undefined) return false;
-  if (!('password' in value) || value['password'] === undefined) return false;
+  if (!("email" in value) || value["email"] === undefined) return false;
+  if (!("password" in value) || value["password"] === undefined) return false;
   return true;
 }
 
@@ -51,8 +51,8 @@ export function LoginDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     return json;
   }
   return {
-    email: json['email'],
-    password: json['password'],
+    email: json["email"],
+    password: json["password"],
   };
 }
 
@@ -69,7 +69,7 @@ export function LoginDtoToJSONTyped(
   }
 
   return {
-    email: value['email'],
-    password: value['password'],
+    email: value["email"],
+    password: value["password"],
   };
 }

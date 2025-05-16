@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import { parseText, stripHtmlTags } from '@/utils/content';
+import { parseText, stripHtmlTags } from "@/utils/content";
 
-import AudioBox from '../../_components/AudioBox';
-import DialogListContainer from '../../_components/DialogListContainer';
-import DialogListItem from '../../_components/DialogListItem';
-import SceneHeader from '../../_components/SceneHeader';
-import getScene from '@/app/actions/scenes/getScene';
-import { use } from 'react';
-import { useUserStore } from '@/stores/userStore';
-import { useDataFetching } from '@/hooks/useDataFetching';
+import AudioBox from "../../_components/AudioBox";
+import DialogListContainer from "../../_components/DialogListContainer";
+import DialogListItem from "../../_components/DialogListItem";
+import SceneHeader from "../../_components/SceneHeader";
+import getScene from "@/app/actions/scenes/getScene";
+import { use } from "react";
+import { useUserStore } from "@/stores/userStore";
+import { useDataFetching } from "@/hooks/useDataFetching";
 
 export default function MovieSceneKoreanScript({
   params,
@@ -20,7 +20,7 @@ export default function MovieSceneKoreanScript({
   const { userId } = useUserStore();
 
   const { data, isLoading } = useDataFetching({
-    queryKey: ['scene', resolvedParams.scene, userId ?? ''],
+    queryKey: ["scene", resolvedParams.scene, userId ?? ""],
     queryFn: () => getScene(resolvedParams.scene),
     enabled: !!resolvedParams.scene,
   });

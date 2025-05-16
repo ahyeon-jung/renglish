@@ -15,19 +15,25 @@
  * @interface UpdateMovieImageDto
  */
 export interface UpdateMovieImageDto {
-    /**
-     * 영화 이미지 주소
-     * @type {string}
-     * @memberof UpdateMovieImageDto
-     */
-    imageUrl: string;
+  /**
+   * 영화 이미지 주소
+   * @type {string}
+   * @memberof UpdateMovieImageDto
+   */
+  imageUrl: string;
 }
 /**
  * Check if a given object implements the UpdateMovieImageDto interface.
  */
 export declare function instanceOfUpdateMovieImageDto(value: object): value is UpdateMovieImageDto;
 export declare function UpdateMovieImageDtoFromJSON(json: any): UpdateMovieImageDto;
-export declare function UpdateMovieImageDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateMovieImageDto;
+export declare function UpdateMovieImageDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): UpdateMovieImageDto;
 export declare function UpdateMovieImageDtoToJSON(json: any): UpdateMovieImageDto;
-export declare function UpdateMovieImageDtoToJSONTyped(value?: UpdateMovieImageDto | null, ignoreDiscriminator?: boolean): any;
+export declare function UpdateMovieImageDtoToJSONTyped(
+  value?: UpdateMovieImageDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=UpdateMovieImageDto.d.ts.map

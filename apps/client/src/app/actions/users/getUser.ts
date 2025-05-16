@@ -1,10 +1,10 @@
-'use server';
+"use server";
 
-import { FetchError, handleFetchError } from '@/utils/error';
+import { FetchError, handleFetchError } from "@/utils/error";
 
-import { ActionResponse } from '@/types/action';
-import { UserType } from '@/types/user';
-import { fetchAPI } from '@/libs/api';
+import { ActionResponse } from "@/types/action";
+import { UserType } from "@/types/user";
+import { fetchAPI } from "@/libs/api";
 
 type GetUserByIdParams = { userId: string };
 type GetUserByEmailParams = { email: string };
@@ -13,13 +13,13 @@ export async function getUserByIdAction({
   userId,
 }: GetUserByIdParams): Promise<ActionResponse<UserType>> {
   const response = await fetchAPI<UserType>(`/users/${userId}`, {
-    method: 'GET',
+    method: "GET",
   });
 
   return {
     status: 200,
     success: true,
-    message: 'Fetch movies successfully',
+    message: "Fetch movies successfully",
     data: response.data,
   };
 }
@@ -29,13 +29,13 @@ export async function getUserByEmailAction({
 }: GetUserByEmailParams): Promise<ActionResponse<UserType | null>> {
   try {
     const response = await fetchAPI<UserType>(`/users/email/${email}`, {
-      method: 'GET',
+      method: "GET",
     });
 
     return {
       status: 200,
       success: true,
-      message: 'Fetch movies successfully',
+      message: "Fetch movies successfully",
       data: response.data,
     };
   } catch (e) {

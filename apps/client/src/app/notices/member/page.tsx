@@ -1,5 +1,5 @@
-import MemberGuidePage from './MemberGuide';
+import MemberGuidePage from "./MemberGuide";
 
 export default function Member() {
-  return <MemberGuidePage />
+  return <MemberGuidePage />;
 }

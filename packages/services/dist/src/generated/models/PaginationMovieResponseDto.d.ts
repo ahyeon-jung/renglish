@@ -9,44 +9,52 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { Movie } from './Movie';
+import type { Movie } from "./Movie";
 /**
  *
  * @export
  * @interface PaginationMovieResponseDto
  */
 export interface PaginationMovieResponseDto {
-    /**
-     * 전체 항목 수
-     * @type {number}
-     * @memberof PaginationMovieResponseDto
-     */
-    totalCount: number;
-    /**
-     * 현재 페이지 번호
-     * @type {number}
-     * @memberof PaginationMovieResponseDto
-     */
-    currentPage: number;
-    /**
-     * 페이지당 항목 수
-     * @type {number}
-     * @memberof PaginationMovieResponseDto
-     */
-    limit: number;
-    /**
-     * 응답 데이터 배열
-     * @type {Array<Movie>}
-     * @memberof PaginationMovieResponseDto
-     */
-    data: Array<Movie>;
+  /**
+   * 전체 항목 수
+   * @type {number}
+   * @memberof PaginationMovieResponseDto
+   */
+  totalCount: number;
+  /**
+   * 현재 페이지 번호
+   * @type {number}
+   * @memberof PaginationMovieResponseDto
+   */
+  currentPage: number;
+  /**
+   * 페이지당 항목 수
+   * @type {number}
+   * @memberof PaginationMovieResponseDto
+   */
+  limit: number;
+  /**
+   * 응답 데이터 배열
+   * @type {Array<Movie>}
+   * @memberof PaginationMovieResponseDto
+   */
+  data: Array<Movie>;
 }
 /**
  * Check if a given object implements the PaginationMovieResponseDto interface.
  */
-export declare function instanceOfPaginationMovieResponseDto(value: object): value is PaginationMovieResponseDto;
+export declare function instanceOfPaginationMovieResponseDto(
+  value: object,
+): value is PaginationMovieResponseDto;
 export declare function PaginationMovieResponseDtoFromJSON(json: any): PaginationMovieResponseDto;
-export declare function PaginationMovieResponseDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): PaginationMovieResponseDto;
+export declare function PaginationMovieResponseDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): PaginationMovieResponseDto;
 export declare function PaginationMovieResponseDtoToJSON(json: any): PaginationMovieResponseDto;
-export declare function PaginationMovieResponseDtoToJSONTyped(value?: PaginationMovieResponseDto | null, ignoreDiscriminator?: boolean): any;
+export declare function PaginationMovieResponseDtoToJSONTyped(
+  value?: PaginationMovieResponseDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=PaginationMovieResponseDto.d.ts.map

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
  *
  * @export
@@ -37,8 +37,8 @@ export interface PasswordResetDto {
  * Check if a given object implements the PasswordResetDto interface.
  */
 export function instanceOfPasswordResetDto(value: object): value is PasswordResetDto {
-  if (!('email' in value) || value['email'] === undefined) return false;
-  if (!('password' in value) || value['password'] === undefined) return false;
+  if (!("email" in value) || value["email"] === undefined) return false;
+  if (!("password" in value) || value["password"] === undefined) return false;
   return true;
 }
 
@@ -54,8 +54,8 @@ export function PasswordResetDtoFromJSONTyped(
     return json;
   }
   return {
-    email: json['email'],
-    password: json['password'],
+    email: json["email"],
+    password: json["password"],
   };
 }
 
@@ -72,7 +72,7 @@ export function PasswordResetDtoToJSONTyped(
   }
 
   return {
-    email: value['email'],
-    password: value['password'],
+    email: value["email"],
+    password: value["password"],
   };
 }

@@ -12,11 +12,11 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { User } from './User';
-import { UserFromJSON, UserFromJSONTyped, UserToJSON, UserToJSONTyped } from './User';
-import type { Scene } from './Scene';
-import { SceneFromJSON, SceneFromJSONTyped, SceneToJSON, SceneToJSONTyped } from './Scene';
+import { mapValues } from "../runtime";
+import type { User } from "./User";
+import { UserFromJSON, UserFromJSONTyped, UserToJSON, UserToJSONTyped } from "./User";
+import type { Scene } from "./Scene";
+import { SceneFromJSON, SceneFromJSONTyped, SceneToJSON, SceneToJSONTyped } from "./Scene";
 
 /**
  *
@@ -110,17 +110,17 @@ export interface ExtendedFilteredStudyDto {
 export function instanceOfExtendedFilteredStudyDto(
   value: object,
 ): value is ExtendedFilteredStudyDto {
-  if (!('id' in value) || value['id'] === undefined) return false;
-  if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
-  if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
-  if (!('deletedAt' in value) || value['deletedAt'] === undefined) return false;
-  if (!('studiedAt' in value) || value['studiedAt'] === undefined) return false;
-  if (!('title' in value) || value['title'] === undefined) return false;
-  if (!('description' in value) || value['description'] === undefined) return false;
-  if (!('scene' in value) || value['scene'] === undefined) return false;
-  if (!('participantCount' in value) || value['participantCount'] === undefined) return false;
-  if (!('applicantCount' in value) || value['applicantCount'] === undefined) return false;
-  if (!('isCompleted' in value) || value['isCompleted'] === undefined) return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("deletedAt" in value) || value["deletedAt"] === undefined) return false;
+  if (!("studiedAt" in value) || value["studiedAt"] === undefined) return false;
+  if (!("title" in value) || value["title"] === undefined) return false;
+  if (!("description" in value) || value["description"] === undefined) return false;
+  if (!("scene" in value) || value["scene"] === undefined) return false;
+  if (!("participantCount" in value) || value["participantCount"] === undefined) return false;
+  if (!("applicantCount" in value) || value["applicantCount"] === undefined) return false;
+  if (!("isCompleted" in value) || value["isCompleted"] === undefined) return false;
   return true;
 }
 
@@ -136,23 +136,23 @@ export function ExtendedFilteredStudyDtoFromJSONTyped(
     return json;
   }
   return {
-    id: json['id'],
-    createdAt: new Date(json['createdAt']),
-    updatedAt: new Date(json['updatedAt']),
-    deletedAt: new Date(json['deletedAt']),
-    studiedAt: new Date(json['studiedAt']),
-    title: json['title'],
-    description: json['description'],
-    scene: SceneFromJSON(json['scene']),
+    id: json["id"],
+    createdAt: new Date(json["createdAt"]),
+    updatedAt: new Date(json["updatedAt"]),
+    deletedAt: new Date(json["deletedAt"]),
+    studiedAt: new Date(json["studiedAt"]),
+    title: json["title"],
+    description: json["description"],
+    scene: SceneFromJSON(json["scene"]),
     applicants:
-      json['applicants'] == null ? undefined : (json['applicants'] as Array<any>).map(UserFromJSON),
+      json["applicants"] == null ? undefined : (json["applicants"] as Array<any>).map(UserFromJSON),
     participants:
-      json['participants'] == null
+      json["participants"] == null
         ? undefined
-        : (json['participants'] as Array<any>).map(UserFromJSON),
-    participantCount: json['participantCount'],
-    applicantCount: json['applicantCount'],
-    isCompleted: json['isCompleted'],
+        : (json["participants"] as Array<any>).map(UserFromJSON),
+    participantCount: json["participantCount"],
+    applicantCount: json["applicantCount"],
+    isCompleted: json["isCompleted"],
   };
 }
 
@@ -169,22 +169,22 @@ export function ExtendedFilteredStudyDtoToJSONTyped(
   }
 
   return {
-    id: value['id'],
-    createdAt: value['createdAt'].toISOString(),
-    updatedAt: value['updatedAt'].toISOString(),
-    deletedAt: value['deletedAt'].toISOString(),
-    studiedAt: value['studiedAt'].toISOString(),
-    title: value['title'],
-    description: value['description'],
-    scene: SceneToJSON(value['scene']),
+    id: value["id"],
+    createdAt: value["createdAt"].toISOString(),
+    updatedAt: value["updatedAt"].toISOString(),
+    deletedAt: value["deletedAt"].toISOString(),
+    studiedAt: value["studiedAt"].toISOString(),
+    title: value["title"],
+    description: value["description"],
+    scene: SceneToJSON(value["scene"]),
     applicants:
-      value['applicants'] == null ? undefined : (value['applicants'] as Array<any>).map(UserToJSON),
+      value["applicants"] == null ? undefined : (value["applicants"] as Array<any>).map(UserToJSON),
     participants:
-      value['participants'] == null
+      value["participants"] == null
         ? undefined
-        : (value['participants'] as Array<any>).map(UserToJSON),
-    participantCount: value['participantCount'],
-    applicantCount: value['applicantCount'],
-    isCompleted: value['isCompleted'],
+        : (value["participants"] as Array<any>).map(UserToJSON),
+    participantCount: value["participantCount"],
+    applicantCount: value["applicantCount"],
+    isCompleted: value["isCompleted"],
   };
 }

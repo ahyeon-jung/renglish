@@ -15,43 +15,49 @@
  * @interface CreateUserDto
  */
 export interface CreateUserDto {
-    /**
-     * 소셜 로그인 플랫폼
-     * @type {string}
-     * @memberof CreateUserDto
-     */
-    provider: string;
-    /**
-     * 사용자의 이메일 주소
-     * @type {string}
-     * @memberof CreateUserDto
-     */
-    email: string;
-    /**
-     * 사용자의 닉네임
-     * @type {string}
-     * @memberof CreateUserDto
-     */
-    nickname: string;
-    /**
-     * 알게된 경로
-     * @type {string}
-     * @memberof CreateUserDto
-     */
-    how: string;
-    /**
-     * 사용자의 비밀번호
-     * @type {string}
-     * @memberof CreateUserDto
-     */
-    password: string;
+  /**
+   * 소셜 로그인 플랫폼
+   * @type {string}
+   * @memberof CreateUserDto
+   */
+  provider: string;
+  /**
+   * 사용자의 이메일 주소
+   * @type {string}
+   * @memberof CreateUserDto
+   */
+  email: string;
+  /**
+   * 사용자의 닉네임
+   * @type {string}
+   * @memberof CreateUserDto
+   */
+  nickname: string;
+  /**
+   * 알게된 경로
+   * @type {string}
+   * @memberof CreateUserDto
+   */
+  how: string;
+  /**
+   * 사용자의 비밀번호
+   * @type {string}
+   * @memberof CreateUserDto
+   */
+  password: string;
 }
 /**
  * Check if a given object implements the CreateUserDto interface.
  */
 export declare function instanceOfCreateUserDto(value: object): value is CreateUserDto;
 export declare function CreateUserDtoFromJSON(json: any): CreateUserDto;
-export declare function CreateUserDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateUserDto;
+export declare function CreateUserDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): CreateUserDto;
 export declare function CreateUserDtoToJSON(json: any): CreateUserDto;
-export declare function CreateUserDtoToJSONTyped(value?: CreateUserDto | null, ignoreDiscriminator?: boolean): any;
+export declare function CreateUserDtoToJSONTyped(
+  value?: CreateUserDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=CreateUserDto.d.ts.map

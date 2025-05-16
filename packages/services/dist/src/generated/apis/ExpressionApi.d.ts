@@ -9,75 +9,103 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import * as runtime from '../runtime';
-import type { CreateExpressionDto, Expression, UpdateExpressionDto } from '../models/index';
+import * as runtime from "../runtime";
+import type { CreateExpressionDto, Expression, UpdateExpressionDto } from "../models/index";
 export interface ExpressionControllerCreateRequest {
-    sceneId: string;
-    createExpressionDto: CreateExpressionDto;
+  sceneId: string;
+  createExpressionDto: CreateExpressionDto;
 }
 export interface ExpressionControllerFindExpressionBySceneIdRequest {
-    sceneId: string;
+  sceneId: string;
 }
 export interface ExpressionControllerRemoveRequest {
-    expressionId: string;
+  expressionId: string;
 }
 export interface ExpressionControllerUpdateRequest {
-    expressionId: string;
-    updateExpressionDto: UpdateExpressionDto;
+  expressionId: string;
+  updateExpressionDto: UpdateExpressionDto;
 }
 /**
  *
  */
 export declare class ExpressionApi extends runtime.BaseAPI {
-    /**
-     * 해당 장면의 영어 표현 추가하기
-     * 영어 표현 추가하기 [ADMIN]
-     */
-    expressionControllerCreateRaw(requestParameters: ExpressionControllerCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * 해당 장면의 영어 표현 추가하기
-     * 영어 표현 추가하기 [ADMIN]
-     */
-    expressionControllerCreate(requestParameters: ExpressionControllerCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * 해당 장면의 영어 표현 가져오기
-     * 해당 장면의 영어 표현 가져오기 [TOKEN]
-     */
-    expressionControllerFindExpressionBySceneIdRaw(requestParameters: ExpressionControllerFindExpressionBySceneIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Expression>>>;
-    /**
-     * 해당 장면의 영어 표현 가져오기
-     * 해당 장면의 영어 표현 가져오기 [TOKEN]
-     */
-    expressionControllerFindExpressionBySceneId(requestParameters: ExpressionControllerFindExpressionBySceneIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Expression>>;
-    /**
-     * 이번주 영어 표현을 10개 가져옵니다.
-     * 이번주 영어 표현 가져오기
-     */
-    expressionControllerFindWeeklyExpressionsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Expression>>>;
-    /**
-     * 이번주 영어 표현을 10개 가져옵니다.
-     * 이번주 영어 표현 가져오기
-     */
-    expressionControllerFindWeeklyExpressions(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Expression>>;
-    /**
-     * 영어 표현 수정하기
-     * 영어 표현 삭제하기 [ADMIN]
-     */
-    expressionControllerRemoveRaw(requestParameters: ExpressionControllerRemoveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * 영어 표현 수정하기
-     * 영어 표현 삭제하기 [ADMIN]
-     */
-    expressionControllerRemove(requestParameters: ExpressionControllerRemoveRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * 영어 표현 수정하기
-     * 영어 표현 수정하기 [ADMIN]
-     */
-    expressionControllerUpdateRaw(requestParameters: ExpressionControllerUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * 영어 표현 수정하기
-     * 영어 표현 수정하기 [ADMIN]
-     */
-    expressionControllerUpdate(requestParameters: ExpressionControllerUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+  /**
+   * 해당 장면의 영어 표현 추가하기
+   * 영어 표현 추가하기 [ADMIN]
+   */
+  expressionControllerCreateRaw(
+    requestParameters: ExpressionControllerCreateRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<void>>;
+  /**
+   * 해당 장면의 영어 표현 추가하기
+   * 영어 표현 추가하기 [ADMIN]
+   */
+  expressionControllerCreate(
+    requestParameters: ExpressionControllerCreateRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<void>;
+  /**
+   * 해당 장면의 영어 표현 가져오기
+   * 해당 장면의 영어 표현 가져오기 [TOKEN]
+   */
+  expressionControllerFindExpressionBySceneIdRaw(
+    requestParameters: ExpressionControllerFindExpressionBySceneIdRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<Array<Expression>>>;
+  /**
+   * 해당 장면의 영어 표현 가져오기
+   * 해당 장면의 영어 표현 가져오기 [TOKEN]
+   */
+  expressionControllerFindExpressionBySceneId(
+    requestParameters: ExpressionControllerFindExpressionBySceneIdRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<Array<Expression>>;
+  /**
+   * 이번주 영어 표현을 10개 가져옵니다.
+   * 이번주 영어 표현 가져오기
+   */
+  expressionControllerFindWeeklyExpressionsRaw(
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<Array<Expression>>>;
+  /**
+   * 이번주 영어 표현을 10개 가져옵니다.
+   * 이번주 영어 표현 가져오기
+   */
+  expressionControllerFindWeeklyExpressions(
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<Array<Expression>>;
+  /**
+   * 영어 표현 수정하기
+   * 영어 표현 삭제하기 [ADMIN]
+   */
+  expressionControllerRemoveRaw(
+    requestParameters: ExpressionControllerRemoveRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<void>>;
+  /**
+   * 영어 표현 수정하기
+   * 영어 표현 삭제하기 [ADMIN]
+   */
+  expressionControllerRemove(
+    requestParameters: ExpressionControllerRemoveRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<void>;
+  /**
+   * 영어 표현 수정하기
+   * 영어 표현 수정하기 [ADMIN]
+   */
+  expressionControllerUpdateRaw(
+    requestParameters: ExpressionControllerUpdateRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<void>>;
+  /**
+   * 영어 표현 수정하기
+   * 영어 표현 수정하기 [ADMIN]
+   */
+  expressionControllerUpdate(
+    requestParameters: ExpressionControllerUpdateRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<void>;
 }
 //# sourceMappingURL=ExpressionApi.d.ts.map

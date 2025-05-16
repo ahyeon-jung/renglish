@@ -15,32 +15,32 @@
  * Check if a given object implements the UpdateSceneDto interface.
  */
 export function instanceOfUpdateSceneDto(value) {
-    return true;
+  return true;
 }
 export function UpdateSceneDtoFromJSON(json) {
-    return UpdateSceneDtoFromJSONTyped(json, false);
+  return UpdateSceneDtoFromJSONTyped(json, false);
 }
 export function UpdateSceneDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'title': json['title'] == null ? undefined : json['title'],
-        'audioUrl': json['audioUrl'] == null ? undefined : json['audioUrl'],
-        'description': json['description'] == null ? undefined : json['description'],
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    title: json["title"] == null ? undefined : json["title"],
+    audioUrl: json["audioUrl"] == null ? undefined : json["audioUrl"],
+    description: json["description"] == null ? undefined : json["description"],
+  };
 }
 export function UpdateSceneDtoToJSON(json) {
-    return UpdateSceneDtoToJSONTyped(json, false);
+  return UpdateSceneDtoToJSONTyped(json, false);
 }
 export function UpdateSceneDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'title': value['title'],
-        'audioUrl': value['audioUrl'],
-        'description': value['description'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    title: value["title"],
+    audioUrl: value["audioUrl"],
+    description: value["description"],
+  };
 }
 //# sourceMappingURL=UpdateSceneDto.js.map

@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { ListStudyDto } from './ListStudyDto';
+import { mapValues } from "../runtime";
+import type { ListStudyDto } from "./ListStudyDto";
 import {
   ListStudyDtoFromJSON,
   ListStudyDtoFromJSONTyped,
   ListStudyDtoToJSON,
   ListStudyDtoToJSONTyped,
-} from './ListStudyDto';
+} from "./ListStudyDto";
 
 /**
  *
@@ -59,10 +59,10 @@ export interface PaginationStudyResponseDto {
 export function instanceOfPaginationStudyResponseDto(
   value: object,
 ): value is PaginationStudyResponseDto {
-  if (!('totalCount' in value) || value['totalCount'] === undefined) return false;
-  if (!('currentPage' in value) || value['currentPage'] === undefined) return false;
-  if (!('limit' in value) || value['limit'] === undefined) return false;
-  if (!('data' in value) || value['data'] === undefined) return false;
+  if (!("totalCount" in value) || value["totalCount"] === undefined) return false;
+  if (!("currentPage" in value) || value["currentPage"] === undefined) return false;
+  if (!("limit" in value) || value["limit"] === undefined) return false;
+  if (!("data" in value) || value["data"] === undefined) return false;
   return true;
 }
 
@@ -78,10 +78,10 @@ export function PaginationStudyResponseDtoFromJSONTyped(
     return json;
   }
   return {
-    totalCount: json['totalCount'],
-    currentPage: json['currentPage'],
-    limit: json['limit'],
-    data: (json['data'] as Array<any>).map(ListStudyDtoFromJSON),
+    totalCount: json["totalCount"],
+    currentPage: json["currentPage"],
+    limit: json["limit"],
+    data: (json["data"] as Array<any>).map(ListStudyDtoFromJSON),
   };
 }
 
@@ -98,9 +98,9 @@ export function PaginationStudyResponseDtoToJSONTyped(
   }
 
   return {
-    totalCount: value['totalCount'],
-    currentPage: value['currentPage'],
-    limit: value['limit'],
-    data: (value['data'] as Array<any>).map(ListStudyDtoToJSON),
+    totalCount: value["totalCount"],
+    currentPage: value["currentPage"],
+    limit: value["limit"],
+    data: (value["data"] as Array<any>).map(ListStudyDtoToJSON),
   };
 }

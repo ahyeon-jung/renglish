@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import * as runtime from '../runtime';
+import * as runtime from "../runtime";
 
 export interface NoticeControllerCreateRequest {
   body: object;
@@ -43,9 +43,9 @@ export class NoticesApi extends runtime.BaseAPI {
     requestParameters: NoticeControllerCreateRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['body'] == null) {
+    if (requestParameters["body"] == null) {
       throw new runtime.RequiredError(
-        'body',
+        "body",
         'Required parameter "body" was null or undefined when calling noticeControllerCreate().',
       );
     }
@@ -54,23 +54,23 @@ export class NoticesApi extends runtime.BaseAPI {
 
     const headerParameters: runtime.HTTPHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters["Content-Type"] = "application/json";
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/notices`,
-        method: 'POST',
+        method: "POST",
         headers: headerParameters,
         query: queryParameters,
-        body: requestParameters['body'] as any,
+        body: requestParameters["body"] as any,
       },
       initOverrides,
     );
@@ -102,16 +102,16 @@ export class NoticesApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/notices`,
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -139,9 +139,9 @@ export class NoticesApi extends runtime.BaseAPI {
     requestParameters: NoticeControllerFindOneRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['noticeId'] == null) {
+    if (requestParameters["noticeId"] == null) {
       throw new runtime.RequiredError(
-        'noticeId',
+        "noticeId",
         'Required parameter "noticeId" was null or undefined when calling noticeControllerFindOne().',
       );
     }
@@ -152,19 +152,19 @@ export class NoticesApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/notices/{noticeId}`.replace(
-          `{${'noticeId'}}`,
-          encodeURIComponent(String(requestParameters['noticeId'])),
+          `{${"noticeId"}}`,
+          encodeURIComponent(String(requestParameters["noticeId"])),
         ),
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -193,9 +193,9 @@ export class NoticesApi extends runtime.BaseAPI {
     requestParameters: NoticeControllerRemoveRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['noticeId'] == null) {
+    if (requestParameters["noticeId"] == null) {
       throw new runtime.RequiredError(
-        'noticeId',
+        "noticeId",
         'Required parameter "noticeId" was null or undefined when calling noticeControllerRemove().',
       );
     }
@@ -206,19 +206,19 @@ export class NoticesApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/notices/{noticeId}`.replace(
-          `{${'noticeId'}}`,
-          encodeURIComponent(String(requestParameters['noticeId'])),
+          `{${"noticeId"}}`,
+          encodeURIComponent(String(requestParameters["noticeId"])),
         ),
-        method: 'DELETE',
+        method: "DELETE",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -247,16 +247,16 @@ export class NoticesApi extends runtime.BaseAPI {
     requestParameters: NoticeControllerUpdateRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['noticeId'] == null) {
+    if (requestParameters["noticeId"] == null) {
       throw new runtime.RequiredError(
-        'noticeId',
+        "noticeId",
         'Required parameter "noticeId" was null or undefined when calling noticeControllerUpdate().',
       );
     }
 
-    if (requestParameters['body'] == null) {
+    if (requestParameters["body"] == null) {
       throw new runtime.RequiredError(
-        'body',
+        "body",
         'Required parameter "body" was null or undefined when calling noticeControllerUpdate().',
       );
     }
@@ -265,26 +265,26 @@ export class NoticesApi extends runtime.BaseAPI {
 
     const headerParameters: runtime.HTTPHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters["Content-Type"] = "application/json";
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/notices/{noticeId}`.replace(
-          `{${'noticeId'}}`,
-          encodeURIComponent(String(requestParameters['noticeId'])),
+          `{${"noticeId"}}`,
+          encodeURIComponent(String(requestParameters["noticeId"])),
         ),
-        method: 'PATCH',
+        method: "PATCH",
         headers: headerParameters,
         query: queryParameters,
-        body: requestParameters['body'] as any,
+        body: requestParameters["body"] as any,
       },
       initOverrides,
     );

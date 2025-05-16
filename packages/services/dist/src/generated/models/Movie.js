@@ -15,62 +15,53 @@
  * Check if a given object implements the Movie interface.
  */
 export function instanceOfMovie(value) {
-    if (!('id' in value) || value['id'] === undefined)
-        return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined)
-        return false;
-    if (!('updatedAt' in value) || value['updatedAt'] === undefined)
-        return false;
-    if (!('deletedAt' in value) || value['deletedAt'] === undefined)
-        return false;
-    if (!('title' in value) || value['title'] === undefined)
-        return false;
-    if (!('category' in value) || value['category'] === undefined)
-        return false;
-    if (!('imageUrl' in value) || value['imageUrl'] === undefined)
-        return false;
-    if (!('description' in value) || value['description'] === undefined)
-        return false;
-    if (!('scenes' in value) || value['scenes'] === undefined)
-        return false;
-    return true;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("deletedAt" in value) || value["deletedAt"] === undefined) return false;
+  if (!("title" in value) || value["title"] === undefined) return false;
+  if (!("category" in value) || value["category"] === undefined) return false;
+  if (!("imageUrl" in value) || value["imageUrl"] === undefined) return false;
+  if (!("description" in value) || value["description"] === undefined) return false;
+  if (!("scenes" in value) || value["scenes"] === undefined) return false;
+  return true;
 }
 export function MovieFromJSON(json) {
-    return MovieFromJSONTyped(json, false);
+  return MovieFromJSONTyped(json, false);
 }
 export function MovieFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'id': json['id'],
-        'createdAt': (new Date(json['createdAt'])),
-        'updatedAt': (new Date(json['updatedAt'])),
-        'deletedAt': (new Date(json['deletedAt'])),
-        'title': json['title'],
-        'category': json['category'],
-        'imageUrl': json['imageUrl'],
-        'description': json['description'],
-        'scenes': json['scenes'],
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    id: json["id"],
+    createdAt: new Date(json["createdAt"]),
+    updatedAt: new Date(json["updatedAt"]),
+    deletedAt: new Date(json["deletedAt"]),
+    title: json["title"],
+    category: json["category"],
+    imageUrl: json["imageUrl"],
+    description: json["description"],
+    scenes: json["scenes"],
+  };
 }
 export function MovieToJSON(json) {
-    return MovieToJSONTyped(json, false);
+  return MovieToJSONTyped(json, false);
 }
 export function MovieToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'id': value['id'],
-        'createdAt': ((value['createdAt']).toISOString()),
-        'updatedAt': ((value['updatedAt']).toISOString()),
-        'deletedAt': ((value['deletedAt']).toISOString()),
-        'title': value['title'],
-        'category': value['category'],
-        'imageUrl': value['imageUrl'],
-        'description': value['description'],
-        'scenes': value['scenes'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    id: value["id"],
+    createdAt: value["createdAt"].toISOString(),
+    updatedAt: value["updatedAt"].toISOString(),
+    deletedAt: value["deletedAt"].toISOString(),
+    title: value["title"],
+    category: value["category"],
+    imageUrl: value["imageUrl"],
+    description: value["description"],
+    scenes: value["scenes"],
+  };
 }
 //# sourceMappingURL=Movie.js.map

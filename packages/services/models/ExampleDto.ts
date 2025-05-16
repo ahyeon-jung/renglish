@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
  *
  * @export
@@ -37,8 +37,8 @@ export interface ExampleDto {
  * Check if a given object implements the ExampleDto interface.
  */
 export function instanceOfExampleDto(value: object): value is ExampleDto {
-  if (!('en' in value) || value['en'] === undefined) return false;
-  if (!('ko' in value) || value['ko'] === undefined) return false;
+  if (!("en" in value) || value["en"] === undefined) return false;
+  if (!("ko" in value) || value["ko"] === undefined) return false;
   return true;
 }
 
@@ -51,8 +51,8 @@ export function ExampleDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     return json;
   }
   return {
-    en: json['en'],
-    ko: json['ko'],
+    en: json["en"],
+    ko: json["ko"],
   };
 }
 
@@ -69,7 +69,7 @@ export function ExampleDtoToJSONTyped(
   }
 
   return {
-    en: value['en'],
-    ko: value['ko'],
+    en: value["en"],
+    ko: value["ko"],
   };
 }

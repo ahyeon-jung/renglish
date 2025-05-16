@@ -11,79 +11,91 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import * as runtime from '../runtime';
-import { SendEmailDtoToJSON, VerifyCodeDtoToJSON, } from '../models/index';
+import * as runtime from "../runtime";
+import { SendEmailDtoToJSON, VerifyCodeDtoToJSON } from "../models/index";
 /**
  *
  */
 export class EmailVerificationApi extends runtime.BaseAPI {
-    /**
-     * 회원가입을 위한 이메일로로 인증 코드를 요청합니다.
-     * 회원가입 이메일 인증코드 요청
-     */
-    async emailVerificationControllerSendEmailWithOTPRaw(requestParameters, initOverrides) {
-        if (requestParameters['sendEmailDto'] == null) {
-            throw new runtime.RequiredError('sendEmailDto', 'Required parameter "sendEmailDto" was null or undefined when calling emailVerificationControllerSendEmailWithOTP().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        headerParameters['Content-Type'] = 'application/json';
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/email-verification/send-email`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: SendEmailDtoToJSON(requestParameters['sendEmailDto']),
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+  /**
+   * 회원가입을 위한 이메일로로 인증 코드를 요청합니다.
+   * 회원가입 이메일 인증코드 요청
+   */
+  async emailVerificationControllerSendEmailWithOTPRaw(requestParameters, initOverrides) {
+    if (requestParameters["sendEmailDto"] == null) {
+      throw new runtime.RequiredError(
+        "sendEmailDto",
+        'Required parameter "sendEmailDto" was null or undefined when calling emailVerificationControllerSendEmailWithOTP().',
+      );
     }
-    /**
-     * 회원가입을 위한 이메일로로 인증 코드를 요청합니다.
-     * 회원가입 이메일 인증코드 요청
-     */
-    async emailVerificationControllerSendEmailWithOTP(requestParameters, initOverrides) {
-        await this.emailVerificationControllerSendEmailWithOTPRaw(requestParameters, initOverrides);
+    const queryParameters = {};
+    const headerParameters = {};
+    headerParameters["Content-Type"] = "application/json";
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 받은 인증 코드가 올바른지 확인합니다.
-     * 회원가입 인증코드 확인
-     */
-    async emailVerificationControllerVerifyCodeRaw(requestParameters, initOverrides) {
-        if (requestParameters['verifyCodeDto'] == null) {
-            throw new runtime.RequiredError('verifyCodeDto', 'Required parameter "verifyCodeDto" was null or undefined when calling emailVerificationControllerVerifyCode().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        headerParameters['Content-Type'] = 'application/json';
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/email-verification/verify-code`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: VerifyCodeDtoToJSON(requestParameters['verifyCodeDto']),
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+    const response = await this.request(
+      {
+        path: `/api/email-verification/send-email`,
+        method: "POST",
+        headers: headerParameters,
+        query: queryParameters,
+        body: SendEmailDtoToJSON(requestParameters["sendEmailDto"]),
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 회원가입을 위한 이메일로로 인증 코드를 요청합니다.
+   * 회원가입 이메일 인증코드 요청
+   */
+  async emailVerificationControllerSendEmailWithOTP(requestParameters, initOverrides) {
+    await this.emailVerificationControllerSendEmailWithOTPRaw(requestParameters, initOverrides);
+  }
+  /**
+   * 받은 인증 코드가 올바른지 확인합니다.
+   * 회원가입 인증코드 확인
+   */
+  async emailVerificationControllerVerifyCodeRaw(requestParameters, initOverrides) {
+    if (requestParameters["verifyCodeDto"] == null) {
+      throw new runtime.RequiredError(
+        "verifyCodeDto",
+        'Required parameter "verifyCodeDto" was null or undefined when calling emailVerificationControllerVerifyCode().',
+      );
     }
-    /**
-     * 받은 인증 코드가 올바른지 확인합니다.
-     * 회원가입 인증코드 확인
-     */
-    async emailVerificationControllerVerifyCode(requestParameters, initOverrides) {
-        await this.emailVerificationControllerVerifyCodeRaw(requestParameters, initOverrides);
+    const queryParameters = {};
+    const headerParameters = {};
+    headerParameters["Content-Type"] = "application/json";
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
+    const response = await this.request(
+      {
+        path: `/api/email-verification/verify-code`,
+        method: "POST",
+        headers: headerParameters,
+        query: queryParameters,
+        body: VerifyCodeDtoToJSON(requestParameters["verifyCodeDto"]),
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 받은 인증 코드가 올바른지 확인합니다.
+   * 회원가입 인증코드 확인
+   */
+  async emailVerificationControllerVerifyCode(requestParameters, initOverrides) {
+    await this.emailVerificationControllerVerifyCodeRaw(requestParameters, initOverrides);
+  }
 }
 //# sourceMappingURL=EmailVerificationApi.js.map

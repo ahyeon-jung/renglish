@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
  *
  * @export
@@ -37,8 +37,8 @@ export interface ChangePasswordDto {
  * Check if a given object implements the ChangePasswordDto interface.
  */
 export function instanceOfChangePasswordDto(value: object): value is ChangePasswordDto {
-  if (!('email' in value) || value['email'] === undefined) return false;
-  if (!('newPassword' in value) || value['newPassword'] === undefined) return false;
+  if (!("email" in value) || value["email"] === undefined) return false;
+  if (!("newPassword" in value) || value["newPassword"] === undefined) return false;
   return true;
 }
 
@@ -54,8 +54,8 @@ export function ChangePasswordDtoFromJSONTyped(
     return json;
   }
   return {
-    email: json['email'],
-    newPassword: json['newPassword'],
+    email: json["email"],
+    newPassword: json["newPassword"],
   };
 }
 
@@ -72,7 +72,7 @@ export function ChangePasswordDtoToJSONTyped(
   }
 
   return {
-    email: value['email'],
-    newPassword: value['newPassword'],
+    email: value["email"],
+    newPassword: value["newPassword"],
   };
 }

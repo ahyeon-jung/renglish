@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
  *
  * @export
@@ -37,8 +37,8 @@ export interface LoginResponseDto {
  * Check if a given object implements the LoginResponseDto interface.
  */
 export function instanceOfLoginResponseDto(value: object): value is LoginResponseDto {
-  if (!('accessToken' in value) || value['accessToken'] === undefined) return false;
-  if (!('refreshToken' in value) || value['refreshToken'] === undefined) return false;
+  if (!("accessToken" in value) || value["accessToken"] === undefined) return false;
+  if (!("refreshToken" in value) || value["refreshToken"] === undefined) return false;
   return true;
 }
 
@@ -54,8 +54,8 @@ export function LoginResponseDtoFromJSONTyped(
     return json;
   }
   return {
-    accessToken: json['accessToken'],
-    refreshToken: json['refreshToken'],
+    accessToken: json["accessToken"],
+    refreshToken: json["refreshToken"],
   };
 }
 
@@ -72,7 +72,7 @@ export function LoginResponseDtoToJSONTyped(
   }
 
   return {
-    accessToken: value['accessToken'],
-    refreshToken: value['refreshToken'],
+    accessToken: value["accessToken"],
+    refreshToken: value["refreshToken"],
   };
 }

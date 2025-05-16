@@ -1,10 +1,10 @@
-import clsx from 'clsx';
-import Link from 'next/link';
-import { PATHS } from '@/constants/path';
+import clsx from "clsx";
+import Link from "next/link";
+import { PATHS } from "@/constants/path";
 
 export default function GoToLogin() {
   return (
-    <main className={clsx('mt-[200px] py-4', 'flex flex-col items-center text-gray-800')}>
+    <main className={clsx("mt-[200px] py-4", "flex flex-col items-center text-gray-800")}>
       <section className="text-center">
         <h1 className="text-2xl font-bold text-orange-600 mb-2">🎓 Unlock Premium Benefits!</h1>
         <p className="text-md leading-relaxed">

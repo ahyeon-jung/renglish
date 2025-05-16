@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
  *
  * @export
@@ -31,7 +31,7 @@ export interface SendEmailDto {
  * Check if a given object implements the SendEmailDto interface.
  */
 export function instanceOfSendEmailDto(value: object): value is SendEmailDto {
-  if (!('email' in value) || value['email'] === undefined) return false;
+  if (!("email" in value) || value["email"] === undefined) return false;
   return true;
 }
 
@@ -44,7 +44,7 @@ export function SendEmailDtoFromJSONTyped(json: any, ignoreDiscriminator: boolea
     return json;
   }
   return {
-    email: json['email'],
+    email: json["email"],
   };
 }
 
@@ -61,6 +61,6 @@ export function SendEmailDtoToJSONTyped(
   }
 
   return {
-    email: value['email'],
+    email: value["email"],
   };
 }

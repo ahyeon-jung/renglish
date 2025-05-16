@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { Speaker } from './Speaker';
+import { mapValues } from "../runtime";
+import type { Speaker } from "./Speaker";
 import {
   SpeakerFromJSON,
   SpeakerFromJSONTyped,
   SpeakerToJSON,
   SpeakerToJSONTyped,
-} from './Speaker';
+} from "./Speaker";
 
 /**
  *
@@ -75,13 +75,13 @@ export interface PaginationSceneDto {
  * Check if a given object implements the PaginationSceneDto interface.
  */
 export function instanceOfPaginationSceneDto(value: object): value is PaginationSceneDto {
-  if (!('id' in value) || value['id'] === undefined) return false;
-  if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
-  if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
-  if (!('title' in value) || value['title'] === undefined) return false;
-  if (!('description' in value) || value['description'] === undefined) return false;
-  if (!('audioUrl' in value) || value['audioUrl'] === undefined) return false;
-  if (!('speakers' in value) || value['speakers'] === undefined) return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("title" in value) || value["title"] === undefined) return false;
+  if (!("description" in value) || value["description"] === undefined) return false;
+  if (!("audioUrl" in value) || value["audioUrl"] === undefined) return false;
+  if (!("speakers" in value) || value["speakers"] === undefined) return false;
   return true;
 }
 
@@ -97,13 +97,13 @@ export function PaginationSceneDtoFromJSONTyped(
     return json;
   }
   return {
-    id: json['id'],
-    createdAt: new Date(json['createdAt']),
-    updatedAt: new Date(json['updatedAt']),
-    title: json['title'],
-    description: json['description'],
-    audioUrl: json['audioUrl'],
-    speakers: (json['speakers'] as Array<any>).map(SpeakerFromJSON),
+    id: json["id"],
+    createdAt: new Date(json["createdAt"]),
+    updatedAt: new Date(json["updatedAt"]),
+    title: json["title"],
+    description: json["description"],
+    audioUrl: json["audioUrl"],
+    speakers: (json["speakers"] as Array<any>).map(SpeakerFromJSON),
   };
 }
 
@@ -120,12 +120,12 @@ export function PaginationSceneDtoToJSONTyped(
   }
 
   return {
-    id: value['id'],
-    createdAt: value['createdAt'].toISOString(),
-    updatedAt: value['updatedAt'].toISOString(),
-    title: value['title'],
-    description: value['description'],
-    audioUrl: value['audioUrl'],
-    speakers: (value['speakers'] as Array<any>).map(SpeakerToJSON),
+    id: value["id"],
+    createdAt: value["createdAt"].toISOString(),
+    updatedAt: value["updatedAt"].toISOString(),
+    title: value["title"],
+    description: value["description"],
+    audioUrl: value["audioUrl"],
+    speakers: (value["speakers"] as Array<any>).map(SpeakerToJSON),
   };
 }

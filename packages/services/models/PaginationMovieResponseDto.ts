@@ -12,9 +12,9 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { Movie } from './Movie';
-import { MovieFromJSON, MovieFromJSONTyped, MovieToJSON, MovieToJSONTyped } from './Movie';
+import { mapValues } from "../runtime";
+import type { Movie } from "./Movie";
+import { MovieFromJSON, MovieFromJSONTyped, MovieToJSON, MovieToJSONTyped } from "./Movie";
 
 /**
  *
@@ -54,10 +54,10 @@ export interface PaginationMovieResponseDto {
 export function instanceOfPaginationMovieResponseDto(
   value: object,
 ): value is PaginationMovieResponseDto {
-  if (!('totalCount' in value) || value['totalCount'] === undefined) return false;
-  if (!('currentPage' in value) || value['currentPage'] === undefined) return false;
-  if (!('limit' in value) || value['limit'] === undefined) return false;
-  if (!('data' in value) || value['data'] === undefined) return false;
+  if (!("totalCount" in value) || value["totalCount"] === undefined) return false;
+  if (!("currentPage" in value) || value["currentPage"] === undefined) return false;
+  if (!("limit" in value) || value["limit"] === undefined) return false;
+  if (!("data" in value) || value["data"] === undefined) return false;
   return true;
 }
 
@@ -73,10 +73,10 @@ export function PaginationMovieResponseDtoFromJSONTyped(
     return json;
   }
   return {
-    totalCount: json['totalCount'],
-    currentPage: json['currentPage'],
-    limit: json['limit'],
-    data: (json['data'] as Array<any>).map(MovieFromJSON),
+    totalCount: json["totalCount"],
+    currentPage: json["currentPage"],
+    limit: json["limit"],
+    data: (json["data"] as Array<any>).map(MovieFromJSON),
   };
 }
 
@@ -93,9 +93,9 @@ export function PaginationMovieResponseDtoToJSONTyped(
   }
 
   return {
-    totalCount: value['totalCount'],
-    currentPage: value['currentPage'],
-    limit: value['limit'],
-    data: (value['data'] as Array<any>).map(MovieToJSON),
+    totalCount: value["totalCount"],
+    currentPage: value["currentPage"],
+    limit: value["limit"],
+    data: (value["data"] as Array<any>).map(MovieToJSON),
   };
 }

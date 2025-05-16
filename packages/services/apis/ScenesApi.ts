@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  */
 
-import * as runtime from '../runtime';
+import * as runtime from "../runtime";
 import type {
   CreateSceneDto,
   CreateStudyDto,
   ExtendedSceneDto,
   PaginationSceneResponseDto,
   UpdateSceneDto,
-} from '../models/index';
+} from "../models/index";
 import {
   CreateSceneDtoFromJSON,
   CreateSceneDtoToJSON,
@@ -31,7 +31,7 @@ import {
   PaginationSceneResponseDtoToJSON,
   UpdateSceneDtoFromJSON,
   UpdateSceneDtoToJSON,
-} from '../models/index';
+} from "../models/index";
 
 export interface SceneControllerAddStudyRequest {
   sceneId: string;
@@ -83,16 +83,16 @@ export class ScenesApi extends runtime.BaseAPI {
     requestParameters: SceneControllerAddStudyRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['sceneId'] == null) {
+    if (requestParameters["sceneId"] == null) {
       throw new runtime.RequiredError(
-        'sceneId',
+        "sceneId",
         'Required parameter "sceneId" was null or undefined when calling sceneControllerAddStudy().',
       );
     }
 
-    if (requestParameters['studyId'] == null) {
+    if (requestParameters["studyId"] == null) {
       throw new runtime.RequiredError(
-        'studyId',
+        "studyId",
         'Required parameter "studyId" was null or undefined when calling sceneControllerAddStudy().',
       );
     }
@@ -103,18 +103,18 @@ export class ScenesApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/scenes/{sceneId}/study/{studyId}`
-          .replace(`{${'sceneId'}}`, encodeURIComponent(String(requestParameters['sceneId'])))
-          .replace(`{${'studyId'}}`, encodeURIComponent(String(requestParameters['studyId']))),
-        method: 'POST',
+          .replace(`{${"sceneId"}}`, encodeURIComponent(String(requestParameters["sceneId"])))
+          .replace(`{${"studyId"}}`, encodeURIComponent(String(requestParameters["studyId"]))),
+        method: "POST",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -143,16 +143,16 @@ export class ScenesApi extends runtime.BaseAPI {
     requestParameters: SceneControllerCreateRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['sceneId'] == null) {
+    if (requestParameters["sceneId"] == null) {
       throw new runtime.RequiredError(
-        'sceneId',
+        "sceneId",
         'Required parameter "sceneId" was null or undefined when calling sceneControllerCreate().',
       );
     }
 
-    if (requestParameters['createStudyDto'] == null) {
+    if (requestParameters["createStudyDto"] == null) {
       throw new runtime.RequiredError(
-        'createStudyDto',
+        "createStudyDto",
         'Required parameter "createStudyDto" was null or undefined when calling sceneControllerCreate().',
       );
     }
@@ -161,26 +161,26 @@ export class ScenesApi extends runtime.BaseAPI {
 
     const headerParameters: runtime.HTTPHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters["Content-Type"] = "application/json";
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/scenes/{sceneId}/study`.replace(
-          `{${'sceneId'}}`,
-          encodeURIComponent(String(requestParameters['sceneId'])),
+          `{${"sceneId"}}`,
+          encodeURIComponent(String(requestParameters["sceneId"])),
         ),
-        method: 'POST',
+        method: "POST",
         headers: headerParameters,
         query: queryParameters,
-        body: CreateStudyDtoToJSON(requestParameters['createStudyDto']),
+        body: CreateStudyDtoToJSON(requestParameters["createStudyDto"]),
       },
       initOverrides,
     );
@@ -207,16 +207,16 @@ export class ScenesApi extends runtime.BaseAPI {
     requestParameters: SceneControllerCreateSceneRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['movieId'] == null) {
+    if (requestParameters["movieId"] == null) {
       throw new runtime.RequiredError(
-        'movieId',
+        "movieId",
         'Required parameter "movieId" was null or undefined when calling sceneControllerCreateScene().',
       );
     }
 
-    if (requestParameters['createSceneDto'] == null) {
+    if (requestParameters["createSceneDto"] == null) {
       throw new runtime.RequiredError(
-        'createSceneDto',
+        "createSceneDto",
         'Required parameter "createSceneDto" was null or undefined when calling sceneControllerCreateScene().',
       );
     }
@@ -225,26 +225,26 @@ export class ScenesApi extends runtime.BaseAPI {
 
     const headerParameters: runtime.HTTPHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters["Content-Type"] = "application/json";
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/scenes/{movieId}`.replace(
-          `{${'movieId'}}`,
-          encodeURIComponent(String(requestParameters['movieId'])),
+          `{${"movieId"}}`,
+          encodeURIComponent(String(requestParameters["movieId"])),
         ),
-        method: 'POST',
+        method: "POST",
         headers: headerParameters,
         query: queryParameters,
-        body: CreateSceneDtoToJSON(requestParameters['createSceneDto']),
+        body: CreateSceneDtoToJSON(requestParameters["createSceneDto"]),
       },
       initOverrides,
     );
@@ -271,9 +271,9 @@ export class ScenesApi extends runtime.BaseAPI {
     requestParameters: SceneControllerDeleteSceneRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['sceneId'] == null) {
+    if (requestParameters["sceneId"] == null) {
       throw new runtime.RequiredError(
-        'sceneId',
+        "sceneId",
         'Required parameter "sceneId" was null or undefined when calling sceneControllerDeleteScene().',
       );
     }
@@ -284,19 +284,19 @@ export class ScenesApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/scenes/{sceneId}`.replace(
-          `{${'sceneId'}}`,
-          encodeURIComponent(String(requestParameters['sceneId'])),
+          `{${"sceneId"}}`,
+          encodeURIComponent(String(requestParameters["sceneId"])),
         ),
-        method: 'DELETE',
+        method: "DELETE",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -325,9 +325,9 @@ export class ScenesApi extends runtime.BaseAPI {
     requestParameters: SceneControllerFindAllRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['sceneId'] == null) {
+    if (requestParameters["sceneId"] == null) {
       throw new runtime.RequiredError(
-        'sceneId',
+        "sceneId",
         'Required parameter "sceneId" was null or undefined when calling sceneControllerFindAll().',
       );
     }
@@ -338,19 +338,19 @@ export class ScenesApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/scenes/{sceneId}/speakers`.replace(
-          `{${'sceneId'}}`,
-          encodeURIComponent(String(requestParameters['sceneId'])),
+          `{${"sceneId"}}`,
+          encodeURIComponent(String(requestParameters["sceneId"])),
         ),
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -379,48 +379,48 @@ export class ScenesApi extends runtime.BaseAPI {
     requestParameters: SceneControllerFindAllSceneRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<PaginationSceneResponseDto>> {
-    if (requestParameters['offset'] == null) {
+    if (requestParameters["offset"] == null) {
       throw new runtime.RequiredError(
-        'offset',
+        "offset",
         'Required parameter "offset" was null or undefined when calling sceneControllerFindAllScene().',
       );
     }
 
-    if (requestParameters['limit'] == null) {
+    if (requestParameters["limit"] == null) {
       throw new runtime.RequiredError(
-        'limit',
+        "limit",
         'Required parameter "limit" was null or undefined when calling sceneControllerFindAllScene().',
       );
     }
 
     const queryParameters: any = {};
 
-    if (requestParameters['keyword'] != null) {
-      queryParameters['keyword'] = requestParameters['keyword'];
+    if (requestParameters["keyword"] != null) {
+      queryParameters["keyword"] = requestParameters["keyword"];
     }
 
-    if (requestParameters['offset'] != null) {
-      queryParameters['offset'] = requestParameters['offset'];
+    if (requestParameters["offset"] != null) {
+      queryParameters["offset"] = requestParameters["offset"];
     }
 
-    if (requestParameters['limit'] != null) {
-      queryParameters['limit'] = requestParameters['limit'];
+    if (requestParameters["limit"] != null) {
+      queryParameters["limit"] = requestParameters["limit"];
     }
 
     const headerParameters: runtime.HTTPHeaders = {};
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/scenes`,
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -452,9 +452,9 @@ export class ScenesApi extends runtime.BaseAPI {
     requestParameters: SceneControllerFindSceneByIdRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<ExtendedSceneDto>> {
-    if (requestParameters['sceneId'] == null) {
+    if (requestParameters["sceneId"] == null) {
       throw new runtime.RequiredError(
-        'sceneId',
+        "sceneId",
         'Required parameter "sceneId" was null or undefined when calling sceneControllerFindSceneById().',
       );
     }
@@ -465,19 +465,19 @@ export class ScenesApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/scenes/{sceneId}`.replace(
-          `{${'sceneId'}}`,
-          encodeURIComponent(String(requestParameters['sceneId'])),
+          `{${"sceneId"}}`,
+          encodeURIComponent(String(requestParameters["sceneId"])),
         ),
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -509,16 +509,16 @@ export class ScenesApi extends runtime.BaseAPI {
     requestParameters: SceneControllerUpdateSceneRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['sceneId'] == null) {
+    if (requestParameters["sceneId"] == null) {
       throw new runtime.RequiredError(
-        'sceneId',
+        "sceneId",
         'Required parameter "sceneId" was null or undefined when calling sceneControllerUpdateScene().',
       );
     }
 
-    if (requestParameters['updateSceneDto'] == null) {
+    if (requestParameters["updateSceneDto"] == null) {
       throw new runtime.RequiredError(
-        'updateSceneDto',
+        "updateSceneDto",
         'Required parameter "updateSceneDto" was null or undefined when calling sceneControllerUpdateScene().',
       );
     }
@@ -527,26 +527,26 @@ export class ScenesApi extends runtime.BaseAPI {
 
     const headerParameters: runtime.HTTPHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters["Content-Type"] = "application/json";
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/scenes/{sceneId}`.replace(
-          `{${'sceneId'}}`,
-          encodeURIComponent(String(requestParameters['sceneId'])),
+          `{${"sceneId"}}`,
+          encodeURIComponent(String(requestParameters["sceneId"])),
         ),
-        method: 'PUT',
+        method: "PUT",
         headers: headerParameters,
         query: queryParameters,
-        body: UpdateSceneDtoToJSON(requestParameters['updateSceneDto']),
+        body: UpdateSceneDtoToJSON(requestParameters["updateSceneDto"]),
       },
       initOverrides,
     );

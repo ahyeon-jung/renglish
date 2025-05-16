@@ -1,9 +1,9 @@
-import clsx from 'clsx';
+import clsx from "clsx";
 
 export default function Assignment() {
   return (
     <main
-      className={clsx('mt-[var(--header-height)] py-4', 'flex flex-col items-center text-gray-800')}
+      className={clsx("mt-[var(--header-height)] py-4", "flex flex-col items-center text-gray-800")}
     >
       <section className="text-center">
         <h1 className="text-2xl font-bold text-orange-600 mb-2">📝 과제 안내</h1>

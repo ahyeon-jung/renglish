@@ -1,6 +1,6 @@
-import { ExtendedSceneDto } from '@renglish/services'
-import { List, Datagrid, TextField, DateField } from 'react-admin'
-import RESOURCE from '../../constants/resource'
+import { ExtendedSceneDto } from "@renglish/services";
+import { List, Datagrid, TextField, DateField } from "react-admin";
+import RESOURCE from "../../constants/resource";
 
 const DialogueList = () => (
   <List<ExtendedSceneDto> resource={RESOURCE.DIALOGUES}>
@@ -10,6 +10,6 @@ const DialogueList = () => (
       <DateField source="createdAt" />
     </Datagrid>
   </List>
-)
+);
 
-export default DialogueList
+export default DialogueList;

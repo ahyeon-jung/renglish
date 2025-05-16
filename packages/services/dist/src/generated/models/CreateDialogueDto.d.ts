@@ -15,31 +15,37 @@
  * @interface CreateDialogueDto
  */
 export interface CreateDialogueDto {
-    /**
-     * 영어 대사
-     * @type {string}
-     * @memberof CreateDialogueDto
-     */
-    englishScript: string;
-    /**
-     * 한국어 대사
-     * @type {string}
-     * @memberof CreateDialogueDto
-     */
-    koreanScript: string;
-    /**
-     *
-     * @type {number}
-     * @memberof CreateDialogueDto
-     */
-    order: number;
+  /**
+   * 영어 대사
+   * @type {string}
+   * @memberof CreateDialogueDto
+   */
+  englishScript: string;
+  /**
+   * 한국어 대사
+   * @type {string}
+   * @memberof CreateDialogueDto
+   */
+  koreanScript: string;
+  /**
+   *
+   * @type {number}
+   * @memberof CreateDialogueDto
+   */
+  order: number;
 }
 /**
  * Check if a given object implements the CreateDialogueDto interface.
  */
 export declare function instanceOfCreateDialogueDto(value: object): value is CreateDialogueDto;
 export declare function CreateDialogueDtoFromJSON(json: any): CreateDialogueDto;
-export declare function CreateDialogueDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateDialogueDto;
+export declare function CreateDialogueDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): CreateDialogueDto;
 export declare function CreateDialogueDtoToJSON(json: any): CreateDialogueDto;
-export declare function CreateDialogueDtoToJSONTyped(value?: CreateDialogueDto | null, ignoreDiscriminator?: boolean): any;
+export declare function CreateDialogueDtoToJSONTyped(
+  value?: CreateDialogueDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=CreateDialogueDto.d.ts.map

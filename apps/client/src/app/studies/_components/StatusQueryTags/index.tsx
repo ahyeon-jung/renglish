@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { STUDY_STATUS_TAG } from '@/constants/tag';
-import Tag from '@/components/Tag';
-import { useSearchParams } from 'next/navigation';
+import Link from "next/link";
+import { STUDY_STATUS_TAG } from "@/constants/tag";
+import Tag from "@/components/Tag";
+import { useSearchParams } from "next/navigation";
 
 const STUDY_TAGS = [
-  { label: '전체', value: 'all' },
-  { label: '모집 중', value: STUDY_STATUS_TAG.RECRUITING },
-  { label: '진행 완료', value: STUDY_STATUS_TAG.COMPLETED },
+  { label: "전체", value: "all" },
+  { label: "모집 중", value: STUDY_STATUS_TAG.RECRUITING },
+  { label: "진행 완료", value: STUDY_STATUS_TAG.COMPLETED },
 ];
 
 export default function StatusQueryTags() {
   const searchParams = useSearchParams();
-  const status = searchParams.get('status');
+  const status = searchParams.get("status");
 
   return (
     <div className="flex gap-6">
@@ -22,7 +22,7 @@ export default function StatusQueryTags() {
           <Tag
             label={label}
             value={value}
-            isActive={value !== 'all' ? status === value : status === value || !status}
+            isActive={value !== "all" ? status === value : status === value || !status}
           />
         </Link>
       ))}

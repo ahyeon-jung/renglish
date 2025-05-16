@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
  *
  * @export
@@ -31,7 +31,7 @@ export interface UpdateMovieImageDto {
  * Check if a given object implements the UpdateMovieImageDto interface.
  */
 export function instanceOfUpdateMovieImageDto(value: object): value is UpdateMovieImageDto {
-  if (!('imageUrl' in value) || value['imageUrl'] === undefined) return false;
+  if (!("imageUrl" in value) || value["imageUrl"] === undefined) return false;
   return true;
 }
 
@@ -47,7 +47,7 @@ export function UpdateMovieImageDtoFromJSONTyped(
     return json;
   }
   return {
-    imageUrl: json['imageUrl'],
+    imageUrl: json["imageUrl"],
   };
 }
 
@@ -64,6 +64,6 @@ export function UpdateMovieImageDtoToJSONTyped(
   }
 
   return {
-    imageUrl: value['imageUrl'],
+    imageUrl: value["imageUrl"],
   };
 }

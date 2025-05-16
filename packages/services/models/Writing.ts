@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
  *
  * @export
@@ -55,11 +55,11 @@ export interface Writing {
  * Check if a given object implements the Writing interface.
  */
 export function instanceOfWriting(value: object): value is Writing {
-  if (!('id' in value) || value['id'] === undefined) return false;
-  if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
-  if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
-  if (!('deletedAt' in value) || value['deletedAt'] === undefined) return false;
-  if (!('writing' in value) || value['writing'] === undefined) return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("deletedAt" in value) || value["deletedAt"] === undefined) return false;
+  if (!("writing" in value) || value["writing"] === undefined) return false;
   return true;
 }
 
@@ -72,11 +72,11 @@ export function WritingFromJSONTyped(json: any, ignoreDiscriminator: boolean): W
     return json;
   }
   return {
-    id: json['id'],
-    createdAt: new Date(json['createdAt']),
-    updatedAt: new Date(json['updatedAt']),
-    deletedAt: new Date(json['deletedAt']),
-    writing: json['writing'],
+    id: json["id"],
+    createdAt: new Date(json["createdAt"]),
+    updatedAt: new Date(json["updatedAt"]),
+    deletedAt: new Date(json["deletedAt"]),
+    writing: json["writing"],
   };
 }
 
@@ -93,10 +93,10 @@ export function WritingToJSONTyped(
   }
 
   return {
-    id: value['id'],
-    createdAt: value['createdAt'].toISOString(),
-    updatedAt: value['updatedAt'].toISOString(),
-    deletedAt: value['deletedAt'].toISOString(),
-    writing: value['writing'],
+    id: value["id"],
+    createdAt: value["createdAt"].toISOString(),
+    updatedAt: value["updatedAt"].toISOString(),
+    deletedAt: value["deletedAt"].toISOString(),
+    writing: value["writing"],
   };
 }

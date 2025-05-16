@@ -1,38 +1,28 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-import Dialog from '../Dialog';
-import { LayoutGrid } from 'lucide-react';
-import NavItem from '../NavItem';
-import { PATHS } from '@/constants/path';
-import { createPortal } from 'react-dom';
-import { usePathname } from 'next/navigation';
-import { useUserStore } from '@/stores/userStore';
+import { PATHS } from "@/constants/path";
+import { useUserStore } from "@/stores/userStore";
+import { goToLoginWithRedirect, goToLogoutWithRedirect } from "@/utils/path";
+import { LayoutGrid } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { createPortal } from "react-dom";
+import Dialog from "../Dialog";
+import NavItem from "../NavItem";
 
 const DEFAULT_NAV_OPTIONS = [
-  { label: 'Home', path: PATHS.HOME },
-  { label: 'Introduce', path: PATHS.NOTICES.INTRODUCE },
-  { label: 'Weekly Expressions', path: PATHS.WEEKLY_EXPRESSIONS },
-  { label: 'Movies', path: PATHS.MOVIE.LIST },
-  { label: 'Studies', path: PATHS.STUDIES.LIST },
-  { label: 'Notices', path: PATHS.NOTICES.LIST },
-];
-
-const WITHOUT_AUTH_NAV_OPTIONS = [
-  { label: 'Login', path: PATHS.AUTH.LOGIN },
-  { label: 'Register', path: PATHS.AUTH.REGISTER },
-];
-
-const WITH_AUTH_NAV_OPTIONS = [
-  { label: 'My Page', path: PATHS.MY.HOME },
-  { label: 'Logout', path: PATHS.AUTH.LOGOUT },
+  { label: "Home", path: PATHS.HOME },
+  { label: "Introduce", path: PATHS.NOTICES.INTRODUCE },
+  { label: "Weekly Expressions", path: PATHS.WEEKLY_EXPRESSIONS },
+  { label: "Movies", path: PATHS.MOVIE.LIST },
+  { label: "Studies", path: PATHS.STUDIES.LIST },
+  { label: "Notices", path: PATHS.NOTICES.LIST },
 ];
 
 export default function Nav() {
-  const pathname = usePathname();
   const { userId } = useUserStore();
-
+  const pathname = usePathname();
   const [isOpenNav, setIsOpenNav] = useState(true);
   const [portalRoot, setPortalRoot] = useState<HTMLElement | null>(null);
 
@@ -49,13 +39,15 @@ export default function Nav() {
     }
   }, [pathname]);
 
+  const authNavOptions = getAuthNavOptions(userId, pathname);
+
   return (
     <>
       <LayoutGrid onClick={openNav} className="cursor-pointer" />
       {isOpenNav &&
         portalRoot &&
         createPortal(
-          <Dialog isOpen={isOpenNav} onClose={closeNav} color='gray-100'>
+          <Dialog isOpen={isOpenNav} onClose={closeNav} color="gray-100">
             <nav className="flex flex-col gap-2">
               <div className="flex flex-col gap-2 bg-gray-100">
                 {DEFAULT_NAV_OPTIONS.map(({ label, path }) => (
@@ -63,7 +55,7 @@ export default function Nav() {
                 ))}
               </div>
               <div className="flex flex-col gap-2 absolute pl-8 pt-2 top-[230px] left-0 w-full bottom-0 bg-white">
-                {(userId ? WITH_AUTH_NAV_OPTIONS : WITHOUT_AUTH_NAV_OPTIONS).map(
+                {authNavOptions.map(
                   ({ label, path }) => (
                     <NavItem key={path} path={path} label={label} />
                   ),
@@ -75,4 +67,24 @@ export default function Nav() {
         )}
     </>
   );
+}
+
+function getAuthNavOptions(userId: string | null, pathname: string) {
+  if (userId) {
+    return [
+      { label: "My Page", path: PATHS.MY.HOME },
+      {
+        label: "Logout",
+        path: goToLoginWithRedirect(pathname),
+      },
+    ];
+  }
+
+  return [
+    {
+      label: "Login",
+      path: goToLogoutWithRedirect(pathname),
+    },
+    { label: "Register", path: PATHS.AUTH.REGISTER },
+  ];
 }

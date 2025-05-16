@@ -1,8 +1,8 @@
-import { ENV } from '@/constants/env';
-import { PATHS } from '@/constants/path';
-import { authApi } from '@/libs/api';
-import { AuthApi, Configuration } from '@renglish/services';
-import { NextRequest, NextResponse } from 'next/server';
+import { ENV } from "@/constants/env";
+import { PATHS } from "@/constants/path";
+import { authApi } from "@/libs/api";
+import { AuthApi, Configuration } from "@renglish/services";
+import { NextRequest, NextResponse } from "next/server";
 
 export default async function refreshTokenMiddleware(req: NextRequest, pass: boolean = false) {
   const res = NextResponse.next();
@@ -20,7 +20,7 @@ export default async function refreshTokenMiddleware(req: NextRequest, pass: boo
     accessToken: originAccessToken,
   });
 
-  if (String(isAdmin) === 'false') {
+  if (String(isAdmin) === "false") {
     const config = new Configuration({
       basePath: ENV.API_BASE_URL,
       accessToken: originRefreshToken,
@@ -32,13 +32,13 @@ export default async function refreshTokenMiddleware(req: NextRequest, pass: boo
 
     res.cookies.set(ENV.COOKIE_ACCESS_TOKEN_KEY, accessToken, {
       httpOnly: true,
-      path: '/',
+      path: "/",
       expires: new Date(Date.now() + 1 * 60 * 60 * 1000),
     });
 
     res.cookies.set(ENV.COOKIE_REFRESH_TOKEN_KEY, refreshToken, {
       httpOnly: true,
-      path: '/',
+      path: "/",
       expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
     });
   }

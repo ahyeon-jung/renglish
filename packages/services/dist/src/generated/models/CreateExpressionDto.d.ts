@@ -9,44 +9,50 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { ExampleDto } from './ExampleDto';
+import type { ExampleDto } from "./ExampleDto";
 /**
  *
  * @export
  * @interface CreateExpressionDto
  */
 export interface CreateExpressionDto {
-    /**
-     *
-     * @type {string}
-     * @memberof CreateExpressionDto
-     */
-    expression: string;
-    /**
-     *
-     * @type {string}
-     * @memberof CreateExpressionDto
-     */
-    meaning: string;
-    /**
-     *
-     * @type {string}
-     * @memberof CreateExpressionDto
-     */
-    usage: string;
-    /**
-     * 영어 예문과 한글 번역 배열 (최대 2개)
-     * @type {Array<ExampleDto>}
-     * @memberof CreateExpressionDto
-     */
-    examples: Array<ExampleDto>;
+  /**
+   *
+   * @type {string}
+   * @memberof CreateExpressionDto
+   */
+  expression: string;
+  /**
+   *
+   * @type {string}
+   * @memberof CreateExpressionDto
+   */
+  meaning: string;
+  /**
+   *
+   * @type {string}
+   * @memberof CreateExpressionDto
+   */
+  usage: string;
+  /**
+   * 영어 예문과 한글 번역 배열 (최대 2개)
+   * @type {Array<ExampleDto>}
+   * @memberof CreateExpressionDto
+   */
+  examples: Array<ExampleDto>;
 }
 /**
  * Check if a given object implements the CreateExpressionDto interface.
  */
 export declare function instanceOfCreateExpressionDto(value: object): value is CreateExpressionDto;
 export declare function CreateExpressionDtoFromJSON(json: any): CreateExpressionDto;
-export declare function CreateExpressionDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateExpressionDto;
+export declare function CreateExpressionDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): CreateExpressionDto;
 export declare function CreateExpressionDtoToJSON(json: any): CreateExpressionDto;
-export declare function CreateExpressionDtoToJSONTyped(value?: CreateExpressionDto | null, ignoreDiscriminator?: boolean): any;
+export declare function CreateExpressionDtoToJSONTyped(
+  value?: CreateExpressionDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=CreateExpressionDto.d.ts.map

@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  */
 
-import * as runtime from '../runtime';
-import type { CreateSpeakerDto, UpdateSpeakerDto } from '../models/index';
+import * as runtime from "../runtime";
+import type { CreateSpeakerDto, UpdateSpeakerDto } from "../models/index";
 import {
   CreateSpeakerDtoFromJSON,
   CreateSpeakerDtoToJSON,
   UpdateSpeakerDtoFromJSON,
   UpdateSpeakerDtoToJSON,
-} from '../models/index';
+} from "../models/index";
 
 export interface SpeakerControllerCreateSpeakerRequest {
   sceneId: string;
@@ -47,16 +47,16 @@ export class SpeakersApi extends runtime.BaseAPI {
     requestParameters: SpeakerControllerCreateSpeakerRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['sceneId'] == null) {
+    if (requestParameters["sceneId"] == null) {
       throw new runtime.RequiredError(
-        'sceneId',
+        "sceneId",
         'Required parameter "sceneId" was null or undefined when calling speakerControllerCreateSpeaker().',
       );
     }
 
-    if (requestParameters['createSpeakerDto'] == null) {
+    if (requestParameters["createSpeakerDto"] == null) {
       throw new runtime.RequiredError(
-        'createSpeakerDto',
+        "createSpeakerDto",
         'Required parameter "createSpeakerDto" was null or undefined when calling speakerControllerCreateSpeaker().',
       );
     }
@@ -65,26 +65,26 @@ export class SpeakersApi extends runtime.BaseAPI {
 
     const headerParameters: runtime.HTTPHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters["Content-Type"] = "application/json";
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/speakers/{sceneId}`.replace(
-          `{${'sceneId'}}`,
-          encodeURIComponent(String(requestParameters['sceneId'])),
+          `{${"sceneId"}}`,
+          encodeURIComponent(String(requestParameters["sceneId"])),
         ),
-        method: 'POST',
+        method: "POST",
         headers: headerParameters,
         query: queryParameters,
-        body: CreateSpeakerDtoToJSON(requestParameters['createSpeakerDto']),
+        body: CreateSpeakerDtoToJSON(requestParameters["createSpeakerDto"]),
       },
       initOverrides,
     );
@@ -111,9 +111,9 @@ export class SpeakersApi extends runtime.BaseAPI {
     requestParameters: SpeakerControllerFindOneRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['speakerId'] == null) {
+    if (requestParameters["speakerId"] == null) {
       throw new runtime.RequiredError(
-        'speakerId',
+        "speakerId",
         'Required parameter "speakerId" was null or undefined when calling speakerControllerFindOne().',
       );
     }
@@ -124,19 +124,19 @@ export class SpeakersApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/speakers/{speakerId}`.replace(
-          `{${'speakerId'}}`,
-          encodeURIComponent(String(requestParameters['speakerId'])),
+          `{${"speakerId"}}`,
+          encodeURIComponent(String(requestParameters["speakerId"])),
         ),
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -165,16 +165,16 @@ export class SpeakersApi extends runtime.BaseAPI {
     requestParameters: SpeakerControllerUpdateRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['speakerId'] == null) {
+    if (requestParameters["speakerId"] == null) {
       throw new runtime.RequiredError(
-        'speakerId',
+        "speakerId",
         'Required parameter "speakerId" was null or undefined when calling speakerControllerUpdate().',
       );
     }
 
-    if (requestParameters['updateSpeakerDto'] == null) {
+    if (requestParameters["updateSpeakerDto"] == null) {
       throw new runtime.RequiredError(
-        'updateSpeakerDto',
+        "updateSpeakerDto",
         'Required parameter "updateSpeakerDto" was null or undefined when calling speakerControllerUpdate().',
       );
     }
@@ -183,26 +183,26 @@ export class SpeakersApi extends runtime.BaseAPI {
 
     const headerParameters: runtime.HTTPHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters["Content-Type"] = "application/json";
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/speakers/{speakerId}`.replace(
-          `{${'speakerId'}}`,
-          encodeURIComponent(String(requestParameters['speakerId'])),
+          `{${"speakerId"}}`,
+          encodeURIComponent(String(requestParameters["speakerId"])),
         ),
-        method: 'PUT',
+        method: "PUT",
         headers: headerParameters,
         query: queryParameters,
-        body: UpdateSpeakerDtoToJSON(requestParameters['updateSpeakerDto']),
+        body: UpdateSpeakerDtoToJSON(requestParameters["updateSpeakerDto"]),
       },
       initOverrides,
     );

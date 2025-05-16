@@ -3,7 +3,7 @@ import RESOURCE from "../constants/resource";
 
 type SelectSceneProps = {
   onSelect?: (id: string) => void;
-}
+};
 const SelectScene = ({ onSelect }: SelectSceneProps) => {
   const { data } = useGetList(RESOURCE.SCENES);
   return (
@@ -12,8 +12,9 @@ const SelectScene = ({ onSelect }: SelectSceneProps) => {
       choices={data?.map((scene) => ({ id: scene.id, name: scene.title })) || []}
       optionText="name"
       optionValue="id"
-      onChange={(e) => onSelect?.(e.target.value)} />
-  )
-}
+      onChange={(e) => onSelect?.(e.target.value)}
+    />
+  );
+};
 
 export default SelectScene;

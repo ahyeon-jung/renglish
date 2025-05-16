@@ -12,18 +12,18 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { Movie } from './Movie';
-import { MovieFromJSON, MovieFromJSONTyped, MovieToJSON, MovieToJSONTyped } from './Movie';
-import type { Study } from './Study';
-import { StudyFromJSON, StudyFromJSONTyped, StudyToJSON, StudyToJSONTyped } from './Study';
-import type { Speaker } from './Speaker';
+import { mapValues } from "../runtime";
+import type { Movie } from "./Movie";
+import { MovieFromJSON, MovieFromJSONTyped, MovieToJSON, MovieToJSONTyped } from "./Movie";
+import type { Study } from "./Study";
+import { StudyFromJSON, StudyFromJSONTyped, StudyToJSON, StudyToJSONTyped } from "./Study";
+import type { Speaker } from "./Speaker";
 import {
   SpeakerFromJSON,
   SpeakerFromJSONTyped,
   SpeakerToJSON,
   SpeakerToJSONTyped,
-} from './Speaker';
+} from "./Speaker";
 
 /**
  *
@@ -97,16 +97,16 @@ export interface ListStudySceneDto {
  * Check if a given object implements the ListStudySceneDto interface.
  */
 export function instanceOfListStudySceneDto(value: object): value is ListStudySceneDto {
-  if (!('id' in value) || value['id'] === undefined) return false;
-  if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
-  if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
-  if (!('deletedAt' in value) || value['deletedAt'] === undefined) return false;
-  if (!('title' in value) || value['title'] === undefined) return false;
-  if (!('description' in value) || value['description'] === undefined) return false;
-  if (!('audioUrl' in value) || value['audioUrl'] === undefined) return false;
-  if (!('movie' in value) || value['movie'] === undefined) return false;
-  if (!('study' in value) || value['study'] === undefined) return false;
-  if (!('speakers' in value) || value['speakers'] === undefined) return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("deletedAt" in value) || value["deletedAt"] === undefined) return false;
+  if (!("title" in value) || value["title"] === undefined) return false;
+  if (!("description" in value) || value["description"] === undefined) return false;
+  if (!("audioUrl" in value) || value["audioUrl"] === undefined) return false;
+  if (!("movie" in value) || value["movie"] === undefined) return false;
+  if (!("study" in value) || value["study"] === undefined) return false;
+  if (!("speakers" in value) || value["speakers"] === undefined) return false;
   return true;
 }
 
@@ -122,16 +122,16 @@ export function ListStudySceneDtoFromJSONTyped(
     return json;
   }
   return {
-    id: json['id'],
-    createdAt: new Date(json['createdAt']),
-    updatedAt: new Date(json['updatedAt']),
-    deletedAt: new Date(json['deletedAt']),
-    title: json['title'],
-    description: json['description'],
-    audioUrl: json['audioUrl'],
-    movie: MovieFromJSON(json['movie']),
-    study: StudyFromJSON(json['study']),
-    speakers: (json['speakers'] as Array<any>).map(SpeakerFromJSON),
+    id: json["id"],
+    createdAt: new Date(json["createdAt"]),
+    updatedAt: new Date(json["updatedAt"]),
+    deletedAt: new Date(json["deletedAt"]),
+    title: json["title"],
+    description: json["description"],
+    audioUrl: json["audioUrl"],
+    movie: MovieFromJSON(json["movie"]),
+    study: StudyFromJSON(json["study"]),
+    speakers: (json["speakers"] as Array<any>).map(SpeakerFromJSON),
   };
 }
 
@@ -148,15 +148,15 @@ export function ListStudySceneDtoToJSONTyped(
   }
 
   return {
-    id: value['id'],
-    createdAt: value['createdAt'].toISOString(),
-    updatedAt: value['updatedAt'].toISOString(),
-    deletedAt: value['deletedAt'].toISOString(),
-    title: value['title'],
-    description: value['description'],
-    audioUrl: value['audioUrl'],
-    movie: MovieToJSON(value['movie']),
-    study: StudyToJSON(value['study']),
-    speakers: (value['speakers'] as Array<any>).map(SpeakerToJSON),
+    id: value["id"],
+    createdAt: value["createdAt"].toISOString(),
+    updatedAt: value["updatedAt"].toISOString(),
+    deletedAt: value["deletedAt"].toISOString(),
+    title: value["title"],
+    description: value["description"],
+    audioUrl: value["audioUrl"],
+    movie: MovieToJSON(value["movie"]),
+    study: StudyToJSON(value["study"]),
+    speakers: (value["speakers"] as Array<any>).map(SpeakerToJSON),
   };
 }

@@ -9,80 +9,80 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { User } from './User';
-import type { Scene } from './Scene';
+import type { User } from "./User";
+import type { Scene } from "./Scene";
 /**
  *
  * @export
  * @interface Study
  */
 export interface Study {
-    /**
-     * 아이디
-     * @type {string}
-     * @memberof Study
-     */
-    id: string;
-    /**
-     * 생성일
-     * @type {Date}
-     * @memberof Study
-     */
-    createdAt: Date;
-    /**
-     * 수정일
-     * @type {Date}
-     * @memberof Study
-     */
-    updatedAt: Date;
-    /**
-     * 삭제일
-     * @type {Date}
-     * @memberof Study
-     */
-    deletedAt: Date;
-    /**
-     * 스터디 진행 일자
-     * @type {Date}
-     * @memberof Study
-     */
-    studiedAt: Date;
-    /**
-     * 스터디 제목
-     * @type {string}
-     * @memberof Study
-     */
-    title: string;
-    /**
-     * 스터디 설명
-     * @type {string}
-     * @memberof Study
-     */
-    description: string;
-    /**
-     * 스터디 완료 여부
-     * @type {boolean}
-     * @memberof Study
-     */
-    isCompleted: boolean;
-    /**
-     *
-     * @type {Scene}
-     * @memberof Study
-     */
-    scene: Scene;
-    /**
-     * 스터디 신청자
-     * @type {Array<User>}
-     * @memberof Study
-     */
-    applicants?: Array<User>;
-    /**
-     * 스터디 참여자
-     * @type {Array<User>}
-     * @memberof Study
-     */
-    participants?: Array<User>;
+  /**
+   * 아이디
+   * @type {string}
+   * @memberof Study
+   */
+  id: string;
+  /**
+   * 생성일
+   * @type {Date}
+   * @memberof Study
+   */
+  createdAt: Date;
+  /**
+   * 수정일
+   * @type {Date}
+   * @memberof Study
+   */
+  updatedAt: Date;
+  /**
+   * 삭제일
+   * @type {Date}
+   * @memberof Study
+   */
+  deletedAt: Date;
+  /**
+   * 스터디 진행 일자
+   * @type {Date}
+   * @memberof Study
+   */
+  studiedAt: Date;
+  /**
+   * 스터디 제목
+   * @type {string}
+   * @memberof Study
+   */
+  title: string;
+  /**
+   * 스터디 설명
+   * @type {string}
+   * @memberof Study
+   */
+  description: string;
+  /**
+   * 스터디 완료 여부
+   * @type {boolean}
+   * @memberof Study
+   */
+  isCompleted: boolean;
+  /**
+   *
+   * @type {Scene}
+   * @memberof Study
+   */
+  scene: Scene;
+  /**
+   * 스터디 신청자
+   * @type {Array<User>}
+   * @memberof Study
+   */
+  applicants?: Array<User>;
+  /**
+   * 스터디 참여자
+   * @type {Array<User>}
+   * @memberof Study
+   */
+  participants?: Array<User>;
 }
 /**
  * Check if a given object implements the Study interface.

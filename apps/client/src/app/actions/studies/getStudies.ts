@@ -1,11 +1,11 @@
-'use server';
+"use server";
 
-import { PaginationParams } from '@/types/api';
-import { studyApi } from '@/libs/api';
-import { Configuration } from '@renglish/services';
-import { StudyApi } from '@renglish/services';
-import { ENV } from '@/constants/env';
-import { fetchWithToken } from '@/libs/fetchWithToken';
+import { PaginationParams } from "@/types/api";
+import { studyApi } from "@/libs/api";
+import { Configuration } from "@renglish/services";
+import { StudyApi } from "@renglish/services";
+import { ENV } from "@/constants/env";
+import { fetchWithToken } from "@/libs/fetchWithToken";
 
 type GetStudiesParams = { status?: string } & PaginationParams;
 
@@ -25,7 +25,7 @@ export default async function getStudiesAction({
   return {
     status: 200,
     success: true,
-    message: 'Fetch Studies successfully',
+    message: "Fetch Studies successfully",
     data,
   };
 }

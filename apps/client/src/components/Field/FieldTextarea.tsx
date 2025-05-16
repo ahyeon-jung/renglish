@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import clsx from "clsx";
 
 export type FieldTextareaProps = React.DetailedHTMLProps<
   React.TextareaHTMLAttributes<HTMLTextAreaElement>,
@@ -6,5 +6,5 @@ export type FieldTextareaProps = React.DetailedHTMLProps<
 >;
 
 export default function FieldTextarea({ className, ...props }: FieldTextareaProps) {
-  return <textarea className={clsx('border p-2 rounded-lg', className)} {...props} />;
+  return <textarea className={clsx("border p-2 rounded-lg", className)} {...props} />;
 }

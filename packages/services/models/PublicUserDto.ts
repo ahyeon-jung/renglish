@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
  *
  * @export
@@ -67,13 +67,13 @@ export interface PublicUserDto {
  * Check if a given object implements the PublicUserDto interface.
  */
 export function instanceOfPublicUserDto(value: object): value is PublicUserDto {
-  if (!('id' in value) || value['id'] === undefined) return false;
-  if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
-  if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
-  if (!('deletedAt' in value) || value['deletedAt'] === undefined) return false;
-  if (!('provider' in value) || value['provider'] === undefined) return false;
-  if (!('email' in value) || value['email'] === undefined) return false;
-  if (!('nickname' in value) || value['nickname'] === undefined) return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("deletedAt" in value) || value["deletedAt"] === undefined) return false;
+  if (!("provider" in value) || value["provider"] === undefined) return false;
+  if (!("email" in value) || value["email"] === undefined) return false;
+  if (!("nickname" in value) || value["nickname"] === undefined) return false;
   return true;
 }
 
@@ -86,13 +86,13 @@ export function PublicUserDtoFromJSONTyped(json: any, ignoreDiscriminator: boole
     return json;
   }
   return {
-    id: json['id'],
-    createdAt: new Date(json['createdAt']),
-    updatedAt: new Date(json['updatedAt']),
-    deletedAt: new Date(json['deletedAt']),
-    provider: json['provider'],
-    email: json['email'],
-    nickname: json['nickname'],
+    id: json["id"],
+    createdAt: new Date(json["createdAt"]),
+    updatedAt: new Date(json["updatedAt"]),
+    deletedAt: new Date(json["deletedAt"]),
+    provider: json["provider"],
+    email: json["email"],
+    nickname: json["nickname"],
   };
 }
 
@@ -109,12 +109,12 @@ export function PublicUserDtoToJSONTyped(
   }
 
   return {
-    id: value['id'],
-    createdAt: value['createdAt'].toISOString(),
-    updatedAt: value['updatedAt'].toISOString(),
-    deletedAt: value['deletedAt'].toISOString(),
-    provider: value['provider'],
-    email: value['email'],
-    nickname: value['nickname'],
+    id: value["id"],
+    createdAt: value["createdAt"].toISOString(),
+    updatedAt: value["updatedAt"].toISOString(),
+    deletedAt: value["deletedAt"].toISOString(),
+    provider: value["provider"],
+    email: value["email"],
+    nickname: value["nickname"],
   };
 }

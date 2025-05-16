@@ -11,387 +11,447 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import * as runtime from '../runtime';
-import { CreateUserDtoToJSON, LoginDtoToJSON, LoginResponseDtoFromJSON, PasswordResetDtoToJSON, TokensDtoFromJSON, } from '../models/index';
+import * as runtime from "../runtime";
+import {
+  CreateUserDtoToJSON,
+  LoginDtoToJSON,
+  LoginResponseDtoFromJSON,
+  PasswordResetDtoToJSON,
+  TokensDtoFromJSON,
+} from "../models/index";
 /**
  *
  */
 export class AuthApi extends runtime.BaseAPI {
-    /**
-     * 관리자 여부를 확인합니다.
-     * 관리자 여부 확인
-     */
-    async authControllerCheckIsAdminRaw(initOverrides) {
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/auth/check/is-admin`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse(response);
-        }
-        else {
-            return new runtime.TextApiResponse(response);
-        }
+  /**
+   * 관리자 여부를 확인합니다.
+   * 관리자 여부 확인
+   */
+  async authControllerCheckIsAdminRaw(initOverrides) {
+    const queryParameters = {};
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 관리자 여부를 확인합니다.
-     * 관리자 여부 확인
-     */
-    async authControllerCheckIsAdmin(initOverrides) {
-        const response = await this.authControllerCheckIsAdminRaw(initOverrides);
-        return await response.value();
+    const response = await this.request(
+      {
+        path: `/api/auth/check/is-admin`,
+        method: "POST",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    if (this.isJsonMime(response.headers.get("content-type"))) {
+      return new runtime.JSONApiResponse(response);
+    } else {
+      return new runtime.TextApiResponse(response);
     }
-    /**
-     * 유효한 Access Token인지 확인합니다.
-     * Access Token 유효성 확인
-     */
-    async authControllerCheckValidAccessTokenRaw(requestParameters, initOverrides) {
-        if (requestParameters['accessToken'] == null) {
-            throw new runtime.RequiredError('accessToken', 'Required parameter "accessToken" was null or undefined when calling authControllerCheckValidAccessToken().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/auth/check/{accessToken}`.replace(`{${"accessToken"}}`, encodeURIComponent(String(requestParameters['accessToken']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        if (this.isJsonMime(response.headers.get('content-type'))) {
-            return new runtime.JSONApiResponse(response);
-        }
-        else {
-            return new runtime.TextApiResponse(response);
-        }
+  }
+  /**
+   * 관리자 여부를 확인합니다.
+   * 관리자 여부 확인
+   */
+  async authControllerCheckIsAdmin(initOverrides) {
+    const response = await this.authControllerCheckIsAdminRaw(initOverrides);
+    return await response.value();
+  }
+  /**
+   * 유효한 Access Token인지 확인합니다.
+   * Access Token 유효성 확인
+   */
+  async authControllerCheckValidAccessTokenRaw(requestParameters, initOverrides) {
+    if (requestParameters["accessToken"] == null) {
+      throw new runtime.RequiredError(
+        "accessToken",
+        'Required parameter "accessToken" was null or undefined when calling authControllerCheckValidAccessToken().',
+      );
     }
-    /**
-     * 유효한 Access Token인지 확인합니다.
-     * Access Token 유효성 확인
-     */
-    async authControllerCheckValidAccessToken(requestParameters, initOverrides) {
-        const response = await this.authControllerCheckValidAccessTokenRaw(requestParameters, initOverrides);
-        return await response.value();
+    const queryParameters = {};
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 구글 계정으로 로그인합니다.
-     * 구글 로그인
-     */
-    async authControllerGoogleAuthRaw(initOverrides) {
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/auth/google`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+    const response = await this.request(
+      {
+        path: `/api/auth/check/{accessToken}`.replace(
+          `{${"accessToken"}}`,
+          encodeURIComponent(String(requestParameters["accessToken"])),
+        ),
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    if (this.isJsonMime(response.headers.get("content-type"))) {
+      return new runtime.JSONApiResponse(response);
+    } else {
+      return new runtime.TextApiResponse(response);
     }
-    /**
-     * 구글 계정으로 로그인합니다.
-     * 구글 로그인
-     */
-    async authControllerGoogleAuth(initOverrides) {
-        await this.authControllerGoogleAuthRaw(initOverrides);
+  }
+  /**
+   * 유효한 Access Token인지 확인합니다.
+   * Access Token 유효성 확인
+   */
+  async authControllerCheckValidAccessToken(requestParameters, initOverrides) {
+    const response = await this.authControllerCheckValidAccessTokenRaw(
+      requestParameters,
+      initOverrides,
+    );
+    return await response.value();
+  }
+  /**
+   * 구글 계정으로 로그인합니다.
+   * 구글 로그인
+   */
+  async authControllerGoogleAuthRaw(initOverrides) {
+    const queryParameters = {};
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 구글 로그인 후 콜백을 처리합니다.
-     * 구글 로그인 콜백
-     */
-    async authControllerGoogleAuthRedirectRaw(initOverrides) {
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/auth/google/callback`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+    const response = await this.request(
+      {
+        path: `/api/auth/google`,
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 구글 계정으로 로그인합니다.
+   * 구글 로그인
+   */
+  async authControllerGoogleAuth(initOverrides) {
+    await this.authControllerGoogleAuthRaw(initOverrides);
+  }
+  /**
+   * 구글 로그인 후 콜백을 처리합니다.
+   * 구글 로그인 콜백
+   */
+  async authControllerGoogleAuthRedirectRaw(initOverrides) {
+    const queryParameters = {};
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 구글 로그인 후 콜백을 처리합니다.
-     * 구글 로그인 콜백
-     */
-    async authControllerGoogleAuthRedirect(initOverrides) {
-        await this.authControllerGoogleAuthRedirectRaw(initOverrides);
+    const response = await this.request(
+      {
+        path: `/api/auth/google/callback`,
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 구글 로그인 후 콜백을 처리합니다.
+   * 구글 로그인 콜백
+   */
+  async authControllerGoogleAuthRedirect(initOverrides) {
+    await this.authControllerGoogleAuthRedirectRaw(initOverrides);
+  }
+  /**
+   */
+  async authControllerKakaoCallbackRaw(initOverrides) {
+    const queryParameters = {};
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     */
-    async authControllerKakaoCallbackRaw(initOverrides) {
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/auth/kakao/callback`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+    const response = await this.request(
+      {
+        path: `/api/auth/kakao/callback`,
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   */
+  async authControllerKakaoCallback(initOverrides) {
+    await this.authControllerKakaoCallbackRaw(initOverrides);
+  }
+  /**
+   * 카카오 계정으로 로그인합니다.
+   * 카카오 로그인
+   */
+  async authControllerKakaoLoginRaw(initOverrides) {
+    const queryParameters = {};
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     */
-    async authControllerKakaoCallback(initOverrides) {
-        await this.authControllerKakaoCallbackRaw(initOverrides);
+    const response = await this.request(
+      {
+        path: `/api/auth/kakao`,
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 카카오 계정으로 로그인합니다.
+   * 카카오 로그인
+   */
+  async authControllerKakaoLogin(initOverrides) {
+    await this.authControllerKakaoLoginRaw(initOverrides);
+  }
+  /**
+   * 사용자 로그인을 처리합니다.
+   * 로그인
+   */
+  async authControllerLoginRaw(requestParameters, initOverrides) {
+    if (requestParameters["loginDto"] == null) {
+      throw new runtime.RequiredError(
+        "loginDto",
+        'Required parameter "loginDto" was null or undefined when calling authControllerLogin().',
+      );
     }
-    /**
-     * 카카오 계정으로 로그인합니다.
-     * 카카오 로그인
-     */
-    async authControllerKakaoLoginRaw(initOverrides) {
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/auth/kakao`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+    const queryParameters = {};
+    const headerParameters = {};
+    headerParameters["Content-Type"] = "application/json";
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 카카오 계정으로 로그인합니다.
-     * 카카오 로그인
-     */
-    async authControllerKakaoLogin(initOverrides) {
-        await this.authControllerKakaoLoginRaw(initOverrides);
+    const response = await this.request(
+      {
+        path: `/api/auth/login`,
+        method: "POST",
+        headers: headerParameters,
+        query: queryParameters,
+        body: LoginDtoToJSON(requestParameters["loginDto"]),
+      },
+      initOverrides,
+    );
+    return new runtime.JSONApiResponse(response, (jsonValue) =>
+      LoginResponseDtoFromJSON(jsonValue),
+    );
+  }
+  /**
+   * 사용자 로그인을 처리합니다.
+   * 로그인
+   */
+  async authControllerLogin(requestParameters, initOverrides) {
+    const response = await this.authControllerLoginRaw(requestParameters, initOverrides);
+    return await response.value();
+  }
+  /**
+   * 네이버 로그인 후 콜백을 처리합니다.
+   * 네이버 로그인 콜백
+   */
+  async authControllerNaverCallbackRaw(initOverrides) {
+    const queryParameters = {};
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 사용자 로그인을 처리합니다.
-     * 로그인
-     */
-    async authControllerLoginRaw(requestParameters, initOverrides) {
-        if (requestParameters['loginDto'] == null) {
-            throw new runtime.RequiredError('loginDto', 'Required parameter "loginDto" was null or undefined when calling authControllerLogin().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        headerParameters['Content-Type'] = 'application/json';
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/auth/login`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: LoginDtoToJSON(requestParameters['loginDto']),
-        }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => LoginResponseDtoFromJSON(jsonValue));
+    const response = await this.request(
+      {
+        path: `/api/auth/naver/callback`,
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 네이버 로그인 후 콜백을 처리합니다.
+   * 네이버 로그인 콜백
+   */
+  async authControllerNaverCallback(initOverrides) {
+    await this.authControllerNaverCallbackRaw(initOverrides);
+  }
+  /**
+   * 네이버 계정으로 로그인합니다.
+   * 네이버 로그인
+   */
+  async authControllerNaverLoginRaw(initOverrides) {
+    const queryParameters = {};
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 사용자 로그인을 처리합니다.
-     * 로그인
-     */
-    async authControllerLogin(requestParameters, initOverrides) {
-        const response = await this.authControllerLoginRaw(requestParameters, initOverrides);
-        return await response.value();
+    const response = await this.request(
+      {
+        path: `/api/auth/naver`,
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 네이버 계정으로 로그인합니다.
+   * 네이버 로그인
+   */
+  async authControllerNaverLogin(initOverrides) {
+    await this.authControllerNaverLoginRaw(initOverrides);
+  }
+  /**
+   * 비밀번호 초기화를 처리합니다.
+   * 비밀번호 초기화
+   */
+  async authControllerPasswordResetRaw(requestParameters, initOverrides) {
+    if (requestParameters["passwordResetDto"] == null) {
+      throw new runtime.RequiredError(
+        "passwordResetDto",
+        'Required parameter "passwordResetDto" was null or undefined when calling authControllerPasswordReset().',
+      );
     }
-    /**
-     * 네이버 로그인 후 콜백을 처리합니다.
-     * 네이버 로그인 콜백
-     */
-    async authControllerNaverCallbackRaw(initOverrides) {
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/auth/naver/callback`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+    const queryParameters = {};
+    const headerParameters = {};
+    headerParameters["Content-Type"] = "application/json";
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 네이버 로그인 후 콜백을 처리합니다.
-     * 네이버 로그인 콜백
-     */
-    async authControllerNaverCallback(initOverrides) {
-        await this.authControllerNaverCallbackRaw(initOverrides);
+    const response = await this.request(
+      {
+        path: `/api/auth/reset-password`,
+        method: "POST",
+        headers: headerParameters,
+        query: queryParameters,
+        body: PasswordResetDtoToJSON(requestParameters["passwordResetDto"]),
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 비밀번호 초기화를 처리합니다.
+   * 비밀번호 초기화
+   */
+  async authControllerPasswordReset(requestParameters, initOverrides) {
+    await this.authControllerPasswordResetRaw(requestParameters, initOverrides);
+  }
+  /**
+   * 유효한 Refresh Token을 이용해 새로운 Access Token과 Refresh Token을 발급받습니다.
+   * Access Token 재발급
+   */
+  async authControllerRefreshRaw(initOverrides) {
+    const queryParameters = {};
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 네이버 계정으로 로그인합니다.
-     * 네이버 로그인
-     */
-    async authControllerNaverLoginRaw(initOverrides) {
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/auth/naver`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+    const response = await this.request(
+      {
+        path: `/api/auth/refresh`,
+        method: "POST",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.JSONApiResponse(response, (jsonValue) => TokensDtoFromJSON(jsonValue));
+  }
+  /**
+   * 유효한 Refresh Token을 이용해 새로운 Access Token과 Refresh Token을 발급받습니다.
+   * Access Token 재발급
+   */
+  async authControllerRefresh(initOverrides) {
+    const response = await this.authControllerRefreshRaw(initOverrides);
+    return await response.value();
+  }
+  /**
+   * 새로운 사용자를 등록합니다.
+   * 회원가입
+   */
+  async authControllerRegisterRaw(requestParameters, initOverrides) {
+    if (requestParameters["createUserDto"] == null) {
+      throw new runtime.RequiredError(
+        "createUserDto",
+        'Required parameter "createUserDto" was null or undefined when calling authControllerRegister().',
+      );
     }
-    /**
-     * 네이버 계정으로 로그인합니다.
-     * 네이버 로그인
-     */
-    async authControllerNaverLogin(initOverrides) {
-        await this.authControllerNaverLoginRaw(initOverrides);
+    const queryParameters = {};
+    const headerParameters = {};
+    headerParameters["Content-Type"] = "application/json";
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 비밀번호 초기화를 처리합니다.
-     * 비밀번호 초기화
-     */
-    async authControllerPasswordResetRaw(requestParameters, initOverrides) {
-        if (requestParameters['passwordResetDto'] == null) {
-            throw new runtime.RequiredError('passwordResetDto', 'Required parameter "passwordResetDto" was null or undefined when calling authControllerPasswordReset().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        headerParameters['Content-Type'] = 'application/json';
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/auth/reset-password`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: PasswordResetDtoToJSON(requestParameters['passwordResetDto']),
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
-    }
-    /**
-     * 비밀번호 초기화를 처리합니다.
-     * 비밀번호 초기화
-     */
-    async authControllerPasswordReset(requestParameters, initOverrides) {
-        await this.authControllerPasswordResetRaw(requestParameters, initOverrides);
-    }
-    /**
-     * 유효한 Refresh Token을 이용해 새로운 Access Token과 Refresh Token을 발급받습니다.
-     * Access Token 재발급
-     */
-    async authControllerRefreshRaw(initOverrides) {
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/auth/refresh`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.JSONApiResponse(response, (jsonValue) => TokensDtoFromJSON(jsonValue));
-    }
-    /**
-     * 유효한 Refresh Token을 이용해 새로운 Access Token과 Refresh Token을 발급받습니다.
-     * Access Token 재발급
-     */
-    async authControllerRefresh(initOverrides) {
-        const response = await this.authControllerRefreshRaw(initOverrides);
-        return await response.value();
-    }
-    /**
-     * 새로운 사용자를 등록합니다.
-     * 회원가입
-     */
-    async authControllerRegisterRaw(requestParameters, initOverrides) {
-        if (requestParameters['createUserDto'] == null) {
-            throw new runtime.RequiredError('createUserDto', 'Required parameter "createUserDto" was null or undefined when calling authControllerRegister().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        headerParameters['Content-Type'] = 'application/json';
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/auth/register`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: CreateUserDtoToJSON(requestParameters['createUserDto']),
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
-    }
-    /**
-     * 새로운 사용자를 등록합니다.
-     * 회원가입
-     */
-    async authControllerRegister(requestParameters, initOverrides) {
-        await this.authControllerRegisterRaw(requestParameters, initOverrides);
-    }
+    const response = await this.request(
+      {
+        path: `/api/auth/register`,
+        method: "POST",
+        headers: headerParameters,
+        query: queryParameters,
+        body: CreateUserDtoToJSON(requestParameters["createUserDto"]),
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 새로운 사용자를 등록합니다.
+   * 회원가입
+   */
+  async authControllerRegister(requestParameters, initOverrides) {
+    await this.authControllerRegisterRaw(requestParameters, initOverrides);
+  }
 }
 //# sourceMappingURL=AuthApi.js.map

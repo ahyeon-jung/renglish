@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  */
 
-import * as runtime from '../runtime';
-import type { CreateDialogueDto, UpdateDialogueDto } from '../models/index';
+import * as runtime from "../runtime";
+import type { CreateDialogueDto, UpdateDialogueDto } from "../models/index";
 import {
   CreateDialogueDtoFromJSON,
   CreateDialogueDtoToJSON,
   UpdateDialogueDtoFromJSON,
   UpdateDialogueDtoToJSON,
-} from '../models/index';
+} from "../models/index";
 
 export interface DialogueControllerCreateDialogueRequest {
   speakerId: string;
@@ -44,23 +44,23 @@ export class DialoguesApi extends runtime.BaseAPI {
     requestParameters: DialogueControllerCreateDialogueRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['speakerId'] == null) {
+    if (requestParameters["speakerId"] == null) {
       throw new runtime.RequiredError(
-        'speakerId',
+        "speakerId",
         'Required parameter "speakerId" was null or undefined when calling dialogueControllerCreateDialogue().',
       );
     }
 
-    if (requestParameters['sceneId'] == null) {
+    if (requestParameters["sceneId"] == null) {
       throw new runtime.RequiredError(
-        'sceneId',
+        "sceneId",
         'Required parameter "sceneId" was null or undefined when calling dialogueControllerCreateDialogue().',
       );
     }
 
-    if (requestParameters['createDialogueDto'] == null) {
+    if (requestParameters["createDialogueDto"] == null) {
       throw new runtime.RequiredError(
-        'createDialogueDto',
+        "createDialogueDto",
         'Required parameter "createDialogueDto" was null or undefined when calling dialogueControllerCreateDialogue().',
       );
     }
@@ -69,25 +69,25 @@ export class DialoguesApi extends runtime.BaseAPI {
 
     const headerParameters: runtime.HTTPHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters["Content-Type"] = "application/json";
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/dialogues/{sceneId}/{speakerId}`
-          .replace(`{${'speakerId'}}`, encodeURIComponent(String(requestParameters['speakerId'])))
-          .replace(`{${'sceneId'}}`, encodeURIComponent(String(requestParameters['sceneId']))),
-        method: 'POST',
+          .replace(`{${"speakerId"}}`, encodeURIComponent(String(requestParameters["speakerId"])))
+          .replace(`{${"sceneId"}}`, encodeURIComponent(String(requestParameters["sceneId"]))),
+        method: "POST",
         headers: headerParameters,
         query: queryParameters,
-        body: CreateDialogueDtoToJSON(requestParameters['createDialogueDto']),
+        body: CreateDialogueDtoToJSON(requestParameters["createDialogueDto"]),
       },
       initOverrides,
     );
@@ -114,16 +114,16 @@ export class DialoguesApi extends runtime.BaseAPI {
     requestParameters: DialogueControllerUpdateDialogueRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['dialogueId'] == null) {
+    if (requestParameters["dialogueId"] == null) {
       throw new runtime.RequiredError(
-        'dialogueId',
+        "dialogueId",
         'Required parameter "dialogueId" was null or undefined when calling dialogueControllerUpdateDialogue().',
       );
     }
 
-    if (requestParameters['updateDialogueDto'] == null) {
+    if (requestParameters["updateDialogueDto"] == null) {
       throw new runtime.RequiredError(
-        'updateDialogueDto',
+        "updateDialogueDto",
         'Required parameter "updateDialogueDto" was null or undefined when calling dialogueControllerUpdateDialogue().',
       );
     }
@@ -132,26 +132,26 @@ export class DialoguesApi extends runtime.BaseAPI {
 
     const headerParameters: runtime.HTTPHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters["Content-Type"] = "application/json";
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/dialogues/{dialogueId}`.replace(
-          `{${'dialogueId'}}`,
-          encodeURIComponent(String(requestParameters['dialogueId'])),
+          `{${"dialogueId"}}`,
+          encodeURIComponent(String(requestParameters["dialogueId"])),
         ),
-        method: 'PUT',
+        method: "PUT",
         headers: headerParameters,
         query: queryParameters,
-        body: UpdateDialogueDtoToJSON(requestParameters['updateDialogueDto']),
+        body: UpdateDialogueDtoToJSON(requestParameters["updateDialogueDto"]),
       },
       initOverrides,
     );

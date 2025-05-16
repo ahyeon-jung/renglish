@@ -9,62 +9,68 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { Speaker } from './Speaker';
+import type { Speaker } from "./Speaker";
 /**
  *
  * @export
  * @interface PaginationSceneDto
  */
 export interface PaginationSceneDto {
-    /**
-     * 아이디
-     * @type {string}
-     * @memberof PaginationSceneDto
-     */
-    id: string;
-    /**
-     * 생성일
-     * @type {Date}
-     * @memberof PaginationSceneDto
-     */
-    createdAt: Date;
-    /**
-     * 수정일
-     * @type {Date}
-     * @memberof PaginationSceneDto
-     */
-    updatedAt: Date;
-    /**
-     *
-     * @type {string}
-     * @memberof PaginationSceneDto
-     */
-    title: string;
-    /**
-     *
-     * @type {string}
-     * @memberof PaginationSceneDto
-     */
-    description: string;
-    /**
-     *
-     * @type {string}
-     * @memberof PaginationSceneDto
-     */
-    audioUrl: string;
-    /**
-     *
-     * @type {Array<Speaker>}
-     * @memberof PaginationSceneDto
-     */
-    speakers: Array<Speaker>;
+  /**
+   * 아이디
+   * @type {string}
+   * @memberof PaginationSceneDto
+   */
+  id: string;
+  /**
+   * 생성일
+   * @type {Date}
+   * @memberof PaginationSceneDto
+   */
+  createdAt: Date;
+  /**
+   * 수정일
+   * @type {Date}
+   * @memberof PaginationSceneDto
+   */
+  updatedAt: Date;
+  /**
+   *
+   * @type {string}
+   * @memberof PaginationSceneDto
+   */
+  title: string;
+  /**
+   *
+   * @type {string}
+   * @memberof PaginationSceneDto
+   */
+  description: string;
+  /**
+   *
+   * @type {string}
+   * @memberof PaginationSceneDto
+   */
+  audioUrl: string;
+  /**
+   *
+   * @type {Array<Speaker>}
+   * @memberof PaginationSceneDto
+   */
+  speakers: Array<Speaker>;
 }
 /**
  * Check if a given object implements the PaginationSceneDto interface.
  */
 export declare function instanceOfPaginationSceneDto(value: object): value is PaginationSceneDto;
 export declare function PaginationSceneDtoFromJSON(json: any): PaginationSceneDto;
-export declare function PaginationSceneDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): PaginationSceneDto;
+export declare function PaginationSceneDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): PaginationSceneDto;
 export declare function PaginationSceneDtoToJSON(json: any): PaginationSceneDto;
-export declare function PaginationSceneDtoToJSONTyped(value?: PaginationSceneDto | null, ignoreDiscriminator?: boolean): any;
+export declare function PaginationSceneDtoToJSONTyped(
+  value?: PaginationSceneDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=PaginationSceneDto.d.ts.map

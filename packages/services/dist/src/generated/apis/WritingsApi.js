@@ -11,80 +11,101 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import * as runtime from '../runtime';
-import { CreateWritingDtoToJSON, } from '../models/index';
+import * as runtime from "../runtime";
+import { CreateWritingDtoToJSON } from "../models/index";
 /**
  *
  */
 export class WritingsApi extends runtime.BaseAPI {
-    /**
-     * 사용자가 작성한 대사의 대본을 저장합니다.
-     * 사용자가 작성한 대사의 대본 저장하기 [TOKEN]
-     */
-    async writingControllerCreateRaw(requestParameters, initOverrides) {
-        if (requestParameters['dialogueId'] == null) {
-            throw new runtime.RequiredError('dialogueId', 'Required parameter "dialogueId" was null or undefined when calling writingControllerCreate().');
-        }
-        if (requestParameters['createWritingDto'] == null) {
-            throw new runtime.RequiredError('createWritingDto', 'Required parameter "createWritingDto" was null or undefined when calling writingControllerCreate().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        headerParameters['Content-Type'] = 'application/json';
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/writings/{dialogueId}`.replace(`{${"dialogueId"}}`, encodeURIComponent(String(requestParameters['dialogueId']))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: CreateWritingDtoToJSON(requestParameters['createWritingDto']),
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+  /**
+   * 사용자가 작성한 대사의 대본을 저장합니다.
+   * 사용자가 작성한 대사의 대본 저장하기 [TOKEN]
+   */
+  async writingControllerCreateRaw(requestParameters, initOverrides) {
+    if (requestParameters["dialogueId"] == null) {
+      throw new runtime.RequiredError(
+        "dialogueId",
+        'Required parameter "dialogueId" was null or undefined when calling writingControllerCreate().',
+      );
     }
-    /**
-     * 사용자가 작성한 대사의 대본을 저장합니다.
-     * 사용자가 작성한 대사의 대본 저장하기 [TOKEN]
-     */
-    async writingControllerCreate(requestParameters, initOverrides) {
-        await this.writingControllerCreateRaw(requestParameters, initOverrides);
+    if (requestParameters["createWritingDto"] == null) {
+      throw new runtime.RequiredError(
+        "createWritingDto",
+        'Required parameter "createWritingDto" was null or undefined when calling writingControllerCreate().',
+      );
     }
-    /**
-     * 사용자가 작성한 작문 정보를 가져옵니다.
-     * 사용자가 작성한 작문 정보 가져오기 [TOKEN]
-     */
-    async writingControllerFindAllByMovieIdRaw(requestParameters, initOverrides) {
-        if (requestParameters['movieId'] == null) {
-            throw new runtime.RequiredError('movieId', 'Required parameter "movieId" was null or undefined when calling writingControllerFindAllByMovieId().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/writings/{movieId}`.replace(`{${"movieId"}}`, encodeURIComponent(String(requestParameters['movieId']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+    const queryParameters = {};
+    const headerParameters = {};
+    headerParameters["Content-Type"] = "application/json";
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
-    /**
-     * 사용자가 작성한 작문 정보를 가져옵니다.
-     * 사용자가 작성한 작문 정보 가져오기 [TOKEN]
-     */
-    async writingControllerFindAllByMovieId(requestParameters, initOverrides) {
-        await this.writingControllerFindAllByMovieIdRaw(requestParameters, initOverrides);
+    const response = await this.request(
+      {
+        path: `/api/writings/{dialogueId}`.replace(
+          `{${"dialogueId"}}`,
+          encodeURIComponent(String(requestParameters["dialogueId"])),
+        ),
+        method: "POST",
+        headers: headerParameters,
+        query: queryParameters,
+        body: CreateWritingDtoToJSON(requestParameters["createWritingDto"]),
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 사용자가 작성한 대사의 대본을 저장합니다.
+   * 사용자가 작성한 대사의 대본 저장하기 [TOKEN]
+   */
+  async writingControllerCreate(requestParameters, initOverrides) {
+    await this.writingControllerCreateRaw(requestParameters, initOverrides);
+  }
+  /**
+   * 사용자가 작성한 작문 정보를 가져옵니다.
+   * 사용자가 작성한 작문 정보 가져오기 [TOKEN]
+   */
+  async writingControllerFindAllByMovieIdRaw(requestParameters, initOverrides) {
+    if (requestParameters["movieId"] == null) {
+      throw new runtime.RequiredError(
+        "movieId",
+        'Required parameter "movieId" was null or undefined when calling writingControllerFindAllByMovieId().',
+      );
     }
+    const queryParameters = {};
+    const headerParameters = {};
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    const response = await this.request(
+      {
+        path: `/api/writings/{movieId}`.replace(
+          `{${"movieId"}}`,
+          encodeURIComponent(String(requestParameters["movieId"])),
+        ),
+        method: "GET",
+        headers: headerParameters,
+        query: queryParameters,
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 사용자가 작성한 작문 정보를 가져옵니다.
+   * 사용자가 작성한 작문 정보 가져오기 [TOKEN]
+   */
+  async writingControllerFindAllByMovieId(requestParameters, initOverrides) {
+    await this.writingControllerFindAllByMovieIdRaw(requestParameters, initOverrides);
+  }
 }
 //# sourceMappingURL=WritingsApi.js.map

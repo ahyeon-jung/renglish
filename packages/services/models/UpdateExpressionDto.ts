@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { ExampleDto } from './ExampleDto';
+import { mapValues } from "../runtime";
+import type { ExampleDto } from "./ExampleDto";
 import {
   ExampleDtoFromJSON,
   ExampleDtoFromJSONTyped,
   ExampleDtoToJSON,
   ExampleDtoToJSONTyped,
-} from './ExampleDto';
+} from "./ExampleDto";
 
 /**
  *
@@ -72,13 +72,13 @@ export function UpdateExpressionDtoFromJSONTyped(
     return json;
   }
   return {
-    expression: json['expression'] == null ? undefined : json['expression'],
-    meaning: json['meaning'] == null ? undefined : json['meaning'],
-    usage: json['usage'] == null ? undefined : json['usage'],
+    expression: json["expression"] == null ? undefined : json["expression"],
+    meaning: json["meaning"] == null ? undefined : json["meaning"],
+    usage: json["usage"] == null ? undefined : json["usage"],
     examples:
-      json['examples'] == null
+      json["examples"] == null
         ? undefined
-        : (json['examples'] as Array<any>).map(ExampleDtoFromJSON),
+        : (json["examples"] as Array<any>).map(ExampleDtoFromJSON),
   };
 }
 
@@ -95,12 +95,12 @@ export function UpdateExpressionDtoToJSONTyped(
   }
 
   return {
-    expression: value['expression'],
-    meaning: value['meaning'],
-    usage: value['usage'],
+    expression: value["expression"],
+    meaning: value["meaning"],
+    usage: value["usage"],
     examples:
-      value['examples'] == null
+      value["examples"] == null
         ? undefined
-        : (value['examples'] as Array<any>).map(ExampleDtoToJSON),
+        : (value["examples"] as Array<any>).map(ExampleDtoToJSON),
   };
 }

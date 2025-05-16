@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import Button from '@/components/Button';
-import Modal from '@/components/Modal';
-import ResultDialogueItem from '../ResultDialogueItem';
-import Text from '@/components/Text';
-import { WritingDialogueType } from '@/types/dialogue';
-import addWritingAction from '@/app/actions/writings/addWritings';
-import { useState } from 'react';
+import Button from "@/components/Button";
+import Modal from "@/components/Modal";
+import ResultDialogueItem from "../ResultDialogueItem";
+import Text from "@/components/Text";
+import { WritingDialogueType } from "@/types/dialogue";
+import addWritingAction from "@/app/actions/writings/addWritings";
+import { useState } from "react";
 
 type ResultModalProps = { dialogues: WritingDialogueType[] };
 

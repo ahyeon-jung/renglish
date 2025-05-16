@@ -1,22 +1,22 @@
-'use client';
+"use client";
 
-import { RefObject, useEffect, useRef, useState } from 'react';
+import { RefObject, useEffect, useRef, useState } from "react";
 
-import Categories from '../Categories';
-import Container from '../Container';
-import Image from 'next/image';
-import { OptionType } from '@/components/SearchBar/List';
-import { PATHS } from '@/constants/path';
-import SearchBar from '@/components/SearchBar';
-import Text from '@/components/Text';
-import backgroundImage from '@/assets/images/background.webp';
-import getMovies from '@/app/actions/movies/getMovies';
-import { useRouter } from 'next/navigation';
-import clsx from 'clsx';
+import Categories from "../Categories";
+import Container from "../Container";
+import Image from "next/image";
+import { OptionType } from "@/components/SearchBar/List";
+import { PATHS } from "@/constants/path";
+import SearchBar from "@/components/SearchBar";
+import Text from "@/components/Text";
+import backgroundImage from "@/assets/images/background.webp";
+import getMovies from "@/app/actions/movies/getMovies";
+import { useRouter } from "next/navigation";
+import clsx from "clsx";
 
 export default function ScriptSearch() {
   const router = useRouter();
-  const [keyword, setKeyword] = useState('');
+  const [keyword, setKeyword] = useState("");
   const [keywordOptions, setKeywordOptions] = useState<OptionType[]>([]);
 
   const searchBarRef = useRef<HTMLDivElement>(undefined);
@@ -52,17 +52,15 @@ export default function ScriptSearch() {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
   return (
-    <div className={clsx("relative w-full pt-[50px] pb-[50px]",
-      "md:pt-[60px] md:pb-[60px]"
-    )}>
+    <div className={clsx("relative w-full pt-[50px] pb-[50px]", "md:pt-[60px] md:pb-[60px]")}>
       <Image
         src={backgroundImage}
         alt="library background image"

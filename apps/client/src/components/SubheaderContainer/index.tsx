@@ -1,6 +1,6 @@
-import BackButton, { BackButton as BackButtonProps } from '../BackButton';
+import BackButton, { BackButton as BackButtonProps } from "../BackButton";
 
-import clsx from 'clsx';
+import clsx from "clsx";
 
 type SubHeaderContainer = BackButtonProps & React.PropsWithChildren;
 
@@ -8,13 +8,13 @@ export default function SubHeaderContainer({ title, children }: SubHeaderContain
   return (
     <header
       style={{
-        top: 'calc(var(--header-height) - 5px)',
+        top: "calc(var(--header-height) - 5px)",
         zIndex: `calc(var(--header-z-index) + 1)`,
       }}
       className={clsx(
-        'fixed inset-x-0 p-2 pr-3',
-        'h-[40px] bg-white shadow-sm',
-        'flex items-center justify-between py-3',
+        "fixed inset-x-0 p-2 pr-3",
+        "h-[40px] bg-white shadow-sm",
+        "flex items-center justify-between py-3",
       )}
     >
       <BackButton title={title} />

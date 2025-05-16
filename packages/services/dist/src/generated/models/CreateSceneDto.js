@@ -15,38 +15,35 @@
  * Check if a given object implements the CreateSceneDto interface.
  */
 export function instanceOfCreateSceneDto(value) {
-    if (!('title' in value) || value['title'] === undefined)
-        return false;
-    if (!('audioUrl' in value) || value['audioUrl'] === undefined)
-        return false;
-    if (!('description' in value) || value['description'] === undefined)
-        return false;
-    return true;
+  if (!("title" in value) || value["title"] === undefined) return false;
+  if (!("audioUrl" in value) || value["audioUrl"] === undefined) return false;
+  if (!("description" in value) || value["description"] === undefined) return false;
+  return true;
 }
 export function CreateSceneDtoFromJSON(json) {
-    return CreateSceneDtoFromJSONTyped(json, false);
+  return CreateSceneDtoFromJSONTyped(json, false);
 }
 export function CreateSceneDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'title': json['title'],
-        'audioUrl': json['audioUrl'],
-        'description': json['description'],
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    title: json["title"],
+    audioUrl: json["audioUrl"],
+    description: json["description"],
+  };
 }
 export function CreateSceneDtoToJSON(json) {
-    return CreateSceneDtoToJSONTyped(json, false);
+  return CreateSceneDtoToJSONTyped(json, false);
 }
 export function CreateSceneDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'title': value['title'],
-        'audioUrl': value['audioUrl'],
-        'description': value['description'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    title: value["title"],
+    audioUrl: value["audioUrl"],
+    description: value["description"],
+  };
 }
 //# sourceMappingURL=CreateSceneDto.js.map

@@ -11,88 +11,114 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import * as runtime from '../runtime';
-import { CreateDialogueDtoToJSON, UpdateDialogueDtoToJSON, } from '../models/index';
+import * as runtime from "../runtime";
+import { CreateDialogueDtoToJSON, UpdateDialogueDtoToJSON } from "../models/index";
 /**
  *
  */
 export class DialoguesApi extends runtime.BaseAPI {
-    /**
-     * 새로운 대사 정보를 생성합니다.
-     * 대사 정보 생성 [ADMIN]
-     */
-    async dialogueControllerCreateDialogueRaw(requestParameters, initOverrides) {
-        if (requestParameters['speakerId'] == null) {
-            throw new runtime.RequiredError('speakerId', 'Required parameter "speakerId" was null or undefined when calling dialogueControllerCreateDialogue().');
-        }
-        if (requestParameters['sceneId'] == null) {
-            throw new runtime.RequiredError('sceneId', 'Required parameter "sceneId" was null or undefined when calling dialogueControllerCreateDialogue().');
-        }
-        if (requestParameters['createDialogueDto'] == null) {
-            throw new runtime.RequiredError('createDialogueDto', 'Required parameter "createDialogueDto" was null or undefined when calling dialogueControllerCreateDialogue().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        headerParameters['Content-Type'] = 'application/json';
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/dialogues/{sceneId}/{speakerId}`.replace(`{${"speakerId"}}`, encodeURIComponent(String(requestParameters['speakerId']))).replace(`{${"sceneId"}}`, encodeURIComponent(String(requestParameters['sceneId']))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: CreateDialogueDtoToJSON(requestParameters['createDialogueDto']),
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+  /**
+   * 새로운 대사 정보를 생성합니다.
+   * 대사 정보 생성 [ADMIN]
+   */
+  async dialogueControllerCreateDialogueRaw(requestParameters, initOverrides) {
+    if (requestParameters["speakerId"] == null) {
+      throw new runtime.RequiredError(
+        "speakerId",
+        'Required parameter "speakerId" was null or undefined when calling dialogueControllerCreateDialogue().',
+      );
     }
-    /**
-     * 새로운 대사 정보를 생성합니다.
-     * 대사 정보 생성 [ADMIN]
-     */
-    async dialogueControllerCreateDialogue(requestParameters, initOverrides) {
-        await this.dialogueControllerCreateDialogueRaw(requestParameters, initOverrides);
+    if (requestParameters["sceneId"] == null) {
+      throw new runtime.RequiredError(
+        "sceneId",
+        'Required parameter "sceneId" was null or undefined when calling dialogueControllerCreateDialogue().',
+      );
     }
-    /**
-     * 대사 정보를 변경합니다.
-     * 대사 정보 변경 [ADMIN]
-     */
-    async dialogueControllerUpdateDialogueRaw(requestParameters, initOverrides) {
-        if (requestParameters['dialogueId'] == null) {
-            throw new runtime.RequiredError('dialogueId', 'Required parameter "dialogueId" was null or undefined when calling dialogueControllerUpdateDialogue().');
-        }
-        if (requestParameters['updateDialogueDto'] == null) {
-            throw new runtime.RequiredError('updateDialogueDto', 'Required parameter "updateDialogueDto" was null or undefined when calling dialogueControllerUpdateDialogue().');
-        }
-        const queryParameters = {};
-        const headerParameters = {};
-        headerParameters['Content-Type'] = 'application/json';
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("token", []);
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/dialogues/{dialogueId}`.replace(`{${"dialogueId"}}`, encodeURIComponent(String(requestParameters['dialogueId']))),
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-            body: UpdateDialogueDtoToJSON(requestParameters['updateDialogueDto']),
-        }, initOverrides);
-        return new runtime.VoidApiResponse(response);
+    if (requestParameters["createDialogueDto"] == null) {
+      throw new runtime.RequiredError(
+        "createDialogueDto",
+        'Required parameter "createDialogueDto" was null or undefined when calling dialogueControllerCreateDialogue().',
+      );
     }
-    /**
-     * 대사 정보를 변경합니다.
-     * 대사 정보 변경 [ADMIN]
-     */
-    async dialogueControllerUpdateDialogue(requestParameters, initOverrides) {
-        await this.dialogueControllerUpdateDialogueRaw(requestParameters, initOverrides);
+    const queryParameters = {};
+    const headerParameters = {};
+    headerParameters["Content-Type"] = "application/json";
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
     }
+    const response = await this.request(
+      {
+        path: `/api/dialogues/{sceneId}/{speakerId}`
+          .replace(`{${"speakerId"}}`, encodeURIComponent(String(requestParameters["speakerId"])))
+          .replace(`{${"sceneId"}}`, encodeURIComponent(String(requestParameters["sceneId"]))),
+        method: "POST",
+        headers: headerParameters,
+        query: queryParameters,
+        body: CreateDialogueDtoToJSON(requestParameters["createDialogueDto"]),
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 새로운 대사 정보를 생성합니다.
+   * 대사 정보 생성 [ADMIN]
+   */
+  async dialogueControllerCreateDialogue(requestParameters, initOverrides) {
+    await this.dialogueControllerCreateDialogueRaw(requestParameters, initOverrides);
+  }
+  /**
+   * 대사 정보를 변경합니다.
+   * 대사 정보 변경 [ADMIN]
+   */
+  async dialogueControllerUpdateDialogueRaw(requestParameters, initOverrides) {
+    if (requestParameters["dialogueId"] == null) {
+      throw new runtime.RequiredError(
+        "dialogueId",
+        'Required parameter "dialogueId" was null or undefined when calling dialogueControllerUpdateDialogue().',
+      );
+    }
+    if (requestParameters["updateDialogueDto"] == null) {
+      throw new runtime.RequiredError(
+        "updateDialogueDto",
+        'Required parameter "updateDialogueDto" was null or undefined when calling dialogueControllerUpdateDialogue().',
+      );
+    }
+    const queryParameters = {};
+    const headerParameters = {};
+    headerParameters["Content-Type"] = "application/json";
+    if (this.configuration && this.configuration.accessToken) {
+      const token = this.configuration.accessToken;
+      const tokenString = await token("token", []);
+      if (tokenString) {
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
+      }
+    }
+    const response = await this.request(
+      {
+        path: `/api/dialogues/{dialogueId}`.replace(
+          `{${"dialogueId"}}`,
+          encodeURIComponent(String(requestParameters["dialogueId"])),
+        ),
+        method: "PUT",
+        headers: headerParameters,
+        query: queryParameters,
+        body: UpdateDialogueDtoToJSON(requestParameters["updateDialogueDto"]),
+      },
+      initOverrides,
+    );
+    return new runtime.VoidApiResponse(response);
+  }
+  /**
+   * 대사 정보를 변경합니다.
+   * 대사 정보 변경 [ADMIN]
+   */
+  async dialogueControllerUpdateDialogue(requestParameters, initOverrides) {
+    await this.dialogueControllerUpdateDialogueRaw(requestParameters, initOverrides);
+  }
 }
 //# sourceMappingURL=DialoguesApi.js.map

@@ -8,8 +8,8 @@
     "dev:server": "pnpm --filter server start:dev",
     "dev": "concurrently -k -n client,admin,server -c blue,green,yellow \"pnpm dev:client\" \"pnpm dev:admin\" \"pnpm dev:server\"",
     "build": "pnpm -r build",
-    "lint": "pnpm -r lint",
-    "format": "prettier --write client/src server/src",
+    "format": "biome format . --write",
+    "lint": "biome check .",
     "generate:api": "openapi-generator-cli generate -i ./swagger.json -g typescript-fetch -o ./packages/services/src/generated",
     "prepare": "node -e \"if (process.env.NODE_ENV !== 'production') { import('child_process').then(({execSync}) => execSync('npx husky install')) }\"",
     "precommit": "lint-staged",
@@ -17,6 +17,7 @@
     "vercel-start": "pnpm --filter client start"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/git": "^10.0.1",
@@ -25,18 +26,12 @@
     "concurrently": "^9.1.2",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.1.0",
-    "eslint-config-prettier": "^10.1.1",
-    "eslint-plugin-prettier": "^5.2.3",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.1",
-    "prettier": "^3.5.3",
     "semantic-release": "^24.2.3",
     "typescript": "^5.8.2"
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
-      "eslint --fix --config .eslintrc.json",
-      "prettier --write"
-    ]
+    "*.{ts,tsx}": ["eslint --fix --config .eslintrc.json", "prettier --write"]
   }
 }

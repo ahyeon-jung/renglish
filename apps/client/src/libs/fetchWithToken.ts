@@ -1,5 +1,5 @@
-import { ENV } from '@/constants/env';
-import { cookies } from 'next/headers';
+import { ENV } from "@/constants/env";
+import { cookies } from "next/headers";
 
 export async function fetchWithToken(input: RequestInfo, init?: RequestInit): Promise<Response> {
   const cookieStore = await cookies();

@@ -19,21 +19,25 @@ function DialogueList() {
       <Typography variant="subtitle1" gutterBottom>
         Speakers
       </Typography>
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
         {speakers.map((speaker) => (
           <Box
             key={speaker.id}
             sx={{
-              flex: '0 1 30%',
+              flex: "0 1 30%",
               padding: 1,
-              border: '1px solid #ccc',
+              border: "1px solid #ccc",
               borderRadius: 2,
-              cursor: 'pointer',
+              cursor: "pointer",
             }}
             onClick={() => handleSpeakerClick(speaker)}
           >
-            <Typography variant="body2"><strong>Name:</strong> {speaker.speakerName}</Typography>
-            <Typography variant="body2"><strong>Type:</strong> {speaker.speakerType}</Typography>
+            <Typography variant="body2">
+              <strong>Name:</strong> {speaker.speakerName}
+            </Typography>
+            <Typography variant="body2">
+              <strong>Type:</strong> {speaker.speakerType}
+            </Typography>
           </Box>
         ))}
       </Box>
@@ -48,7 +52,9 @@ function DialoguesList({ selectedSpeaker }: { selectedSpeaker: any }) {
 
   if (!Array.isArray(dialogues) || dialogues.length === 0) return null;
 
-  const filteredDialogues = selectedSpeaker ? dialogues.filter((dialogue: any) => dialogue.speaker.id === selectedSpeaker.id) : dialogues;
+  const filteredDialogues = selectedSpeaker
+    ? dialogues.filter((dialogue: any) => dialogue.speaker.id === selectedSpeaker.id)
+    : dialogues;
 
   return (
     <Box mt={2}>

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
  *
  * @export
@@ -55,11 +55,11 @@ export interface CreateUserDto {
  * Check if a given object implements the CreateUserDto interface.
  */
 export function instanceOfCreateUserDto(value: object): value is CreateUserDto {
-  if (!('provider' in value) || value['provider'] === undefined) return false;
-  if (!('email' in value) || value['email'] === undefined) return false;
-  if (!('nickname' in value) || value['nickname'] === undefined) return false;
-  if (!('how' in value) || value['how'] === undefined) return false;
-  if (!('password' in value) || value['password'] === undefined) return false;
+  if (!("provider" in value) || value["provider"] === undefined) return false;
+  if (!("email" in value) || value["email"] === undefined) return false;
+  if (!("nickname" in value) || value["nickname"] === undefined) return false;
+  if (!("how" in value) || value["how"] === undefined) return false;
+  if (!("password" in value) || value["password"] === undefined) return false;
   return true;
 }
 
@@ -72,11 +72,11 @@ export function CreateUserDtoFromJSONTyped(json: any, ignoreDiscriminator: boole
     return json;
   }
   return {
-    provider: json['provider'],
-    email: json['email'],
-    nickname: json['nickname'],
-    how: json['how'],
-    password: json['password'],
+    provider: json["provider"],
+    email: json["email"],
+    nickname: json["nickname"],
+    how: json["how"],
+    password: json["password"],
   };
 }
 
@@ -93,10 +93,10 @@ export function CreateUserDtoToJSONTyped(
   }
 
   return {
-    provider: value['provider'],
-    email: value['email'],
-    nickname: value['nickname'],
-    how: value['how'],
-    password: value['password'],
+    provider: value["provider"],
+    email: value["email"],
+    nickname: value["nickname"],
+    how: value["how"],
+    password: value["password"],
   };
 }

@@ -9,62 +9,84 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import * as runtime from '../runtime';
-import type { CreateSpeakerDto, Speaker, UpdateSpeakerDto } from '../models/index';
+import * as runtime from "../runtime";
+import type { CreateSpeakerDto, Speaker, UpdateSpeakerDto } from "../models/index";
 export interface SpeakerControllerCreateSpeakerRequest {
-    sceneId: string;
-    createSpeakerDto: CreateSpeakerDto;
+  sceneId: string;
+  createSpeakerDto: CreateSpeakerDto;
 }
 export interface SpeakerControllerFindOneRequest {
-    speakerId: string;
+  speakerId: string;
 }
 export interface SpeakerControllerUpdateRequest {
-    speakerId: string;
-    updateSpeakerDto: UpdateSpeakerDto;
+  speakerId: string;
+  updateSpeakerDto: UpdateSpeakerDto;
 }
 /**
  *
  */
 export declare class SpeakersApi extends runtime.BaseAPI {
-    /**
-     * 새로운 발화자 정보를 생성합니다.
-     * 발화자 정보 생성 [ADMIN]
-     */
-    speakerControllerCreateSpeakerRaw(requestParameters: SpeakerControllerCreateSpeakerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * 새로운 발화자 정보를 생성합니다.
-     * 발화자 정보 생성 [ADMIN]
-     */
-    speakerControllerCreateSpeaker(requestParameters: SpeakerControllerCreateSpeakerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * 발화자 정보를 발화자 정보를 가져옵니다.
-     * 발화자 정보 가져오기
-     */
-    speakerControllerFindOneRaw(requestParameters: SpeakerControllerFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * 발화자 정보를 발화자 정보를 가져옵니다.
-     * 발화자 정보 가져오기
-     */
-    speakerControllerFindOne(requestParameters: SpeakerControllerFindOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * 발화자 정보를 가져옵니다.
-     * 발화자 정보를 가져옵니다.
-     */
-    speakerControllerFindSpeakersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Speaker>>>;
-    /**
-     * 발화자 정보를 가져옵니다.
-     * 발화자 정보를 가져옵니다.
-     */
-    speakerControllerFindSpeakers(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Speaker>>;
-    /**
-     * 발화자 정보를 변경합니다.
-     * 발화자 정보 변경하기 [ADMIN]
-     */
-    speakerControllerUpdateRaw(requestParameters: SpeakerControllerUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * 발화자 정보를 변경합니다.
-     * 발화자 정보 변경하기 [ADMIN]
-     */
-    speakerControllerUpdate(requestParameters: SpeakerControllerUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+  /**
+   * 새로운 발화자 정보를 생성합니다.
+   * 발화자 정보 생성 [ADMIN]
+   */
+  speakerControllerCreateSpeakerRaw(
+    requestParameters: SpeakerControllerCreateSpeakerRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<void>>;
+  /**
+   * 새로운 발화자 정보를 생성합니다.
+   * 발화자 정보 생성 [ADMIN]
+   */
+  speakerControllerCreateSpeaker(
+    requestParameters: SpeakerControllerCreateSpeakerRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<void>;
+  /**
+   * 발화자 정보를 발화자 정보를 가져옵니다.
+   * 발화자 정보 가져오기
+   */
+  speakerControllerFindOneRaw(
+    requestParameters: SpeakerControllerFindOneRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<void>>;
+  /**
+   * 발화자 정보를 발화자 정보를 가져옵니다.
+   * 발화자 정보 가져오기
+   */
+  speakerControllerFindOne(
+    requestParameters: SpeakerControllerFindOneRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<void>;
+  /**
+   * 발화자 정보를 가져옵니다.
+   * 발화자 정보를 가져옵니다.
+   */
+  speakerControllerFindSpeakersRaw(
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<Array<Speaker>>>;
+  /**
+   * 발화자 정보를 가져옵니다.
+   * 발화자 정보를 가져옵니다.
+   */
+  speakerControllerFindSpeakers(
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<Array<Speaker>>;
+  /**
+   * 발화자 정보를 변경합니다.
+   * 발화자 정보 변경하기 [ADMIN]
+   */
+  speakerControllerUpdateRaw(
+    requestParameters: SpeakerControllerUpdateRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<void>>;
+  /**
+   * 발화자 정보를 변경합니다.
+   * 발화자 정보 변경하기 [ADMIN]
+   */
+  speakerControllerUpdate(
+    requestParameters: SpeakerControllerUpdateRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<void>;
 }
 //# sourceMappingURL=SpeakersApi.d.ts.map

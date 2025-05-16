@@ -1,9 +1,9 @@
-import Email from './_components/Email';
-import Nickname from './_components/Nickname';
-import SubHeaderContainer from '@/components/SubheaderContainer';
-import clsx from 'clsx';
-import getAuthDataAction from '../../actions/my/getAuthData';
-import CreatedDate from './_components/CreatedDate';
+import Email from "./_components/Email";
+import Nickname from "./_components/Nickname";
+import SubHeaderContainer from "@/components/SubheaderContainer";
+import clsx from "clsx";
+import getAuthDataAction from "../../actions/my/getAuthData";
+import CreatedDate from "./_components/CreatedDate";
 
 export default async function Profile() {
   const { data } = await getAuthDataAction();
@@ -13,7 +13,7 @@ export default async function Profile() {
   }
 
   return (
-    <main className={clsx('mt-[var(--header-height)] p-3', 'flex flex-col gap-3')}>
+    <main className={clsx("mt-[var(--header-height)] p-3", "flex flex-col gap-3")}>
       <SubHeaderContainer title="My Profile" />
       <div className="mt-[45px]">
         <div className="flex flex-col gap-2">

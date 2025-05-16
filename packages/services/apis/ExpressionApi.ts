@@ -12,8 +12,8 @@
  * Do not edit the class manually.
  */
 
-import * as runtime from '../runtime';
-import type { CreateExpressionDto, Expression, UpdateExpressionDto } from '../models/index';
+import * as runtime from "../runtime";
+import type { CreateExpressionDto, Expression, UpdateExpressionDto } from "../models/index";
 import {
   CreateExpressionDtoFromJSON,
   CreateExpressionDtoToJSON,
@@ -21,7 +21,7 @@ import {
   ExpressionToJSON,
   UpdateExpressionDtoFromJSON,
   UpdateExpressionDtoToJSON,
-} from '../models/index';
+} from "../models/index";
 
 export interface ExpressionControllerCreateRequest {
   sceneId: string;
@@ -53,16 +53,16 @@ export class ExpressionApi extends runtime.BaseAPI {
     requestParameters: ExpressionControllerCreateRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['sceneId'] == null) {
+    if (requestParameters["sceneId"] == null) {
       throw new runtime.RequiredError(
-        'sceneId',
+        "sceneId",
         'Required parameter "sceneId" was null or undefined when calling expressionControllerCreate().',
       );
     }
 
-    if (requestParameters['createExpressionDto'] == null) {
+    if (requestParameters["createExpressionDto"] == null) {
       throw new runtime.RequiredError(
-        'createExpressionDto',
+        "createExpressionDto",
         'Required parameter "createExpressionDto" was null or undefined when calling expressionControllerCreate().',
       );
     }
@@ -71,26 +71,26 @@ export class ExpressionApi extends runtime.BaseAPI {
 
     const headerParameters: runtime.HTTPHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters["Content-Type"] = "application/json";
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/expressions/{sceneId}`.replace(
-          `{${'sceneId'}}`,
-          encodeURIComponent(String(requestParameters['sceneId'])),
+          `{${"sceneId"}}`,
+          encodeURIComponent(String(requestParameters["sceneId"])),
         ),
-        method: 'POST',
+        method: "POST",
         headers: headerParameters,
         query: queryParameters,
-        body: CreateExpressionDtoToJSON(requestParameters['createExpressionDto']),
+        body: CreateExpressionDtoToJSON(requestParameters["createExpressionDto"]),
       },
       initOverrides,
     );
@@ -117,9 +117,9 @@ export class ExpressionApi extends runtime.BaseAPI {
     requestParameters: ExpressionControllerFindExpressionBySceneIdRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<Array<Expression>>> {
-    if (requestParameters['sceneId'] == null) {
+    if (requestParameters["sceneId"] == null) {
       throw new runtime.RequiredError(
-        'sceneId',
+        "sceneId",
         'Required parameter "sceneId" was null or undefined when calling expressionControllerFindExpressionBySceneId().',
       );
     }
@@ -130,19 +130,19 @@ export class ExpressionApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/expressions/{sceneId}`.replace(
-          `{${'sceneId'}}`,
-          encodeURIComponent(String(requestParameters['sceneId'])),
+          `{${"sceneId"}}`,
+          encodeURIComponent(String(requestParameters["sceneId"])),
         ),
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -180,16 +180,16 @@ export class ExpressionApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/expressions/weekly`,
-        method: 'GET',
+        method: "GET",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -218,9 +218,9 @@ export class ExpressionApi extends runtime.BaseAPI {
     requestParameters: ExpressionControllerRemoveRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['expressionId'] == null) {
+    if (requestParameters["expressionId"] == null) {
       throw new runtime.RequiredError(
-        'expressionId',
+        "expressionId",
         'Required parameter "expressionId" was null or undefined when calling expressionControllerRemove().',
       );
     }
@@ -231,19 +231,19 @@ export class ExpressionApi extends runtime.BaseAPI {
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/expressions/{expressionId}`.replace(
-          `{${'expressionId'}}`,
-          encodeURIComponent(String(requestParameters['expressionId'])),
+          `{${"expressionId"}}`,
+          encodeURIComponent(String(requestParameters["expressionId"])),
         ),
-        method: 'DELETE',
+        method: "DELETE",
         headers: headerParameters,
         query: queryParameters,
       },
@@ -272,16 +272,16 @@ export class ExpressionApi extends runtime.BaseAPI {
     requestParameters: ExpressionControllerUpdateRequest,
     initOverrides?: RequestInit | runtime.InitOverrideFunction,
   ): Promise<runtime.ApiResponse<void>> {
-    if (requestParameters['expressionId'] == null) {
+    if (requestParameters["expressionId"] == null) {
       throw new runtime.RequiredError(
-        'expressionId',
+        "expressionId",
         'Required parameter "expressionId" was null or undefined when calling expressionControllerUpdate().',
       );
     }
 
-    if (requestParameters['updateExpressionDto'] == null) {
+    if (requestParameters["updateExpressionDto"] == null) {
       throw new runtime.RequiredError(
-        'updateExpressionDto',
+        "updateExpressionDto",
         'Required parameter "updateExpressionDto" was null or undefined when calling expressionControllerUpdate().',
       );
     }
@@ -290,26 +290,26 @@ export class ExpressionApi extends runtime.BaseAPI {
 
     const headerParameters: runtime.HTTPHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters["Content-Type"] = "application/json";
 
     if (this.configuration && this.configuration.accessToken) {
       const token = this.configuration.accessToken;
-      const tokenString = await token('token', []);
+      const tokenString = await token("token", []);
 
       if (tokenString) {
-        headerParameters['Authorization'] = `Bearer ${tokenString}`;
+        headerParameters["Authorization"] = `Bearer ${tokenString}`;
       }
     }
     const response = await this.request(
       {
         path: `/api/expressions/{expressionId}`.replace(
-          `{${'expressionId'}}`,
-          encodeURIComponent(String(requestParameters['expressionId'])),
+          `{${"expressionId"}}`,
+          encodeURIComponent(String(requestParameters["expressionId"])),
         ),
-        method: 'PUT',
+        method: "PUT",
         headers: headerParameters,
         query: queryParameters,
-        body: UpdateExpressionDtoToJSON(requestParameters['updateExpressionDto']),
+        body: UpdateExpressionDtoToJSON(requestParameters["updateExpressionDto"]),
       },
       initOverrides,
     );

@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { ExampleDto } from './ExampleDto';
+import { mapValues } from "../runtime";
+import type { ExampleDto } from "./ExampleDto";
 import {
   ExampleDtoFromJSON,
   ExampleDtoFromJSONTyped,
   ExampleDtoToJSON,
   ExampleDtoToJSONTyped,
-} from './ExampleDto';
+} from "./ExampleDto";
 
 /**
  *
@@ -57,10 +57,10 @@ export interface CreateExpressionDto {
  * Check if a given object implements the CreateExpressionDto interface.
  */
 export function instanceOfCreateExpressionDto(value: object): value is CreateExpressionDto {
-  if (!('expression' in value) || value['expression'] === undefined) return false;
-  if (!('meaning' in value) || value['meaning'] === undefined) return false;
-  if (!('usage' in value) || value['usage'] === undefined) return false;
-  if (!('examples' in value) || value['examples'] === undefined) return false;
+  if (!("expression" in value) || value["expression"] === undefined) return false;
+  if (!("meaning" in value) || value["meaning"] === undefined) return false;
+  if (!("usage" in value) || value["usage"] === undefined) return false;
+  if (!("examples" in value) || value["examples"] === undefined) return false;
   return true;
 }
 
@@ -76,10 +76,10 @@ export function CreateExpressionDtoFromJSONTyped(
     return json;
   }
   return {
-    expression: json['expression'],
-    meaning: json['meaning'],
-    usage: json['usage'],
-    examples: (json['examples'] as Array<any>).map(ExampleDtoFromJSON),
+    expression: json["expression"],
+    meaning: json["meaning"],
+    usage: json["usage"],
+    examples: (json["examples"] as Array<any>).map(ExampleDtoFromJSON),
   };
 }
 
@@ -96,9 +96,9 @@ export function CreateExpressionDtoToJSONTyped(
   }
 
   return {
-    expression: value['expression'],
-    meaning: value['meaning'],
-    usage: value['usage'],
-    examples: (value['examples'] as Array<any>).map(ExampleDtoToJSON),
+    expression: value["expression"],
+    meaning: value["meaning"],
+    usage: value["usage"],
+    examples: (value["examples"] as Array<any>).map(ExampleDtoToJSON),
   };
 }

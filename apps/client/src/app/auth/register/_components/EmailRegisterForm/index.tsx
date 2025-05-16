@@ -1,25 +1,27 @@
-'use client';
+"use client";
 
-import registerAction, { RegisterActionProps } from '@/app/actions/auth/register';
+import registerAction, { type RegisterActionProps } from "@/app/actions/auth/register";
 
-import Button from '@/components/Button';
-import Field from '@/components/Field';
-import { MESSAGE } from '@/constants/toast';
-import { PATHS } from '@/constants/path';
-import sendEmail from '@/app/actions/email-verification/sendEmail';
-import { toast } from 'react-toastify';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import verifyCode from '@/app/actions/email-verification/verifyCode';
+import sendEmail from "@/app/actions/email-verification/sendEmail";
+import verifyCode from "@/app/actions/email-verification/verifyCode";
+import Button from "@/components/Button";
+import Field from "@/components/Field";
+import { PATHS } from "@/constants/path";
+import { EMAIL_REGEX } from "@/constants/regex";
+import { MESSAGE } from "@/constants/toast";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
-const INITIAL_REGISTER_BODY = { email: '', password: '', nickname: '', how: '' };
+const INITIAL_REGISTER_BODY = { email: "", password: "", nickname: "", how: "" };
 
 export default function EmailRegisterForm() {
   const router = useRouter();
 
   const [registerBody, setRegisterBody] = useState<RegisterActionProps>(INITIAL_REGISTER_BODY);
-  const [verificationCode, setVerifyCationCode] = useState('');
-  const [passwordConfirm, setPasswordConfirm] = useState('');
+  const [registerBodyMessage, setRegisterBodyMessage] = useState<RegisterActionProps>(INITIAL_REGISTER_BODY);
+  const [verificationCode, setVerifyCationCode] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
   const [isClickedSendEmailVerifyClicked, setIsClickedSendEmailVerifyClicked] = useState(false);
   const [isCodeVerified, setIsCodeVerified] = useState(false);
 
@@ -40,8 +42,15 @@ export default function EmailRegisterForm() {
 
   const handleSendEmailVerifyClick = async () => {
     try {
-      const { success } = await sendEmail({ email: registerBody.email });
+      if (!EMAIL_REGEX.test(registerBody.email)) {
+        setRegisterBodyMessage((prev) => ({
+          ...prev,
+          email: MESSAGE.EMAIL.ERROR.UNFORMAT
+        }))
+        return;
+      }
 
+      const { success } = await sendEmail({ email: registerBody.email });
       if (!success) {
         toast.error(MESSAGE.AUTH.ERROR.ALREADY_EXISTS);
         return;
@@ -85,8 +94,8 @@ export default function EmailRegisterForm() {
       setRegisterBody(INITIAL_REGISTER_BODY);
       setIsClickedSendEmailVerifyClicked(false);
       setIsCodeVerified(false);
-      setVerifyCationCode('');
-      setPasswordConfirm('');
+      setVerifyCationCode("");
+      setPasswordConfirm("");
     }
   };
 
@@ -104,8 +113,8 @@ export default function EmailRegisterForm() {
           <Field.Label>Email</Field.Label>
           <Field.InputWithButton
             inputProps={{
-              name: 'email',
-              placeholder: 'ex. renglish@gmail.com',
+              name: "email",
+              placeholder: "ex. renglish@gmail.com",
               value: registerBody.email,
               onChange: handleRegisterBodyChange,
             }}
@@ -114,13 +123,14 @@ export default function EmailRegisterForm() {
               disabled: isClickedSendEmailVerifyClicked,
             }}
           />
+          {registerBodyMessage.email && <Field.Message label={registerBodyMessage.email} varients="error" />}
         </Field>
         {isClickedSendEmailVerifyClicked && (
           <Field>
             <Field.Label>Email Verification Code</Field.Label>
             <Field.InputWithButton
               inputProps={{
-                placeholder: 'ex. ABCDEF',
+                placeholder: "ex. ABCDEF",
                 value: verificationCode,
                 onChange: handleVerificationCodeChange,
               }}

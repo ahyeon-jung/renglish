@@ -9,57 +9,77 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import * as runtime from '../runtime';
-import type { StudyDto, UpdateUserDto, User, WritingDto } from '../models/index';
+import * as runtime from "../runtime";
+import type { StudyDto, UpdateUserDto, User, WritingDto } from "../models/index";
 export interface MyControllerChangeUserRequest {
-    updateUserDto: UpdateUserDto;
+  updateUserDto: UpdateUserDto;
 }
 export interface MyControllerFindMyStudiesRequest {
-    type?: string;
+  type?: string;
 }
 /**
  *
  */
 export declare class MyApi extends runtime.BaseAPI {
-    /**
-     * 사용자가 정보 변경을 시도합니다.
-     * 사용자 정보 변경 [TOKEN]
-     */
-    myControllerChangeUserRaw(requestParameters: MyControllerChangeUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * 사용자가 정보 변경을 시도합니다.
-     * 사용자 정보 변경 [TOKEN]
-     */
-    myControllerChangeUser(requestParameters: MyControllerChangeUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * 참여중인 스터디를 조회합니다.
-     * 사용자가 참여중인 스터디 목록 [TOKEN]
-     */
-    myControllerFindMyStudiesRaw(requestParameters: MyControllerFindMyStudiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<StudyDto>>>;
-    /**
-     * 참여중인 스터디를 조회합니다.
-     * 사용자가 참여중인 스터디 목록 [TOKEN]
-     */
-    myControllerFindMyStudies(requestParameters?: MyControllerFindMyStudiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<StudyDto>>;
-    /**
-     * 사용자가 작성한 작문을 조회합니다.
-     * 사용자가 작성한 작문 목록 [TOKEN]
-     */
-    myControllerFindMyWritingsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<WritingDto>>>;
-    /**
-     * 사용자가 작성한 작문을 조회합니다.
-     * 사용자가 작성한 작문 목록 [TOKEN]
-     */
-    myControllerFindMyWritings(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<WritingDto>>;
-    /**
-     * 현재 사용자 정보를 가져옵니다.
-     * 현재 사용자 정보 [TOKEN]
-     */
-    myControllerFindUserByTokenRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>>;
-    /**
-     * 현재 사용자 정보를 가져옵니다.
-     * 현재 사용자 정보 [TOKEN]
-     */
-    myControllerFindUserByToken(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<User>;
+  /**
+   * 사용자가 정보 변경을 시도합니다.
+   * 사용자 정보 변경 [TOKEN]
+   */
+  myControllerChangeUserRaw(
+    requestParameters: MyControllerChangeUserRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<void>>;
+  /**
+   * 사용자가 정보 변경을 시도합니다.
+   * 사용자 정보 변경 [TOKEN]
+   */
+  myControllerChangeUser(
+    requestParameters: MyControllerChangeUserRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<void>;
+  /**
+   * 참여중인 스터디를 조회합니다.
+   * 사용자가 참여중인 스터디 목록 [TOKEN]
+   */
+  myControllerFindMyStudiesRaw(
+    requestParameters: MyControllerFindMyStudiesRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<Array<StudyDto>>>;
+  /**
+   * 참여중인 스터디를 조회합니다.
+   * 사용자가 참여중인 스터디 목록 [TOKEN]
+   */
+  myControllerFindMyStudies(
+    requestParameters?: MyControllerFindMyStudiesRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<Array<StudyDto>>;
+  /**
+   * 사용자가 작성한 작문을 조회합니다.
+   * 사용자가 작성한 작문 목록 [TOKEN]
+   */
+  myControllerFindMyWritingsRaw(
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<Array<WritingDto>>>;
+  /**
+   * 사용자가 작성한 작문을 조회합니다.
+   * 사용자가 작성한 작문 목록 [TOKEN]
+   */
+  myControllerFindMyWritings(
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<Array<WritingDto>>;
+  /**
+   * 현재 사용자 정보를 가져옵니다.
+   * 현재 사용자 정보 [TOKEN]
+   */
+  myControllerFindUserByTokenRaw(
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<User>>;
+  /**
+   * 현재 사용자 정보를 가져옵니다.
+   * 현재 사용자 정보 [TOKEN]
+   */
+  myControllerFindUserByToken(
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<User>;
 }
 //# sourceMappingURL=MyApi.d.ts.map

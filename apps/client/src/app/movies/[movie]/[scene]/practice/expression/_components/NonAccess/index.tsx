@@ -1,11 +1,11 @@
-import Link from 'next/link';
-import { PATHS } from '@/constants/path';
-import clsx from 'clsx';
+import Link from "next/link";
+import { PATHS } from "@/constants/path";
+import clsx from "clsx";
 
 export default function NonAccess() {
   return (
     <main
-      className={clsx('mt-[var(--header-height)] py-4', 'flex flex-col items-center text-gray-800')}
+      className={clsx("mt-[var(--header-height)] py-4", "flex flex-col items-center text-gray-800")}
     >
       <section className="text-center">
         <h1 className="text-2xl font-bold text-orange-600 mb-2">🎓 Sign Up to Learn!</h1>

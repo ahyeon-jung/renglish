@@ -1,22 +1,21 @@
-'use server';
+"use server";
 
-import { handleError } from '@/utils/error';
-
-import { ActionResponse } from '@/types/action';
-import { ENV } from '@/constants/env';
-import { cookies } from 'next/headers';
-import { authApi } from '@/libs/api';
-import { REMEMBER_ME_EXPIRATION_TIME } from '@/constants/time';
+import { ENV } from "@/constants/env";
+import { EMAIL_REGEX } from "@/constants/regex";
+import { REMEMBER_ME_EXPIRATION_TIME } from "@/constants/time";
+import { authApi } from "@/libs/api";
+import { handleError } from "@/utils/error";
+import { cookies } from "next/headers";
 
 type LoginAction = { email: string; password: string; rememberMe: boolean };
 
-export default async function loginAction({
-  email,
-  password,
-  rememberMe,
-}: LoginAction) {
+export default async function loginAction({ email, password, rememberMe }: LoginAction) {
   if (!email || !password) {
-    return { status: 200, success: false, message: 'no required data', data: null };
+    return { status: 400, success: false, message: "no required data", data: null };
+  }
+
+  if (!EMAIL_REGEX.test(email)) {
+    return { status: 400, success: false, message: "Enter a valid email format.", data: null };
   }
 
   try {
@@ -30,19 +29,19 @@ export default async function loginAction({
     cookieStore.set(ENV.COOKIE_ACCESS_TOKEN_KEY, accessToken, {
       httpOnly: true,
       secure: ENV.IS_PRODUCTION,
-      path: '/',
+      path: "/",
     });
 
     cookieStore.set(ENV.COOKIE_REFRESH_TOKEN_KEY, refreshToken, {
       httpOnly: true,
       secure: ENV.IS_PRODUCTION,
-      path: '/',
+      path: "/",
       ...(rememberMe && { maxAge: REMEMBER_ME_EXPIRATION_TIME }),
     });
 
-    return { status: 200, success: true, message: 'Login successfully', data: email };
+    return { status: 200, success: true, message: "Login successfully", data: email };
   } catch (e) {
     const err = await handleError(e);
-    return { status: err.statusCode, success: false, message: err.message, data: null };
+    return { status: err.statusCode === 400 ? 401 : err.statusCode, success: false, message: err.message, data: null };
   }
 }

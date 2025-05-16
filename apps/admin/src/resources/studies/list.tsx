@@ -1,7 +1,6 @@
-
-import { List, Datagrid, TextField, DateField } from 'react-admin'
-import RESOURCE from '../../constants/resource'
-import { StudyDto } from '@renglish/services';
+import { List, Datagrid, TextField, DateField } from "react-admin";
+import RESOURCE from "../../constants/resource";
+import { StudyDto } from "@renglish/services";
 
 const StudyList = () => (
   <List<StudyDto> resource={RESOURCE.STUDIES}>
@@ -14,6 +13,6 @@ const StudyList = () => (
       <DateField source="studiedAt" />
     </Datagrid>
   </List>
-)
+);
 
 export default StudyList;

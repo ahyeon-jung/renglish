@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
  *
  * @export
@@ -43,9 +43,9 @@ export interface CreateSceneDto {
  * Check if a given object implements the CreateSceneDto interface.
  */
 export function instanceOfCreateSceneDto(value: object): value is CreateSceneDto {
-  if (!('title' in value) || value['title'] === undefined) return false;
-  if (!('audioUrl' in value) || value['audioUrl'] === undefined) return false;
-  if (!('description' in value) || value['description'] === undefined) return false;
+  if (!("title" in value) || value["title"] === undefined) return false;
+  if (!("audioUrl" in value) || value["audioUrl"] === undefined) return false;
+  if (!("description" in value) || value["description"] === undefined) return false;
   return true;
 }
 
@@ -61,9 +61,9 @@ export function CreateSceneDtoFromJSONTyped(
     return json;
   }
   return {
-    title: json['title'],
-    audioUrl: json['audioUrl'],
-    description: json['description'],
+    title: json["title"],
+    audioUrl: json["audioUrl"],
+    description: json["description"],
   };
 }
 
@@ -80,8 +80,8 @@ export function CreateSceneDtoToJSONTyped(
   }
 
   return {
-    title: value['title'],
-    audioUrl: value['audioUrl'],
-    description: value['description'],
+    title: value["title"],
+    audioUrl: value["audioUrl"],
+    description: value["description"],
   };
 }

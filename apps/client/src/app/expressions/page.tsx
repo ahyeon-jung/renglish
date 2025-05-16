@@ -1,4 +1,4 @@
-import WeeklyExpressionPage from './WeeklyExpression';
+import WeeklyExpressionPage from "./WeeklyExpression";
 
 export default function Expressions() {
   return <WeeklyExpressionPage />;

@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import ExpressionItem from './_components/ExpressionItem';
-import clsx from 'clsx';
-import { useEffect, useState } from 'react';
-import { ExpressionType } from '@/types/expression';
-import getWeeklyExpressions from '../actions/expressions/getWeeklyExpressions';
+import ExpressionItem from "./_components/ExpressionItem";
+import clsx from "clsx";
+import { useEffect, useState } from "react";
+import { ExpressionType } from "@/types/expression";
+import getWeeklyExpressions from "../actions/expressions/getWeeklyExpressions";
 
 export default function WeeklyExpressionPage() {
   const [expressions, setExpressions] = useState<ExpressionType[]>([]);
@@ -21,7 +21,7 @@ export default function WeeklyExpressionPage() {
   }, []);
 
   return (
-    <main className={clsx('mt-[var(--header-height)] p-3', 'flex flex-col gap-6')}>
+    <main className={clsx("mt-[var(--header-height)] p-3", "flex flex-col gap-6")}>
       <div>
         <h1 className="text-2xl font-bold text-orange-600 mb-2">Weekly Expressions</h1>
         <p className="text-md leading-relaxed">

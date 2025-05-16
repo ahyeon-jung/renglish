@@ -1,8 +1,8 @@
-import { APIResponse } from '@/types/api';
-import { ENV } from '@/constants/env';
-import { FetchError } from '@/utils/error';
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
+import { APIResponse } from "@/types/api";
+import { ENV } from "@/constants/env";
+import { FetchError } from "@/utils/error";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import {
   AuthApi,
   Configuration,
@@ -16,8 +16,8 @@ import {
   StudyApi,
   UsersApi,
   WritingsApi,
-} from '@renglish/services';
-import { fetchWithToken } from './fetchWithToken';
+} from "@renglish/services";
+import { fetchWithToken } from "./fetchWithToken";
 
 export async function fetchAPI<T = void>(endpoint: string, options?: RequestInit, isRetry = false) {
   const baseURL = ENV.API_BASE_URL;
@@ -25,7 +25,7 @@ export async function fetchAPI<T = void>(endpoint: string, options?: RequestInit
   const res = await fetch(`${baseURL}${endpoint}`, {
     ...options,
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       ...options?.headers,
     },
   });
@@ -35,9 +35,9 @@ export async function fetchAPI<T = void>(endpoint: string, options?: RequestInit
     const refreshToken = cookieStore.get(ENV.COOKIE_REFRESH_TOKEN_KEY)?.value;
 
     const refreshRes = await fetch(`${baseURL}/auth/refresh`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${refreshToken}`,
       },
     });
@@ -47,7 +47,7 @@ export async function fetchAPI<T = void>(endpoint: string, options?: RequestInit
     }
 
     if (!refreshRes.ok) {
-      throw new Error('Refresh token expired or invalid');
+      throw new Error("Refresh token expired or invalid");
     }
 
     const {

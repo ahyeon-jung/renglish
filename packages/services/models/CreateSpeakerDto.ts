@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from "../runtime";
 /**
  *
  * @export
@@ -37,8 +37,8 @@ export interface CreateSpeakerDto {
  * Check if a given object implements the CreateSpeakerDto interface.
  */
 export function instanceOfCreateSpeakerDto(value: object): value is CreateSpeakerDto {
-  if (!('speakerName' in value) || value['speakerName'] === undefined) return false;
-  if (!('speakerType' in value) || value['speakerType'] === undefined) return false;
+  if (!("speakerName" in value) || value["speakerName"] === undefined) return false;
+  if (!("speakerType" in value) || value["speakerType"] === undefined) return false;
   return true;
 }
 
@@ -54,8 +54,8 @@ export function CreateSpeakerDtoFromJSONTyped(
     return json;
   }
   return {
-    speakerName: json['speaker_name'],
-    speakerType: json['speaker_type'],
+    speakerName: json["speaker_name"],
+    speakerType: json["speaker_type"],
   };
 }
 
@@ -72,7 +72,7 @@ export function CreateSpeakerDtoToJSONTyped(
   }
 
   return {
-    speaker_name: value['speakerName'],
-    speaker_type: value['speakerType'],
+    speaker_name: value["speakerName"],
+    speaker_type: value["speakerType"],
   };
 }

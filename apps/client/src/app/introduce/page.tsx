@@ -1,5 +1,5 @@
-import IntroducePage from './Introduce';
+import IntroducePage from "./Introduce";
 
 export default function Introduce() {
-  return <IntroducePage />
+  return <IntroducePage />;
 }

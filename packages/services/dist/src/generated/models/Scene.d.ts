@@ -9,89 +9,89 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import type { Movie } from './Movie';
-import type { Study } from './Study';
-import type { Dialogue } from './Dialogue';
-import type { Expression } from './Expression';
-import type { Speaker } from './Speaker';
+import type { Movie } from "./Movie";
+import type { Study } from "./Study";
+import type { Dialogue } from "./Dialogue";
+import type { Expression } from "./Expression";
+import type { Speaker } from "./Speaker";
 /**
  *
  * @export
  * @interface Scene
  */
 export interface Scene {
-    /**
-     * 아이디
-     * @type {string}
-     * @memberof Scene
-     */
-    id: string;
-    /**
-     * 생성일
-     * @type {Date}
-     * @memberof Scene
-     */
-    createdAt: Date;
-    /**
-     * 수정일
-     * @type {Date}
-     * @memberof Scene
-     */
-    updatedAt: Date;
-    /**
-     * 삭제일
-     * @type {Date}
-     * @memberof Scene
-     */
-    deletedAt: Date;
-    /**
-     *
-     * @type {string}
-     * @memberof Scene
-     */
-    title: string;
-    /**
-     *
-     * @type {string}
-     * @memberof Scene
-     */
-    description: string;
-    /**
-     *
-     * @type {string}
-     * @memberof Scene
-     */
-    audioUrl: string;
-    /**
-     *
-     * @type {Movie}
-     * @memberof Scene
-     */
-    movie: Movie;
-    /**
-     *
-     * @type {Study}
-     * @memberof Scene
-     */
-    study: Study;
-    /**
-     *
-     * @type {Array<Speaker>}
-     * @memberof Scene
-     */
-    speakers: Array<Speaker>;
-    /**
-     *
-     * @type {Array<Dialogue>}
-     * @memberof Scene
-     */
-    dialogues: Array<Dialogue>;
-    /**
-     *
-     * @type {Array<Expression>}
-     * @memberof Scene
-     */
-    expressions: Array<Expression>;
+  /**
+   * 아이디
+   * @type {string}
+   * @memberof Scene
+   */
+  id: string;
+  /**
+   * 생성일
+   * @type {Date}
+   * @memberof Scene
+   */
+  createdAt: Date;
+  /**
+   * 수정일
+   * @type {Date}
+   * @memberof Scene
+   */
+  updatedAt: Date;
+  /**
+   * 삭제일
+   * @type {Date}
+   * @memberof Scene
+   */
+  deletedAt: Date;
+  /**
+   *
+   * @type {string}
+   * @memberof Scene
+   */
+  title: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Scene
+   */
+  description: string;
+  /**
+   *
+   * @type {string}
+   * @memberof Scene
+   */
+  audioUrl: string;
+  /**
+   *
+   * @type {Movie}
+   * @memberof Scene
+   */
+  movie: Movie;
+  /**
+   *
+   * @type {Study}
+   * @memberof Scene
+   */
+  study: Study;
+  /**
+   *
+   * @type {Array<Speaker>}
+   * @memberof Scene
+   */
+  speakers: Array<Speaker>;
+  /**
+   *
+   * @type {Array<Dialogue>}
+   * @memberof Scene
+   */
+  dialogues: Array<Dialogue>;
+  /**
+   *
+   * @type {Array<Expression>}
+   * @memberof Scene
+   */
+  expressions: Array<Expression>;
 }
 /**
  * Check if a given object implements the Scene interface.

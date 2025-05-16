@@ -15,34 +15,32 @@
  * Check if a given object implements the PasswordResetDto interface.
  */
 export function instanceOfPasswordResetDto(value) {
-    if (!('email' in value) || value['email'] === undefined)
-        return false;
-    if (!('password' in value) || value['password'] === undefined)
-        return false;
-    return true;
+  if (!("email" in value) || value["email"] === undefined) return false;
+  if (!("password" in value) || value["password"] === undefined) return false;
+  return true;
 }
 export function PasswordResetDtoFromJSON(json) {
-    return PasswordResetDtoFromJSONTyped(json, false);
+  return PasswordResetDtoFromJSONTyped(json, false);
 }
 export function PasswordResetDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'email': json['email'],
-        'password': json['password'],
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    email: json["email"],
+    password: json["password"],
+  };
 }
 export function PasswordResetDtoToJSON(json) {
-    return PasswordResetDtoToJSONTyped(json, false);
+  return PasswordResetDtoToJSONTyped(json, false);
 }
 export function PasswordResetDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'email': value['email'],
-        'password': value['password'],
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    email: value["email"],
+    password: value["password"],
+  };
 }
 //# sourceMappingURL=PasswordResetDto.js.map

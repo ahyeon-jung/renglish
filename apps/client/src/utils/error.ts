@@ -3,7 +3,7 @@ export class FetchError extends Error {
 
   constructor(message: string, response: Response) {
     super(message);
-    this.name = 'FetchError';
+    this.name = "FetchError";
     this.response = response;
   }
 }
@@ -25,11 +25,11 @@ export async function handleError(e: unknown): Promise<{
   path?: string;
 }> {
   if (
-    typeof e === 'object' &&
+    typeof e === "object" &&
     e !== null &&
-    'response' in e &&
+    "response" in e &&
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    typeof (e as any).response?.json === 'function'
+    typeof (e as any).response?.json === "function"
   ) {
     try {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -37,20 +37,20 @@ export async function handleError(e: unknown): Promise<{
       return {
         statusCode: res.statusCode ?? 500,
         message: Array.isArray(res.message)
-          ? res.message.join(', ')
-          : (res.message ?? '서버 오류 발생'),
+          ? res.message.join(", ")
+          : (res.message ?? "서버 오류 발생"),
         path: res.path,
       };
     } catch {
       return {
         statusCode: 500,
-        message: '에러 응답을 파싱할 수 없습니다.',
+        message: "에러 응답을 파싱할 수 없습니다.",
       };
     }
   }
 
   return {
     statusCode: 500,
-    message: (e as Error).message || '알 수 없는 에러가 발생했습니다.',
+    message: (e as Error).message || "알 수 없는 에러가 발생했습니다.",
   };
 }

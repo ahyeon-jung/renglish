@@ -1,4 +1,4 @@
-import { ExpressionType } from '@/types/expression';
+import { ExpressionType } from "@/types/expression";
 
 type ExpressionProps = {
   order?: number;

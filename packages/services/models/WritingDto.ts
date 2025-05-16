@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { Dialogue } from './Dialogue';
+import { mapValues } from "../runtime";
+import type { Dialogue } from "./Dialogue";
 import {
   DialogueFromJSON,
   DialogueFromJSONTyped,
   DialogueToJSON,
   DialogueToJSONTyped,
-} from './Dialogue';
+} from "./Dialogue";
 
 /**
  *
@@ -63,11 +63,11 @@ export interface WritingDto {
  * Check if a given object implements the WritingDto interface.
  */
 export function instanceOfWritingDto(value: object): value is WritingDto {
-  if (!('id' in value) || value['id'] === undefined) return false;
-  if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
-  if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
-  if (!('writing' in value) || value['writing'] === undefined) return false;
-  if (!('dialogue' in value) || value['dialogue'] === undefined) return false;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("writing" in value) || value["writing"] === undefined) return false;
+  if (!("dialogue" in value) || value["dialogue"] === undefined) return false;
   return true;
 }
 
@@ -80,11 +80,11 @@ export function WritingDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     return json;
   }
   return {
-    id: json['id'],
-    createdAt: new Date(json['createdAt']),
-    updatedAt: new Date(json['updatedAt']),
-    writing: json['writing'],
-    dialogue: DialogueFromJSON(json['dialogue']),
+    id: json["id"],
+    createdAt: new Date(json["createdAt"]),
+    updatedAt: new Date(json["updatedAt"]),
+    writing: json["writing"],
+    dialogue: DialogueFromJSON(json["dialogue"]),
   };
 }
 
@@ -101,10 +101,10 @@ export function WritingDtoToJSONTyped(
   }
 
   return {
-    id: value['id'],
-    createdAt: value['createdAt'].toISOString(),
-    updatedAt: value['updatedAt'].toISOString(),
-    writing: value['writing'],
-    dialogue: DialogueToJSON(value['dialogue']),
+    id: value["id"],
+    createdAt: value["createdAt"].toISOString(),
+    updatedAt: value["updatedAt"].toISOString(),
+    writing: value["writing"],
+    dialogue: DialogueToJSON(value["dialogue"]),
   };
 }

@@ -11,51 +11,46 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { DialogueFromJSON, DialogueToJSON, } from './Dialogue';
+import { DialogueFromJSON, DialogueToJSON } from "./Dialogue";
 /**
  * Check if a given object implements the WritingDto interface.
  */
 export function instanceOfWritingDto(value) {
-    if (!('id' in value) || value['id'] === undefined)
-        return false;
-    if (!('createdAt' in value) || value['createdAt'] === undefined)
-        return false;
-    if (!('updatedAt' in value) || value['updatedAt'] === undefined)
-        return false;
-    if (!('writing' in value) || value['writing'] === undefined)
-        return false;
-    if (!('dialogue' in value) || value['dialogue'] === undefined)
-        return false;
-    return true;
+  if (!("id" in value) || value["id"] === undefined) return false;
+  if (!("createdAt" in value) || value["createdAt"] === undefined) return false;
+  if (!("updatedAt" in value) || value["updatedAt"] === undefined) return false;
+  if (!("writing" in value) || value["writing"] === undefined) return false;
+  if (!("dialogue" in value) || value["dialogue"] === undefined) return false;
+  return true;
 }
 export function WritingDtoFromJSON(json) {
-    return WritingDtoFromJSONTyped(json, false);
+  return WritingDtoFromJSONTyped(json, false);
 }
 export function WritingDtoFromJSONTyped(json, ignoreDiscriminator) {
-    if (json == null) {
-        return json;
-    }
-    return {
-        'id': json['id'],
-        'createdAt': (new Date(json['createdAt'])),
-        'updatedAt': (new Date(json['updatedAt'])),
-        'writing': json['writing'],
-        'dialogue': DialogueFromJSON(json['dialogue']),
-    };
+  if (json == null) {
+    return json;
+  }
+  return {
+    id: json["id"],
+    createdAt: new Date(json["createdAt"]),
+    updatedAt: new Date(json["updatedAt"]),
+    writing: json["writing"],
+    dialogue: DialogueFromJSON(json["dialogue"]),
+  };
 }
 export function WritingDtoToJSON(json) {
-    return WritingDtoToJSONTyped(json, false);
+  return WritingDtoToJSONTyped(json, false);
 }
 export function WritingDtoToJSONTyped(value, ignoreDiscriminator = false) {
-    if (value == null) {
-        return value;
-    }
-    return {
-        'id': value['id'],
-        'createdAt': ((value['createdAt']).toISOString()),
-        'updatedAt': ((value['updatedAt']).toISOString()),
-        'writing': value['writing'],
-        'dialogue': DialogueToJSON(value['dialogue']),
-    };
+  if (value == null) {
+    return value;
+  }
+  return {
+    id: value["id"],
+    createdAt: value["createdAt"].toISOString(),
+    updatedAt: value["updatedAt"].toISOString(),
+    writing: value["writing"],
+    dialogue: DialogueToJSON(value["dialogue"]),
+  };
 }
 //# sourceMappingURL=WritingDto.js.map

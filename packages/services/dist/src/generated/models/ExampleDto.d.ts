@@ -15,25 +15,31 @@
  * @interface ExampleDto
  */
 export interface ExampleDto {
-    /**
-     *
-     * @type {string}
-     * @memberof ExampleDto
-     */
-    en: string;
-    /**
-     *
-     * @type {string}
-     * @memberof ExampleDto
-     */
-    ko: string;
+  /**
+   *
+   * @type {string}
+   * @memberof ExampleDto
+   */
+  en: string;
+  /**
+   *
+   * @type {string}
+   * @memberof ExampleDto
+   */
+  ko: string;
 }
 /**
  * Check if a given object implements the ExampleDto interface.
  */
 export declare function instanceOfExampleDto(value: object): value is ExampleDto;
 export declare function ExampleDtoFromJSON(json: any): ExampleDto;
-export declare function ExampleDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): ExampleDto;
+export declare function ExampleDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): ExampleDto;
 export declare function ExampleDtoToJSON(json: any): ExampleDto;
-export declare function ExampleDtoToJSONTyped(value?: ExampleDto | null, ignoreDiscriminator?: boolean): any;
+export declare function ExampleDtoToJSONTyped(
+  value?: ExampleDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=ExampleDto.d.ts.map

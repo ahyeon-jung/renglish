@@ -1,23 +1,23 @@
-import * as expressBasicAuth from 'express-basic-auth';
-import * as fs from 'fs';
-import { AppModule } from './app.module';
-import { NestFactory } from '@nestjs/core';
-import { SwaggerModule } from '@nestjs/swagger';
-import { ValidationPipe } from '@nestjs/common';
-import swaggerConfig from './configs/swagger.config';
-import { IoAdapter } from '@nestjs/platform-socket.io';
+import * as expressBasicAuth from "express-basic-auth";
+import * as fs from "fs";
+import { AppModule } from "./app.module";
+import { NestFactory } from "@nestjs/core";
+import { SwaggerModule } from "@nestjs/swagger";
+import { ValidationPipe } from "@nestjs/common";
+import swaggerConfig from "./configs/swagger.config";
+import { IoAdapter } from "@nestjs/platform-socket.io";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.useWebSocketAdapter(new IoAdapter(app));
 
-  app.setGlobalPrefix('api');
+  app.setGlobalPrefix("api");
 
   app.enableCors({
-    origin: '*',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    allowedHeaders: ['Content-Type', 'Accept', 'Authorization'],
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: ["Content-Type", "Accept", "Authorization"],
   });
 
   app.useGlobalPipes(new ValidationPipe());
@@ -33,13 +33,13 @@ async function bootstrap() {
   );
   const document = SwaggerModule.createDocument(app, swaggerConfig);
 
-  if (process.env.NODE_ENV === 'development') {
-    fs.writeFileSync('../../swagger.json', JSON.stringify(document, null, 2));
+  if (process.env.NODE_ENV === "development") {
+    fs.writeFileSync("../../swagger.json", JSON.stringify(document, null, 2));
   }
 
   app.use(process.env.SWAGGER_JSON_PATH, (_, res) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.setHeader('Content-Disposition', 'attachment; filename=swagger.json');
+    res.setHeader("Content-Type", "application/json");
+    res.setHeader("Content-Disposition", "attachment; filename=swagger.json");
 
     res.send(JSON.stringify(document, null, 2));
   });

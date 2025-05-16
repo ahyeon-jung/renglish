@@ -1,5 +1,5 @@
-import { Dialogue } from './dialogue';
-import { Speaker } from './speaker';
+import { Dialogue } from "./dialogue";
+import { Speaker } from "./speaker";
 
 export type Scene = {
   id: string;

@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import DialogListItem from '../../../../_components/DialogListItem';
-import { WandSparkles } from 'lucide-react';
-import { WritingDialogueType } from '@/types/dialogue';
-import { parseText } from '@/utils/content';
-import { useState } from 'react';
+import DialogListItem from "../../../../_components/DialogListItem";
+import { WandSparkles } from "lucide-react";
+import { WritingDialogueType } from "@/types/dialogue";
+import { parseText } from "@/utils/content";
+import { useState } from "react";
 
 type WritingDialogueProps = {
   onChange: (dialogueId: string, writing: string) => void;
@@ -16,7 +16,7 @@ export default function WritingDialogue({
   speaker,
   koreanScript,
   englishScript,
-  writingScript = '',
+  writingScript = "",
 }: WritingDialogueProps) {
   const [inputValue, setInputValue] = useState(writingScript);
   const [isShowAnswerDialogue, setIsShowAnswerDialogue] = useState(false);

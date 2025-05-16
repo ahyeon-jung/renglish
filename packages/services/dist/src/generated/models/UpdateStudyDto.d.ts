@@ -15,31 +15,37 @@
  * @interface UpdateStudyDto
  */
 export interface UpdateStudyDto {
-    /**
-     * 스터디명
-     * @type {string}
-     * @memberof UpdateStudyDto
-     */
-    title?: string;
-    /**
-     * 스터디 진행 날짜
-     * @type {Date}
-     * @memberof UpdateStudyDto
-     */
-    studiedAt?: Date;
-    /**
-     * 스터디 설명
-     * @type {string}
-     * @memberof UpdateStudyDto
-     */
-    description?: string;
+  /**
+   * 스터디명
+   * @type {string}
+   * @memberof UpdateStudyDto
+   */
+  title?: string;
+  /**
+   * 스터디 진행 날짜
+   * @type {Date}
+   * @memberof UpdateStudyDto
+   */
+  studiedAt?: Date;
+  /**
+   * 스터디 설명
+   * @type {string}
+   * @memberof UpdateStudyDto
+   */
+  description?: string;
 }
 /**
  * Check if a given object implements the UpdateStudyDto interface.
  */
 export declare function instanceOfUpdateStudyDto(value: object): value is UpdateStudyDto;
 export declare function UpdateStudyDtoFromJSON(json: any): UpdateStudyDto;
-export declare function UpdateStudyDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateStudyDto;
+export declare function UpdateStudyDtoFromJSONTyped(
+  json: any,
+  ignoreDiscriminator: boolean,
+): UpdateStudyDto;
 export declare function UpdateStudyDtoToJSON(json: any): UpdateStudyDto;
-export declare function UpdateStudyDtoToJSONTyped(value?: UpdateStudyDto | null, ignoreDiscriminator?: boolean): any;
+export declare function UpdateStudyDtoToJSONTyped(
+  value?: UpdateStudyDto | null,
+  ignoreDiscriminator?: boolean,
+): any;
 //# sourceMappingURL=UpdateStudyDto.d.ts.map

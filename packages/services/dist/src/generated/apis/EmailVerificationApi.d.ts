@@ -9,37 +9,49 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import * as runtime from '../runtime';
-import type { SendEmailDto, VerifyCodeDto } from '../models/index';
+import * as runtime from "../runtime";
+import type { SendEmailDto, VerifyCodeDto } from "../models/index";
 export interface EmailVerificationControllerSendEmailWithOTPRequest {
-    sendEmailDto: SendEmailDto;
+  sendEmailDto: SendEmailDto;
 }
 export interface EmailVerificationControllerVerifyCodeRequest {
-    verifyCodeDto: VerifyCodeDto;
+  verifyCodeDto: VerifyCodeDto;
 }
 /**
  *
  */
 export declare class EmailVerificationApi extends runtime.BaseAPI {
-    /**
-     * 회원가입을 위한 이메일로로 인증 코드를 요청합니다.
-     * 회원가입 이메일 인증코드 요청
-     */
-    emailVerificationControllerSendEmailWithOTPRaw(requestParameters: EmailVerificationControllerSendEmailWithOTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * 회원가입을 위한 이메일로로 인증 코드를 요청합니다.
-     * 회원가입 이메일 인증코드 요청
-     */
-    emailVerificationControllerSendEmailWithOTP(requestParameters: EmailVerificationControllerSendEmailWithOTPRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-    /**
-     * 받은 인증 코드가 올바른지 확인합니다.
-     * 회원가입 인증코드 확인
-     */
-    emailVerificationControllerVerifyCodeRaw(requestParameters: EmailVerificationControllerVerifyCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-    /**
-     * 받은 인증 코드가 올바른지 확인합니다.
-     * 회원가입 인증코드 확인
-     */
-    emailVerificationControllerVerifyCode(requestParameters: EmailVerificationControllerVerifyCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+  /**
+   * 회원가입을 위한 이메일로로 인증 코드를 요청합니다.
+   * 회원가입 이메일 인증코드 요청
+   */
+  emailVerificationControllerSendEmailWithOTPRaw(
+    requestParameters: EmailVerificationControllerSendEmailWithOTPRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<void>>;
+  /**
+   * 회원가입을 위한 이메일로로 인증 코드를 요청합니다.
+   * 회원가입 이메일 인증코드 요청
+   */
+  emailVerificationControllerSendEmailWithOTP(
+    requestParameters: EmailVerificationControllerSendEmailWithOTPRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<void>;
+  /**
+   * 받은 인증 코드가 올바른지 확인합니다.
+   * 회원가입 인증코드 확인
+   */
+  emailVerificationControllerVerifyCodeRaw(
+    requestParameters: EmailVerificationControllerVerifyCodeRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<runtime.ApiResponse<void>>;
+  /**
+   * 받은 인증 코드가 올바른지 확인합니다.
+   * 회원가입 인증코드 확인
+   */
+  emailVerificationControllerVerifyCode(
+    requestParameters: EmailVerificationControllerVerifyCodeRequest,
+    initOverrides?: RequestInit | runtime.InitOverrideFunction,
+  ): Promise<void>;
 }
 //# sourceMappingURL=EmailVerificationApi.d.ts.map
