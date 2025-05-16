@@ -12,7 +12,8 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import type { UpdateStudyDto } from './dto/update-study.dto';
-import type { StudyService } from './study.service';
+// biome-ignore lint/style/useImportType: <explanation>
+import { StudyService } from './study.service';
 
 import { ApiOkResponse, ApiOperation, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { AccessTokenGuard } from 'src/auth/guards/access-token.guard';

@@ -73,9 +73,9 @@ export class StudyService {
       .addGroupBy('movie.id');
 
     if (status === STUDY_STATUS.RECRUITING) {
-      baseQuery.where('study.studiedAt > NOW()');
+      baseQuery.where('study.isCompleted = false');
     } else if (status === STUDY_STATUS.COMPLETED) {
-      baseQuery.where('study.studiedAt <= NOW()');
+      baseQuery.where('study.isCompleted = true');
     }
 
     const totalCount = await baseQuery.getCount();
