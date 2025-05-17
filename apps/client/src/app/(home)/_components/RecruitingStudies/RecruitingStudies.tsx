@@ -1,13 +1,13 @@
 "use client";
 
-import Container from "../Container";
+import getStudiesAction from "@/app/actions/studies/getStudies";
+import StudyItem from "@/app/studies/_components/StudyItem";
 import { PATHS } from "@/constants/path";
 import { STUDY_STATUS_TAG } from "@/constants/tag";
-import StudyItem from "@/app/studies/_components/StudyItem";
-import getStudiesAction from "@/app/actions/studies/getStudies";
-import { useDataFetching } from "@/hooks/useDataFetching";
-import { ListStudyDto, PaginationStudyResponseDto } from "@renglish/services";
 import { QUERY_KEYS } from "@/hooks/queryKeys";
+import { useDataFetching } from "@/hooks/useDataFetching";
+import type { ListStudyDto, PaginationStudyResponseDto } from "@renglish/services";
+import Container from "../Container";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -41,7 +41,7 @@ export default function RecruitingStudies() {
       <div className="w-full">
         {isLoading ? (
           <div className="space-y-4">
-            {[...Array(3)].map((_, index) => (
+            {[...Array(3)].map((index) => (
               <div key={index} className="h-20 rounded-xl bg-gray-200 animate-pulse" />
             ))}
           </div>

@@ -1,5 +1,5 @@
-import Text from "../Text";
 import clsx from "clsx";
+import Text from "../Text";
 
 export type ButtonProps = {
   fit?: boolean;
@@ -21,13 +21,13 @@ export default function Button({
     : variants === "default"
       ? "bg-orange-400 hover:bg-orange-500 text-white cursor-pointer"
       : variants === "danger"
-        ? "bg-red-600 text-white"
+        ? "bg-red-600 text-white cursor-pointer"
         : variants === "primary"
-          ? "bg-blue-400 text-white"
+          ? "bg-blue-400 text-white cursor-pointer"
           : variants === "secondary"
-            ? "bg-gray-400 text-white"
+            ? "bg-gray-400 text-white cursor-pointer"
             : variants === "success"
-              ? "bg-green-600 text-white"
+              ? "bg-green-600 text-white cursor-pointer"
               : "";
 
   return (

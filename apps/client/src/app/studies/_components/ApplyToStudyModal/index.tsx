@@ -7,8 +7,10 @@ import Text from "@/components/Text";
 import { PATHS } from "@/constants/path";
 import { MESSAGE } from "@/constants/toast";
 import { GATHER_TOWN_URL } from "@/constants/url";
+import { QUERY_KEYS } from "@/hooks/queryKeys";
 import { useUserStore } from "@/stores/userStore";
 import { goToLoginWithRedirect } from "@/utils/path";
+import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -22,6 +24,7 @@ type ApplyToStudyModalProps = { sceneId: string; studyId: string };
 export default function ApplyToStudyModal({ sceneId, studyId }: ApplyToStudyModalProps) {
   const { userId } = useUserStore();
   const pathname = usePathname();
+  const queryClient = useQueryClient();
   const [userStatus, setUserStatus] = useState<string | null>(null);
 
   const handleApplyClick = async () => {
@@ -41,6 +44,7 @@ export default function ApplyToStudyModal({ sceneId, studyId }: ApplyToStudyModa
         setUserStatus(USER_STATUS.ALREADY_APPLIED);
         return;
       }
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.STUDY.RECRUITING] });
       setUserStatus(USER_STATUS.APPLY_SUCCESS);
     } catch {
       toast.error(MESSAGE.COMMON.ERROR.SERVER);
@@ -78,8 +82,8 @@ export default function ApplyToStudyModal({ sceneId, studyId }: ApplyToStudyModa
             <Link href={PATHS.MEETING.DETAIL(sceneId)}>
               <Button variants="success" >온라인 미팅 하러가기</Button>
             </Link>
+            <Button onClick={closeModal}>확인</Button>
           </Modal.Content>
-          <Button onClick={closeModal}>확인</Button>
         </Modal>
       )}
       {userStatus === USER_STATUS.ALREADY_APPLIED && (
