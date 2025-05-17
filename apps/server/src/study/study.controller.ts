@@ -12,7 +12,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import type { UpdateStudyDto } from './dto/update-study.dto';
-// biome-ignore lint/style/useImportType: <explanation>
+// biome-ignore lint/style/useImportType: Required as runtime import for NestJS dependency injection
 import { StudyService } from './study.service';
 
 import { ApiOkResponse, ApiOperation, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';

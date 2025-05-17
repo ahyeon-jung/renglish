@@ -64,7 +64,8 @@ export default function StudyItem({ nonApplicantsButton = false, ...study }: Stu
           />
         </Link>
       </div>
-      {!nonApplicantsButton && !study.isCompleted && <ApplyToStudyModal sceneId={study.scene.id} studyId={study.id} />}
+
+      {!study.isCompleted && <ApplyToStudyModal sceneId={study.scene.id} studyId={study.id} />}
     </div>
   );
 }

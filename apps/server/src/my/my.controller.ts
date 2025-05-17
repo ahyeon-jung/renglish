@@ -1,14 +1,16 @@
-import { Controller, Get, UseGuards, Request, Put, Body, Query } from '@nestjs/common';
-import { ApiBody, ApiOkResponse, ApiOperation, ApiQuery, ApiResponse } from '@nestjs/swagger';
+import { Body, Controller, Get, Put, Query, Request, UseGuards } from '@nestjs/common';
+import { ApiBody, ApiOkResponse, ApiOperation, ApiQuery, } from '@nestjs/swagger';
 import { AccessTokenGuard } from 'src/auth/guards/access-token.guard';
 import { TAG } from 'src/common/constants/tag';
 import { StudyDto } from 'src/study/dto/get-study.dto';
+// biome-ignore lint/style/useImportType: Required as runtime import for NestJS dependency injection
 import { StudyService } from 'src/study/study.service';
 import { UpdateUserDto } from 'src/user/dto/update-user.dto';
 import { User } from 'src/user/entities/user.entity';
+// biome-ignore lint/style/useImportType: Required as runtime import for NestJS dependency injection
 import { UserService } from 'src/user/user.service';
 import { WritingDto } from 'src/writing/dto/writing.dto';
-import { Writing } from 'src/writing/entities/writing.entity';
+// biome-ignore lint/style/useImportType: Required as runtime import for NestJS dependency injection
 import { WritingService } from 'src/writing/writing.service';
 
 @UseGuards(AccessTokenGuard)
@@ -18,7 +20,7 @@ export class MyController {
     private readonly userService: UserService,
     private readonly studyService: StudyService,
     private readonly writingService: WritingService,
-  ) {}
+  ) { }
   @Get('')
   @ApiOperation({
     summary: `현재 사용자 정보 ${TAG.TOKEN_REQUIRED}`,
@@ -54,7 +56,7 @@ export class MyController {
   })
   @ApiOkResponse({ type: StudyDto, isArray: true })
   findMyStudies(@Request() req, @Query('type') type?: string) {
-    const userId = req.user['id'];
+    const userId = req.user.id;
     return this.studyService.findByUser(userId, type);
   }
 
@@ -66,7 +68,7 @@ export class MyController {
   })
   @ApiOkResponse({ type: WritingDto, isArray: true })
   findMyWritings(@Request() req) {
-    const userId = req.user['id'];
+    const userId = req.userid;
     return this.writingService.findByUser(userId);
   }
 }

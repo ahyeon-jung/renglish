@@ -2,7 +2,7 @@ import { ConflictException, Injectable, NotFoundException } from '@nestjs/common
 import { InjectRepository } from '@nestjs/typeorm';
 import { Scene } from 'src/scene/entities/scene.entity';
 import { User } from 'src/user/entities/user.entity';
-import { Brackets, type DeleteResult, type Repository } from 'typeorm';
+import type { DeleteResult, Repository } from 'typeorm';
 import type { CreateStudyDto } from './dto/create-study.dto';
 import type { UpdateStudyDto } from './dto/update-study.dto';
 import { Study } from './entities/study.entity';
@@ -162,32 +162,83 @@ export class StudyService {
     return this.studyRepository.delete(study);
   }
 
-  async findByUser(userId: string, type?: string): Promise<Study[]> {
+  async findByUser(userId: string, type?: string): Promise<ExtendedFilteredStudy[]> {
     const query = this.studyRepository
       .createQueryBuilder('study')
-      .leftJoinAndSelect('study.scene', 'scene')
-      .leftJoinAndSelect('scene.movie', 'movie');
+      .leftJoin('study.scene', 'scene')
+      .leftJoin('scene.movie', 'movie')
+      .leftJoin('study.applicants', 'applicants')
+      .leftJoin('study.participants', 'participants')
+      .select([
+        'study.id',
+        'study.title',
+        'study.description',
+        'study.studiedAt',
+        'study.isCompleted',
+        `GROUP_CONCAT(DISTINCT JSON_OBJECT('id', applicants.id, 'nickname', applicants.nickname)) AS applicantInfo`,
+        `GROUP_CONCAT(DISTINCT JSON_OBJECT('id', participants.id, 'nickname', participants.nickname)) AS participantInfo`,
+        'scene.id',
+        'scene.title',
+        'movie.title',
+        'movie.imageUrl',
+      ])
+      .groupBy('study.id')
+      .addGroupBy('scene.id')
+      .addGroupBy('movie.id');
 
     if (type === 'participant') {
-      query
-        .leftJoin('study.participants', 'participant')
-        .where('participant.id = :userId', { userId });
+      query.where(qb =>
+        `study.id IN (
+            SELECT studyId FROM study_participants WHERE userId = :userId
+          )`
+      ).setParameter('userId', userId);
     } else if (type === 'applicant') {
-      query.leftJoin('study.applicants', 'applicant').where('applicant.id = :userId', { userId });
+      query.where(qb =>
+        `study.id IN (
+            SELECT studyId FROM study_applicants WHERE userId = :userId
+          )`
+      ).setParameter('userId', userId);
     } else {
-      query
-        .leftJoin('study.participants', 'participant')
-        .leftJoin('study.applicants', 'applicant')
-        .where(
-          new Brackets((qb) => {
-            qb.where('participant.id = :userId').orWhere('applicant.id = :userId');
-          }),
-        )
-        .setParameter('userId', userId);
+      query.where(qb =>
+        `study.id IN (
+            SELECT studyId FROM study_participants WHERE userId = :userId
+            UNION
+            SELECT studyId FROM study_applicants WHERE userId = :userId
+          )`
+      ).setParameter('userId', userId);
     }
 
-    return await query.getMany();
+    const results = await query.getRawMany();
+
+    const data: ExtendedFilteredStudy[] = results.map((row) => {
+      const applicants = JSON.parse(`[${row.applicantInfo}]`);
+      const participants = JSON.parse(`[${row.participantInfo}]`);
+
+      return {
+        id: row.study_id,
+        title: row.study_title,
+        description: row.study_description,
+        studiedAt: row.study_studiedAt,
+        isCompleted: Boolean(row.study_isCompleted),
+        applicants,
+        participants,
+        applicantCount: applicants.length,
+        participantCount: participants.length,
+        scene: {
+          id: row.scene_id,
+          title: row.scene_title,
+          speakers: [],
+          movie: {
+            title: row.movie_title,
+            imageUrl: row.movie_imageUrl,
+          },
+        },
+      };
+    });
+
+    return data;
   }
+
 
   async isMember(studyId: string, userId: string): Promise<{ isMember: boolean }> {
     const count = await this.studyRepository
