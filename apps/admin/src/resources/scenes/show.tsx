@@ -1,7 +1,7 @@
-import { Show, SimpleShowLayout, TextField, useRecordContext } from "react-admin";
-import { Typography, Box } from "@mui/material";
-import RESOURCE from "../../constants/resource";
+import { Box, Typography } from "@mui/material";
 import { useState } from "react";
+import { Show, SimpleShowLayout, TextField, useRecordContext } from "react-admin";
+import RESOURCE from "../../constants/resource";
 
 function DialogueList() {
   const record = useRecordContext();
@@ -63,6 +63,7 @@ function DialoguesList({ selectedSpeaker }: { selectedSpeaker: any }) {
       </Typography>
       {filteredDialogues.map((dialogue) => (
         <Box key={dialogue.id} mb={1}>
+          <Typography variant="body2">Order: {dialogue.order}</Typography>
           <Typography variant="body2">Korean Script: {dialogue.koreanScript}</Typography>
           <Typography variant="body2">English Script: {dialogue.englishScript}</Typography>
         </Box>
