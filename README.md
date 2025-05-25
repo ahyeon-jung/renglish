@@ -28,7 +28,7 @@
 
 |Admin Page|Expressions Page|
 |:---:|:---:|
-|<img src="https://github.com/user-attachments/assets/822b2d0e-b5ca-4b6a-8e13-7b99391787d8" />|<img src="https://github.com/user-attachments/assets/822b2d0e-b5ca-4b6a-8e13-7b99391787d8" />|
+|![admin page](https://github.com/user-attachments/assets/3564bc57-1ab3-4903-8520-26b4a01da624)|<img src="https://github.com/user-attachments/assets/822b2d0e-b5ca-4b6a-8e13-7b99391787d8" />|
 
 ### Study participants can share audio and video while participaiting in the study session
 Participants can enter the meeting page to view the script together while sharing audio and video. Each participant can follow others’ positions in the script, and there are some features to assign partners group and provide feedback.
