@@ -21,7 +21,7 @@
 
 |Main Page|My Page|
 |:---:|:---:|
-|<img src="https://github.com/user-attachments/assets/822b2d0e-b5ca-4b6a-8e13-7b99391787d8" />|<img src="https://github.com/user-attachments/assets/822b2d0e-b5ca-4b6a-8e13-7b99391787d8"/>|
+|![Animation](https://github.com/user-attachments/assets/04238fd2-9a89-4212-a0a8-1443aeda012c)|![Animation2](https://github.com/user-attachments/assets/f094f9ec-1c3b-4ecf-a983-52da6416af63)|
 
 ### Key English expressions are managed through the admin page
 > Some users with admin privileges can add English expressions via the admin page. And regular members can view expressions related to each scene.
