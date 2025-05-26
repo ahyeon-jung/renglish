@@ -31,7 +31,7 @@ const create: DataProvider["create"] = async <RecordType extends RaRecord>(
       },
     });
 
-    return { data } as unknown as CreateResult<RecordType>;
+    return Promise.resolve({ data } as unknown as CreateResult<RecordType>);
   }
 
   if (resource === RESOURCE.SCENES) {
@@ -129,7 +129,7 @@ const create: DataProvider["create"] = async <RecordType extends RaRecord>(
       },
     });
 
-    return { data } as unknown as CreateResult<RecordType>;
+    return Promise.resolve({ data } as unknown as CreateResult<RecordType>);
   }
 
   if (resource === RESOURCE.EXPRESSIONS) {
@@ -152,7 +152,7 @@ const create: DataProvider["create"] = async <RecordType extends RaRecord>(
       },
     });
 
-    return { data } as unknown as CreateResult<RecordType>;
+    return Promise.resolve({ data } as unknown as CreateResult<RecordType>);
   }
   return Promise.reject(`Unknown resource: ${resource}`);
 };

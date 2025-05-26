@@ -1,4 +1,4 @@
-import { DataProvider } from "react-admin";
+import type { DataProvider } from "react-admin";
 
 const update: DataProvider["update"] = async (resource) => {
   return Promise.reject(`Unknown resource: ${resource}`);

@@ -1,7 +1,6 @@
 import { expressionApi, movieApi, sceneApi, speakerApi, studyApi, userApi } from "../../libs/api";
 
 import RESOURCE from "../../constants/resource";
-import { SpeakersApi } from "@renglish/services";
 
 const getList = async (resource: string, params: any) => {
   if (resource === RESOURCE.SCENES || resource === RESOURCE.DIALOGUES) {

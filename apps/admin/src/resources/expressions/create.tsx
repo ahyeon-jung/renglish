@@ -1,16 +1,16 @@
+import { MenuItem, Typography } from "@mui/material";
 import {
+  ArrayInput,
   Create,
   SimpleForm,
-  TextInput,
-  ArrayInput,
   SimpleFormIterator,
+  TextInput,
+  useCreate,
   useNotify,
   useRedirect,
-  useCreate,
 } from "react-admin";
-import { MenuItem, Typography } from "@mui/material";
-import RESOURCE from "../../constants/resource";
 import { useGetList } from "react-admin";
+import RESOURCE from "../../constants/resource";
 
 export const ExpressionCreate = () => {
   const notify = useNotify();
@@ -52,9 +52,7 @@ export const ExpressionCreate = () => {
         <Typography variant="h6" gutterBottom>
           여러 표현 등록하기
         </Typography>
-
         <TextInput source="sceneId" label="Scene" select fullWidth>
-          <MenuItem value="">씬을 선택하세요</MenuItem>
           {scenes?.map((scene) => (
             <MenuItem key={scene.id} value={scene.id}>
               {scene.title}
